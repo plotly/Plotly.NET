@@ -873,6 +873,9 @@ type Trace2DStyle() =
     /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
     /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+    /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
+    /// <param name="MultiTextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="MultiHoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -897,14 +900,21 @@ type Trace2DStyle() =
     /// <param name="XBins">Sets the binning across the x dimension</param>
     /// <param name="YBins">Sets the binning across the y dimension</param>
     /// <param name="Marker">Sets the marker of this trace.</param>
+    /// <param name="TextAngle">Sets the angle of the tick labels with respect to the bar. For example, a `tickangle` of -90 draws the tick labels vertically. With "auto" the texts may automatically be rotated to fit with the maximum size in bars.</param>
+    /// <param name="TextFont">Sets the font used for `text`.</param>
     /// <param name="Line">Sets the line of this trace.</param>
     /// <param name="XError">Sets the x error of this trace.</param>
     /// <param name="YError">Sets the y error of this trace.</param>
     /// <param name="SelectedPoints">Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.</param>
     /// <param name="Selected">Sets the style of selected points of this trace.</param>
     /// <param name="Unselected">Sets the style of unselected points of this trace.</param>
+    /// <param name="ClipOnAxis">Determines whether the text nodes are clipped about the subplot axes. To show the text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to "below traces".</param>
+    /// <param name="Constraintext">Constrain the size of text inside or outside a bar to be no larger than the bar itself.</param>
     /// <param name="Cumulative">Sets wether and how the cumulative distribution is displayed</param>
     /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
+    /// <param name="InsideTextAnchor">Determines if texts are kept at center or start/end points in `textposition` "inside" mode.</param>
+    /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
+    /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
     /// <param name="XCalendar">Sets the calendar system to use with `x` date data.</param>
     /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
@@ -922,6 +932,9 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
+            [<Optional; DefaultParameterValue(null)>] ?MultiTextTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
@@ -946,14 +959,21 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?XBins: Bins,
             [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?TextAngle: float,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?XError: Error,
             [<Optional; DefaultParameterValue(null)>] ?YError: Error,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
             [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?ClipOnAxis: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Constraintext: StyleParam.ConstrainText,
             [<Optional; DefaultParameterValue(null)>] ?Cumulative: Cumulative,
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
+            [<Optional; DefaultParameterValue(null)>] ?InsideTextAnchor: StyleParam.InsideTextAnchor,
+            [<Optional; DefaultParameterValue(null)>] ?InsideTextFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?OutsideTextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?XCalendar: StyleParam.Calendar,
             [<Optional; DefaultParameterValue(null)>] ?YCalendar: StyleParam.Calendar,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
@@ -971,6 +991,8 @@ type Trace2DStyle() =
             X |> DynObj.setValueOpt histogram "x"
             Y |> DynObj.setValueOpt histogram "y"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt histogram "text"
+            TextPosition|> DynObj.setValueOptBy histogram "textposition" StyleParam.TextPosition.convert
+            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt histogram "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt histogram "hovertext"
             HoverInfo |> DynObj.setValueOptBy histogram "hoverinfo" StyleParam.HoverInfo.convert
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram "hovertemplate"
@@ -993,14 +1015,21 @@ type Trace2DStyle() =
             XBins |> DynObj.setValueOpt histogram "xbins"
             YBins |> DynObj.setValueOpt histogram "ybins"
             Marker |> DynObj.setValueOpt histogram "marker"
+            TextAngle |> DynObj.setValueOpt histogram "textangle"
+            TextFont |> DynObj.setValueOpt histogram "textfont"
             Line |> DynObj.setValueOpt histogram "line"
             XError |> DynObj.setValueOpt histogram "error_x"
             YError |> DynObj.setValueOpt histogram "error_y"
             SelectedPoints |> DynObj.setValueOpt histogram "selectedpoints"
             Selected |> DynObj.setValueOpt histogram "selected"
             Unselected |> DynObj.setValueOpt histogram "unselected"
+            ClipOnAxis |> DynObj.setValueOpt histogram "cliponaxis"
+            Constraintext |> DynObj.setValueOptBy histogram "constraintext" StyleParam.ConstrainText.convert
             Cumulative |> DynObj.setValueOpt histogram "cumulative"
             HoverLabel |> DynObj.setValueOpt histogram "hoverlabel"
+            InsideTextAnchor |> DynObj.setValueOptBy histogram "insidetextanchor" StyleParam.InsideTextAnchor.convert
+            InsideTextFont |> DynObj.setValueOpt histogram "insidetextfont"
+            OutsideTextFont |> DynObj.setValueOpt histogram "outsidetextfont"
             XCalendar |> DynObj.setValueOptBy histogram "xcalendar" StyleParam.Calendar.convert
             YCalendar |> DynObj.setValueOptBy histogram "ycalendar" StyleParam.Calendar.convert
             UIRevision |> DynObj.setValueOpt histogram "uirevision"

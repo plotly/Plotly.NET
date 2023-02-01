@@ -3062,6 +3062,7 @@ module Chart2D =
         /// <param name="Opacity">Sets the Opacity of the trace.</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
         /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
         /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
@@ -3071,8 +3072,12 @@ module Chart2D =
         /// <param name="BinGroup">Set a group of histogram traces which will have compatible bin settings. Note that traces on the same subplot and with the same "orientation" under `barmode` "stack", "relative" and "group" are forced into the same bingroup, Using `bingroup`, traces under `barmode` "overlay" and on different axes (of the same axis type) can have compatible bin settings. Note that histogram and histogram2d" trace can share the same `bingroup`</param>
         /// <param name="XBins">Sets the binning across the x dimension</param>
         /// <param name="YBins">Sets the binning across the y dimension</param>
-        /// <param name="MarkerColor">Sets the color of the histogram's bars.</param>
-        /// <param name="Marker">Sets the marker for the histogram's bars (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="MarkerColor">Sets the color of the bars</param>
+        /// <param name="MarkerColorScale">Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.</param>
+        /// <param name="MarkerOutline">Sets the color of the bar outlines</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all bars</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
         /// <param name="Line">Sets the outline of the histogram's bars.</param>
         /// <param name="XError">Sets the x error of this trace.</param>
         /// <param name="YError">Sets the y error of this trace.</param>
@@ -3090,6 +3095,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
                 [<Optional; DefaultParameterValue(null)>] ?HistFunc: StyleParam.HistFunc,
                 [<Optional; DefaultParameterValue(null)>] ?HistNorm: StyleParam.HistNorm,
                 [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
@@ -3100,6 +3106,11 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?XBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
                 [<Optional; DefaultParameterValue(null)>] ?XError: Error,
@@ -3112,14 +3123,32 @@ module Chart2D =
             let useDefaults =
                 defaultArg UseDefaults true
 
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    Pattern = pattern,
+                    ?Colorscale = MarkerColorScale,
+                    ?Outline = MarkerOutline
+                )
+
             Trace2D.initHistogram (
                 Trace2DStyle.Histogram(
                     ?X = X,
                     ?Y = Y,
+                    ?Orientation = Orientation,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
-                    ?Orientation = Orientation,
+                    ?TextPosition = TextPosition,
                     ?HistFunc = HistFunc,
                     ?HistNorm = HistNorm,
                     ?AlignmentGroup = AlignmentGroup,
@@ -3129,7 +3158,7 @@ module Chart2D =
                     ?BinGroup = BinGroup,
                     ?XBins = XBins,
                     ?YBins = YBins,
-                    ?Marker = Marker,
+                    Marker = marker,
                     ?Line = Line,
                     ?XError = XError,
                     ?YError = YError,
@@ -3137,8 +3166,6 @@ module Chart2D =
                     ?HoverLabel = HoverLabel
                 )
             )
-            |> TraceStyle.Marker(?Color = MarkerColor)
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend)
             |> GenericChart.ofTraceObject useDefaults
 
 
