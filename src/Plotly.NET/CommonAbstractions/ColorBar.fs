@@ -64,6 +64,7 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
             [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
             [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
@@ -108,6 +109,7 @@ type ColorBar() =
             ?LenMode = LenMode,
             ?MinExponent = MinExponent,
             ?NTicks = NTicks,
+            ?Orientation = Orientation,
             ?OutlineColor = OutlineColor,
             ?OutlineWidth = OutlineWidth,
             ?SeparateThousands = SeparateThousands,
@@ -171,7 +173,7 @@ type ColorBar() =
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="TickLabelOverflow">Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is "hide past domain". In other cases the default is "hide past div".</param>
-    /// <param name="TickLabelPosition">Determines where tick labels are drawn.</param>
+    /// <param name="TickLabelPosition">Determines where tick labels are drawn relative to the ticks. Left and right options are used when `orientation` is *h*, top and bottom when `orientation` is *v*.</param>
     /// <param name="TickLen">Sets the tick length (in px).</param>
     /// <param name="TickMode">Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).</param>
     /// <param name="TickPrefix">Sets a tick label prefix.</param>
@@ -181,11 +183,11 @@ type ColorBar() =
     /// <param name="TickVals">Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `ticktext`.</param>
     /// <param name="TickWidth">Sets the tick width (in px).</param>
     /// <param name="Title">Sets the ColorBar title.</param>
-    /// <param name="X">Sets the x position of the color bar (in plot fraction).</param>
-    /// <param name="XAnchor">Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the color bar.</param>
+    /// <param name="X">Sets the x position of the color bar (in plot fraction). Defaults to 1.02 when `orientation` is *v* and 0.5 when `orientation` is *h*.</param>
+    /// <param name="XAnchor">'Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center*, or *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.</param>
     /// <param name="XPad">Sets the amount of padding (in px) along the x direction.</param>
-    /// <param name="Y">Sets the y position of the color bar (in plot fraction).</param>
-    /// <param name="YAnchor">Sets this color bar's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the color bar.</param>
+    /// <param name="Y">Sets the y position of the color bar (in plot fraction).Defaults to 0.5 when `orientation` is *v* and 1.02 when `orientation` is *h*.'</param>
+    /// <param name="YAnchor">'Sets this color bar\'s vertical position anchor. This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.'</param>
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
     static member style
         (
@@ -198,6 +200,7 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
             [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
+            [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
             [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
@@ -243,6 +246,7 @@ type ColorBar() =
             LenMode |> DynObj.setValueOptBy colorBar "lenmode" StyleParam.UnitMode.convert
             MinExponent |> DynObj.setValueOpt colorBar "min3xponent"
             NTicks |> DynObj.setValueOpt colorBar "nticks"
+            Orientation |> DynObj.setValueOptBy colorBar "orientation" StyleParam.Orientation.convert
             OutlineColor |> DynObj.setValueOpt colorBar "outlinecolor"
             OutlineWidth |> DynObj.setValueOpt colorBar "outlinewidth"
             SeparateThousands |> DynObj.setValueOpt colorBar "separatethousands"
