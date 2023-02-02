@@ -60,7 +60,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
-        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -93,6 +94,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -140,7 +142,8 @@ module Chart2D =
                     ?Orientation = Orientation,
                     ?GroupNorm = GroupNorm,
                     ?Fill = Fill,
-                    ?FillColor = FillColor
+                    ?FillColor = FillColor,
+                    ?FillPattern = FillPattern
                 )
 
             let useWebGL = defaultArg UseWebGL false
@@ -175,6 +178,9 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -204,6 +210,9 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -236,6 +245,9 @@ module Chart2D =
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
+                ?FillPattern = FillPattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
@@ -424,7 +436,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
-        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -457,6 +470,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -502,6 +516,7 @@ module Chart2D =
                 ?GroupNorm = GroupNorm,
                 ?Fill = Fill,
                 ?FillColor = FillColor,
+                ?FillPattern = FillPattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
@@ -535,7 +550,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
-        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -567,6 +583,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -600,6 +617,7 @@ module Chart2D =
                 ?GroupNorm = GroupNorm,
                 ?Fill = Fill,
                 ?FillColor = FillColor,
+                ?FillPattern = FillPattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
@@ -634,7 +652,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
-        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -668,6 +687,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -728,7 +748,8 @@ module Chart2D =
                     ?Orientation = Orientation,
                     ?GroupNorm = GroupNorm,
                     ?Fill = Fill,
-                    ?FillColor = FillColor
+                    ?FillColor = FillColor,
+                    ?FillPattern = FillPattern
                 )
 
             let useWebGL = defaultArg UseWebGL false
@@ -766,7 +787,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
-        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -799,6 +821,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -833,6 +856,7 @@ module Chart2D =
                 ?GroupNorm = GroupNorm,
                 ?Fill = Fill,
                 ?FillColor = FillColor,
+                ?FillPattern = FillPattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
@@ -1070,6 +1094,7 @@ module Chart2D =
         /// <param name="LineDash">sets the drawing style of the line for the mid Y values.</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments) for the mid Y values.</param>
         /// <param name="RangeColor">Sets the color of the range between upper and lower Y values.</param>
+        /// <param name="RangePattern">Sets the pattern of the range between upper and lower Y values.</param>
         /// <param name="UpperText">Sets a text associated with each datum for the upper Y values.</param>
         /// <param name="MultiUpperText">Sets individual text for each datum for the upper Y values.</param>
         /// <param name="LowerText">Sets a text associated with each datum for the lower Y values.</param>
@@ -1114,6 +1139,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?UpperLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?LowerLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?RangeColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?RangePattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?UpperText: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiUpperText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?LowerText: #IConvertible,
@@ -1204,6 +1230,7 @@ module Chart2D =
                         Mode = changeMode mode,
                         Fill = StyleParam.Fill.ToNext_y,
                         ?FillColor = RangeColor,
+                        ?FillPattern = RangePattern,
                         ?Name = Some upperName,
                         ShowLegend = (defaultArg ShowLegend true),
                         ?Text = UpperText,
@@ -1211,7 +1238,7 @@ module Chart2D =
                         ?TextPosition = TextPosition,
                         ?TextFont = TextFont,
                         ?Marker = UpperMarker,
-                        ?Line = LowerLine,
+                        ?Line = UpperLine,
                         LegendGroup = (defaultArg GroupName "Range")
                     )
                 )
@@ -1260,6 +1287,7 @@ module Chart2D =
         /// <param name="LineDash">sets the drawing style of the line for the mid Y values.</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments) for the mid Y values.</param>
         /// <param name="RangeColor">Sets the color of the range between upper and lower Y values.</param>
+        /// <param name="RangePattern">Sets the pattern of the range between upper and lower Y values.</param>
         /// <param name="UpperText">Sets a text associated with each datum for the upper Y values.</param>
         /// <param name="MultiUpperText">Sets individual text for each datum for the upper Y values.</param>
         /// <param name="LowerText">Sets a text associated with each datum for the lower Y values.</param>
@@ -1303,6 +1331,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?UpperLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?LowerLine: Line,
                 [<Optional; DefaultParameterValue(null)>] ?RangeColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?RangePattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?UpperText: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiUpperText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?LowerText: #IConvertible,
@@ -1334,12 +1363,17 @@ module Chart2D =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?UpperMarker = UpperMarker,
+                ?LowerMarker = LowerMarker,
                 ?LineColor = LineColor,
                 ?LineColorScale = LineColorScale,
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?UpperLine = UpperLine,
+                ?LowerLine = LowerLine,
                 ?RangeColor = RangeColor,
+                ?RangePattern = RangePattern,
                 ?UpperText = UpperText,
                 ?MultiUpperText = MultiUpperText,
                 ?LowerText = LowerText,
@@ -1377,7 +1411,9 @@ module Chart2D =
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
-        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -1409,9 +1445,16 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
+
+            let fillpattern =
+                FillPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
 
             Chart.Line(
                 x,
@@ -1440,6 +1483,7 @@ module Chart2D =
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
+                FillPattern = fillpattern,
                 ?FillColor = FillColor,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
@@ -1473,6 +1517,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -1503,6 +1549,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -1536,6 +1584,8 @@ module Chart2D =
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
                 ?FillColor = FillColor,
+                ?FillPatternShape = FillPatternShape,
+                ?FillPattern = FillPattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
@@ -1569,6 +1619,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -1601,9 +1653,16 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
+
+            let fillpattern =
+                FillPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
 
             Chart.Spline(
                 x,
@@ -1634,6 +1693,7 @@ module Chart2D =
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
                 ?FillColor = FillColor,
+                FillPattern = fillpattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
@@ -1666,6 +1726,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member SplineArea
@@ -1696,6 +1758,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -1730,6 +1794,8 @@ module Chart2D =
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
                 ?FillColor = FillColor,
+                ?FillPatternShape = FillPatternShape,
+                ?FillPattern = FillPattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
@@ -1760,6 +1826,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -1790,9 +1858,16 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
+
+            let fillpattern =
+                FillPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
 
             Chart.Line(
                 x,
@@ -1822,6 +1897,7 @@ module Chart2D =
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
                 ?FillColor = FillColor,
+                FillPattern = fillpattern,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
@@ -1851,6 +1927,8 @@ module Chart2D =
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -1880,6 +1958,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -1911,6 +1991,8 @@ module Chart2D =
                 ?Line = Line,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
+                ?FillPatternShape = FillPatternShape,
+                ?FillPattern = FillPattern,
                 ?FillColor = FillColor,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults

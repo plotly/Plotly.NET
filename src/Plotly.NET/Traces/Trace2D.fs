@@ -166,6 +166,7 @@ type Trace2DStyle() =
     /// <param name="ConnectGaps">Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.</param>
     /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
     /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+    /// <param name="FillPattern">Sets the pattern within the marker.</param>
     /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
     /// <param name="HoverOn">Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is "toself" or "tonext" and there are no markers or text, then the default is "fills", otherwise it is "points".</param>
     /// <param name="StackGaps">Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Determines how we handle locations at which other traces in this group have data but this one does not. With "infer zero" we insert a zero at these locations. With "interpolate" we linearly interpolate between existing values, and extrapolate a constant beyond the existing values.</param>
@@ -227,6 +228,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?ConnectGaps: bool,
             [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
             [<Optional; DefaultParameterValue(null)>] ?HoverOn: StyleParam.HoverOn,
             [<Optional; DefaultParameterValue(null)>] ?StackGaps: StyleParam.StackGaps,
@@ -287,6 +289,7 @@ type Trace2DStyle() =
             ConnectGaps |> DynObj.setValueOpt trace "connectgaps"
             Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
             FillColor |> DynObj.setValueOpt trace "fillcolor"
+            FillPattern |> DynObj.setValueOpt trace "fillpattern"
             HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
             HoverOn |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
             StackGaps |> DynObj.setValueOptBy trace "stackgaps" StyleParam.StackGaps.convert
