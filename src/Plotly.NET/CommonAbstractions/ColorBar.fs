@@ -38,7 +38,7 @@ type ColorBar() =
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="TickLabelOverflow">Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is "hide past domain". In other cases the default is "hide past div".</param>
     /// <param name="TickLabelPosition">Determines where tick labels are drawn.</param>
-    /// <param name="TickLen">Sets the tick length (in px).</param>
+    /// <param name="TickLabelStep">Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".</param>    /// <param name="TickLen">Sets the tick length (in px).</param>
     /// <param name="TickMode">Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).</param>
     /// <param name="TickPrefix">Sets a tick label prefix.</param>
     /// <param name="Ticks">Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.</param>
@@ -82,6 +82,7 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
             [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
             [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelStep: int,
             [<Optional; DefaultParameterValue(null)>] ?TickLen: float,
             [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
             [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
@@ -127,6 +128,7 @@ type ColorBar() =
             ?TickFormatStops = TickFormatStops,
             ?TickLabelOverflow = TickLabelOverflow,
             ?TickLabelPosition = TickLabelPosition,
+            ?TickLabelStep = TickLabelStep,
             ?TickLen = TickLen,
             ?TickMode = TickMode,
             ?TickPrefix = TickPrefix,
@@ -174,7 +176,7 @@ type ColorBar() =
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="TickLabelOverflow">Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is "hide past domain". In other cases the default is "hide past div".</param>
     /// <param name="TickLabelPosition">Determines where tick labels are drawn relative to the ticks. Left and right options are used when `orientation` is *h*, top and bottom when `orientation` is *v*.</param>
-    /// <param name="TickLen">Sets the tick length (in px).</param>
+    /// <param name="TickLabelStep">Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".</param>/// <param name="TickLen">Sets the tick length (in px).</param>
     /// <param name="TickMode">Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).</param>
     /// <param name="TickPrefix">Sets a tick label prefix.</param>
     /// <param name="Ticks">Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.</param>
@@ -218,6 +220,7 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
             [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
             [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
+            [<Optional; DefaultParameterValue(null)>] ?TickLabelStep: int,
             [<Optional; DefaultParameterValue(null)>] ?TickLen: float,
             [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
             [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
@@ -264,6 +267,7 @@ type ColorBar() =
             TickFormatStops |> DynObj.setValueOpt colorBar "tickformatstops"
             TickLabelOverflow |> DynObj.setValueOptBy colorBar "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
             TickLabelPosition |> DynObj.setValueOptBy colorBar "ticklabelposition" StyleParam.TickLabelPosition.convert
+            TickLabelStep |> DynObj.setValueOpt colorBar "ticklabelstep"
             TickLen |> DynObj.setValueOpt colorBar "ticklen"
             TickMode |> DynObj.setValueOptBy colorBar "tickmode" StyleParam.TickMode.convert
             TickPrefix |> DynObj.setValueOpt colorBar "tickprefix"
