@@ -1415,6 +1415,7 @@ type Trace2DStyle() =
     /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
     /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
     /// <param name="Z">Sets the aggregation data.</param>
+    /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
@@ -1437,6 +1438,7 @@ type Trace2DStyle() =
     /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings. Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D) histogram `bingroup`</param>
     /// <param name="YBins">Sets the binning across the y dimension</param>
     /// <param name="Marker">Sets the marker of this trace.</param>
+    /// <param name="TextFont">Sets the text font of this trace.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="ColorScale">Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.</param>
@@ -1467,6 +1469,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?YGap: int,
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
             [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
@@ -1489,6 +1492,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?YBinGroup: string,
             [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
@@ -1520,6 +1524,7 @@ type Trace2DStyle() =
             Y |> DynObj.setValueOpt histogram2D "y"
             YGap |> DynObj.setValueOpt histogram2D "ygap"
             Z |> DynObj.setValueOpt histogram2D "z"
+            TextTemplate |> DynObj.setValueOpt histogram2D "texttemplate"
             HoverInfo |> DynObj.setValueOptBy histogram2D "hoverinfo" StyleParam.HoverInfo.convert
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2D "hovertemplate"
             XHoverFormat |> DynObj.setValueOpt histogram2D "xhoverformat"
@@ -1541,6 +1546,7 @@ type Trace2DStyle() =
             YBinGroup |> DynObj.setValueOpt histogram2D "ybingroup"
             YBins |> DynObj.setValueOpt histogram2D "ybins"
             Marker |> DynObj.setValueOpt histogram2D "marker"
+            TextFont |> DynObj.setValueOpt histogram2D "textfont"
             ColorBar |> DynObj.setValueOpt histogram2D "colorbar"
             AutoColorScale |> DynObj.setValueOpt histogram2D "autocolorscale"
             ColorScale |> DynObj.setValueOptBy histogram2D "colorscale" StyleParam.Colorscale.convert
@@ -1573,6 +1579,7 @@ type Trace2DStyle() =
     /// <param name="X">Sets the sample data to be binned on the x axis.</param>
     /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
     /// <param name="Z">Sets the aggregation data.</param>
+    /// <param name="TextTemplate">For this trace it only has an effect if `coloring` is set to "heatmap". Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
     /// <param name="HoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
     /// <param name="MultiHoverTemplate">Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&lt;extra&gt;` is displayed in the secondary box, for example "&lt;extra&gt;{fullData.name}&lt;/extra&gt;". To hide the secondary box completely, use an empty tag `&lt;extra&gt;&lt;/extra&gt;`.</param>
@@ -1596,6 +1603,7 @@ type Trace2DStyle() =
     /// <param name="YBins">Sets the binning across the y dimension</param>
     /// <param name="Marker">Sets the marker of this trace.</param>
     /// <param name="Line">Sets the line of this trace.</param>
+    /// <param name="TextFont">For this trace it only has an effect if `coloring` is set to "heatmap". Sets the text font of this trace.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="ColorScale">Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.</param>
@@ -1626,6 +1634,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
             [<Optional; DefaultParameterValue(null)>] ?HoverTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
@@ -1649,6 +1658,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
@@ -1680,6 +1690,7 @@ type Trace2DStyle() =
             X |> DynObj.setValueOpt histogram2DContour "x"
             Y |> DynObj.setValueOpt histogram2DContour "y"
             Z |> DynObj.setValueOpt histogram2DContour "z"
+            TextTemplate |> DynObj.setValueOpt histogram2DContour "texttemplate"
             HoverInfo |> DynObj.setValueOptBy histogram2DContour "hoverinfo" StyleParam.HoverInfo.convert
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt histogram2DContour "hovertemplate"
             XHoverFormat |> DynObj.setValueOpt histogram2DContour "xhoverformat"
@@ -1702,6 +1713,7 @@ type Trace2DStyle() =
             YBins |> DynObj.setValueOpt histogram2DContour "ybins"
             Marker |> DynObj.setValueOpt histogram2DContour "marker"
             Line |> DynObj.setValueOpt histogram2DContour "line"
+            TextFont |> DynObj.setValueOpt histogram2DContour "textfont"
             ColorBar |> DynObj.setValueOpt histogram2DContour "colorbar"
             AutoColorScale |> DynObj.setValueOpt histogram2DContour "autocolorscale"
             ColorScale |> DynObj.setValueOptBy histogram2DContour "colorscale" StyleParam.Colorscale.convert
@@ -1747,6 +1759,7 @@ type Trace2DStyle() =
     /// <param name="Z">Sets the z data.</param>
     /// <param name="Text">Sets the text elements associated with each z value.</param>
     /// <param name="MultiText">Sets the text elements associated with each z value.</param>
+    /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="MultiHoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -1765,6 +1778,7 @@ type Trace2DStyle() =
     /// <param name="YPeriod">Only relevant when the axis `type` is "date". Sets the period positioning in milliseconds or "M&lt;n&gt;" on the y axis. Special values in the form of "M&lt;n&gt;" could be used to declare the number of months. In this case `n` must be a positive integer.</param>
     /// <param name="YPeriodAlignment">Only relevant when the axis `type` is "date". Sets the alignment of data points on the y axis.</param>
     /// <param name="YPeriod0">Only relevant when the axis `type` is "date". Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.</param>
+    /// <param name="TextFont">Sets the text font of this trace.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="ColorScale">Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.</param>
@@ -1806,6 +1820,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
@@ -1824,6 +1839,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?YPeriod: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?YPeriodAlignment: StyleParam.PeriodAlignment,
             [<Optional; DefaultParameterValue(null)>] ?YPeriod0: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
@@ -1864,8 +1880,8 @@ type Trace2DStyle() =
             YType |> DynObj.setValueOptBy heatmap "ytype" StyleParam.CoordinateType.convert
             YGap |> DynObj.setValueOpt heatmap "ygap"
             Z |> DynObj.setValueOpt heatmap "z"
-            Text |> DynObj.setValueOpt heatmap "text"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt heatmap "text"
+            TextTemplate |> DynObj.setValueOpt heatmap "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt heatmap "hovertext"
             HoverInfo |> DynObj.setValueOptBy heatmap "hoverinfo" StyleParam.HoverInfo.convert
             (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt heatmap "hovertemplate"
@@ -1882,6 +1898,7 @@ type Trace2DStyle() =
             YPeriod |> DynObj.setValueOpt heatmap "yperiod"
             YPeriodAlignment |> DynObj.setValueOptBy heatmap "yperiodalignment" StyleParam.PeriodAlignment.convert
             YPeriod0 |> DynObj.setValueOpt heatmap "yperiod0"
+            TextFont |> DynObj.setValueOpt heatmap "textfont"
             ColorBar |> DynObj.setValueOpt heatmap "colorbar"
             AutoColorScale |> DynObj.setValueOpt heatmap "autocolorscale"
             ColorScale |> DynObj.setValueOptBy heatmap "colorscale" StyleParam.Colorscale.convert
@@ -2029,6 +2046,7 @@ type Trace2DStyle() =
     /// <param name="Z">Sets the z data.</param>
     /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="TextTemplate">For this trace it only has an effect if `coloring` is set to "heatmap". Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="MultiHoverText">Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -2048,6 +2066,7 @@ type Trace2DStyle() =
     /// <param name="YPeriodAlignment">Only relevant when the axis `type` is "date". Sets the alignment of data points on the y axis.</param>
     /// <param name="YPeriod0">Only relevant when the axis `type` is "date". Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.</param>
     /// <param name="Line">Sets the line of this trace.</param>
+    /// <param name="TextFont">For this trace it only has an effect if `coloring` is set to "heatmap". Sets the text font of this trace.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="ColorScale">Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.</param>
@@ -2090,6 +2109,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?HoverText: string,
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverText: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
@@ -2109,6 +2129,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?YPeriodAlignment: StyleParam.PeriodAlignment,
             [<Optional; DefaultParameterValue(null)>] ?YPeriod0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
@@ -2150,7 +2171,7 @@ type Trace2DStyle() =
             DY |> DynObj.setValueOpt contour "dy"
             YType |> DynObj.setValueOptBy contour "ytype" StyleParam.CoordinateType.convert
             Z |> DynObj.setValueOpt contour "z"
-            Text |> DynObj.setValueOpt contour "text"
+            TextTemplate |> DynObj.setValueOpt contour "texttemplate"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt contour "text"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt contour "hovertext"
             HoverInfo |> DynObj.setValueOptBy contour "hoverinfo" StyleParam.HoverInfo.convert
@@ -2168,6 +2189,8 @@ type Trace2DStyle() =
             YPeriod |> DynObj.setValueOpt contour "yperiod"
             YPeriodAlignment |> DynObj.setValueOptBy contour "yperiodalignment" StyleParam.PeriodAlignment.convert
             YPeriod0 |> DynObj.setValueOpt contour "yperiod0"
+            Line |> DynObj.setValueOpt contour "line"
+            TextFont |> DynObj.setValueOpt contour "textfont"
             ColorBar |> DynObj.setValueOpt contour "colorbar"
             AutoColorScale |> DynObj.setValueOpt contour "autocolorscale"
             ColorScale |> DynObj.setValueOptBy contour "colorscale" StyleParam.Colorscale.convert
