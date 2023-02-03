@@ -958,11 +958,14 @@ module GenericChartExtensions =
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
         [<CompiledName("WithMathTex")>]
         [<Extension>]
-        member this.WithMathTex([<Optional; DefaultParameterValue(true)>] ?AppendTags: bool) =
+        member this.WithMathTex(
+            [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
+            [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+        ) =
             let append =
                 Option.defaultValue true AppendTags
 
-            this |> Chart.withMathTex (append)
+            this |> Chart.withMathTex (AppendTags = append)
 
 
         /// Save chart as html single page

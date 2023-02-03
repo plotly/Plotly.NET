@@ -336,7 +336,7 @@ let additionalHeadTagsChart =
     // Add reference to the bulma css framework
     |> Chart.withAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
 
-let mathtexChart =
+let mathtexv3Chart =
     [
         Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$", UseDefaults = false)
         Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$", UseDefaults = false)
@@ -345,6 +345,16 @@ let mathtexChart =
     |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
     // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
     |> Chart.withMathTex(true)
+
+let mathtexv2Chart =
+    [
+        Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$", UseDefaults = false)
+        Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$", UseDefaults = false)
+    ]
+    |> Chart.combine
+    |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
+    // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
+    |> Chart.withMathTex(true, MathJaxVersion = 2)
 
 [<Tests>]
 let ``Display options`` =
@@ -376,16 +386,28 @@ let ``Display options`` =
             ]
             |> substringListIsInChart additionalHeadTagsChart toEmbeddedHTML
         );
-        testCase "MathTex data" ( fun () ->
+        testCase "MathTex v2 data" ( fun () ->
             """var data = [{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[1.0],"y":[2.0],"marker":{},"line":{}},{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[2.0],"y":[4.0],"marker":{},"line":{}}];"""
-            |> chartGeneratedContains mathtexChart
+            |> chartGeneratedContains mathtexv2Chart
         );
-        testCase "MathTex layout" ( fun () ->
+        testCase "MathTex v2 layout" ( fun () ->
             "var layout = {\"title\":{\"text\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\"}};"
-            |> chartGeneratedContains mathtexChart
+            |> chartGeneratedContains mathtexv2Chart
         );
-        testCase "MathTex include mathjax" ( fun () ->
+        testCase "MathTex v2 include mathjax" ( fun () ->
             "https://cdnjs.cloudflare.com/ajax/libs/mathjax/"
-            |> substringIsInChart mathtexChart toEmbeddedHTML
+            |> substringIsInChart mathtexv2Chart toEmbeddedHTML
+        )        
+        testCase "MathTex v3 data" ( fun () ->
+            """var data = [{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[1.0],"y":[2.0],"marker":{},"line":{}},{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[2.0],"y":[4.0],"marker":{},"line":{}}];"""
+            |> chartGeneratedContains mathtexv3Chart
+        );
+        testCase "MathTex v3 layout" ( fun () ->
+            "var layout = {\"title\":{\"text\":\"$\\\\beta_{1c} = 25 \\\\pm 11 \\\\text{ km s}^{-1}$\"}};"
+            |> chartGeneratedContains mathtexv3Chart
+        );
+        testCase "MathTex v3 include mathjax" ( fun () ->
+            "https://cdn.jsdelivr.net/npm/mathjax@3"
+            |> substringIsInChart mathtexv3Chart toEmbeddedHTML
         )
     ]

@@ -354,6 +354,7 @@ type Config() =
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TypesetMath: bool,
             [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
@@ -367,6 +368,7 @@ type Config() =
         Config()
         |> Config.style (
             ?StaticPlot = StaticPlot,
+            ?TypesetMath = TypesetMath,
             ?PlotlyServerUrl = PlotlyServerUrl,
             ?Autosizable = Autosizable,
             ?Responsive = Responsive,
@@ -395,6 +397,7 @@ type Config() =
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TypesetMath: bool,
             [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
@@ -407,6 +410,7 @@ type Config() =
         ) =
         fun (config: Config) ->
             StaticPlot |> DynObj.setValueOpt config "staticPlot"
+            TypesetMath |> DynObj.setValueOpt config "typesetMath"
             PlotlyServerUrl |> DynObj.setValueOpt config "plotlyServerURL"
             Autosizable |> DynObj.setValueOpt config "autosizable"
             Editable |> DynObj.setValueOpt config "editable"

@@ -2769,6 +2769,7 @@ type Chart =
     static member withConfigStyle
         (
             [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
+            [<Optional; DefaultParameterValue(null)>] ?TypesetMath: bool,
             [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
@@ -2784,6 +2785,7 @@ type Chart =
             let config =
                 Config.init (
                     ?StaticPlot = StaticPlot,
+                    ?TypesetMath = TypesetMath,
                     ?PlotlyServerUrl = PlotlyServerUrl,
                     ?Autosizable = Autosizable,
                     ?Responsive = Responsive,
@@ -3171,17 +3173,30 @@ type Chart =
 
     /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
     [<CompiledName("WithMathTex")>]
-    static member withMathTex([<Optional; DefaultParameterValue(true)>] ?AppendTags: bool) =
+    static member withMathTex(
+        [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
+        [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+    ) =
+        let version = MathJaxVersion |> Option.defaultValue 3
+
         let tags =
-            [
-                """<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});</script>"""
-                """<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML%2CSafe.js&ver=4.1"></script>"""
-            ]
+            if version = 2 then
+                [
+                    """<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});</script>"""
+                    """<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML%2CSafe.js&ver=4.1"></script>"""
+                ]
+            else 
+                [
+                    """<script>MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}};</script>"""
+                    """<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>"""
+                ]
 
         (fun (ch: GenericChart) ->
 
             if (AppendTags |> Option.defaultValue true) then
-                ch |> Chart.withAdditionalHeadTags tags
+                ch 
+                |> Chart.withAdditionalHeadTags tags
+                |> Chart.withConfigStyle()
             else
                 ch |> Chart.withHeadTags tags)
 
