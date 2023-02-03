@@ -64,6 +64,7 @@
     <Compile Include="Layout\ObjectAbstractions\Common\LayoutGrid.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Legend.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Rangebreak.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\Minor.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LinearAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ColorAxis.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\UpdateMenu.fs" />

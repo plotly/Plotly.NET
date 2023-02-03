@@ -60,6 +60,7 @@ type LinearAxis() =
     /// <param name="ShowExponent">If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.</param>
     /// <param name="ExponentFormat">Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</param>
     /// <param name="MinExponent">Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".</param>
+    /// <param name="Minor">Holds various parameters to style minor ticks on this axis.</param>
     /// <param name="SeparateThousands">If "true", even 4-digit integers are separated</param>
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
@@ -141,6 +142,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
             [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?Minor: Minor,
             [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
@@ -223,6 +225,7 @@ type LinearAxis() =
             ?ShowExponent = ShowExponent,
             ?ExponentFormat = ExponentFormat,
             ?MinExponent = MinExponent,
+            ?Minor = Minor,
             ?SeparateThousands = SeparateThousands,
             ?TickFormat = TickFormat,
             ?TickFormatStops = TickFormatStops,
@@ -306,6 +309,7 @@ type LinearAxis() =
     /// <param name="ShowExponent">If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.</param>
     /// <param name="ExponentFormat">Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</param>
     /// <param name="MinExponent">Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".</param>
+    /// <param name="Minor">Holds various parameters to style minor ticks on this axis.</param>
     /// <param name="SeparateThousands">If "true", even 4-digit integers are separated</param>
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
@@ -383,6 +387,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
             [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?Minor: Minor,
             [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
@@ -462,6 +467,7 @@ type LinearAxis() =
             ?ShowExponent = ShowExponent,
             ?ExponentFormat = ExponentFormat,
             ?MinExponent = MinExponent,
+            ?Minor = Minor,
             ?SeparateThousands = SeparateThousands,
             ?TickFormat = TickFormat,
             ?TickFormatStops = TickFormatStops,
@@ -800,6 +806,7 @@ type LinearAxis() =
     /// <param name="ShowExponent">If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.</param>
     /// <param name="ExponentFormat">Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</param>
     /// <param name="MinExponent">Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".</param>
+    /// <param name="Minor">Holds various parameters to style minor ticks on this axis.</param>
     /// <param name="SeparateThousands">If "true", even 4-digit integers are separated</param>
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
@@ -898,6 +905,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
             [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
+            [<Optional; DefaultParameterValue(null)>] ?Minor: Minor,
             [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
@@ -997,6 +1005,7 @@ type LinearAxis() =
             ShowExponent |> DynObj.setValueOptBy axis "showexponent" StyleParam.ShowExponent.convert
             ExponentFormat |> DynObj.setValueOptBy axis "exponentformat" StyleParam.ExponentFormat.convert
             MinExponent |> DynObj.setValueOpt axis "minexponent"
+            Minor |> DynObj.setValueOpt axis "minor"
             SeparateThousands |> DynObj.setValueOpt axis "separatethousands"
             TickFormat |> DynObj.setValueOpt axis "tickformat"
             TickFormatStops |> DynObj.setValueOpt axis "tickformatstops"
