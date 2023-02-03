@@ -965,7 +965,7 @@ module GenericChartExtensions =
             let append =
                 Option.defaultValue true AppendTags
 
-            this |> Chart.withMathTex (AppendTags = append)
+            this |> Chart.withMathTex (AppendTags = append, ?MathJaxVersion = MathJaxVersion)
 
 
         /// Save chart as html single page

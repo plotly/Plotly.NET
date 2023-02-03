@@ -15,6 +15,7 @@ type RealAxis() =
     /// </summary>
     /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="GridWidth">Sets the width (in px) of the grid lines.</param>
     /// <param name="HoverFormat">Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
@@ -41,6 +42,7 @@ type RealAxis() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
             [<Optional; DefaultParameterValue(null)>] ?GridWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
@@ -68,6 +70,7 @@ type RealAxis() =
         |> RealAxis.style (
             ?Color = Color,
             ?GridColor = GridColor,
+            ?GridDash = GridDash,
             ?GridWidth = GridWidth,
             ?HoverFormat = HoverFormat,
             ?Layer = Layer,
@@ -97,6 +100,7 @@ type RealAxis() =
     /// </summary>
     /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="GridWidth">Sets the width (in px) of the grid lines.</param>
     /// <param name="HoverFormat">Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
@@ -123,6 +127,7 @@ type RealAxis() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
             [<Optional; DefaultParameterValue(null)>] ?GridWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
@@ -150,6 +155,7 @@ type RealAxis() =
 
             Color |> DynObj.setValueOpt realAxis "color"
             GridColor |> DynObj.setValueOpt realAxis "gridcolor"
+            GridDash |> DynObj.setValueOptBy realAxis "griddash" StyleParam.DrawingStyle.convert
             GridWidth |> DynObj.setValueOpt realAxis "gridwidth"
             HoverFormat |> DynObj.setValueOpt realAxis "hoverformat"
             Layer |> DynObj.setValueOptBy realAxis "layer" StyleParam.Layer.convert

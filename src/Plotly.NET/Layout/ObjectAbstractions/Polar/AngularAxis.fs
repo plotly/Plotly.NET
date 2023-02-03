@@ -30,6 +30,7 @@ type AngularAxis() =
     /// <param name="LineWidth">Sets the width (in px) of the axis line.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="GridWidth">Sets the width (in px) of the grid lines.</param>
     /// <param name="TickMode">Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `TickVals` and the tick text is `TickText`. ("array" is the default value if `TickVals` is provided).</param>
     /// <param name="NTicks">Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to "auto".</param>
@@ -75,6 +76,7 @@ type AngularAxis() =
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
             [<Optional; DefaultParameterValue(null)>] ?GridWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
             [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
@@ -121,6 +123,7 @@ type AngularAxis() =
             ?LineWidth = LineWidth,
             ?ShowGrid = ShowGrid,
             ?GridColor = GridColor,
+            ?GridDash = GridDash,
             ?GridWidth = GridWidth,
             ?TickMode = TickMode,
             ?NTicks = NTicks,
@@ -169,6 +172,7 @@ type AngularAxis() =
     /// <param name="LineWidth">Sets the width (in px) of the axis line.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="GridWidth">Sets the width (in px) of the grid lines.</param>
     /// <param name="TickMode">Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `TickVals` and the tick text is `TickText`. ("array" is the default value if `TickVals` is provided).</param>
     /// <param name="NTicks">Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to "auto".</param>
@@ -214,6 +218,7 @@ type AngularAxis() =
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
             [<Optional; DefaultParameterValue(null)>] ?GridWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
             [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
@@ -260,6 +265,7 @@ type AngularAxis() =
             LineWidth |> DynObj.setValueOpt angularAxis "linewidth"
             ShowGrid |> DynObj.setValueOpt angularAxis "showgrid"
             GridColor |> DynObj.setValueOpt angularAxis "gridcolor"
+            GridDash |> DynObj.setValueOptBy angularAxis "griddash" StyleParam.DrawingStyle.convert
             GridWidth |> DynObj.setValueOpt angularAxis "gridwidth"
             TickMode |> DynObj.setValueOptBy angularAxis "tickmode" StyleParam.TickMode.convert
             NTicks |> DynObj.setValueOpt angularAxis "nticks"

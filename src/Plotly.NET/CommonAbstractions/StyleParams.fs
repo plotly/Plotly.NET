@@ -973,14 +973,18 @@ module StyleParam =
         | Dash
         | Dot
         | DashDot
-        | User of int
+        | LongDash
+        | LongDashDot
+        | User of seq<int>
         static member toString =
             function
             | Solid -> "solid"
             | Dash -> "dash"
             | Dot -> "dot"
             | DashDot -> "dashdot"
-            | User px -> px.ToString()
+            | LongDash -> "longdash"
+            | LongDashDot -> "longdashdot"
+            | User px -> px |> Seq.map (fun px -> $"{px}px") |> String.concat ","
 
         static member convert = DrawingStyle.toString >> box
         override this.ToString() = this |> DrawingStyle.toString

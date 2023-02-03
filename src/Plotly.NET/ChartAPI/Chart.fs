@@ -1080,6 +1080,7 @@ type Chart =
     /// <param name="LineColor">Sets the axis line color.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
     /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
@@ -1112,6 +1113,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
@@ -1153,6 +1155,7 @@ type Chart =
                 ?LineColor = LineColor,
                 ?ShowGrid = ShowGrid,
                 ?GridColor = GridColor,
+                ?GridDash = GridDash,
                 ?ZeroLine = ZeroLine,
                 ?ZeroLineColor = ZeroLineColor,
                 ?Anchor = Anchor,
@@ -1218,6 +1221,7 @@ type Chart =
     /// <param name="LineColor">Sets the axis line color.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
+    /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
     /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
@@ -1250,6 +1254,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
+            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
@@ -1291,6 +1296,7 @@ type Chart =
                 ?LineColor = LineColor,
                 ?ShowGrid = ShowGrid,
                 ?GridColor = GridColor,
+                ?GridDash = GridDash,
                 ?ZeroLine = ZeroLine,
                 ?ZeroLineColor = ZeroLineColor,
                 ?Anchor = Anchor,
