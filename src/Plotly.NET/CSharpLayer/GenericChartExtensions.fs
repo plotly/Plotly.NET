@@ -492,7 +492,7 @@ module GenericChartExtensions =
                 [<Optional; DefaultParameterValue(null)>] ?Computed: string,
                 [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
                 [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
-                [<Optional; DefaultParameterValue(null)>] ?NewShape: Shape,
+                [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
                 [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
                 [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
                 [<Optional; DefaultParameterValue(null)>] ?BarGap: float,

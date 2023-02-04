@@ -285,8 +285,8 @@ let ``Multicharts and subplots`` =
 let shapesChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor=Color.fromHex "#d3d3d3")
-    let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor=Color.fromHex "#d3d3d3")
+    let s1 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=2.,X1=4.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
+    let s2 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=5.,X1=7.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
     Chart.Line(x,y',Name="line", UseDefaults = false)    
     |> Chart.withShapes([s1;s2])
 
@@ -299,7 +299,7 @@ let ``Shapes`` =
             |> chartGeneratedContains shapesChart
         );
         testCase "Layout" ( fun () ->
-            "var layout = {\"shapes\":[{\"type\":\"rect\",\"x0\":2.0,\"x1\":4.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"rgba(211, 211, 211, 1.0)\"},{\"type\":\"rect\",\"x0\":5.0,\"x1\":7.0,\"y0\":3.0,\"y1\":4.0,\"opacity\":0.3,\"fillcolor\":\"rgba(211, 211, 211, 1.0)\"}]};"
+            """var layout = {"shapes":[{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0},{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"rect","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0}]};"""
             |> chartGeneratedContains shapesChart
         );
     ]

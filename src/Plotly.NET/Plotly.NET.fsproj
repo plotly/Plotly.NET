@@ -58,6 +58,7 @@
     <Compile Include="Layout\ObjectAbstractions\Common\UniformText.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Margin.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Domain.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\NewShape.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Shape.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Hoverlabel.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Annotation.fs" />

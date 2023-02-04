@@ -931,6 +931,25 @@ module StyleParam =
 
         member this.Convert() = this |> DragMode.convert
 
+    [<RequireQualifiedAccess>]
+    type DrawDirection =
+        | Ortho
+        | Horizontal
+        | Vertical
+        | Diagonal
+
+        static member toString =
+            function
+            | Ortho -> "ortho"
+            | Horizontal -> "horizontal"
+            | Vertical -> "vertical"
+            | Diagonal -> "diagonal"
+
+        static member convert = DrawDirection.toString >> box
+        override this.ToString() = this |> DrawDirection.toString
+        member this.Convert() = this |> DrawDirection.convert
+
+
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation.
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation.
     /// Default is "z"
@@ -1124,6 +1143,20 @@ module StyleParam =
         static member convert = Fill.toString >> box
         override this.ToString() = this |> Fill.toString
         member this.Convert() = this |> Fill.convert
+
+    [<RequireQualifiedAccess>]
+    type FillRule =
+        | EvenOdd
+        | NonZero
+
+        static member toString =
+            function
+            | EvenOdd -> "evenodd"
+            | NonZero -> "nonzero"
+
+        static member convert = FillRule.toString >> box
+        override this.ToString() = this |> FillRule.toString
+        member this.Convert() = this |> FillRule.convert
 
     //--------------------------
 // #G#
@@ -2365,6 +2398,20 @@ module StyleParam =
     //--------------------------
 // #S#
 //--------------------------
+
+    [<RequireQualifiedAccess>]
+    type ShapeSizeMode =
+        | Scaled
+        | Pixel
+
+        static member toString =
+            function
+            | Scaled -> "scaled"
+            | Pixel -> "pixel"
+
+        static member convert = ShapeSizeMode.toString >> box
+        override this.ToString() = this |> ShapeSizeMode.toString
+        member this.Convert() = this |> ShapeSizeMode.convert
 
     [<RequireQualifiedAccess>]
     type SortAlgorithm =
