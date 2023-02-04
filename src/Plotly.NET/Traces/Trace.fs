@@ -656,8 +656,8 @@ type TraceStyle() =
     static member Selection
         (
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
-            [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection
+            [<Optional; DefaultParameterValue(null)>] ?Selected: TraceSelection,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: TraceSelection
         ) =
         (fun (trace: ('T :> Trace)) ->
 

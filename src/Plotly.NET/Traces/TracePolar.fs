@@ -122,8 +122,8 @@ type TracePolarStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?TextFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
-            [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?Selected: TraceSelection,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: TraceSelection,
             [<Optional; DefaultParameterValue(null)>] ?ClipOnAxis: bool,
             [<Optional; DefaultParameterValue(null)>] ?ConnectGaps: bool,
             [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
@@ -251,8 +251,8 @@ type TracePolarStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Subplot: StyleParam.SubPlotId,
             [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Selected: Selection,
-            [<Optional; DefaultParameterValue(null)>] ?Unselected: Selection,
+            [<Optional; DefaultParameterValue(null)>] ?Selected: TraceSelection,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: TraceSelection,
             [<Optional; DefaultParameterValue(null)>] ?HoverLabel: Hoverlabel,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =

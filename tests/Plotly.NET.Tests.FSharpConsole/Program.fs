@@ -13,47 +13,12 @@ let from whom =
 [<EntryPoint>]
 let main argv =
     
-    let scatterChart =
-        let x = [19; 26; 55;]
-        let y = [19; 26; 55;]
-        let z = [19; 26; 55;]
-    
-        Chart.Scatter3D(x,y,z,StyleParam.Mode.Markers)
-        |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
-        |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
-        |> Chart.withZAxisStyle("my z-axis")
-        |> Chart.withMarker(Marker.init(Size=5))
-        |> Chart.withLine(Line.init(Color=Color.fromString "red"))
-        |> Chart.withSize(800,800)
-    
-    let rec printObj (d:DynamicObj) =
-    
-        let members = d.GetDynamicMemberNames() |> Seq.cast<string> |> List.ofSeq
-
-        let rec loop (object:DynamicObj) (identationLevel:int) (membersLeft:string list) (acc:string list) =
-            let ident = [for i in 0 .. identationLevel do yield "    "] |> String.concat ""
-            match membersLeft with
-            | [] -> acc |> List.rev |> String.concat "\r\n"
-            | m::rest ->
-                let item = object?(``m``)
-                match item with
-                | :? DynamicObj as item -> 
-                    let innerMembers = item.GetDynamicMemberNames() |> Seq.cast<string> |> List.ofSeq
-                    let innerPrint = (loop item (identationLevel + 1) innerMembers [])
-                    loop object identationLevel rest ($"{ident}{m}:\r\n{innerPrint}" :: acc)
-                | _ -> 
-                    loop d identationLevel rest ($"{ident}{m}: {item}"::acc)
-    
-        loop d 0 members []
-    
-
-    scatterChart
-    |> GenericChart.getTraces
-    |> Seq.exactlyOne
-    |> printObj
-    |> printfn "%s"
-    
-    scatterChart
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let s1 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=2.,X1=4.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
+    let s2 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=5.,X1=7.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
+    Chart.Line(x,y',Name="line", UseDefaults = false)    
+    |> Chart.withShapes([s1;s2])
     |> Chart.show
     
     0

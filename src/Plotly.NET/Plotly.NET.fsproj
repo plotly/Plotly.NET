@@ -98,7 +98,7 @@
     <Compile Include="Traces\ObjectAbstractions\Caps.fs" />
     <Compile Include="Traces\ObjectAbstractions\StreamTubeStarts.fs" />
     <Compile Include="Traces\ObjectAbstractions\Lighting.fs" />
-    <Compile Include="Traces\ObjectAbstractions\Selection.fs" />
+    <Compile Include="Traces\ObjectAbstractions\TraceSelection.fs" />
     <Compile Include="Traces\ObjectAbstractions\StockData.fs" />
     <Compile Include="Traces\ObjectAbstractions\Pathbar.fs" />
     <Compile Include="Traces\ObjectAbstractions\Treemap.fs" />
