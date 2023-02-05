@@ -224,6 +224,7 @@ type Layout() =
             ?IcicleColorWay = IcicleColorWay,
             ?Annotations = Annotations,
             ?Shapes = Shapes,
+            ?Selections = Selections,
             ?Images = Images,
             ?Sliders = Sliders,
             ?UpdateMenus = UpdateMenus

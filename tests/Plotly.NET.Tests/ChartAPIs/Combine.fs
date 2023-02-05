@@ -13,6 +13,9 @@ let testAnnotations2 = [Annotation.init(Text = "another one")]
 let testShapes1 = [Shape.init(X0 = 42)]
 let testShapes2 = [Shape.init(X0 = 69)]
 
+let testSelections1 = [Selection.init(X0 = 42)]
+let testSelections2 = [Selection.init(X0 = 69)]
+
 let testImages1 = [LayoutImage.init(Name = "image1")]
 let testImages2 = [LayoutImage.init(Name = "image2")]
 
@@ -30,7 +33,8 @@ let chart1 =
             Shapes         = testShapes1,
             Images         = testImages1,
             Sliders        = testSliders1,
-            HiddenLabels   = testHiddenLabels1
+            HiddenLabels   = testHiddenLabels1,
+            Selections     = testSelections1
         )
     )
 
@@ -42,7 +46,8 @@ let chart2 =
             Shapes         = testShapes2,
             Images         = testImages2,
             Sliders        = testSliders2,
-            HiddenLabels   = testHiddenLabels2
+            HiddenLabels   = testHiddenLabels2,
+            Selections     = testSelections2
         )
     )
 
@@ -72,6 +77,10 @@ let ``Chart.Combine layouts tests`` =
                 testCase "should combine hidden labels" (fun _ ->
                     let actual = combined |> GenericChart.getLayout |> fun l -> l?hiddenlabels |> unbox<seq<string>>
                     Expect.sequenceEqual actual (Seq.append testHiddenLabels1 testHiddenLabels2) "combined chart layout did not contain correct hidden labels"
+                )                  
+                testCase "should combine selections" (fun _ ->
+                    let actual = combined |> GenericChart.getLayout |> fun l -> l?("selections") |> unbox<seq<Selection>>
+                    Expect.sequenceEqual actual (Seq.append testSelections1 testSelections2) "combined chart layout did not contain correct selections"
                 )  
             ]
         ]
