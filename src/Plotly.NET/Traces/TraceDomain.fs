@@ -579,6 +579,7 @@ type TraceDomainStyle() =
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
     /// <param name="Domain">Sets the domain of this trace.</param>
     /// <param name="Line">Sets the line of this trace.</param>
+    /// <param name="Line">Sets the styles of unselected lines in this trace.</param>
     /// <param name="LabelAngle">Sets the angle of the labels with respect to the horizontal. For example, a `tickangle` of -90 draws the labels vertically. Tilted labels with "labelangle" may be positioned better inside margins when `labelposition` is set to "bottom".</param>
     /// <param name="LabelFont">Sets the label font of this trace.</param>
     /// <param name="LabelSide">Specifies the location of the `label`. "top" positions labels above, next to the title "bottom" positions labels below the graph Tilted labels with "labelangle" may be positioned better inside margins when `labelposition` is set to "bottom".</param>
@@ -598,6 +599,7 @@ type TraceDomainStyle() =
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+            [<Optional; DefaultParameterValue(null)>] ?Unselected: TraceSelection,
             [<Optional; DefaultParameterValue(null)>] ?LabelAngle: int,
             [<Optional; DefaultParameterValue(null)>] ?LabelFont: Font,
             [<Optional; DefaultParameterValue(null)>] ?LabelSide: StyleParam.Side,
@@ -618,6 +620,7 @@ type TraceDomainStyle() =
             CustomData |> DynObj.setValueOpt trace "customdata"
             Domain |> DynObj.setValueOpt trace "domain"
             Line |> DynObj.setValueOpt trace "line"
+            Unselected |> DynObj.setValueOpt trace "unselected"
             LabelAngle |> DynObj.setValueOpt trace "labelangle"
             LabelFont |> DynObj.setValueOpt trace "labelfont"
             LabelSide |> DynObj.setValueOpt trace "labelside"
