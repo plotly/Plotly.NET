@@ -2194,6 +2194,20 @@ module StyleParam =
 // #N#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type NewSelectionMode =
+        | Immediate
+        | Gradual
+
+        static member toString =
+            function
+            | Immediate -> "immediate"
+            | Gradual -> "gradual"
+
+        static member convert = NewSelectionMode.toString >> box
+        override this.ToString() = this |> NewSelectionMode.toString
+        member this.Convert() = this |> NewSelectionMode.convert
+
     //--------------------------
 // #O#
 //--------------------------
@@ -2514,6 +2528,20 @@ module StyleParam =
         static member convert = ShapeType.toString >> box
         override this.ToString() = this |> ShapeType.toString
         member this.Convert() = this |> ShapeType.convert
+
+    [<RequireQualifiedAccess>]
+    type SelectionType =
+        | Rectangle
+        | SvgPath
+
+        static member toString =
+            function
+            | Rectangle -> "rect"
+            | SvgPath -> "path"
+
+        static member convert = SelectionType.toString >> box
+        override this.ToString() = this |> SelectionType.toString
+        member this.Convert() = this |> SelectionType.convert
 
     [<RequireQualifiedAccess>]
     type SymbolStyle =

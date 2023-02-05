@@ -15,7 +15,7 @@ module HTML =
     <head>
         <!-- Plotly.js -->
         <meta http-equiv="X-UA-Compatible" content="IE=11" >
-        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.13.3.min.js"></script>
         [ADDITIONAL_HEAD_TAGS]
         <style>
         .container {
@@ -58,7 +58,7 @@ module HTML =
         newScript.AppendLine(
             @"
             var renderPlotly_[SCRIPTID] = function() {
-            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.12.1.min'}}) || require;
+            var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.13.3.min'}}) || require;
             fsharpPlotlyRequire(['plotly'], function(Plotly) {"
         )
         |> ignore
@@ -252,6 +252,11 @@ module GenericChart =
                     (first.TryGetTypedValue<seq<Shape>>("shapes"))
                     (second.TryGetTypedValue<seq<Shape>>("shapes"))
 
+            let selections =
+                combineOptSeqs
+                    (first.TryGetTypedValue<seq<Selection>>("selections"))
+                    (second.TryGetTypedValue<seq<Selection>>("selections"))
+
             let images =
                 combineOptSeqs
                     (first.TryGetTypedValue<seq<LayoutImage>>("images"))
@@ -277,6 +282,7 @@ module GenericChart =
             |> Layout.style (
                 ?Annotations = annotations,
                 ?Shapes = shapes,
+                ?Selections = selections,
                 ?Images = images,
                 ?Sliders = sliders,
                 ?HiddenLabels = hiddenLabels,

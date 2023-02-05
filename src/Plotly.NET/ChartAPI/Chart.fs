@@ -2735,6 +2735,33 @@ type Chart =
     static member withShape(shape: Shape, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
         Chart.withShapes ([ shape ], ?Append = Append)
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="selections">The selections to add to the input charts layout</param>
+    /// <param name="Append">If true, the input selections will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
+    [<CompiledName("WithSelections")>]
+    static member withSelections(selections: seq<Selection>, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+        let append = defaultArg Append true
+
+        fun (ch: GenericChart) ->
+
+            let selections' =
+
+                if append then
+
+                    let layout = GenericChart.getLayout ch
+
+                    layout.TryGetTypedValue<seq<Selection>>("selections") |> Option.defaultValue Seq.empty |> Seq.append selections
+
+                else
+                    selections
+
+            ch |> GenericChart.mapLayout (Layout.style (Selections = selections'))
+
+    [<CompiledName("WithSelection")>]
+    static member withSelection(selection: Selection, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+        Chart.withSelections([ selection ], ?Append = Append)
 
     //==============================================================================================================
     //======================================= General Config object styling ========================================

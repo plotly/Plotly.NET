@@ -20,7 +20,7 @@ let simpleChart =
 let ``Html layout tests`` =
     testList "SimpleTests.Simple tests" [
         testCase "Expecting plotly js" ( fun () ->
-            "https://cdn.plot.ly/plotly-2.12.1.min"
+            "https://cdn.plot.ly/plotly-2.13.3.min"
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting data" ( fun () ->
@@ -36,7 +36,7 @@ let ``Html layout tests`` =
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting require config" (fun () ->
-            "var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.12.1.min'}}) || require;"
+            "var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.13.3.min'}}) || require;"
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting html tags in embedded page only" (fun () ->
