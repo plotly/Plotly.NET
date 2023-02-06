@@ -32,14 +32,28 @@ type IndicatorSymbol() =
 type IndicatorDelta() =
     inherit DynamicObj()
 
+    /// <summary>
+    /// Returns a new IndicatorDelta object with the given styles
+    /// </summary>
+    /// <param name="Decreasing">Sets the style of decreasing deltas.</param>
+    /// <param name="Font">Set the font used to display the delta</param>
+    /// <param name="Increasing">Sets the style of increasing deltas.</param>
+    /// <param name="Position">Sets the position of delta with respect to the number.</param>
+    /// <param name="Prefix">Sets a prefix appearing before the delta.</param>
+    /// <param name="Reference">Sets the reference value to compute the delta. By default, it is set to the current value.</param>
+    /// <param name="Relative">Show relative change</param>
+    /// <param name="Suffix">Sets a suffix appearing next to the delta.</param>
+    /// <param name="ValueFormat">Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.</param>
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?Decreasing: IndicatorSymbol,
             [<Optional; DefaultParameterValue(null)>] ?Font: Font,
             [<Optional; DefaultParameterValue(null)>] ?Increasing: IndicatorSymbol,
             [<Optional; DefaultParameterValue(null)>] ?Position: StyleParam.IndicatorDeltaPosition,
+            [<Optional; DefaultParameterValue(null)>] ?Prefix: string,
             [<Optional; DefaultParameterValue(null)>] ?Reference: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Relative: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Suffix: string,
             [<Optional; DefaultParameterValue(null)>] ?ValueFormat: string
         ) =
         IndicatorDelta()
@@ -48,19 +62,35 @@ type IndicatorDelta() =
             ?Font = Font,
             ?Increasing = Increasing,
             ?Position = Position,
+            ?Prefix = Prefix,
             ?Reference = Reference,
             ?Relative = Relative,
+            ?Suffix = Suffix,
             ?ValueFormat = ValueFormat
         )
 
+    /// <summary>
+    /// Returns a function that applies the given styles to an IndicatorDelta object
+    /// </summary>
+    /// <param name="Decreasing">Sets the style of decreasing deltas.</param>
+    /// <param name="Font">Set the font used to display the delta</param>
+    /// <param name="Increasing">Sets the style of increasing deltas.</param>
+    /// <param name="Position">Sets the position of delta with respect to the number.</param>
+    /// <param name="Prefix">Sets a prefix appearing before the delta.</param>
+    /// <param name="Reference">Sets the reference value to compute the delta. By default, it is set to the current value.</param>
+    /// <param name="Relative">Show relative change</param>
+    /// <param name="Suffix">Sets a suffix appearing next to the delta.</param>
+    /// <param name="ValueFormat">Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.</param>
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?Decreasing: IndicatorSymbol,
             [<Optional; DefaultParameterValue(null)>] ?Font: Font,
             [<Optional; DefaultParameterValue(null)>] ?Increasing: IndicatorSymbol,
             [<Optional; DefaultParameterValue(null)>] ?Position: StyleParam.IndicatorDeltaPosition,
+            [<Optional; DefaultParameterValue(null)>] ?Prefix: string,
             [<Optional; DefaultParameterValue(null)>] ?Reference: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Relative: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Suffix: string,
             [<Optional; DefaultParameterValue(null)>] ?ValueFormat: string
         ) =
         (fun (indicatorDelta: IndicatorDelta) ->
@@ -69,8 +99,10 @@ type IndicatorDelta() =
             Font |> DynObj.setValueOpt indicatorDelta "font"
             Increasing |> DynObj.setValueOpt indicatorDelta "increasing"
             Position |> DynObj.setValueOptBy indicatorDelta "position" StyleParam.IndicatorDeltaPosition.convert
+            Prefix |> DynObj.setValueOpt indicatorDelta "prefix"
             Reference |> DynObj.setValueOpt indicatorDelta "reference"
             Relative |> DynObj.setValueOpt indicatorDelta "relative"
+            Suffix |> DynObj.setValueOpt indicatorDelta "suffix"
             ValueFormat |> DynObj.setValueOpt indicatorDelta "valueformat"
 
             indicatorDelta)
