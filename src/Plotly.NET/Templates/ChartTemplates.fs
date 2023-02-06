@@ -322,7 +322,7 @@ module ChartTemplates =
             |> Layout.updateLinearAxisById (
                 StyleParam.SubPlotId.XAxis 1,
                 LinearAxis.init (
-                    AutoMargin = true,
+                    AutoMargin = StyleParam.TickAutoMargin.All,
                     GridColor = Color.fromKeyword White,
                     LineColor = Color.fromKeyword White,
                     Ticks = StyleParam.TickOptions.Empty,
@@ -334,7 +334,7 @@ module ChartTemplates =
             |> Layout.updateLinearAxisById (
                 StyleParam.SubPlotId.YAxis 1,
                 LinearAxis.init (
-                    AutoMargin = true,
+                    AutoMargin = StyleParam.TickAutoMargin.All,
                     GridColor = Color.fromKeyword White,
                     LineColor = Color.fromKeyword White,
                     Ticks = StyleParam.TickOptions.Empty,

@@ -126,7 +126,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
-            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: bool,
+            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: StyleParam.TickAutoMargin,
             [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
             [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
@@ -371,7 +371,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
-            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: bool,
+            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: StyleParam.TickAutoMargin,
             [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
             [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
@@ -889,7 +889,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
-            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: bool,
+            [<Optional; DefaultParameterValue(null)>] ?AutoMargin: StyleParam.TickAutoMargin,
             [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
             [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
@@ -989,7 +989,7 @@ type LinearAxis() =
             TickWidth |> DynObj.setValueOpt axis "tickwidth"
             TickColor |> DynObj.setValueOpt axis "tickcolor"
             ShowTickLabels |> DynObj.setValueOpt axis "showticklabels"
-            AutoMargin |> DynObj.setValueOpt axis "automargin"
+            AutoMargin |> DynObj.setValueOptBy axis "automargin" StyleParam.TickAutoMargin.convert
             ShowSpikes |> DynObj.setValueOpt axis "showspikes"
             SpikeColor |> DynObj.setValueOpt axis "spikecolor"
             SpikeThickness |> DynObj.setValueOpt axis "spikethickness"

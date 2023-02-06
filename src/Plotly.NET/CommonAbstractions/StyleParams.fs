@@ -32,6 +32,32 @@ module StyleParam =
         member this.Convert() = this |> ArrowSide.convert
 
     [<RequireQualifiedAccess>]
+    type TickAutoMargin =
+        | Height 
+        | Width  
+        | Left   
+        | Right  
+        | Top    
+        | Bottom 
+        | All
+        | Custom of seq<TickAutoMargin>
+
+        static member toString =
+            function
+            | Height -> "height"
+            | Width  -> "width"
+            | Left   -> "left"
+            | Right  -> "right"
+            | Top    -> "top"
+            | Bottom -> "bottom"
+            | All    -> "height+width+left+right+top+bottom"
+            | Custom s -> s |> Seq.map (fun a -> a |> TickAutoMargin.toString) |> String.concat "+"
+
+        static member convert = TickAutoMargin.toString >> box
+        override this.ToString() = this |> TickAutoMargin.toString
+        member this.Convert() = this |> TickAutoMargin.convert
+
+    [<RequireQualifiedAccess>]
     type AnnotationAlignment =
         | Left
         | Center
