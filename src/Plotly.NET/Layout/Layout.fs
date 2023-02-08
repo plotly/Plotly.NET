@@ -47,6 +47,8 @@ type Layout() =
     /// <param name="Computed">Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in "full-json" mode.</param>
     /// <param name="Grid">Sets the layout grid for arranging multiple plots</param>
     /// <param name="Calendar">Sets the default calendar system to use for interpreting and displaying dates throughout the plot.</param>
+    /// <param name="MinReducedHeight">Minimum height of the plot with margin.automargin applied (in px)</param>
+    /// <param name="MinReducedWidth">Minimum width of the plot with margin.automargin applied (in px)</param>
     /// <param name="NewShape">Controls the behavior of newly drawn shapes</param>
     /// <param name="ActiveShape">Sets the styling of the active shape</param>
     /// <param name="HideSources">Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).</param>
@@ -120,6 +122,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?Computed: string,
             [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
             [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+            [<Optional; DefaultParameterValue(null)>] ?MinReducedHeight: int,
+            [<Optional; DefaultParameterValue(null)>] ?MinReducedWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
             [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
             [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
@@ -179,6 +183,8 @@ type Layout() =
             ?ClickMode = ClickMode,
             ?DragMode = DragMode,
             ?SelectDirection = SelectDirection,
+            ?NewSelection = NewSelection,
+            ?ActiveSelection = ActiveSelection,
             ?HoverDistance = HoverDistance,
             ?SpikeDistance = SpikeDistance,
             ?Hoverlabel = Hoverlabel,
@@ -193,6 +199,8 @@ type Layout() =
             ?Grid = Grid,
             ?Calendar = Calendar,
             ?NewShape = NewShape,
+            ?MinReducedHeight = MinReducedHeight,
+            ?MinReducedWidth = MinReducedWidth,
             ?ActiveShape = ActiveShape,
             ?HideSources = HideSources,
             ?BarGap = BarGap,
@@ -268,6 +276,8 @@ type Layout() =
     /// <param name="Computed">Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in "full-json" mode.</param>
     /// <param name="Grid">Sets the layout grid for arranging multiple plots</param>
     /// <param name="Calendar">Sets the default calendar system to use for interpreting and displaying dates throughout the plot.</param>
+    /// <param name="MinReducedHeight">Minimum height of the plot with margin.automargin applied (in px)</param>
+    /// <param name="MinReducedWidth">Minimum width of the plot with margin.automargin applied (in px)</param>
     /// <param name="NewShape">Controls the behavior of newly drawn shapes</param>
     /// <param name="ActiveShape">Sets the styling of the active shape</param>
     /// <param name="HideSources">Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).</param>
@@ -341,6 +351,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?Computed: string,
             [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
             [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+            [<Optional; DefaultParameterValue(null)>] ?MinReducedHeight: int,
+            [<Optional; DefaultParameterValue(null)>] ?MinReducedWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
             [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
             [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
@@ -415,6 +427,8 @@ type Layout() =
             Computed |> DynObj.setValueOpt layout "computed"
             Grid |> DynObj.setValueOpt layout "grid"
             Calendar |> DynObj.setValueOptBy layout "calendar" StyleParam.Calendar.convert
+            MinReducedHeight |> DynObj.setValueOpt layout "minreducedheight"
+            MinReducedWidth |> DynObj.setValueOpt layout "minreducedwidth"
             NewShape |> DynObj.setValueOpt layout "newshape"
             ActiveShape |> DynObj.setValueOpt layout "activeshape"
             HideSources |> DynObj.setValueOpt layout "hidesources"

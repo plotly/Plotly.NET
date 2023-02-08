@@ -763,7 +763,7 @@ type Chart =
     /// <summary>
     /// Applies the given styles to the chart's Layout object. Overwrites attributes with the same name that are already set.
     /// </summary>
-    /// <param name="Title">Sets the title of the layout.</param>
+        /// <param name="Title">Sets the title of the layout.</param>
     /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
     /// <param name="Legend">Sets the legend styles of the layout.</param>
     /// <param name="Margin">Sets the margins around the layout.</param>
@@ -783,6 +783,8 @@ type Chart =
     /// <param name="ClickMode">Determines the mode of single click interactions. "event" is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes "lasso" and "select", but with no event data attached (kept for compatibility reasons). The "select" flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. "select" with `hovermode`: "x" can be confusing, consider explicitly setting `hovermode`: "closest" when using this feature. Selection events are sent accordingly as long as "event" flag is set as well. When the "event" flag is missing, `plotly_click` and `plotly_selected` events are not fired.</param>
     /// <param name="DragMode">Determines the mode of drag interactions. "select" and "lasso" apply only to scatter traces with markers or text. "orbit" and "turntable" apply only to 3D scenes.</param>
     /// <param name="SelectDirection">When `dragmode` is set to "select", this limits the selection of the drag to horizontal, vertical or diagonal. "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no limit.</param>
+    /// <param name="ActiveSelection">Sets the styling of the active selection</param>
+    /// <param name="NewSelection">Controls the behavior of newly drawn selections</param>
     /// <param name="HoverDistance">Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff, 0 means no looking for data). This is only a real distance for hovering on point-like objects, like scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but these objects will not supersede hover on point-like objects in case of conflict.</param>
     /// <param name="SpikeDistance">Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no cutoff, 0 means no looking for data). As with hoverdistance, distance does not apply to area-like objects. In addition, some objects can be hovered on but will not generate spikelines, such as scatter fills.</param>
     /// <param name="Hoverlabel">Sets the style ov hover labels.</param>
@@ -796,6 +798,8 @@ type Chart =
     /// <param name="Computed">Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in "full-json" mode.</param>
     /// <param name="Grid">Sets the layout grid for arranging multiple plots</param>
     /// <param name="Calendar">Sets the default calendar system to use for interpreting and displaying dates throughout the plot.</param>
+    /// <param name="MinReducedHeight">Minimum height of the plot with margin.automargin applied (in px)</param>
+    /// <param name="MinReducedWidth">Minimum width of the plot with margin.automargin applied (in px)</param>
     /// <param name="NewShape">Controls the behavior of newly drawn shapes</param>
     /// <param name="ActiveShape">Sets the styling of the active shape</param>
     /// <param name="HideSources">Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).</param>
@@ -828,6 +832,7 @@ type Chart =
     /// <param name="IcicleColorWay">Sets the default icicle slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendiciclecolors`.</param>
     /// <param name="Annotations">A collection containing all Annotations of this layout. An annotation is a text element that can be placed anywhere in the plot. It can be positioned with respect to relative coordinates in the plot or with respect to the actual data coordinates of the graph. Annotations can be shown with or without an arrow.</param>
     /// <param name="Shapes">A collection containing all Shapes of this layout.</param>
+    /// <param name="Selections">A collection containing all Selections of this layout.</param>
     /// <param name="Images">A collection containing all Images of this layout. </param>
     /// <param name="Sliders">A collection containing all Sliders of this layout. </param>
     /// <param name="UpdateMenus">A collection containing all UpdateMenus of this layout. </param>
@@ -854,6 +859,8 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?ClickMode: StyleParam.ClickMode,
             [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
             [<Optional; DefaultParameterValue(null)>] ?SelectDirection: StyleParam.SelectDirection,
+            [<Optional; DefaultParameterValue(null)>] ?ActiveSelection: ActiveSelection,
+            [<Optional; DefaultParameterValue(null)>] ?NewSelection: NewSelection,
             [<Optional; DefaultParameterValue(null)>] ?HoverDistance: int,
             [<Optional; DefaultParameterValue(null)>] ?SpikeDistance: int,
             [<Optional; DefaultParameterValue(null)>] ?Hoverlabel: Hoverlabel,
@@ -867,6 +874,8 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?Computed: string,
             [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
             [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
+            [<Optional; DefaultParameterValue(null)>] ?MinReducedHeight: int,
+            [<Optional; DefaultParameterValue(null)>] ?MinReducedWidth: int,
             [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
             [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
             [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
@@ -899,6 +908,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?IcicleColorWay: Color,
             [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
             [<Optional; DefaultParameterValue(null)>] ?Shapes: seq<Shape>,
+            [<Optional; DefaultParameterValue(null)>] ?Selections: seq<Selection>,
             [<Optional; DefaultParameterValue(null)>] ?Images: seq<LayoutImage>,
             [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>,
             [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
@@ -927,6 +937,8 @@ type Chart =
                     ?ClickMode = ClickMode,
                     ?DragMode = DragMode,
                     ?SelectDirection = SelectDirection,
+                    ?NewSelection = NewSelection,
+                    ?ActiveSelection = ActiveSelection,
                     ?HoverDistance = HoverDistance,
                     ?SpikeDistance = SpikeDistance,
                     ?Hoverlabel = Hoverlabel,
@@ -941,6 +953,8 @@ type Chart =
                     ?Grid = Grid,
                     ?Calendar = Calendar,
                     ?NewShape = NewShape,
+                    ?MinReducedHeight = MinReducedHeight,
+                    ?MinReducedWidth = MinReducedWidth,
                     ?ActiveShape = ActiveShape,
                     ?HideSources = HideSources,
                     ?BarGap = BarGap,
@@ -972,6 +986,7 @@ type Chart =
                     ?IcicleColorWay = IcicleColorWay,
                     ?Annotations = Annotations,
                     ?Shapes = Shapes,
+                    ?Selections = Selections,
                     ?Images = Images,
                     ?Sliders = Sliders,
                     ?UpdateMenus = UpdateMenus
