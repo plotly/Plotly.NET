@@ -127,6 +127,7 @@ type SankeyLinks() =
 
     static member init
         (
+            [<Optional; DefaultParameterValue(null)>] ?ArrowLen: int,
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?ColorScales: seq<SankeyLinkColorscale>,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
@@ -143,6 +144,7 @@ type SankeyLinks() =
 
         SankeyLinks()
         |> SankeyLinks.style (
+            ?ArrowLen = ArrowLen,
             ?Color = Color,
             ?ColorScales = ColorScales,
             ?CustomData = CustomData,
@@ -160,6 +162,7 @@ type SankeyLinks() =
 
     static member style
         (
+            [<Optional; DefaultParameterValue(null)>] ?ArrowLen: int,
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?ColorScales: seq<SankeyLinkColorscale>,
             [<Optional; DefaultParameterValue(null)>] ?CustomData: seq<#IConvertible>,
@@ -175,6 +178,7 @@ type SankeyLinks() =
         ) =
         (fun (sankeyLinks: SankeyLinks) ->
 
+            ArrowLen |> DynObj.setValueOpt sankeyLinks "arrowlen"
             Color |> DynObj.setValueOpt sankeyLinks "color"
             ColorScales |> DynObj.setValueOpt sankeyLinks "colorscales"
             CustomData |> DynObj.setValueOpt sankeyLinks "customdata"
