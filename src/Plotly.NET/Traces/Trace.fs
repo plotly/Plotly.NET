@@ -345,6 +345,8 @@ type TraceStyle() =
     /// <param name="OutlierWidth">Sets the width of the outlier sample points.</param>
     static member Marker
         (
+            [<Optional; DefaultParameterValue(null)>] ?Angle: float,
+            [<Optional; DefaultParameterValue(null)>] ?AngleRef: StyleParam.AngleRef,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
             [<Optional; DefaultParameterValue(null)>] ?CMax: float,
@@ -368,6 +370,8 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?SizeMin: int,
             [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.MarkerSizeMode,
             [<Optional; DefaultParameterValue(null)>] ?SizeRef: int,
+            [<Optional; DefaultParameterValue(null)>] ?StandOff: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiStandOff: seq<float>,
             [<Optional; DefaultParameterValue(null)>] ?Symbol: StyleParam.MarkerSymbol,
             [<Optional; DefaultParameterValue(null)>] ?MultiSymbol: seq<StyleParam.MarkerSymbol>,
             [<Optional; DefaultParameterValue(null)>] ?Symbol3D: StyleParam.MarkerSymbol3D,
@@ -416,6 +420,7 @@ type TraceStyle() =
     /// <summary>
     /// Returns a function that applies the given styles to the trace's line object. Overwrites attributes with the same name that are already set.
     /// </summary>
+    /// <param name="BackOff">Sets the line back off from the end point of the nth line segment (in px). This option is useful e.g. to avoid overlap with arrowhead markers. With "auto" the lines would trim before markers if `marker.angleref` is set to "previous".</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `line.colorscale`. Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in `line.color`is set to a numerical array. Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.</param>
     /// <param name="CMax">Sets the upper bound of the color domain. Has an effect only if in `line.color`is set to a numerical array. Value should have the same units as in `line.color` and if set, `line.cmin` must be set as well.</param>
@@ -437,6 +442,7 @@ type TraceStyle() =
     /// <param name="OutlierWidth">Sets the width of the outline of outliers</param>
     static member Line
         (
+            [<Optional; DefaultParameterValue(null)>] ?BackOff: StyleParam.BackOff,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
             [<Optional; DefaultParameterValue(null)>] ?CMax: float,
@@ -462,6 +468,7 @@ type TraceStyle() =
                 trace
                 |> Trace.getLine
                 |> Line.style (
+                    ?BackOff = BackOff,
                     ?AutoColorScale = AutoColorScale,
                     ?CAuto = CAuto,
                     ?CMax = CMax,
