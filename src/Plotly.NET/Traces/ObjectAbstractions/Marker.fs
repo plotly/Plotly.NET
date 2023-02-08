@@ -13,6 +13,8 @@ type Marker() =
     /// <summary>
     /// Returns a new Marker object with the given styling.
     /// </summary>
+    /// <param name="Angle">Sets the marker angle in respect to `angleref`.</param>
+    /// <param name="AngleRef">Sets the reference for marker angle. With "previous", angle 0 points along the line from the previous point to this one. With "up", angle 0 points toward the top of the screen.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.</param>
     /// <param name="CMax">Sets the upper bound of the color domain. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.</param>
@@ -36,6 +38,8 @@ type Marker() =
     /// <param name="SizeMin">Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered marker points.</param>
     /// <param name="SizeMode">Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is converted to pixels.</param>
     /// <param name="SizeRef">Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin` and `sizemode`.</param>
+    /// <param name="StandOff">Moves the marker away from the data point in the direction of `angle` (in px). This can be useful for example if you have another marker at this location and you want to point an arrowhead marker at it.</param>
+    /// <param name="MultiStandOff">Moves the marker away from the data point in the direction of `angle` (in px). This can be useful for example if you have another marker at this location and you want to point an arrowhead marker at it.</param>
     /// <param name="Symbol">Sets the marker symbol.</param>
     /// <param name="MultiSymbol">Sets the individual marker symbols.</param>
     /// <param name="Symbol3D">Sets the marker symbol for 3d traces.</param>
@@ -44,6 +48,8 @@ type Marker() =
     /// <param name="OutlierWidth">Sets the width of the outlier sample points.</param>
     static member init
         (
+            [<Optional; DefaultParameterValue(null)>] ?Angle: float,
+            [<Optional; DefaultParameterValue(null)>] ?AngleRef: StyleParam.AngleRef,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
             [<Optional; DefaultParameterValue(null)>] ?CMax: float,
@@ -67,6 +73,8 @@ type Marker() =
             [<Optional; DefaultParameterValue(null)>] ?SizeMin: int,
             [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.MarkerSizeMode,
             [<Optional; DefaultParameterValue(null)>] ?SizeRef: int,
+            [<Optional; DefaultParameterValue(null)>] ?StandOff: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiStandOff: seq<float>,
             [<Optional; DefaultParameterValue(null)>] ?Symbol: StyleParam.MarkerSymbol,
             [<Optional; DefaultParameterValue(null)>] ?MultiSymbol: seq<StyleParam.MarkerSymbol>,
             [<Optional; DefaultParameterValue(null)>] ?Symbol3D: StyleParam.MarkerSymbol3D,
@@ -76,6 +84,8 @@ type Marker() =
         ) =
         Marker()
         |> Marker.style (
+            ?Angle=Angle,
+            ?AngleRef=AngleRef,
             ?AutoColorScale = AutoColorScale,
             ?CAuto = CAuto,
             ?CMax = CMax,
@@ -104,12 +114,16 @@ type Marker() =
             ?ShowScale = ShowScale,
             ?SizeMin = SizeMin,
             ?SizeMode = SizeMode,
-            ?SizeRef = SizeRef
+            ?SizeRef = SizeRef,
+            ?StandOff = StandOff,
+            ?MultiStandOff = MultiStandOff
         )
 
     /// <summary>
     /// Returns a function that applies the given styles to a Marker object.
     /// </summary>
+    /// <param name="Angle">Sets the marker angle in respect to `angleref`.</param>
+    /// <param name="AngleRef">Sets the reference for marker angle. With "previous", angle 0 points along the line from the previous point to this one. With "up", angle 0 points toward the top of the screen.</param>
     /// <param name="AutoColorScale">Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.</param>
     /// <param name="CAuto">Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.</param>
     /// <param name="CMax">Sets the upper bound of the color domain. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.</param>
@@ -133,6 +147,8 @@ type Marker() =
     /// <param name="SizeMin">Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered marker points.</param>
     /// <param name="SizeMode">Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is converted to pixels.</param>
     /// <param name="SizeRef">Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin` and `sizemode`.</param>
+    /// <param name="StandOff">Moves the marker away from the data point in the direction of `angle` (in px). This can be useful for example if you have another marker at this location and you want to point an arrowhead marker at it.</param>
+    /// <param name="MultiStandOff">Moves the marker away from the data point in the direction of `angle` (in px). This can be useful for example if you have another marker at this location and you want to point an arrowhead marker at it.</param>
     /// <param name="Symbol">Sets the marker symbol.</param>
     /// <param name="MultiSymbol">Sets the individual marker symbols.</param>
     /// <param name="Symbol3D">Sets the marker symbol for 3d traces.</param>
@@ -141,6 +157,8 @@ type Marker() =
     /// <param name="OutlierWidth">Sets the width of the outlier sample points.</param>
     static member style
         (
+            [<Optional; DefaultParameterValue(null)>] ?Angle: float,
+            [<Optional; DefaultParameterValue(null)>] ?AngleRef: StyleParam.AngleRef,
             [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
             [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
             [<Optional; DefaultParameterValue(null)>] ?CMax: float,
@@ -164,6 +182,8 @@ type Marker() =
             [<Optional; DefaultParameterValue(null)>] ?SizeMin: int,
             [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.MarkerSizeMode,
             [<Optional; DefaultParameterValue(null)>] ?SizeRef: int,
+            [<Optional; DefaultParameterValue(null)>] ?StandOff: float,
+            [<Optional; DefaultParameterValue(null)>] ?MultiStandOff: seq<float>,
             [<Optional; DefaultParameterValue(null)>] ?Symbol: StyleParam.MarkerSymbol,
             [<Optional; DefaultParameterValue(null)>] ?MultiSymbol: seq<StyleParam.MarkerSymbol>,
             [<Optional; DefaultParameterValue(null)>] ?Symbol3D: StyleParam.MarkerSymbol3D,
@@ -173,6 +193,8 @@ type Marker() =
         ) =
         (fun (marker: Marker) ->
 
+            Angle |> DynObj.setValueOpt marker "angle"
+            AngleRef |> DynObj.setValueOptBy marker "angleref" StyleParam.AngleRef.convert
             AutoColorScale |> DynObj.setValueOpt marker "autocolorscale"
             CAuto |> DynObj.setValueOpt marker "cauto"
             CMax |> DynObj.setValueOpt marker "cmax"
@@ -198,5 +220,6 @@ type Marker() =
             SizeMin |> DynObj.setValueOpt marker "sizemin"
             SizeMode |> DynObj.setValueOpt marker "sizemode"
             SizeRef |> DynObj.setValueOpt marker "sizeref"
+            (StandOff, MultiStandOff) |> DynObj.setSingleOrMultiOpt marker "standoff"
 
             marker)

@@ -14,6 +14,20 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
+    type AngleRef =
+        | Previous
+        | Up
+
+        static member toString =
+            function
+            | Previous -> "previous"
+            | Up -> "up"
+
+        static member convert = AngleRef.toString >> box
+        override this.ToString() = this |> AngleRef.toString
+        member this.Convert() = this |> AngleRef.convert
+
+    [<RequireQualifiedAccess>]
     type ArrowSide =
         | Start
         | End
@@ -291,6 +305,22 @@ module StyleParam =
     //--------------------------
 // #B#
 //--------------------------
+
+    [<RequireQualifiedAccess>]
+    type BackOff =
+        | Auto
+        | Value of int
+        | Array of seq<int>
+
+        static member convert =
+            function
+            | Auto -> box "auto"
+            | Value v -> box v
+            | Array a -> box a
+
+
+        member this.Convert() = this |> BackOff.convert
+
 
     [<RequireQualifiedAccess>]
     type BoxPoints =
