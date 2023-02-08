@@ -345,6 +345,7 @@ type Config() =
     /// <param name="PlotlyServerUrl">When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.</param>
     /// <param name="Editable">Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.</param>
     /// <param name="Edits">Object holding individual editable pieces of the graph.</param>
+    /// <param name="EditSelection">Enables moving selections.</param>
     /// <param name="Autosizable">Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)</param>
     /// <param name="Responsive">Determines whether to change the layout size when window is resized.</param>
     /// <param name="ShowSendToCloud">Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".</param>
@@ -359,6 +360,7 @@ type Config() =
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Edits: Edits,
+            [<Optional; DefaultParameterValue(null)>] ?EditSelection: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowSendToCloud: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
             [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
@@ -377,6 +379,7 @@ type Config() =
             ?ShowEditInChartStudio = ShowEditInChartStudio,
             ?Editable = Editable,
             ?Edits = Edits,
+            ?EditSelection = EditSelection,
             ?ModeBarButtonsToAdd = ModeBarButtonsToAdd
         )
 
@@ -388,6 +391,7 @@ type Config() =
     /// <param name="PlotlyServerUrl">When set it determines base URL for the 'Edit in Chart Studio'/`showEditInChartStudio`/`showSendToCloud` mode bar button', and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to' set both `plotlyServerURL` to \'https://chart-studio.plotly.com\' and also set `showSendToCloud` to true.</param>
     /// <param name="Editable">Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.</param>
     /// <param name="Edits">Object holding individual editable pieces of the graph.</param>
+    /// <param name="EditSelection">Enables moving selections.</param>
     /// <param name="Autosizable">Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size. (default: false)</param>
     /// <param name="Responsive">Determines whether to change the layout size when window is resized.</param>
     /// <param name="ShowSendToCloud">Should we include a ModeBar button, labeled "Edit in Chart Studio",that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".</param>
@@ -402,6 +406,7 @@ type Config() =
             [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
             [<Optional; DefaultParameterValue(null)>] ?Edits: Edits,
+            [<Optional; DefaultParameterValue(null)>] ?EditSelection: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowSendToCloud: bool,
             [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
             [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
@@ -415,6 +420,7 @@ type Config() =
             Autosizable |> DynObj.setValueOpt config "autosizable"
             Editable |> DynObj.setValueOpt config "editable"
             Edits |> DynObj.setValueOpt config "edits"
+            EditSelection |> DynObj.setValueOpt config "editSelection"
             ShowSendToCloud |> DynObj.setValueOpt config "showSendToCloud"
             ShowEditInChartStudio |> DynObj.setValueOpt config "showEditInChartStudio"
             Responsive |> DynObj.setValueOpt config "responsive"
