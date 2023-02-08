@@ -14,6 +14,8 @@ type Legend() =
     /// </summary>
     /// <param name="BGColor">Sets the legend background color. Defaults to `layout.paper_bgcolor`.</param>
     /// <param name="BorderColor">Sets the color of the border enclosing the legend.</param>
+    /// <param name="EntryWidth">Sets the width (in px or fraction) of the legend. Use 0 to size the entry based on the text width, when `entrywidthmode` is set to "pixels".</param>
+    /// <param name="EntryWidthMode">Determines what entrywidth means.</param>
     /// <param name="Borderwidth">Sets the width (in px) of the border enclosing the legend.</param>
     /// <param name="Font">Sets the font used to text the legend items.</param>
     /// <param name="GroupClick">Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.</param>
@@ -36,7 +38,9 @@ type Legend() =
         (
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Borderwidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?EntryWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?EntryWidthMode: StyleParam.EntryWidthMode,
             [<Optional; DefaultParameterValue(null)>] ?Font: Font,
             [<Optional; DefaultParameterValue(null)>] ?GroupClick: StyleParam.TraceGroupClickOptions,
             [<Optional; DefaultParameterValue(null)>] ?GroupTitleFont: Font,
@@ -59,7 +63,9 @@ type Legend() =
         |> Legend.style (
             ?BGColor = BGColor,
             ?BorderColor = BorderColor,
-            ?Borderwidth = Borderwidth,
+            ?BorderWidth = BorderWidth,
+            ?EntryWidth = EntryWidth,
+            ?EntryWidthMode = EntryWidthMode,
             ?Font = Font,
             ?GroupClick = GroupClick,
             ?GroupTitleFont = GroupTitleFont,
@@ -85,6 +91,8 @@ type Legend() =
     /// <param name="BGColor">Sets the legend background color. Defaults to `layout.paper_bgcolor`.</param>
     /// <param name="BorderColor">Sets the color of the border enclosing the legend.</param>
     /// <param name="Borderwidth">Sets the width (in px) of the border enclosing the legend.</param>
+    /// <param name="EntryWidth">Sets the width (in px or fraction) of the legend. Use 0 to size the entry based on the text width, when `entrywidthmode` is set to "pixels".</param>
+    /// <param name="EntryWidthMode">Determines what entrywidth means.</param>
     /// <param name="Font">Sets the font used to text the legend items.</param>
     /// <param name="GroupClick">Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.</param>
     /// <param name="GroupTitleFont">Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.</param>
@@ -106,7 +114,9 @@ type Legend() =
         (
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Borderwidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?EntryWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?EntryWidthMode: StyleParam.EntryWidthMode,
             [<Optional; DefaultParameterValue(null)>] ?Font: Font,
             [<Optional; DefaultParameterValue(null)>] ?GroupClick: StyleParam.TraceGroupClickOptions,
             [<Optional; DefaultParameterValue(null)>] ?GroupTitleFont: Font,
@@ -128,7 +138,9 @@ type Legend() =
         (fun (legend: Legend) ->
             BGColor |> DynObj.setValueOpt legend "bgcolor"
             BorderColor |> DynObj.setValueOpt legend "bordercolor"
-            Borderwidth |> DynObj.setValueOpt legend "font"
+            BorderWidth |> DynObj.setValueOpt legend "font"
+            EntryWidth|> DynObj.setValueOpt legend "entrywidth"
+            EntryWidthMode|> DynObj.setValueOptBy legend "entrywidthmode" StyleParam.EntryWidthMode.convert
             Font |> DynObj.setValueOpt legend "borderwidth"
             GroupClick |> DynObj.setValueOptBy legend "groupclick" StyleParam.TraceGroupClickOptions.convert
             GroupTitleFont |> DynObj.setValueOpt legend "grouptitlefont"

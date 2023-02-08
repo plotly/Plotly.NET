@@ -2565,7 +2565,9 @@ type Chart =
         (
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Borderwidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?EntryWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?EntryWidthMode: StyleParam.EntryWidthMode,
             [<Optional; DefaultParameterValue(null)>] ?Font: Font,
             [<Optional; DefaultParameterValue(null)>] ?GroupClick: StyleParam.TraceGroupClickOptions,
             [<Optional; DefaultParameterValue(null)>] ?GroupTitleFont: Font,
@@ -2589,7 +2591,9 @@ type Chart =
                 Legend.init (
                     ?BGColor = BGColor,
                     ?BorderColor = BorderColor,
-                    ?Borderwidth = Borderwidth,
+                    ?BorderWidth = BorderWidth,
+                    ?EntryWidth = EntryWidth,
+                    ?EntryWidthMode = EntryWidthMode,
                     ?Font = Font,
                     ?GroupClick = GroupClick,
                     ?GroupTitleFont = GroupTitleFont,
@@ -2607,7 +2611,6 @@ type Chart =
                     ?XAnchor = XAnchor,
                     ?Y = Y,
                     ?YAnchor = YAnchor
-
                 )
 
             ch |> Chart.withLegend legend)

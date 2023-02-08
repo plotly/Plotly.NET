@@ -1070,6 +1070,21 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
+    type EntryWidthMode =
+        | Fraction
+        | Pixels
+
+        static member toString =
+            function
+            | Fraction -> "fraction"
+            | Pixels -> "pixels"
+
+
+        static member convert = EntryWidthMode.toString >> box
+        override this.ToString() = this |> EntryWidthMode.toString
+        member this.Convert() = this |> EntryWidthMode.convert
+        
+    [<RequireQualifiedAccess>]
     type ErrorType =
         | Percent
         | Constant
