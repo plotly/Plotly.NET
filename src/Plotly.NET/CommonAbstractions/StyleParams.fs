@@ -2704,6 +2704,8 @@ module StyleParam =
         | ArrowBarDown
         | ArrowBarLeft
         | ArrowBarRight
+        | Arrow
+        | ArrowWide
 
         static member toInteger =
             function
@@ -2761,6 +2763,8 @@ module StyleParam =
             | ArrowBarDown -> 50
             | ArrowBarLeft -> 51
             | ArrowBarRight -> 52
+            | Arrow -> 53
+            | ArrowWide -> 54
 
         static member convert =
             MarkerSymbol.toInteger >> string >> box
