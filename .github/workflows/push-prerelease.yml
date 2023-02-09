@@ -74,8 +74,9 @@ jobs:
           
           # Plotly.NET.CSharp
           cd ./Plotly.NET.CSharp
-          dotnet remove package Plotly.NET
-          dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
+          #the csharp version has static dependencies
+          #dotnet remove package Plotly.NET
+          #dotnet add reference ../Plotly.NET/Plotly.NET.fsproj
           dotnet restore Plotly.NET.CSharp.csproj
           dotnet build Plotly.NET.CSharp.csproj -c release
           dotnet pack Plotly.NET.CSharp.csproj -c release -p:PackageVersion=$name

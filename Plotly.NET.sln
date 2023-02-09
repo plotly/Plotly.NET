@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E1
 		.github\workflows\build-and-deploy-docs.yml = .github\workflows\build-and-deploy-docs.yml
 		.github\workflows\build-and-test.yml = .github\workflows\build-and-test.yml
 		.github\workflows\check-formatting.yml = .github\workflows\check-formatting.yml
+		.github\workflows\push-prerelease.yml = .github\workflows\push-prerelease.yml
 		.github\workflows\verify-docs.yml = .github\workflows\verify-docs.yml
 	EndProjectSection
 EndProject
