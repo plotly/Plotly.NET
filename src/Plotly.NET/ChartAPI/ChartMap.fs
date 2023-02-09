@@ -1183,6 +1183,8 @@ module ChartMap =
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Wether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member ScatterMapbox
@@ -1210,6 +1212,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
                 [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(true)>] ?EnableClustering: bool,
+                [<Optional; DefaultParameterValue(true)>] ?Cluster: MapboxCluster,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1239,11 +1243,18 @@ module ChartMap =
                     ?Width = LineWidth
                 )
 
+            let cluster =
+                Cluster
+                |> Option.defaultValue (MapboxCluster.init ())
+                |> MapboxCluster.style(
+                    ?Enabled = EnableClustering
+                )
 
             TraceMapbox.initScatterMapbox (
                 TraceMapboxStyle.ScatterMapbox(
                     Lon = longitudes,
                     Lat = latitudes,
+                    Cluster = cluster,
                     Mode = mode,
                     Marker = marker,
                     Line = line,
@@ -1291,6 +1302,8 @@ module ChartMap =
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Wether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member ScatterMapbox
@@ -1317,6 +1330,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
                 [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(true)>] ?EnableClustering: bool,
+                [<Optional; DefaultParameterValue(true)>] ?Cluster: MapboxCluster,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1346,6 +1361,8 @@ module ChartMap =
                 ?LineDash = LineDash,
                 ?Line = Line,
                 ?Below = Below,
+                ?EnableClustering = EnableClustering,
+                ?Cluster = Cluster,
                 ?UseDefaults = UseDefaults
             )
 
@@ -1373,6 +1390,8 @@ module ChartMap =
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Wether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member PointMapbox
@@ -1394,6 +1413,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(true)>] ?EnableClustering: bool,
+                [<Optional; DefaultParameterValue(true)>] ?Cluster: MapboxCluster,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1419,6 +1440,8 @@ module ChartMap =
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
                 ?Below = Below,
+                ?EnableClustering = EnableClustering,
+                ?Cluster = Cluster,
                 ?UseDefaults = UseDefaults
 
             )
@@ -1446,6 +1469,8 @@ module ChartMap =
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Wether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member PointMapbox
@@ -1466,6 +1491,8 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Below: string,
+                [<Optional; DefaultParameterValue(true)>] ?EnableClustering: bool,
+                [<Optional; DefaultParameterValue(true)>] ?Cluster: MapboxCluster,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1489,6 +1516,8 @@ module ChartMap =
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
                 ?Below = Below,
+                ?EnableClustering = EnableClustering,
+                ?Cluster = Cluster,
                 ?UseDefaults = UseDefaults
             )
 
@@ -1723,6 +1752,7 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Below: string,
+
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 

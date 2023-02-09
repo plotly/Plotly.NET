@@ -65,6 +65,7 @@ type TraceMapboxStyle() =
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="Lat">Sets the latitude coordinates (in degrees North).</param>
     /// <param name="Lon">Sets the longitude coordinates (in degrees East).</param>
+    /// <param name="Cluster">Sets the clustering options for points on this trace.</param>
     /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
@@ -104,6 +105,7 @@ type TraceMapboxStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Lat: #IConvertible seq,
             [<Optional; DefaultParameterValue(null)>] ?Lon: #IConvertible seq,
+            [<Optional; DefaultParameterValue(null)>] ?Cluster: MapboxCluster,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -144,6 +146,7 @@ type TraceMapboxStyle() =
             Ids |> DynObj.setValueOpt trace "ids"
             Lat |> DynObj.setValueOpt trace "lat"
             Lon |> DynObj.setValueOpt trace "lon"
+            Cluster |> DynObj.setValueOpt trace "cluster"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
 
             (TextPosition, MultiTextPosition)

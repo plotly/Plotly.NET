@@ -22,7 +22,7 @@ let baseLayerOnlyChart =
 let ``Mapbox charts`` =
     testList "MapboxMapCharts.Mapbox charts" [
         testCase "Base layout only data" ( fun () ->
-            """var data = [{"type":"scattermapbox","mode":"markers","lat":[],"lon":[],"marker":{},"line":{}}];"""
+            """var data = [{"type":"scattermapbox","mode":"markers","lat":[],"lon":[],"cluster":{},"marker":{},"line":{}}];"""
             |> chartGeneratedContains baseLayerOnlyChart
         );
         testCase "Base layour only layout" ( fun () ->
@@ -108,7 +108,7 @@ let flightsChart =
 let ``Scatter and line plots on Mapbox maps charts`` =
     testList "MapboxMapCharts.Scatter and line plots on Mapbox maps charts" [
         testCase "Point mapbox data" ( fun () ->
-            """var data = [{"type":"scattermapbox","mode":"markers+text","lat":[45.5,43.4,49.13,51.1,53.34,45.24,44.64,48.25,49.89,50.45],"lon":[-73.57,-79.24,-123.06,-114.1,-113.28,-75.43,-63.57,-123.21,-97.13,-104.6],"text":["Montreal","Toronto","Vancouver","Calgary","Edmonton","Ottawa","Halifax","Victoria","Winnepeg","Regina"],"textposition":"top center","marker":{},"line":{}}];"""
+            """var data = [{"type":"scattermapbox","mode":"markers+text","lat":[45.5,43.4,49.13,51.1,53.34,45.24,44.64,48.25,49.89,50.45],"lon":[-73.57,-79.24,-123.06,-114.1,-113.28,-75.43,-63.57,-123.21,-97.13,-104.6],"cluster":{},"text":["Montreal","Toronto","Vancouver","Calgary","Edmonton","Ottawa","Halifax","Victoria","Winnepeg","Regina"],"textposition":"top center","marker":{},"line":{}}];"""
             |> chartGeneratedContains pointMapboxChart
         );
         testCase "Point mapbox layout" ( fun () ->
@@ -116,7 +116,7 @@ let ``Scatter and line plots on Mapbox maps charts`` =
             |> chartGeneratedContains pointMapboxChart
         );
         testCase "Flights mapbox data" ( fun () ->
-            """var data = [{"type":"scattermapbox","opacity":1.0,"mode":"lines","lat":[32.89595056,35.04022222],"lon":[-97.0372,-106.6091944],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.3738738738738739,"mode":"lines","lat":[41.979595,30.19453278],"lon":[-87.90446417,-97.66987194],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.36486486486486486,"mode":"lines","lat":[32.89595056,41.93887417],"lon":[-97.0372,-72.68322833],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.12612612612612611,"mode":"lines","lat":[18.43941667,41.93887417],"lon":[-66.00183333,-72.68322833],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.3783783783783784,"mode":"lines","lat":[32.89595056,33.56294306],"lon":[-97.0372,-86.75354972],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.12612612612612611,"mode":"lines","lat":[25.79325,36.12447667],"lon":[-80.29055556,-86.67818222],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.9504504504504504,"mode":"lines","lat":[32.89595056,42.3643475],"lon":[-97.0372,-71.00517917],"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.8828828828828829,"mode":"lines","lat":[25.79325,42.3643475],"lon":[-80.29055556,-71.00517917],"marker":{},"line":{"color":"red"}}];"""
+            """var data = [{"type":"scattermapbox","opacity":1.0,"mode":"lines","lat":[32.89595056,35.04022222],"lon":[-97.0372,-106.6091944],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.3738738738738739,"mode":"lines","lat":[41.979595,30.19453278],"lon":[-87.90446417,-97.66987194],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.36486486486486486,"mode":"lines","lat":[32.89595056,41.93887417],"lon":[-97.0372,-72.68322833],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.12612612612612611,"mode":"lines","lat":[18.43941667,41.93887417],"lon":[-66.00183333,-72.68322833],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.3783783783783784,"mode":"lines","lat":[32.89595056,33.56294306],"lon":[-97.0372,-86.75354972],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.12612612612612611,"mode":"lines","lat":[25.79325,36.12447667],"lon":[-80.29055556,-86.67818222],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.9504504504504504,"mode":"lines","lat":[32.89595056,42.3643475],"lon":[-97.0372,-71.00517917],"cluster":{},"marker":{},"line":{"color":"red"}},{"type":"scattermapbox","opacity":0.8828828828828829,"mode":"lines","lat":[25.79325,42.3643475],"lon":[-80.29055556,-71.00517917],"cluster":{},"marker":{},"line":{"color":"red"}}];"""
             |> chartGeneratedContains flightsChart
         );
         testCase "Flights mapbox layout" ( fun () ->
