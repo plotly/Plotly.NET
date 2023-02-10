@@ -6,7 +6,7 @@ open Newtonsoft.Json
 open Giraffe.ViewEngine
 
 /// The plotly js version loaded from cdn in rendered html docs
-let [<Literal>] PLOTLYJS_VERSION = "2.17.1"
+let [<Literal>] PLOTLYJS_VERSION = "2.18.1"
 
 /// 
 let internal JSON_CONFIG = 

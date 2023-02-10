@@ -35,12 +35,25 @@ type HTML() =
 
         let scriptContent = """
 var renderPlotly_[SCRIPTID] = function() {
-    var data = [DATA];
-    var layout = [LAYOUT];
-    var config = [CONFIG];
-    Plotly.newPlot('[ID]', data, layout, config);
+    var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-[PLOTLYJS_VERSION].min'}}) || require;
+    fsharpPlotlyRequire(['plotly'], function(Plotly) {
+        var data = [DATA];
+        var layout = [LAYOUT];
+        var config = [CONFIG];
+        Plotly.newPlot('[ID]', data, layout, config);
+    });
 };
-renderPlotly_[SCRIPTID]();
+if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+    var script = document.createElement("script");
+    script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+    script.onload = function(){
+        renderPlotly_[SCRIPTID]();
+    };
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
+else {
+    renderPlotly_[SCRIPTID]();
+}
 """
         let guid = Guid.NewGuid().ToString()
 
@@ -49,6 +62,7 @@ renderPlotly_[SCRIPTID]();
             script [_type "text/javascript"] [
                 rawText (
                     scriptContent
+                        .Replace("[PLOTLYJS_VERSION]",Globals.PLOTLYJS_VERSION)
                         .Replace("[SCRIPTID]",guid.Replace("-",""))
                         .Replace("[ID]",guid)
                         .Replace("[DATA]",data)
@@ -275,7 +289,7 @@ module GenericChart =
     //     let l' = layout |> List.rev
     //     reduce l' (Layout())
 
-    let toChartHTML gChart =
+    let toChartHTMLNodes gChart =
         let tracesJson =
             let traces = getTraces gChart
             JsonConvert.SerializeObject(traces, Globals.JSON_CONFIG)
@@ -298,6 +312,10 @@ module GenericChart =
             )
             yield! displayOpts.Description
         ]
+
+    let toChartHTML gChart =
+        gChart
+        |> toChartHTMLNodes
         |> RenderView.AsString.htmlNode
 
     /// Converts a GenericChart to it HTML representation and embeds it into a html page.
