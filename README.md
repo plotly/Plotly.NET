@@ -84,24 +84,6 @@ the interactive extensions for dotnet interactive have you covered for seamless 
 #r "nuget: Plotly.NET.Interactive, <version>"
 ```
 
-<details><summary><h3>Getting nightly builds</h3><sub>[click 🖱️]</sub></summary>
-
-The nightly builds are located on myget.org.
-
-For your project:
-```
-dotnet new nugetconfig
-dotnet nuget add source https://www.myget.org/F/plotly-net-nightly/api/v3/index.json
-dotnet add package Plotly.NET --prerelease
-```
-
-Interactively:
-```
-#i "https://www.myget.org/F/plotly-net-nightly/api/v3/index.json"
-#r "nuget:Plotly.NET, *-*"
-#r "nuget:Plotly.NET.Interactive, *-*"
-```
-
 </details>
 
 # Documentation
