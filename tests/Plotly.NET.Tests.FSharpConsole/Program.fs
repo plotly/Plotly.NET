@@ -15,23 +15,12 @@ let from whom =
 [<EntryPoint>]
 let main argv =
     [
-        Chart.Line([1,2; 3,4]) 
-        |> Chart.withAxisAnchor(Y=1)
-        Chart.Spline([100,200; 300,400])
-        |> Chart.withAxisAnchor(Y=2)
+        Chart.Point([(1.,2.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+        Chart.Point([(2.,4.)],@"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
     ]
     |> Chart.combine
-    |> Chart.withYAxis (LinearAxis.init(), Id = StyleParam.SubPlotId.YAxis 1)
-    |> Chart.withYAxis (LinearAxis.init(Anchor = StyleParam.LinearAxisId.Free, Shift = -50, ShowLine = true), Id = StyleParam.SubPlotId.YAxis 2)
-    |> Chart.withDescription [
-        h1 [] [str "now look at this!"]
-        ul [] [
-            li [] [str "this"]
-            li [] [str "is"]
-            li [] [str "a"]
-            li [] [img [_src "https://images.deepai.org/machine-learning-models/0c7ba850aa2443d7b40f9a45d9c86d3f/text2imgthumb.jpeg"]]
-        ]
-    ]
-    |> Chart.withSize(1000,1000)
+    |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
+    // include mathtex tags in <head>. pass true to append these scripts, false to ONLY include MathTeX.
+    |> Chart.withMathTex(true)
     |> Chart.show
     0

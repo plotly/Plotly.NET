@@ -961,7 +961,7 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithMathTex(
             [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
-            [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+            [<Optional; DefaultParameterValue(null)>] ?MathJaxVersion: MathJax
         ) =
             let append =
                 Option.defaultValue true AppendTags

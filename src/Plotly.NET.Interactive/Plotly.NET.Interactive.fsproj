@@ -49,7 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Plotly.NET" Version="4.0.0-preview.2" />
+    <!--<PackageReference Include="Plotly.NET" Version="4.0.0-preview.2" />-->
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" />
     <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.23102.2" />
     <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.23102.2" />
   </ItemGroup>

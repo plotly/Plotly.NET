@@ -30,16 +30,21 @@ type HTML() =
     static member CreateChartHTML(
         data: string,
         layout: string,
-        config: string
+        config: string,
+        mathjax: MathJax
     ) =
-
         let scriptContent = """
 var renderPlotly_[SCRIPTID] = function() {
-    var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-[PLOTLYJS_VERSION].min'}}) || require;
-    fsharpPlotlyRequire(['plotly'], function(Plotly) {
+    var fsharpPlotlyRequire = requirejs.config(
+        {
+            context:'fsharp-plotly',
+            paths: [REQUIRE_PATHS]
+        }) || require;
+    fsharpPlotlyRequire([REQUIRE_LIST], function(Plotly) {
         var data = [DATA];
         var layout = [LAYOUT];
         var config = [CONFIG];
+        [MATHJAX_CONFIG]
         Plotly.newPlot('[ID]', data, layout, config);
     });
 };
@@ -57,12 +62,23 @@ else {
 """
         let guid = Guid.NewGuid().ToString()
 
+        let require_list, require_paths, mathjax_config =
+            match mathjax with
+            | V2 -> """['plotly', 'mathjax']""", $"{{plotly: '{Globals.PLOTLY_REQUIRE_CDN}', mathjax: '{Globals.MATHJAX_V2_REQUIRE_CDN}'}}", Globals.MATHJAX_V2_CONFIG
+            // found no way on how to load mathjax v3 using requirejs
+            | V3 -> """['plotly', 'mathjax']""", $"{{plotly: '{Globals.PLOTLY_REQUIRE_CDN}', mathjax: '{Globals.MATHJAX_V3_REQUIRE_CDN}'}}", Globals.MATHJAX_V3_CONFIG
+            | _ -> """['plotly']""", $"{{plotly: {Globals.PLOTLY_REQUIRE_CDN}}}", ""
+            
+
         [
             div [_id guid] [comment "Plotly chart will be drawn inside this DIV"]
             script [_type "text/javascript"] [
                 rawText (
                     scriptContent
                         .Replace("[PLOTLYJS_VERSION]",Globals.PLOTLYJS_VERSION)
+                        .Replace("[REQUIRE_PATHS]",require_paths)
+                        .Replace("[REQUIRE_LIST]",require_list)
+                        .Replace("[MATHJAX_CONFIG]",mathjax_config)
                         .Replace("[SCRIPTID]",guid.Replace("-",""))
                         .Replace("[ID]",guid)
                         .Replace("[DATA]",data)
@@ -308,7 +324,8 @@ module GenericChart =
             yield! HTML.CreateChartHTML(
                 tracesJson,
                 layoutJson,
-                configJson
+                configJson,
+                displayOpts.MathJaxVersion
             )
             yield! displayOpts.Description
         ]
@@ -339,7 +356,8 @@ module GenericChart =
             chart = HTML.CreateChartHTML(
                 tracesJson,
                 layoutJson,
-                configJson
+                configJson,
+                displayOpts.MathJaxVersion
             ),
             AdditionalHeadTags = displayOpts.AdditionalHeadTags,
             Description = displayOpts.Description

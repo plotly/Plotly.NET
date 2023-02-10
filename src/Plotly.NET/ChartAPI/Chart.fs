@@ -3207,25 +3207,27 @@ type Chart =
     [<CompiledName("WithMathTex")>]
     static member withMathTex(
         [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
-        [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+        [<Optional; DefaultParameterValue(null)>] ?MathJaxVersion: MathJax
     ) =
-        let version = MathJaxVersion |> Option.defaultValue 3
+        let version = MathJaxVersion |> Option.defaultValue MathJax.V2
 
         let tags =
-            if version = 2 then
-                Globals.MATHJAX_V2_TAGS
-            else 
-               Globals.MATHJAX_V3_TAGS
+            match version with
+            | V2 -> Globals.MATHJAX_V2_TAGS
+            | V3 -> Globals.MATHJAX_V3_TAGS
+            | _ -> []
 
         (fun (ch: GenericChart) ->
 
             if (AppendTags |> Option.defaultValue true) then
                 ch 
                 |> Chart.withAdditionalHeadTags tags
+                |> GenericChart.mapDisplayOptions (DisplayOptions.setMathJaxVersion version)
                 |> Chart.withConfigStyle(TypesetMath=true)
             else
                 ch 
                 |> Chart.withHeadTags tags
+                |> GenericChart.mapDisplayOptions (DisplayOptions.setMathJaxVersion version)
                 |> Chart.withConfigStyle(TypesetMath=true)
         )
 
