@@ -2,71 +2,29 @@
 
 open DynamicObj
 open System.Runtime.InteropServices
+open Giraffe.ViewEngine
 
-type ChartDescription =
-    {
-        Heading: string
-        Text: string
-    }
+type DisplayOptions = {
+    AdditionalHeadTags: XmlNode list
+    Description: XmlNode list
+} with
+    static member Create(
+        [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
+        [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list
+    ) =
+        {
+            AdditionalHeadTags = AdditionalHeadTags |> Option.defaultValue []
+            Description = Description |> Option.defaultValue []
+        }
 
-    static member create heading text = { Heading = heading; Text = text }
+    static member addAdditionalHeadTags (additionalHeadTags: XmlNode list) (displayOpts:DisplayOptions) =
+        {
+            displayOpts with
+                AdditionalHeadTags = List.append displayOpts.AdditionalHeadTags additionalHeadTags
+        }
 
-    //to-do: when finally using a html dsl, adapt to return XMLNode
-    static member toHtml(d: ChartDescription) =
-
-        let html =
-            """<div class=container>
-    <h3>[DESCRIPTIONHEADING]</h3>
-    <p>[DESCRIPTIONTEXT]</p>
-</div>"""
-
-        html
-            .Replace("[DESCRIPTIONHEADING]", d.Heading)
-            .Replace("[DESCRIPTIONTEXT]", d.Text)
-
-
-type DisplayOptions() =
-    inherit DynamicObj()
-
-    static member init
-        (
-            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Description: ChartDescription
-        ) =
-        DisplayOptions() |> DisplayOptions.style (?AdditionalHeadTags = AdditionalHeadTags, ?Description = Description)
-
-
-    // Applies the styles to Font()
-    static member style
-        (
-            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Description: ChartDescription
-        ) =
-        (fun (displayOptions: DisplayOptions) ->
-
-            AdditionalHeadTags |> DynObj.setValueOpt displayOptions "AdditionalHeadTags"
-            Description |> DynObj.setValueOpt displayOptions "Description"
-
-            displayOptions)
-
-
-    static member getReplacements(displayOptions: DisplayOptions) =
-        [
-            "[ADDITIONAL_HEAD_TAGS]",
-            (displayOptions.TryGetTypedValue<seq<string>>("AdditionalHeadTags")
-             |> Option.map (String.concat "\r\n")
-             |> Option.defaultValue "")
-            "[DESCRIPTION]",
-            (displayOptions.TryGetTypedValue<ChartDescription>("Description")
-             |> Option.map ChartDescription.toHtml
-             |> Option.defaultValue "")
-        ]
-
-    static member replaceHtmlPlaceholders (displayOptions: DisplayOptions) (html: string) =
-        displayOptions
-        |> DisplayOptions.getReplacements
-        |> List.fold
-            (fun (html: string) (placeholder, replacement) ->
-                //printfn $"replacing {placeholder} {replacement}"
-                html.Replace(placeholder, replacement))
-            html
+    static member addDescription (description: XmlNode list) (displayOpts:DisplayOptions) =
+        {
+            displayOpts with
+                Description = List.append displayOpts.Description description
+        }

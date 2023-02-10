@@ -4,120 +4,62 @@ open DynamicObj
 open System
 open Newtonsoft.Json
 open System.Runtime.CompilerServices
+open Giraffe.ViewEngine
 
-/// HTML template for Plotly.js
-module HTML =
+type HTML() =
 
-    let doc =
-        """
-<!DOCTYPE html>
-<html>
-    <head>
-        <!-- Plotly.js -->
-        <meta http-equiv="X-UA-Compatible" content="IE=11" >
-        <script src="https://cdn.plot.ly/plotly-2.17.1.min.js"></script>
-        [ADDITIONAL_HEAD_TAGS]
-        <style>
-        .container {
-          padding-right: 25px;
-          padding-left: 25px;
-          margin-right: 0 auto;
-          margin-left: 0 auto;
-        }
-        @media (min-width: 768px) {
-          .container {
-            width: 750px;
-          }
-        }
-        @media (min-width: 992px) {
-          .container {
-            width: 970px;
-          }
-        }
-        @media (min-width: 1200px) {
-          .container {
-            width: 1170px;
-          }
-        }
-        </style>
-    </head>
-    <body>
-      [CHART]
-      [DESCRIPTION]
-    </body>
-</html>"""
+    static member Doc(
+        chart,
+        ?AdditionalHeadTags,
+        ?Description
+    ) =
+        let additionalHeadTags = defaultArg AdditionalHeadTags []
+        let description = defaultArg Description []
 
+        html [] [
+            head [] [
+                script [_src $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"] []
+                yield! additionalHeadTags
+            ]
+            body [] [
+                yield! chart
+                yield! description
+            ]
+        ]
 
-    let chart =
-        let newScript =
-            new System.Text.StringBuilder()
+    static member CreateChartHTML(
+        data: string,
+        layout: string,
+        config: string
+    ) =
 
-        newScript.AppendLine("""<div id="[ID]"><!-- Plotly chart will be drawn inside this DIV --></div>""") |> ignore
-        newScript.AppendLine("<script type=\"text/javascript\">") |> ignore
-
-        newScript.AppendLine(
-            @"
-            var renderPlotly_[SCRIPTID] = function() {"
-        )
-        |> ignore
-
-        newScript.AppendLine(
-            @"
-            var data = [DATA];
-            var layout = [LAYOUT];
-            var config = [CONFIG];
-            Plotly.newPlot('[ID]', data, layout, config);"
-        )
-        |> ignore
-
-        newScript.AppendLine(
-            """};
-            renderPlotly_[SCRIPTID]();
-            """
-        )
-        |> ignore
-
-        newScript.AppendLine("</script>") |> ignore
-        newScript.ToString()
-
-
-    let imageChart =
-        """<div id="[ID]" style="display: none;"><!-- Plotly chart will be drawn inside this DIV --></div>
-
-  <img id="chart-image"></img>
-
-  <script>
-    var img_jpg = d3.select('#chart-image');
+        let scriptContent = """
+var renderPlotly_[SCRIPTID] = function() {
     var data = [DATA];
     var layout = [LAYOUT];
     var config = [CONFIG];
-    Plotly.newPlot('[ID]', data, layout, config)
-    // static image in jpg format
+    Plotly.newPlot('[ID]', data, layout, config);
+};
+renderPlotly_[SCRIPTID]();
+"""
+        let guid = Guid.NewGuid().ToString()
 
-    .then(
-        function(gd)
-         {
-          Plotly.toImage(gd,{format:'[IMAGEFORMAT]',height: [HEIGHT],width: [WIDTH]})
-             .then(
-                function(url)
-             {
-                 img_jpg.attr("src", url);
-
-             }
-             )
-        });
-  </script>"""
-
-
+        [
+            div [_id guid] [comment "Plotly chart will be drawn inside this DIV"]
+            script [_type "text/javascript"] [
+                rawText (
+                    scriptContent
+                        .Replace("[SCRIPTID]",guid.Replace("-",""))
+                        .Replace("[ID]",guid)
+                        .Replace("[DATA]",data)
+                        .Replace("[LAYOUT]",layout)
+                        .Replace("[CONFIG]",config)
+                )]
+        ]
+        
 /// Module to represent a GenericChart
 [<Extension>]
 module GenericChart =
-
-
-    let internal jsonConfig =
-        JsonSerializerSettings()
-
-    jsonConfig.ReferenceLoopHandling <- ReferenceLoopHandling.Serialize
 
     type Figure =
         {
@@ -150,9 +92,9 @@ module GenericChart =
         let layout = fig.Layout
 
         if traces.Length <> 1 then
-            MultiChart(traces, layout, Config(), DisplayOptions())
+            MultiChart(traces, layout, Config(), DisplayOptions.Create())
         else
-            Chart(traces.[0], layout, Config(), DisplayOptions())
+            Chart(traces.[0], layout, Config(), DisplayOptions.Create())
 
     let getTraces gChart =
         match gChart with
@@ -292,12 +234,9 @@ module GenericChart =
 
         let combineDisplayOptions (first: DisplayOptions) (second: DisplayOptions) =
 
-            let additionalHeadTags =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<string>>("AdditionalHeadTags"))
-                    (second.TryGetTypedValue<seq<string>>("AdditionalHeadTags"))
-
-            DynObj.combine first second |> unbox |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags)
+            first
+            |> DisplayOptions.addAdditionalHeadTags second.AdditionalHeadTags
+            |> DisplayOptions.addDescription second.Description
 
         gCharts
         |> Seq.reduce (fun acc elem ->
@@ -336,119 +275,58 @@ module GenericChart =
     //     let l' = layout |> List.rev
     //     reduce l' (Layout())
 
-
-    /// Converts a GenericChart to it HTML representation. The div layer has a default size of 600 if not specified otherwise.
     let toChartHTML gChart =
-        let guid = Guid.NewGuid().ToString()
-
         let tracesJson =
             let traces = getTraces gChart
-            JsonConvert.SerializeObject(traces, jsonConfig)
+            JsonConvert.SerializeObject(traces, Globals.JSON_CONFIG)
 
         let layoutJson =
             let layout = getLayout gChart
-            JsonConvert.SerializeObject(layout, jsonConfig)
+            JsonConvert.SerializeObject(layout, Globals.JSON_CONFIG)
 
         let configJson =
             let config = getConfig gChart
-            JsonConvert.SerializeObject(config, jsonConfig)
+            JsonConvert.SerializeObject(config, Globals.JSON_CONFIG)
 
         let displayOpts = getDisplayOptions gChart
 
-        let dims = tryGetLayoutSize gChart
-
-        let width, height =
-            let w, h = tryGetLayoutSize gChart
-            w |> Option.defaultValue 600, h |> Option.defaultValue 600
-
-
-        HTML
-            .chart
-            .Replace("[WIDTH]", string width)
-            .Replace("[HEIGHT]", string height)
-            .Replace("[ID]", guid)
-            .Replace("[SCRIPTID]", guid.Replace("-", ""))
-            .Replace("[DATA]", tracesJson)
-            .Replace("[LAYOUT]", layoutJson)
-            .Replace("[CONFIG]", configJson)
-        |> DisplayOptions.replaceHtmlPlaceholders displayOpts
-
-    /// Converts a GenericChart to it HTML representation and set the size of the div
-    let toChartHtmlWithSize (width: int) (height: int) (gChart: GenericChart) =
-        let guid = Guid.NewGuid().ToString()
-
-        let tracesJson =
-            let traces = getTraces gChart
-            JsonConvert.SerializeObject(traces, jsonConfig)
-
-        let layoutJson =
-            let layout = getLayout gChart
-            JsonConvert.SerializeObject(layout, jsonConfig)
-
-        let configJson =
-            let config = getConfig gChart
-            JsonConvert.SerializeObject(config, jsonConfig)
-
-        let displayOpts = getDisplayOptions gChart
-
-        HTML
-            .chart
-            .Replace("[ID]", guid)
-            .Replace("[WIDTH]", string width)
-            .Replace("[HEIGHT]", string height)
-            .Replace("[DATA]", tracesJson)
-            .Replace("[LAYOUT]", layoutJson)
-            .Replace("[CONFIG]", configJson)
-        |> DisplayOptions.replaceHtmlPlaceholders displayOpts
+        div [] [
+            yield! HTML.CreateChartHTML(
+                tracesJson,
+                layoutJson,
+                configJson
+            )
+            yield! displayOpts.Description
+        ]
+        |> RenderView.AsString.htmlNode
 
     /// Converts a GenericChart to it HTML representation and embeds it into a html page.
     let toEmbeddedHTML gChart =
-        let chartMarkup = toChartHTML gChart
-
-        let displayOpts = getDisplayOptions gChart
-
-        HTML.doc.Replace("[CHART]", chartMarkup) |> DisplayOptions.replaceHtmlPlaceholders displayOpts
-
-    [<Obsolete("This function will be dropped in the 2.0 release. Create either a static chart (e.g using Config.init(StaticPlot=true)) or use Plotly.NET.ImageExport")>]
-    let toChartImage (format: StyleParam.ImageFormat) gChart =
-
-        let guid = Guid.NewGuid().ToString()
-
+        
         let tracesJson =
             let traces = getTraces gChart
-            JsonConvert.SerializeObject(traces, jsonConfig)
+            JsonConvert.SerializeObject(traces, Globals.JSON_CONFIG)
 
         let layoutJson =
             let layout = getLayout gChart
-            JsonConvert.SerializeObject(layout, jsonConfig)
+            JsonConvert.SerializeObject(layout, Globals.JSON_CONFIG)
+
+        let configJson =
+            let config = getConfig gChart
+            JsonConvert.SerializeObject(config, Globals.JSON_CONFIG)
 
         let displayOpts = getDisplayOptions gChart
 
-        HTML
-            .imageChart
-            .Replace("[WIDTH]", string 600)
-            .Replace("[HEIGHT]", string 600)
-            .Replace("[ID]", guid)
-            .Replace("[DATA]", tracesJson)
-            .Replace("[LAYOUT]", layoutJson)
-            .Replace("[IMAGEFORMAT]", format.ToString().ToLower())
-            .Replace("[CONFIG]", "{}")
-        |> DisplayOptions.replaceHtmlPlaceholders displayOpts
-
-
-    /// Converts a GenericChart to an image and embeds it into a html page
-    let toEmbeddedImage (format: StyleParam.ImageFormat) gChart =
-
-        let chartMarkup = toChartImage format gChart
-
-        let displayOpts = getDisplayOptions gChart
-
-        HTML
-            .doc
-            .Replace("[CHART]", chartMarkup)
-            .Replace("[CONFIG]", "{}")
-        |> DisplayOptions.replaceHtmlPlaceholders displayOpts
-
+        HTML.Doc(
+            chart = HTML.CreateChartHTML(
+                tracesJson,
+                layoutJson,
+                configJson
+            ),
+            AdditionalHeadTags = displayOpts.AdditionalHeadTags,
+            Description = displayOpts.Description
+        )
+        |> RenderView.AsString.htmlDocument
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let mapTrace f gChart =
@@ -484,8 +362,7 @@ module GenericChart =
             let defaultConfig = Config()
             Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
 
-            let defaultDisplayOpts = DisplayOptions()
-            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
+            let defaultDisplayOpts = Defaults.DefaultDisplayOptions
 
             let defaultTemplate = Template()
             Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
@@ -501,7 +378,7 @@ module GenericChart =
                 defaultDisplayOpts
             )
         else
-            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions())
+            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions.Create())
 
     /// Converts from a list of trace objects and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
     let ofTraceObjects (useDefaults: bool) traces = // layout =
@@ -510,8 +387,7 @@ module GenericChart =
             let defaultConfig = Config()
             Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
 
-            let defaultDisplayOpts = DisplayOptions()
-            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
+            let defaultDisplayOpts = Defaults.DefaultDisplayOptions
 
             let defaultTemplate = Template()
             Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
@@ -528,7 +404,7 @@ module GenericChart =
 
             )
         else
-            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions())
+            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions.Create())
 
     ///
     let mapLayout f gChart =

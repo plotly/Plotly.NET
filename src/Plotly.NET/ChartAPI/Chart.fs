@@ -7,7 +7,7 @@ open Plotly.NET.ConfigObjects
 open DynamicObj
 open System
 open System.IO
-
+open Giraffe.ViewEngine
 open GenericChart
 open System.Runtime.InteropServices
 
@@ -51,33 +51,6 @@ type Chart =
         let file = sprintf "%s.html" guid
         let path = Path.Combine(tempPath, file)
         ch |> Chart.saveHtml (path, true)
-
-    /// <summary>
-    /// Saves the given chart as a temporary html file containing a static image of the chart and opens it in the browser.
-    ///
-    /// IMPORTANT: this is not the same as static image generation. The file still needs to be opened in the browser to generate the image, as it is done via a js script in the html.
-    ///
-    /// For real programmatic static image export use Plotly.NET.ImageExport (https://www.nuget.org/packages/Plotly.NET.ImageExport/)
-    ///
-    /// This yields basically the same results as using `StaticPlot = true` for the chart's config.
-    /// </summary>
-    /// <param name="format">The image format for the static chart</param>
-    /// <param name="ch">The chart to show in the browser</param>
-    [<Obsolete("This function will be dropped in the 2.0 release. It is recommended to either create static plots or use Plotly.NET.ImageExport instead.")>]
-    [<CompiledName("ShowAsImage")>]
-    static member showAsImage (format: StyleParam.ImageFormat) (ch: GenericChart) =
-        let guid = Guid.NewGuid().ToString()
-        let tempPath = Path.GetTempPath()
-        let file = sprintf "%s.html" guid
-        let path = Path.Combine(tempPath, file)
-
-        let html =
-            ch
-            |> Chart.withAdditionalHeadTags [ """<script src="https://unpkg.com/@plotly/d3@3.8.0/d3.js"></script>""" ]
-            |> GenericChart.toEmbeddedImage format
-
-        File.WriteAllText(path, html)
-        path |> openOsSpecificFile
 
     // #######################
     /// Create a combined chart with the given charts merged
@@ -3214,33 +3187,20 @@ type Chart =
 
     /// Show chart in browser
     [<CompiledName("WithDescription")>]
-    static member withDescription (description: ChartDescription) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.style (Description = description))
+    static member withDescription (description: XmlNode list) (ch: GenericChart) =
+        ch |> mapDisplayOptions (DisplayOptions.addDescription description)
+
 
 
     /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's <head>
     [<CompiledName("WithAdditionalHeadTags")>]
-    static member withAdditionalHeadTags (additionalHeadTags: seq<string>) (ch: GenericChart) =
-        ch
-        |> mapDisplayOptions (fun d ->
-            let tags =
-                d.TryGetTypedValue<seq<string>>("AdditionalHeadTags")
-
-            let newTags =
-                tags
-                |> Option.map (fun tags ->
-                    seq {
-                        yield! tags
-                        yield! additionalHeadTags
-                    })
-                |> Option.defaultValue additionalHeadTags
-
-            d |> DisplayOptions.style (AdditionalHeadTags = newTags))
+    static member withAdditionalHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
+        ch |> mapDisplayOptions (DisplayOptions.addAdditionalHeadTags additionalHeadTags)
 
     /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's <head>
     [<CompiledName("WithHeadTags")>]
-    static member withHeadTags (headTags: seq<string>) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.style (AdditionalHeadTags = headTags))
+    static member withHeadTags (headTags: XmlNode list) (ch: GenericChart) =
+        ch |> mapDisplayOptions (fun d -> {d with AdditionalHeadTags = headTags})
 
 
     /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
@@ -3253,24 +3213,22 @@ type Chart =
 
         let tags =
             if version = 2 then
-                [
-                    """<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});</script>"""
-                    """<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML%2CSafe.js&ver=4.1"></script>"""
-                ]
+                Globals.MATHJAX_V2_TAGS
             else 
-                [
-                    """<script>MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}};</script>"""
-                    """<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>"""
-                ]
+               Globals.MATHJAX_V3_TAGS
 
         (fun (ch: GenericChart) ->
 
             if (AppendTags |> Option.defaultValue true) then
                 ch 
                 |> Chart.withAdditionalHeadTags tags
-                |> Chart.withConfigStyle()
+                |> Chart.withConfigStyle(TypesetMath=true)
             else
-                ch |> Chart.withHeadTags tags)
+                ch 
+                |> Chart.withHeadTags tags
+                |> Chart.withConfigStyle(TypesetMath=true)
+        )
+
 
     /// Sets the color axis with the given id on the chart layout
     [<CompiledName("WithColorAxis")>]

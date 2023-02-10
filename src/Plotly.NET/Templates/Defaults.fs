@@ -25,7 +25,7 @@ module Defaults =
 
     /// The display options used for generating html. Default: DisplayOptions.init ()
     let mutable DefaultDisplayOptions =
-        DisplayOptions.init ()
+        DisplayOptions.Create()
 
     /// The default chart template. Default: ChartTemplates.plotly
     let mutable DefaultTemplate =
@@ -36,5 +36,5 @@ module Defaults =
         DefaultWidth <- 600
         DefaultHeight <- 600
         DefaultConfig <- Config.init (Responsive = true)
-        DefaultDisplayOptions <- DisplayOptions.init ()
+        DefaultDisplayOptions <- DisplayOptions.Create()
         DefaultTemplate <- ChartTemplates.plotly

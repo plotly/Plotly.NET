@@ -4,6 +4,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open System
 open System.IO
+open Giraffe.ViewEngine
 
 open DynamicObj
 open GenericChart
@@ -941,19 +942,19 @@ module GenericChartExtensions =
         /// Show chart in browser
         [<CompiledName("WithDescription")>]
         [<Extension>]
-        member this.WithDescription(description: ChartDescription) =
+        member this.WithDescription(description: XmlNode list) =
             this |> Chart.withDescription description
 
         /// Adds the given additional script tags on the chart's DisplayOptions. They will be included in the document's <head>
         [<CompiledName("WithAdditionalHeadTags")>]
         [<Extension>]
-        member this.WithAdditionalHeadTags(additionalHeadTags: seq<string>) =
+        member this.WithAdditionalHeadTags(additionalHeadTags: XmlNode list) =
             this |> Chart.withAdditionalHeadTags additionalHeadTags
 
         /// Sets the given additional script tags on the chart's DisplayOptions. They will be included in the document's <head>
         [<CompiledName("WithHeadTags")>]
         [<Extension>]
-        member this.WithHeadTags(headTags: seq<string>) = this |> Chart.withHeadTags headTags
+        member this.WithHeadTags(headTags: XmlNode list) = this |> Chart.withHeadTags headTags
 
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
         [<CompiledName("WithMathTex")>]
@@ -978,11 +979,6 @@ module GenericChartExtensions =
         [<CompiledName("Show")>]
         [<Extension>]
         member this.Show() = this |> Chart.show
-
-        /// Show chart in browser
-        [<CompiledName("ShowAsImage")>]
-        [<Extension>]
-        member this.ShowAsImage(format: StyleParam.ImageFormat) = this |> Chart.showAsImage format
 
         /// Sets the polar object with the given id on the chart layout
         [<CompiledName("WithPolar")>]
