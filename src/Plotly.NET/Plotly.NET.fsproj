@@ -80,6 +80,7 @@
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxLayerSymbol.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxLayer.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\MapboxCluster.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Map\MapboxBounds.fs" />
     <Compile Include="Layout\ObjectAbstractions\Map\Mapbox.fs" />
     <Compile Include="Layout\ObjectAbstractions\Ternary\Ternary.fs" />
     <Compile Include="Layout\ObjectAbstractions\3D\Camera.fs" />

@@ -16,6 +16,7 @@ type Mapbox() =
     /// <param name="Domain">Sets the domain of the Mapbox subplot</param>
     /// <param name="AccessToken">Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.</param>
     /// <param name="Style">Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version</param>
+    /// <param name="Bounds">Sets the bounds of the map</param>
     /// <param name="Center">Sets the (lon,lat) coordinates of the center of the map view</param>
     /// <param name="Zoom">Sets the zoom level of the map (mapbox.zoom).</param>
     /// <param name="Bearing">Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).</param>
@@ -26,6 +27,7 @@ type Mapbox() =
             [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
             [<Optional; DefaultParameterValue(null)>] ?AccessToken: string,
             [<Optional; DefaultParameterValue(null)>] ?Style: StyleParam.MapboxStyle,
+            [<Optional; DefaultParameterValue(null)>] ?Bounds: MapboxBounds,
             [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
             [<Optional; DefaultParameterValue(null)>] ?Zoom: float,
             [<Optional; DefaultParameterValue(null)>] ?Bearing: float,
@@ -37,6 +39,7 @@ type Mapbox() =
             ?Domain = Domain,
             ?AccessToken = AccessToken,
             ?Style = Style,
+            ?Bounds = Bounds,
             ?Center = Center,
             ?Zoom = Zoom,
             ?Bearing = Bearing,
@@ -48,6 +51,7 @@ type Mapbox() =
     /// <param name="Domain">Sets the domain of the Mapbox subplot</param>
     /// <param name="AccessToken">Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.</param>
     /// <param name="Style">Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`. These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are: carto-darkmatter, carto-positron, open-street-map, stamen-terrain, stamen-toner, stamen-watercolor, white-bg The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets Mapbox style URLs are of the form: mapbox://mapbox.mapbox/name/version</param>
+    /// <param name="Bounds">Sets the bounds of the map</param>
     /// <param name="Center">Sets the (lon,lat) coordinates of the center of the map view</param>
     /// <param name="Zoom">Sets the zoom level of the map (mapbox.zoom).</param>
     /// <param name="Bearing">Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).</param>
@@ -58,6 +62,7 @@ type Mapbox() =
             [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
             [<Optional; DefaultParameterValue(null)>] ?AccessToken: string,
             [<Optional; DefaultParameterValue(null)>] ?Style: StyleParam.MapboxStyle,
+            [<Optional; DefaultParameterValue(null)>] ?Bounds: MapboxBounds,
             [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
             [<Optional; DefaultParameterValue(null)>] ?Zoom: float,
             [<Optional; DefaultParameterValue(null)>] ?Bearing: float,
@@ -69,7 +74,7 @@ type Mapbox() =
             Domain |> DynObj.setValueOpt mapBox "domain"
             AccessToken |> DynObj.setValueOpt mapBox "accesstoken"
             Style |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
-
+            Bounds |> DynObj.setValueOpt mapBox "bounds"
             Center
             |> Option.map (fun (lon, lat) ->
                 let t = DynamicObj()
