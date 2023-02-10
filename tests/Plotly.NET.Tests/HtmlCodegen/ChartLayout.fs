@@ -5,6 +5,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Giraffe.ViewEngine
 
 open TestUtils.HtmlCodegen
 
@@ -307,34 +308,32 @@ let ``Shapes`` =
 let displayOptionsChartDescriptionChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let description1 = ChartDescription.create "Hello" "F#"
+    let description1 = [
+        h3 [] [str "Hello"]
+        p [] [str "F#"] 
+    ]
     Chart.Point(x,y,Name="desc1", UseDefaults = false)    
     |> Chart.withDescription(description1)
     
 let additionalHeadTagsChart =
     let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let bulmaHero = """<section class="hero is-primary is-bold">
-    <div class="hero-body">
-      <p class="title">
-        Hero title
-      </p>
-      <p class="subtitle">
-        Hero subtitle
-      </p>
-    </div>
-    </section>
-    """
-    
+    let bulmaHero = 
+        section [_class"hero is-primary is-bold"] [
+            div [_class "hero-body"] [
+              p [_class "title"] [str "Hero title"]
+              p [_class "subtitle"] [str "Hero subtitle"]
+            ]
+        ]
     // chart description containing bulma classes
-    let description3 =
-      ChartDescription.create 
-          """<h1 class="title">I am heading</h1>""" 
-         bulmaHero
+    let description3 = [
+        h1 [_class "title"] [str "I am heading"]
+        bulmaHero
+    ]
     Chart.Point(x,y,Name="desc3", UseDefaults = false)    
     |> Chart.withDescription description3
     // Add reference to the bulma css framework
-    |> Chart.withAdditionalHeadTags ["""<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">"""]
+    |> Chart.withAdditionalHeadTags [link [_rel "stylesheet"; _href "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"]]
 
 let mathtexv3Chart =
     [
@@ -376,8 +375,8 @@ let ``Display options`` =
             |> substringIsInChart displayOptionsChartDescriptionChart toEmbeddedHTML
         );
         testCase "Additional head tags" ( fun () ->
-            [ "<h3><h1 class=\"title\">I am heading</h1></h3>"
-              "<p><section class=\"hero is-primary is-bold\">"
+            [ "<h1 class=\"title\">I am heading</h1>"
+              "<section class=\"hero is-primary is-bold\">"
               "<div class=\"hero-body\">"
               "<p class=\"title\">"
               "Hero title"

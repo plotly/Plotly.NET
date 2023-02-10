@@ -36,6 +36,7 @@
   <ItemGroup>
     <None Include="RELEASE_NOTES.md" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+    <Compile Include="Globals.fs" />
     <Compile Include="InternalUtils.fs" />
     <Compile Include="CommonAbstractions\ColorKeyword.fs" />
     <Compile Include="CommonAbstractions\Colors.fs" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="DynamicObj" Version="2.0.0" />
+    <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Layout\ObjectAbstractions\Carpet\" />

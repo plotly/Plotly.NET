@@ -19,9 +19,9 @@ let simpleChart =
 [<Tests>]
 let ``Html layout tests`` =
     testList "SimpleTests.Simple tests" [
-        testCase "Expecting plotly js" ( fun () ->
-            "https://cdn.plot.ly/plotly-2.17.1.min"
-            |> chartGeneratedContains simpleChart
+        testCase "Expecting plotly js script reference in generated html document" ( fun () ->
+            $"""https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min"""
+            |> substringIsInChart simpleChart toEmbeddedHTML 
         );
         testCase "Expecting data" ( fun () ->
             """var data = [{"type":"scatter","mode":"markers","x":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"marker":{},"line":{}}];"""
@@ -29,14 +29,6 @@ let ``Html layout tests`` =
         );
         testCase "Expecting layout info" (fun () ->
             """var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};"""
-            |> chartGeneratedContains simpleChart
-        );
-        testCase "Expecting cloudflare link" (fun () ->
-            "\"https://cdnjs.cloudflare.com/ajax/libs/require.js"
-            |> chartGeneratedContains simpleChart
-        );
-        testCase "Expecting require config" (fun () ->
-            "var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-2.17.1.min'}}) || require;"
             |> chartGeneratedContains simpleChart
         );
         testCase "Expecting html tags in embedded page only" (fun () ->
