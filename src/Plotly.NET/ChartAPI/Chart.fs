@@ -1257,6 +1257,8 @@ type Chart =
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
     /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
     /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="AutoShift">Automatically reposition the axis to avoid overlap with other axes with the same `overlaying` value. This repositioning will account for any `shift` amount applied to other axes on the same side with `autoshift` is set to true. Only has an effect if `anchor` is set to "free".</param>
+    /// <param name="Shift">Moves the axis a given number of pixels from where it would have been otherwise. Accepts both positive and negative values, which will shift the axis either right or left, respectively. If `autoshift` is set to true, then this defaults to a padding of -3 if `side` is set to "left". and defaults to +3 if `side` is set to "right". Defaults to 0 if `autoshift` is set to false. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="Domain">Tuple of (X*Y fractions). Sets the domain of this axis (in plot fraction).</param>
     /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
     /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
@@ -1290,6 +1292,8 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
             [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
             [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?AutoShift: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Shift: int,
             [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
             [<Optional; DefaultParameterValue(null)>] ?Position: float,
             [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
@@ -1332,6 +1336,8 @@ type Chart =
                 ?Anchor = Anchor,
                 ?Side = Side,
                 ?Overlaying = Overlaying,
+                ?AutoShift = AutoShift,
+                ?Shift = Shift,
                 ?Position = Position,
                 ?CategoryOrder = CategoryOrder,
                 ?CategoryArray = CategoryArray,

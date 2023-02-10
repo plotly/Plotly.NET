@@ -189,11 +189,13 @@ module StyleParam =
 
     [<RequireQualifiedAccess>]
     type LinearAxisId =
+        | Free
         | X of int
         | Y of int
 
         static member toString =
             function
+            | Free -> "free"
             | X id -> if id < 2 then "x" else sprintf "x%i" id
             | Y id -> if id < 2 then "y" else sprintf "y%i" id
 

@@ -18,6 +18,7 @@ type LinearAxis() =
     /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
     /// <param name="AutoTypeNumbers">Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.</param>
     /// <param name="AutoRange">Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".</param>
+    /// <param name="AutoShift">Automatically reposition the axis to avoid overlap with other axes with the same `overlaying` value. This repositioning will account for any `shift` amount applied to other axes on the same side with `autoshift` is set to true. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="RangeMode">If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data. Applies only to linear axes.</param>
     /// <param name="Range">Sets the range of this axis. If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is "date", it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is "category", it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.</param>
     /// <param name="FixedRange">Determines whether or not this axis is zoom-able. If true, then zoom is disabled.</param>
@@ -75,6 +76,7 @@ type LinearAxis() =
     /// <param name="ZeroLine">Determines whether or not a line is drawn at along the 0 value of this axis. If "true", the zero line is drawn on top of the grid lines.</param>
     /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
     /// <param name="ZeroLineWidth">Sets the width (in px) of the zero line.</param>
+    /// <param name="Shift">Moves the axis a given number of pixels from where it would have been otherwise. Accepts both positive and negative values, which will shift the axis either right or left, respectively. If `autoshift` is set to true, then this defaults to a padding of -3 if `side` is set to "left". and defaults to +3 if `side` is set to "right". Defaults to 0 if `autoshift` is set to false. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="ShowDividers">Determines whether or not a dividers are drawn between the category levels of this axis. Only has an effect on "multicategory" axes.</param>
     /// <param name="DividerColor">Sets the color of the dividers Only has an effect on "multicategory" axes.</param>
     /// <param name="DividerWidth">Sets the width (in px) of the dividers Only has an effect on "multicategory" axes.</param>
@@ -100,6 +102,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
             [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
             [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?AutoShift: bool,
             [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
             [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
@@ -157,6 +160,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?Shift: int,
             [<Optional; DefaultParameterValue(null)>] ?ShowDividers: bool,
             [<Optional; DefaultParameterValue(null)>] ?DividerColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?DividerWidth: int,
@@ -183,6 +187,7 @@ type LinearAxis() =
             ?AxisType = AxisType,
             ?AutoTypeNumbers = AutoTypeNumbers,
             ?AutoRange = AutoRange,
+            ?AutoShift = AutoShift,
             ?RangeMode = RangeMode,
             ?Range = Range,
             ?FixedRange = FixedRange,
@@ -240,6 +245,7 @@ type LinearAxis() =
             ?ZeroLine = ZeroLine,
             ?ZeroLineColor = ZeroLineColor,
             ?ZeroLineWidth = ZeroLineWidth,
+            ?Shift = Shift,
             ?ShowDividers = ShowDividers,
             ?DividerColor = DividerColor,
             ?DividerWidth = DividerWidth,
@@ -268,6 +274,7 @@ type LinearAxis() =
     /// <param name="Title">Sets the axis title.</param>
     /// <param name="AutoTypeNumbers">Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.</param>
     /// <param name="AutoRange">Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".</param>
+    /// <param name="AutoShift">Automatically reposition the axis to avoid overlap with other axes with the same `overlaying` value. This repositioning will account for any `shift` amount applied to other axes on the same side with `autoshift` is set to true. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="RangeMode">If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data. Applies only to linear axes.</param>
     /// <param name="Range">Sets the range of this axis. If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is "date", it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is "category", it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.</param>
     /// <param name="FixedRange">Determines whether or not this axis is zoom-able. If true, then zoom is disabled.</param>
@@ -325,6 +332,7 @@ type LinearAxis() =
     /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
     /// <param name="ZeroLineWidth">Sets the width (in px) of the zero line.</param>
     /// <param name="ShowDividers">Determines whether or not a dividers are drawn between the category levels of this axis. Only has an effect on "multicategory" axes.</param>
+    /// <param name="Shift">Moves the axis a given number of pixels from where it would have been otherwise. Accepts both positive and negative values, which will shift the axis either right or left, respectively. If `autoshift` is set to true, then this defaults to a padding of -3 if `side` is set to "left". and defaults to +3 if `side` is set to "right". Defaults to 0 if `autoshift` is set to false. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="DividerColor">Sets the color of the dividers Only has an effect on "multicategory" axes.</param>
     /// <param name="DividerWidth">Sets the width (in px) of the dividers Only has an effect on "multicategory" axes.</param>
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
@@ -346,6 +354,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?Title: Title,
             [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
             [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?AutoShift: bool,
             [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
             [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
@@ -402,6 +411,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?Shift: int,
             [<Optional; DefaultParameterValue(null)>] ?ShowDividers: bool,
             [<Optional; DefaultParameterValue(null)>] ?DividerColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?DividerWidth: int,
@@ -426,6 +436,7 @@ type LinearAxis() =
             ?Title = Title,
             ?AutoTypeNumbers = AutoTypeNumbers,
             ?AutoRange = AutoRange,
+            ?AutoShift= AutoShift,
             ?RangeMode = RangeMode,
             ?Range = Range,
             ?FixedRange = FixedRange,
@@ -482,6 +493,7 @@ type LinearAxis() =
             ?ZeroLine = ZeroLine,
             ?ZeroLineColor = ZeroLineColor,
             ?ZeroLineWidth = ZeroLineWidth,
+            ?Shift = Shift,
             ?ShowDividers = ShowDividers,
             ?DividerColor = DividerColor,
             ?DividerWidth = DividerWidth,
@@ -763,6 +775,7 @@ type LinearAxis() =
     /// <param name="Title">Sets the axis title.</param>
     /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>
     /// <param name="AutoTypeNumbers">Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.</param>
+    /// <param name="AutoShift">Automatically reposition the axis to avoid overlap with other axes with the same `overlaying` value. This repositioning will account for any `shift` amount applied to other axes on the same side with `autoshift` is set to true. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="AutoRange">Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".</param>
     /// <param name="RangeMode">If "normal", the range is computed in relation to the extrema of the input data. If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data. Applies only to linear axes.</param>
     /// <param name="Range">Sets the range of this axis. If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is "date", it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is "category", it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.</param>
@@ -822,6 +835,7 @@ type LinearAxis() =
     /// <param name="ZeroLineColor">Sets the line color of the zero line.</param>
     /// <param name="ZeroLineWidth">Sets the width (in px) of the zero line.</param>
     /// <param name="ShowDividers">Determines whether or not a dividers are drawn between the category levels of this axis. Only has an effect on "multicategory" axes.</param>
+    /// <param name="Shift">Moves the axis a given number of pixels from where it would have been otherwise. Accepts both positive and negative values, which will shift the axis either right or left, respectively. If `autoshift` is set to true, then this defaults to a padding of -3 if `side` is set to "left". and defaults to +3 if `side` is set to "right". Defaults to 0 if `autoshift` is set to false. Only has an effect if `anchor` is set to "free".</param>
     /// <param name="DividerColor">Sets the color of the dividers Only has an effect on "multicategory" axes.</param>
     /// <param name="DividerWidth">Sets the width (in px) of the dividers Only has an effect on "multicategory" axes.</param>
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
@@ -863,6 +877,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
             [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
             [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?AutoShift: bool,
             [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
             [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?FixedRange: bool,
@@ -920,6 +935,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?ZeroLineWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?Shift: int,
             [<Optional; DefaultParameterValue(null)>] ?ShowDividers: bool,
             [<Optional; DefaultParameterValue(null)>] ?DividerColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?DividerWidth: int,
@@ -963,6 +979,7 @@ type LinearAxis() =
             AxisType |> DynObj.setValueOptBy axis "type" StyleParam.AxisType.convert
             AutoTypeNumbers |> DynObj.setValueOptBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
             AutoRange |> DynObj.setValueOptBy axis "autorange" StyleParam.AutoRange.convert
+            AutoShift |> DynObj.setValueOpt axis "autoshift"
             RangeMode |> DynObj.setValueOptBy axis "rangemode" StyleParam.RangeMode.convert
             Range |> DynObj.setValueOptBy axis "range" StyleParam.Range.convert
             FixedRange |> DynObj.setValueOpt axis "fixedrange"
@@ -1020,6 +1037,7 @@ type LinearAxis() =
             ZeroLine |> DynObj.setValueOpt axis "zeroline"
             ZeroLineColor |> DynObj.setValueOpt axis "zerolinecolor"
             ZeroLineWidth |> DynObj.setValueOpt axis "zerolinewidth"
+            Shift |> DynObj.setValueOpt axis "shift"
             ShowDividers |> DynObj.setValueOpt axis "showdividers"
             DividerColor |> DynObj.setValueOpt axis "dividercolor"
             DividerWidth |> DynObj.setValueOpt axis "dividerwidth"

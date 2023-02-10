@@ -12,13 +12,15 @@ let from whom =
 
 [<EntryPoint>]
 let main argv =
-    
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let s1 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=2.,X1=4.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
-    let s2 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=5.,X1=7.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
-    Chart.Line(x,y',Name="line", UseDefaults = false)    
-    |> Chart.withShapes([s1;s2])
+    [
+        Chart.Line([1,2; 3,4]) 
+        |> Chart.withAxisAnchor(Y=1)
+        Chart.Spline([100,200; 300,400])
+        |> Chart.withAxisAnchor(Y=2)
+    ]
+    |> Chart.combine
+    //|> Chart.withYAxis(LinearAxis.init(),Id=StyleParam.SubPlotId.YAxis 1)
+    //|> Chart.withYAxis(LinearAxis.init(Shift = 10, Anchor = StyleParam.LinearAxisId.Free),Id=StyleParam.SubPlotId.YAxis 2)
     |> Chart.show
     
     0
