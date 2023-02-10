@@ -62,7 +62,7 @@ type PuppeteerSharpRenderer() =
     /// adapted from the original C# implementation by @ilyalatt : https://github.com/ilyalatt/Plotly.NET.PuppeteerRenderer
     ///
     /// attempts to render a chart as static image of the given format with the given dimensions from the given html string
-    let tryRenderAsync (browser: Browser) (width: int) (height: int) (format: StyleParam.ImageFormat) (html: string) =
+    let tryRenderAsync (browser: IBrowser) (width: int) (height: int) (format: StyleParam.ImageFormat) (html: string) =
         task {
             let! page = browser.NewPageAsync() |> Async.AwaitTask
 

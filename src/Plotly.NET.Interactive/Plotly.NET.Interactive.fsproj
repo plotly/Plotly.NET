@@ -49,9 +49,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Plotly.NET" Version="3.*" />
-    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.22314.1" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.22314.1" />
+    <PackageReference Include="Plotly.NET" Version="4.0.0-preview.2" />
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.23102.2" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.23102.2" />
   </ItemGroup>
 
 </Project>

@@ -436,6 +436,8 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Wether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart ScatterMapbox<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
@@ -461,6 +463,8 @@ namespace Plotly.NET.CSharp
             Optional<StyleParam.DrawingStyle> LineDash = default,
             Optional<Line> Line = default,
             Optional<string> Below = default,
+            Optional<bool> EnableClustering = default,
+            Optional<MapboxCluster> Cluster = default,
             Optional<bool> UseDefaults = default
         )
             where LongitudesType : IConvertible
@@ -491,6 +495,8 @@ namespace Plotly.NET.CSharp
                     LineDash: LineDash.ToOption(),
                     Line: Line.ToOption(),
                     Below: Below.ToOption(),
+                    EnableClustering: EnableClustering.ToOption(),
+                    Cluster: Cluster.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
 
@@ -518,6 +524,8 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Wether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart PointMapbox<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
@@ -537,6 +545,8 @@ namespace Plotly.NET.CSharp
             Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
             Optional<Marker> Marker = default,
             Optional<string> Below = default,
+            Optional<bool> EnableClustering = default,
+            Optional<MapboxCluster> Cluster = default,
             Optional<bool> UseDefaults = default
         )
             where LongitudesType : IConvertible
@@ -561,6 +571,8 @@ namespace Plotly.NET.CSharp
                     MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
                     Marker: Marker.ToOption(),
                     Below: Below.ToOption(),
+                    EnableClustering: EnableClustering.ToOption(),
+                    Cluster: Cluster.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
 
