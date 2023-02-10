@@ -31,6 +31,14 @@ let ``Html layout tests`` =
             """var layout = {"title":{"text":"Hello world!"},"xaxis":{"title":{"text":"xAxis"},"showgrid":false},"yaxis":{"title":{"text":"yAxis"},"showgrid":false}};"""
             |> chartGeneratedContains simpleChart
         );
+        testCase "Expecting cloudflare link" (fun () ->
+            """https://cdnjs.cloudflare.com/ajax/libs/require.js"""
+            |> chartGeneratedContains simpleChart
+        );
+        testCase "Expecting require config" (fun () ->
+            (sprintf """var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-%s.min'}}) || require;""" Globals.PLOTLYJS_VERSION)
+            |> chartGeneratedContains simpleChart
+        );
         testCase "Expecting html tags in embedded page only" (fun () ->
             ["<html>"; "</html>"; "<head>"; "</head>"; "<body>"; "</body>"; "<script type=\"text/javascript\">"; "</script>"]
             |> substringListIsInChart simpleChart toEmbeddedHTML
