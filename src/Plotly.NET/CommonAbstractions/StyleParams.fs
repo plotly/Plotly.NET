@@ -2487,6 +2487,20 @@ module StyleParam =
 //--------------------------
 
     [<RequireQualifiedAccess>]
+    type ScatterMode =
+        | Group
+        | Overlay
+
+        static member toString =
+            function
+            | Group -> "group"
+            | Overlay -> "overlay"
+
+        static member convert = ScatterMode.toString >> box
+        override this.ToString() = this |> ScatterMode.toString
+        member this.Convert() = this |> ScatterMode.convert
+
+    [<RequireQualifiedAccess>]
     type ShapeSizeMode =
         | Scaled
         | Pixel

@@ -147,6 +147,8 @@ type Trace2DStyle() =
     /// <param name="YAxis">Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If "y" (the default value), the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on.</param>
     /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
     /// <param name="GroupNorm">Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the normalization for the sum of this `stackgroup`. With "fraction", the value of each trace at each location is divided by the sum of all trace values at that location. "percent" is the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple `stackgroup`s on one subplot, each will be normalized within its own set.</param>
+    /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+    /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
     /// <param name="StackGroup">Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `orientation` is "h"). If blank or omitted this trace will not be stacked. Stacking also turns `fill` on by default, using "tonexty" ("tonextx") if `orientation` is "h" ("v") and sets the default `mode` to "lines" irrespective of point count. You can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
     /// <param name="XPeriod">Only relevant when the axis `type` is "date". Sets the period positioning in milliseconds or "M&lt;n&gt;" on the x axis. Special values in the form of "M&lt;n&gt;" could be used to declare the number of months. In this case `n` must be a positive integer.</param>
     /// <param name="XPeriodAlignment">Only relevant when the axis `type` is "date". Sets the alignment of data points on the x axis.</param>
@@ -209,6 +211,8 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?YAxis: StyleParam.LinearAxisId,
             [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
             [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+            [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
             [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
             [<Optional; DefaultParameterValue(null)>] ?XPeriod: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?XPeriodAlignment: StyleParam.PeriodAlignment,
@@ -270,6 +274,8 @@ type Trace2DStyle() =
             YAxis |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.convert
             Orientation |> DynObj.setValueOptBy trace "orientation" StyleParam.Orientation.convert
             GroupNorm |> DynObj.setValueOptBy trace "groupnorm" StyleParam.GroupNorm.convert
+            AlignmentGroup |> DynObj.setValueOpt trace "alignmentgroup"
+            OffsetGroup |> DynObj.setValueOpt trace "offsetgroup"
             StackGroup |> DynObj.setValueOpt trace "stackgroup"
             XPeriod |> DynObj.setValueOpt trace "xperiod"
             XPeriodAlignment |> DynObj.setValueOptBy trace "xperiodalignment" StyleParam.PeriodAlignment.convert

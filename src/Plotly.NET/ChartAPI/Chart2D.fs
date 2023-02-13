@@ -56,6 +56,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -89,6 +91,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -138,6 +142,8 @@ module Chart2D =
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
                     ?StackGroup = StackGroup,
                     ?Orientation = Orientation,
                     ?GroupNorm = GroupNorm,
@@ -175,6 +181,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -207,6 +215,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -242,6 +252,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -271,6 +283,8 @@ module Chart2D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -295,6 +309,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -302,13 +318,9 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
             // if text position or font is set, then show labels (not only when hovering)
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-
-            let useWebGL = defaultArg UseWebGL false
 
             Chart.Scatter(
                 x,
@@ -328,12 +340,13 @@ module Chart2D =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
                 ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
-
             )
 
 
@@ -353,6 +366,8 @@ module Chart2D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -376,6 +391,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -401,6 +418,8 @@ module Chart2D =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -432,6 +451,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -465,6 +486,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -474,9 +497,6 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-
-            let useDefaults =
-                defaultArg UseDefaults true
 
             // if text position or font is set than show labels (not only when hovering)
             let changeMode =
@@ -511,6 +531,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -546,6 +568,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -578,6 +602,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -612,6 +638,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -648,6 +676,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -682,6 +712,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -744,6 +776,8 @@ module Chart2D =
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
                     ?StackGroup = StackGroup,
                     ?Orientation = Orientation,
                     ?GroupNorm = GroupNorm,
@@ -783,6 +817,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -816,6 +852,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -851,6 +889,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -886,6 +926,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -916,6 +958,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -967,6 +1011,8 @@ module Chart2D =
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
                     ?StackGroup = StackGroup,
                     ?Orientation = Orientation,
                     ?GroupNorm = GroupNorm
@@ -997,6 +1043,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -1025,6 +1073,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -1056,6 +1106,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -1408,6 +1460,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -1441,6 +1495,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -1480,6 +1536,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -1513,6 +1571,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -1545,6 +1605,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -1580,6 +1642,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -1615,6 +1679,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -1649,6 +1715,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -1689,6 +1757,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,
@@ -1722,6 +1792,8 @@ module Chart2D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
         /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
@@ -1754,6 +1826,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
@@ -1790,6 +1864,8 @@ module Chart2D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
                 ?StackGroup = StackGroup,
                 ?Orientation = Orientation,
                 ?GroupNorm = GroupNorm,

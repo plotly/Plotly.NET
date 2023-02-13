@@ -52,6 +52,8 @@ type Layout() =
     /// <param name="NewShape">Controls the behavior of newly drawn shapes</param>
     /// <param name="ActiveShape">Sets the styling of the active shape</param>
     /// <param name="HideSources">Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).</param>
+    /// <param name="ScatterGap">Sets the gap (in plot fraction) between scatter points of adjacent location coordinates. Defaults to `bargap`.</param>
+    /// <param name="ScatterMode">Determines how scatter points at the same location coordinate are displayed on the graph. With "group", the scatter points are plotted next to one another centered around the shared location. With "overlay", the scatter points are plotted over one another, you might need to reduce "opacity" to see multiple scatter points.</param>
     /// <param name="BarGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
     /// <param name="BarGroupGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
     /// <param name="BarMode">Determines how bars at the same location coordinate are displayed on the graph. With "stack", the bars are stacked on top of one another With "relative", the bars are stacked on top of one another, with negative values below the axis, positive values above With "group", the bars are plotted next to one another centered around the shared location. With "overlay", the bars are plotted over one another, you might need to an "opacity" to see multiple bars.</param>
@@ -127,6 +129,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
             [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
             [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ScatterGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?ScatterMode: StyleParam.ScatterMode,
             [<Optional; DefaultParameterValue(null)>] ?BarGap: float,
             [<Optional; DefaultParameterValue(null)>] ?BarGroupGap: float,
             [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
@@ -203,6 +207,8 @@ type Layout() =
             ?MinReducedWidth = MinReducedWidth,
             ?ActiveShape = ActiveShape,
             ?HideSources = HideSources,
+            ?ScatterGap = ScatterGap,
+            ?ScatterMode = ScatterMode,
             ?BarGap = BarGap,
             ?BarGroupGap = BarGroupGap,
             ?BarMode = BarMode,
@@ -281,6 +287,8 @@ type Layout() =
     /// <param name="NewShape">Controls the behavior of newly drawn shapes</param>
     /// <param name="ActiveShape">Sets the styling of the active shape</param>
     /// <param name="HideSources">Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).</param>
+    /// <param name="ScatterGap">Sets the gap (in plot fraction) between scatter points of adjacent location coordinates. Defaults to `bargap`.</param>
+    /// <param name="ScatterMode">Determines how scatter points at the same location coordinate are displayed on the graph. With "group", the scatter points are plotted next to one another centered around the shared location. With "overlay", the scatter points are plotted over one another, you might need to reduce "opacity" to see multiple scatter points.</param>
     /// <param name="BarGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
     /// <param name="BarGroupGap">Sets the gap (in plot fraction) between bars of adjacent location coordinates.</param>
     /// <param name="BarMode">Determines how bars at the same location coordinate are displayed on the graph. With "stack", the bars are stacked on top of one another With "relative", the bars are stacked on top of one another, with negative values below the axis, positive values above With "group", the bars are plotted next to one another centered around the shared location. With "overlay", the bars are plotted over one another, you might need to an "opacity" to see multiple bars.</param>
@@ -356,6 +364,8 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
             [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
             [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
+            [<Optional; DefaultParameterValue(null)>] ?ScatterGap: float,
+            [<Optional; DefaultParameterValue(null)>] ?ScatterMode: StyleParam.ScatterMode,
             [<Optional; DefaultParameterValue(null)>] ?BarGap: float,
             [<Optional; DefaultParameterValue(null)>] ?BarGroupGap: float,
             [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
@@ -432,6 +442,8 @@ type Layout() =
             NewShape |> DynObj.setValueOpt layout "newshape"
             ActiveShape |> DynObj.setValueOpt layout "activeshape"
             HideSources |> DynObj.setValueOpt layout "hidesources"
+            ScatterGap |> DynObj.setValueOpt layout "scattergap"
+            ScatterMode |> DynObj.setValueOptBy layout "scattermode" StyleParam.ScatterMode.convert
             BarGap |> DynObj.setValueOpt layout "bargap"
             BarGroupGap |> DynObj.setValueOpt layout "bargroupgap"
             BarMode |> DynObj.setValueOptBy layout "barmode" StyleParam.BarMode.convert
