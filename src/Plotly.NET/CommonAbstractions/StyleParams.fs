@@ -3243,19 +3243,20 @@ module StyleParam =
         static member toConcatString(o: seq<TextInfo>) =
             o |> Seq.map TextInfo.toString |> String.concat "+"
 
-    /// Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided).
-    /// If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided).
+    /// Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. ("array" is the default value if `tickvals` is provided). If "sync", the number of ticks will sync with the overlayed axis set by `overlaying` property.
     [<RequireQualifiedAccess>]
     type TickMode =
         | Auto
         | Linear
         | Array
+        | Sync
 
         static member toString =
             function
             | Auto -> "auto"
             | Linear -> "linear"
             | Array -> "array"
+            | Sync -> "sync"
 
         static member convert = TickMode.toString >> box
         override this.ToString() = this |> TickMode.toString
