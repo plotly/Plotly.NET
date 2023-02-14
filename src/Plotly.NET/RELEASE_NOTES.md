@@ -3,10 +3,12 @@
 - [Use Giraffe.ViewEngine as html dsl](https://github.com/plotly/Plotly.NET/pull/363)
 
 - Keep up with plotlyjs 2.x incremental updates:
+    - v2.18:
+        - [Add sync tickmode option](https://github.com/plotly/Plotly.NET/commit/c69a55c534cdd95e9e27bee8a4e5d77b262e338f)
     - v2.17:
         - [Add shift and autoshift to cartesian y axes to help avoid overlapping of multiple axes](https://github.com/plotly/Plotly.NET/commit/9f7edb8281ba87a2c122d99604af32d17efec168)
-        - [Introduce group attributes for scatter trace i.e. alignmentgroup, offsetgroup, scattermode and scattergap]()
-        - [Add marker.cornerradius attribute to treemap trace]()
+        - [Introduce group attributes for scatter trace i.e. alignmentgroup, offsetgroup, scattermode and scattergap](https://github.com/plotly/Plotly.NET/commit/67378a3fd8c007cddb2c1e11b545f57e9874fc2d)
+        - [Add marker.cornerradius attribute to treemap trace](https://github.com/plotly/Plotly.NET/commit/8ad20db7ae032b2751882fe25d389c39fb327669)
     - v2.16:
         - [Add bounds to mapbox subplots](https://github.com/plotly/Plotly.NET/commit/046e3c472447c720ec7896f2109895028dba471c)
         - [Add clustering options to scattermapbox](https://github.com/plotly/Plotly.NET/commit/0ee67e3e9251515d94a2f40858ed4fdd7398e104)
