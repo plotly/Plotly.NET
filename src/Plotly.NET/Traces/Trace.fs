@@ -357,6 +357,7 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
+            [<Optional; DefaultParameterValue(null)>] ?CornerRadius: int,
             [<Optional; DefaultParameterValue(null)>] ?Gradient: Gradient,
             [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
             [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
@@ -384,6 +385,8 @@ type TraceStyle() =
                 trace
                 |> Trace.getMarker
                 |> Marker.style (
+                    ?Angle = Angle,
+                    ?AngleRef = AngleRef,
                     ?AutoColorScale = AutoColorScale,
                     ?CAuto = CAuto,
                     ?CMax = CMax,
@@ -394,6 +397,7 @@ type TraceStyle() =
                     ?ColorAxis = ColorAxis,
                     ?ColorBar = ColorBar,
                     ?Colorscale = Colorscale,
+                    ?CornerRadius = CornerRadius,
                     ?Gradient = Gradient,
                     ?Outline = Outline,
                     ?Size = Size,
@@ -412,7 +416,9 @@ type TraceStyle() =
                     ?ShowScale = ShowScale,
                     ?SizeMin = SizeMin,
                     ?SizeMode = SizeMode,
-                    ?SizeRef = SizeRef
+                    ?SizeRef = SizeRef,
+                    ?StandOff = StandOff,
+                    ?MultiStandOff = MultiStandOff
                 )
 
             trace |> Trace.setMarker (marker))

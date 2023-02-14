@@ -5,6 +5,8 @@
 - Keep up with plotlyjs 2.x incremental updates:
     - v2.17:
         - [Add shift and autoshift to cartesian y axes to help avoid overlapping of multiple axes](https://github.com/plotly/Plotly.NET/commit/9f7edb8281ba87a2c122d99604af32d17efec168)
+        - [Introduce group attributes for scatter trace i.e. alignmentgroup, offsetgroup, scattermode and scattergap]()
+        - [Add marker.cornerradius attribute to treemap trace]()
     - v2.16:
         - [Add bounds to mapbox subplots](https://github.com/plotly/Plotly.NET/commit/046e3c472447c720ec7896f2109895028dba471c)
         - [Add clustering options to scattermapbox](https://github.com/plotly/Plotly.NET/commit/0ee67e3e9251515d94a2f40858ed4fdd7398e104)

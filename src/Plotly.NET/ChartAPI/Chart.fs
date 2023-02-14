@@ -192,7 +192,8 @@ type Chart =
     /// <param name="Colors">Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the marker's color bar.</param>
-    /// <param name="Colorscale"></param>
+    /// <param name="Colorscale">Sets the colorscale. Has an effect only if colors is set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use `marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.</param>
+    /// <param name="CornerRadius">Sets the maximum rounding of corners (in px).</param>
     /// <param name="Gradient">Sets the marker's gradient</param>
     /// <param name="Outline">Sets the marker's outline.</param>
     /// <param name="Opacity">Sets the marker opacity.</param>
@@ -229,6 +230,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
             [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
             [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
+            [<Optional; DefaultParameterValue(null)>] ?CornerRadius: int,
             [<Optional; DefaultParameterValue(null)>] ?Gradient: Gradient,
             [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
             [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
@@ -267,6 +269,7 @@ type Chart =
                     ?ColorAxis = ColorAxis,
                     ?ColorBar = ColorBar,
                     ?Colorscale = Colorscale,
+                    ?CornerRadius = CornerRadius,
                     ?Gradient = Gradient,
                     ?Outline = Outline,
                     ?Size = Size,
