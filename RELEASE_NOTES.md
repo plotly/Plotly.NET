@@ -1,3 +1,13 @@
+### 2.0.0 +
+
+Starting from 2.0.0, Versions of Plotly.NET and expansion packages are decoupled, meaning this single realease notes page does not work anymore.
+
+For the individual package release notes, please refer to these files:
+- [Plotly.NET](./src/Plotly.NET/RELEASE_NOTES.md)
+- [Plotly.NET.CSharp](./src/Plotly.NET.CSharp/RELEASE_NOTES.md)
+- [Plotly.NET.Interactive](./src/Plotly.NET.Interactive/RELEASE_NOTES.md)
+- [Plotly.NET.ImageExport](./src/Plotly.NET.ImageExport/RELEASE_NOTES.md)
+
 ### 2.0.0 - Apr 24 2022
 
 Plotly.NET finally has reached all milestones for 2.0 and is ready for a stable release.
