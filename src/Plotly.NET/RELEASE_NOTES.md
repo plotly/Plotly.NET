@@ -1,5 +1,13 @@
 ### 4.0.0 - TBD
 
+- [Refactor DisplayOptions - An object to control the way Charts are displayed in generated HTML files](https://github.com/plotly/Plotly.NET/issues/293):
+    - Add various functions to manipulate DisplayOptions, Refactor DisplayOptions as DynamicObj (again)
+    - Add `PlotlyJSReference` type and logic to handle various ways of referencing plotly.js in HTML output:
+        - `Full`: Include the full plotly.js source code. The currently supported plotly.js version is now included as embedded resource in the package. HTML files using this option are self-contained and can be used offline.
+        - `CDN`: The default. uses a script tag in the head of the generated HTML to load plotly.js from a CDN.
+        - `Require`: Use requirejs to load plotly. This option is now used in Plotly.NET.Interactive. Unnecessary usage of require.js is now removed from all other options but this.
+        - `NoReference`: Don't include any plotly.js reference. Useful if you want to embed the output into another page that already references plotly.
+
 - [Use Giraffe.ViewEngine as html dsl](https://github.com/plotly/Plotly.NET/pull/363)
 
 - Keep up with plotlyjs 2.x incremental updates:
