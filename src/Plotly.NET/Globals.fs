@@ -8,6 +8,38 @@ open Giraffe.ViewEngine
 /// The plotly js version loaded from cdn in rendered html docs
 let [<Literal>] PLOTLYJS_VERSION = "2.18.1"
 
+let [<Literal>] SCRIPT_TEMPLATE ="""var renderPlotly_[SCRIPTID] = function() {
+    var data = [DATA];
+    var layout = [LAYOUT];
+    var config = [CONFIG];
+    Plotly.newPlot('[ID]', data, layout, config);
+};
+renderPlotly_[SCRIPTID]();
+"""
+
+let [<Literal>] REQUIREJS_SCRIPT_TEMPLATE ="""
+var renderPlotly_[SCRIPTID] = function() {
+    var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'[REQUIRE_SRC]'}}) || require;
+    fsharpPlotlyRequire(['plotly'], function(Plotly) {
+        var data = [DATA];
+        var layout = [LAYOUT];
+        var config = [CONFIG];
+        Plotly.newPlot('[ID]', data, layout, config);
+    });
+};
+if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
+    var script = document.createElement("script");
+    script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+    script.onload = function(){
+        renderPlotly_[SCRIPTID]();
+    };
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
+else {
+    renderPlotly_[SCRIPTID]();
+}
+"""
+
 /// 
 let internal JSON_CONFIG = 
     JsonSerializerSettings(

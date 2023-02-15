@@ -4,8 +4,16 @@ open Expecto
 open DynamicObj
 open Newtonsoft.Json
 open Plotly.NET.GenericChart
+open System.Reflection
+open System.IO
 
 module HtmlCodegen =
+
+    let getFullPlotlyJS() =
+        let assembly = Assembly.GetExecutingAssembly()
+        use str = assembly.GetManifestResourceStream("Plotly.NET.Tests.plotly-2.18.1.min.js")
+        use r = new StreamReader(str)
+        r.ReadToEnd()
 
     let substringIsInChart chart htmlizer substring =
         chart

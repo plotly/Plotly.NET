@@ -8,21 +8,55 @@ open Giraffe.ViewEngine
 
 type HTML() =
 
+    static member CreateChartScript(
+        data: string,
+        layout: string,
+        config: string,
+        plotlyReference: PlotlyJSReference,
+        guid: string
+    ) =
+        match plotlyReference with
+        | Require r ->
+            script [_type "text/javascript"] [
+                rawText (
+                    Globals.REQUIREJS_SCRIPT_TEMPLATE
+                        .Replace("[REQUIRE_SRC]",r)
+                        .Replace("[SCRIPTID]",guid.Replace("-",""))
+                        .Replace("[ID]",guid)
+                        .Replace("[DATA]",data)
+                        .Replace("[LAYOUT]",layout)
+                        .Replace("[CONFIG]",config)
+                )]
+        | _ ->
+            script [_type "text/javascript"] [
+                rawText (
+                    Globals.SCRIPT_TEMPLATE
+                        .Replace("[SCRIPTID]",guid.Replace("-",""))
+                        .Replace("[ID]",guid)
+                        .Replace("[DATA]",data)
+                        .Replace("[LAYOUT]",layout)
+                        .Replace("[CONFIG]",config)
+                )]
+            
+
     static member Doc(
         chart,
-        plotlyCDN,
+        plotlyReference: PlotlyJSReference,
         ?AdditionalHeadTags,
         ?Description
     ) =
         let additionalHeadTags = defaultArg AdditionalHeadTags []
         let description = defaultArg Description []
 
-        let plotlyScript = 
-            script [_src plotlyCDN] []
+        let plotlyScriptRef = 
+            match plotlyReference with
+            | CDN cdn -> script [_src cdn] []
+            | Full -> script [_type "text/javascript"] [rawText (InternalUtils.getFullPlotlyJS())]
+            | NoReference | Require _ -> rawText ""
 
         html [] [
             head [] [
-                plotlyScript
+                plotlyScriptRef
                 yield! additionalHeadTags
             ]
             body [] [
@@ -34,45 +68,23 @@ type HTML() =
     static member CreateChartHTML(
         data: string,
         layout: string,
-        config: string
+        config: string,
+        plotlyReference: PlotlyJSReference
     ) =
-
-        let scriptContent = """
-var renderPlotly_[SCRIPTID] = function() {
-    var fsharpPlotlyRequire = requirejs.config({context:'fsharp-plotly',paths:{plotly:'https://cdn.plot.ly/plotly-[PLOTLYJS_VERSION].min'}}) || require;
-    fsharpPlotlyRequire(['plotly'], function(Plotly) {
-        var data = [DATA];
-        var layout = [LAYOUT];
-        var config = [CONFIG];
-        Plotly.newPlot('[ID]', data, layout, config);
-    });
-};
-if ((typeof(requirejs) !==  typeof(Function)) || (typeof(requirejs.config) !== typeof(Function))) {
-    var script = document.createElement("script");
-    script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
-    script.onload = function(){
-        renderPlotly_[SCRIPTID]();
-    };
-    document.getElementsByTagName("head")[0].appendChild(script);
-}
-else {
-    renderPlotly_[SCRIPTID]();
-}
-"""
         let guid = Guid.NewGuid().ToString()
+
+        let chartScript = 
+            HTML.CreateChartScript(
+                data = data,
+                layout = layout,
+                config = config,
+                plotlyReference = plotlyReference,
+                guid = guid
+            )
 
         [
             div [_id guid] [comment "Plotly chart will be drawn inside this DIV"]
-            script [_type "text/javascript"] [
-                rawText (
-                    scriptContent
-                        .Replace("[PLOTLYJS_VERSION]",Globals.PLOTLYJS_VERSION)
-                        .Replace("[SCRIPTID]",guid.Replace("-",""))
-                        .Replace("[ID]",guid)
-                        .Replace("[DATA]",data)
-                        .Replace("[LAYOUT]",layout)
-                        .Replace("[CONFIG]",config)
-                )]
+            chartScript
         ]
         
 /// Module to represent a GenericChart
@@ -228,13 +240,18 @@ module GenericChart =
 
         let displayOpts = getDisplayOptions gChart
 
+        let description = displayOpts |> DisplayOptions.getDescription
+
+        let plotlyReference  = displayOpts |> DisplayOptions.getPlotlyPlotlyReference
+
         div [] [
             yield! HTML.CreateChartHTML(
-                tracesJson,
-                layoutJson,
-                configJson
+                data = tracesJson,
+                layout = layoutJson,
+                config = configJson,
+                plotlyReference = plotlyReference
             )
-            yield! displayOpts |> DisplayOptions.getDescription
+            yield! description
         ]
 
     let toChartHTML gChart =
@@ -263,15 +280,16 @@ module GenericChart =
 
         let description = (displayOpts |> DisplayOptions.getDescription)
 
-        let plotlyCDN = (displayOpts |> DisplayOptions.getPlotlyCDN)
+        let plotlyReference  = displayOpts |> DisplayOptions.getPlotlyPlotlyReference
 
         HTML.Doc(
             chart = HTML.CreateChartHTML(
-                tracesJson,
-                layoutJson,
-                configJson
+                data = tracesJson,
+                layout = layoutJson,
+                config = configJson,
+                plotlyReference = plotlyReference
             ),
-            plotlyCDN = plotlyCDN,
+            plotlyReference = plotlyReference,
             AdditionalHeadTags = additionalHeadTags,
             Description = description
         )

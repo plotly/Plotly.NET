@@ -3304,13 +3304,13 @@ type Chart =
     /// </summary>
     /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
     /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
-    /// <param name="PlotlyCDN">The PlotlyCDN address used in html docs</param>
+    /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
     [<CompiledName("WithDisplayOptionsStyle")>]
     static member withDisplayOptionsStyle
         (
             [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
             [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?PlotlyCDN: string
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
         ) =
         (fun (ch: GenericChart) ->
 
@@ -3318,7 +3318,7 @@ type Chart =
                 DisplayOptions.init (
                     ?AdditionalHeadTags = AdditionalHeadTags,
                     ?Description = Description,
-                    ?PlotlyCDN = PlotlyCDN
+                    ?PlotlyJSReference = PlotlyJSReference
                 )
 
             GenericChart.addDisplayOptions displayOpts' ch)

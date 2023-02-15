@@ -23,12 +23,7 @@ module Defaults =
     let mutable DefaultConfig =
         Config.init (Responsive = true)
 
-    let mutable DefaultDisplayOptions =
-        DisplayOptions.init(
-            AdditionalHeadTags = [],
-            Description = [],
-            PlotlyCDN = $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
-        )
+    let mutable DefaultDisplayOptions = DisplayOptions.initCDNOnly()
 
     /// The default chart template. Default: ChartTemplates.plotly
     let mutable DefaultTemplate =
@@ -39,10 +34,5 @@ module Defaults =
         DefaultWidth <- 600
         DefaultHeight <- 600
         DefaultConfig <- Config.init (Responsive = true)
-        DefaultDisplayOptions <- 
-            DisplayOptions.init(
-                AdditionalHeadTags = [],
-                Description = [],
-                PlotlyCDN = $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
-            )
+        DefaultDisplayOptions <- DisplayOptions.initCDNOnly()
         DefaultTemplate <- ChartTemplates.plotly

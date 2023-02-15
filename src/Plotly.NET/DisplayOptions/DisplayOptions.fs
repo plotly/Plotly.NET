@@ -4,6 +4,18 @@ open DynamicObj
 open System.Runtime.InteropServices
 open Giraffe.ViewEngine
 
+
+///Sets how plotly is referenced in the head of html docs. 
+type PlotlyJSReference =
+    /// The url for a script tag that references the plotly.js CDN When 
+    | CDN of string
+    /// Full plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline
+    | Full
+    /// Use requirejs to reference plotlyjs from a url
+    | Require of string
+    //include no plotlyjs script at all. This can be helpfull when embedding the output into a document that already references plotly.
+    | NoReference
+
 type DisplayOptions() =
     inherit DynamicObj()
 
@@ -12,17 +24,17 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
     /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
-    /// <param name="PlotlyCDN">The PlotlyCDN address used in html docs</param>
+    /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
     static member init (
         [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
         [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
-        [<Optional; DefaultParameterValue(null)>] ?PlotlyCDN: string
+        [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
     ) =
         DisplayOptions()
         |> DisplayOptions.style(
             ?AdditionalHeadTags = AdditionalHeadTags,
             ?Description = Description,
-            ?PlotlyCDN = PlotlyCDN
+            ?PlotlyJSReference = PlotlyJSReference
         )
 
     /// <summary>
@@ -30,17 +42,17 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
     /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
-    /// <param name="PlotlyCDN">The PlotlyCDN address used in html docs</param>
+    /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
     static member style (
         [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
         [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
-        [<Optional; DefaultParameterValue(null)>] ?PlotlyCDN: string
+        [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
     ) =
         (fun (displayOpts: DisplayOptions) ->
 
             AdditionalHeadTags |> DynObj.setValueOpt displayOpts "AdditionalHeadTags"
             Description        |> DynObj.setValueOpt displayOpts "Description"
-            PlotlyCDN          |> DynObj.setValueOpt displayOpts "PlotlyCDN"
+            PlotlyJSReference|> DynObj.setValueOpt displayOpts "PlotlyJSReference"
 
             displayOpts)
 
@@ -50,7 +62,7 @@ type DisplayOptions() =
     static member initCDNOnly() =
         DisplayOptions()
         |> DisplayOptions.style(
-            PlotlyCDN = Globals.PLOTLYJS_VERSION
+            PlotlyJSReference = CDN $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
         )
 
     /// <summary>
@@ -126,12 +138,12 @@ type DisplayOptions() =
             )
         )
 
-    static member setPlotlyCDN(plotlyCDN: string) = 
+    static member setPlotlyReference(plotlyReference: PlotlyJSReference) = 
         (fun (displayOpts: DisplayOptions) -> 
-            plotlyCDN |> DynObj.setValue displayOpts "PlotlyCDN"
+            plotlyReference |> DynObj.setValue displayOpts "PlotlyJSReference"
             displayOpts
             )
 
-    static member tryGetPlotlyCDN (displayOpts: DisplayOptions) = displayOpts.TryGetTypedValue<string>("PlotlyCDN")
+    static member tryGetPlotlyReference (displayOpts: DisplayOptions) = displayOpts.TryGetTypedValue<PlotlyJSReference>("PlotlyJSReference")
 
-    static member getPlotlyCDN (displayOpts: DisplayOptions) = displayOpts |> DisplayOptions.tryGetPlotlyCDN |> Option.defaultValue ""
+    static member getPlotlyPlotlyReference (displayOpts: DisplayOptions) = displayOpts |> DisplayOptions.tryGetPlotlyReference |> Option.defaultValue (PlotlyJSReference.NoReference)

@@ -3,6 +3,8 @@ module internal InternalUtils
 
 open DynamicObj
 open System.Runtime.InteropServices
+open System.IO
+open System.Reflection
 
 let combineOptSeqs (first: seq<'A> option) (second: seq<'A> option) =
     match first, second with
@@ -17,6 +19,12 @@ let combineOptLists (first: List<'A> option) (second: List<'A> option) =
     | Some f, None -> Some f
     | None, Some s -> Some s
     | _ -> None
+
+let getFullPlotlyJS() =
+    let assembly = Assembly.GetExecutingAssembly()
+    use str = assembly.GetManifestResourceStream("Plotly.NET.plotly-2.18.1.min.js")
+    use r = new StreamReader(str)
+    r.ReadToEnd()
 
 [<AutoOpen>]
 module DynObj =
