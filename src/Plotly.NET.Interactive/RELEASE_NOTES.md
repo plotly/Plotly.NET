@@ -1,3 +1,8 @@
+### 4.0.0 - TBD
+
+- Update .NET interactive references
+- [Use new DisplayOptions functions to use requirejs with the Global plotlyjs version](https://github.com/plotly/Plotly.NET/commit/c1704d87709e79b5359f00f647a32785ea31a9ad)
+
 ### 3.0.2 - July 04 2022
 
 - [fix closing div tag in interactive formatter](https://github.com/plotly/Plotly.NET/pull/305) (thanks [@JakeRadMSFT](https://github.com/JakeRadMSFT))
