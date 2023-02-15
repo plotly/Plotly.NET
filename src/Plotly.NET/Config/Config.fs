@@ -431,3 +431,29 @@ type Config() =
                 x |> Seq.map StyleParam.ModeBarButton.toString)
 
             config
+
+    /// <summary>
+    /// Combines two Config objects.
+    ///
+    /// In case of duplicate dynamic member values, the values of the second Config are used.
+    ///
+    /// For the collections used for the dynamic members
+    ///
+    /// modeBarButtonsToAdd
+    ///
+    /// the values from the second Config are appended to those of the first instead.
+    /// </summary>
+    /// <param name="first">The first Config to combine with the second</param>
+    /// <param name="second">The second Config to combine with the first</param>
+    static member combine (first: Config) (second: Config) =
+
+        let modeBarButtonsToAdd =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
+                (second.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
+
+        DynObj.combine first second
+        |> unbox
+        |> Config.style (
+            ?ModeBarButtonsToAdd = (modeBarButtonsToAdd |> Option.map (Seq.map StyleParam.ModeBarButton.ofString))
+        )

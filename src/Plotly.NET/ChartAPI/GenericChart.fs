@@ -10,15 +10,19 @@ type HTML() =
 
     static member Doc(
         chart,
+        plotlyCDN,
         ?AdditionalHeadTags,
         ?Description
     ) =
         let additionalHeadTags = defaultArg AdditionalHeadTags []
         let description = defaultArg Description []
 
+        let plotlyScript = 
+            script [_src plotlyCDN] []
+
         html [] [
             head [] [
-                script [_src $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"] []
+                plotlyScript
                 yield! additionalHeadTags
             ]
             body [] [
@@ -106,9 +110,9 @@ module GenericChart =
         let layout = fig.Layout
 
         if traces.Length <> 1 then
-            MultiChart(traces, layout, Config(), DisplayOptions.Create())
+            MultiChart(traces, layout, Defaults.DefaultConfig, Defaults.DefaultDisplayOptions)
         else
-            Chart(traces.[0], layout, Config(), DisplayOptions.Create())
+            Chart(traces.[0], layout, Defaults.DefaultConfig, Defaults.DefaultDisplayOptions)
 
     let getTraces gChart =
         match gChart with
@@ -128,13 +132,12 @@ module GenericChart =
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace, l', c, d) -> Chart(trace, (DynObj.combine l' layout |> unbox), c, d)
-        | MultiChart (traces, l', c, d) -> MultiChart(traces, (DynObj.combine l' layout |> unbox), c, d)
+        | Chart (trace, l', c, d) -> Chart(trace, (Layout.combine l' layout), c, d)
+        | MultiChart (traces, l', c, d) -> MultiChart(traces, (Layout.combine l' layout), c, d)
 
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
     let tryGetLayoutSize gChart =
         let layout = getLayout gChart
-
         layout.TryGetTypedValue<int> "width", layout.TryGetTypedValue<int> "height"
 
     let getConfig gChart =
@@ -149,8 +152,8 @@ module GenericChart =
 
     let addConfig config gChart =
         match gChart with
-        | Chart (trace, l, c', d) -> Chart(trace, l, (DynObj.combine c' config |> unbox), d)
-        | MultiChart (traces, l, c', d) -> MultiChart(traces, l, (DynObj.combine c' config |> unbox), d)
+        | Chart (trace, l, c', d) -> Chart(trace, l, (Config.combine c' config), d)
+        | MultiChart (traces, l, c', d) -> MultiChart(traces, l, (Config.combine c' config), d)
 
     let getDisplayOptions gChart =
         match gChart with
@@ -161,6 +164,11 @@ module GenericChart =
         match gChart with
         | Chart (t, l, c, _) -> Chart(t, l, c, displayOpts)
         | MultiChart (t, l, c, _) -> MultiChart(t, l, c, displayOpts)
+
+    let addDisplayOptions displayOpts gChart =
+        match gChart with
+        | Chart (t, l, c, d') -> Chart(t, l, c, (DisplayOptions.combine d' displayOpts))
+        | MultiChart (t, l, c, d') -> MultiChart(t, l, c, (DisplayOptions.combine d' displayOpts))
 
     // // Adds multiple Layout functions to the GenericChart
     // let addLayouts layouts gChart =
@@ -177,80 +185,6 @@ module GenericChart =
 
     let combine (gCharts: seq<GenericChart>) =
         // temporary hard fix for some props, see https://github.com/CSBiology/DynamicObj/issues/11
-        let combineOptSeqs (first: seq<'A> option) (second: seq<'A> option) =
-            match first, second with
-            | Some f, Some s -> Some(Seq.append f s)
-            | Some f, None -> Some f
-            | None, Some s -> Some s
-            | _ -> None
-
-        let combineLayouts (first: Layout) (second: Layout) =
-
-            let annotations =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<Annotation>>("annotations"))
-                    (second.TryGetTypedValue<seq<Annotation>>("annotations"))
-
-            let shapes =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<Shape>>("shapes"))
-                    (second.TryGetTypedValue<seq<Shape>>("shapes"))
-
-            let selections =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<Selection>>("selections"))
-                    (second.TryGetTypedValue<seq<Selection>>("selections"))
-
-            let images =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<LayoutImage>>("images"))
-                    (second.TryGetTypedValue<seq<LayoutImage>>("images"))
-
-            let sliders =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<Slider>>("sliders"))
-                    (second.TryGetTypedValue<seq<Slider>>("sliders"))
-
-            let hiddenLabels =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<string>>("hiddenlabels"))
-                    (second.TryGetTypedValue<seq<string>>("hiddenlabels"))
-
-            let updateMenus =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
-                    (second.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
-
-            DynObj.combine first second
-            |> unbox
-            |> Layout.style (
-                ?Annotations = annotations,
-                ?Shapes = shapes,
-                ?Selections = selections,
-                ?Images = images,
-                ?Sliders = sliders,
-                ?HiddenLabels = hiddenLabels,
-                ?UpdateMenus = updateMenus
-            )
-
-        let combineConfigs (first: Config) (second: Config) =
-
-            let modeBarButtonsToAdd =
-                combineOptSeqs
-                    (first.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
-                    (second.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
-
-            DynObj.combine first second
-            |> unbox
-            |> Config.style (
-                ?ModeBarButtonsToAdd = (modeBarButtonsToAdd |> Option.map (Seq.map StyleParam.ModeBarButton.ofString))
-            )
-
-        let combineDisplayOptions (first: DisplayOptions) (second: DisplayOptions) =
-
-            first
-            |> DisplayOptions.addAdditionalHeadTags second.AdditionalHeadTags
-            |> DisplayOptions.addDescription second.Description
 
         gCharts
         |> Seq.reduce (fun acc elem ->
@@ -258,36 +192,26 @@ module GenericChart =
             | MultiChart (traces, l1, c1, d1), Chart (trace, l2, c2, d2) ->
                 MultiChart(
                     List.append traces [ trace ],
-                    combineLayouts l1 l2,
-                    combineConfigs c1 c2,
-                    combineDisplayOptions d1 d2
+                    Layout.combine l1 l2,
+                    Config.combine c1 c2,
+                    DisplayOptions.combine d1 d2
                 )
             | MultiChart (traces1, l1, c1, d1), MultiChart (traces2, l2, c2, d2) ->
                 MultiChart(
                     List.append traces1 traces2,
-                    combineLayouts l1 l2,
-                    combineConfigs c1 c2,
-                    combineDisplayOptions d1 d2
+                    Layout.combine l1 l2,
+                    Config.combine c1 c2,
+                    DisplayOptions.combine d1 d2
                 )
             | Chart (trace1, l1, c1, d1), Chart (trace2, l2, c2, d2) ->
-                MultiChart([ trace1; trace2 ], combineLayouts l1 l2, combineConfigs c1 c2, combineDisplayOptions d1 d2)
+                MultiChart([ trace1; trace2 ], Layout.combine l1 l2, Config.combine c1 c2, DisplayOptions.combine d1 d2)
             | Chart (trace, l1, c1, d1), MultiChart (traces, l2, c2, d2) ->
                 MultiChart(
                     List.append [ trace ] traces,
-                    combineLayouts l1 l2,
-                    combineConfigs c1 c2,
-                    combineDisplayOptions d1 d2
+                    Layout.combine l1 l2,
+                    Config.combine c1 c2,
+                    DisplayOptions.combine d1 d2
                 ))
-
-    // let private materialzeLayout (layout:(Layout -> Layout) list) =
-    //     let rec reduce fl v =
-    //         match fl with
-    //         | h::t -> reduce t (h v)
-    //         | [] -> v
-
-    //     // Attention order ov layout functions is reverse
-    //     let l' = layout |> List.rev
-    //     reduce l' (Layout())
 
     let toChartHTMLNodes gChart =
         let tracesJson =
@@ -310,7 +234,7 @@ module GenericChart =
                 layoutJson,
                 configJson
             )
-            yield! displayOpts.Description
+            yield! displayOpts |> DisplayOptions.getDescription
         ]
 
     let toChartHTML gChart =
@@ -335,14 +259,21 @@ module GenericChart =
 
         let displayOpts = getDisplayOptions gChart
 
+        let additionalHeadTags = (displayOpts |> DisplayOptions.getAdditionalHeadTags)
+
+        let description = (displayOpts |> DisplayOptions.getDescription)
+
+        let plotlyCDN = (displayOpts |> DisplayOptions.getPlotlyCDN)
+
         HTML.Doc(
             chart = HTML.CreateChartHTML(
                 tracesJson,
                 layoutJson,
                 configJson
             ),
-            AdditionalHeadTags = displayOpts.AdditionalHeadTags,
-            Description = displayOpts.Description
+            plotlyCDN = plotlyCDN,
+            AdditionalHeadTags = additionalHeadTags,
+            Description = description
         )
         |> RenderView.AsString.htmlDocument
 
@@ -380,7 +311,8 @@ module GenericChart =
             let defaultConfig = Config()
             Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
 
-            let defaultDisplayOpts = Defaults.DefaultDisplayOptions
+            let defaultDisplayOpts = DisplayOptions()
+            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
 
             let defaultTemplate = Template()
             Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
@@ -396,7 +328,7 @@ module GenericChart =
                 defaultDisplayOpts
             )
         else
-            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions.Create())
+            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions.initCDNOnly())
 
     /// Converts from a list of trace objects and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
     let ofTraceObjects (useDefaults: bool) traces = // layout =
@@ -405,7 +337,8 @@ module GenericChart =
             let defaultConfig = Config()
             Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
 
-            let defaultDisplayOpts = Defaults.DefaultDisplayOptions
+            let defaultDisplayOpts = DisplayOptions()
+            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
 
             let defaultTemplate = Template()
             Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
@@ -422,7 +355,7 @@ module GenericChart =
 
             )
         else
-            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions.Create())
+            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions.initCDNOnly())
 
     ///
     let mapLayout f gChart =

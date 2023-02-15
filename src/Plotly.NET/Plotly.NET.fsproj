@@ -144,7 +144,7 @@
     <Folder Include="Templates\ObjectAbstractions\" />
     <Compile Include="Templates\Template.fs" />
     <Compile Include="Templates\ChartTemplates.fs" />
-    <Compile Include="Templates\Defaults.fs" />
+    <Compile Include="Defaults.fs" />
     <Compile Include="ChartAPI\GenericChart.fs" />
     <Compile Include="ChartAPI\Chart.fs" />
     <Compile Include="ChartAPI\Chart2D.fs" />

@@ -23,9 +23,12 @@ module Defaults =
     let mutable DefaultConfig =
         Config.init (Responsive = true)
 
-    /// The display options used for generating html. Default: DisplayOptions.init ()
     let mutable DefaultDisplayOptions =
-        DisplayOptions.Create()
+        DisplayOptions.init(
+            AdditionalHeadTags = [],
+            Description = [],
+            PlotlyCDN = $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
+        )
 
     /// The default chart template. Default: ChartTemplates.plotly
     let mutable DefaultTemplate =
@@ -36,5 +39,10 @@ module Defaults =
         DefaultWidth <- 600
         DefaultHeight <- 600
         DefaultConfig <- Config.init (Responsive = true)
-        DefaultDisplayOptions <- DisplayOptions.Create()
+        DefaultDisplayOptions <- 
+            DisplayOptions.init(
+                AdditionalHeadTags = [],
+                Description = [],
+                PlotlyCDN = $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
+            )
         DefaultTemplate <- ChartTemplates.plotly

@@ -1,6 +1,7 @@
 namespace Plotly.NET
 
 open DynamicObj
+open InternalUtils
 open Plotly.NET.LayoutObjects
 open System
 open System.Runtime.InteropServices
@@ -480,6 +481,67 @@ type Layout() =
 
             layout)
 
+    /// <summary>
+    /// Combines two Layout objects.
+    ///
+    /// In case of duplicate dynamic member values, the values of the second Layout are used.
+    ///
+    /// For the collections used for the dynamic members
+    ///
+    /// annotations, shapes, selections, images, sliders, hiddenlabels, updatemenus
+    ///
+    /// the values from the second Layout are appended to those of the first instead.
+    /// </summary>
+    /// <param name="first">The first Layout to combine with the second</param>
+    /// <param name="second">The second Layout to combine with the first</param>
+    static member combine (first: Layout) (second: Layout) =
+
+        let annotations =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<Annotation>>("annotations"))
+                (second.TryGetTypedValue<seq<Annotation>>("annotations"))
+
+        let shapes =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<Shape>>("shapes"))
+                (second.TryGetTypedValue<seq<Shape>>("shapes"))
+
+        let selections =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<Selection>>("selections"))
+                (second.TryGetTypedValue<seq<Selection>>("selections"))
+
+        let images =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<LayoutImage>>("images"))
+                (second.TryGetTypedValue<seq<LayoutImage>>("images"))
+
+        let sliders =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<Slider>>("sliders"))
+                (second.TryGetTypedValue<seq<Slider>>("sliders"))
+
+        let hiddenLabels =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<string>>("hiddenlabels"))
+                (second.TryGetTypedValue<seq<string>>("hiddenlabels"))
+
+        let updateMenus =
+            InternalUtils.combineOptSeqs
+                (first.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
+                (second.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
+
+        DynObj.combine first second
+        |> unbox
+        |> Layout.style (
+            ?Annotations = annotations,
+            ?Shapes = shapes,
+            ?Selections = selections,
+            ?Images = images,
+            ?Sliders = sliders,
+            ?HiddenLabels = hiddenLabels,
+            ?UpdateMenus = updateMenus
+        )
 
     /// <summary>
     /// Returns Some(dynamic member value) of the trace object's underlying DynamicObj when a dynamic member eith the given name exists, and None otherwise.

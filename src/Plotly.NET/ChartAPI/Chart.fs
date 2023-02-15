@@ -739,7 +739,7 @@ type Chart =
     /// <summary>
     /// Applies the given styles to the chart's Layout object. Overwrites attributes with the same name that are already set.
     /// </summary>
-        /// <param name="Title">Sets the title of the layout.</param>
+    /// <param name="Title">Sets the title of the layout.</param>
     /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
     /// <param name="Legend">Sets the legend styles of the layout.</param>
     /// <param name="Margin">Sets the margins around the layout.</param>
@@ -3191,53 +3191,6 @@ type Chart =
                 ?YSide = YSide
             )
 
-    // ############################################################
-// ####################### Apply to DisplayOptions
-
-    /// Show chart in browser
-    [<CompiledName("WithDescription")>]
-    static member withDescription (description: XmlNode list) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.addDescription description)
-
-
-
-    /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's <head>
-    [<CompiledName("WithAdditionalHeadTags")>]
-    static member withAdditionalHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.addAdditionalHeadTags additionalHeadTags)
-
-    /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's <head>
-    [<CompiledName("WithHeadTags")>]
-    static member withHeadTags (headTags: XmlNode list) (ch: GenericChart) =
-        ch |> mapDisplayOptions (fun d -> {d with AdditionalHeadTags = headTags})
-
-
-    /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
-    [<CompiledName("WithMathTex")>]
-    static member withMathTex(
-        [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
-        [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
-    ) =
-        let version = MathJaxVersion |> Option.defaultValue 3
-
-        let tags =
-            if version = 2 then
-                Globals.MATHJAX_V2_TAGS
-            else 
-               Globals.MATHJAX_V3_TAGS
-
-        (fun (ch: GenericChart) ->
-
-            if (AppendTags |> Option.defaultValue true) then
-                ch 
-                |> Chart.withAdditionalHeadTags tags
-                |> Chart.withConfigStyle(TypesetMath=true)
-            else
-                ch 
-                |> Chart.withHeadTags tags
-                |> Chart.withConfigStyle(TypesetMath=true)
-        )
-
 
     /// Sets the color axis with the given id on the chart layout
     [<CompiledName("WithColorAxis")>]
@@ -3323,3 +3276,92 @@ type Chart =
 
     [<CompiledName("WithSlider")>]
     static member withSlider(slider: Slider) = Chart.withSliders ([ slider ])
+
+
+    // ############################################################
+// ####################### Apply to DisplayOptions
+
+    // <summary>
+    /// Sets the given DisplayOptions on the input chart.
+    ///
+    /// If there is already an DisplayOptions set, the object is replaced.
+    /// </summary>
+    [<CompiledName("SetDisplayOptions")>]
+    static member setDisplayOptions(displayOpts: DisplayOptions) =
+        (fun (ch: GenericChart) -> GenericChart.setDisplayOptions displayOpts ch)
+
+    /// <summary>
+    /// Sets the given DisplayOptions on the input chart.
+    ///
+    /// If there is already an DisplayOptions set, the objects are combined.
+    /// </summary>
+    [<CompiledName("WithDisplayOptions")>]
+    static member withDisplayOptions(displayOpts: DisplayOptions) =
+        (fun (ch: GenericChart) -> GenericChart.addDisplayOptions displayOpts ch)
+
+    /// <summary>
+    /// Applies the given styles to the chart's DisplayOptions object. Overwrites attributes with the same name that are already set.
+    /// </summary>
+    /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
+    /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
+    /// <param name="PlotlyCDN">The PlotlyCDN address used in html docs</param>
+    [<CompiledName("WithDisplayOptionsStyle")>]
+    static member withDisplayOptionsStyle
+        (
+            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyCDN: string
+        ) =
+        (fun (ch: GenericChart) ->
+
+            let displayOpts' =
+                DisplayOptions.init (
+                    ?AdditionalHeadTags = AdditionalHeadTags,
+                    ?Description = Description,
+                    ?PlotlyCDN = PlotlyCDN
+                )
+
+            GenericChart.addDisplayOptions displayOpts' ch)
+
+
+    /// Show chart in browser
+    [<CompiledName("WithDescription")>]
+    static member withDescription (description: XmlNode list) (ch: GenericChart) =
+        ch |> mapDisplayOptions (DisplayOptions.addDescription description)
+
+    /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's head 
+    [<CompiledName("WithAdditionalHeadTags")>]
+    static member withAdditionalHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
+        ch |> mapDisplayOptions (DisplayOptions.addAdditionalHeadTags additionalHeadTags)
+
+    /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's head
+    [<CompiledName("WithHeadTags")>]
+    static member withHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
+        ch |> mapDisplayOptions (DisplayOptions.setAdditionalHeadTags additionalHeadTags)
+
+
+    /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
+    [<CompiledName("WithMathTex")>]
+    static member withMathTex(
+        [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
+        [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+    ) =
+        let version = MathJaxVersion |> Option.defaultValue 3
+
+        let tags =
+            if version = 2 then
+                Globals.MATHJAX_V2_TAGS
+            else 
+               Globals.MATHJAX_V3_TAGS
+
+        (fun (ch: GenericChart) ->
+
+            if (AppendTags |> Option.defaultValue true) then
+                ch 
+                |> Chart.withAdditionalHeadTags tags
+                |> Chart.withConfigStyle(TypesetMath=true)
+            else
+                ch 
+                |> Chart.withHeadTags tags
+                |> Chart.withConfigStyle(TypesetMath=true)
+        )

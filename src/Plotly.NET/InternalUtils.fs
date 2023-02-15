@@ -4,6 +4,20 @@ module internal InternalUtils
 open DynamicObj
 open System.Runtime.InteropServices
 
+let combineOptSeqs (first: seq<'A> option) (second: seq<'A> option) =
+    match first, second with
+    | Some f, Some s -> Some(Seq.append f s)
+    | Some f, None -> Some f
+    | None, Some s -> Some s
+    | _ -> None
+
+let combineOptLists (first: List<'A> option) (second: List<'A> option) =
+    match first, second with
+    | Some f, Some s -> Some(List.append f s)
+    | Some f, None -> Some f
+    | None, Some s -> Some s
+    | _ -> None
+
 [<AutoOpen>]
 module DynObj =
 
@@ -41,6 +55,7 @@ module DynObj =
             any |> DynObj.setValueOptBy dyn propName anyF
         else
             single |> DynObj.setValueOptBy dyn propName singleF
+
 
 // Copied from FSharp.Care.Collections to remove dependencies
 [<AutoOpen>]
