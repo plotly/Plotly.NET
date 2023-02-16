@@ -60,13 +60,15 @@ let packPrerelease =
     BuildTask.create
         "PackPrerelease"
         [
-            setPrereleaseTag
             clean
             build
             runTests
         ] {
         projects
         |> List.iter (fun pInfo ->
+            printfn $"Please enter pre-release package suffix for {pInfo.Name}"
+            let prereleaseSuffix = System.Console.ReadLine()
+            pInfo.PackagePrereleaseTag <- sprintf "%s-%s" pInfo.PackageVersionTag prereleaseSuffix
             if promptYesNo $"creating prerelease package for {pInfo.Name}{System.Environment.NewLine}\tpackage version: {pInfo.PackagePrereleaseTag}{System.Environment.NewLine}\tassembly version: {pInfo.AssemblyVersion}{System.Environment.NewLine}\tassembly informational version: {pInfo.AssemblyInformationalVersion}{System.Environment.NewLine} OK?" then
                 pInfo.ProjFile
                 |> Fake.DotNet.DotNet.pack (fun p ->
