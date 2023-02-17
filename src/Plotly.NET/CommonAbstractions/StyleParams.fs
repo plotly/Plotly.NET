@@ -949,9 +949,25 @@ module StyleParam =
         member this.Convert() = this |> ConeSizeMode.convert
 
 
-    //--------------------------
+//--------------------------
 // #D#
 //--------------------------
+
+    [<RequireQualifiedAccess>]
+    type DoubleClick =
+        | Reset
+        | Autosize     
+        | ResetAutosize      
+        | NoInteraction   
+
+        static member convert =
+            function
+            | Reset         -> box "reset"
+            | Autosize      -> box "autosize"
+            | ResetAutosize -> box "reset+autosize"
+            | NoInteraction -> box false
+
+        member this.Convert() = this |> DoubleClick.convert
 
     /// Sets this figure's behavior when a user preforms a mouse 'drag' in the plot area. When set to 'zoom', a portion of the plot will be highlighted,
     /// when the viewer exits the drag, this highlighted section will be zoomed in on. When set to 'pan', data in the plot will move along with the viewers
@@ -2486,6 +2502,26 @@ module StyleParam =
 // #S#
 //--------------------------
 
+    [<RequireQualifiedAccess>]
+    type ScrollZoom =
+        | Cartesian
+        | GL3D     
+        | Geo      
+        | Mapbox   
+        | All      
+        | NoZoom   
+
+        static member convert =
+            function
+            | Cartesian -> box "cartesian"
+            | GL3D      -> box "gl3d"
+            | Geo       -> box "geo"
+            | Mapbox    -> box "mapbox"
+            | All       -> box true
+            | NoZoom    -> box false
+
+        member this.Convert() = this |> ScrollZoom.convert
+        
     [<RequireQualifiedAccess>]
     type ScatterMode =
         | Group
