@@ -49,6 +49,8 @@ module Chart3D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -77,6 +79,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -106,6 +110,15 @@ module Chart3D =
                     ?Width = LineWidth
                 )
 
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
+
             Trace3D.initScatter3D (
                 Trace3DStyle.Scatter3D(
                     X = x,
@@ -126,6 +139,10 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
 
         /// <summary>
@@ -156,6 +173,8 @@ module Chart3D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -182,6 +201,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -215,6 +236,8 @@ module Chart3D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?Projection = Projection,
                 ?UseDefaults = UseDefaults
             )
@@ -241,6 +264,8 @@ module Chart3D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -263,6 +288,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -291,6 +318,8 @@ module Chart3D =
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
                 ?Projection = Projection,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?UseDefaults = UseDefaults
             )
 
@@ -314,6 +343,8 @@ module Chart3D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -334,6 +365,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -358,6 +391,8 @@ module Chart3D =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?Projection = Projection,
                 ?UseDefaults = UseDefaults
             )
@@ -391,6 +426,8 @@ module Chart3D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -419,6 +456,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -455,6 +494,8 @@ module Chart3D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?Projection = Projection,
                 ?UseDefaults = UseDefaults
 
@@ -486,6 +527,8 @@ module Chart3D =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -512,6 +555,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -542,6 +587,8 @@ module Chart3D =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?Projection = Projection,
                 ?UseDefaults = UseDefaults
             )
@@ -570,6 +617,8 @@ module Chart3D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -593,6 +642,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -616,6 +667,15 @@ module Chart3D =
                     MultiSize = sizes
                 )
 
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
+
             Trace3D.initScatter3D (
                 Trace3DStyle.Scatter3D(
                     X = x,
@@ -635,7 +695,10 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
 
         /// <summary>
@@ -659,6 +722,8 @@ module Chart3D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -680,6 +745,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -705,6 +772,8 @@ module Chart3D =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?Projection = Projection,
                 ?UseDefaults = UseDefaults
 
@@ -730,6 +799,8 @@ module Chart3D =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -750,6 +821,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(null)>] ?Projection: Projection,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -779,6 +852,8 @@ module Chart3D =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?Projection = Projection,
                 ?UseDefaults = UseDefaults
 
@@ -804,6 +879,8 @@ module Chart3D =
         /// <param name="Contours">Sets the contours on the surface</param>
         /// <param name="ColorScale">Sets the colorscale of the surface</param>
         /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Surface
@@ -819,11 +896,22 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
                 [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
 
             Trace3D.initSurface (
                 Trace3DStyle.Surface(
@@ -842,7 +930,10 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
         /// <summary>
         /// Visualizes a 3D mesh.
@@ -875,6 +966,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="FlatShading">Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.</param>
         /// <param name="TriangulationAlgorithm">Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Mesh3D
@@ -897,11 +990,22 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?FlatShading: bool,
                 [<Optional; DefaultParameterValue(null)>] ?TriangulationAlgorithm: StyleParam.TriangulationAlgorithm,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
 
             Trace3D.initMesh3D (
                 Trace3DStyle.Mesh3D(
@@ -926,6 +1030,10 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
         /// <summary>
         /// Visualizes a 3D mesh.
@@ -956,6 +1064,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="FlatShading">Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.</param>
         /// <param name="TriangulationAlgorithm">Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Mesh3D
@@ -976,6 +1086,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?FlatShading: bool,
                 [<Optional; DefaultParameterValue(null)>] ?TriangulationAlgorithm: StyleParam.TriangulationAlgorithm,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1000,6 +1112,8 @@ module Chart3D =
                 ?ColorBar = ColorBar,
                 ?FlatShading = FlatShading,
                 ?TriangulationAlgorithm = TriangulationAlgorithm,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?UseDefaults = UseDefaults
             )
 
@@ -1030,6 +1144,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="SizeMode">Determines whether `sizeref` is set as a "scaled" (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as "absolute" value (in the same units as the vector field).</param>
         /// <param name="ConeAnchor">Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Cone
@@ -1050,11 +1166,22 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.ConeSizeMode,
                 [<Optional; DefaultParameterValue(null)>] ?ConeAnchor: StyleParam.ConeAnchor,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
 
             Trace3D.initCone (
                 Trace3DStyle.Cone(
@@ -1077,6 +1204,10 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
         /// <summary>
         /// Creates a cone plot, typically used to visualize vector fields.
@@ -1101,6 +1232,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="SizeMode">Determines whether `sizeref` is set as a "scaled" (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as "absolute" value (in the same units as the vector field).</param>
         /// <param name="ConeAnchor">Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Cone
@@ -1117,6 +1250,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.ConeSizeMode,
                 [<Optional; DefaultParameterValue(null)>] ?ConeAnchor: StyleParam.ConeAnchor,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1140,6 +1275,8 @@ module Chart3D =
                 ?ColorBar = ColorBar,
                 ?SizeMode = SizeMode,
                 ?ConeAnchor = ConeAnchor,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?UseDefaults = UseDefaults
             )
 
@@ -1165,6 +1302,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="SizeMode">Determines whether `sizeref` is set as a "scaled" (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as "absolute" value (in the same units as the vector field).</param>
         /// <param name="ConeAnchor">Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Cone
@@ -1180,6 +1319,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.ConeSizeMode,
                 [<Optional; DefaultParameterValue(null)>] ?ConeAnchor: StyleParam.ConeAnchor,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1208,6 +1349,8 @@ module Chart3D =
                 ?ColorBar = ColorBar,
                 ?SizeMode = SizeMode,
                 ?ConeAnchor = ConeAnchor,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?UseDefaults = UseDefaults
             )
 
@@ -1240,6 +1383,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="MaxDisplayed">The maximum number of displayed segments in a streamtube.</param>
         /// <param name="TubeStarts">Use this object to specify custom tube start positions</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StreamTube
@@ -1260,11 +1405,22 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
                 [<Optional; DefaultParameterValue(null)>] ?TubeStarts: StreamTubeStarts,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
 
             Trace3D.initStreamTube (
                 Trace3DStyle.StreamTube(
@@ -1287,6 +1443,10 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
         /// <summary>
         /// Creates a streamtube plot, typically used to visualize flow in a vector field.
@@ -1313,6 +1473,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="MaxDisplayed">The maximum number of displayed segments in a streamtube.</param>
         /// <param name="TubeStarts">Use this object to specify custom tube start positions</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StreamTube
@@ -1329,6 +1491,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
                 [<Optional; DefaultParameterValue(null)>] ?TubeStarts: StreamTubeStarts,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1355,6 +1519,8 @@ module Chart3D =
                 ?ColorBar = ColorBar,
                 ?MaxDisplayed = MaxDisplayed,
                 ?TubeStarts = TubeStarts,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?UseDefaults = UseDefaults
 
             )
@@ -1383,6 +1549,8 @@ module Chart3D =
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="MaxDisplayed">The maximum number of displayed segments in a streamtube.</param>
         /// <param name="TubeStarts">Use this object to specify custom tube start positions</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member StreamTube
@@ -1398,6 +1566,8 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
                 [<Optional; DefaultParameterValue(null)>] ?TubeStarts: StreamTubeStarts,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1426,6 +1596,8 @@ module Chart3D =
                 ?ColorBar = ColorBar,
                 ?MaxDisplayed = MaxDisplayed,
                 ?TubeStarts = TubeStarts,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
                 ?UseDefaults = UseDefaults
 
             )
@@ -1456,6 +1628,8 @@ module Chart3D =
         /// <param name="Slices">Adds Slices through the volume</param>
         /// <param name="Surface">Sets the surface.</param>
         /// <param name="OpacityScale">Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Volume
@@ -1478,11 +1652,22 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?Slices: Slices,
                 [<Optional; DefaultParameterValue(null)>] ?Surface: Surface,
                 [<Optional; DefaultParameterValue(null)>] ?OpacityScale: seq<#seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
 
             Trace3D.initVolume (
                 Trace3DStyle.Volume(
@@ -1508,6 +1693,10 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
 
         /// <summary>
         /// Creates a isosurface plot to visualize the volume of a 3D shape.
@@ -1536,6 +1725,8 @@ module Chart3D =
         /// <param name="Caps">Sets the caps (color-coded surfaces on the sides of the visualization domain)</param>
         /// <param name="Slices">Adds Slices through the volume</param>
         /// <param name="Surface">Sets the surface.</param>
+        /// <param name="CameraProjectiontype">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member IsoSurface
@@ -1557,11 +1748,22 @@ module Chart3D =
                 [<Optional; DefaultParameterValue(null)>] ?Caps: Caps,
                 [<Optional; DefaultParameterValue(null)>] ?Slices: Slices,
                 [<Optional; DefaultParameterValue(null)>] ?Surface: Surface,
+                [<Optional; DefaultParameterValue(null)>] ?CameraProjectionType: StyleParam.CameraProjectionType,
+                [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera = 
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init())
+                |> LayoutObjects.Camera.style(
+                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
+                )
 
             Trace3D.initIsoSurface (
                 Trace3DStyle.IsoSurface(
@@ -1586,3 +1788,7 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            )
