@@ -260,7 +260,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "MultiTrace Subplot grid layout" ( fun () ->
-            """var layout = {"xaxis":{},"yaxis":{},"scene2":{"domain":{"row":0,"column":1}},"polar3":{"domain":{"row":0,"column":2}},"geo4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"ternary6":{"domain":{"row":1,"column":2}},"xaxis7":{},"yaxis7":{},"smith9":{"domain":{"row":2,"column":2}},"xaxis10":{},"yaxis10":{},"grid":{"rows":4,"columns":3,"pattern":"independent"},"width":1000,"height":1000};"""
+            """var layout = {"xaxis":{},"yaxis":{},"scene":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":0,"column":1}},"scene2":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":0,"column":1}},"polar3":{"domain":{"row":0,"column":2}},"geo4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"ternary6":{"domain":{"row":1,"column":2}},"xaxis7":{},"yaxis7":{},"smith9":{"domain":{"row":2,"column":2}},"xaxis10":{},"yaxis10":{},"grid":{"rows":4,"columns":3,"pattern":"independent"},"width":1000,"height":1000};"""
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "Single Stack data" ( fun () -> 
@@ -277,7 +277,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains multiTraceSingleStack
         );
         testCase "MultiTrace Single Stack layout" ( fun () -> 
-            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":1,"column":0}},"xaxis3":{},"yaxis3":{},"scene4":{"domain":{"row":3,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":4,"column":0}},"mapbox5":{"style":"open-street-map","domain":{"row":4,"column":0}},"xaxis6":{},"yaxis6":{},"grid":{"rows":6,"columns":1,"pattern":"independent"},"width":1000,"height":1000};"""
+            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":1,"column":0}},"xaxis3":{},"yaxis3":{},"scene":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":3,"column":0}},"scene4":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":3,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":4,"column":0}},"mapbox5":{"style":"open-street-map","domain":{"row":4,"column":0}},"xaxis6":{},"yaxis6":{},"grid":{"rows":6,"columns":1,"pattern":"independent"},"width":1000,"height":1000};"""
             |> chartGeneratedContains multiTraceSingleStack
         );
     ]
