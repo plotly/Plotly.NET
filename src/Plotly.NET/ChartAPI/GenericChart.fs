@@ -56,7 +56,6 @@ type HTML() =
 
         html [] [
             head [] [
-                meta [_charset "UTF-8"]
                 plotlyScriptRef
                 yield! additionalHeadTags
             ]
