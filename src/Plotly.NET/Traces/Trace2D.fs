@@ -123,9 +123,11 @@ type Trace2DStyle() =
     /// <param name="Mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="X0">Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.</param>
     /// <param name="DX">Sets the x coordinate step. See `x0` for more info.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="MultiY">Sets the y coordinates.</param>
     /// <param name="Y0">Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.</param>
     /// <param name="DY">Sets the y coordinate step. See `y0` for more info.</param>
     /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
@@ -187,9 +189,11 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Mode: StyleParam.Mode,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
@@ -251,10 +255,10 @@ type Trace2DStyle() =
             Opacity |> DynObj.setValueOpt trace "opacity"
             Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
             Ids |> DynObj.setValueOpt trace "ids"
-            X |> DynObj.setValueOpt trace "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt trace "x"
             X0 |> DynObj.setValueOpt trace "x0"
             DX |> DynObj.setValueOpt trace "dx"
-            Y |> DynObj.setValueOpt trace "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt trace "y"
             Y0 |> DynObj.setValueOpt trace "y0"
             DY |> DynObj.setValueOpt trace "dy"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
@@ -317,9 +321,11 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="X0">Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.</param>
     /// <param name="DX">Sets the x coordinate step. See `x0` for more info.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="MultiY">Sets the y coordinates.</param>
     /// <param name="Y0">Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.</param>
     /// <param name="DY">Sets the y coordinate step. See `y0` for more info.</param>
     /// <param name="Base">Sets where the bar base is drawn (in position axis units). In "stack" or "relative" barmode, traces that set "base" will be excluded and drawn in "overlay" mode instead.</param>
@@ -381,9 +387,11 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Base: #IConvertible,
@@ -445,10 +453,10 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt bar "legendgrouptitle"
             Opacity |> DynObj.setValueOpt bar "opacity"
             Ids |> DynObj.setValueOpt bar "ids"
-            X |> DynObj.setValueOpt bar "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt bar "x"
             X0 |> DynObj.setValueOpt bar "x0"
             DX |> DynObj.setValueOpt bar "dx"
-            Y |> DynObj.setValueOpt bar "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt bar "y"
             Y0 |> DynObj.setValueOpt bar "y0"
             DY |> DynObj.setValueOpt bar "dy"
             Base |> DynObj.setValueOpt bar "base"
@@ -512,9 +520,11 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="X0">Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.</param>
     /// <param name="DX">Sets the x coordinate step. See `x0` for more info.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="MultiY">Sets the y coordinates.</param>
     /// <param name="Y0">Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.</param>
     /// <param name="DY">Sets the y coordinate step. See `y0` for more info.</param>
     /// <param name="Width">Sets the bar width (in position axis units).</param>
@@ -569,9 +579,11 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Width: float,
@@ -626,10 +638,10 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt funnel "legendgrouptitle"
             Opacity |> DynObj.setValueOpt funnel "opacity"
             Ids |> DynObj.setValueOpt funnel "ids"
-            X |> DynObj.setValueOpt funnel "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt funnel "x"
             X0 |> DynObj.setValueOpt funnel "x0"
             DX |> DynObj.setValueOpt funnel "dx"
-            Y |> DynObj.setValueOpt funnel "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt funnel "y"
             Y0 |> DynObj.setValueOpt funnel "y0"
             DY |> DynObj.setValueOpt funnel "dy"
             Width |> DynObj.setValueOpt funnel "width"
@@ -688,9 +700,11 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="X0">Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.</param>
     /// <param name="DX">Sets the x coordinate step. See `x0` for more info.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="MultiY">Sets the y coordinates.</param>
     /// <param name="Y0">Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.</param>
     /// <param name="DY">Sets the y coordinate step. See `y0` for more info.</param>
     /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
@@ -751,9 +765,11 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Base: #IConvertible,
@@ -814,10 +830,10 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
             Opacity |> DynObj.setValueOpt trace "opacity"
             Ids |> DynObj.setValueOpt trace "ids"
-            X |> DynObj.setValueOpt trace "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt trace "x"
             X0 |> DynObj.setValueOpt trace "x0"
             DX |> DynObj.setValueOpt trace "dx"
-            Y |> DynObj.setValueOpt trace "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt trace "y"
             Y0 |> DynObj.setValueOpt trace "y0"
             DY |> DynObj.setValueOpt trace "dy"
             Base |> DynObj.setValueOpt trace "base"
@@ -879,7 +895,9 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+    /// <param name="MultiX">Sets the sample data to be binned on the x axis.</param>
     /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+    /// <param name="MultiY">Sets the sample data to be binned on the y axis.</param>
     /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
@@ -938,7 +956,9 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
@@ -997,8 +1017,8 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt histogram "legendgrouptitle"
             Opacity |> DynObj.setValueOpt histogram "opacity"
             Ids |> DynObj.setValueOpt histogram "ids"
-            X |> DynObj.setValueOpt histogram "x"
-            Y |> DynObj.setValueOpt histogram "y"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt histogram "x"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt histogram "y"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt histogram "text"
             TextPosition|> DynObj.setValueOptBy histogram "textposition" StyleParam.TextPosition.convert
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt histogram "texttemplate"
@@ -1057,9 +1077,11 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x sample data or coordinates. See overview for more info.</param>
+    /// <param name="MultiX">Sets the x sample data or coordinates. See overview for more info.</param>
     /// <param name="X0">Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.</param>
     /// <param name="DX">Sets the x coordinate step for multi-box traces set using q1/median/q3.</param>
     /// <param name="Y">Sets the y sample data or coordinates. See overview for more info.</param>
+    /// <param name="MultiY">Sets the y sample data or coordinates. See overview for more info.</param>
     /// <param name="Y0">Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.</param>
     /// <param name="DY">Sets the y coordinate step for multi-box traces set using q1/median/q3.</param>
     /// <param name="Width">Sets the width of the box in data coordinate If "0" (default value) the width is automatically selected based on the positions of other box traces in the same subplot.</param>
@@ -1123,9 +1145,11 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Width: float,
@@ -1189,10 +1213,10 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt boxPlot "legendgrouptitle"
             Opacity |> DynObj.setValueOpt boxPlot "opacity"
             Ids |> DynObj.setValueOpt boxPlot "ids"
-            X |> DynObj.setValueOpt boxPlot "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt boxPlot "x"
             X0 |> DynObj.setValueOpt boxPlot "x0"
             DX |> DynObj.setValueOpt boxPlot "dx"
-            Y |> DynObj.setValueOpt boxPlot "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt boxPlot "y"
             Y0 |> DynObj.setValueOpt boxPlot "y0"
             DY |> DynObj.setValueOpt boxPlot "dy"
             Width |> DynObj.setValueOpt boxPlot "width"
@@ -1259,9 +1283,11 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x sample data or coordinates. See overview for more info.</param>
+    /// <param name="MultiX">Sets the x sample data or coordinates. See overview for more info.</param>
     /// <param name="X0">Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.</param>
     /// <param name="DX">Sets the x coordinate step for multi-box traces set using q1/median/q3.</param>
     /// <param name="Y">Sets the y sample data or coordinates. See overview for more info.</param>
+    /// <param name="MultiY">Sets the y sample data or coordinates. See overview for more info.</param>
     /// <param name="Y0">Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.</param>
     /// <param name="DY">Sets the y coordinate step for multi-box traces set using q1/median/q3.</param>
     /// <param name="Width">Sets the width of the violin in data coordinates. If "0" (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.</param>
@@ -1312,9 +1338,11 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Width: float,
@@ -1365,10 +1393,10 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt violin "legendgrouptitle"
             Opacity |> DynObj.setValueOpt violin "opacity"
             Ids |> DynObj.setValueOpt violin "ids"
-            X |> DynObj.setValueOpt violin "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt violin "x"
             X0 |> DynObj.setValueOpt violin "x0"
             DX |> DynObj.setValueOpt violin "dx"
-            Y |> DynObj.setValueOpt violin "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt violin "y"
             Y0 |> DynObj.setValueOpt violin "y0"
             DY |> DynObj.setValueOpt violin "dy"
             Width |> DynObj.setValueOpt violin "width"
@@ -1420,8 +1448,10 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+    /// <param name="MultiX">Sets the sample data to be binned on the x axis.</param>
     /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
     /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+    /// <param name="MultiY">Sets the sample data to be binned on the y axis.</param>
     /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
     /// <param name="Z">Sets the aggregation data.</param>
     /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
@@ -1474,8 +1504,10 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?XGap: int,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?YGap: int,
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
@@ -1528,9 +1560,9 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt histogram2D "legendgrouptitle"
             Opacity |> DynObj.setValueOpt histogram2D "opacity"
             Ids |> DynObj.setValueOpt histogram2D "ids"
-            X |> DynObj.setValueOpt histogram2D "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt histogram2D "x"
             XGap |> DynObj.setValueOpt histogram2D "xgap"
-            Y |> DynObj.setValueOpt histogram2D "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt histogram2D "y"
             YGap |> DynObj.setValueOpt histogram2D "ygap"
             Z |> DynObj.setValueOpt histogram2D "z"
             TextTemplate |> DynObj.setValueOpt histogram2D "texttemplate"
@@ -1586,7 +1618,9 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+    /// <param name="MultiX">Sets the sample data to be binned on the x axis.</param>
     /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+    /// <param name="MultiY">Sets the sample data to be binned on the y axis.</param>
     /// <param name="Z">Sets the aggregation data.</param>
     /// <param name="TextTemplate">For this trace it only has an effect if `coloring` is set to "heatmap". Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -1641,7 +1675,9 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?TextTemplate: string,
             [<Optional; DefaultParameterValue(null)>] ?HoverInfo: StyleParam.HoverInfo,
@@ -1696,8 +1732,8 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt histogram2DContour "legendgrouptitle"
             Opacity |> DynObj.setValueOpt histogram2DContour "opacity"
             Ids |> DynObj.setValueOpt histogram2DContour "ids"
-            X |> DynObj.setValueOpt histogram2DContour "x"
-            Y |> DynObj.setValueOpt histogram2DContour "y"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt histogram2DContour "x"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt histogram2DContour "y"
             Z |> DynObj.setValueOpt histogram2DContour "z"
             TextTemplate |> DynObj.setValueOpt histogram2DContour "texttemplate"
             HoverInfo |> DynObj.setValueOptBy histogram2DContour "hoverinfo" StyleParam.HoverInfo.convert
@@ -1756,11 +1792,13 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="X0">Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.</param>
     /// <param name="DX">Sets the x coordinate step. See `x0` for more info.</param>
     /// <param name="XType">If "array", the heatmap's x coordinates are given by "x" (the default behavior when `x` is provided). If "scaled", the heatmap's x coordinates are given by "x0" and "dx" (the default behavior when `x` is not provided).</param>
     /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="MultiY">Sets the y coordinates.</param>
     /// <param name="Y0">Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.</param>
     /// <param name="DY">Sets the y coordinate step. See `y0` for more info.</param>
     /// <param name="YType">If "array", the heatmap's y coordinates are given by "y" (the default behavior when `y` is provided) If "scaled", the heatmap's y coordinates are given by "y0" and "dy" (the default behavior when `y` is not provided)</param>
@@ -1817,11 +1855,13 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?XType: StyleParam.CoordinateType,
             [<Optional; DefaultParameterValue(null)>] ?XGap: int,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?YType: StyleParam.CoordinateType,
@@ -1878,12 +1918,12 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt heatmap "legendgrouptitle"
             Opacity |> DynObj.setValueOpt heatmap "opacity"
             Ids |> DynObj.setValueOpt heatmap "ids"
-            X |> DynObj.setValueOpt heatmap "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt heatmap "x"
             X0 |> DynObj.setValueOpt heatmap "x0"
             DX |> DynObj.setValueOpt heatmap "dx"
             XType |> DynObj.setValueOptBy heatmap "xtype" StyleParam.CoordinateType.convert
             XGap |> DynObj.setValueOpt heatmap "xgap"
-            Y |> DynObj.setValueOpt heatmap "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt heatmap "y"
             Y0 |> DynObj.setValueOpt heatmap "y0"
             DY |> DynObj.setValueOpt heatmap "dy"
             YType |> DynObj.setValueOptBy heatmap "ytype" StyleParam.CoordinateType.convert
@@ -2045,10 +2085,12 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="X0">Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.</param>
     /// <param name="DX">Sets the x coordinate step. See `x0` for more info.</param>
     /// <param name="XType">If "array", the heatmap's x coordinates are given by "x" (the default behavior when `x` is provided). If "scaled", the heatmap's x coordinates are given by "x0" and "dx" (the default behavior when `x` is not provided).</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="MultiY">Sets the y coordinates.</param>
     /// <param name="Y0">Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.</param>
     /// <param name="DY">Sets the y coordinate step. See `y0` for more info.</param>
     /// <param name="YType">If "array", the heatmap's y coordinates are given by "y" (the default behavior when `y` is provided) If "scaled", the heatmap's y coordinates are given by "y0" and "dy" (the default behavior when `y` is not provided)</param>
@@ -2108,10 +2150,12 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DX: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?XType: StyleParam.CoordinateType,
             [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Y0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?DY: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?YType: StyleParam.CoordinateType,
@@ -2171,11 +2215,11 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt contour "legendgrouptitle"
             Opacity |> DynObj.setValueOpt contour "opacity"
             Ids |> DynObj.setValueOpt contour "ids"
-            X |> DynObj.setValueOpt contour "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt contour "x"
             X0 |> DynObj.setValueOpt contour "x0"
             DX |> DynObj.setValueOpt contour "dx"
             XType |> DynObj.setValueOptBy contour "xtype" StyleParam.CoordinateType.convert
-            Y |> DynObj.setValueOpt contour "y"
+            (Y, MultiY) |> DynObj.setSingleOrMultiOpt contour "y"
             Y0 |> DynObj.setValueOpt contour "y0"
             DY |> DynObj.setValueOpt contour "dy"
             YType |> DynObj.setValueOptBy contour "ytype" StyleParam.CoordinateType.convert
@@ -2238,6 +2282,7 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="Close">Sets the close values.</param>
     /// <param name="Open">Sets the open values.</param>
     /// <param name="High">Sets the high values.</param>
@@ -2278,6 +2323,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Close: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Open: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?High: seq<#IConvertible>,
@@ -2318,7 +2364,7 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt ohlc "legendgrouptitle"
             Opacity |> DynObj.setValueOpt ohlc "opacity"
             Ids |> DynObj.setValueOpt ohlc "ids"
-            X |> DynObj.setValueOpt ohlc "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt ohlc "x"
             Close |> DynObj.setValueOpt ohlc "close"
             Open |> DynObj.setValueOpt ohlc "open"
             High |> DynObj.setValueOpt ohlc "high"
@@ -2361,6 +2407,7 @@ type Trace2DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="MultiX">Sets the x coordinates.</param>
     /// <param name="Close">Sets the close values.</param>
     /// <param name="Open">Sets the open values.</param>
     /// <param name="High">Sets the high values.</param>
@@ -2401,6 +2448,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
             [<Optional; DefaultParameterValue(null)>] ?Close: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Open: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?High: seq<#IConvertible>,
@@ -2441,7 +2489,7 @@ type Trace2DStyle() =
             LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
             Opacity |> DynObj.setValueOpt trace "opacity"
             Ids |> DynObj.setValueOpt trace "ids"
-            X |> DynObj.setValueOpt trace "x"
+            (X, MultiX) |> DynObj.setSingleOrMultiOpt trace "x"
             Close |> DynObj.setValueOpt trace "close"
             Open |> DynObj.setValueOpt trace "open"
             High |> DynObj.setValueOpt trace "high"

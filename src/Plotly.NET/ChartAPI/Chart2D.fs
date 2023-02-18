@@ -34,6 +34,139 @@ module Chart2D =
         ///
         /// Scatter charts are the basis of Point, Line, and Bubble Charts, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
         /// </summary>
+        /// <param name="X">Sets the x coordinates of the plotted data.</param>
+        /// <param name="MultiX">Sets the x coordinates of the plotted data. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="MultiY">Sets the x coordinates of the plotted data. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Scatter
+            (
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Mode: StyleParam.Mode,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?TextPosition: StyleParam.TextPosition,
+                [<Optional; DefaultParameterValue(null)>] ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?LineColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?AlignmentGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?OffsetGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?StackGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
+                [<Optional; DefaultParameterValue(null)>] ?GroupNorm: StyleParam.GroupNorm,
+                [<Optional; DefaultParameterValue(null)>] ?Fill: StyleParam.Fill,
+                [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?FillPattern: Pattern,
+                [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            let style =
+                Trace2DStyle.Scatter(
+                    ?X = X,
+                    ?MultiX = MultiX,
+                    ?Y = Y,
+                    ?MultiY = MultiY,
+                    ?Mode = Mode,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
+                    ?StackGroup = StackGroup,
+                    ?Orientation = Orientation,
+                    ?GroupNorm = GroupNorm,
+                    ?Fill = Fill,
+                    ?FillColor = FillColor,
+                    ?FillPattern = FillPattern
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterTrace useDefaults useWebGL style
+
+        /// <summary>
+        /// Creates a Scatter plot.
+        ///
+        /// Scatter charts are the basis of Point, Line, and Bubble Charts, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
+        /// </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
@@ -102,46 +235,29 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    ?Outline = MarkerOutline,
-                    ?Symbol = MarkerSymbol,
-                    ?MultiSymbol = MultiMarkerSymbol,
-                    ?Colorscale = MarkerColorScale,
-                    ?MultiOpacity = MultiOpacity
-                )
-
-            let line =
-                Line
-                |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (
-                    ?Color = LineColor,
-                    ?Dash = LineDash,
-                    ?Colorscale = LineColorScale,
-                    ?Width = LineWidth
-                )
-
-            let style =
-                Trace2DStyle.Scatter(
+                Chart.Scatter(
                     X = x,
                     Y = y,
                     Mode = mode,
-                    Marker = marker,
-                    Line = line,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
+                    ?MultiOpacity = MultiOpacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition,
+                    ?MarkerColor = MarkerColor,
+                    ?MarkerColorScale = MarkerColorScale,
+                    ?MarkerOutline = MarkerOutline,
+                    ?MarkerSymbol = MarkerSymbol,
+                    ?MultiMarkerSymbol = MultiMarkerSymbol,
+                    ?Marker = Marker,
+                    ?LineColor = LineColor,
+                    ?LineColorScale = LineColorScale,
+                    ?LineWidth = LineWidth,
+                    ?LineDash = LineDash,
+                    ?Line = Line,
                     ?AlignmentGroup = AlignmentGroup,
                     ?OffsetGroup = OffsetGroup,
                     ?StackGroup = StackGroup,
@@ -149,13 +265,10 @@ module Chart2D =
                     ?GroupNorm = GroupNorm,
                     ?Fill = Fill,
                     ?FillColor = FillColor,
-                    ?FillPattern = FillPattern
+                    ?FillPattern = FillPattern,
+                    ?UseWebGL = UseWebGL,
+                    ?UseDefaults = UseDefaults
                 )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterTrace useDefaults useWebGL style
-
 
         /// <summary>
         /// Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
@@ -230,9 +343,9 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Scatter(
-                x,
-                y,
-                mode,
+                x = x,
+                y = y,
+                mode = mode,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -323,8 +436,8 @@ module Chart2D =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
             Chart.Scatter(
-                x,
-                y,
+                x = x,
+                y = y,
                 mode = changeMode StyleParam.Mode.Markers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -402,8 +515,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Point(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -509,8 +622,8 @@ module Chart2D =
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
             Chart.Scatter(
-                x,
-                y,
+                x = x,
+                y = y,
                 mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -616,8 +729,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Line(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -866,8 +979,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Spline(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?ShowMarkers = ShowMarkers,
                 ?Smoothing = Smoothing,
                 ?Name = Name,
@@ -1084,9 +1197,9 @@ module Chart2D =
             let x, y, sizes = Seq.unzip3 xysizes
 
             Chart.Bubble(
-                x,
-                y,
-                sizes,
+                x = x,
+                y = y,
+                sizes = sizes,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -1396,11 +1509,11 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Range(
-                x,
-                y,
-                upper,
-                lower,
-                mode,
+                x = x,
+                y = y,
+                upper = upper,
+                lower = lower,
+                mode = mode,
                 ?Name = Name,
                 ?GroupName = GroupName,
                 ?ShowMarkers = ShowMarkers,
@@ -1513,8 +1626,8 @@ module Chart2D =
                 |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
 
             Chart.Line(
-                x,
-                y,
+                x = x,
+                y = y,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
@@ -1620,8 +1733,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Area(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -1733,8 +1846,8 @@ module Chart2D =
                 |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
 
             Chart.Spline(
-                x,
-                y,
+                x = x,
+                y = y,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Smoothing = Smoothing,
@@ -1841,8 +1954,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.SplineArea(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?ShowMarkers = ShowMarkers,
                 ?Smoothing = Smoothing,
                 ?Name = Name,
@@ -1946,8 +2059,8 @@ module Chart2D =
                 |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
 
             Chart.Line(
-                x,
-                y,
+                x = x,
+                y = y,
                 Fill = StyleParam.Fill.ToNext_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
@@ -2043,8 +2156,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.StackedArea(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -2242,8 +2355,8 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
             Chart.Funnel(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -2439,8 +2552,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Waterfall(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?IncreasingColor = IncreasingColor,
@@ -2525,8 +2638,8 @@ module Chart2D =
             let x, y, measure = Seq.unzip3 xymeasures
 
             Chart.Waterfall(
-                x,
-                y,
+                x = x,
+                y = y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?IncreasingColor = IncreasingColor,
@@ -2559,6 +2672,7 @@ module Chart2D =
         /// </summary>
         /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
         /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="MultiKeys">Sets the keys associated with each bar. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity of the trace.</param>
@@ -2583,6 +2697,7 @@ module Chart2D =
             (
                 values: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Keys: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiKeys: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -2628,6 +2743,7 @@ module Chart2D =
                 Trace2DStyle.Bar(
                     X = values,
                     ?Y = Keys,
+                    ?MultiY = MultiKeys,
                     Orientation = StyleParam.Orientation.Horizontal,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
@@ -2697,8 +2813,8 @@ module Chart2D =
             let keys, values = Seq.unzip keysValues
 
             Chart.Bar(
-                values,
-                keys,
+                values = values,
+                Keys = keys,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -2729,6 +2845,7 @@ module Chart2D =
         /// </summary>
         /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
         /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="MultiKeys">Sets the keys associated with each bar. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity of the trace.</param>
@@ -2753,6 +2870,7 @@ module Chart2D =
             (
                 values: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Keys: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiKeys: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -2775,8 +2893,9 @@ module Chart2D =
             ) =
 
             Chart.Bar(
-                values,
+                values = values,
                 ?Keys = Keys,
+                ?MultiKeys = MultiKeys,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -2854,8 +2973,8 @@ module Chart2D =
             let keys, values = Seq.unzip keysValues
 
             Chart.StackedBar(
-                values,
-                keys,
+                values = values,
+                Keys = keys,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -2884,6 +3003,7 @@ module Chart2D =
         /// </summary>
         /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
         /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="MultiKeys">Sets the keys associated with each bar. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity of the trace.</param>
@@ -2908,6 +3028,7 @@ module Chart2D =
             (
                 values: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Keys: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiKeys: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -2953,6 +3074,7 @@ module Chart2D =
                 Trace2DStyle.Bar(
                     Y = values,
                     ?X = Keys,
+                    ?MultiX = MultiKeys,
                     Orientation = StyleParam.Orientation.Vertical,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
@@ -3023,8 +3145,8 @@ module Chart2D =
             let keys, values = Seq.unzip keysValues
 
             Chart.Column(
-                values,
-                keys,
+                values = values,
+                Keys = keys,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -3055,6 +3177,7 @@ module Chart2D =
         /// </summary>
         /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
         /// <param name="Keys">Sets the keys associated with each bar.</param>
+        /// <param name="MultiKeys">Sets the keys associated with each bar. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity of the trace.</param>
@@ -3079,6 +3202,7 @@ module Chart2D =
             (
                 values: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Keys: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiKeys: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -3101,8 +3225,9 @@ module Chart2D =
             ) =
 
             Chart.Column(
-                values,
+                values = values,
                 ?Keys = Keys,
+                ?MultiKeys = MultiKeys,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -3180,8 +3305,8 @@ module Chart2D =
             let keys, values = Seq.unzip keysValues
 
             Chart.StackedColumn(
-                values,
-                keys,
+                values = values,
+                Keys = keys,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -3213,7 +3338,9 @@ module Chart2D =
         /// The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
         /// </summary>
         /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="MultiX">Sets the sample data to be binned on the x axis. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="MultiY">Sets the sample data to be binned on the y axis. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Orientation">Sets the orientation of the bars. With "v" ("h"), the value of the each bar spans along the vertical (horizontal).</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -3246,7 +3373,9 @@ module Chart2D =
         static member Histogram
             (
                 [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
@@ -3299,7 +3428,9 @@ module Chart2D =
             Trace2D.initHistogram (
                 Trace2DStyle.Histogram(
                     ?X = X,
+                    ?MultiX = MultiX,
                     ?Y = Y,
+                    ?MultiY = MultiY,
                     ?Orientation = Orientation,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
@@ -3428,6 +3559,90 @@ module Chart2D =
         ///
         ///The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a heatmap.
         /// </summary>
+        /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="MultiX">Sets the sample data to be binned on the x axis. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="MultiY">Sets the sample data to be binned on the y axis. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Z">Sets the aggregation data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Histogram2D
+            (
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?XGap: int,
+                [<Optional; DefaultParameterValue(null)>] ?YGap: int,
+                [<Optional; DefaultParameterValue(null)>] ?HistFunc: StyleParam.HistFunc,
+                [<Optional; DefaultParameterValue(null)>] ?HistNorm: StyleParam.HistNorm,
+                [<Optional; DefaultParameterValue(null)>] ?NBinsX: int,
+                [<Optional; DefaultParameterValue(null)>] ?NBinsY: int,
+                [<Optional; DefaultParameterValue(null)>] ?XBins: Bins,
+                [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ZSmooth: StyleParam.SmoothAlg,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            Trace2D.initHistogram2D (
+                Trace2DStyle.Histogram2D(
+                    ?X = X,
+                    ?MultiX = MultiX,
+                    ?Y = Y,
+                    ?MultiY = MultiY,
+                    ?Z = Z,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?XGap = XGap,
+                    ?YGap = YGap,
+                    ?HistFunc = HistFunc,
+                    ?HistNorm = HistNorm,
+                    ?NBinsX = NBinsX,
+                    ?NBinsY = NBinsY,
+                    ?XBins = XBins,
+                    ?YBins = YBins,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?ZSmooth = ZSmooth
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            
+        /// <summary>
+        /// Visualizes the distribution of the 2-dimensional input data as 2D Histogram.
+        ///
+        ///The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a heatmap.
+        /// </summary>
         /// <param name="x">Sets the sample data to be binned on the x axis.</param>
         /// <param name="y">Sets the sample data to be binned on the y axis.</param>
         /// <param name="Z">Sets the aggregation data.</param>
@@ -3473,17 +3688,15 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            Trace2D.initHistogram2D (
-                Trace2DStyle.Histogram2D(
+                Chart.Histogram2D(
                     X = x,
-                    ?XGap = XGap,
                     Y = y,
-                    ?YGap = YGap,
                     ?Z = Z,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
+                    ?XGap = XGap,
+                    ?YGap = YGap,
                     ?HistFunc = HistFunc,
                     ?HistNorm = HistNorm,
                     ?NBinsX = NBinsX,
@@ -3496,9 +3709,7 @@ module Chart2D =
                     ?ReverseScale = ReverseScale,
                     ?ZSmooth = ZSmooth
                 )
-            )
-            |> TraceStyle.TraceInfo(?Name = Name, ?ShowLegend = ShowLegend)
-            |> GenericChart.ofTraceObject useDefaults
+
 
         /// <summary>
         /// Visualizes the distribution of the input data as a box plot.
@@ -3509,7 +3720,9 @@ module Chart2D =
         /// The sample data from which statistics are computed is set in `x` for vertically spanning boxes and in `y` for horizontally spanning boxes.
         /// </summary>
         /// <param name="X">Sets the x sample data or coordinates</param>
+        /// <param name="MultiX">Sets the x sample data or coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Y">Sets the y sample data or coordinates</param>
+        /// <param name="MultiY">Sets the y sample data or coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Text">Sets a text associated with each datum</param>
@@ -3536,7 +3749,9 @@ module Chart2D =
         static member BoxPlot
             (
                 [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
@@ -3582,7 +3797,9 @@ module Chart2D =
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?X = X,
+                    ?MultiX = MultiX,
                     ?Y = Y,
+                    ?MultiY = MultiY,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?WhiskerWidth = WhiskerWidth,
@@ -3757,8 +3974,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.BoxPlot(
-                x,
-                y,
+                X = x,
+                Y = y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Text = Text,
@@ -3792,8 +4009,10 @@ module Chart2D =
         ///
         /// In vertical (horizontal) violin plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`) array is provided, a single violin is drawn. That violin position is then positioned with with `name` or with `x0` (`y0`) if provided.
         /// </summary>
-        /// <param name="X">Sets the x sample data or coordinates.</param>
-        /// <param name="Y">Sets the y sample data or coordinates.</param>
+        /// <param name="X">Sets the x sample data or coordinates</param>
+        /// <param name="MultiX">Sets the x sample data or coordinates. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Y">Sets the y sample data or coordinates</param>
+        /// <param name="MultiY">Sets the y sample data or coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Text">Sets a text associated with each datum</param>
@@ -3828,7 +4047,9 @@ module Chart2D =
         static member Violin
             (
                 [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
@@ -3882,7 +4103,9 @@ module Chart2D =
             Trace2D.initViolin (
                 Trace2DStyle.Violin(
                     ?X = X,
+                    ?MultiX = MultiX,
                     ?Y = Y,
+                    ?MultiY = MultiY,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -4098,8 +4321,8 @@ module Chart2D =
             let x, y = Seq.unzip xy
 
             Chart.Violin(
-                x,
-                y,
+                X = x,
+                Y = y,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Text = Text,
@@ -4133,6 +4356,116 @@ module Chart2D =
             )
 
 
+        /// <summary>
+        /// Computes a 2D histogram contour plot, also known as a density contour plot, which is a 2-dimensional generalization of a histogram which resembles a contour plot but is computed by grouping a set of points specified by their x and y coordinates into bins, and applying an aggregation function such as count or sum (if z is provided) to compute the value to be used to compute contours.
+        ///
+        /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a contour plot.
+        /// </summary>
+        /// <param name="X">Sets the sample data to be binned on the x axis.</param>
+        /// <param name="MultiX">Sets the sample data to be binned on the x axis. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Y">Sets the sample data to be binned on the y axis.</param>
+        /// <param name="MultiY">Sets the sample data to be binned on the y axis. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Z">Sets the aggregation data.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace. If "count", the histogram values are computed by counting the number of values lying inside each bin. If "sum", "avg", "min", "max", the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.</param>
+        /// <param name="BinGroup">Set the `xbingroup` and `ybingroup` default prefix For example, setting a `bingroup` of "1" on two histogram2d traces will make them their x-bins and y-bins match separately.</param>
+        /// <param name="XBinGroup">Set a group of histogram traces which will have compatible x-bin settings. Using `xbingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible x-bin settings. Note that the same `xbingroup` value can be used to set (1D) histogram `bingroup`</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings. Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D) histogram `bingroup`</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Contours">Sets the style of the contours</param>
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Histogram2DContour
+            (
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Z: seq<#seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?HistFunc: StyleParam.HistFunc,
+                [<Optional; DefaultParameterValue(null)>] ?HistNorm: StyleParam.HistNorm,
+                [<Optional; DefaultParameterValue(null)>] ?NBinsX: int,
+                [<Optional; DefaultParameterValue(null)>] ?NBinsY: int,
+                [<Optional; DefaultParameterValue(null)>] ?BinGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?XBinGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?XBins: Bins,
+                [<Optional; DefaultParameterValue(null)>] ?YBinGroup: string,
+                [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
+                [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
+                [<Optional; DefaultParameterValue(null)>] ?NContours: int,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let contourLine =
+                ContourLine
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = ContourLineColor,
+                    ?Dash = ContourLineDash,
+                    ?Smoothing = ContourLineSmoothing
+                )
+
+            Trace2D.initHistogram2DContour (
+                Trace2DStyle.Histogram2DContour(
+                    ?X = X,
+                    ?MultiX = MultiX,
+                    ?Y = Y,
+                    ?MultiY = MultiY,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Z = Z,
+                    ?HistFunc = HistFunc,
+                    ?HistNorm = HistNorm,
+                    ?NBinsX = NBinsX,
+                    ?NBinsY = NBinsY,
+                    ?BinGroup = BinGroup,
+                    ?XBinGroup = XBinGroup,
+                    ?XBins = XBins,
+                    ?YBinGroup = YBinGroup,
+                    ?YBins = YBins,
+                    ?Marker = Marker,
+                    Line = contourLine,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?Contours = Contours,
+                    ?NContours = NContours
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            
         /// <summary>
         /// Computes a 2D histogram contour plot, also known as a density contour plot, which is a 2-dimensional generalization of a histogram which resembles a contour plot but is computed by grouping a set of points specified by their x and y coordinates into bins, and applying an aggregation function such as count or sum (if z is provided) to compute the value to be used to compute contours.
         ///
@@ -4196,46 +4529,35 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?NContours: int,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let contourLine =
-                ContourLine
-                |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (
-                    ?Color = ContourLineColor,
-                    ?Dash = ContourLineDash,
-                    ?Smoothing = ContourLineSmoothing
-                )
-
-            Trace2D.initHistogram2DContour (
-                Trace2DStyle.Histogram2DContour(
+                Chart.Histogram2DContour(
                     X = x,
                     Y = y,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Z = Z,
-                    ?HistFunc = HistFunc,
-                    ?HistNorm = HistNorm,
-                    ?NBinsX = NBinsX,
-                    ?NBinsY = NBinsY,
-                    ?BinGroup = BinGroup,
-                    ?XBinGroup = XBinGroup,
-                    ?XBins = XBins,
-                    ?YBinGroup = YBinGroup,
-                    ?YBins = YBins,
-                    ?Marker = Marker,
-                    Line = contourLine,
-                    ?ColorBar = ColorBar,
-                    ?ColorScale = ColorScale,
-                    ?ShowScale = ShowScale,
-                    ?ReverseScale = ReverseScale,
-                    ?Contours = Contours,
-                    ?NContours = NContours
+                    ?Name                   = Name,
+                    ?ShowLegend             = ShowLegend,
+                    ?Opacity                = Opacity,
+                    ?Z                      = Z,
+                    ?HistFunc               = HistFunc,
+                    ?HistNorm               = HistNorm,
+                    ?NBinsX                 = NBinsX,
+                    ?NBinsY                 = NBinsY,
+                    ?BinGroup               = BinGroup,
+                    ?XBinGroup              = XBinGroup,
+                    ?XBins                  = XBins,
+                    ?YBinGroup              = YBinGroup,
+                    ?YBins                  = YBins,
+                    ?Marker                 = Marker,
+                    ?ContourLineColor       = ContourLineColor,
+                    ?ContourLineDash        = ContourLineDash,
+                    ?ContourLineSmoothing   = ContourLineSmoothing,
+                    ?ContourLine            = ContourLine,
+                    ?ColorBar               = ColorBar,
+                    ?ColorScale             = ColorScale,
+                    ?ShowScale              = ShowScale,
+                    ?ReverseScale           = ReverseScale,
+                    ?Contours               = Contours,
+                    ?NContours              = NContours,
+                    ?UseDefaults            = UseDefaults
                 )
-            )
-            |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
         /// Creates a heatmap.
@@ -4243,12 +4565,14 @@ module Chart2D =
         /// A heatmap is a data visualization technique that shows magnitude of a phenomenon as color in two dimensions.
         /// </summary>
         /// <param name="zData">Sets the 2-dimensional z data, which will be visualized with the color scale.</param>
+        /// <param name="X">Sets the x coordinates</param>
+        /// <param name="MultiX">Sets the x coordinates. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Y">Sets the y coordinates</param>
+        /// <param name="MultiY">Sets the y coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity otf the trace.</param>
-        /// <param name="X">Sets the x coordinates.</param>
         /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
-        /// <param name="Y">Sets the y coordinates.</param>
         /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
@@ -4265,12 +4589,14 @@ module Chart2D =
         static member Heatmap
             (
                 zData: seq<#seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
-                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?XGap: int,
-                [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?YGap: int,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
@@ -4294,12 +4620,14 @@ module Chart2D =
             let style =
                 Trace2DStyle.Heatmap(
                     Z = zData,
+                    ?X = X,
+                    ?MultiX = MultiX,
+                    ?Y = Y,
+                    ?MultiY = MultiY,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
-                    ?X = X,
                     ?XGap = XGap,
-                    ?Y = Y,
                     ?YGap = YGap,
                     ?Text = Text,
                     ?MultiText = MultiText,
@@ -4368,21 +4696,14 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let reverseYAxis =
-                defaultArg ReverseYAxis false
-
-            let style =
-                Trace2DStyle.Heatmap(
-                    Z = zData,
+                Chart.Heatmap(
+                    zData = zData,
+                    X = colNames,
+                    Y = rowNames,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
-                    X = (colNames |> Seq.map (fun x -> x :> IConvertible)),
                     ?XGap = XGap,
-                    Y = (rowNames |> Seq.map (fun x -> x :> IConvertible)),
                     ?YGap = YGap,
                     ?Text = Text,
                     ?MultiText = MultiText,
@@ -4391,17 +4712,11 @@ module Chart2D =
                     ?ShowScale = ShowScale,
                     ?ReverseScale = ReverseScale,
                     ?ZSmooth = ZSmooth,
-                    ?Transpose = Transpose
+                    ?Transpose = Transpose,
+                    ?UseWebGL = UseWebGL,
+                    ?ReverseYAxis = ReverseYAxis,
+                    ?UseDefaults = UseDefaults
                 )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderHeatmapTrace useDefaults useWebGL style
-            |> fun c ->
-                if reverseYAxis then
-                    c |> Chart.withYAxis (LinearAxis.init (AutoRange = StyleParam.AutoRange.Reversed))
-                else
-                    c
 
         /// <summary>
         /// Creates a annotated heatmap.
@@ -4416,8 +4731,10 @@ module Chart2D =
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity otf the trace.</param>
         /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="MultiX">Sets the x coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
         /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="MultiY">Sets the y coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
@@ -4439,8 +4756,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?XGap: int,
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?YGap: int,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
@@ -4474,8 +4793,10 @@ module Chart2D =
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?X = X,
+                    ?MultiX = MultiX,
                     ?XGap = XGap,
                     ?Y = Y,
+                    ?MultiY = MultiY,
                     ?YGap = YGap,
                     ?Text = Text,
                     ?MultiText = MultiText,
@@ -4515,8 +4836,10 @@ module Chart2D =
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity otf the trace.</param>
         /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="MultiX">Sets the x coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
         /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="MultiY">Sets the y coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
@@ -4537,8 +4860,10 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?XGap: int,
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?YGap: int,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
@@ -4553,51 +4878,35 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let reverseYAxis =
-                defaultArg ReverseYAxis false
-
             let zData =
                 dataAnnotations |> Seq.map (Seq.map fst)
 
             let annotationText =
                 dataAnnotations |> Seq.map (Seq.map snd)
 
-            let style =
-                Trace2DStyle.Heatmap(
-                    Z = zData,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?X = X,
-                    ?XGap = XGap,
-                    ?Y = Y,
-                    ?YGap = YGap,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?ColorBar = ColorBar,
-                    ?ColorScale = ColorScale,
-                    ?ShowScale = ShowScale,
-                    ?ReverseScale = ReverseScale,
-                    ?ZSmooth = ZSmooth,
-                    ?Transpose = Transpose
-                )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderHeatmapTrace useDefaults useWebGL style
-            |> fun c ->
-                if reverseYAxis then
-                    c |> Chart.withYAxis (LinearAxis.init (AutoRange = StyleParam.AutoRange.Reversed))
-                else
-                    c
-            |> Chart.withAnnotations (
-                annotationText
-                |> Seq.mapi (fun y inner ->
-                    inner |> Seq.mapi (fun x text -> Annotation.init (x, y, Text = (string text), ShowArrow = false)))
-                |> Seq.concat
+            Chart.AnnotatedHeatmap(
+                zData = zData,
+                annotationText = annotationText,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?X = X,
+                ?MultiX = MultiX,
+                ?XGap = XGap,
+                ?Y = Y,
+                ?MultiY = MultiY,
+                ?YGap = YGap,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?ColorBar = ColorBar,
+                ?ColorScale = ColorScale,
+                ?ShowScale = ShowScale,
+                ?ReverseScale = ReverseScale,
+                ?ZSmooth = ZSmooth,
+                ?Transpose = Transpose,
+                ?UseWebGL = UseWebGL,
+                ?ReverseYAxis = ReverseYAxis,
+                ?UseDefaults = UseDefaults
             )
 
         /// <summary>
@@ -4718,7 +5027,9 @@ module Chart2D =
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity otf the trace.</param>
         /// <param name="X">Sets the x coordinates.</param>
+        /// <param name="MultiX">Sets the x coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Y">Sets the y coordinates.</param>
+        /// <param name="MultiY">Sets the y coordinates. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
@@ -4747,7 +5058,9 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Y: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiY: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
                 [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
@@ -4800,7 +5113,9 @@ module Chart2D =
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?X = X,
+                    ?MultiX = MultiX,
                     ?Y = Y,
+                    ?MultiY = MultiY,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?ColorBar = ColorBar,
@@ -4812,6 +5127,86 @@ module Chart2D =
                     ?NContours = NContours,
                     Contours = contours,
                     Line = line
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates an OHLC chart.
+        ///
+        /// The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="X">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="MultiX">Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member OHLC
+            (
+                ``open``: #IConvertible seq,
+                high: #IConvertible seq,
+                low: #IConvertible seq,
+                close: #IConvertible seq,
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?IncreasingColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Increasing: FinanceMarker,
+                [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
+                [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let increasing =
+                Increasing
+                |> Option.defaultValue (FinanceMarker.init ())
+                |> FinanceMarker.style (?LineColor = IncreasingColor)
+
+            let decreasing =
+                Decreasing
+                |> Option.defaultValue (FinanceMarker.init ())
+                |> FinanceMarker.style (?LineColor = DecreasingColor)
+
+            Trace2D.initOHLC (
+                Trace2DStyle.OHLC(
+                    Open = ``open``,
+                    High = high,
+                    Low = low,
+                    Close = close,
+                    ?X = X,
+                    ?MultiX = MultiX,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?Line = Line,
+                    Increasing = increasing,
+                    Decreasing = decreasing,
+                    ?TickWidth = TickWidth
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -4860,38 +5255,25 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let increasing =
-                Increasing
-                |> Option.defaultValue (FinanceMarker.init ())
-                |> FinanceMarker.style (?LineColor = IncreasingColor)
-
-            let decreasing =
-                Decreasing
-                |> Option.defaultValue (FinanceMarker.init ())
-                |> FinanceMarker.style (?LineColor = DecreasingColor)
-
-            Trace2D.initOHLC (
-                Trace2DStyle.OHLC(
-                    Open = ``open``,
-                    High = high,
-                    Low = low,
-                    Close = close,
-                    X = x,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?Line = Line,
-                    Increasing = increasing,
-                    Decreasing = decreasing,
-                    ?TickWidth = TickWidth
+                Chart.OHLC(
+                    ``open``        = ``open``,
+                    high            = high,
+                    low             = low,
+                    close           = close,
+                    X               = x,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?Text           = Text,
+                    ?MultiText      = MultiText,
+                    ?Line           = Line,
+                    ?IncreasingColor= IncreasingColor,
+                    ?Increasing     = Increasing,
+                    ?DecreasingColor= DecreasingColor,
+                    ?Decreasing     = Decreasing,
+                    ?TickWidth      = TickWidth,
+                    ?UseDefaults    = UseDefaults
                 )
-            )
-            |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
         /// Creates an OHLC chart.
@@ -4929,9 +5311,6 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
-
             Chart.OHLC(
                 ``open`` = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.Open))),
                 high = (stockTimeSeries |> Seq.map (snd >> (fun x -> x.High))),
@@ -4963,7 +5342,8 @@ module Chart2D =
         /// <param name="high">Sets the high values.</param>
         /// <param name="low">Sets the low values.</param>
         /// <param name="close">Sets the close values.</param>
-        /// <param name="x">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="X">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="MultiX">Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the Opacity otf the trace.</param>
@@ -4982,7 +5362,8 @@ module Chart2D =
                 high: #IConvertible seq,
                 low: #IConvertible seq,
                 close: #IConvertible seq,
-                x: #IConvertible seq,
+                [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?MultiX: seq<seq<#IConvertible>>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -5016,7 +5397,8 @@ module Chart2D =
                     High = high,
                     Low = low,
                     Close = close,
-                    X = x,
+                    ?X = X,
+                    ?MultiX = MultiX,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -5029,6 +5411,71 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates a candlestick chart.
+        ///
+        /// The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+        /// </summary>
+        /// <param name="open">Sets the open values.</param>
+        /// <param name="high">Sets the high values.</param>
+        /// <param name="low">Sets the low values.</param>
+        /// <param name="close">Sets the close values.</param>
+        /// <param name="X">Sets the x coordinates. If absent, linear coordinate will be generated.</param>
+        /// <param name="MultiX">Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="Line">Sets the line of this trace.</param>
+        /// <param name="IncreasingColor">Sets the color of increasing values</param>
+        /// <param name="Increasing">Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="DecreasingColor">Sets the color of decreasing values</param>
+        /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
+        /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Candlestick
+            (
+                ``open``: #IConvertible seq,
+                high: #IConvertible seq,
+                low: #IConvertible seq,
+                close: #IConvertible seq,
+                x: #IConvertible seq,
+                [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+                [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
+                [<Optional; DefaultParameterValue(null)>] ?MultiText: seq<#IConvertible>,
+                [<Optional; DefaultParameterValue(null)>] ?Line: Line,
+                [<Optional; DefaultParameterValue(null)>] ?IncreasingColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Increasing: FinanceMarker,
+                [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
+                [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
+            ) =
+
+                Chart.Candlestick(
+                    ``open``        = ``open``,
+                    high            = high,
+                    low             = low,
+                    close           = close,
+                    X               = x,
+                    ?Name           = Name,
+                    ?ShowLegend     = ShowLegend,
+                    ?Opacity        = Opacity,
+                    ?Text           = Text,
+                    ?MultiText      = MultiText,
+                    ?Line           = Line,
+                    ?IncreasingColor= IncreasingColor,
+                    ?Increasing     = Increasing,
+                    ?DecreasingColor= DecreasingColor,
+                    ?Decreasing     = Decreasing,
+                    ?WhiskerWidth   = WhiskerWidth,
+                    ?UseDefaults    = UseDefaults
+                )
 
         /// <summary>
         /// Creates a candlestick chart.
