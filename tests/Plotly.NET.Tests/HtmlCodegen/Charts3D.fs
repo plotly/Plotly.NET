@@ -32,7 +32,7 @@ let scatterChart =
     let y = [19; 26; 55;]
     let z = [19; 26; 55;]
 
-    Chart.Scatter3D(x,y,z,StyleParam.Mode.Markers, UseDefaults = false)
+    Chart.Scatter3D(x = x,y = y,z = z, mode = StyleParam.Mode.Markers, UseDefaults = false)
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
@@ -56,7 +56,7 @@ let pointChart =
     let y = [19; 26; 55;]
     let z = [19; 26; 55;]
 
-    Chart.Point3D(x,y,z, UseDefaults = false)
+    Chart.Point3D(x = x,y = y,z = z, UseDefaults = false)
     |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("my z-axis")
@@ -91,7 +91,7 @@ let lineChart =
         )
         |> List.unzip3
 
-    Chart.Line3D(x, y, z, ShowMarkers=true, UseDefaults = false)
+    Chart.Line3D(x = x, y = y, z = z, ShowMarkers=true, UseDefaults = false)
     |> Chart.withXAxisStyle("x-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withYAxisStyle("y-axis", Id=StyleParam.SubPlotId.Scene 1)
     |> Chart.withZAxisStyle("z-axis")
@@ -112,8 +112,8 @@ let ``Line charts`` =
 
 let bubbleChart =
     Chart.Bubble3D(
-        [1,3,2; 6,5,4; 7,9,8],
-        [20; 40; 30],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
+        sizes = [20; 40; 30],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.TopLeft, 
         UseDefaults = false 
@@ -151,7 +151,7 @@ let firstSurfaceChart =
             Array.init size (fun j -> f x.[j] y.[i] )
                         )
     
-    Chart.Surface(z, UseDefaults = false)
+    Chart.Surface(zData = z, UseDefaults = false)
 
 
 let secondSurfaceChart =
@@ -162,7 +162,7 @@ let secondSurfaceChart =
         [1.;2.;];
         ] // column (length y)
     
-    Chart.Surface(z', x', y', Opacity=0.5, Contours=Contours.initXyz(Show=true), UseDefaults = false)
+    Chart.Surface(zData = z', X = x', Y = y', Opacity=0.5, Contours=Contours.initXyz(Show=true), UseDefaults = false)
 
 [<Tests>]
 let ``Surface charts`` =
@@ -287,10 +287,10 @@ let ``StreamTube charts`` =
 let volumeChart = 
     let x,y,z = mgrid(1.,2.,4)
     Chart.Volume(
-        x |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
-        y |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
-        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
-        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        x = (x |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
+        y = (y |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
+        z = (z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
+        value = (z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
         ColorScale = StyleParam.Colorscale.Viridis, 
         UseDefaults = false
     )
@@ -311,10 +311,10 @@ let ``Volume charts`` =
 let isoSurfaceChart = 
     let x,y,z = mgrid(1.,2.,4)
     Chart.IsoSurface(
-        x |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
-        y |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
-        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
-        z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3)),
+        x = (x |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
+        y = (y |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
+        z = (z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
+        value = (z |> Array.concat |> Array.concat |> Array.map (fun x -> Math.Round(x,3))),
         ColorScale = StyleParam.Colorscale.Viridis, 
         UseDefaults = false
     )

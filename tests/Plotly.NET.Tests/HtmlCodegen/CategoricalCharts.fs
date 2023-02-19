@@ -17,7 +17,7 @@ let parcats =
         ]
     
     Chart.ParallelCategories(
-        dims,
+        dimensions = dims,
         LineColor=Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
         LineColorScale = StyleParam.Colorscale.Blackbody, 
         UseDefaults = false
@@ -33,7 +33,7 @@ let parcatsStyled =
         ]
 
     Chart.ParallelCategories(
-        dims,
+        dimensions = dims,
         LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
         LineColorScale = StyleParam.Colorscale.Viridis,
         BundleColors = false,
@@ -68,7 +68,7 @@ let parcoords =
             "C",[2.;4.;3.1;5.]
             "D",[4.;2.;2.;4.;]
         ]
-    Chart.ParallelCoord(data,LineColor=Color.fromString "blue", UseDefaults = false)
+    Chart.ParallelCoord(keyValues = data,LineColor=Color.fromString "blue", UseDefaults = false)
 
 let parcoordsStyled =
 
@@ -85,7 +85,7 @@ let parcoordsStyled =
         |> Color.fromColorScaleValues
 
     Chart.ParallelCoord(
-        dims,
+        dimensions = dims,
         LineColorScale = StyleParam.Colorscale.Viridis,
         LineColor = colors,
         UseDefaults = false
@@ -161,8 +161,8 @@ let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve"
 
 let icicleChart =
     Chart.Icicle(
-        character,
-        parent,
+        labels = character,
+        parents = parent,
         ShowSectionColorScale = true,
         SectionColorScale = StyleParam.Colorscale.Viridis,
         TilingOrientation = StyleParam.Orientation.Vertical,
@@ -189,7 +189,7 @@ let icicleStyled =
     ]
 
     Chart.Icicle(
-        labelsParents |> Seq.map fst,
+        labelsparents = (labelsParents |> Seq.map fst),
         Values = (labelsParents |> Seq.map snd), 
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,
@@ -220,11 +220,9 @@ let ``Icicle charts`` =
 
 
 let sunburstChart =
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
     Chart.Sunburst(
-        ["A";"B";"C";"D";"E"],
-        ["";"";"B";"B";""],
+        labels = ["A";"B";"C";"D";"E"],
+        parents = ["";"";"B";"B";""],
         Values=[5.;0.;3.;2.;3.],
         MultiText=["At";"Bt";"Ct";"Dt";"Et"], 
         UseDefaults = false
@@ -248,7 +246,7 @@ let sunburstStyled =
     ]
 
     Chart.Sunburst(
-        labelsParents |> Seq.map fst,
+        labelsparents = (labelsParents |> Seq.map fst),
         Values = (labelsParents |> Seq.map snd), 
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,
@@ -296,7 +294,7 @@ let treemapStyled =
     ]
 
     Chart.Treemap(
-        labelsParents |> Seq.map fst,
+        labelsparents = (labelsParents |> Seq.map fst),
         Values = (labelsParents |> Seq.map snd), 
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,

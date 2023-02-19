@@ -12,7 +12,7 @@ open TestUtils.HtmlCodegen
 let histoChart =
     let rnd = System.Random(5)
     let x = [for i=0 to 500 do yield rnd.NextDouble() ]
-    Chart.Histogram(x, UseDefaults = false)
+    Chart.Histogram(X = x, UseDefaults = false)
     |> Chart.withSize(500, 500)
 
 [<Tests>]
@@ -35,12 +35,12 @@ let ``Histogram charts`` =
 let box1Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    Chart.BoxPlot(x,y,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false)
+    Chart.BoxPlot(X = x, Y = y,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false)
 
 let box2Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
-    Chart.BoxPlot(y,x,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All,Orientation=StyleParam.Orientation.Horizontal, UseDefaults = false)
+    Chart.BoxPlot(X = y,Y = x,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All,Orientation=StyleParam.Orientation.Horizontal, UseDefaults = false)
 
 let box3Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
@@ -82,7 +82,7 @@ let violin1Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
     Chart.Violin (
-        x,y,
+        X = x, Y = y,
         Points=StyleParam.JitterPoints.All, 
         UseDefaults = false
     )
@@ -91,7 +91,7 @@ let violin2Chart =
     let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
     Chart.Violin(
-        y,x,
+        X = y, Y = x,
         Jitter=0.1,
         Points=StyleParam.JitterPoints.All,
         Orientation=StyleParam.Orientation.Horizontal,
@@ -155,7 +155,7 @@ let contourChart =
             )
         )
 
-    Chart.Contour(z, UseDefaults = false)
+    Chart.Contour(zData = z, UseDefaults = false)
     |> Chart.withSize(600.,600.)
 
 [<Tests>]
@@ -193,8 +193,8 @@ let histogramContourChart =
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
     [
-        Chart.Histogram2DContour (x,y,ContourLine=Line.init(Width=0.), UseDefaults = false)
-        Chart.Point(x,y,Opacity=0.3, UseDefaults = false)
+        Chart.Histogram2DContour (x = x, y = y,ContourLine=Line.init(Width=0.), UseDefaults = false)
+        Chart.Point(x = x,y = y,Opacity=0.3, UseDefaults = false)
     ]
     |> Chart.combine
 
@@ -220,7 +220,7 @@ let histogram2DChart =
     //---------------------- generate data distributed in x and y direction ---------------------- 
     let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
     let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
-    Chart.Histogram2D (x,y, UseDefaults = false)
+    Chart.Histogram2D (x = x, y = y, UseDefaults = false)
 
 [<Tests>]
 let ``Histogram 2D charts`` =
@@ -250,7 +250,7 @@ let scatterplotMatrixChart =
             "C",[|2.;4.;3.1;5.|]
             "D",[|4.;2.;2.;4.;|]
         ]
-    Chart.Splom(data, MarkerColor=Color.fromString "blue", UseDefaults = false)
+    Chart.Splom(keyValues = data, MarkerColor=Color.fromString "blue", UseDefaults = false)
 
 [<Tests>]
 let ``Scatterplot matrix charts`` =
@@ -268,15 +268,15 @@ let pointDensityChart =
     let rnd = new System.Random(5)
     let x = [for i in 0 .. 100 -> rnd.NextDouble()]
     let y = [for i in 0 .. 100 -> rnd.NextDouble()]
-    Chart.PointDensity(x,y,UseDefaults = false)
+    Chart.PointDensity(x = x,y = y,UseDefaults = false)
 
 let pointDensityChartStyled = 
     let rnd = new System.Random(5)
     let x = [for i in 0 .. 100 -> rnd.NextDouble()]
     let y = [for i in 0 .. 100 -> rnd.NextDouble()]
     Chart.PointDensity(
-        x,
-        y,
+        x = x,
+        y = y,
         PointMarkerColor = Color.fromKeyword Purple,
         PointMarkerSymbol = StyleParam.MarkerSymbol.X,
         PointMarkerSize = 4,

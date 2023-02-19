@@ -10,7 +10,7 @@ open System
 open TestUtils.HtmlCodegen
 
 let pointTernary =
-    Chart.PointTernary([1,2,3], UseDefaults = false)
+    Chart.PointTernary(abc = [1,2,3], UseDefaults = false)
     |> Chart.withAAxis(LinearAxis.init(Title = Title.init("A"), Color = Color.fromKeyword ColorKeyword.DarkOrchid))
     |> Chart.withBAxis(LinearAxis.init(Title = Title.init("B"), Color = Color.fromKeyword ColorKeyword.DarkRed))
     |> Chart.withCAxis(LinearAxis.init(Title = Title.init("C"), Color = Color.fromKeyword ColorKeyword.DarkCyan))

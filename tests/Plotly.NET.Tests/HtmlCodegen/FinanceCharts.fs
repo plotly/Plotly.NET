@@ -24,12 +24,12 @@ let candles =
     |]
     |> Array.map (fun (d,o,h,l,c)->System.DateTime.Parse d, StockData.Create(o,h,l,c))
 
-let candles1Chart = Chart.Candlestick(candles, UseDefaults = false)
+let candles1Chart = Chart.Candlestick(stockTimeSeries = candles, UseDefaults = false)
 
 
 let candles2Chart = 
     let rangeslider = RangeSlider.init(Visible=false)
-    Chart.Candlestick(candles, UseDefaults = false)
+    Chart.Candlestick(stockTimeSeries = candles, UseDefaults = false)
     |> Chart.withXAxisRangeSlider rangeslider
 
 [<Tests>]
@@ -64,7 +64,7 @@ let funnelChart =
     // Customize the outline of the funnel bars
     let line = Line.init(Width=2.,Color=Color.fromString "3E4E88")
     
-    Chart.Funnel (x,y,MarkerColor=Color.fromString "59D4E8", MarkerOutline=line, Connector=connector, UseDefaults = false)
+    Chart.Funnel (x = x, y = y,MarkerColor=Color.fromString "59D4E8", MarkerOutline=line, Connector=connector, UseDefaults = false)
     |> Chart.withMarginSize(Left=100)
 
 [<Tests>]
@@ -86,7 +86,7 @@ let funnelArea =
     let values = [|5; 4; 3; 2; 1|]
     let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
     let line = Line.init (Color=Color.fromString "purple", Width=3.)
-    Chart.FunnelArea(values, MultiText=text, SectionOutline=line, UseDefaults = false)
+    Chart.FunnelArea(values=values, MultiText=text, SectionOutline=line, UseDefaults = false)
 
 
 let funnelAreaStyled =
@@ -94,7 +94,7 @@ let funnelAreaStyled =
     let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
 
     Chart.FunnelArea(
-        values,
+        values = values,
         Labels = labels,
         MultiText = labels,
         SectionColors = [
@@ -132,14 +132,16 @@ let ``Funnel area charts`` =
 let indicators =
     [
         ChartDomain.Chart.Indicator(
-            200., StyleParam.IndicatorMode.NumberDeltaGauge,
+            value = 200., 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
             Delta   = IndicatorDelta.init(Reference=160),
             Range   = StyleParam.Range.MinMax(0., 250.),
             Domain  = Domain.init(Row = 0, Column = 0), 
             UseDefaults = false
         )
         Chart.Indicator(
-            120, StyleParam.IndicatorMode.NumberDeltaGauge,
+            value = 120, 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
             DeltaReference = 90,
             Range = StyleParam.Range.MinMax(-200., 200.),
             GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
@@ -148,13 +150,15 @@ let indicators =
             UseDefaults = false
         )
         Chart.Indicator(
-            "300", StyleParam.IndicatorMode.NumberDelta,
+            value = "300", 
+            mode = StyleParam.IndicatorMode.NumberDelta,
             DeltaReference = 90.,
             Domain  = Domain.init(Row = 1, Column = 0), 
             UseDefaults = false
         )        
         Chart.Indicator(
-            40., StyleParam.IndicatorMode.Delta,
+            value = 40., 
+            mode = StyleParam.IndicatorMode.Delta,
             DeltaReference = 90.,
             Domain  = Domain.init(Row = 1, Column = 1), 
             UseDefaults = false

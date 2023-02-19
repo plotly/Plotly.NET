@@ -15,16 +15,16 @@ let radial  = [ 1; 2; 3; 4; 5; 6; 7;]
 let theta  = [0; 45; 90; 135; 200; 320; 184;]
 
 
-let pointPolar = Chart.PointPolar(radial,theta, UseDefaults = false)
+let pointPolar = Chart.PointPolar(r = radial,theta = theta, UseDefaults = false)
 
 let linePolar = 
-    Chart.LinePolar(radial,theta, UseDefaults = false)
+    Chart.LinePolar(r = radial,theta = theta, UseDefaults = false)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
 
 let splinePolar = 
     Chart.SplinePolar(
-        radial,
-        theta,
+        r = radial,
+        theta = theta,
         MultiText=["one";"two";"three";"four";"five";"six";"seven"],
         TextPosition=StyleParam.TextPosition.TopCenter,
         ShowMarkers=true, 
@@ -40,10 +40,10 @@ let barPolar =
     let t = ["North"; "N-E"; "East"; "S-E"; "South"; "S-W"; "West"; "N-W"]
 
     [
-        Chart.BarPolar (r , t, Name="11-14 m/s" , MarkerPatternShape = StyleParam.PatternShape.Checked        , UseDefaults = false)
-        Chart.BarPolar (r2, t, Name="8-11 m/s"  , MarkerPatternShape = StyleParam.PatternShape.DiagonalChecked, UseDefaults = false)
-        Chart.BarPolar (r3, t, Name="5-8 m/s"   , MarkerPatternShape = StyleParam.PatternShape.VerticalLines  , UseDefaults = false)
-        Chart.BarPolar (r4, t, Name="< 5 m/s"   , MarkerPatternShape = StyleParam.PatternShape.HorizontalLines, UseDefaults = false)
+        Chart.BarPolar (r = r , theta = t, Name="11-14 m/s" , MarkerPatternShape = StyleParam.PatternShape.Checked        , UseDefaults = false)
+        Chart.BarPolar (r = r2, theta = t, Name="8-11 m/s"  , MarkerPatternShape = StyleParam.PatternShape.DiagonalChecked, UseDefaults = false)
+        Chart.BarPolar (r = r3, theta = t, Name="5-8 m/s"   , MarkerPatternShape = StyleParam.PatternShape.VerticalLines  , UseDefaults = false)
+        Chart.BarPolar (r = r4, theta = t, Name="< 5 m/s"   , MarkerPatternShape = StyleParam.PatternShape.HorizontalLines, UseDefaults = false)
     ]
     |> Chart.combine
     |> Chart.withAngularAxis(

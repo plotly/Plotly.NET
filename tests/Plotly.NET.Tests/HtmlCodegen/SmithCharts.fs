@@ -11,9 +11,9 @@ open TestUtils.HtmlCodegen
 
 let scatterSmithChart =
     Chart.ScatterSmith(
-        [0.5; 1.; 2.; 3.],
-        [0.5; 1.; 2.; 3.],
-        StyleParam.Mode.Lines_Markers_Text,
+        real = [0.5; 1.; 2.; 3.],
+        imag = [0.5; 1.; 2.; 3.],
+        mode = StyleParam.Mode.Lines_Markers_Text,
         MultiText = ["Pretty"; "Cool"; "Plot"; "Huh?"],
         TextPosition = StyleParam.TextPosition.TopCenter,
         UseDefaults = false
@@ -21,15 +21,15 @@ let scatterSmithChart =
 
 let pointSmithChart =
     Chart.PointSmith(
-        [0.5; 1.; 2.; 3.],
-        [0.5; 1.; 2.; 3.],
+        real = [0.5; 1.; 2.; 3.],
+        imag = [0.5; 1.; 2.; 3.],
         UseDefaults = false
     )
 
 let lineSmithChart =
     Chart.LineSmith(
-        [0.5; 1.; 2.; 3.],
-        [0.5; 1.; 2.; 3.],
+        real = [0.5; 1.; 2.; 3.],
+        imag = [0.5; 1.; 2.; 3.],
         LineDash = StyleParam.DrawingStyle.DashDot,
         LineColor = Color.fromKeyword Purple,
         UseDefaults = false
@@ -37,8 +37,8 @@ let lineSmithChart =
 
 let bubbleSmithChart =
     Chart.BubbleSmith(
-        [0.5; 1.; 2.; 3.],
-        [0.5; 1.; 2.; 3.],
+        real = [0.5; 1.; 2.; 3.],
+        imag = [0.5; 1.; 2.; 3.],
         sizes = [10;20;30;40],
         MultiText=["one";"two";"three";"four";"five";"six";"seven"],
         TextPosition=StyleParam.TextPosition.TopCenter,

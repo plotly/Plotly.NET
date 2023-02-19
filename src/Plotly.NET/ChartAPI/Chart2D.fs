@@ -3707,7 +3707,8 @@ module Chart2D =
                     ?ColorScale = ColorScale,
                     ?ShowScale = ShowScale,
                     ?ReverseScale = ReverseScale,
-                    ?ZSmooth = ZSmooth
+                    ?ZSmooth = ZSmooth,
+                    ?UseDefaults = UseDefaults
                 )
 
 

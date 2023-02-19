@@ -11,10 +11,10 @@ open TestUtils.HtmlCodegen
 let simpleChart =
     let xData = [0. .. 10.]
     let yData = [0. .. 10.]
-    Chart.Point(xData, yData, UseDefaults = false)
+    Chart.Point(x = xData, y = yData, UseDefaults = false)
     |> Chart.withTitle "Hello world!"
-    |> Chart.withXAxisStyle ("xAxis", ShowGrid=false)
-    |> Chart.withYAxisStyle ("yAxis", ShowGrid=false)
+    |> Chart.withXAxisStyle (TitleText = "xAxis", ShowGrid=false)
+    |> Chart.withYAxisStyle (TitleText = "yAxis", ShowGrid=false)
 
 [<Tests>]
 let ``Html layout tests`` =

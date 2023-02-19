@@ -90,8 +90,8 @@ let pointGeoChart =
         44.64; 48.25; 49.89; 50.45
     ]
     Chart.PointGeo(
-        lon,
-        lat,
+        longitudes = lon,
+        latitudes = lat,
         MultiText=cityNames,
         TextPosition=StyleParam.TextPosition.TopCenter, 
         UseDefaults = false
@@ -134,7 +134,7 @@ let flightsMapChart =
     coords 
     |> Seq.mapi (fun i (startCoords,endCoords) ->
         Chart.LineGeo(
-            [startCoords; endCoords],
+            lonlat = [startCoords; endCoords],
             Opacity = opacityVals.[i],
             MarkerColor = Color.fromString  "red",
             UseDefaults = false
@@ -227,14 +227,14 @@ let locations,z =
 
 let choroplethMap1Chart =
     Chart.ChoroplethMap(
-        locations,z,
+        locations = locations,z = z,
         LocationMode=StyleParam.LocationFormat.CountryNames,
         UseDefaults = false
     )
 
 let choroplethMap2Chart =
     Chart.ChoroplethMap(
-        locations,z,
+        locations = locations,z = z,
         LocationMode=StyleParam.LocationFormat.CountryNames, 
         UseDefaults = false
     )

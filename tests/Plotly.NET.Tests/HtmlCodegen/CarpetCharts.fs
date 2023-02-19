@@ -15,11 +15,11 @@ let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
 
 let carpets = 
     [
-        Chart.Carpet("carpet1",A = a, B = b, Y = y, UseDefaults = false)
-        Chart.Carpet("carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)), UseDefaults = false)
-        Chart.Carpet("carpet3",A = a, B = b, Y = (y |> List.map (fun x -> x + 20.)), UseDefaults = false)
-        Chart.Carpet("carpet4",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 30.)), UseDefaults = false)
-        Chart.Carpet("carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)), UseDefaults = false)
+        Chart.Carpet(carpetId = "carpet1",A = a, B = b, Y = y, UseDefaults = false)
+        Chart.Carpet(carpetId = "carpet2",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 10.)), UseDefaults = false)
+        Chart.Carpet(carpetId = "carpet3",A = a, B = b, Y = (y |> List.map (fun x -> x + 20.)), UseDefaults = false)
+        Chart.Carpet(carpetId = "carpet4",A = (a |> List.rev) , B = (b |> List.rev), Y = (y |> List.map (fun x -> x + 30.)), UseDefaults = false)
+        Chart.Carpet(carpetId = "carpet5",A = a, B = b, Y = (y |> List.map (fun x -> x + 40.)), UseDefaults = false)
     ]
 
 let aData = [4.; 5.; 5.; 6.]
@@ -30,9 +30,9 @@ let sizes = [5; 10; 15; 20]
 let carpetCharts =
     [
         Chart.ScatterCarpet(
-            aData,bData,
-            StyleParam.Mode.Lines_Markers,
-            "carpet1",
+            a = aData,b = bData,
+            mode = StyleParam.Mode.Lines_Markers,
+            carpetAnchorId = "carpet1",
             Name = "Scatter",
             MultiMarkerSymbol =[
                 StyleParam.MarkerSymbol.ArrowDown
@@ -43,10 +43,10 @@ let carpetCharts =
             MarkerColor = Color.fromColors ([Red; Blue; Green; Yellow] |> List.map Color.fromKeyword), 
             UseDefaults = false
         )
-        Chart.PointCarpet(aData,bData,"carpet2",Name = "Point", UseDefaults = false)
-        Chart.LineCarpet(aData,bData,"carpet3",Name = "Line", UseDefaults = false)
-        Chart.SplineCarpet(aData,bData,"carpet4",Name = "Spline", UseDefaults = false)
-        Chart.BubbleCarpet((Seq.zip3 aData bData sizes),"carpet5",Name = "Bubble", UseDefaults = false)
+        Chart.PointCarpet(a = aData, b = bData, carpetAnchorId = "carpet2",Name = "Point", UseDefaults = false)
+        Chart.LineCarpet(a = aData, b = bData, carpetAnchorId = "carpet3",Name = "Line", UseDefaults = false)
+        Chart.SplineCarpet(a = aData, b = bData, carpetAnchorId = "carpet4",Name = "Spline", UseDefaults = false)
+        Chart.BubbleCarpet(absizes = (Seq.zip3 aData bData sizes), carpetAnchorId = "carpet5",Name = "Bubble", UseDefaults = false)
     ]
 
 let scatter = Chart.combine [carpets.[0]; carpetCharts.[0]]
@@ -101,7 +101,7 @@ let ``ScatterCarpet and derived Charts`` =
 let contour = 
     [
         Chart.Carpet(
-            "contour",
+            carpetId = "contour",
             A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
             B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
             X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
@@ -122,8 +122,8 @@ let contour =
             Opacity = 0.75
         )    
         Chart.ContourCarpet(
-            [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
-            "contour",
+            z = [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+            carpetAnchorId = "contour",
             A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
             B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
             UseDefaults = false,
