@@ -12,7 +12,10 @@ index: 6
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,9 +27,7 @@ index: 6
 # Layout images
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
-
 
 *Summary:* This example shows how to create Images and add them to the Charts in F#.
 
@@ -37,7 +38,7 @@ let's first create some data for the purpose of creating example charts:
 open Plotly.NET 
   
 let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
 
 (**
 use the `LayoutImage.init` function to generate an image, and either the `Chart.withLayoutImage` or the `Chart.withLayoutImages` function to add
@@ -62,7 +63,7 @@ let image =
     )
 
 let imageChart =
-    Chart.Line(x,y',Name="line")    
+    Chart.Line(x = x, y = y, Name="line")    
     |> Chart.withLayoutImage(image)
 
 (*** condition: ipynb ***)

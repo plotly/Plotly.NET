@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 1
 # Candlestick Charts
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create candlestick charts in F#.
@@ -61,11 +63,11 @@ open Plotly.NET.TraceObjects
 
 let ohlc1 = 
     Chart.OHLC(
-        openData |> Seq.take 30,
-        highData |> Seq.take 30,
-        lowData |> Seq.take 30,
-        closeData |> Seq.take 30,
-        dateData |> Seq.take 30
+        ``open``= (openData |> Seq.take 30),
+        high = (highData |> Seq.take 30),
+        low = (lowData |> Seq.take 30),
+        close = (closeData |> Seq.take 30),
+        x = (dateData |> Seq.take 30)
     )
 
 (*** condition: ipynb ***)
@@ -83,11 +85,11 @@ ohlc1 |> GenericChart.toChartHTML
 
 let ohlc2= 
     Chart.OHLC(
-        openData,
-        highData,
-        lowData,
-        closeData,
-        dateData,
+        ``open`` = openData,
+        high = highData,
+        low = lowData,
+        close = closeData,
+        x = dateData,
         IncreasingColor = Color.fromKeyword Cyan,
         DecreasingColor = Color.fromKeyword Gray
     )

@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -60,7 +63,12 @@ Ternary plots are tools for analyzing compositional data in the three-dimensiona
 use `Chart.PointTernary` to create a ternary plot that displays points on a ternary coordinate system:
 *)
 
-let ternaryPoint = Chart.PointTernary(a,b,c)
+let ternaryPoint =
+    Chart.PointTernary(
+        A = a,
+        B = b,
+        C = c
+    )
 (*** condition: ipynb ***)
 #if IPYNB
 ternaryPoint
@@ -81,7 +89,11 @@ You can also for example change the line style using `Chart.withLineStyle`
 *)
 
 let lineTernary = 
-    Chart.LineTernary(a,b,Sum = 10)
+    Chart.LineTernary(
+        A = a,
+        B = b,
+        Sum = 10
+    )
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
 
 (*** condition: ipynb ***)

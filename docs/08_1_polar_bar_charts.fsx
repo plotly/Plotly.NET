@@ -12,7 +12,10 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -55,10 +58,10 @@ open Plotly.NET.LayoutObjects
 let windrose1 =
 
     [
-        Chart.BarPolar (r , t, Name="11-14 m/s",  MarkerPatternShape = StyleParam.PatternShape.Checked)
-        Chart.BarPolar (r2, t, Name="8-11 m/s" ,  MarkerPatternShape = StyleParam.PatternShape.DiagonalChecked)
-        Chart.BarPolar (r3, t, Name="5-8 m/s"  ,  MarkerPatternShape = StyleParam.PatternShape.VerticalLines)
-        Chart.BarPolar (r4, t, Name="< 5 m/s"  ,  MarkerPatternShape = StyleParam.PatternShape.HorizontalLines)
+        Chart.BarPolar (r = r , theta = t, Name="11-14 m/s",  MarkerPatternShape = StyleParam.PatternShape.Checked)
+        Chart.BarPolar (r = r2, theta = t, Name="8-11 m/s" ,  MarkerPatternShape = StyleParam.PatternShape.DiagonalChecked)
+        Chart.BarPolar (r = r3, theta = t, Name="5-8 m/s"  ,  MarkerPatternShape = StyleParam.PatternShape.VerticalLines)
+        Chart.BarPolar (r = r4, theta = t, Name="< 5 m/s"  ,  MarkerPatternShape = StyleParam.PatternShape.HorizontalLines)
     ]
     |> Chart.combine
     |> Chart.withAngularAxis(

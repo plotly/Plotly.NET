@@ -12,8 +12,10 @@ index: 4
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 (*** condition: ipynb ***)
 #if IPYNB
 #r "nuget: Plotly.NET, {{fsdocs-package-version}}"
@@ -24,7 +26,6 @@ index: 4
 # FunnelArea Charts
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create funnel area charts in F#.
@@ -47,7 +48,11 @@ open Plotly.NET
 let line = Line.init (Color=Color.fromString "purple", Width=3.)
 
 let funnelArea = 
-    Chart.FunnelArea(values, MultiText=text, SectionOutline=line)
+    Chart.FunnelArea(
+        values = values, 
+        MultiText=text, 
+        SectionOutline=line
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -71,7 +76,7 @@ let funnelAreaStyled =
     let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
 
     Chart.FunnelArea(
-        values,
+        values = values,
         Labels = labels,
         MultiText = labels,
         SectionColors = [

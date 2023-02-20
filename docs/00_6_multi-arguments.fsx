@@ -12,7 +12,10 @@ index: 7
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 7
 # Single and multi arguments
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 Plotly.js has many properties that can be either a single value or a collection of values.
@@ -43,7 +45,7 @@ open Plotly.NET
 
 let bar1 =
     Chart.Bar(
-        [
+        keysValues = [
             "first", 1
             "second", 2
             "third", 3
@@ -82,7 +84,7 @@ Here is the exact opposite chart to the above, with single values for multi and 
 
 let bar2 =
     Chart.Bar(
-        [
+        keysValues = [
             "first", 1
             "second", 2
             "third", 3
@@ -93,8 +95,8 @@ let bar2 =
         Text = "its a bar", // one text item for the whole trace
         MultiTextPosition = [ // Textposition for every individual text item associated with this trace
             StyleParam.TextPosition.Outside
-            StyleParam.TextPosition.Inside
             StyleParam.TextPosition.Outside
+            StyleParam.TextPosition.Inside
         ] 
     )
 

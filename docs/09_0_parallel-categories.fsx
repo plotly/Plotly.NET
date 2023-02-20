@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 1
 # Parallel categories
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create parallel categories plot in F#.
@@ -44,7 +46,7 @@ let dims =
 
 let parcats =
     Chart.ParallelCategories(
-        dims,
+        dimensions = dims,
         LineColor = Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
         LineColorScale = StyleParam.Colorscale.Blackbody
     )
@@ -74,7 +76,7 @@ let parcatsStyled =
         ]
 
     Chart.ParallelCategories(
-        dims,
+        dimensions = dims,
         LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
         LineColorScale = StyleParam.Colorscale.Viridis,
         BundleColors = false

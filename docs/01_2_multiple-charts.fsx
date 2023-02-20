@@ -12,7 +12,10 @@ index: 3
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 3
 # Multicharts and subplots
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create charts with multiple subplots in F#.
@@ -50,8 +52,8 @@ produce a composite chart with one layout containing all traces of the input:
 
 let combinedChart = 
     [
-        Chart.Line(x,y,Name="first")
-        Chart.Line(y,x,Name="second")
+        Chart.Line(x = x, y = y,Name="first")
+        Chart.Line(x = y, y = x,Name="second")
     ]
     |> Chart.combine
 
@@ -77,16 +79,16 @@ You can either use Chart.Grid with a 1 dimensional sequence of Charts and specif
 //simple 2x2 subplot grid
 let grid = 
     [
-        Chart.Point(x,y,Name="1,1")
+        Chart.Point(x = x, y = y,Name="1,1")
         |> Chart.withXAxisStyle "x1"
         |> Chart.withYAxisStyle "y1"    
-        Chart.Line(x,y,Name="1,2")
+        Chart.Line(x = x, y = y,Name="1,2")
         |> Chart.withXAxisStyle "x2"
         |> Chart.withYAxisStyle "y2"
-        Chart.Spline(x,y,Name="2,1")
+        Chart.Spline(x = x, y = y,Name="2,1")
         |> Chart.withXAxisStyle "x3"
         |> Chart.withYAxisStyle "y3"    
-        Chart.Point(x,y,Name="2,2")
+        Chart.Point(x = x, y = y,Name="2,2")
         |> Chart.withXAxisStyle "x4"
         |> Chart.withYAxisStyle "y4"
     ]
@@ -109,18 +111,18 @@ or provide a 2-dimensional Chart sequence as input, the dimensions of the input 
 let grid2 = 
     [
         [
-            Chart.Point(x,y,Name="1,1")
+            Chart.Point(x = x, y = y,Name="1,1")
             |> Chart.withXAxisStyle "x1"
             |> Chart.withYAxisStyle "y1"    
-            Chart.Line(x,y,Name="1,2")
+            Chart.Line(x = x, y = y,Name="1,2")
             |> Chart.withXAxisStyle "x2"
             |> Chart.withYAxisStyle "y2"
         ]
         [
-            Chart.Spline(x,y,Name="2,1")
+            Chart.Spline(x = x, y = y,Name="2,1")
             |> Chart.withXAxisStyle "x3"
             |> Chart.withYAxisStyle "y3"    
-            Chart.Point(x,y,Name="2,2")
+            Chart.Point(x = x, y = y,Name="2,2")
             |> Chart.withXAxisStyle "x4"
             |> Chart.withYAxisStyle "y4"
         
@@ -146,17 +148,17 @@ to the row with the highest amount of charts, and the other rows will be filled 
 //simple 2x2 subplot grid with an empty cell at position 1,2
 let grid3 = 
     [
-        Chart.Point(x,y,Name="1,1")
+        Chart.Point(x = x, y = y,Name="1,1")
         |> Chart.withXAxisStyle "x1"
         |> Chart.withYAxisStyle "y1"    
 
         Chart.Invisible()
 
-        Chart.Spline(x,y,Name="2,1")
+        Chart.Spline(x = x, y = y,Name="2,1")
         |> Chart.withXAxisStyle "x3"
         |> Chart.withYAxisStyle "y3"    
 
-        Chart.Point(x,y,Name="2,2")
+        Chart.Point(x = x, y = y,Name="2,2")
         |> Chart.withXAxisStyle "x4"
         |> Chart.withYAxisStyle "y4"
     ]
@@ -178,20 +180,20 @@ use `Pattern=StyleParam.LayoutGridPatter.Coupled` to use one shared x axis per c
 
 let grid4 =
     [
-        Chart.Point(x,y,Name="1,1")
+        Chart.Point(x = x, y = y,Name="1,1")
         |> Chart.withXAxisStyle "x1"
         |> Chart.withYAxisStyle "y1"    
-        Chart.Line(x,y,Name="1,2")
+        Chart.Line(x = x, y = y,Name="1,2")
         |> Chart.withXAxisStyle "x2"
         |> Chart.withYAxisStyle "y2"
-        Chart.Spline(x,y,Name="2,1")
+        Chart.Spline(x = x, y = y,Name="2,1")
         |> Chart.withXAxisStyle "x3"
         |> Chart.withYAxisStyle "y3"    
-        Chart.Point(x,y,Name="2,2")
+        Chart.Point(x = x, y = y,Name="2,2")
         |> Chart.withXAxisStyle "x4"
         |> Chart.withYAxisStyle "y4"
     ]
-    |> Chart.Grid(2,2,Pattern=StyleParam.LayoutGridPattern.Coupled)
+    |> Chart.Grid(nRows = 2, nCols = 2,Pattern=StyleParam.LayoutGridPattern.Coupled)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -214,20 +216,20 @@ As with all grid charts, you can also use the Chart.withLayoutGridStyle to style
 
 let singleStack =
     [
-        Chart.Point(x,y) 
+        Chart.Point(x = x, y = y) 
         |> Chart.withYAxisStyle("This title must")
 
-        Chart.Line(x,y) 
+        Chart.Line(x = x, y = y) 
         |> Chart.withYAxisStyle("be set on the")
         
-        Chart.Spline(x,y) 
+        Chart.Spline(x = x, y = y) 
         |> Chart.withYAxisStyle("respective subplots")
     ]
     |> Chart.SingleStack(Pattern= StyleParam.LayoutGridPattern.Coupled)
     //increase spacing between plots by using the withLayoutGridStyle function
     |> Chart.withLayoutGridStyle(YGap= 0.1)
-    |> Chart.withTitle("Hi i am the new SingleStackChart")
-    |> Chart.withXAxisStyle("im the shared xAxis")
+    |> Chart.withTitle(title = "Hi i am the new SingleStackChart")
+    |> Chart.withXAxisStyle( TitleText = "im the shared xAxis")
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -252,15 +254,15 @@ open Plotly.NET.LayoutObjects
 
 let multipleTraceTypesGrid =
     [
-        Chart.Point([1,2; 2,3], Name = "2D Cartesian")
-        Chart.Point3D([1,3,2], Name = "3D Cartesian")
-        Chart.PointPolar([10,20], Name = "Polar")
-        Chart.PointGeo([1,2], Name = "Geo")
-        Chart.PointMapbox([1,2], Name = "MapBox") |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
-        Chart.PointTernary([1,2,3; 2,3,4], Name = "Ternary")
+        Chart.Point(xy = [1,2; 2,3], Name = "2D Cartesian")
+        Chart.Point3D(xyz = [1,3,2], Name = "3D Cartesian")
+        Chart.PointPolar(rTheta = [10,20], Name = "Polar")
+        Chart.PointGeo(lonlat = [1,2], Name = "Geo")
+        Chart.PointMapbox(lonlat = [1,2], Name = "MapBox") |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
+        Chart.PointTernary(abc = [1,2,3; 2,3,4], Name = "Ternary")
         [
             Chart.Carpet(
-                "contour",
+                carpetId = "contour",
                 A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
                 B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
                 X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
@@ -280,8 +282,8 @@ let multipleTraceTypesGrid =
                 Opacity = 0.75
             )    
             Chart.ContourCarpet(
-                [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
-                "contour",
+                z = [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
+                carpetAnchorId = "contour",
                 A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
                 B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
                 ContourLineColor = Color.fromKeyword White,
@@ -290,10 +292,10 @@ let multipleTraceTypesGrid =
             )
         ]
         |> Chart.combine
-        Chart.Pie([10;40;50;], Name = "Domain")
+        Chart.Pie(values = [10;40;50;], Name = "Domain")
         Chart.BubbleSmith(
-            [0.5; 1.; 2.; 3.],
-            [0.5; 1.; 2.; 3.],
+            real = [0.5; 1.; 2.; 3.],
+            imag = [0.5; 1.; 2.; 3.],
             sizes = [10;20;30;40],
             MultiText=["one";"two";"three";"four";"five";"six";"seven"],
             TextPosition=StyleParam.TextPosition.TopCenter,
@@ -302,13 +304,13 @@ let multipleTraceTypesGrid =
         [
             // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
             let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-            Chart.BoxPlot("y" ,y,Name="Combined 1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
-            Chart.BoxPlot("y'",y,Name="Combined 2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+            Chart.BoxPlot(X = "y" ,Y = y,Name="Combined 1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
+            Chart.BoxPlot(X = "y'",Y = y,Name="Combined 2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
         ]
         |> Chart.combine
     ]
-    |> Chart.Grid(4,3)
-    |> Chart.withSize(1000,1000)
+    |> Chart.Grid(nRows = 4, nCols = 3)
+    |> Chart.withSize(Width = 1000, Height = 1000)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -323,20 +325,20 @@ multipleTraceTypesGrid |> GenericChart.toChartHTML
 If you are not sure if traceTypes are compatible, look at the `TraceIDs`:
 *)
 
-let pointType = Chart.Point([1,2]) |> GenericChart.getTraceID
+let pointType = Chart.Point(xy=[1,2]) |> GenericChart.getTraceID
 (***include-it***)
 
 [
-     Chart.Point([1,2])
-     Chart.PointTernary([1,2,3])
+     Chart.Point(xy=[1,2])
+     Chart.PointTernary(abc=[1,2,3])
 ]
 |> Chart.combine
 |> GenericChart.getTraceID
 (***include-it***)
 
 [
-     Chart.Point([1,2])
-     Chart.PointTernary([1,2,3])
+     Chart.Point(xy=[1,2])
+     Chart.PointTernary(abc=[1,2,3])
 ]
 |> Chart.combine
 |> GenericChart.getTraceIDs

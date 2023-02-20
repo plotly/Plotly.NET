@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -65,7 +68,13 @@ In plotly, carpet plots are different to all other trace types in the regard tha
 Use `Chart.Carpet` to define these `coordinate traces`. All carpets have a mandatory identifier, which will be used by other traces to define which carpet coordinate system to use.
 *)
 
-let carpet = Chart.Carpet("carpetIdentifier", A = a, B = b, Y = y)
+let carpet = 
+    Chart.Carpet(
+        carpetId ="carpetIdentifier", 
+        A = a, 
+        B = b, 
+        Y = y
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -84,7 +93,12 @@ use `Chart.PointCarpet` to create a point plot on the referenced carpet coordina
 let carpetPoint = 
     [
         carpet
-        Chart.PointCarpet(aData,bData,"carpetIdentifier", Name = "Point")
+        Chart.PointCarpet(
+            a = aData,
+            b = bData,
+            carpetAnchorId = "carpetIdentifier", 
+            Name = "Point"
+        )
     ]
     |> Chart.combine
 
@@ -106,7 +120,12 @@ use `Chart.LineCarpet` to create a line plot on the referenced carpet coordinate
 let carpetLine = 
     [
         carpet
-        Chart.LineCarpet(aData,bData,"carpetIdentifier",Name = "Line")
+        Chart.LineCarpet(
+            a = aData,
+            b = bData,
+            carpetAnchorId = "carpetIdentifier",
+            Name = "Line"
+        )
     ]
     |> Chart.combine
 
@@ -128,7 +147,12 @@ use `Chart.LineCarpet` to create a spline plot on the referenced carpet coordina
 let carpetSpline = 
     [
         carpet
-        Chart.SplineCarpet(aData,bData,"carpetIdentifier",Name = "Spline")
+        Chart.SplineCarpet(
+            a = aData,
+            b = bData,
+            carpetAnchorId = "carpetIdentifier",
+            Name = "Spline"
+        )
     ]
     |> Chart.combine
 
@@ -150,7 +174,11 @@ use `Chart.LineCarpet` to create a bubble plot on the referenced carpet coordina
 let carpetBubble = 
     [
         carpet
-        Chart.BubbleCarpet((Seq.zip3 aData bData sizes),"carpetIdentifier",Name = "Bubble")
+        Chart.BubbleCarpet(
+            absizes = (Seq.zip3 aData bData sizes),
+            carpetAnchorId = "carpetIdentifier",
+            Name = "Bubble"
+        )
     ]
     |> Chart.combine
 

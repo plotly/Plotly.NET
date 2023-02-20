@@ -13,7 +13,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -23,7 +26,6 @@ index: 1
 
 (**
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 # Plotly.NET basics
@@ -53,7 +55,7 @@ These are mirrored in Plotly.NET's central type, `GenericChart`:
 
 The central type that gets created by all Chart constructors is `GenericChart`, which itself represents either a single chart or a multi chart (as a Discriminate Union type). It looks like this:
 
-```fsharp
+```
 type GenericChart =
     | Chart of Trace * Layout * Config * DisplayOptions
     | MultiChart of Trace list * Layout * Config * DisplayOptions
@@ -76,13 +78,15 @@ Plotly.NET uses multiple layers of abstractions to generate valid plotly.js JSON
 The `Chart` module provides the highest layer of abstraction. Here, plotly.js trace types are broken down to the most common and useful styling options, and combined with common layout settings.
 It also provides composite charts which consist of multiple traces such as `Chart.Range`, which really is a combination of 3 scatter traces.
 
+In general, we recommend always using named arguments - even for mandatory arguments - as future changes/addition to the API might change the argument order.
+
 Here is an example on how to create a simple 2D point chart:
 *)
 
 open Plotly.NET
 
 let pointChart =
-    Chart.Point([1,2; 3,4])
+    Chart.Point(xy=[1,2; 3,4])
 
 (*** condition: ipynb ***)
 #if IPYNB

@@ -12,7 +12,10 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 2
 # Scatter and line plots on Mapbox maps
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create Point and Line charts on Mapbox maps in F#.
@@ -55,7 +57,8 @@ open Plotly.NET.LayoutObjects
 
 let pointMapbox = 
     Chart.PointMapbox(
-        lon,lat,
+        longitudes = lon,
+        latitudes = lat,
         MultiText = cityNames,
         TextPosition = StyleParam.TextPosition.TopCenter
     )
@@ -101,7 +104,7 @@ let flights =
     coords 
     |> Seq.mapi (fun i (startCoords,endCoords) ->
         Chart.LineMapbox(
-            [startCoords; endCoords],
+            lonlat = [startCoords; endCoords],
             Opacity = opacityVals.[i],
             LineColor = Color.fromString "red"
         )

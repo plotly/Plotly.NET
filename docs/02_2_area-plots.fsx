@@ -12,7 +12,10 @@ index: 3
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 3
 # Area charts
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create area charts, area charts with splines, and stackes area charts in F#.
@@ -45,7 +47,7 @@ The area between axis and line are commonly emphasized with colors, textures and
 ### Simple area chart
 *)
 
-let area1 = Chart.Area(x,y)
+let area1 = Chart.Area(x = x, y = y)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -61,7 +63,7 @@ area1 |> GenericChart.toChartHTML
 *)
 
 let area2 =
-    Chart.SplineArea(x,y)
+    Chart.SplineArea(x = x, y = y)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -78,8 +80,8 @@ area2 |> GenericChart.toChartHTML
 
 let stackedArea =
     [
-        Chart.StackedArea(x,y)
-        Chart.StackedArea(x,y |> Seq.rev)
+        Chart.StackedArea(x = x, y = y)
+        Chart.StackedArea(x = x, y = (y |> Seq.rev))
     ]
     |> Chart.combine
 

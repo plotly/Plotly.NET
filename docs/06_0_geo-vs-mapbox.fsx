@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 1
 # Mapbox Maps vs Geo Maps
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This introduction shows the differences between Geo and Mapbox based geographical charts.
@@ -59,7 +61,7 @@ let mb =
     )
 
 let baseLayerOnly = 
-    Chart.PointMapbox([],[]) // deliberately empty chart to show the base map only
+    Chart.PointMapbox(lonlat=[]) // deliberately empty chart to show the base map only
     |> Chart.withMapbox mb // add the mapBox
 
 (*** condition: ipynb ***)
@@ -105,7 +107,7 @@ If your base map does not use data from the Mapbox service, you do not need to r
 
 The accepted values for the `style` property of the `Mapbox` object are represented in `StyleParam.MapboxStyle`:
 
-*)
+```
 type MapboxStyle =
     // plotly presets, no token needed
     | WhiteBG
@@ -127,3 +129,5 @@ type MapboxStyle =
 
     //Custom - provide custom maps
     | Custom of string
+```
+*)

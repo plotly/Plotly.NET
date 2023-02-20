@@ -13,7 +13,8 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
-#r "nuget: PuppeteerSharp, 7.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
+#r "nuget: PuppeteerSharp, 9.0.2"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 #r "../src/Plotly.NET.ImageExport/bin/Release/netstandard2.0/Plotly.NET.ImageExport.dll"
 
@@ -27,7 +28,6 @@ index: 2
 
 (**
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 # Static image export
@@ -78,20 +78,6 @@ exampleChart
     Height=300
 )
 
-(*** condition: ipynb ***)
-#if IPYNB
-let imgString = $"""<img
-    src= "{exampleChart|> Chart.toBase64JPGString(Width=300,Height=300)}"
-/>"""
-DisplayExtensions.DisplayAs(imgString,"text/html")
-#endif // IPYNB
-
-(***hide***)
-$"""<img
-    src= "{exampleChart|> Chart.toBase64JPGString(Width=300,Height=300)}"
-/>"""
-(***include-it-raw***)
-
 (**
 ## Generating URIs for static chart images
 
@@ -105,6 +91,7 @@ By referencing the `Plotly.NET.ImageExport` package, you get access to:
 
 *)
 
+(***do-not-eval***)
 let base64JPG =
     exampleChart
     |> Chart.toBase64JPGString(
@@ -121,68 +108,3 @@ not even that is necessary and just the SVG string can be used.
 $"""<img
     src= "{base64JPG}"
 />"""
-
-(*** condition: ipynb ***)
-#if IPYNB
-let imgString = $"""<img
-    src= "{base64JPG}"
-/>"""
-DisplayExtensions.DisplayAs(imgString,"text/html")
-#endif // IPYNB
-
-(***hide***)
-$"""<img
-    src= "{base64JPG}"
-/>"""
-
-(***include-it-raw***)
-
-(**
-SVGs can be included without the image tag:
-*)
-
-let svgString =
-    exampleChart
-    |> Chart.toSVGString(
-        Width=300,
-        Height=300
-    )
-
-svgString.Substring(0,300)
-|> printfn "%s"
-
-(***include-output***)
-
-(**
-In fact, the images shown on this site are included just the same way.
-
-## Including static images in dotnet interactive notebooks
-
-To include the images in dotnet interactive, convert them to html tags as above and include them via 
-dotnet interactive's `DisplayAs` function. The content type for PNG/JPG is "text/html", and "image/svg+xml" for SVG.
-*)
-
-let base64PNGTag =
-    let base64 =
-        exampleChart
-        |> Chart.toBase64PNGString(
-            Width=300,
-            Height=300
-        )
-    $"""<img src= "{base64JPG}"/>"""
-
-let svgString2 =
-    exampleChart
-    |> Chart.toSVGString(
-        Width=300,
-        Height=300
-    )
-
-// DisplayExtensions.DisplayAs(base64PNG,"text/html")
-// DisplayExtensions.DisplayAs(svgString2,"image/svg+xml")
-
-(*** condition: ipynb ***)
-#if IPYNB
-DisplayExtensions.DisplayAs(base64PNG,"text/html")
-DisplayExtensions.DisplayAs(svgString,"image/svg+xml")
-#endif // IPYNB

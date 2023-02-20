@@ -12,7 +12,10 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -25,7 +28,6 @@ index: 2
 # Parallel coordinates
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create parallel coordinates plot in F#.
@@ -53,7 +55,10 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 *)
 
 let parcoords1 =
-    Chart.ParallelCoord(data,LineColor=Color.fromString "blue", UseDefaults = false)
+    Chart.ParallelCoord(
+        keyValues = data,
+        LineColor=Color.fromString "blue"
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -101,7 +106,7 @@ let parcoordsStyled =
         |> Color.fromColorScaleValues
 
     Chart.ParallelCoord(
-        dims,
+        dimensions = dims,
         LineColorScale = StyleParam.Colorscale.Viridis,
         LineColor = colors
     )

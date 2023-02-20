@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 1
 # Line and scatter plots
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create line and point charts in F#.
@@ -49,7 +51,8 @@ The following example generates a line Plot containing X and Y values and applie
 
 let line1 =
     Chart.Line(
-        x,y,
+        x = x,
+        y = y,
         Name="line",
         ShowMarkers=true,
         MarkerSymbol=StyleParam.MarkerSymbol.Square)    
@@ -74,8 +77,10 @@ shown below.
 
 let line2 =
     // Drawing graph of a 'square' function 
-    [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
-    |> Chart.Line
+    Chart.Line(
+        xy = [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
+    )
+
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -93,7 +98,7 @@ Spline charts interpolate the curves between single points of
 the chart to generate a smoother version of the line chart.
 *)
 
-let spline1 = Chart.Spline(x,y,Name="spline")    
+let spline1 = Chart.Spline(x = x,y = y,Name="spline")    
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -106,7 +111,8 @@ spline1 |> GenericChart.toChartHTML
 
 let spline2 = 
     Chart.Spline(
-        x,y,
+        x = x,
+        y = y,
         Name="spline",
         Smoothing = 0.4
     )      
@@ -134,7 +140,8 @@ let labels  = ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j";]
 
 let pointsWithLabels =
     Chart.Point(
-        x,y,
+        x = x,
+        y = y,
         Name="points",
         MultiText=labels,
         TextPosition=StyleParam.TextPosition.TopRight

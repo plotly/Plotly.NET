@@ -12,7 +12,10 @@ index: 5
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 5
 # Indicator Charts
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create indicator charts in F#.
@@ -44,7 +46,8 @@ open Plotly.NET.LayoutObjects
 let allIndicatorTypes =
     [
         Chart.Indicator(
-            120., StyleParam.IndicatorMode.NumberDeltaGauge,
+            value = 120., 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
             Title = "Bullet gauge",
             DeltaReference = 90.,
             Range = StyleParam.Range.MinMax(-200., 200.),
@@ -53,20 +56,23 @@ let allIndicatorTypes =
             Domain  = Domain.init(Row = 0, Column = 0)
         )
         Chart.Indicator(
-            200., StyleParam.IndicatorMode.NumberDeltaGauge,
+            value = 200., 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
             Title = "Angular gauge",
             Delta = IndicatorDelta.init(Reference=160),
             Range = StyleParam.Range.MinMax(0., 250.),
             Domain = Domain.init(Row = 0, Column = 1)
         )
         Chart.Indicator(
-            300., StyleParam.IndicatorMode.NumberDelta,
+            value = 300., 
+            mode = StyleParam.IndicatorMode.NumberDelta,
             Title = "number and delta",
             DeltaReference = 90.,
             Domain  = Domain.init(Row = 1, Column = 0)
         )        
         Chart.Indicator(
-            40., StyleParam.IndicatorMode.Delta,
+            value = 40., 
+            mode = StyleParam.IndicatorMode.Delta,
             Title = "delta",
             DeltaReference = 90.,
             Domain  = Domain.init(Row = 1, Column = 1)
