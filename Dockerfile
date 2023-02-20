@@ -6,7 +6,7 @@ RUN apt-get update \
 
 RUN pip3 install --no-cache notebook
 
-ARG NB_USER=plotlynet
+ARG NB_USER=plotly
 ARG NB_UID=1000
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER
 
