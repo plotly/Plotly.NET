@@ -37,7 +37,8 @@
 
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <PackageReference Include="Plotly.NET" Version="4.0.0-preview.2" />
+    <!--<ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj"/>-->
+    <PackageReference Include="Plotly.NET" Version="4.0.0-preview.3" />
   </ItemGroup>
 
 </Project>
