@@ -56,7 +56,6 @@ let contourCarpet =
                 MinorGridCount = 9,
                 AxisType = StyleParam.AxisType.Linear
             ), 
-            UseDefaults = false,
             Opacity = 0.75
         )    
         Chart.ContourCarpet(
@@ -64,7 +63,6 @@ let contourCarpet =
             carpetAnchorId = "contour",
             A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
             B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
-            UseDefaults = false,
             ContourLineColor = Color.fromKeyword White,
             ShowContourLabels = true
         )
