@@ -68,8 +68,8 @@ By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip t
 *)
 let box2 =
     Chart.BoxPlot(
-        Y = y,
-        X = x,
+        X = y,
+        Y = x,
         Jitter=0.1,
         BoxPoints=StyleParam.BoxPoints.All,
         Orientation=StyleParam.Orientation.Horizontal

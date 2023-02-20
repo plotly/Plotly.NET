@@ -82,8 +82,7 @@ let sunburstStyled =
         SectionColorScale = StyleParam.Colorscale.Viridis,
         ShowSectionColorScale = true,
         SectionOutlineColor = Color.fromKeyword Black,
-        Rotation = 45,
-        UseDefaults = false
+        Rotation = 45
     )
 
 (*** condition: ipynb ***)
