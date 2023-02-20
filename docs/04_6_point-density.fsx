@@ -12,7 +12,10 @@ index: 6
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 6
 # PointDensity
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create PointDensity plots in F#.
@@ -46,7 +48,10 @@ It helps assessing the 2 dimensional distribution of a scatter plot by adding de
 open Plotly.NET
 
 let pointDensityChart = 
-    Chart.PointDensity(x,y)
+    Chart.PointDensity(
+        x = x,
+        y = y
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -65,8 +70,8 @@ This example shows the usage of some of the styling possibility using `Chart.Poi
 
 let pointDensityChartStyled = 
     Chart.PointDensity(
-        x,
-        y,
+        x = x,
+        y = y,
         PointMarkerColor = Color.fromKeyword Purple,
         PointMarkerSymbol = StyleParam.MarkerSymbol.X,
         PointMarkerSize = 4,

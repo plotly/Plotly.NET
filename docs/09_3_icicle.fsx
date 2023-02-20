@@ -13,7 +13,10 @@ index: 4
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -44,8 +47,8 @@ let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve"
 
 let icicle =
     Chart.Icicle(
-        character,
-        parent,
+        labels = character,
+        parents = parent,
         ShowSectionColorScale = true,
         SectionColorScale = StyleParam.Colorscale.Viridis,
         TilingOrientation = StyleParam.Orientation.Vertical,
@@ -87,7 +90,7 @@ let icicleStyled =
     ]
 
     Chart.Icicle(
-        labelsParents |> Seq.map fst,
+        labelsparents = (labelsParents |> Seq.map fst),
         Values = (labelsParents |> Seq.map snd), 
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,

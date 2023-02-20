@@ -12,7 +12,10 @@ index: 8
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -25,7 +28,6 @@ index: 8
 # Working with colors
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 #### Table of contents
@@ -78,7 +80,7 @@ Here is an example on how to set a single color for a plotly color attribute:
 
 let colorChart1 =
     Chart.Bubble(
-        [1,2,15; 3,4,15; 5,6,15],
+        xysizes = [1,2,15; 3,4,15; 5,6,15],
         MarkerColor = Color.fromKeyword Red // will make ALL markers red.
     )
 
@@ -92,17 +94,6 @@ colorChart1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-The `Color` type is basically a container for boxed values that gets converted to correct plotly attributes internally:
-*)
-
-singleColor1.Value
-(***include-it***)
-
-open Newtonsoft.Json
-singleColor3 |> JsonConvert.SerializeObject
-(***include-it***)
-
-(**
 ## Setting individual colors
 
 `Color.fromColors` takes a collection of colors and wraps them as a new `Color` object.
@@ -111,7 +102,7 @@ Here is an example on how to set individual colors in a collection for a plotly 
 
 let colorChart2 =
     Chart.Bubble(
-        [1,2,15; 3,4,15; 5,6,15],
+        xysizes = [1,2,15; 3,4,15; 5,6,15],
         MarkerColor = Color.fromColors [
             Color.fromKeyword Red
             Color.fromKeyword Green
@@ -140,7 +131,9 @@ let sizes = [15; 15; 15]
 
 let colorChart3 =
     Chart.Bubble(
-        x,y,sizes,
+        x = x,
+        y = y,
+        sizes = sizes,
         MarkerColor = Color.fromColorScaleValues y
     )
     |> Chart.withMarkerStyle(ShowScale = true) // we want to see the color scale we are mapping to

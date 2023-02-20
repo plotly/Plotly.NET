@@ -12,7 +12,10 @@ index: 4
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -54,8 +57,8 @@ open Plotly.NET.LayoutObjects
 
 let densityMapbox = 
     Chart.DensityMapbox(
-        lon,
-        lat,
+        longitudes = lon,
+        latitudes = lat,
         Z = magnitudes,
         Radius=8,
         ColorScale=StyleParam.Colorscale.Viridis

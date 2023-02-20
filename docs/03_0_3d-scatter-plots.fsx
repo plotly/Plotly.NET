@@ -13,7 +13,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -40,7 +43,7 @@ open Plotly.NET
   
 let point3d = 
     Chart.Point3D(
-        [1,3,2; 6,5,4; 7,9,8],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.BottomCenter
     )
@@ -64,7 +67,7 @@ point3d |> GenericChart.toChartHTML
 
 let point3d2 = 
     Chart.Point3D(
-        [1,3,2; 6,5,4; 7,9,8],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
         MarkerColor = Color.fromColorScaleValues [0;1;2],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.BottomCenter
@@ -85,7 +88,7 @@ point3d2 |> GenericChart.toChartHTML
 
 let line3d = 
     Chart.Line3D(
-        [1,3,2; 6,5,4; 7,9,8],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.BottomCenter,
         ShowMarkers = true
@@ -106,7 +109,7 @@ line3d |> GenericChart.toChartHTML
 
 let line3d2 = 
     Chart.Line3D(
-        [1,3,2; 6,5,4; 7,9,8],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.BottomCenter,
         ShowMarkers = true,
@@ -130,8 +133,8 @@ line3d2 |> GenericChart.toChartHTML
 
 let bubble3d =
     Chart.Bubble3D(
-        [1,3,2; 6,5,4; 7,9,8],
-        [10;20;30],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
+        sizes = [10;20;30],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.BottomCenter
     )
@@ -152,8 +155,8 @@ bubble3d |> GenericChart.toChartHTML
 
 let bubble3d2 = 
     Chart.Bubble3D(
-        [1,3,2; 6,5,4; 7,9,8],
-        [10;20;30],
+        xyz = [1,3,2; 6,5,4; 7,9,8],
+        sizes = [10;20;30],
         MultiText = ["A"; "B"; "C"],
         TextPosition = StyleParam.TextPosition.BottomCenter,
         MarkerColor = Color.fromColorScaleValues [0;1;2],

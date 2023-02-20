@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -55,7 +58,7 @@ Each data point is determined by the distance from the pole (the radial coordina
 use `Chart.PointPolar` to create a polar plot that displays points on a polar coordinate system:
 *)
 
-let pointPolar = Chart.PointPolar(radial,theta)
+let pointPolar = Chart.PointPolar(r = radial, theta = theta)
 (*** condition: ipynb ***)
 #if IPYNB
 pointPolar
@@ -74,7 +77,7 @@ You can for example change the line style using `Chart.withLineStyle`
 *)
 
 let linePolar = 
-    Chart.LinePolar(radial,theta)
+    Chart.LinePolar(r = radial, theta = theta)
     |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
 
 (*** condition: ipynb ***)
@@ -96,8 +99,8 @@ As for all other plots above, You can for example add labels to each datum:
 
 let splinePolar = 
     Chart.SplinePolar(
-        radial,
-        theta,
+        r = radial,
+        theta = theta,
         MultiText=["one";"two";"three";"four";"five";"six";"seven"],
         TextPosition=StyleParam.TextPosition.TopCenter,
         ShowMarkers=true

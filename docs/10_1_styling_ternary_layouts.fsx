@@ -12,7 +12,10 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 2
 # Styling ternary layouts
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to style polar layouts in F#.
@@ -48,8 +50,16 @@ Consider this combined ternary chart:
 
 let combinedTernary =
     [
-        Chart.PointTernary(a,b,c)
-        Chart.LineTernary(a,c,Sum = 10)
+        Chart.PointTernary(
+            A = a,
+            B = b,
+            C = c
+        )
+        Chart.LineTernary(
+            A = a,
+            C = c,
+            Sum = 10
+        )
     ]
     
     |> Chart.combine

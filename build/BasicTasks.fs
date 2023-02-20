@@ -30,7 +30,21 @@ let clean =
 
 /// builds the solution file (dotnet build solution.sln)
 let buildSolution =
-    BuildTask.create "BuildSolution" [ clean ] { solutionFile |> DotNet.build id }
+    BuildTask.create "BuildSolution" [ clean ] { 
+        solutionFile 
+        |> DotNet.build (fun p ->
+            let msBuildParams =
+                {p.MSBuildParams with 
+                    Properties = ([
+                        "warnon", "3390"
+                    ])
+                }
+            {
+                p with 
+                    MSBuildParams = msBuildParams
+            }
+        )
+    }
 
 /// builds the individual project files (dotnet build project.*proj)
 ///
@@ -50,6 +64,7 @@ let build = BuildTask.create "Build" [clean] {
                     Properties = ([
                         "AssemblyVersion", pInfo.AssemblyVersion
                         "InformationalVersion", pInfo.AssemblyInformationalVersion
+                        "warnon", "3390"
                     ])
                 }
             {

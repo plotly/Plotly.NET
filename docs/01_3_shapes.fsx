@@ -12,7 +12,10 @@ index: 4
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 4
 # Shapes
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create Shapes and add them to the Charts in F#.
@@ -47,8 +49,24 @@ multiple shapes at once.
 
 open Plotly.NET.LayoutObjects
 
-let s1 = Shape.init (StyleParam.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor= Color.fromHex "#d3d3d3")
-let s2 = Shape.init (StyleParam.ShapeType.Rectangle,5.,7.,3.,4.,Opacity=0.3,Fillcolor= Color.fromHex "#d3d3d3")
+let s1 = Shape.init (
+    ShapeType = StyleParam.ShapeType.Rectangle,
+    X0 = 2.,
+    X1=4.,
+    Y0=3.,
+    Y1=4.,
+    Opacity=0.3,
+    FillColor= Color.fromHex "#d3d3d3"
+)
+let s2 = Shape.init (
+    ShapeType = StyleParam.ShapeType.Rectangle,
+    X0 = 5.,
+    X1=7.,
+    Y0=3.,
+    Y1=4.,
+    Opacity=0.3,
+    FillColor= Color.fromHex "#d3d3d3"
+)
 
 let shapes =
     Chart.Line(x,y',Name="line")    

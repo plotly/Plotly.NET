@@ -12,7 +12,10 @@ index: 3
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -94,7 +97,8 @@ patterns across the displayed location.
 
 let choroplethMap1 =
     Chart.ChoroplethMap(
-        locations,z,
+        locations = locations,
+        z = z,
         LocationMode=StyleParam.LocationFormat.CountryNames
     )
 
@@ -117,7 +121,8 @@ open Plotly.NET.LayoutObjects
 
 let choroplethMap2 =
     Chart.ChoroplethMap(
-        locations,z,
+        locations = locations,
+        z = z,
         LocationMode=StyleParam.LocationFormat.CountryNames
     )
     |> Chart.withGeoStyle(

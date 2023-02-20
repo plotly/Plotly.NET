@@ -12,7 +12,10 @@ index: 4
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 4
 # Chart config
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
@@ -60,7 +62,7 @@ let svgConfig =
     )
 
 let svgButtonChart = 
-    Chart.Point([(1.,2.)])
+    Chart.Point(xy = [(1.,2.)])
     |> Chart.withConfig svgConfig
 
 
@@ -83,7 +85,7 @@ To create a static plot that has no hoverable elements, use `StaticPlot=true` on
 let staticConfig = Config.init(StaticPlot=true)
 
 let staticPlot =
-    Chart.Point([(1.,2.)])
+    Chart.Point(xy = [(1.,2.)])
     |> Chart.withConfig staticConfig
 
 (*** condition: ipynb ***)
@@ -113,7 +115,7 @@ let editableConfig =
     )
 
 let editablePlot =
-    Chart.Point([(1.,2.)])
+    Chart.Point(xy = [(1.,2.)])
     |> Chart.withConfig editableConfig
 
 (*** condition: ipynb ***)
@@ -136,7 +138,7 @@ To create a chart that is reponsive to its container size, use `Responsive=true`
 let responsiveConfig = Config.init(Responsive=true)
 
 let responsivePlot =
-    Chart.Point([(1.,2.)])
+    Chart.Point(xy = [(1.,2.)])
     |> Chart.withConfig responsiveConfig
 
 (*** condition: ipynb ***)

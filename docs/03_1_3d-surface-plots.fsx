@@ -12,7 +12,10 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 2
 # 3D surface plots
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create 3D surface plots in F#.
@@ -53,8 +55,7 @@ let z =
                     )
 
 let surface = 
-    z
-    |> Chart.Surface
+    Chart.Surface(zData = z)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -76,7 +77,13 @@ let z' = [
 open Plotly.NET.TraceObjects
 
 let surface2 = 
-    Chart.Surface(z',x',y',Opacity=0.5,Contours=Contours.initXyz(Show=true))
+    Chart.Surface(
+        zData = z',
+        X = x',
+        Y = y',
+        Opacity=0.5,
+        Contours=Contours.initXyz(Show=true)
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB

@@ -12,7 +12,10 @@ index: 7
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 7
 # Tables
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 This example shows how to create tables in F#.
@@ -38,13 +40,15 @@ open Plotly.NET.StyleParam
   
 
 let table1 =
-    let header = ["<b>RowIndex</b>";"A";"simple";"table"]
-    let rows = 
-        [
-         ["0";"I"     ;"am"     ;"a"]        
-         ["1";"little";"example";"!"]       
+    Chart.Table(
+        headerValues = ["<b>RowIndex</b>";"A";"simple";"table"],
+        cellsValues = [
+            ["0";"I"     ;"am"     ;"a"]        
+            ["1";"little";"example";"!"]       
         ]
-    Chart.Table(header, rows)
+    )
+    
+
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -67,8 +71,8 @@ let table2 =
            ["1";"little";"example";"!"]       
           ]
     Chart.Table(
-        header,
-        rows,
+        headerValues = header,
+        cellsValues = rows,
         HeaderAlign = StyleParam.HorizontalAlign.Center,
         CellsMultiAlign  = [StyleParam.HorizontalAlign.Left; StyleParam.HorizontalAlign.Center; StyleParam.HorizontalAlign.Right],
         HeaderFillColor = Color.fromString "#45546a",
@@ -129,8 +133,8 @@ let table3 =
         |> Color.fromColors
 
     Chart.Table(
-        header2,
-        rowvalues,
+        headerValues = header2,
+        cellsValues = rowvalues,
         CellsFillColor=cellcolor
     )
 
@@ -199,8 +203,8 @@ let table4 =
     let chartwidth = 50 + 10 * elementsPerRow
 
     Chart.Table(
-        headers,
-        cells,
+        headerValues = headers,
+        cellsValues = cells,
         CellsOutline   = line,
         HeaderOutline  = line,
         CellsHeight = 20,

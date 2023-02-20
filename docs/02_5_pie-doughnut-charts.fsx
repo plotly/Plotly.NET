@@ -12,7 +12,10 @@ index: 6
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -45,7 +48,10 @@ When creating pie charts, it is usually desirable to provide both labels and val
 *)
 
 let pie1 =
-    Chart.Pie(values,Labels = labels)
+    Chart.Pie(
+        values = values,
+        Labels = labels
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -58,7 +64,7 @@ pie1 |> GenericChart.toChartHTML
 
 let doughnut1 =
     Chart.Doughnut(
-        values,
+        values = values,
         Labels = labels,
         Hole=0.3,
         MultiText = labels
@@ -87,7 +93,7 @@ let pieStyled =
     let labels = ["Residential"; "Non-Residential"; "Utility"]
 
     Chart.Pie(
-        values,
+        values = values,
         Labels = labels,
         SectionColors = [
             Color.fromKeyword Aqua

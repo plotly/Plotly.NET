@@ -12,7 +12,10 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 1
 # Axis styling
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to style chart axes in F#.
@@ -45,9 +47,9 @@ To style a specific axis of a plot, use the respective `Chart.with*_AxisStyle` f
 *)
 
 let plot1 =
-    Chart.Point(x,y)
-    |> Chart.withXAxisStyle ("X axis title", MinMax = (-1.,10.))
-    |> Chart.withYAxisStyle ("Y axis title", MinMax = (-1.,10.))
+    Chart.Point(x = x, y = y)
+    |> Chart.withXAxisStyle (TitleText = "X axis title", MinMax = (-1.,10.))
+    |> Chart.withYAxisStyle (TitleText = "Y axis title", MinMax = (-1.,10.))
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -85,7 +87,7 @@ let mirroredLogYAxis =
     )
 
 let plot2 =
-    Chart.Point(x,y)
+    Chart.Point(x = x, y = y)
     |> Chart.withXAxis mirroredXAxis
     |> Chart.withYAxis mirroredLogYAxis
 
@@ -110,7 +112,7 @@ let dollarAxis = LinearAxis.init(TickFormat="$")
 let percentAxis = LinearAxis.init(TickFormat=".1%")
 
 let plot3 =
-    Chart.Point(x,y)
+    Chart.Point(x = x, y = y)
     |> Chart.withXAxis dollarAxis
     |> Chart.withYAxis percentAxis
 
@@ -137,11 +139,11 @@ Note that the same can be done as above, defining axes beforehand.
 *)
 
 let anchoredAt1 =
-    Chart.Line (x,y,Name="anchor 1")
+    Chart.Line (x = x, y = y, Name="anchor 1")
         |> Chart.withAxisAnchor(Y=1)
 
 let anchoredAt2 =
-     Chart.Line (x,y',Name="anchor 2")
+     Chart.Line (x = x, y = y', Name="anchor 2")
         |> Chart.withAxisAnchor(Y=2)
 
 let twoXAxes1 = 
@@ -151,12 +153,12 @@ let twoXAxes1 =
     ]
     |> Chart.combine
     |> Chart.withYAxisStyle(
-        "axis 1",
+        TitleText = "axis 1",
         Side=StyleParam.Side.Left,
         Id=StyleParam.SubPlotId.YAxis 1
     )
     |> Chart.withYAxisStyle(
-        "axis2",
+        TitleText = "axis2",
         Side=StyleParam.Side.Right,
         Id=StyleParam.SubPlotId.YAxis 2,
         Overlaying=StyleParam.LinearAxisId.Y 1
@@ -185,15 +187,15 @@ let twoXAxes2 =
     ]
     |> Chart.combine
     |> Chart.withYAxisStyle(
-            "first y-axis",
-            ShowLine=true
-            )
+        TitleText = "first y-axis",
+        ShowLine=true
+    )
     |> Chart.withXAxisStyle(
-        "x-axis",
+        TitleText = "x-axis",
         Domain=(0.3, 1.0) // moves the first axis and the whole plot to the right
     ) 
     |> Chart.withYAxisStyle(
-        "second y-axis",
+        TitleText = "second y-axis",
         Side=StyleParam.Side.Left,
         Id=StyleParam.SubPlotId.YAxis 2,
         Overlaying=StyleParam.LinearAxisId.Y 1,

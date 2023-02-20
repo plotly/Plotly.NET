@@ -12,7 +12,10 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
+
+Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -24,7 +27,6 @@ index: 2
 # Bar and column charts
 
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/Plotly.NET/gh-pages?filepath={{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 *Summary:* This example shows how to create bar and a column charts in F#.
@@ -45,7 +47,11 @@ or horizontally. A vertical bar chart is called a column bar chart.
 ### Column Charts
 *)
 
-let column = Chart.Column(values,keys)
+let column = 
+    Chart.Column(
+        values = values,
+        Keys = keys
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -61,7 +67,10 @@ column |> GenericChart.toChartHTML
 *)
 
 let bar =
-    Chart.Bar(values,keys)
+    Chart.Bar(
+        values = values,
+        Keys = keys
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -85,8 +94,16 @@ Basically those charts are just normal bar/column charts with the Layout propert
 
 let stackedBar =
     [
-        Chart.StackedBar(values,keys,Name="old");
-        Chart.StackedBar([8; 21; 13;],keys,Name="new")
+        Chart.StackedBar(
+            values = values,
+            Keys = keys,
+            Name="old"
+        );
+        Chart.StackedBar(
+            values = [8; 21; 13;],
+            Keys = keys,
+            Name = "new"
+        )
     ]
     |> Chart.combine
 
@@ -105,8 +122,16 @@ stackedBar |> GenericChart.toChartHTML
 
 let stackedColumn =
     [
-        Chart.StackedColumn(values,keys,Name="old");
-        Chart.StackedColumn([8; 21; 13;],keys,Name="new")
+        Chart.StackedColumn(
+            values = values,
+            Keys = keys,
+            Name = "old"
+        )
+        Chart.StackedColumn(
+            values = [8; 21; 13;],
+            Keys = keys,
+            Name = "new"
+        )
     ]
     |> Chart.combine
 
