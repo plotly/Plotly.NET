@@ -18,6 +18,6 @@ WORKDIR $HOME
 
 ENV PATH="${PATH}:$HOME/.dotnet/tools/"
 
-RUN dotnet tool install -g dotnet-interactive
+RUN dotnet tool install --global Microsoft.dotnet-interactive --version 1.0.410202
 
 RUN dotnet-interactive jupyter install
