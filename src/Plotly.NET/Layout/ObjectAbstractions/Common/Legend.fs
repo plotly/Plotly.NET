@@ -14,9 +14,9 @@ type Legend() =
     /// </summary>
     /// <param name="BGColor">Sets the legend background color. Defaults to `layout.paper_bgcolor`.</param>
     /// <param name="BorderColor">Sets the color of the border enclosing the legend.</param>
+    /// <param name="BorderWidth">Sets the width (in px) of the border enclosing the legend.</param>
     /// <param name="EntryWidth">Sets the width (in px or fraction) of the legend. Use 0 to size the entry based on the text width, when `entrywidthmode` is set to "pixels".</param>
     /// <param name="EntryWidthMode">Determines what entrywidth means.</param>
-    /// <param name="Borderwidth">Sets the width (in px) of the border enclosing the legend.</param>
     /// <param name="Font">Sets the font used to text the legend items.</param>
     /// <param name="GroupClick">Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.</param>
     /// <param name="GroupTitleFont">Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.</param>
@@ -90,7 +90,7 @@ type Legend() =
     /// </summary>
     /// <param name="BGColor">Sets the legend background color. Defaults to `layout.paper_bgcolor`.</param>
     /// <param name="BorderColor">Sets the color of the border enclosing the legend.</param>
-    /// <param name="Borderwidth">Sets the width (in px) of the border enclosing the legend.</param>
+    /// <param name="BorderWidth">Sets the width (in px) of the border enclosing the legend.</param>
     /// <param name="EntryWidth">Sets the width (in px or fraction) of the legend. Use 0 to size the entry based on the text width, when `entrywidthmode` is set to "pixels".</param>
     /// <param name="EntryWidthMode">Determines what entrywidth means.</param>
     /// <param name="Font">Sets the font used to text the legend items.</param>

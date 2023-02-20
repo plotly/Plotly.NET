@@ -112,7 +112,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\Dockerfile = docs\Dockerfile
 		docs\index.fsx = docs\index.fsx
 		docs\NuGet.config = docs\NuGet.config
-		docs\_template.fsx = docs\_template.fsx
 		docs\_template.html = docs\_template.html
 		docs\_template.ipynb = docs\_template.ipynb
 	EndProjectSection
