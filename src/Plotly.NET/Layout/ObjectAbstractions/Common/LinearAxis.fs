@@ -512,7 +512,7 @@ type LinearAxis() =
     
     /// <summary>
     /// Initialize a LinearAxis object that can be used as a positional scale for carpet coordinates.
-    /// </summary
+    /// </summary>
     /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.</param>
     /// <param name="Title">Sets the axis title.</param>
     /// <param name="AxisType">Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.</param>

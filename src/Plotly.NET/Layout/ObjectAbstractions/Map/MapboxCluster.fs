@@ -12,7 +12,7 @@ type MapboxCluster() =
 
     /// <summary>
     /// Returns a new MapboxCluster object with the given styles
-    /// </summary
+    /// </summary>
     /// <param name="Color">Sets the color for each cluster step.</param>
     /// <param name="Enabled">Determines whether clustering is enabled or disabled.</param>
     /// <param name="MaxZoom">Sets the maximum zoom level. At zoom levels equal to or greater than this, points will never be clustered.</param>
