@@ -275,7 +275,8 @@ let ``Multicategory ohlc tests`` =
             |> chartGeneratedContains multicategoryOHLC
         );
         testCase "Multicategory ohlc layout" ( fun () ->
-            emptyLayout multicategoryOHLC
+            """var layout = {"xaxis":{"rangeslider":{"yaxis":{}}}};""" 
+            |> chartGeneratedContains multicategoryOHLC
         );
     ]
 
@@ -297,6 +298,7 @@ let ``Multicategory candlestick tests`` =
             |> chartGeneratedContains multicategoryCandlestick
         );
         testCase "Multicategory candlestick layout" ( fun () ->
-            emptyLayout multicategoryCandlestick
+            """var layout = {"xaxis":{"rangeslider":{"yaxis":{}}}};""" 
+            |> chartGeneratedContains multicategoryCandlestick
         );
     ]
