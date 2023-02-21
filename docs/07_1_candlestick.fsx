@@ -106,15 +106,22 @@ candles2 |> GenericChart.toChartHTML
 (**
 ## Removing the rangeslider
 
-If you want to hide the rangeslider, use `withXAxisRangeSlider` and hide it:
+If you want to hide the rangeslider, set the `ShowXAxisRangeSlider` to false:
 *)
 open Plotly.NET.LayoutObjects
 
-let rangeslider = RangeSlider.init(Visible=false)
-
 let candles3 = 
-    candles2
-    |> Chart.withXAxisRangeSlider rangeslider
+    Chart.Candlestick(
+        ``open`` = openData,
+        high = highData,
+        low = lowData,
+        close = closeData,
+        x = dateData,
+        IncreasingColor = Color.fromKeyword Cyan,
+        DecreasingColor = Color.fromKeyword Gray,
+        ShowXAxisRangeSlider = false
+    )
+
 
 (*** condition: ipynb ***)
 #if IPYNB

@@ -5155,6 +5155,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
@@ -5176,6 +5177,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5212,6 +5214,13 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setLinearAxis(
+                    id = StyleParam.SubPlotId.XAxis 1,
+                    axis = LinearAxis.init(RangeSlider = RangeSlider.init(?Visible = ShowXAxisRangeSlider))
+                )
+            )
 
         /// <summary>
         /// Creates an OHLC chart.
@@ -5234,6 +5243,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
@@ -5254,6 +5264,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5274,6 +5285,7 @@ module Chart2D =
                     ?DecreasingColor= DecreasingColor,
                     ?Decreasing     = Decreasing,
                     ?TickWidth      = TickWidth,
+                    ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
                     ?UseDefaults    = UseDefaults
                 )
 
@@ -5294,6 +5306,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
+        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
@@ -5310,6 +5323,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5330,6 +5344,7 @@ module Chart2D =
                 ?DecreasingColor = DecreasingColor,
                 ?Decreasing = Decreasing,
                 ?TickWidth = TickWidth,
+                ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
                 ?UseDefaults = UseDefaults
             )
 
@@ -5357,6 +5372,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member Candlestick
             (
@@ -5377,6 +5393,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5413,6 +5430,13 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setLinearAxis(
+                    id = StyleParam.SubPlotId.XAxis 1,
+                    axis = LinearAxis.init(RangeSlider = RangeSlider.init(?Visible = ShowXAxisRangeSlider))
+                )
+            )
 
         /// <summary>
         /// Creates a candlestick chart.
@@ -5435,6 +5459,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Candlestick
@@ -5455,6 +5480,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5475,6 +5501,7 @@ module Chart2D =
                     ?DecreasingColor= DecreasingColor,
                     ?Decreasing     = Decreasing,
                     ?WhiskerWidth   = WhiskerWidth,
+                    ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
                     ?UseDefaults    = UseDefaults
                 )
 
@@ -5495,6 +5522,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
+        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Candlestick
@@ -5511,6 +5539,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5534,6 +5563,7 @@ module Chart2D =
                 ?DecreasingColor = DecreasingColor,
                 ?Decreasing = Decreasing,
                 ?WhiskerWidth = WhiskerWidth,
+                ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
                 ?UseDefaults = UseDefaults
             )
 
