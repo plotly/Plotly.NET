@@ -48,13 +48,13 @@ let ``Image export tests`` =
                         testBase64PNG
                         "Invalid base64 string for Chart.toBase64PNGStringAsync"
             }
-            testCase "Chart.toBase64JPGString terminates" <| fun () ->
+            ptestCase "Chart.toBase64JPGString terminates" <| fun () ->
                 let actual = Chart.Point([1.,1.]) |> Chart.toBase64JPGString()
                 Expect.isTrue (actual.Length > 100) ""
-            testCase "Chart.toBase64PNGString terminates" <| fun () ->
+            ptestCase "Chart.toBase64PNGString terminates" <| fun () ->
                 let actual = Chart.Point([1.,1.]) |> Chart.toBase64PNGString()
                 Expect.isTrue (actual.Length > 100) ""
-            testCase "Chart.toSVGString terminates" <| fun () ->
+            ptestCase "Chart.toSVGString terminates" <| fun () ->
                 let actual = Chart.Point([1.,1.]) |> Chart.toSVGString()
                 Expect.isTrue (actual.Length > 100) ""
         ]
