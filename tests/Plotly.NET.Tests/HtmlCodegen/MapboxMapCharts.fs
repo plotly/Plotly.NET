@@ -11,12 +11,11 @@ open System
 open TestUtils.HtmlCodegen
 
 let baseLayerOnlyChart = 
-    let mb =
-        Mapbox.init(
-            Style = StyleParam.MapboxStyle.OpenStreetMap
-        )
-    Chart.PointMapbox(longitudes = [], latitudes = [], UseDefaults = false) // deliberately empty chart to show the base map only
-    |> Chart.withMapbox mb // add the mapBox
+    Chart.PointMapbox(
+        longitudes = [], 
+        latitudes = [], 
+        UseDefaults = false
+    ) // deliberately empty chart to show the base map only
 
 [<Tests>]
 let ``Mapbox charts`` =
@@ -55,7 +54,6 @@ let pointMapboxChart =
     )
     |> Chart.withMapbox(
         Mapbox.init(
-            Style=StyleParam.MapboxStyle.OpenStreetMap,
             Center=(-104.6,50.45)
         )
     )
@@ -98,7 +96,6 @@ let flightsChart =
     |> Chart.withLegend(false)
     |> Chart.withMapbox(
         Mapbox.init(
-            Style=StyleParam.MapboxStyle.OpenStreetMap,
             Center=(-97.0372,32.8959)
         )
     )
@@ -121,7 +118,7 @@ let ``Scatter and line plots on Mapbox maps charts`` =
             |> chartGeneratedContains flightsChart
         );
         testCase "Flights mapbox layout" ( fun () ->
-            "var layout = {\"showlegend\":false,\"mapbox\":{\"style\":\"open-street-map\",\"center\":{\"lon\":-97.0372,\"lat\":32.8959}},\"margin\":{\"l\":0,\"r\":0,\"t\":50,\"b\":0},\"title\":{\"text\":\"Feb. 2011 American Airline flights\"}};"
+            """var layout = {"mapbox":{"style":"open-street-map","center":{"lon":-97.0372,"lat":32.8959}},"showlegend":false,"margin":{"l":0,"r":0,"t":50,"b":0},"title":{"text":"Feb. 2011 American Airline flights"}};"""
             |> chartGeneratedContains flightsChart
         );
     ]

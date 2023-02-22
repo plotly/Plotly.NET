@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Deedle" Version="3.0.0" />
     <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 

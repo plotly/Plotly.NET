@@ -1163,6 +1163,7 @@ module ChartMap =
         /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
         /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -1192,6 +1193,7 @@ module ChartMap =
                 longitudes: seq<#IConvertible>,
                 latitudes: seq<#IConvertible>,
                 mode: StyleParam.Mode,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -1250,6 +1252,10 @@ module ChartMap =
                     ?Enabled = EnableClustering
                 )
 
+            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+
+            let mapbox = Mapbox.init(Style = mapboxStyle)
+
             TraceMapbox.initScatterMapbox (
                 TraceMapboxStyle.ScatterMapbox(
                     Lon = longitudes,
@@ -1268,8 +1274,14 @@ module ChartMap =
                     ?Below = Below
                 )
             )
-
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setMapbox(
+                    StyleParam.SubPlotId.Mapbox 1,
+                    mapbox
+                )
+            )
 
         /// <summary>
         /// Creates a ScatterMapbox chart, where data is visualized on a geographic map using mapbox.
@@ -1283,6 +1295,7 @@ module ChartMap =
         /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees East, degrees North).</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1311,6 +1324,7 @@ module ChartMap =
                 lonlat: seq<#IConvertible * #IConvertible>,
                 mode: StyleParam.Mode,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1342,6 +1356,7 @@ module ChartMap =
                 latitudes,
                 mode,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
@@ -1376,6 +1391,7 @@ module ChartMap =
         /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
         /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1399,6 +1415,7 @@ module ChartMap =
                 longitudes: seq<#IConvertible>,
                 latitudes: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1426,6 +1443,7 @@ module ChartMap =
                 latitudes,
                 mode = changeMode StyleParam.Mode.Markers,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
@@ -1455,6 +1473,7 @@ module ChartMap =
         /// </summary>
         /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees East, degrees North).</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1477,6 +1496,7 @@ module ChartMap =
             (
                 lonlat: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1502,6 +1522,7 @@ module ChartMap =
                 longitudes,
                 latitudes,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
@@ -1532,6 +1553,7 @@ module ChartMap =
         /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
         /// <param name="ShowMarkers"></param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1559,6 +1581,7 @@ module ChartMap =
                 latitudes: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1595,6 +1618,7 @@ module ChartMap =
                 latitudes,
                 mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
@@ -1627,6 +1651,7 @@ module ChartMap =
         /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees East, degrees North).</param>
         /// <param name="ShowMarkers"></param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1653,6 +1678,7 @@ module ChartMap =
                 lonlat: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?ShowMarkers: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1682,6 +1708,7 @@ module ChartMap =
                 latitudes,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
@@ -1716,6 +1743,7 @@ module ChartMap =
         /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
         /// <param name="sizes">Sets the size of the points.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1738,6 +1766,7 @@ module ChartMap =
                 latitudes: seq<#IConvertible>,
                 sizes: seq<int>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1775,6 +1804,10 @@ module ChartMap =
                     MultiSize = sizes
                 )
 
+            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+
+            let mapbox = Mapbox.init(Style = mapboxStyle)
+
             TraceMapbox.initScatterMapbox (
                 TraceMapboxStyle.ScatterMapbox(
                     Lon = longitudes,
@@ -1793,6 +1826,13 @@ module ChartMap =
             )
 
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setMapbox(
+                    StyleParam.SubPlotId.Mapbox 1,
+                    mapbox
+                )
+            )
 
         /// <summary>
         /// Creates a BubbleMapbox chart, where data is visualized on a geographic map as points using mapbox, additionally using the point size as a third dimension.
@@ -1803,6 +1843,7 @@ module ChartMap =
         /// </summary>
         /// <param name="lonlatsizes">Sets the (longitude,latitude) coordinates (in degrees East, degrees North) together with the point size.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
@@ -1823,6 +1864,7 @@ module ChartMap =
             (
                 lonlatsizes: seq<#IConvertible * #IConvertible * int>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
@@ -1848,6 +1890,7 @@ module ChartMap =
                 latitudes,
                 sizes,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
@@ -1880,6 +1923,7 @@ module ChartMap =
         /// <param name="z">The color values for each location</param>
         /// <param name="geoJson">Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Support nested property, for example "properties.name".</param>
         /// <param name="Text">Sets a text associated with each datum</param>
@@ -1897,6 +1941,7 @@ module ChartMap =
                 z: seq<#IConvertible>,
                 geoJson: obj,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?FeatureIdKey: string,
                 [<Optional; DefaultParameterValue(null)>] ?Text: #IConvertible,
@@ -1911,6 +1956,10 @@ module ChartMap =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+
+            let mapbox = Mapbox.init(Style = mapboxStyle)
 
             TraceMapbox.initChoroplethMapbox (
                 TraceMapboxStyle.ChoroplethMapbox(
@@ -1930,6 +1979,13 @@ module ChartMap =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setMapbox(
+                    StyleParam.SubPlotId.Mapbox 1,
+                    mapbox
+                )
+            )
 
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
@@ -1941,6 +1997,7 @@ module ChartMap =
         /// <param name="longitudes">Sets the longitude coordinates (in degrees East).</param>
         /// <param name="latitudes">Sets the latitude coordinates (in degrees North).</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opacity of the trace</param>
         /// <param name="Z">Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot</param>
@@ -1959,6 +2016,7 @@ module ChartMap =
                 longitudes: seq<#IConvertible>,
                 latitudes: seq<#IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Z: seq<#IConvertible>,
@@ -1975,6 +2033,10 @@ module ChartMap =
 
             let useDefaults =
                 defaultArg UseDefaults true
+
+            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+
+            let mapbox = Mapbox.init(Style = mapboxStyle)
 
             TraceMapbox.initDensityMapbox (
                 TraceMapboxStyle.DensityMapbox(
@@ -1996,6 +2058,13 @@ module ChartMap =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout(
+                Layout.init()
+                |> Layout.setMapbox(
+                    StyleParam.SubPlotId.Mapbox 1,
+                    mapbox
+                )
+            )
 
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
@@ -2006,6 +2075,7 @@ module ChartMap =
         /// </summary>
         /// <param name="lonlat">Sets the (longitude,latitude) coordinates (in degrees East, degrees North).</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opacity of the trace</param>
         /// <param name="Z">Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot</param>
@@ -2023,6 +2093,7 @@ module ChartMap =
             (
                 lonlat: seq<#IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
+                [<Optional; DefaultParameterValue(null)>] ?MapboxStyle: StyleParam.MapboxStyle,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
                 [<Optional; DefaultParameterValue(null)>] ?Z: seq<#IConvertible>,
@@ -2043,6 +2114,7 @@ module ChartMap =
                 longitudes,
                 latitudes,
                 ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?Z = Z,
