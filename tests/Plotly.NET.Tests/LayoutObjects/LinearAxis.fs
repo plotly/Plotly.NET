@@ -91,20 +91,20 @@ let fullAxis =
 [<Tests>]
 let ``LinearAxis tests`` =
     testList "LayoutObjects.LinearAxis JSON field tests" [
-        fullAxis |> createJsonFieldTest "visible" "true" 
-        fullAxis |> createJsonFieldTest "color" "\"red\""
-        fullAxis |> createJsonFieldTest "title" "{\"text\":\"Hi\"}"
-        fullAxis |> createJsonFieldTest "type" "\"log\""
-        fullAxis |> createJsonFieldTest "autotypenumbers" "\"strict\""
-        fullAxis |> createJsonFieldTest "autorange" "true"
-        fullAxis |> createJsonFieldTest "rangemode" "\"normal\""
-        fullAxis |> createJsonFieldTest "range" "[-1.0,1.0]"
-        fullAxis |> createJsonFieldTest "fixedrange" "true"
-        fullAxis |> createJsonFieldTest "scaleanchor" "\"x\""
-        fullAxis |> createJsonFieldTest "scaleratio" "6.9"
-        fullAxis |> createJsonFieldTest "constrain" "\"range\""
-        fullAxis |> createJsonFieldTest "constraintoward" "\"bottom\""
-        fullAxis |> createJsonFieldTest "matches" "\"x\""
-        fullAxis |> createJsonFieldTest "rangebreaks" "[{\"enabled\":false}]"
-        fullAxis |> createJsonFieldTest "tickmode" "\"auto\""
+        testCase "visible" (fun _ -> fullAxis |> jsonFieldIsSetWith "visible" "true" )
+        testCase "color" (fun _ -> fullAxis |> jsonFieldIsSetWith "color" "\"red\"")
+        testCase "title" (fun _ -> fullAxis |> jsonFieldIsSetWith "title" "{\"text\":\"Hi\"}")
+        testCase "type" (fun _ -> fullAxis |> jsonFieldIsSetWith "type" "\"log\"")
+        testCase "autotypenumbers" (fun _ -> fullAxis |> jsonFieldIsSetWith "autotypenumbers" "\"strict\"")
+        testCase "autorange" (fun _ -> fullAxis |> jsonFieldIsSetWith "autorange" "true")
+        testCase "rangemode" (fun _ -> fullAxis |> jsonFieldIsSetWith "rangemode" "\"normal\"")
+        testCase "range" (fun _ -> fullAxis |> jsonFieldIsSetWith "range" "[-1.0,1.0]")
+        testCase "fixedrange" (fun _ -> fullAxis |> jsonFieldIsSetWith "fixedrange" "true")
+        testCase "scaleanchor" (fun _ -> fullAxis |> jsonFieldIsSetWith "scaleanchor" "\"x\"")
+        testCase "scaleratio" (fun _ -> fullAxis |> jsonFieldIsSetWith "scaleratio" "6.9")
+        testCase "constrain" (fun _ -> fullAxis |> jsonFieldIsSetWith "constrain" "\"range\"")
+        testCase "constraintoward" (fun _ -> fullAxis |> jsonFieldIsSetWith "constraintoward" "\"bottom\"")
+        testCase "matches" (fun _ -> fullAxis |> jsonFieldIsSetWith "matches" "\"x\"")
+        testCase "rangebreaks" (fun _ -> fullAxis |> jsonFieldIsSetWith "rangebreaks" "[{\"enabled\":false}]")
+        testCase "tickmode" (fun _ -> fullAxis |> jsonFieldIsSetWith "tickmode" "\"auto\"")
     ]

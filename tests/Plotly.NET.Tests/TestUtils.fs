@@ -41,10 +41,8 @@ module HtmlCodegen =
 
 module LayoutObjects =
     
-    let createJsonFieldTest fieldName expected (object:#DynamicObj) =
-        testCase fieldName ( fun () -> 
-            Expect.stringContains 
-                ((object :> DynamicObj) |> JsonConvert.SerializeObject) 
-                ($"\"{fieldName}\":{expected}") 
-                ($"Field `{fieldName}` not set correctly in serialized dynamic object.")
-        )
+    let jsonFieldIsSetWith fieldName expected (object:#DynamicObj) =
+        Expect.equal
+            ((object :> DynamicObj)?($"{fieldName}") |> JsonConvert.SerializeObject) 
+            expected
+            ($"Field `{fieldName}` not set correctly in serialized dynamic object.")

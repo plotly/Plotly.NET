@@ -57,27 +57,27 @@ let slider =
 [<Tests>]
 let ``Slider tests`` =
     testList "LayoutObjects.Slider JSON field tests" [
-        slider |> createJsonFieldTest "active" "1" 
-        slider |> createJsonFieldTest "activebgcolor" "\"rgba(1, 2, 3, 1.0)\""
-        slider |> createJsonFieldTest "bgcolor" "\"rgba(2, 3, 4, 1.0)\""
-        slider |> createJsonFieldTest "bordercolor" "\"rgba(3, 4, 5, 1.0)\""
-        slider |> createJsonFieldTest "borderwidth" "2"
-        slider |> createJsonFieldTest "currentvalue" "{\"font\":{\"family\":\"Arial\",\"size\":1.0,\"color\":\"rgba(4, 5, 6, 1.0)\"},\"offset\":1,\"prefix\":\"prefix\",\"suffix\":\"suffix\",\"visible\":false,\"xanchor\":\"center\"}"
-        slider |> createJsonFieldTest "font" "{\"family\":\"Balto\",\"size\":2.0,\"color\":\"rgba(5, 6, 7, 1.0)\"}"
-        slider |> createJsonFieldTest "len" "0.4"
-        slider |> createJsonFieldTest "lenmode" "\"fraction\""
-        slider |> createJsonFieldTest "minorticklen" "6"
-        slider |> createJsonFieldTest "name" "\"SliderName\""
-        slider |> createJsonFieldTest "pad" "{\"b\":1,\"l\":2,\"r\":3,\"t\":4}"
-        slider |> createJsonFieldTest "templateitemname" "\"TemplateItemName\""
-        slider |> createJsonFieldTest "tickcolor" "\"rgba(6, 7, 8, 1.0)\""
-        slider |> createJsonFieldTest "ticklen" "7"
-        slider |> createJsonFieldTest "tickwidth" "8"
-        slider |> createJsonFieldTest "transition" "{\"duration\":1,\"easing\":\"back\",\"ordering\":\"layout first\"}"
-        slider |> createJsonFieldTest "visible" "true"
-        slider |> createJsonFieldTest "x" "9"
-        slider |> createJsonFieldTest "xanchor" "\"left\""
-        slider |> createJsonFieldTest "y" "10"
-        slider |> createJsonFieldTest "yanchor" "\"middle\""
-        slider |> createJsonFieldTest "steps" "[{\"args\":[{\"visible\":false},{\"title\":\"stepTitle\"}],\"execute\":true,\"label\":\"stepLabel\",\"method\":\"update\",\"name\":\"stepName\",\"templateitemname\":\"stepTemplateItemName\",\"value\":\"stepValue\",\"visible\":true}]"
+        testCase "active" (fun _ -> slider |> jsonFieldIsSetWith "active" "1"  )
+        testCase "activebgcolor" (fun _ -> slider |> jsonFieldIsSetWith "activebgcolor" "\"rgba(1, 2, 3, 1.0)\"" )
+        testCase "bgcolor" (fun _ -> slider |> jsonFieldIsSetWith "bgcolor" "\"rgba(2, 3, 4, 1.0)\"" )
+        testCase "bordercolor" (fun _ -> slider |> jsonFieldIsSetWith "bordercolor" "\"rgba(3, 4, 5, 1.0)\"" )
+        testCase "borderwidth" (fun _ -> slider |> jsonFieldIsSetWith "borderwidth" "2" )
+        testCase "currentvalue" (fun _ -> slider |> jsonFieldIsSetWith "currentvalue" "{\"font\":{\"family\":\"Arial\",\"size\":1.0,\"color\":\"rgba(4, 5, 6, 1.0)\"},\"offset\":1,\"prefix\":\"prefix\",\"suffix\":\"suffix\",\"visible\":false,\"xanchor\":\"center\"}" )
+        testCase "font" (fun _ -> slider |> jsonFieldIsSetWith "font" "{\"family\":\"Balto\",\"size\":2.0,\"color\":\"rgba(5, 6, 7, 1.0)\"}" )
+        testCase "len" (fun _ -> slider |> jsonFieldIsSetWith "len" "0.4" )
+        testCase "lenmode" (fun _ -> slider |> jsonFieldIsSetWith "lenmode" "\"fraction\"" )
+        testCase "minorticklen" (fun _ -> slider |> jsonFieldIsSetWith "minorticklen" "6" )
+        testCase "name" (fun _ -> slider |> jsonFieldIsSetWith "name" "\"SliderName\"" )
+        testCase "pad" (fun _ -> slider |> jsonFieldIsSetWith "pad" "{\"b\":1,\"l\":2,\"r\":3,\"t\":4}" )
+        testCase "templateitemname" (fun _ -> slider |> jsonFieldIsSetWith "templateitemname" "\"TemplateItemName\"" )
+        testCase "tickcolor" (fun _ -> slider |> jsonFieldIsSetWith "tickcolor" "\"rgba(6, 7, 8, 1.0)\"" )
+        testCase "ticklen" (fun _ -> slider |> jsonFieldIsSetWith "ticklen" "7" )
+        testCase "tickwidth" (fun _ -> slider |> jsonFieldIsSetWith "tickwidth" "8" )
+        testCase "transition" (fun _ -> slider |> jsonFieldIsSetWith "transition" "{\"duration\":1,\"easing\":\"back\",\"ordering\":\"layout first\"}" )
+        testCase "visible" (fun _ -> slider |> jsonFieldIsSetWith "visible" "true" )
+        testCase "x" (fun _ -> slider |> jsonFieldIsSetWith "x" "9" )
+        testCase "xanchor" (fun _ -> slider |> jsonFieldIsSetWith "xanchor" "\"left\"" )
+        testCase "y" (fun _ -> slider |> jsonFieldIsSetWith "y" "10" )
+        testCase "yanchor" (fun _ -> slider |> jsonFieldIsSetWith "yanchor" "\"middle\"" )
+        testCase "steps" (fun _ -> slider |> jsonFieldIsSetWith "steps" "[{\"args\":[{\"visible\":false},{\"title\":\"stepTitle\"}],\"execute\":true,\"label\":\"stepLabel\",\"method\":\"update\",\"name\":\"stepName\",\"templateitemname\":\"stepTemplateItemName\",\"value\":\"stepValue\",\"visible\":true}]" )
     ]
