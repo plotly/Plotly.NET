@@ -67,11 +67,12 @@ Credit to [@DaZombieKiller](https://github.com/DaZombieKiller) for helping.
 let runSync job input =
     let current = SynchronizationContext.Current
     SynchronizationContext.SetSynchronizationContext null
+
     try
         job input
     finally
         SynchronizationContext.SetSynchronizationContext current
 
-let taskSync (task : Task<'a>) = task |> runSync (fun t -> t.Result)
+let taskSync (task: Task<'a>) = task |> runSync (fun t -> t.Result)
 
-let taskSyncUnit (task : Task) = task |> runSync (fun t -> t.Wait())
+let taskSyncUnit (task: Task) = task |> runSync (fun t -> t.Wait())

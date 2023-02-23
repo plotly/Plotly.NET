@@ -1248,13 +1248,13 @@ module ChartMap =
             let cluster =
                 Cluster
                 |> Option.defaultValue (MapboxCluster.init ())
-                |> MapboxCluster.style(
-                    ?Enabled = EnableClustering
-                )
+                |> MapboxCluster.style (?Enabled = EnableClustering)
 
-            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+            let mapboxStyle =
+                defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
 
-            let mapbox = Mapbox.init(Style = mapboxStyle)
+            let mapbox =
+                Mapbox.init (Style = mapboxStyle)
 
             TraceMapbox.initScatterMapbox (
                 TraceMapboxStyle.ScatterMapbox(
@@ -1275,13 +1275,7 @@ module ChartMap =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setMapbox(
-                    StyleParam.SubPlotId.Mapbox 1,
-                    mapbox
-                )
-            )
+            |> GenericChart.addLayout (Layout.init () |> Layout.setMapbox (StyleParam.SubPlotId.Mapbox 1, mapbox))
 
         /// <summary>
         /// Creates a ScatterMapbox chart, where data is visualized on a geographic map using mapbox.
@@ -1781,7 +1775,6 @@ module ChartMap =
                 [<Optional; DefaultParameterValue(null)>] ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?Below: string,
-
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -1804,9 +1797,11 @@ module ChartMap =
                     MultiSize = sizes
                 )
 
-            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+            let mapboxStyle =
+                defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
 
-            let mapbox = Mapbox.init(Style = mapboxStyle)
+            let mapbox =
+                Mapbox.init (Style = mapboxStyle)
 
             TraceMapbox.initScatterMapbox (
                 TraceMapboxStyle.ScatterMapbox(
@@ -1826,13 +1821,7 @@ module ChartMap =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setMapbox(
-                    StyleParam.SubPlotId.Mapbox 1,
-                    mapbox
-                )
-            )
+            |> GenericChart.addLayout (Layout.init () |> Layout.setMapbox (StyleParam.SubPlotId.Mapbox 1, mapbox))
 
         /// <summary>
         /// Creates a BubbleMapbox chart, where data is visualized on a geographic map as points using mapbox, additionally using the point size as a third dimension.
@@ -1957,9 +1946,11 @@ module ChartMap =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+            let mapboxStyle =
+                defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
 
-            let mapbox = Mapbox.init(Style = mapboxStyle)
+            let mapbox =
+                Mapbox.init (Style = mapboxStyle)
 
             TraceMapbox.initChoroplethMapbox (
                 TraceMapboxStyle.ChoroplethMapbox(
@@ -1979,13 +1970,7 @@ module ChartMap =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setMapbox(
-                    StyleParam.SubPlotId.Mapbox 1,
-                    mapbox
-                )
-            )
+            |> GenericChart.addLayout (Layout.init () |> Layout.setMapbox (StyleParam.SubPlotId.Mapbox 1, mapbox))
 
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
@@ -2034,9 +2019,11 @@ module ChartMap =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let mapboxStyle = defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+            let mapboxStyle =
+                defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
 
-            let mapbox = Mapbox.init(Style = mapboxStyle)
+            let mapbox =
+                Mapbox.init (Style = mapboxStyle)
 
             TraceMapbox.initDensityMapbox (
                 TraceMapboxStyle.DensityMapbox(
@@ -2058,13 +2045,7 @@ module ChartMap =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setMapbox(
-                    StyleParam.SubPlotId.Mapbox 1,
-                    mapbox
-                )
-            )
+            |> GenericChart.addLayout (Layout.init () |> Layout.setMapbox (StyleParam.SubPlotId.Mapbox 1, mapbox))
 
         /// <summary>
         /// Creates a DensityMapbox Chart that draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.

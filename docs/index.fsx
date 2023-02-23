@@ -6,7 +6,8 @@
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -132,9 +133,9 @@ Example: The first two arguments of the `Chart.Point` function are the x and y d
 
 *)
 open Plotly.NET
-let xData = [0. .. 10.]
-let yData = [0. .. 10.]
-let myFirstChart = Chart.Point(xData,yData)
+let xData = [ 0. .. 10. ]
+let yData = [ 0. .. 10. ]
+let myFirstChart = Chart.Point(xData, yData)
 
 (**
 
@@ -149,7 +150,7 @@ Styling functions are generally the `Chart.with*` naming convention. The followi
 *)
 
 let myFirstStyledChart =
-    Chart.Point(xData,yData)
+    Chart.Point(xData, yData)
     |> Chart.withTitle "Hello world!"
     |> Chart.withXAxisStyle ("xAxis")
     |> Chart.withYAxisStyle ("yAxis")
@@ -166,8 +167,7 @@ The `Chart.Show` function will open a browser window and render the input chart 
 *)
 
 (***do-not-eval***)
-myFirstChart
-|> Chart.show
+myFirstChart |> Chart.show
 
 (**Should render this chart in your brower:*)
 
@@ -176,8 +176,7 @@ myFirstChart |> GenericChart.toChartHTML
 (*** include-it-raw ***)
 
 (***do-not-eval***)
-myFirstStyledChart
-|> Chart.show
+myFirstStyledChart |> Chart.show
 
 (**And here is what happened after applying the styles from above:*)
 
@@ -193,13 +192,13 @@ In a notebook context you usually have (at leat when running on a jupyter server
 That's why you can render charts directly in the cell output. Just end the cell with the chart value:
 *)
 
-let xData' = [0. .. 10.]
-let yData' = [0. .. 10.]
-Chart.Point(xData',yData')
+let xData' = [ 0. .. 10. ]
+let yData' = [ 0. .. 10. ]
+Chart.Point(xData', yData')
 
 (**Here is the styled chart:*)
 
-Chart.Point(xData,yData)
+Chart.Point(xData, yData)
 |> Chart.withTitle "Hello world!"
 |> Chart.withXAxisStyle ("xAxis")
 |> Chart.withYAxisStyle ("yAxis")
@@ -213,11 +212,11 @@ One of the main design points of Plotly.NET it is to provide support for multipl
 ### Functional pipeline style in F#:
 *)
 
-[(1,5);(2,10)]
+[ (1, 5); (2, 10) ]
 |> Chart.Point
-|> Chart.withTraceInfo(Name = "Hello from F#")
-|> Chart.withYAxisStyle(TitleText = "xAxis")
-|> Chart.withXAxisStyle(TitleText = "yAxis")
+|> Chart.withTraceInfo (Name = "Hello from F#")
+|> Chart.withYAxisStyle (TitleText = "xAxis")
+|> Chart.withXAxisStyle (TitleText = "yAxis")
 
 (**
 ### Fluent interface style in C#:
@@ -245,18 +244,18 @@ This API is the most low-level and closest to the original plotly.js syntax. Mak
 
 open Plotly.NET.LayoutObjects
 
-let xAxis = 
+let xAxis =
     let tmp = LinearAxis()
     tmp?title <- "xAxis"
     tmp?showgrid <- false
-    tmp?showline <- true    
+    tmp?showline <- true
     tmp
 
 let yAxis =
     let tmp = LinearAxis()
     tmp?title <- "yAxis"
     tmp?showgrid <- false
-    tmp?showline <- true    
+    tmp?showline <- true
     tmp
 
 let layout =
@@ -266,16 +265,15 @@ let layout =
     tmp?showlegend <- true
     tmp
 
-let trace = 
+let trace =
     let tmp = Trace("scatter")
-    tmp?x <- [1;2]
-    tmp?y <- [5;10]
+    tmp?x <- [ 1; 2 ]
+    tmp?y <- [ 5; 10 ]
     tmp?mode <- "markers"
     tmp?name <- "Hello from F#"
     tmp
 
-GenericChart.ofTraceObject true trace
-|> GenericChart.setLayout layout
+GenericChart.ofTraceObject true trace |> GenericChart.setLayout layout
 
 (**
 ### Declarative style in C# using the underlying `DynamicObj`:

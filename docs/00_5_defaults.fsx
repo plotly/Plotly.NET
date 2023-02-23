@@ -15,7 +15,8 @@ index: 6
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -48,7 +49,7 @@ The following code replaces the default template from the global defaults:
 *)
 open Plotly.NET
 
-let before = Chart.Point([1,2])
+let before = Chart.Point([ 1, 2 ])
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -61,7 +62,7 @@ before |> GenericChart.toChartHTML
 
 Defaults.DefaultTemplate <- ChartTemplates.lightMirrored
 
-let after = Chart.Point([1,2])
+let after = Chart.Point([ 1, 2 ])
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -85,7 +86,7 @@ All Chart functions have a `UseDefaults` argument, which when set to `false` wil
 *)
 
 
-let noDefaults = Chart.Point([1,2], UseDefaults = false)
+let noDefaults = Chart.Point([ 1, 2 ], UseDefaults = false)
 
 (*** condition: ipynb ***)
 #if IPYNB

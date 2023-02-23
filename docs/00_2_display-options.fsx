@@ -15,7 +15,8 @@ index: 3
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 
 (*** condition: ipynb ***)
@@ -41,10 +42,10 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+open Plotly.NET
+
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 
 (**
 ## Referencing PlotlyJS
@@ -64,9 +65,7 @@ You can control this on a per-chart basis via `Chart.withDisplayOptionsStyle`, f
 
 (***do-not-eval***)
 Chart.Point(x = x, y = y)
-|> Chart.withDisplayOptionsStyle(
-    PlotlyJSReference = Full
-)
+|> Chart.withDisplayOptionsStyle (PlotlyJSReference = Full)
 
 
 (**
@@ -80,19 +79,11 @@ For example, use `Chart.withDescription` to append a list of html tags below the
 open Giraffe.ViewEngine
 
 let desc1 =
-    Chart.Point(
-        x = x, 
-        y = y,
-        Name="desc1"
-    )    
-    |> Chart.withDescription [
-        h1 [] [str "Hello"]
-        p [] [str "F#"]
-        ol [] [
-            li [] [str "Item 1"]
-            li [] [str "Item 2"]
-        ]
-    ]
+    Chart.Point(x = x, y = y, Name = "desc1")
+    |> Chart.withDescription
+        [ h1 [] [ str "Hello" ]
+          p [] [ str "F#" ]
+          ol [] [ li [] [ str "Item 1" ]; li [] [ str "Item 2" ] ] ]
 
 
 (*** condition: ipynb ***)
@@ -115,28 +106,22 @@ For example, you can load external css libraries to style the chart description:
 *)
 
 //html for description containing bulma classes such as "hero"
-let bulmaHero = 
-    section [_class"hero is-primary is-bold"] [
-        div [_class "hero-body"] [
-            p [_class "title"] [str "Hero title"]
-            p [_class "subtitle"] [str "Hero subtitle"]
-        ]
-    ]
+let bulmaHero =
+    section
+        [ _class "hero is-primary is-bold" ]
+        [ div
+              [ _class "hero-body" ]
+              [ p [ _class "title" ] [ str "Hero title" ]
+                p [ _class "subtitle" ] [ str "Hero subtitle" ] ] ]
 // chart description containing bulma classes
-let description3 = [
-    h1 [_class "title"] [str "I am heading"]
-    bulmaHero
-]
+let description3 = [ h1 [ _class "title" ] [ str "I am heading" ]; bulmaHero ]
 
 let desc3 =
-    Chart.Point(
-        x = x, 
-        y = y,
-        Name="desc3"
-    )    
-    |> Chart.withAdditionalHeadTags [
-        link [_rel "stylesheet"; _href "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"]
-    ]
+    Chart.Point(x = x, y = y, Name = "desc3")
+    |> Chart.withAdditionalHeadTags
+        [ link
+              [ _rel "stylesheet"
+                _href "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" ] ]
     |> Chart.withDescription description3
 
 (**
@@ -150,13 +135,11 @@ It will add a MathJax script reference to your document based on which version (
 *)
 
 let mathtex_chart =
-    [
-        Chart.Point(xy = [(1.,2.)],Name = @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
-        Chart.Point(xy = [(2.,4.)],Name = @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
-    ]
+    [ Chart.Point(xy = [ (1., 2.) ], Name = @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$")
+      Chart.Point(xy = [ (2., 4.) ], Name = @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$") ]
     |> Chart.combine
     |> Chart.withTitle @"$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$"
-    |> Chart.withMathTex(AppendTags = true, MathJaxVersion = 3)
+    |> Chart.withMathTex (AppendTags = true, MathJaxVersion = 3)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -166,4 +149,3 @@ mathtex_chart
 (***hide***)
 mathtex_chart |> GenericChart.toChartHTML
 (***include-it-raw***)
-

@@ -16,7 +16,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -42,8 +43,10 @@ To zoom out, you can click the parent sector or click the pathbar as well.
 open Plotly.NET
 open Plotly.NET.TraceObjects
 
-let character   = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"]
-let parent      = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
+let character =
+    [ "Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura" ]
+
+let parent = [ ""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve" ]
 
 let icicle =
     Chart.Icicle(
@@ -72,31 +75,30 @@ This example shows the usage of some of the styling possibility using `Chart.Ici
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Icicle`
 *)
 
-let icicleStyled = 
-    let labelsParents = [
-        ("A",""), 20
-        ("B",""), 1
-        ("C",""), 2
-        ("D",""), 3
-        ("E",""), 4
+let icicleStyled =
+    let labelsParents =
+        [ ("A", ""), 20
+          ("B", ""), 1
+          ("C", ""), 2
+          ("D", ""), 3
+          ("E", ""), 4
 
-        ("AA","A"), 15
-        ("AB","A"), 5
+          ("AA", "A"), 15
+          ("AB", "A"), 5
 
-        ("BA","B"), 1
+          ("BA", "B"), 1
 
-        ("AAA", "AA"), 10
-        ("AAB", "AA"), 5
-    ]
+          ("AAA", "AA"), 10
+          ("AAB", "AA"), 5 ]
 
     Chart.Icicle(
         labelsparents = (labelsParents |> Seq.map fst),
-        Values = (labelsParents |> Seq.map snd), 
+        Values = (labelsParents |> Seq.map snd),
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,
         ShowSectionColorScale = true,
         SectionOutlineColor = Color.fromKeyword Black,
-        Tiling = IcicleTiling.init(Flip = StyleParam.TilingFlip.XY),
+        Tiling = IcicleTiling.init (Flip = StyleParam.TilingFlip.XY),
         UseDefaults = false
     )
 
@@ -104,7 +106,7 @@ let icicleStyled =
 #if IPYNB
 icicleStyled
 #endif // IPYNB
-    
+
 (***hide***)
 icicleStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

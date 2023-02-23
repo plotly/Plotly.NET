@@ -16,7 +16,8 @@ index: 6
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -32,23 +33,23 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 
 *Summary:* This example shows how to create sunburst charts in F#.
 
-Sunburst Chart — also known as Ring Chart, Multi-level Pie Chart, and Radial Treemap — is typically used to visualize hierarchical data structures.
+Sunburst Chart ï¿½ also known as Ring Chart, Multi-level Pie Chart, and Radial Treemap ï¿½ is typically used to visualize hierarchical data structures.
 A Sunburst Chart consists of an inner circle surrounded by rings of deeper hierarchy levels.
 The angle of each segment is either proportional to a value or divided equally under its parent node.
 
 ## Simple sunburst plot
 *)
-open Plotly.NET 
+open Plotly.NET
 
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
+let values = [ 19; 26; 55 ]
+let labels = [ "Residential"; "Non-Residential"; "Utility" ]
 
 let sunburstChart =
     Chart.Sunburst(
-        labels = ["A";"B";"C";"D";"E"],
-        parents = ["";"";"B";"B";""],
-        Values=[5.;0.;3.;2.;3.],
-        MultiText=["At";"Bt";"Ct";"Dt";"Et"]
+        labels = [ "A"; "B"; "C"; "D"; "E" ],
+        parents = [ ""; ""; "B"; "B"; "" ],
+        Values = [ 5.; 0.; 3.; 2.; 3. ],
+        MultiText = [ "At"; "Bt"; "Ct"; "Dt"; "Et" ]
     )
 
 (**
@@ -58,26 +59,25 @@ This example shows the usage of some of the styling possibility using `Chart.Sun
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Sunburst`
 *)
 
-let sunburstStyled = 
-    let labelsParents = [
-        ("A",""), 20
-        ("B",""), 1
-        ("C",""), 2
-        ("D",""), 3
-        ("E",""), 4
+let sunburstStyled =
+    let labelsParents =
+        [ ("A", ""), 20
+          ("B", ""), 1
+          ("C", ""), 2
+          ("D", ""), 3
+          ("E", ""), 4
 
-        ("AA","A"), 15
-        ("AB","A"), 5
+          ("AA", "A"), 15
+          ("AB", "A"), 5
 
-        ("BA","B"), 1
+          ("BA", "B"), 1
 
-        ("AAA", "AA"), 10
-        ("AAB", "AA"), 5
-    ]
+          ("AAA", "AA"), 10
+          ("AAB", "AA"), 5 ]
 
     Chart.Sunburst(
         labelsparents = (labelsParents |> Seq.map fst),
-        Values = (labelsParents |> Seq.map snd), 
+        Values = (labelsParents |> Seq.map snd),
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,
         ShowSectionColorScale = true,
@@ -89,7 +89,7 @@ let sunburstStyled =
 #if IPYNB
 sunburstStyled
 #endif // IPYNB
-    
+
 (***hide***)
 sunburstStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

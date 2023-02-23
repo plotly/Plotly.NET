@@ -16,7 +16,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -85,8 +86,7 @@ Here is an example on how to create a simple 2D point chart:
 
 open Plotly.NET
 
-let pointChart =
-    Chart.Point(xy=[1,2; 3,4])
+let pointChart = Chart.Point(xy = [ 1, 2; 3, 4 ])
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -110,12 +110,7 @@ You can clearly see the advantages and disadvantages of both approaches.
 *)
 
 let withTraceStyle =
-    Trace2D.initScatter( 
-        Trace2DStyle.Scatter(
-            X = [1; 3],
-            Y = [2; 4]
-        )
-    )
+    Trace2D.initScatter (Trace2DStyle.Scatter(X = [ 1; 3 ], Y = [ 2; 4 ]))
     |> GenericChart.ofTraceObject true
 
 (*** condition: ipynb ***)
@@ -141,8 +136,8 @@ So if you want to set any kind of property on one of these objects you can do it
 *)
 
 let myTrace = Trace("scatter") // create a scatter trace
-myTrace?x <- [0;3] // set the x property (the x dimension of the data)
-myTrace?y <- [2;4] // set the y property (the y dimension of the data)
+myTrace?x <- [ 0; 3 ] // set the x property (the x dimension of the data)
+myTrace?y <- [ 2; 4 ] // set the y property (the y dimension of the data)
 
 let withDynObj = GenericChart.ofTraceObject true myTrace
 

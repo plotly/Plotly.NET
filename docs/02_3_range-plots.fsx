@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,12 +36,12 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
+open Plotly.NET
 
 let rnd = System.Random()
 
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 
 let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
 let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
@@ -58,7 +59,8 @@ let range1 =
         lower = yLower,
         mode = StyleParam.Mode.Lines_Markers,
         MarkerColor = Color.fromString "grey",
-        RangeColor = Color.fromString "lightblue")
+        RangeColor = Color.fromString "lightblue"
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -76,22 +78,22 @@ This example shows the usage of some of the styling possibility using `Chart.Ran
 *)
 open Plotly.NET.TraceObjects
 
-let rangeStyled = 
+let rangeStyled =
     Chart.Range(
-        x = [1;2;3;4;5],
-        y = [2;2;3;4;6],
-        upper= [4;6;7;5;7],
-        lower= [0;0;0;1;5],
+        x = [ 1; 2; 3; 4; 5 ],
+        y = [ 2; 2; 3; 4; 6 ],
+        upper = [ 4; 6; 7; 5; 7 ],
+        lower = [ 0; 0; 0; 1; 5 ],
         mode = StyleParam.Mode.Lines_Markers,
         TextPosition = StyleParam.TextPosition.TopCenter,
         RangeColor = Color.fromString "rgba(0, 204, 150, 0.2)",
-        LowerLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
-        LowerMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
-        UpperLine = Line.init(Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
-        UpperMarker = Marker.init(Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
-        MultiText = ["Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5"],
-        MultiLowerText = ["Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5"],
-        MultiUpperText = ["Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5"],
+        LowerLine = Line.init (Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        LowerMarker = Marker.init (Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        UpperLine = Line.init (Width = 2., Color = Color.fromString "rgba(0, 204, 150, 0.4)"),
+        UpperMarker = Marker.init (Color = Color.fromString "rgba(0, 204, 150, 0.6)"),
+        MultiText = [ "Mid1"; "Mid2"; "Mid3"; "Mid4"; "Mid5" ],
+        MultiLowerText = [ "Lower1"; "Lower2"; "Lower3"; "Lower4"; "Lower5" ],
+        MultiUpperText = [ "Upper1"; "Upper2"; "Upper3"; "Upper4"; "Upper5" ],
         ShowLegend = true
     )
 

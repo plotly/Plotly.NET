@@ -15,7 +15,8 @@ index: 6
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,8 +37,8 @@ let's first create some data for the purpose of creating example charts:
 *)
 
 let rnd = new System.Random()
-let x = [for i in 0 .. 100 -> rnd.NextDouble()]
-let y = [for i in 0 .. 100 -> rnd.NextDouble()]
+let x = [ for i in 0..100 -> rnd.NextDouble() ]
+let y = [ for i in 0..100 -> rnd.NextDouble() ]
 
 (**
 `Chart.PointDensity` is a combination of a scatter plot and a histogram2dcontour.
@@ -47,17 +48,13 @@ It helps assessing the 2 dimensional distribution of a scatter plot by adding de
 
 open Plotly.NET
 
-let pointDensityChart = 
-    Chart.PointDensity(
-        x = x,
-        y = y
-    )
+let pointDensityChart = Chart.PointDensity(x = x, y = y)
 
 (*** condition: ipynb ***)
 #if IPYNB
 pointDensityChart
 #endif // IPYNB
-    
+
 (***hide***)
 pointDensityChart |> GenericChart.toChartHTML
 (***include-it-raw***)
@@ -68,7 +65,7 @@ pointDensityChart |> GenericChart.toChartHTML
 This example shows the usage of some of the styling possibility using `Chart.PointDensity`.
 *)
 
-let pointDensityChartStyled = 
+let pointDensityChartStyled =
     Chart.PointDensity(
         x = x,
         y = y,
@@ -76,7 +73,7 @@ let pointDensityChartStyled =
         PointMarkerSymbol = StyleParam.MarkerSymbol.X,
         PointMarkerSize = 4,
         ColorScale = StyleParam.Colorscale.Viridis,
-        ColorBar = ColorBar.init(Title = Title.init("Density")),
+        ColorBar = ColorBar.init (Title = Title.init ("Density")),
         ShowContourLabels = true
     )
 
@@ -84,7 +81,7 @@ let pointDensityChartStyled =
 #if IPYNB
 pointDensityChartStyled
 #endif // IPYNB
-    
+
 (***hide***)
 pointDensityChartStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

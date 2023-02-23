@@ -180,7 +180,7 @@ open FSharpAux
 open System
 open System.IO
 
-open Plotly.NET 
+open Plotly.NET
 
 open System
-open Plotly.NET 
+open Plotly.NET

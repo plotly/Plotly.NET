@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -52,18 +53,17 @@ open Plotly.NET.ConfigObjects
 
 let svgConfig =
     Config.init (
-        ToImageButtonOptions = ToImageButtonOptions.init(
-            Format = StyleParam.ImageFormat.JPEG,
-            Filename = "mySvgChart",
-            Width = 900.,
-            Height = 600.,
-            Scale = 10.
-        )
+        ToImageButtonOptions =
+            ToImageButtonOptions.init (
+                Format = StyleParam.ImageFormat.JPEG,
+                Filename = "mySvgChart",
+                Width = 900.,
+                Height = 600.,
+                Scale = 10.
+            )
     )
 
-let svgButtonChart = 
-    Chart.Point(xy = [(1.,2.)])
-    |> Chart.withConfig svgConfig
+let svgButtonChart = Chart.Point(xy = [ (1., 2.) ]) |> Chart.withConfig svgConfig
 
 
 (*** condition: ipynb ***)
@@ -82,11 +82,9 @@ To create a static plot that has no hoverable elements, use `StaticPlot=true` on
 
 *)
 
-let staticConfig = Config.init(StaticPlot=true)
+let staticConfig = Config.init (StaticPlot = true)
 
-let staticPlot =
-    Chart.Point(xy = [(1.,2.)])
-    |> Chart.withConfig staticConfig
+let staticPlot = Chart.Point(xy = [ (1., 2.) ]) |> Chart.withConfig staticConfig
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -104,19 +102,10 @@ You can define fields that can be edited on the chart by setting `Editable = tru
 
 *)
 
-let editableConfig = 
-    Config.init(
-        Editable = true,
-        Edits = Edits.init(
-            LegendPosition  = true,
-            AxisTitleText   = true,
-            LegendText      = true
-        )
-    )
+let editableConfig =
+    Config.init (Editable = true, Edits = Edits.init (LegendPosition = true, AxisTitleText = true, LegendText = true))
 
-let editablePlot =
-    Chart.Point(xy = [(1.,2.)])
-    |> Chart.withConfig editableConfig
+let editablePlot = Chart.Point(xy = [ (1., 2.) ]) |> Chart.withConfig editableConfig
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -135,11 +124,10 @@ To create a chart that is reponsive to its container size, use `Responsive=true`
 (try resizing the window)
 *)
 
-let responsiveConfig = Config.init(Responsive=true)
+let responsiveConfig = Config.init (Responsive = true)
 
 let responsivePlot =
-    Chart.Point(xy = [(1.,2.)])
-    |> Chart.withConfig responsiveConfig
+    Chart.Point(xy = [ (1., 2.) ]) |> Chart.withConfig responsiveConfig
 
 (*** condition: ipynb ***)
 #if IPYNB

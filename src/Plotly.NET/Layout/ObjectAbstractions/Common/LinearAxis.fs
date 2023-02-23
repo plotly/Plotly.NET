@@ -436,7 +436,7 @@ type LinearAxis() =
             ?Title = Title,
             ?AutoTypeNumbers = AutoTypeNumbers,
             ?AutoRange = AutoRange,
-            ?AutoShift= AutoShift,
+            ?AutoShift = AutoShift,
             ?RangeMode = RangeMode,
             ?Range = Range,
             ?FixedRange = FixedRange,
@@ -509,7 +509,7 @@ type LinearAxis() =
             ?RangeSelector = RangeSelector,
             ?Calendar = Calendar
         )
-    
+
     /// <summary>
     /// Initialize a LinearAxis object that can be used as a positional scale for carpet coordinates.
     /// </summary>

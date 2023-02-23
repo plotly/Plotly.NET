@@ -34,14 +34,14 @@ type MapboxCluster() =
         ) =
         MapboxCluster()
         |> MapboxCluster.style (
-            ?Color     = Color     ,
-            ?Enabled   = Enabled   ,
-            ?MaxZoom   = MaxZoom   ,
-            ?Opacity   = Opacity   ,
-            ?Size      = Size      ,
-            ?MultiSize = MultiSize ,
-            ?Step      = Step      ,
-            ?MultiStep = MultiStep 
+            ?Color = Color,
+            ?Enabled = Enabled,
+            ?MaxZoom = MaxZoom,
+            ?Opacity = Opacity,
+            ?Size = Size,
+            ?MultiSize = MultiSize,
+            ?Step = Step,
+            ?MultiStep = MultiStep
         )
 
     /// <summary>
@@ -69,7 +69,7 @@ type MapboxCluster() =
         ) =
         (fun (mapboxCluster: MapboxCluster) ->
 
-            Color   |> DynObj.setValueOpt mapboxCluster "color"
+            Color |> DynObj.setValueOpt mapboxCluster "color"
             Enabled |> DynObj.setValueOpt mapboxCluster "enabled"
             MaxZoom |> DynObj.setValueOpt mapboxCluster "maxzoom"
             Opacity |> DynObj.setValueOpt mapboxCluster "opacity"

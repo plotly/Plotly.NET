@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,16 +37,16 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
+open Plotly.NET
+
 // a coordinates
-let a  = [ 1; 2; 3; 4; 5; 6; 7;]
+let a = [ 1; 2; 3; 4; 5; 6; 7 ]
 
 // b coordinates
-let b  = a |> List.rev
+let b = a |> List.rev
 
 //c
-let c  = [ 2; 2; 2; 2; 2; 2; 2;]
+let c = [ 2; 2; 2; 2; 2; 2; 2 ]
 
 
 (**
@@ -63,12 +64,7 @@ Ternary plots are tools for analyzing compositional data in the three-dimensiona
 use `Chart.PointTernary` to create a ternary plot that displays points on a ternary coordinate system:
 *)
 
-let ternaryPoint =
-    Chart.PointTernary(
-        A = a,
-        B = b,
-        C = c
-    )
+let ternaryPoint = Chart.PointTernary(A = a, B = b, C = c)
 (*** condition: ipynb ***)
 #if IPYNB
 ternaryPoint
@@ -88,13 +84,9 @@ As values on ternary plots sum to a constant, you can omit one dimension ofd the
 You can also for example change the line style using `Chart.withLineStyle`
 *)
 
-let lineTernary = 
-    Chart.LineTernary(
-        A = a,
-        B = b,
-        Sum = 10
-    )
-    |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
+let lineTernary =
+    Chart.LineTernary(A = a, B = b, Sum = 10)
+    |> Chart.withLineStyle (Color = Color.fromString "purple", Dash = StyleParam.DrawingStyle.DashDot)
 
 (*** condition: ipynb ***)
 #if IPYNB

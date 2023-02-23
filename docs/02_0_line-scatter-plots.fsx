@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,10 +36,10 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+open Plotly.NET
+
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 
 (**
 
@@ -50,13 +51,8 @@ The following example generates a line Plot containing X and Y values and applie
 *)
 
 let line1 =
-    Chart.Line(
-        x = x,
-        y = y,
-        Name="line",
-        ShowMarkers=true,
-        MarkerSymbol=StyleParam.MarkerSymbol.Square)    
-    |> Chart.withLineStyle(Width=2.,Dash=StyleParam.DrawingStyle.Dot)
+    Chart.Line(x = x, y = y, Name = "line", ShowMarkers = true, MarkerSymbol = StyleParam.MarkerSymbol.Square)
+    |> Chart.withLineStyle (Width = 2., Dash = StyleParam.DrawingStyle.Dot)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -76,10 +72,8 @@ shown below.
 *)
 
 let line2 =
-    // Drawing graph of a 'square' function 
-    Chart.Line(
-        xy = [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ]
-    )
+    // Drawing graph of a 'square' function
+    Chart.Line(xy = [ for x in 1.0 .. 100.0 -> (x, x ** 2.0) ])
 
 
 (*** condition: ipynb ***)
@@ -98,7 +92,7 @@ Spline charts interpolate the curves between single points of
 the chart to generate a smoother version of the line chart.
 *)
 
-let spline1 = Chart.Spline(x = x,y = y,Name="spline")    
+let spline1 = Chart.Spline(x = x, y = y, Name = "spline")
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -109,14 +103,8 @@ spline1
 spline1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
-let spline2 = 
-    Chart.Spline(
-        x = x,
-        y = y,
-        Name="spline",
-        Smoothing = 0.4
-    )      
-    
+let spline2 = Chart.Spline(x = x, y = y, Name = "spline", Smoothing = 0.4)
+
 (*** condition: ipynb ***)
 #if IPYNB
 spline2
@@ -136,16 +124,10 @@ If `TextPosition` is set the labels are drawn otherwise only shown when hovering
 *)
 
 
-let labels  = ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j";]
+let labels = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ]
 
 let pointsWithLabels =
-    Chart.Point(
-        x = x,
-        y = y,
-        Name="points",
-        MultiText=labels,
-        TextPosition=StyleParam.TextPosition.TopRight
-    )    
+    Chart.Point(x = x, y = y, Name = "points", MultiText = labels, TextPosition = StyleParam.TextPosition.TopRight)
 
 (*** condition: ipynb ***)
 #if IPYNB

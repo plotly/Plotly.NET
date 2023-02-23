@@ -15,7 +15,8 @@ index: 6
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,10 +36,10 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 let's first create some data for the purpose of creating example charts:
 
 *)
-open Plotly.NET 
-  
-let values = [19; 26; 55;]
-let labels = ["Residential"; "Non-Residential"; "Utility"]
+open Plotly.NET
+
+let values = [ 19; 26; 55 ]
+let labels = [ "Residential"; "Non-Residential"; "Utility" ]
 
 (**
 
@@ -47,11 +48,7 @@ When creating pie charts, it is usually desirable to provide both labels and val
 
 *)
 
-let pie1 =
-    Chart.Pie(
-        values = values,
-        Labels = labels
-    )
+let pie1 = Chart.Pie(values = values, Labels = labels)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -63,12 +60,7 @@ pie1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 let doughnut1 =
-    Chart.Doughnut(
-        values = values,
-        Labels = labels,
-        Hole=0.3,
-        MultiText = labels
-    )
+    Chart.Doughnut(values = values, Labels = labels, Hole = 0.3, MultiText = labels)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -89,38 +81,29 @@ For even more styling control, use the respective TraceStyle function `TraceDoma
 
 let pieStyled =
 
-    let values = [19; 26; 55;]
-    let labels = ["Residential"; "Non-Residential"; "Utility"]
+    let values = [ 19; 26; 55 ]
+    let labels = [ "Residential"; "Non-Residential"; "Utility" ]
 
     Chart.Pie(
         values = values,
         Labels = labels,
-        SectionColors = [
-            Color.fromKeyword Aqua
-            Color.fromKeyword Salmon
-            Color.fromKeyword Tan
-        ],
+        SectionColors = [ Color.fromKeyword Aqua; Color.fromKeyword Salmon; Color.fromKeyword Tan ],
         SectionOutlineColor = Color.fromKeyword Black,
         SectionOutlineWidth = 2.,
-        MultiText = [
-            "Some"
-            "More"
-            "Stuff"
-        ],
-        MultiTextPosition = [
-            StyleParam.TextPosition.Inside
-            StyleParam.TextPosition.Outside
-            StyleParam.TextPosition.Inside
-        ],
+        MultiText = [ "Some"; "More"; "Stuff" ],
+        MultiTextPosition =
+            [ StyleParam.TextPosition.Inside
+              StyleParam.TextPosition.Outside
+              StyleParam.TextPosition.Inside ],
         Rotation = 45.,
-        MultiPull = [0.; 0.3; 0.]
+        MultiPull = [ 0.; 0.3; 0. ]
     )
 
 (*** condition: ipynb ***)
 #if IPYNB
 pieStyled
 #endif // IPYNB
-    
+
 (***hide***)
 pieStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

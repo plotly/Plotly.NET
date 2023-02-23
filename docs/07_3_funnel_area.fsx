@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 (*** condition: ipynb ***)
 #if IPYNB
 #r "nuget: Plotly.NET, {{fsdocs-package-version}}"
@@ -33,8 +34,8 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 let's first create some data for the purpose of creating example charts:
 *)
 
-let values = [|5; 4; 3; 2; 1|]
-let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
+let values = [| 5; 4; 3; 2; 1 |]
+let text = [| "The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th" |]
 
 (**
 FunnelArea charts visualize stages in a process using area-encoded trapezoids. 
@@ -43,16 +44,12 @@ wherein each item appears in a single stage. See also the the [Funnel]({{root}}/
 to visualizing funnel data.
 *)
 
-open Plotly.NET 
+open Plotly.NET
 
-let line = Line.init (Color=Color.fromString "purple", Width=3.)
+let line = Line.init (Color = Color.fromString "purple", Width = 3.)
 
-let funnelArea = 
-    Chart.FunnelArea(
-        values = values, 
-        MultiText=text, 
-        SectionOutline=line
-    )
+let funnelArea =
+    Chart.FunnelArea(values = values, MultiText = text, SectionOutline = line)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -72,18 +69,14 @@ For even more styling control, use the respective TraceStyle function `TraceDoma
 *)
 
 let funnelAreaStyled =
-    let values = [|5; 4; 3|]
-    let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
+    let values = [| 5; 4; 3 |]
+    let labels = [| "The 1st"; "The 2nd"; "The 3rd" |]
 
     Chart.FunnelArea(
         values = values,
         Labels = labels,
         MultiText = labels,
-        SectionColors = [
-            Color.fromKeyword Aqua
-            Color.fromKeyword Salmon
-            Color.fromKeyword Tan
-        ],
+        SectionColors = [ Color.fromKeyword Aqua; Color.fromKeyword Salmon; Color.fromKeyword Tan ],
         SectionOutlineColor = Color.fromKeyword Black,
         SectionOutlineWidth = 2.,
         AspectRatio = 0.75,
@@ -94,7 +87,7 @@ let funnelAreaStyled =
 #if IPYNB
 funnelAreaStyled
 #endif // IPYNB
-    
+
 (***hide***)
 funnelAreaStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

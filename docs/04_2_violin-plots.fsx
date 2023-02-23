@@ -15,7 +15,8 @@ index: 3
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,10 +36,21 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
-let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+open Plotly.NET
+
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
+
+let x =
+    [ "bin1"
+      "bin2"
+      "bin1"
+      "bin2"
+      "bin1"
+      "bin2"
+      "bin1"
+      "bin1"
+      "bin2"
+      "bin1" ]
 
 (**
 A violin plot is a method of plotting numeric data. It is similar to box plot with a rotated kernel density plot 
@@ -46,12 +58,7 @@ on each side. The violin plot is similar to box plots, except that they also sho
 data at different values.
 *)
 
-let violin1 =
-    Chart.Violin (
-        X = x,
-        Y = y,
-        Points=StyleParam.JitterPoints.All
-    )
+let violin1 = Chart.Violin(X = x, Y = y, Points = StyleParam.JitterPoints.All)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -71,10 +78,10 @@ let violin2 =
     Chart.Violin(
         X = y,
         Y = x,
-        Jitter=0.1,
-        Points=StyleParam.JitterPoints.All,
-        Orientation=StyleParam.Orientation.Horizontal,
-        MeanLine=MeanLine.init(Visible=true)
+        Jitter = 0.1,
+        Points = StyleParam.JitterPoints.All,
+        Orientation = StyleParam.Orientation.Horizontal,
+        MeanLine = MeanLine.init (Visible = true)
     )
 
 (*** condition: ipynb ***)
@@ -90,13 +97,31 @@ violin2 |> GenericChart.toChartHTML
 You can also produce a violin plot using the `Chart.Combine` syntax.
 *)
 
-let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let y' =
+    [ 2.
+      1.5
+      5.
+      1.5
+      2.
+      2.5
+      2.1
+      2.5
+      1.5
+      1.
+      2.
+      1.5
+      5.
+      1.5
+      3.
+      2.5
+      2.5
+      1.5
+      3.5
+      1. ]
 
 let violin3 =
-    [
-        Chart.Violin (X = "y" ,Y = y,Name="bin1",Jitter=0.1,Points=StyleParam.JitterPoints.All);
-        Chart.Violin (X = "y'",Y = y',Name="bin2",Jitter=0.1,Points=StyleParam.JitterPoints.All);
-    ]
+    [ Chart.Violin(X = "y", Y = y, Name = "bin1", Jitter = 0.1, Points = StyleParam.JitterPoints.All)
+      Chart.Violin(X = "y'", Y = y', Name = "bin2", Jitter = 0.1, Points = StyleParam.JitterPoints.All) ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -107,5 +132,3 @@ violin3
 (***hide***)
 violin3 |> GenericChart.toChartHTML
 (***include-it-raw***)
-
-

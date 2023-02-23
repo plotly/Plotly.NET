@@ -15,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,37 +37,37 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 
-let contourCarpet = 
-    [
-        Chart.Carpet(
-            carpetId = "contour",
-            A = [0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.],
-            B = [4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6.],
-            X = [2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5],
-            Y = [1.; 1.4; 1.6; 1.75; 2.; 2.5; 2.7; 2.75; 3.; 3.5; 3.7; 3.75],
-            AAxis = LinearAxis.initCarpet(
-                TickPrefix = "a = ",
-                Smoothing = 0.,
-                MinorGridCount = 9,
-                AxisType = StyleParam.AxisType.Linear
-            ),
-            BAxis = LinearAxis.initCarpet(
-                TickPrefix = "b = ",
-                Smoothing = 0.,
-                MinorGridCount = 9,
-                AxisType = StyleParam.AxisType.Linear
-            ), 
-            Opacity = 0.75
-        )    
-        Chart.ContourCarpet(
-            z = [1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625],
-            carpetAnchorId = "contour",
-            A = [0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3],
-            B = [4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6], 
-            ContourLineColor = Color.fromKeyword White,
-            ShowContourLabels = true
-        )
-    ]
+let contourCarpet =
+    [ Chart.Carpet(
+          carpetId = "contour",
+          A = [ 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3.; 0.; 1.; 2.; 3. ],
+          B = [ 4.; 4.; 4.; 4.; 5.; 5.; 5.; 5.; 6.; 6.; 6.; 6. ],
+          X = [ 2.; 3.; 4.; 5.; 2.2; 3.1; 4.1; 5.1; 1.5; 2.5; 3.5; 4.5 ],
+          Y = [ 1.; 1.4; 1.6; 1.75; 2.; 2.5; 2.7; 2.75; 3.; 3.5; 3.7; 3.75 ],
+          AAxis =
+              LinearAxis.initCarpet (
+                  TickPrefix = "a = ",
+                  Smoothing = 0.,
+                  MinorGridCount = 9,
+                  AxisType = StyleParam.AxisType.Linear
+              ),
+          BAxis =
+              LinearAxis.initCarpet (
+                  TickPrefix = "b = ",
+                  Smoothing = 0.,
+                  MinorGridCount = 9,
+                  AxisType = StyleParam.AxisType.Linear
+              ),
+          Opacity = 0.75
+      )
+      Chart.ContourCarpet(
+          z = [ 1.; 1.96; 2.56; 3.0625; 4.; 5.0625; 1.; 7.5625; 9.; 12.25; 15.21; 14.0625 ],
+          carpetAnchorId = "contour",
+          A = [ 0; 1; 2; 3; 0; 1; 2; 3; 0; 1; 2; 3 ],
+          B = [ 4; 4; 4; 4; 5; 5; 5; 5; 6; 6; 6; 6 ],
+          ContourLineColor = Color.fromKeyword White,
+          ShowContourLabels = true
+      ) ]
     |> Chart.combine
 
 (*** condition: ipynb ***)

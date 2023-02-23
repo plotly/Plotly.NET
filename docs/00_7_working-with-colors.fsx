@@ -15,7 +15,8 @@ index: 8
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -80,7 +81,7 @@ Here is an example on how to set a single color for a plotly color attribute:
 
 let colorChart1 =
     Chart.Bubble(
-        xysizes = [1,2,15; 3,4,15; 5,6,15],
+        xysizes = [ 1, 2, 15; 3, 4, 15; 5, 6, 15 ],
         MarkerColor = Color.fromKeyword Red // will make ALL markers red.
     )
 
@@ -102,12 +103,8 @@ Here is an example on how to set individual colors in a collection for a plotly 
 
 let colorChart2 =
     Chart.Bubble(
-        xysizes = [1,2,15; 3,4,15; 5,6,15],
-        MarkerColor = Color.fromColors [
-            Color.fromKeyword Red
-            Color.fromKeyword Green
-            Color.fromKeyword Blue
-        ]
+        xysizes = [ 1, 2, 15; 3, 4, 15; 5, 6, 15 ],
+        MarkerColor = Color.fromColors [ Color.fromKeyword Red; Color.fromKeyword Green; Color.fromKeyword Blue ]
     )
 
 (*** condition: ipynb ***)
@@ -125,18 +122,13 @@ colorChart2 |> GenericChart.toChartHTML
 `Color.fromColorScaleValues` takes a collection of values that will be mapped onto a color scale (normalized between min and max value)
 Here is an example on how to set up color scale mapping:
 *)
-let x = [1; 2; 3]
-let y = [2; 3; 4] // we want to color the markers depending on their y value.
-let sizes = [15; 15; 15]
+let x = [ 1; 2; 3 ]
+let y = [ 2; 3; 4 ] // we want to color the markers depending on their y value.
+let sizes = [ 15; 15; 15 ]
 
 let colorChart3 =
-    Chart.Bubble(
-        x = x,
-        y = y,
-        sizes = sizes,
-        MarkerColor = Color.fromColorScaleValues y
-    )
-    |> Chart.withMarkerStyle(ShowScale = true) // we want to see the color scale we are mapping to
+    Chart.Bubble(x = x, y = y, sizes = sizes, MarkerColor = Color.fromColorScaleValues y)
+    |> Chart.withMarkerStyle (ShowScale = true) // we want to see the color scale we are mapping to
 
 (*** condition: ipynb ***)
 #if IPYNB

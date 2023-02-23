@@ -132,26 +132,26 @@ type Shape() =
         ) =
         (fun (shape: Shape) ->
 
-            Editable         |> DynObj.setValueOpt shape "editable"
-            FillColor        |> DynObj.setValueOpt shape "fillcolor"
-            FillRule         |> DynObj.setValueOptBy shape "fillrule" StyleParam.FillRule.convert
-            Layer            |> DynObj.setValueOptBy shape "layer" StyleParam.Layer.convert
-            Line             |> DynObj.setValueOpt shape "line" 
-            Name             |> DynObj.setValueOpt shape "name" 
-            Opacity          |> DynObj.setValueOpt shape "opacity" 
-            Path             |> DynObj.setValueOpt shape "path" 
-            TemplateItemName |> DynObj.setValueOpt shape "templateitemname" 
-            ShapeType        |> DynObj.setValueOptBy shape "type" StyleParam.ShapeType.convert
-            Visible          |> DynObj.setValueOpt shape "visible" 
-            X0               |> DynObj.setValueOpt shape "x0" 
-            X1               |> DynObj.setValueOpt shape "x1" 
-            XAnchor          |> DynObj.setValueOptBy shape "xanchor" StyleParam.LinearAxisId.convert
-            Xref             |> DynObj.setValueOpt shape "xref" 
-            XSizeMode        |> DynObj.setValueOptBy shape "xsizemode" StyleParam.ShapeSizeMode.convert
-            Y0               |> DynObj.setValueOpt shape "y0" 
-            Y1               |> DynObj.setValueOpt shape "y1" 
-            YAnchor          |> DynObj.setValueOptBy shape "yanchor" StyleParam.LinearAxisId.convert
-            Yref             |> DynObj.setValueOpt shape "yref" 
-            YSizeMode        |> DynObj.setValueOptBy shape "ysizemode" StyleParam.ShapeSizeMode.convert
+            Editable |> DynObj.setValueOpt shape "editable"
+            FillColor |> DynObj.setValueOpt shape "fillcolor"
+            FillRule |> DynObj.setValueOptBy shape "fillrule" StyleParam.FillRule.convert
+            Layer |> DynObj.setValueOptBy shape "layer" StyleParam.Layer.convert
+            Line |> DynObj.setValueOpt shape "line"
+            Name |> DynObj.setValueOpt shape "name"
+            Opacity |> DynObj.setValueOpt shape "opacity"
+            Path |> DynObj.setValueOpt shape "path"
+            TemplateItemName |> DynObj.setValueOpt shape "templateitemname"
+            ShapeType |> DynObj.setValueOptBy shape "type" StyleParam.ShapeType.convert
+            Visible |> DynObj.setValueOpt shape "visible"
+            X0 |> DynObj.setValueOpt shape "x0"
+            X1 |> DynObj.setValueOpt shape "x1"
+            XAnchor |> DynObj.setValueOptBy shape "xanchor" StyleParam.LinearAxisId.convert
+            Xref |> DynObj.setValueOpt shape "xref"
+            XSizeMode |> DynObj.setValueOptBy shape "xsizemode" StyleParam.ShapeSizeMode.convert
+            Y0 |> DynObj.setValueOpt shape "y0"
+            Y1 |> DynObj.setValueOpt shape "y1"
+            YAnchor |> DynObj.setValueOptBy shape "yanchor" StyleParam.LinearAxisId.convert
+            Yref |> DynObj.setValueOpt shape "yref"
+            YSizeMode |> DynObj.setValueOptBy shape "ysizemode" StyleParam.ShapeSizeMode.convert
 
             shape)

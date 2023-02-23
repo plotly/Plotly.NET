@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,27 +37,24 @@ let's first create some data for the purpose of creating example charts:
 *)
 
 open System
-open Plotly.NET 
+open Plotly.NET
 
 // Generate linearly spaced vector
-let linspace (min,max,n) = 
-    if n <= 2 then failwithf "n needs to be larger then 2"
+let linspace (min, max, n) =
+    if n <= 2 then
+        failwithf "n needs to be larger then 2"
+
     let bw = float (max - min) / (float n - 1.)
-    [|min ..bw ..max|]
+    [| min..bw..max |]
 
 // Create example data
 let size = 100
-let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
-let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+let x = linspace (-2. * Math.PI, 2. * Math.PI, size)
+let y = linspace (-2. * Math.PI, 2. * Math.PI, size)
 
-let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+let f x y = -(5. * x / (x ** 2. + y ** 2. + 1.))
 
-let z = 
-    Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
-    )
+let z = Array.init size (fun i -> Array.init size (fun j -> f x.[j] y.[i]))
 
 (**
 A contour plot is a graphical technique for representing a 3-dimensional surface by plotting
@@ -67,9 +65,7 @@ The contour plot is an alternative to a 3-D surface plot.
 
 *)
 
-let contour1 =
-    Chart.Contour(zData = z)
-    |> Chart.withSize(600.,600.)
+let contour1 = Chart.Contour(zData = z) |> Chart.withSize (600., 600.)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -87,10 +83,7 @@ to apply heatmap gradient coloring between each contour level, set the `ContourC
 *)
 
 let contour2 =
-    Chart.Contour(
-        zData = z,
-        ContoursColoring = StyleParam.ContourColoring.Heatmap
-    )
+    Chart.Contour(zData = z, ContoursColoring = StyleParam.ContourColoring.Heatmap)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -113,7 +106,7 @@ let contour3 =
         zData = z,
         ContoursColoring = StyleParam.ContourColoring.Heatmap,
         ShowContourLabels = true,
-        ContourLabelFont = Font.init(Size = 12., Color = Color.fromKeyword White)
+        ContourLabelFont = Font.init (Size = 12., Color = Color.fromKeyword White)
     )
 
 (*** condition: ipynb ***)

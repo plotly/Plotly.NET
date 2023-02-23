@@ -15,7 +15,8 @@ index: 6
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -38,22 +39,27 @@ By default the values are considered as 'relative'. However; it is possible to u
 
 *)
 
-open Plotly.NET 
+open Plotly.NET
 open Plotly.NET.TraceObjects
 open Plotly.NET.LayoutObjects
 
 let waterfall1 =
     Chart.Waterfall(
-        x = ["Sales"; "Consulting"; "Net revenue"; "Purchases"; "Other expenses"; "Profit before tax"],
-        y = [60; 80; 0; -40; -20; 0],
-        Measure = [
-            StyleParam.WaterfallMeasure.Relative
-            StyleParam.WaterfallMeasure.Relative
-            StyleParam.WaterfallMeasure.Total
-            StyleParam.WaterfallMeasure.Relative
-            StyleParam.WaterfallMeasure.Relative
-            StyleParam.WaterfallMeasure.Total
-        ]
+        x =
+            [ "Sales"
+              "Consulting"
+              "Net revenue"
+              "Purchases"
+              "Other expenses"
+              "Profit before tax" ],
+        y = [ 60; 80; 0; -40; -20; 0 ],
+        Measure =
+            [ StyleParam.WaterfallMeasure.Relative
+              StyleParam.WaterfallMeasure.Relative
+              StyleParam.WaterfallMeasure.Total
+              StyleParam.WaterfallMeasure.Relative
+              StyleParam.WaterfallMeasure.Relative
+              StyleParam.WaterfallMeasure.Total ]
     )
 
 (*** condition: ipynb ***)
@@ -74,14 +80,13 @@ To keep better track of which measure belongs to which datum, use
 
 let waterfall2 =
     Chart.Waterfall(
-        xymeasures = [
-             60 , "Sales"             , StyleParam.WaterfallMeasure.Relative
-             80 , "Consulting"        , StyleParam.WaterfallMeasure.Relative
-             0  , "Net revenue"       , StyleParam.WaterfallMeasure.Total
-             -40, "Purchases"         , StyleParam.WaterfallMeasure.Relative
-             -20, "Other expenses"    , StyleParam.WaterfallMeasure.Relative
-             0  , "Profit before tax" , StyleParam.WaterfallMeasure.Total
-        ],
+        xymeasures =
+            [ 60, "Sales", StyleParam.WaterfallMeasure.Relative
+              80, "Consulting", StyleParam.WaterfallMeasure.Relative
+              0, "Net revenue", StyleParam.WaterfallMeasure.Total
+              -40, "Purchases", StyleParam.WaterfallMeasure.Relative
+              -20, "Other expenses", StyleParam.WaterfallMeasure.Relative
+              0, "Profit before tax", StyleParam.WaterfallMeasure.Total ],
         Orientation = StyleParam.Orientation.Horizontal
     )
 

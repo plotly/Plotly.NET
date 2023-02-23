@@ -296,4 +296,4 @@ type TraceGeoStyle() =
 
             trace
 
-            )
+        )

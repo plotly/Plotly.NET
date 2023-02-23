@@ -14,7 +14,7 @@ open DynamicObj
 module PuppeteerSharpRendererOptions =
 
     let mutable launchOptions = LaunchOptions()
-    
+
     launchOptions.Timeout <- 60000
 
     let mutable localBrowserExecutablePath =
@@ -22,7 +22,7 @@ module PuppeteerSharpRendererOptions =
 
 
 type PuppeteerSharpRenderer() =
-    
+
     /// adapted from the original C# implementation by @ilyalatt : https://github.com/ilyalatt/Plotly.NET.PuppeteerRenderer
     ///
     /// creates a full screen html site for the given chart

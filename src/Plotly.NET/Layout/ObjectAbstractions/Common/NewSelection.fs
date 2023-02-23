@@ -22,13 +22,8 @@ type NewSelection() =
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?Mode: StyleParam.NewSelectionMode
         ) =
-        NewSelection() 
-        |> NewSelection.style (
-            ?LineColor = LineColor,
-            ?LineDash = LineDash,
-            ?LineWidth = LineWidth,
-            ?Mode = Mode
-        )
+        NewSelection()
+        |> NewSelection.style (?LineColor = LineColor, ?LineDash = LineDash, ?LineWidth = LineWidth, ?Mode = Mode)
 
     /// <summary>
     /// Returns a function that applies the given styles to a NewSelection object
@@ -46,7 +41,8 @@ type NewSelection() =
         ) =
         (fun (newSelection: NewSelection) ->
 
-            let line = Line.init(?Color = LineColor, ?Dash = LineDash, ?Width = LineWidth)
+            let line =
+                Line.init (?Color = LineColor, ?Dash = LineDash, ?Width = LineWidth)
 
             line |> DynObj.setValue newSelection "line"
             Mode |> DynObj.setValueOptBy newSelection "mode" StyleParam.NewSelectionMode.convert

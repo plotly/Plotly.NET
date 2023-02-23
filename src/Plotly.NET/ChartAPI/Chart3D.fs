@@ -110,14 +110,13 @@ module Chart3D =
                     ?Width = LineWidth
                 )
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initScatter3D (
                 Trace3DStyle.Scatter3D(
@@ -139,9 +138,8 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
 
@@ -667,14 +665,13 @@ module Chart3D =
                     MultiSize = sizes
                 )
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initScatter3D (
                 Trace3DStyle.Scatter3D(
@@ -695,9 +692,8 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
 
@@ -904,14 +900,13 @@ module Chart3D =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initSurface (
                 Trace3DStyle.Surface(
@@ -930,9 +925,8 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
         /// <summary>
@@ -998,14 +992,13 @@ module Chart3D =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initMesh3D (
                 Trace3DStyle.Mesh3D(
@@ -1030,9 +1023,8 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
         /// <summary>
@@ -1174,14 +1166,13 @@ module Chart3D =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initCone (
                 Trace3DStyle.Cone(
@@ -1204,9 +1195,8 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
         /// <summary>
@@ -1308,7 +1298,8 @@ module Chart3D =
         [<Extension>]
         static member Cone
             (
-                xyzuvw: seq<#IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible>,
+                xyzuvw:
+                    seq<#IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -1413,14 +1404,13 @@ module Chart3D =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initStreamTube (
                 Trace3DStyle.StreamTube(
@@ -1443,9 +1433,8 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
         /// <summary>
@@ -1555,7 +1544,8 @@ module Chart3D =
         [<Extension>]
         static member StreamTube
             (
-                xyzuvw: seq<#IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible>,
+                xyzuvw:
+                    seq<#IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible * #IConvertible>,
                 [<Optional; DefaultParameterValue(null)>] ?Name: string,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
@@ -1660,14 +1650,13 @@ module Chart3D =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initVolume (
                 Trace3DStyle.Volume(
@@ -1693,9 +1682,8 @@ module Chart3D =
             )
 
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
         /// <summary>
@@ -1756,14 +1744,13 @@ module Chart3D =
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let cameraProjection = defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
 
-            let camera = 
+            let camera =
                 Camera
-                |> Option.defaultValue (LayoutObjects.Camera.init())
-                |> LayoutObjects.Camera.style(
-                    Projection = CameraProjection.init(ProjectionType = cameraProjection)
-                )
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
 
             Trace3D.initIsoSurface (
                 Trace3DStyle.IsoSurface(
@@ -1788,7 +1775,6 @@ module Chart3D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setScene(StyleParam.SubPlotId.Scene 1, Scene.init(Camera = camera))
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )

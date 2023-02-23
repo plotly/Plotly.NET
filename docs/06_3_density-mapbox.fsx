@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -44,31 +45,26 @@ This Chart uses [Mapbox layers]({{root}}/6_0_geo-vs-mapbox.html) and might need 
 open FSharp.Data
 open Deedle
 
-let dataDensityMapbox = 
+let dataDensityMapbox =
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
-    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+    |> fun d -> Frame.ReadCsvString(d, true, separators = ",")
 
 let lon = dataDensityMapbox.["Longitude"] |> Series.values
-let lat= dataDensityMapbox.["Latitude"] |> Series.values
+let lat = dataDensityMapbox.["Latitude"] |> Series.values
 let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
 
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 
-let densityMapbox = 
+let densityMapbox =
     Chart.DensityMapbox(
         longitudes = lon,
         latitudes = lat,
         Z = magnitudes,
-        Radius=8,
-        ColorScale=StyleParam.Colorscale.Viridis
+        Radius = 8,
+        ColorScale = StyleParam.Colorscale.Viridis
     )
-    |> Chart.withMapbox(
-        Mapbox.init(
-            Style = StyleParam.MapboxStyle.StamenTerrain,
-            Center = (60.,30.)
-        )
-    )
+    |> Chart.withMapbox (Mapbox.init (Style = StyleParam.MapboxStyle.StamenTerrain, Center = (60., 30.)))
 
 (*** condition: ipynb ***)
 #if IPYNB

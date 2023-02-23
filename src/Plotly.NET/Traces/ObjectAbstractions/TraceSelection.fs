@@ -22,12 +22,7 @@ type MarkerSelectionStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?Size: int
         ) =
-            MarkerSelectionStyle()
-            |> MarkerSelectionStyle.style(
-                ?Opacity = Opacity,
-                ?Color   = Color,
-                ?Size    = Size
-            )
+        MarkerSelectionStyle() |> MarkerSelectionStyle.style (?Opacity = Opacity, ?Color = Color, ?Size = Size)
 
     /// <summary>
     /// Returns a function that applies the given styles to a MarkerSelectionStyle object
@@ -40,12 +35,12 @@ type MarkerSelectionStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?Size: int
-        ) = 
+        ) =
         (fun (markerSelectionStyle: MarkerSelectionStyle) ->
 
             Opacity |> DynObj.setValueOpt markerSelectionStyle "opacity"
-            Color   |> DynObj.setValueOpt markerSelectionStyle "color"
-            Size    |> DynObj.setValueOpt markerSelectionStyle "size"
+            Color |> DynObj.setValueOpt markerSelectionStyle "color"
+            Size |> DynObj.setValueOpt markerSelectionStyle "size"
 
             markerSelectionStyle)
 
@@ -63,11 +58,7 @@ type LineSelectionStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Color: Color
         ) =
-            LineSelectionStyle()
-            |> LineSelectionStyle.style(
-                ?Opacity = Opacity,
-                ?Color   = Color
-            )
+        LineSelectionStyle() |> LineSelectionStyle.style (?Opacity = Opacity, ?Color = Color)
 
     /// <summary>
     /// Returns a function that applies the given styles to a LineSelectionStyle object
@@ -78,11 +69,11 @@ type LineSelectionStyle() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Color: Color
-        ) = 
+        ) =
         (fun (lineSelectionStyle: LineSelectionStyle) ->
 
             Opacity |> DynObj.setValueOpt lineSelectionStyle "opacity"
-            Color   |> DynObj.setValueOpt lineSelectionStyle "color"
+            Color |> DynObj.setValueOpt lineSelectionStyle "color"
 
             lineSelectionStyle)
 
@@ -94,26 +85,17 @@ type FontSelectionStyle() =
     /// Returns a new FontSelectionStyle object with the given styles
     /// </summary>
     /// <param name="Color">Sets the color of the selected/unselected text</param>
-    static member init
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color
-        ) =
-            FontSelectionStyle()
-            |> FontSelectionStyle.style(
-                ?Color   = Color
-            )
+    static member init([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
+        FontSelectionStyle() |> FontSelectionStyle.style (?Color = Color)
 
     /// <summary>
     /// Returns a function that applies the given styles to a FontSelectionStyle object
     /// </summary>
     /// <param name="Color">Sets the color of the selected/unselected text</param>
-    static member style
-        (
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color
-        ) = 
+    static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (fontSelectionStyle: FontSelectionStyle) ->
 
-            Color   |> DynObj.setValueOpt fontSelectionStyle "color"
+            Color |> DynObj.setValueOpt fontSelectionStyle "color"
 
             fontSelectionStyle)
 
@@ -135,12 +117,12 @@ type TraceSelection() =
             [<Optional; DefaultParameterValue(null)>] ?LineSelectionStyle: LineSelectionStyle,
             [<Optional; DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =
-            TraceSelection()
-            |> TraceSelection.style(
-                ?MarkerSelectionStyle   = MarkerSelectionStyle,
-                ?LineSelectionStyle   = LineSelectionStyle,
-                ?FontSelectionStyle   = FontSelectionStyle
-            )
+        TraceSelection()
+        |> TraceSelection.style (
+            ?MarkerSelectionStyle = MarkerSelectionStyle,
+            ?LineSelectionStyle = LineSelectionStyle,
+            ?FontSelectionStyle = FontSelectionStyle
+        )
 
     /// <summary>
     /// Returns a function that applies the given styles to a TraceSelection object
@@ -153,11 +135,11 @@ type TraceSelection() =
             [<Optional; DefaultParameterValue(null)>] ?MarkerSelectionStyle: MarkerSelectionStyle,
             [<Optional; DefaultParameterValue(null)>] ?LineSelectionStyle: LineSelectionStyle,
             [<Optional; DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
-        ) = 
+        ) =
         (fun (traceSelection: TraceSelection) ->
 
             MarkerSelectionStyle |> DynObj.setValueOpt traceSelection "marker"
-            LineSelectionStyle   |> DynObj.setValueOpt traceSelection "line"
-            FontSelectionStyle   |> DynObj.setValueOpt traceSelection "font"
+            LineSelectionStyle |> DynObj.setValueOpt traceSelection "line"
+            FontSelectionStyle |> DynObj.setValueOpt traceSelection "font"
 
             traceSelection)

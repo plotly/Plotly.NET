@@ -26,11 +26,11 @@ type Selection() =
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-            [<Optional; DefaultParameterValue(null)>] ?Name:string,
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Path: string,
-            [<Optional; DefaultParameterValue(null)>] ?TemplateItemName:string,
-            [<Optional; DefaultParameterValue(null)>] ?SelectionType:StyleParam.SelectionType,
+            [<Optional; DefaultParameterValue(null)>] ?TemplateItemName: string,
+            [<Optional; DefaultParameterValue(null)>] ?SelectionType: StyleParam.SelectionType,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?X1: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Xref: string,
@@ -38,7 +38,7 @@ type Selection() =
             [<Optional; DefaultParameterValue(null)>] ?Y1: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Yref: string
         ) =
-        Selection() 
+        Selection()
         |> Selection.style (
             ?Line = Line,
             ?Name = Name,
@@ -72,11 +72,11 @@ type Selection() =
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
-            [<Optional; DefaultParameterValue(null)>] ?Name:string,
+            [<Optional; DefaultParameterValue(null)>] ?Name: string,
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Path: string,
-            [<Optional; DefaultParameterValue(null)>] ?TemplateItemName:string,
-            [<Optional; DefaultParameterValue(null)>] ?SelectionType:StyleParam.SelectionType,
+            [<Optional; DefaultParameterValue(null)>] ?TemplateItemName: string,
+            [<Optional; DefaultParameterValue(null)>] ?SelectionType: StyleParam.SelectionType,
             [<Optional; DefaultParameterValue(null)>] ?X0: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?X1: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?Xref: string,
@@ -86,17 +86,17 @@ type Selection() =
         ) =
         (fun (selection: Selection) ->
 
-            Line                |> DynObj.setValueOpt selection "line"
-            Name                |> DynObj.setValueOpt selection "name"
-            Opacity             |> DynObj.setValueOpt selection "opacity"
-            Path                |> DynObj.setValueOpt selection "path"
-            TemplateItemName    |> DynObj.setValueOpt selection "templateitemname"
-            SelectionType       |> DynObj.setValueOptBy selection "type" StyleParam.SelectionType.convert
-            X0                  |> DynObj.setValueOpt selection "x0"
-            X1                  |> DynObj.setValueOpt selection "x1"
-            Xref                |> DynObj.setValueOpt selection "xref"
-            Y0                  |> DynObj.setValueOpt selection "y0"
-            Y1                  |> DynObj.setValueOpt selection "y1"
-            Yref                |> DynObj.setValueOpt selection "yref"
+            Line |> DynObj.setValueOpt selection "line"
+            Name |> DynObj.setValueOpt selection "name"
+            Opacity |> DynObj.setValueOpt selection "opacity"
+            Path |> DynObj.setValueOpt selection "path"
+            TemplateItemName |> DynObj.setValueOpt selection "templateitemname"
+            SelectionType |> DynObj.setValueOptBy selection "type" StyleParam.SelectionType.convert
+            X0 |> DynObj.setValueOpt selection "x0"
+            X1 |> DynObj.setValueOpt selection "x1"
+            Xref |> DynObj.setValueOpt selection "xref"
+            Y0 |> DynObj.setValueOpt selection "y0"
+            Y1 |> DynObj.setValueOpt selection "y1"
+            Yref |> DynObj.setValueOpt selection "yref"
 
             selection)

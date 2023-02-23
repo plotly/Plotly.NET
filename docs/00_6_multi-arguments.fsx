@@ -15,7 +15,8 @@ index: 7
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -45,27 +46,24 @@ open Plotly.NET
 
 let bar1 =
     Chart.Bar(
-        keysValues = [
-            "first", 1
-            "second", 2
-            "third", 3
-        ],
-        MarkerColor = Color.fromColors [ // one color for each individual bar
-            Color.fromKeyword Salmon
-            Color.fromKeyword SteelBlue
-            Color.fromKeyword Azure
-        ],
-        MultiMarkerPatternShape = [ // individual pattern shape for each bar
-            StyleParam.PatternShape.DiagonalAscending
-            StyleParam.PatternShape.Dots
-            StyleParam.PatternShape.HorizontalLines
-        ],
+        keysValues = [ "first", 1; "second", 2; "third", 3 ],
+        MarkerColor =
+            Color.fromColors
+                [ // one color for each individual bar
+                  Color.fromKeyword Salmon
+                  Color.fromKeyword SteelBlue
+                  Color.fromKeyword Azure ],
+        MultiMarkerPatternShape =
+            [ // individual pattern shape for each bar
+              StyleParam.PatternShape.DiagonalAscending
+              StyleParam.PatternShape.Dots
+              StyleParam.PatternShape.HorizontalLines ],
         Opacity = 0.75, // opacity for the whole trace
-        MultiText = [ // individual text associated with each bar
-            "first bar"
-            "second bar"
-            "third bar"
-        ],
+        MultiText =
+            [ // individual text associated with each bar
+              "first bar"
+              "second bar"
+              "third bar" ],
         TextPosition = StyleParam.TextPosition.Inside // Textposition for every text item associated with this trace
     )
 
@@ -84,20 +82,16 @@ Here is the exact opposite chart to the above, with single values for multi and 
 
 let bar2 =
     Chart.Bar(
-        keysValues = [
-            "first", 1
-            "second", 2
-            "third", 3
-        ],
+        keysValues = [ "first", 1; "second", 2; "third", 3 ],
         MarkerColor = Color.fromKeyword Salmon, // one color for every bar
         MarkerPatternShape = StyleParam.PatternShape.DiagonalAscending, // one pattern shape for the whole trace
-        MultiOpacity = [0.75; 0.5; 0.25], //Different opacity for each bar
+        MultiOpacity = [ 0.75; 0.5; 0.25 ], //Different opacity for each bar
         Text = "its a bar", // one text item for the whole trace
-        MultiTextPosition = [ // Textposition for every individual text item associated with this trace
-            StyleParam.TextPosition.Outside
-            StyleParam.TextPosition.Outside
-            StyleParam.TextPosition.Inside
-        ] 
+        MultiTextPosition =
+            [ // Textposition for every individual text item associated with this trace
+              StyleParam.TextPosition.Outside
+              StyleParam.TextPosition.Outside
+              StyleParam.TextPosition.Inside ]
     )
 
 (*** condition: ipynb ***)

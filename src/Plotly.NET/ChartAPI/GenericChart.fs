@@ -8,72 +8,78 @@ open Giraffe.ViewEngine
 
 type HTML() =
 
-    static member CreateChartScript(
-        data: string,
-        layout: string,
-        config: string,
-        plotlyReference: PlotlyJSReference,
-        guid: string
-    ) =
+    static member CreateChartScript
+        (
+            data: string,
+            layout: string,
+            config: string,
+            plotlyReference: PlotlyJSReference,
+            guid: string
+        ) =
         match plotlyReference with
         | Require r ->
-            script [_type "text/javascript"] [
-                rawText (
-                    Globals.REQUIREJS_SCRIPT_TEMPLATE
-                        .Replace("[REQUIRE_SRC]",r)
-                        .Replace("[SCRIPTID]",guid.Replace("-",""))
-                        .Replace("[ID]",guid)
-                        .Replace("[DATA]",data)
-                        .Replace("[LAYOUT]",layout)
-                        .Replace("[CONFIG]",config)
-                )]
+            script
+                [ _type "text/javascript" ]
+                [
+                    rawText (
+                        Globals.REQUIREJS_SCRIPT_TEMPLATE
+                            .Replace("[REQUIRE_SRC]", r)
+                            .Replace("[SCRIPTID]", guid.Replace("-", ""))
+                            .Replace("[ID]", guid)
+                            .Replace("[DATA]", data)
+                            .Replace("[LAYOUT]", layout)
+                            .Replace("[CONFIG]", config)
+                    )
+                ]
         | _ ->
-            script [_type "text/javascript"] [
-                rawText (
-                    Globals.SCRIPT_TEMPLATE
-                        .Replace("[SCRIPTID]",guid.Replace("-",""))
-                        .Replace("[ID]",guid)
-                        .Replace("[DATA]",data)
-                        .Replace("[LAYOUT]",layout)
-                        .Replace("[CONFIG]",config)
-                )]
-            
+            script
+                [ _type "text/javascript" ]
+                [
+                    rawText (
+                        Globals.SCRIPT_TEMPLATE
+                            .Replace("[SCRIPTID]", guid.Replace("-", ""))
+                            .Replace("[ID]", guid)
+                            .Replace("[DATA]", data)
+                            .Replace("[LAYOUT]", layout)
+                            .Replace("[CONFIG]", config)
+                    )
+                ]
 
-    static member Doc(
-        chart,
-        plotlyReference: PlotlyJSReference,
-        ?AdditionalHeadTags,
-        ?Description
-    ) =
-        let additionalHeadTags = defaultArg AdditionalHeadTags []
+
+    static member Doc(chart, plotlyReference: PlotlyJSReference, ?AdditionalHeadTags, ?Description) =
+        let additionalHeadTags =
+            defaultArg AdditionalHeadTags []
+
         let description = defaultArg Description []
 
-        let plotlyScriptRef = 
+        let plotlyScriptRef =
             match plotlyReference with
-            | CDN cdn -> script [_src cdn] []
-            | Full -> script [_type "text/javascript"] [rawText (InternalUtils.getFullPlotlyJS())]
-            | NoReference | Require _ -> rawText ""
+            | CDN cdn -> script [ _src cdn ] []
+            | Full ->
+                script
+                    [ _type "text/javascript" ]
+                    [
+                        rawText (InternalUtils.getFullPlotlyJS ())
+                    ]
+            | NoReference
+            | Require _ -> rawText ""
 
-        html [] [
-            head [] [
-                plotlyScriptRef
-                yield! additionalHeadTags
+        html
+            []
+            [
+                head
+                    []
+                    [
+                        plotlyScriptRef
+                        yield! additionalHeadTags
+                    ]
+                body [] [ yield! chart; yield! description ]
             ]
-            body [] [
-                yield! chart
-                yield! description
-            ]
-        ]
 
-    static member CreateChartHTML(
-        data: string,
-        layout: string,
-        config: string,
-        plotlyReference: PlotlyJSReference
-    ) =
+    static member CreateChartHTML(data: string, layout: string, config: string, plotlyReference: PlotlyJSReference) =
         let guid = Guid.NewGuid().ToString()
 
-        let chartScript = 
+        let chartScript =
             HTML.CreateChartScript(
                 data = data,
                 layout = layout,
@@ -83,10 +89,14 @@ type HTML() =
             )
 
         [
-            div [_id guid] [comment "Plotly chart will be drawn inside this DIV"]
+            div
+                [ _id guid ]
+                [
+                    comment "Plotly chart will be drawn inside this DIV"
+                ]
             chartScript
         ]
-        
+
 /// Module to represent a GenericChart
 [<Extension>]
 module GenericChart =
@@ -114,8 +124,8 @@ module GenericChart =
 
     let toFigure (gChart: GenericChart) =
         match gChart with
-        | Chart (trace, layout, _, _) -> Figure.create [ trace ] layout
-        | MultiChart (traces, layout, _, _) -> Figure.create traces layout
+        | Chart(trace, layout, _, _) -> Figure.create [ trace ] layout
+        | MultiChart(traces, layout, _, _) -> Figure.create traces layout
 
     let fromFigure (fig: Figure) =
         let traces = fig.Data
@@ -128,24 +138,24 @@ module GenericChart =
 
     let getTraces gChart =
         match gChart with
-        | Chart (trace, _, _, _) -> [ trace ]
-        | MultiChart (traces, _, _, _) -> traces
+        | Chart(trace, _, _, _) -> [ trace ]
+        | MultiChart(traces, _, _, _) -> traces
 
     let getLayout gChart =
         match gChart with
-        | Chart (_, layout, _, _) -> layout
-        | MultiChart (_, layout, _, _) -> layout
+        | Chart(_, layout, _, _) -> layout
+        | MultiChart(_, layout, _, _) -> layout
 
     let setLayout layout gChart =
         match gChart with
-        | Chart (t, _, c, d) -> Chart(t, layout, c, d)
-        | MultiChart (t, _, c, d) -> MultiChart(t, layout, c, d)
+        | Chart(t, _, c, d) -> Chart(t, layout, c, d)
+        | MultiChart(t, _, c, d) -> MultiChart(t, layout, c, d)
 
     // Adds a Layout function to the GenericChart
     let addLayout layout gChart =
         match gChart with
-        | Chart (trace, l', c, d) -> Chart(trace, (Layout.combine l' layout), c, d)
-        | MultiChart (traces, l', c, d) -> MultiChart(traces, (Layout.combine l' layout), c, d)
+        | Chart(trace, l', c, d) -> Chart(trace, (Layout.combine l' layout), c, d)
+        | MultiChart(traces, l', c, d) -> MultiChart(traces, (Layout.combine l' layout), c, d)
 
     /// Returns a tuple containing the width and height of a GenericChart's layout if the property is set, otherwise returns None
     let tryGetLayoutSize gChart =
@@ -154,33 +164,33 @@ module GenericChart =
 
     let getConfig gChart =
         match gChart with
-        | Chart (_, _, c, _) -> c
-        | MultiChart (_, _, c, _) -> c
+        | Chart(_, _, c, _) -> c
+        | MultiChart(_, _, c, _) -> c
 
     let setConfig config gChart =
         match gChart with
-        | Chart (t, l, _, d) -> Chart(t, l, config, d)
-        | MultiChart (t, l, _, d) -> MultiChart(t, l, config, d)
+        | Chart(t, l, _, d) -> Chart(t, l, config, d)
+        | MultiChart(t, l, _, d) -> MultiChart(t, l, config, d)
 
     let addConfig config gChart =
         match gChart with
-        | Chart (trace, l, c', d) -> Chart(trace, l, (Config.combine c' config), d)
-        | MultiChart (traces, l, c', d) -> MultiChart(traces, l, (Config.combine c' config), d)
+        | Chart(trace, l, c', d) -> Chart(trace, l, (Config.combine c' config), d)
+        | MultiChart(traces, l, c', d) -> MultiChart(traces, l, (Config.combine c' config), d)
 
     let getDisplayOptions gChart =
         match gChart with
-        | Chart (_, _, _, d) -> d
-        | MultiChart (_, _, _, d) -> d
+        | Chart(_, _, _, d) -> d
+        | MultiChart(_, _, _, d) -> d
 
     let setDisplayOptions displayOpts gChart =
         match gChart with
-        | Chart (t, l, c, _) -> Chart(t, l, c, displayOpts)
-        | MultiChart (t, l, c, _) -> MultiChart(t, l, c, displayOpts)
+        | Chart(t, l, c, _) -> Chart(t, l, c, displayOpts)
+        | MultiChart(t, l, c, _) -> MultiChart(t, l, c, displayOpts)
 
     let addDisplayOptions displayOpts gChart =
         match gChart with
-        | Chart (t, l, c, d') -> Chart(t, l, c, (DisplayOptions.combine d' displayOpts))
-        | MultiChart (t, l, c, d') -> MultiChart(t, l, c, (DisplayOptions.combine d' displayOpts))
+        | Chart(t, l, c, d') -> Chart(t, l, c, (DisplayOptions.combine d' displayOpts))
+        | MultiChart(t, l, c, d') -> MultiChart(t, l, c, (DisplayOptions.combine d' displayOpts))
 
     // // Adds multiple Layout functions to the GenericChart
     // let addLayouts layouts gChart =
@@ -201,23 +211,28 @@ module GenericChart =
         gCharts
         |> Seq.reduce (fun acc elem ->
             match acc, elem with
-            | MultiChart (traces, l1, c1, d1), Chart (trace, l2, c2, d2) ->
+            | MultiChart(traces, l1, c1, d1), Chart(trace, l2, c2, d2) ->
                 MultiChart(
                     List.append traces [ trace ],
                     Layout.combine l1 l2,
                     Config.combine c1 c2,
                     DisplayOptions.combine d1 d2
                 )
-            | MultiChart (traces1, l1, c1, d1), MultiChart (traces2, l2, c2, d2) ->
+            | MultiChart(traces1, l1, c1, d1), MultiChart(traces2, l2, c2, d2) ->
                 MultiChart(
                     List.append traces1 traces2,
                     Layout.combine l1 l2,
                     Config.combine c1 c2,
                     DisplayOptions.combine d1 d2
                 )
-            | Chart (trace1, l1, c1, d1), Chart (trace2, l2, c2, d2) ->
-                MultiChart([ trace1; trace2 ], Layout.combine l1 l2, Config.combine c1 c2, DisplayOptions.combine d1 d2)
-            | Chart (trace, l1, c1, d1), MultiChart (traces, l2, c2, d2) ->
+            | Chart(trace1, l1, c1, d1), Chart(trace2, l2, c2, d2) ->
+                MultiChart(
+                    [ trace1; trace2 ],
+                    Layout.combine l1 l2,
+                    Config.combine c1 c2,
+                    DisplayOptions.combine d1 d2
+                )
+            | Chart(trace, l1, c1, d1), MultiChart(traces, l2, c2, d2) ->
                 MultiChart(
                     List.append [ trace ] traces,
                     Layout.combine l1 l2,
@@ -240,28 +255,31 @@ module GenericChart =
 
         let displayOpts = getDisplayOptions gChart
 
-        let description = displayOpts |> DisplayOptions.getDescription
+        let description =
+            displayOpts |> DisplayOptions.getDescription
 
-        let plotlyReference  = displayOpts |> DisplayOptions.getPlotlyPlotlyReference
+        let plotlyReference =
+            displayOpts |> DisplayOptions.getPlotlyPlotlyReference
 
-        div [] [
-            yield! HTML.CreateChartHTML(
-                data = tracesJson,
-                layout = layoutJson,
-                config = configJson,
-                plotlyReference = plotlyReference
-            )
-            yield! description
-        ]
+        div
+            []
+            [
+                yield!
+                    HTML.CreateChartHTML(
+                        data = tracesJson,
+                        layout = layoutJson,
+                        config = configJson,
+                        plotlyReference = plotlyReference
+                    )
+                yield! description
+            ]
 
     let toChartHTML gChart =
-        gChart
-        |> toChartHTMLNodes
-        |> RenderView.AsString.htmlNode
+        gChart |> toChartHTMLNodes |> RenderView.AsString.htmlNode
 
     /// Converts a GenericChart to it HTML representation and embeds it into a html page.
     let toEmbeddedHTML gChart =
-        
+
         let tracesJson =
             let traces = getTraces gChart
             JsonConvert.SerializeObject(traces, Globals.JSON_CONFIG)
@@ -276,19 +294,23 @@ module GenericChart =
 
         let displayOpts = getDisplayOptions gChart
 
-        let additionalHeadTags = (displayOpts |> DisplayOptions.getAdditionalHeadTags)
+        let additionalHeadTags =
+            (displayOpts |> DisplayOptions.getAdditionalHeadTags)
 
-        let description = (displayOpts |> DisplayOptions.getDescription)
+        let description =
+            (displayOpts |> DisplayOptions.getDescription)
 
-        let plotlyReference  = displayOpts |> DisplayOptions.getPlotlyPlotlyReference
+        let plotlyReference =
+            displayOpts |> DisplayOptions.getPlotlyPlotlyReference
 
         HTML.Doc(
-            chart = HTML.CreateChartHTML(
-                data = tracesJson,
-                layout = layoutJson,
-                config = configJson,
-                plotlyReference = plotlyReference
-            ),
+            chart =
+                HTML.CreateChartHTML(
+                    data = tracesJson,
+                    layout = layoutJson,
+                    config = configJson,
+                    plotlyReference = plotlyReference
+                ),
             plotlyReference = plotlyReference,
             AdditionalHeadTags = additionalHeadTags,
             Description = description
@@ -298,29 +320,29 @@ module GenericChart =
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let mapTrace f gChart =
         match gChart with
-        | Chart (trace, layout, config, displayOpts) -> Chart(f trace, layout, config, displayOpts)
-        | MultiChart (traces, layout, config, displayOpts) ->
+        | Chart(trace, layout, config, displayOpts) -> Chart(f trace, layout, config, displayOpts)
+        | MultiChart(traces, layout, config, displayOpts) ->
             MultiChart(traces |> List.map f, layout, config, displayOpts)
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     /// The integer index passed to the function indicates the index (from 0) of element being transformed.
     let mapiTrace f gChart =
         match gChart with
-        | Chart (trace, layout, config, displayOpts) -> Chart(f 0 trace, layout, config, displayOpts)
-        | MultiChart (traces, layout, config, displayOpts) ->
+        | Chart(trace, layout, config, displayOpts) -> Chart(f 0 trace, layout, config, displayOpts)
+        | MultiChart(traces, layout, config, displayOpts) ->
             MultiChart(traces |> List.mapi f, layout, config, displayOpts)
 
     /// Returns the number of traces within the GenericChart
     let countTrace gChart =
         match gChart with
-        | Chart (_) -> 1
-        | MultiChart (traces, _, _, _) -> traces |> Seq.length
+        | Chart(_) -> 1
+        | MultiChart(traces, _, _, _) -> traces |> Seq.length
 
     /// Returns true if the given chart contains a trace for which the predicate function returns true
     let existsTrace (predicate: Trace -> bool) gChart =
         match gChart with
-        | Chart (trace, _, _, _) -> predicate trace
-        | MultiChart (traces, _, _, _) -> traces |> List.exists predicate
+        | Chart(trace, _, _, _) -> predicate trace
+        | MultiChart(traces, _, _, _) -> traces |> List.exists predicate
 
     /// Converts from a trace object and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
     let ofTraceObject (useDefaults: bool) trace = //layout =
@@ -346,7 +368,7 @@ module GenericChart =
                 defaultDisplayOpts
             )
         else
-            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions.initCDNOnly())
+            GenericChart.Chart(trace, Layout(), Config(), DisplayOptions.initCDNOnly ())
 
     /// Converts from a list of trace objects and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
     let ofTraceObjects (useDefaults: bool) traces = // layout =
@@ -373,34 +395,34 @@ module GenericChart =
 
             )
         else
-            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions.initCDNOnly())
+            GenericChart.MultiChart(traces, Layout(), Config(), DisplayOptions.initCDNOnly ())
 
     ///
     let mapLayout f gChart =
         match gChart with
-        | Chart (trace, layout, config, displayOpts) -> Chart(trace, f layout, config, displayOpts)
-        | MultiChart (traces, layout, config, displayOpts) -> MultiChart(traces, f layout, config, displayOpts)
+        | Chart(trace, layout, config, displayOpts) -> Chart(trace, f layout, config, displayOpts)
+        | MultiChart(traces, layout, config, displayOpts) -> MultiChart(traces, f layout, config, displayOpts)
 
     ///
     let mapConfig f gChart =
         match gChart with
-        | Chart (trace, layout, config, displayOpts) -> Chart(trace, layout, f config, displayOpts)
-        | MultiChart (traces, layout, config, displayOpts) -> MultiChart(traces, layout, f config, displayOpts)
+        | Chart(trace, layout, config, displayOpts) -> Chart(trace, layout, f config, displayOpts)
+        | MultiChart(traces, layout, config, displayOpts) -> MultiChart(traces, layout, f config, displayOpts)
 
     ///
     let mapDisplayOptions f gChart =
         match gChart with
-        | Chart (trace, layout, config, displayOpts) -> Chart(trace, layout, config, f displayOpts)
-        | MultiChart (traces, layout, config, displayOpts) -> MultiChart(traces, layout, config, f displayOpts)
+        | Chart(trace, layout, config, displayOpts) -> Chart(trace, layout, config, f displayOpts)
+        | MultiChart(traces, layout, config, displayOpts) -> MultiChart(traces, layout, config, f displayOpts)
 
     /// returns a single TraceID (when all traces of the charts are of the same type), or traceID.Multi if the chart contains traces of multiple different types
     let getTraceID gChart =
         match gChart with
-        | Chart (trace, _, _, _) -> TraceID.ofTrace trace
-        | MultiChart (traces, layout, config, displayOpts) -> TraceID.ofTraces traces
+        | Chart(trace, _, _, _) -> TraceID.ofTrace trace
+        | MultiChart(traces, layout, config, displayOpts) -> TraceID.ofTraces traces
 
     /// returns a list of TraceIDs representing the types of all traces contained in the chart.
     let getTraceIDs gChart =
         match gChart with
-        | Chart (trace, _, _, _) -> [ TraceID.ofTrace trace ]
-        | MultiChart (traces, _, _, _) -> traces |> List.map TraceID.ofTrace
+        | Chart(trace, _, _, _) -> [ TraceID.ofTrace trace ]
+        | MultiChart(traces, _, _, _) -> traces |> List.map TraceID.ofTrace

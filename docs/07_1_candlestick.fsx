@@ -1,5 +1,3 @@
-
-
 (**
 ---
 title: Candlestick Charts
@@ -17,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -45,17 +44,24 @@ open Deedle
 open Plotly.NET
 open Plotly.NET.TraceObjects
 
-let data = 
+let data =
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv"
-    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",")
 
 let openData = data.["AAPL.Open"] |> Series.values |> Array.ofSeq
 let highData = data.["AAPL.High"] |> Series.values |> Array.ofSeq
 let lowData = data.["AAPL.Low"] |> Series.values |> Array.ofSeq
 let closeData = data.["AAPL.Close"] |> Series.values |> Array.ofSeq
-let dateData = data |> Frame.getCol "Date" |> Series.values |> Seq.map System.DateTime.Parse |> Array.ofSeq
- 
-let candles = [for i in 0 .. 29 -> dateData.[i], StockData.create openData.[i] highData.[i] lowData.[i] closeData.[i]]
+
+let dateData =
+    data
+    |> Frame.getCol "Date"
+    |> Series.values
+    |> Seq.map System.DateTime.Parse
+    |> Array.ofSeq
+
+let candles =
+    [ for i in 0..29 -> dateData.[i], StockData.create openData.[i] highData.[i] lowData.[i] closeData.[i] ]
 (**
 A candlestick chart is useful for plotting stock prices over time. A candle
 is a group of high, open, close and low values over a period of time, e.g. 1 minute, 5 minute, hour, day, etc..
@@ -65,9 +71,9 @@ The x-axis is usually dateime values and y is a sequence of candle structures.
 open Plotly.NET
 open Plotly.NET.TraceObjects
 
-let candles1 = 
+let candles1 =
     Chart.Candlestick(
-        ``open``= (openData |> Seq.take 30),
+        ``open`` = (openData |> Seq.take 30),
         high = (highData |> Seq.take 30),
         low = (lowData |> Seq.take 30),
         close = (closeData |> Seq.take 30),
@@ -87,7 +93,7 @@ candles1 |> GenericChart.toChartHTML
 ## Changing the increasing/decresing colors
 *)
 
-let candles2 = 
+let candles2 =
     Chart.Candlestick(
         stockTimeSeries = candles,
         IncreasingColor = Color.fromKeyword Cyan,
@@ -110,7 +116,7 @@ If you want to hide the rangeslider, set the `ShowXAxisRangeSlider` to false:
 *)
 open Plotly.NET.LayoutObjects
 
-let candles3 = 
+let candles3 =
     Chart.Candlestick(
         ``open`` = openData,
         high = highData,
@@ -131,4 +137,3 @@ candles3
 (***hide***)
 candles3 |> GenericChart.toChartHTML
 (***include-it-raw***)
-

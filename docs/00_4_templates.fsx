@@ -15,7 +15,8 @@ index: 5
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,9 +36,8 @@ premade templates can be accessed via the `ChartTemplates` module. In fact, the 
 *)
 open Plotly.NET
 
-let lightMirrored = 
-    Chart.Point(xy = [1,2])
-    |> Chart.withTemplate ChartTemplates.lightMirrored
+let lightMirrored =
+    Chart.Point(xy = [ 1, 2 ]) |> Chart.withTemplate ChartTemplates.lightMirrored
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -59,25 +59,18 @@ Chart Templates consist of a `Layout` object and a collection of `Trace` objects
 
 open Plotly.NET.TraceObjects
 
-let layoutTemplate = 
-    Layout.init(
-        Title = Title.init("I will always be there now!")
-    )
+let layoutTemplate =
+    Layout.init (Title = Title.init ("I will always be there now!"))
 
-let traceTemplates = 
-    [
-        Trace2D.initScatter(
-            Trace2DStyle.Scatter(
-                Marker = Marker.init(Symbol = StyleParam.MarkerSymbol.ArrowLeft, Size = 20)
-            )
-        )
-    ]
+let traceTemplates =
+    [ Trace2D.initScatter (
+          Trace2DStyle.Scatter(Marker = Marker.init (Symbol = StyleParam.MarkerSymbol.ArrowLeft, Size = 20))
+      ) ]
 
-let myTemplate = Template.init(layoutTemplate, traceTemplates)
+let myTemplate = Template.init (layoutTemplate, traceTemplates)
 
 let myTemplateExampleChart =
-    Chart.Point(xy = [1,2])
-    |> Chart.withTemplate myTemplate
+    Chart.Point(xy = [ 1, 2 ]) |> Chart.withTemplate myTemplate
 
 (*** condition: ipynb ***)
 #if IPYNB

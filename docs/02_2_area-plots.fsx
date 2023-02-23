@@ -15,7 +15,8 @@ index: 3
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,10 +36,10 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
+open Plotly.NET
+
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y = [ 5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5. ]
 
 (**
 An area chart or area graph displays graphically quantitive data. It is based on the line chart.
@@ -62,8 +63,7 @@ area1 |> GenericChart.toChartHTML
 ### Area chart with a spline
 *)
 
-let area2 =
-    Chart.SplineArea(x = x, y = y)
+let area2 = Chart.SplineArea(x = x, y = y)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -79,10 +79,8 @@ area2 |> GenericChart.toChartHTML
 *)
 
 let stackedArea =
-    [
-        Chart.StackedArea(x = x, y = y)
-        Chart.StackedArea(x = x, y = (y |> Seq.rev))
-    ]
+    [ Chart.StackedArea(x = x, y = y)
+      Chart.StackedArea(x = x, y = (y |> Seq.rev)) ]
     |> Chart.combine
 
 (*** condition: ipynb ***)

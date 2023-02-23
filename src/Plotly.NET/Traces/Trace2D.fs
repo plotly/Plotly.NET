@@ -506,7 +506,7 @@ type Trace2DStyle() =
 
             bar
 
-            )
+        )
 
     /// <summary>
     /// Create a function that applies the styles of a funnel plot to a Trace object
@@ -686,7 +686,7 @@ type Trace2DStyle() =
 
             funnel
 
-            )
+        )
 
     /// <summary>
     /// Create a function that applies the styles of a waterfall plot to a Trace object
@@ -1020,7 +1020,7 @@ type Trace2DStyle() =
             (X, MultiX) |> DynObj.setSingleOrMultiOpt histogram "x"
             (Y, MultiY) |> DynObj.setSingleOrMultiOpt histogram "y"
             (Text, MultiText) |> DynObj.setSingleOrMultiOpt histogram "text"
-            TextPosition|> DynObj.setValueOptBy histogram "textposition" StyleParam.TextPosition.convert
+            TextPosition |> DynObj.setValueOptBy histogram "textposition" StyleParam.TextPosition.convert
             (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt histogram "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt histogram "hovertext"
             HoverInfo |> DynObj.setValueOptBy histogram "hoverinfo" StyleParam.HoverInfo.convert

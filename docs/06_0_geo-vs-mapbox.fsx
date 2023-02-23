@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -55,13 +56,10 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 
 // a simple Mapbox with a OpenStreetMap base layer.
-let mb =
-    Mapbox.init(
-        Style = StyleParam.MapboxStyle.OpenStreetMap
-    )
+let mb = Mapbox.init (Style = StyleParam.MapboxStyle.OpenStreetMap)
 
-let baseLayerOnly = 
-    Chart.PointMapbox(lonlat=[]) // deliberately empty chart to show the base map only
+let baseLayerOnly =
+    Chart.PointMapbox(lonlat = []) // deliberately empty chart to show the base map only
     |> Chart.withMapbox mb // add the mapBox
 
 (*** condition: ipynb ***)
@@ -86,10 +84,7 @@ This token should be provided via the `AccessToken` property:
 *)
 
 let mbWithToken =
-    Mapbox.init(
-        Style = StyleParam.MapboxStyle.OpenStreetMap,
-        AccessToken = "your_token_here"
-    )
+    Mapbox.init (Style = StyleParam.MapboxStyle.OpenStreetMap, AccessToken = "your_token_here")
 
 (**
 

@@ -8,6 +8,7 @@ open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 open Giraffe.ViewEngine
+
 /// Contains mutable global default values.
 ///
 /// Changing these values will apply the default values to all consecutive Chart generations.
@@ -23,20 +24,26 @@ module Defaults =
     let mutable DefaultConfig =
         Config.init (Responsive = true)
 
-    let mutable DefaultDisplayOptions = 
-        DisplayOptions.init(
+    let mutable DefaultDisplayOptions =
+        DisplayOptions.init (
             PlotlyJSReference = CDN $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js",
-            AdditionalHeadTags = [
-                title [] [str "Plotly.NET Datavisualization"]
-                meta [_charset "UTF-8"]
-                meta [_name "description"; _content "A plotly.js graph generated with Plotly.NET"]
-                link [
-                    _id "favicon"
-                    _rel "shortcut icon"
-                    _type "image/png"
-                    _href $"data:image/png;base64,{Globals.LOGO_BASE64}"
+            AdditionalHeadTags =
+                [
+                    title [] [ str "Plotly.NET Datavisualization" ]
+                    meta [ _charset "UTF-8" ]
+                    meta
+                        [
+                            _name "description"
+                            _content "A plotly.js graph generated with Plotly.NET"
+                        ]
+                    link
+                        [
+                            _id "favicon"
+                            _rel "shortcut icon"
+                            _type "image/png"
+                            _href $"data:image/png;base64,{Globals.LOGO_BASE64}"
+                        ]
                 ]
-            ]
         )
 
     /// The default chart template. Default: ChartTemplates.plotly
@@ -48,5 +55,5 @@ module Defaults =
         DefaultWidth <- 600
         DefaultHeight <- 600
         DefaultConfig <- Config.init (Responsive = true)
-        DefaultDisplayOptions <- DisplayOptions.initCDNOnly()
+        DefaultDisplayOptions <- DisplayOptions.initCDNOnly ()
         DefaultTemplate <- ChartTemplates.plotly

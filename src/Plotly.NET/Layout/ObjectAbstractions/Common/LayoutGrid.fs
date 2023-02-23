@@ -27,9 +27,9 @@ type LayoutGrid() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Rows: int,
             [<Optional; DefaultParameterValue(null)>] ?Columns: int,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
             [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
             [<Optional; DefaultParameterValue(null)>] ?XGap: float,
@@ -73,9 +73,9 @@ type LayoutGrid() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Rows: int,
             [<Optional; DefaultParameterValue(null)>] ?Columns: int,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
             [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
             [<Optional; DefaultParameterValue(null)>] ?XGap: float,
@@ -90,7 +90,8 @@ type LayoutGrid() =
                 layoutGrid
                 "subplots"
                 (Array.map (
-                    Array.map (fun (x, y) -> $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
+                    Array.map (fun (x, y) ->
+                        $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
                 ))
 
             XAxes |> DynObj.setValueOptBy layoutGrid "xaxes" (Array.map StyleParam.LinearAxisId.toString)

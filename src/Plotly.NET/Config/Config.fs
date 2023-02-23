@@ -114,45 +114,45 @@ type Config() =
         ) =
         Config()
         |> Config.style (
-            ?StaticPlot              = StaticPlot,
-            ?TypesetMath             = TypesetMath,
-            ?PlotlyServerUrl         = PlotlyServerUrl,
-            ?Editable                = Editable,
-            ?Edits                   = Edits,
-            ?EditSelection           = EditSelection,
-            ?Autosizable             = Autosizable,
-            ?Responsive              = Responsive,
-            ?FillFrame               = FillFrame,
-            ?FrameMargins            = FrameMargins,
-            ?ScrollZoom              = ScrollZoom,
-            ?DoubleClick             = DoubleClick,
-            ?DoubleClickDelay        = DoubleClickDelay,
-            ?ShowAxisDragHandles     = ShowAxisDragHandles,
+            ?StaticPlot = StaticPlot,
+            ?TypesetMath = TypesetMath,
+            ?PlotlyServerUrl = PlotlyServerUrl,
+            ?Editable = Editable,
+            ?Edits = Edits,
+            ?EditSelection = EditSelection,
+            ?Autosizable = Autosizable,
+            ?Responsive = Responsive,
+            ?FillFrame = FillFrame,
+            ?FrameMargins = FrameMargins,
+            ?ScrollZoom = ScrollZoom,
+            ?DoubleClick = DoubleClick,
+            ?DoubleClickDelay = DoubleClickDelay,
+            ?ShowAxisDragHandles = ShowAxisDragHandles,
             ?ShowAxisRangeEntryBoxes = ShowAxisRangeEntryBoxes,
-            ?ShowTips                = ShowTips,
-            ?ShowLink                = ShowLink,
-            ?LinkText                = LinkText,
-            ?SendData                = SendData,
-            ?ShowSources             = ShowSources,
-            ?DisplayModeBar          = DisplayModeBar,
-            ?ShowSendToCloud         = ShowSendToCloud,
-            ?ShowEditInChartStudio   = ShowEditInChartStudio,
-            ?ModeBarButtonsToRemove  = ModeBarButtonsToRemove,
-            ?ModeBarButtonsToAdd     = ModeBarButtonsToAdd,
-            ?ModeBarButtons          = ModeBarButtons,
-            ?ToImageButtonOptions    = ToImageButtonOptions,
-            ?Displaylogo             = Displaylogo,
-            ?Watermark               = Watermark,
-            ?plotGlPixelRatio        = plotGlPixelRatio,
-            ?SetBackground           = SetBackground,
-            ?TopojsonURL             = TopojsonURL,
-            ?MapboxAccessToken       = MapboxAccessToken,
-            ?Logging                 = Logging,
-            ?NotifyOnLogging         = NotifyOnLogging,
-            ?QueueLength             = QueueLength,
-            ?GlobalTransforms        = GlobalTransforms,
-            ?Locale                  = Locale,
-            ?Locales                 = Locales
+            ?ShowTips = ShowTips,
+            ?ShowLink = ShowLink,
+            ?LinkText = LinkText,
+            ?SendData = SendData,
+            ?ShowSources = ShowSources,
+            ?DisplayModeBar = DisplayModeBar,
+            ?ShowSendToCloud = ShowSendToCloud,
+            ?ShowEditInChartStudio = ShowEditInChartStudio,
+            ?ModeBarButtonsToRemove = ModeBarButtonsToRemove,
+            ?ModeBarButtonsToAdd = ModeBarButtonsToAdd,
+            ?ModeBarButtons = ModeBarButtons,
+            ?ToImageButtonOptions = ToImageButtonOptions,
+            ?Displaylogo = Displaylogo,
+            ?Watermark = Watermark,
+            ?plotGlPixelRatio = plotGlPixelRatio,
+            ?SetBackground = SetBackground,
+            ?TopojsonURL = TopojsonURL,
+            ?MapboxAccessToken = MapboxAccessToken,
+            ?Logging = Logging,
+            ?NotifyOnLogging = NotifyOnLogging,
+            ?QueueLength = QueueLength,
+            ?GlobalTransforms = GlobalTransforms,
+            ?Locale = Locale,
+            ?Locales = Locales
         )
 
 
@@ -261,46 +261,56 @@ type Config() =
             [<Optional; DefaultParameterValue(null)>] ?Locales: obj
         ) =
         fun (config: Config) ->
-            
-            StaticPlot              |> DynObj.setValueOpt config "staticPlot"
-            TypesetMath             |> DynObj.setValueOpt config "typesetMath"
-            PlotlyServerUrl         |> DynObj.setValueOpt config "plotlyServerUrl"
-            Editable                |> DynObj.setValueOpt config "editable"
-            Edits                   |> DynObj.setValueOpt config "edits"
-            EditSelection           |> DynObj.setValueOpt config "editSelection"
-            Autosizable             |> DynObj.setValueOpt config "autosizable"
-            Responsive              |> DynObj.setValueOpt config "responsive"
-            FillFrame               |> DynObj.setValueOpt config "fillFrame"
-            FrameMargins            |> DynObj.setValueOpt config "frameMargins"
-            ScrollZoom              |> DynObj.setValueOptBy config "scrollZoom" StyleParam.ScrollZoom.convert
-            DoubleClick             |> DynObj.setValueOptBy config "doubleClick" StyleParam.DoubleClick.convert
-            DoubleClickDelay        |> DynObj.setValueOpt config "doubleClickDelay"
-            ShowAxisDragHandles     |> DynObj.setValueOpt config "showAxisDragHandles"
+
+            StaticPlot |> DynObj.setValueOpt config "staticPlot"
+            TypesetMath |> DynObj.setValueOpt config "typesetMath"
+            PlotlyServerUrl |> DynObj.setValueOpt config "plotlyServerUrl"
+            Editable |> DynObj.setValueOpt config "editable"
+            Edits |> DynObj.setValueOpt config "edits"
+            EditSelection |> DynObj.setValueOpt config "editSelection"
+            Autosizable |> DynObj.setValueOpt config "autosizable"
+            Responsive |> DynObj.setValueOpt config "responsive"
+            FillFrame |> DynObj.setValueOpt config "fillFrame"
+            FrameMargins |> DynObj.setValueOpt config "frameMargins"
+            ScrollZoom |> DynObj.setValueOptBy config "scrollZoom" StyleParam.ScrollZoom.convert
+            DoubleClick |> DynObj.setValueOptBy config "doubleClick" StyleParam.DoubleClick.convert
+            DoubleClickDelay |> DynObj.setValueOpt config "doubleClickDelay"
+            ShowAxisDragHandles |> DynObj.setValueOpt config "showAxisDragHandles"
             ShowAxisRangeEntryBoxes |> DynObj.setValueOpt config "showAxisRangeEntryBoxes"
-            ShowTips                |> DynObj.setValueOpt config "showTips"
-            ShowLink                |> DynObj.setValueOpt config "showLink"
-            LinkText                |> DynObj.setValueOpt config "linkText"
-            SendData                |> DynObj.setValueOpt config "sendData"
-            ShowSources             |> DynObj.setValueOpt config "showSources"
-            DisplayModeBar          |> DynObj.setValueOpt config "displayModeBar"
-            ShowSendToCloud         |> DynObj.setValueOpt config "showSendToCloud"
-            ShowEditInChartStudio   |> DynObj.setValueOpt config "showEditInChartStudio"
-            ModeBarButtonsToRemove  |> DynObj.setValueOptBy config "modeBarButtonsToRemove" (fun x -> x |> Seq.map StyleParam.ModeBarButton.toString)
-            ModeBarButtonsToAdd     |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x -> x |> Seq.map StyleParam.ModeBarButton.toString)
-            ModeBarButtons          |> DynObj.setValueOptBy config "modeBarButtons" (fun x -> x |> Seq.map (Seq.map StyleParam.ModeBarButton.toString))
-            ToImageButtonOptions    |> DynObj.setValueOpt config "toImageButtonOptions"
-            Displaylogo             |> DynObj.setValueOpt config "displaylogo"
-            Watermark               |> DynObj.setValueOpt config "watermark"
-            plotGlPixelRatio        |> DynObj.setValueOpt config "plotGlPixelRatio"
-            SetBackground           |> DynObj.setValueOpt config "setBackground"
-            TopojsonURL             |> DynObj.setValueOpt config "topojsonURL"
-            MapboxAccessToken       |> DynObj.setValueOpt config "mapboxAccessToken"
-            Logging                 |> DynObj.setValueOpt config "logging"
-            NotifyOnLogging         |> DynObj.setValueOpt config "notifyOnLogging"
-            QueueLength             |> DynObj.setValueOpt config "queueLength"
-            GlobalTransforms        |> DynObj.setValueOpt config "globalTransforms"
-            Locale                  |> DynObj.setValueOpt config "locale"
-            Locales                 |> DynObj.setValueOpt config "locales"
+            ShowTips |> DynObj.setValueOpt config "showTips"
+            ShowLink |> DynObj.setValueOpt config "showLink"
+            LinkText |> DynObj.setValueOpt config "linkText"
+            SendData |> DynObj.setValueOpt config "sendData"
+            ShowSources |> DynObj.setValueOpt config "showSources"
+            DisplayModeBar |> DynObj.setValueOpt config "displayModeBar"
+            ShowSendToCloud |> DynObj.setValueOpt config "showSendToCloud"
+            ShowEditInChartStudio |> DynObj.setValueOpt config "showEditInChartStudio"
+
+            ModeBarButtonsToRemove
+            |> DynObj.setValueOptBy config "modeBarButtonsToRemove" (fun x ->
+                x |> Seq.map StyleParam.ModeBarButton.toString)
+
+            ModeBarButtonsToAdd
+            |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x ->
+                x |> Seq.map StyleParam.ModeBarButton.toString)
+
+            ModeBarButtons
+            |> DynObj.setValueOptBy config "modeBarButtons" (fun x ->
+                x |> Seq.map (Seq.map StyleParam.ModeBarButton.toString))
+
+            ToImageButtonOptions |> DynObj.setValueOpt config "toImageButtonOptions"
+            Displaylogo |> DynObj.setValueOpt config "displaylogo"
+            Watermark |> DynObj.setValueOpt config "watermark"
+            plotGlPixelRatio |> DynObj.setValueOpt config "plotGlPixelRatio"
+            SetBackground |> DynObj.setValueOpt config "setBackground"
+            TopojsonURL |> DynObj.setValueOpt config "topojsonURL"
+            MapboxAccessToken |> DynObj.setValueOpt config "mapboxAccessToken"
+            Logging |> DynObj.setValueOpt config "logging"
+            NotifyOnLogging |> DynObj.setValueOpt config "notifyOnLogging"
+            QueueLength |> DynObj.setValueOpt config "queueLength"
+            GlobalTransforms |> DynObj.setValueOpt config "globalTransforms"
+            Locale |> DynObj.setValueOpt config "locale"
+            Locales |> DynObj.setValueOpt config "locales"
 
             config
 

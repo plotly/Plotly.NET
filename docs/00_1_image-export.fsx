@@ -64,19 +64,12 @@ The parameters for all three functions are exactly the same.
 open Plotly.NET
 open Plotly.NET.ImageExport
 
-let exampleChart = 
-    Chart.Histogram2DContour(
-        [1.;2.;2.;4.;5.],
-        [1.;2.;2.;4.;5.]
-    )
+let exampleChart =
+    Chart.Histogram2DContour([ 1.; 2.; 2.; 4.; 5. ], [ 1.; 2.; 2.; 4.; 5. ])
 
 (***do-not-eval***)
 exampleChart
-|> Chart.saveJPG(
-    "/your/path/without/extension/here",
-    Width=300,
-    Height=300
-)
+|> Chart.saveJPG ("/your/path/without/extension/here", Width = 300, Height = 300)
 
 (**
 ## Generating URIs for static chart images
@@ -92,12 +85,7 @@ By referencing the `Plotly.NET.ImageExport` package, you get access to:
 *)
 
 (***do-not-eval***)
-let base64JPG =
-    exampleChart
-    |> Chart.toBase64JPGString(
-        Width=300,
-        Height=300
-    )
+let base64JPG = exampleChart |> Chart.toBase64JPGString (Width = 300, Height = 300)
 
 (**
 It is very easy to construct a html tag that includes this image via a base64 uri. For SVGs, 

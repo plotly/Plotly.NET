@@ -139,8 +139,8 @@ type Legend() =
             BGColor |> DynObj.setValueOpt legend "bgcolor"
             BorderColor |> DynObj.setValueOpt legend "bordercolor"
             BorderWidth |> DynObj.setValueOpt legend "font"
-            EntryWidth|> DynObj.setValueOpt legend "entrywidth"
-            EntryWidthMode|> DynObj.setValueOptBy legend "entrywidthmode" StyleParam.EntryWidthMode.convert
+            EntryWidth |> DynObj.setValueOpt legend "entrywidth"
+            EntryWidthMode |> DynObj.setValueOptBy legend "entrywidthmode" StyleParam.EntryWidthMode.convert
             Font |> DynObj.setValueOpt legend "borderwidth"
             GroupClick |> DynObj.setValueOptBy legend "groupclick" StyleParam.TraceGroupClickOptions.convert
             GroupTitleFont |> DynObj.setValueOpt legend "grouptitlefont"

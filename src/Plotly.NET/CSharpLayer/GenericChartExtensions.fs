@@ -792,9 +792,10 @@ module GenericChartExtensions =
         [<Extension>]
         member this.WithLayoutGridStyle
             (
-                [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-                [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-                [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+                [<Optional; DefaultParameterValue(null)>] ?SubPlots:
+                    (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+                [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+                [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
                 [<Optional; DefaultParameterValue(null)>] ?Rows: int,
                 [<Optional; DefaultParameterValue(null)>] ?Columns: int,
                 [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
@@ -959,10 +960,11 @@ module GenericChartExtensions =
         /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
         [<CompiledName("WithMathTex")>]
         [<Extension>]
-        member this.WithMathTex(
-            [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
-            [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
-        ) =
+        member this.WithMathTex
+            (
+                [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
+                [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+            ) =
             let append =
                 Option.defaultValue true AppendTags
 

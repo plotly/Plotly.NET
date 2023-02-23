@@ -15,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -34,10 +35,21 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 let's first create some data for the purpose of creating example charts:
 *)
 
-open Plotly.NET 
+open Plotly.NET
 
-let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
+
+let x =
+    [ "bin1"
+      "bin2"
+      "bin1"
+      "bin2"
+      "bin1"
+      "bin2"
+      "bin1"
+      "bin1"
+      "bin2"
+      "bin1" ]
 
 (**
 A box plot or boxplot is a convenient way of graphically depicting groups of numerical data through their quartiles. 
@@ -47,12 +59,7 @@ Outliers may be plotted as individual points.
 *)
 
 let box1 =
-    Chart.BoxPlot(
-        X = x,
-        Y = y,
-        Jitter=0.1,
-        BoxPoints=StyleParam.BoxPoints.All
-    )
+    Chart.BoxPlot(X = x, Y = y, Jitter = 0.1, BoxPoints = StyleParam.BoxPoints.All)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -70,9 +77,9 @@ let box2 =
     Chart.BoxPlot(
         X = y,
         Y = x,
-        Jitter=0.1,
-        BoxPoints=StyleParam.BoxPoints.All,
-        Orientation=StyleParam.Orientation.Horizontal
+        Jitter = 0.1,
+        BoxPoints = StyleParam.BoxPoints.All,
+        Orientation = StyleParam.Orientation.Horizontal
     )
 
 (*** condition: ipynb ***)
@@ -88,13 +95,31 @@ box2 |> GenericChart.toChartHTML
 You can also produce a boxplot using the `Chart.Combine` syntax.
 *)
 
-let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let y' =
+    [ 2.
+      1.5
+      5.
+      1.5
+      2.
+      2.5
+      2.1
+      2.5
+      1.5
+      1.
+      2.
+      1.5
+      5.
+      1.5
+      3.
+      2.5
+      2.5
+      1.5
+      3.5
+      1. ]
 
 let box3 =
-    [
-        Chart.BoxPlot(X = "y" ,Y = y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
-        Chart.BoxPlot(X = "y'",Y = y',Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All);
-    ]
+    [ Chart.BoxPlot(X = "y", Y = y, Name = "bin1", Jitter = 0.1, BoxPoints = StyleParam.BoxPoints.All)
+      Chart.BoxPlot(X = "y'", Y = y', Name = "bin2", Jitter = 0.1, BoxPoints = StyleParam.BoxPoints.All) ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -105,4 +130,3 @@ box3
 (***hide***)
 box3 |> GenericChart.toChartHTML
 (***include-it-raw***)
-

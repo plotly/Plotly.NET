@@ -5,9 +5,9 @@ open System.Runtime.InteropServices
 open Giraffe.ViewEngine
 
 
-///Sets how plotly is referenced in the head of html docs. 
+///Sets how plotly is referenced in the head of html docs.
 type PlotlyJSReference =
-    /// The url for a script tag that references the plotly.js CDN When 
+    /// The url for a script tag that references the plotly.js CDN When
     | CDN of string
     /// Full plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline
     | Full
@@ -25,13 +25,14 @@ type DisplayOptions() =
     /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
     /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
     /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
-    static member init (
-        [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
-        [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
-        [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
-    ) =
+    static member init
+        (
+            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
+        ) =
         DisplayOptions()
-        |> DisplayOptions.style(
+        |> DisplayOptions.style (
             ?AdditionalHeadTags = AdditionalHeadTags,
             ?Description = Description,
             ?PlotlyJSReference = PlotlyJSReference
@@ -43,16 +44,17 @@ type DisplayOptions() =
     /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
     /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
     /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
-    static member style (
-        [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
-        [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
-        [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
-    ) =
+    static member style
+        (
+            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
+        ) =
         (fun (displayOpts: DisplayOptions) ->
 
             AdditionalHeadTags |> DynObj.setValueOpt displayOpts "AdditionalHeadTags"
-            Description        |> DynObj.setValueOpt displayOpts "Description"
-            PlotlyJSReference|> DynObj.setValueOpt displayOpts "PlotlyJSReference"
+            Description |> DynObj.setValueOpt displayOpts "Description"
+            PlotlyJSReference |> DynObj.setValueOpt displayOpts "PlotlyJSReference"
 
             displayOpts)
 
@@ -61,7 +63,7 @@ type DisplayOptions() =
     /// </summary>
     static member initCDNOnly() =
         DisplayOptions()
-        |> DisplayOptions.style(
+        |> DisplayOptions.style (
             PlotlyJSReference = CDN $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
         )
 
@@ -92,58 +94,50 @@ type DisplayOptions() =
 
         DynObj.combine first second
         |> unbox
-        |> DisplayOptions.style (
-            ?AdditionalHeadTags = additionalHeadTags,
-            ?Description = description
-        )
+        |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags, ?Description = description)
 
-    static member setAdditionalHeadTags(additionalHeadTags: XmlNode list) = 
-        (fun (displayOpts: DisplayOptions) -> 
+    static member setAdditionalHeadTags(additionalHeadTags: XmlNode list) =
+        (fun (displayOpts: DisplayOptions) ->
             additionalHeadTags |> DynObj.setValue displayOpts "AdditionalHeadTags"
-            displayOpts
-            )
+            displayOpts)
 
-    static member tryGetAdditionalHeadTags (displayOpts: DisplayOptions) = displayOpts.TryGetTypedValue<XmlNode list>("AdditionalHeadTags")
+    static member tryGetAdditionalHeadTags(displayOpts: DisplayOptions) =
+        displayOpts.TryGetTypedValue<XmlNode list>("AdditionalHeadTags")
 
-    static member getAdditionalHeadTags (displayOpts: DisplayOptions) = displayOpts |> DisplayOptions.tryGetAdditionalHeadTags |> Option.defaultValue []
+    static member getAdditionalHeadTags(displayOpts: DisplayOptions) =
+        displayOpts |> DisplayOptions.tryGetAdditionalHeadTags |> Option.defaultValue []
 
     static member addAdditionalHeadTags(additionalHeadTags: XmlNode list) =
-        (fun (displayOpts: DisplayOptions) -> 
+        (fun (displayOpts: DisplayOptions) ->
             displayOpts
-            |> DisplayOptions.setAdditionalHeadTags(
-                List.append 
-                    (DisplayOptions.getAdditionalHeadTags displayOpts)
-                    additionalHeadTags
-            )
-        )
+            |> DisplayOptions.setAdditionalHeadTags (
+                List.append (DisplayOptions.getAdditionalHeadTags displayOpts) additionalHeadTags
+            ))
 
 
-    static member setDescription(description: XmlNode list) = 
-        (fun (displayOpts: DisplayOptions) -> 
+    static member setDescription(description: XmlNode list) =
+        (fun (displayOpts: DisplayOptions) ->
             description |> DynObj.setValue displayOpts "Description"
-            displayOpts
-            )
+            displayOpts)
 
-    static member tryGetDescription (displayOpts: DisplayOptions) = displayOpts.TryGetTypedValue<XmlNode list>("Description")
+    static member tryGetDescription(displayOpts: DisplayOptions) =
+        displayOpts.TryGetTypedValue<XmlNode list>("Description")
 
-    static member getDescription (displayOpts: DisplayOptions) = displayOpts |> DisplayOptions.tryGetDescription |> Option.defaultValue []
+    static member getDescription(displayOpts: DisplayOptions) =
+        displayOpts |> DisplayOptions.tryGetDescription |> Option.defaultValue []
 
     static member addDescription(description: XmlNode list) =
-        (fun (displayOpts: DisplayOptions) -> 
+        (fun (displayOpts: DisplayOptions) ->
             displayOpts
-            |> DisplayOptions.setDescription(
-                List.append 
-                    (DisplayOptions.getDescription displayOpts)
-                    description
-            )
-        )
+            |> DisplayOptions.setDescription (List.append (DisplayOptions.getDescription displayOpts) description))
 
-    static member setPlotlyReference(plotlyReference: PlotlyJSReference) = 
-        (fun (displayOpts: DisplayOptions) -> 
+    static member setPlotlyReference(plotlyReference: PlotlyJSReference) =
+        (fun (displayOpts: DisplayOptions) ->
             plotlyReference |> DynObj.setValue displayOpts "PlotlyJSReference"
-            displayOpts
-            )
+            displayOpts)
 
-    static member tryGetPlotlyReference (displayOpts: DisplayOptions) = displayOpts.TryGetTypedValue<PlotlyJSReference>("PlotlyJSReference")
+    static member tryGetPlotlyReference(displayOpts: DisplayOptions) =
+        displayOpts.TryGetTypedValue<PlotlyJSReference>("PlotlyJSReference")
 
-    static member getPlotlyPlotlyReference (displayOpts: DisplayOptions) = displayOpts |> DisplayOptions.tryGetPlotlyReference |> Option.defaultValue (PlotlyJSReference.NoReference)
+    static member getPlotlyPlotlyReference(displayOpts: DisplayOptions) =
+        displayOpts |> DisplayOptions.tryGetPlotlyReference |> Option.defaultValue (PlotlyJSReference.NoReference)

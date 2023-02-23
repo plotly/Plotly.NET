@@ -15,7 +15,8 @@ index: 8
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -47,21 +48,20 @@ let data =
     |> Frame.toJaggedArray
 
 let updateMenu =
-    UpdateMenu.init(
-        Buttons = [
-            UpdateMenuButton.init(
-                Args = ["type"; "surface"],
-                Label = "Surface",
-                Method = StyleParam.UpdateMethod.Restyle
-            )            
-            UpdateMenuButton.init(
-                Args = ["type"; "heatmap"],
-                Label = "Heatmap",
-                Method = StyleParam.UpdateMethod.Restyle
-            )
-        ],
+    UpdateMenu.init (
+        Buttons =
+            [ UpdateMenuButton.init (
+                  Args = [ "type"; "surface" ],
+                  Label = "Surface",
+                  Method = StyleParam.UpdateMethod.Restyle
+              )
+              UpdateMenuButton.init (
+                  Args = [ "type"; "heatmap" ],
+                  Label = "Heatmap",
+                  Method = StyleParam.UpdateMethod.Restyle
+              ) ],
         Direction = StyleParam.UpdateMenuDirection.Down,
-        Pad = Padding.init(R = 10, T = 10),
+        Pad = Padding.init (R = 10, T = 10),
         ShowActive = true,
         X = 0.1,
         XAnchor = StyleParam.XAnchorPosition.Left,
@@ -69,14 +69,12 @@ let updateMenu =
         YAnchor = StyleParam.YAnchorPosition.Top
     )
 
-let updateChart = 
-    Chart.Surface(
-        zData = data
-    )
+let updateChart =
+    Chart.Surface(zData = data)
     |> Chart.withUpdateMenu updateMenu
     |> Chart.withAnnotation (
-        Annotation.init(
-            Text = "Trace Type:", 
+        Annotation.init (
+            Text = "Trace Type:",
             ShowArrow = false,
             X = 0,
             Y = 1.085,
@@ -84,18 +82,10 @@ let updateChart =
             Align = StyleParam.AnnotationAlignment.Left
         )
     )
-    |> Chart.withScene(
-        Scene.init(
-            AspectRatio = AspectRatio.init(X=1.,Y=1.,Z=0.7),
-            AspectMode = StyleParam.AspectMode.Manual
-        )
+    |> Chart.withScene (
+        Scene.init (AspectRatio = AspectRatio.init (X = 1., Y = 1., Z = 0.7), AspectMode = StyleParam.AspectMode.Manual)
     )
-    |> Chart.withLayoutStyle(
-        Width = 800,
-        Height = 900,
-        AutoSize = false,
-        Margin = Margin.init(0,0,0,0)
-    )
+    |> Chart.withLayoutStyle (Width = 800, Height = 900, AutoSize = false, Margin = Margin.init (0, 0, 0, 0))
 
 (*** condition: ipynb ***)
 #if IPYNB

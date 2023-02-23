@@ -15,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,15 +37,13 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
+open Plotly.NET
 
-let data = 
-    [
-        "A",[1.;4.;3.4;0.7;]
-        "B",[3.;1.5;1.7;2.3;]
-        "C",[2.;4.;3.1;5.]
-        "D",[4.;2.;2.;4.;]
-    ]
+let data =
+    [ "A", [ 1.; 4.; 3.4; 0.7 ]
+      "B", [ 3.; 1.5; 1.7; 2.3 ]
+      "C", [ 2.; 4.; 3.1; 5. ]
+      "D", [ 4.; 2.; 2.; 4. ] ]
 
 (**
 
@@ -55,10 +54,7 @@ the position of the vertex on the i-th axis corresponds to the i-th coordinate o
 *)
 
 let parcoords1 =
-    Chart.ParallelCoord(
-        keyValues = data,
-        LineColor=Color.fromString "blue"
-    )
+    Chart.ParallelCoord(keyValues = data, LineColor = Color.fromString "blue")
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -91,32 +87,39 @@ let parcoordsStyled =
         |> Http.RequestString
         |> Frame.ReadCsvString
 
-    let dims = 
-        [
-            Dimension.initParallel(Label = "sepal_length", Values = (data |> Frame.getCol "sepal_length" |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
-            Dimension.initParallel(Label = "sepal_width" , Values = (data |> Frame.getCol "sepal_width"  |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
-            Dimension.initParallel(Label = "petal_length", Values = (data |> Frame.getCol "petal_length" |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
-            Dimension.initParallel(Label = "petal_width" , Values = (data |> Frame.getCol "petal_width"  |> Series.values), Range = StyleParam.Range.MinMax(0., 8.))
-        ]
+    let dims =
+        [ Dimension.initParallel (
+              Label = "sepal_length",
+              Values = (data |> Frame.getCol "sepal_length" |> Series.values),
+              Range = StyleParam.Range.MinMax(0., 8.)
+          )
+          Dimension.initParallel (
+              Label = "sepal_width",
+              Values = (data |> Frame.getCol "sepal_width" |> Series.values),
+              Range = StyleParam.Range.MinMax(0., 8.)
+          )
+          Dimension.initParallel (
+              Label = "petal_length",
+              Values = (data |> Frame.getCol "petal_length" |> Series.values),
+              Range = StyleParam.Range.MinMax(0., 8.)
+          )
+          Dimension.initParallel (
+              Label = "petal_width",
+              Values = (data |> Frame.getCol "petal_width" |> Series.values),
+              Range = StyleParam.Range.MinMax(0., 8.)
+          ) ]
 
-    let colors = 
-        data
-        |> Frame.getCol "species_id"
-        |> Series.values
-        |> Color.fromColorScaleValues
+    let colors =
+        data |> Frame.getCol "species_id" |> Series.values |> Color.fromColorScaleValues
 
-    Chart.ParallelCoord(
-        dimensions = dims,
-        LineColorScale = StyleParam.Colorscale.Viridis,
-        LineColor = colors
-    )
+    Chart.ParallelCoord(dimensions = dims, LineColorScale = StyleParam.Colorscale.Viridis, LineColor = colors)
 
 
 (*** condition: ipynb ***)
 #if IPYNB
 parcoordsStyled
 #endif // IPYNB
-    
+
 (***hide***)
 parcoordsStyled |> GenericChart.toChartHTML
 (***include-it-raw***)

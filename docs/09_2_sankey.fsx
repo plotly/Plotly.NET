@@ -16,7 +16,8 @@ index: 3
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -39,32 +40,32 @@ These are created using the provided Node and Link structures.
 *)
 open Plotly.NET
 
-let sankey1 = 
+let sankey1 =
     Chart.Sankey(
-        nodeLabels = ["A1"; "A2"; "B1"; "B2"; "C1"; "C2"; "D1"],
-        linkedNodeIds = [ // Edgelist, toupling sourceIndex => targetIndex of the link
-            0,2
-            0,3
-            1,3
-            2,4
-            3,4
-            3,5
-            4,6
-            5,6
-        ],
+        nodeLabels = [ "A1"; "A2"; "B1"; "B2"; "C1"; "C2"; "D1" ],
+        linkedNodeIds =
+            [ // Edgelist, toupling sourceIndex => targetIndex of the link
+              0, 2
+              0, 3
+              1, 3
+              2, 4
+              3, 4
+              3, 5
+              4, 6
+              5, 6 ],
         NodeOutlineColor = Color.fromKeyword Black,
         NodeOutlineWidth = 1.,
-        linkValues = [8; 4; 2; 7; 3; 2; 5; 2],
-        LinkColor = Color.fromColors [
-            Color.fromHex "#828BFB"
-            Color.fromHex "#828BFB"
-            Color.fromHex "#F27762"
-            Color.fromHex "#33D6AB"
-            Color.fromHex "#BC82FB"
-            Color.fromHex "#BC82FB"
-            Color.fromHex "#FFB47B"
-            Color.fromHex "#47DCF5"
-        ],
+        linkValues = [ 8; 4; 2; 7; 3; 2; 5; 2 ],
+        LinkColor =
+            Color.fromColors
+                [ Color.fromHex "#828BFB"
+                  Color.fromHex "#828BFB"
+                  Color.fromHex "#F27762"
+                  Color.fromHex "#33D6AB"
+                  Color.fromHex "#BC82FB"
+                  Color.fromHex "#BC82FB"
+                  Color.fromHex "#FFB47B"
+                  Color.fromHex "#47DCF5" ],
         LinkOutlineColor = Color.fromKeyword Black,
         LinkOutlineWidth = 1.,
         UseDefaults = false
@@ -78,4 +79,3 @@ sankey1
 (***hide***)
 sankey1 |> GenericChart.toChartHTML
 (***include-it-raw***)
-

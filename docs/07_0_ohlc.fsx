@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -39,15 +40,17 @@ let's first create some data for the purpose of creating example charts:
 open FSharp.Data
 open Deedle
 
-let data = 
+let data =
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv"
-    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",")
 
-let openData : seq<float> = data.["AAPL.Open"] |> Series.values
-let highData : seq<float> = data.["AAPL.High"] |> Series.values
-let lowData : seq<float> = data.["AAPL.Low"] |> Series.values
-let closeData : seq<float> = data.["AAPL.Close"] |> Series.values
-let dateData = data |> Frame.getCol "Date" |> Series.values |> Seq.map System.DateTime.Parse
+let openData: seq<float> = data.["AAPL.Open"] |> Series.values
+let highData: seq<float> = data.["AAPL.High"] |> Series.values
+let lowData: seq<float> = data.["AAPL.Low"] |> Series.values
+let closeData: seq<float> = data.["AAPL.Close"] |> Series.values
+
+let dateData =
+    data |> Frame.getCol "Date" |> Series.values |> Seq.map System.DateTime.Parse
 
 (**
 An open-high-low-close chart (also OHLC) is a type of chart typically used to illustrate movements in the price of a financial instrument over time. 
@@ -61,9 +64,9 @@ You can create an OHLC chart using `Chart.OHLC`:
 open Plotly.NET
 open Plotly.NET.TraceObjects
 
-let ohlc1 = 
+let ohlc1 =
     Chart.OHLC(
-        ``open``= (openData |> Seq.take 30),
+        ``open`` = (openData |> Seq.take 30),
         high = (highData |> Seq.take 30),
         low = (lowData |> Seq.take 30),
         close = (closeData |> Seq.take 30),
@@ -83,7 +86,7 @@ ohlc1 |> GenericChart.toChartHTML
 ## Changing the increasing/decresing colors
 *)
 
-let ohlc2= 
+let ohlc2 =
     Chart.OHLC(
         ``open`` = openData,
         high = highData,
@@ -110,7 +113,7 @@ If you want to hide the rangeslider, set the `ShowXAxisRangeSlider` to false:
 *)
 open Plotly.NET.LayoutObjects
 
-let ohlc3 = 
+let ohlc3 =
     Chart.OHLC(
         ``open`` = openData,
         high = highData,
@@ -130,4 +133,3 @@ ohlc3
 (***hide***)
 ohlc3 |> GenericChart.toChartHTML
 (***include-it-raw***)
-

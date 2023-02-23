@@ -16,7 +16,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -39,18 +40,18 @@ However, `Chart.Point3D`, `Chart.Line3D`, or `Chart.Bubble3D` provide sensible d
 ## 3D point chart
 *)
 
-open Plotly.NET 
-  
-let point3d = 
+open Plotly.NET
+
+let point3d =
     Chart.Point3D(
-        xyz = [1,3,2; 6,5,4; 7,9,8],
-        MultiText = ["A"; "B"; "C"],
+        xyz = [ 1, 3, 2; 6, 5, 4; 7, 9, 8 ],
+        MultiText = [ "A"; "B"; "C" ],
         TextPosition = StyleParam.TextPosition.BottomCenter
     )
-    |> Chart.withXAxisStyle("my x-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
-    |> Chart.withYAxisStyle("my y-axis", Id=StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
-    |> Chart.withZAxisStyle("my z-axis")
-    |> Chart.withSize(800.,800.)
+    |> Chart.withXAxisStyle ("my x-axis", Id = StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
+    |> Chart.withYAxisStyle ("my y-axis", Id = StyleParam.SubPlotId.Scene 1) // in contrast to 2D plots, x and y axes of 3D charts have to be set via the scene object
+    |> Chart.withZAxisStyle ("my z-axis")
+    |> Chart.withSize (800., 800.)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -65,11 +66,11 @@ point3d |> GenericChart.toChartHTML
 ## 3D point chart with marker colorscale
 *)
 
-let point3d2 = 
+let point3d2 =
     Chart.Point3D(
-        xyz = [1,3,2; 6,5,4; 7,9,8],
-        MarkerColor = Color.fromColorScaleValues [0;1;2],
-        MultiText = ["A"; "B"; "C"],
+        xyz = [ 1, 3, 2; 6, 5, 4; 7, 9, 8 ],
+        MarkerColor = Color.fromColorScaleValues [ 0; 1; 2 ],
+        MultiText = [ "A"; "B"; "C" ],
         TextPosition = StyleParam.TextPosition.BottomCenter
     )
 
@@ -86,10 +87,10 @@ point3d2 |> GenericChart.toChartHTML
 # 3D Line chart
 *)
 
-let line3d = 
+let line3d =
     Chart.Line3D(
-        xyz = [1,3,2; 6,5,4; 7,9,8],
-        MultiText = ["A"; "B"; "C"],
+        xyz = [ 1, 3, 2; 6, 5, 4; 7, 9, 8 ],
+        MultiText = [ "A"; "B"; "C" ],
         TextPosition = StyleParam.TextPosition.BottomCenter,
         ShowMarkers = true
     )
@@ -107,13 +108,13 @@ line3d |> GenericChart.toChartHTML
 ## 3D line chart with line colorscale
 *)
 
-let line3d2 = 
+let line3d2 =
     Chart.Line3D(
-        xyz = [1,3,2; 6,5,4; 7,9,8],
-        MultiText = ["A"; "B"; "C"],
+        xyz = [ 1, 3, 2; 6, 5, 4; 7, 9, 8 ],
+        MultiText = [ "A"; "B"; "C" ],
         TextPosition = StyleParam.TextPosition.BottomCenter,
         ShowMarkers = true,
-        LineColor = Color.fromColorScaleValues [0;1;2],
+        LineColor = Color.fromColorScaleValues [ 0; 1; 2 ],
         LineWidth = 10.
     )
 
@@ -133,9 +134,9 @@ line3d2 |> GenericChart.toChartHTML
 
 let bubble3d =
     Chart.Bubble3D(
-        xyz = [1,3,2; 6,5,4; 7,9,8],
-        sizes = [10;20;30],
-        MultiText = ["A"; "B"; "C"],
+        xyz = [ 1, 3, 2; 6, 5, 4; 7, 9, 8 ],
+        sizes = [ 10; 20; 30 ],
+        MultiText = [ "A"; "B"; "C" ],
         TextPosition = StyleParam.TextPosition.BottomCenter
     )
 
@@ -153,13 +154,13 @@ bubble3d |> GenericChart.toChartHTML
 ## 3D bubble chart with colorscale
 *)
 
-let bubble3d2 = 
+let bubble3d2 =
     Chart.Bubble3D(
-        xyz = [1,3,2; 6,5,4; 7,9,8],
-        sizes = [10;20;30],
-        MultiText = ["A"; "B"; "C"],
+        xyz = [ 1, 3, 2; 6, 5, 4; 7, 9, 8 ],
+        sizes = [ 10; 20; 30 ],
+        MultiText = [ "A"; "B"; "C" ],
         TextPosition = StyleParam.TextPosition.BottomCenter,
-        MarkerColor = Color.fromColorScaleValues [0;1;2],
+        MarkerColor = Color.fromColorScaleValues [ 0; 1; 2 ],
         MarkerColorScale = StyleParam.Colorscale.Viridis
     )
 
@@ -171,4 +172,3 @@ bubble3d2
 (***hide***)
 bubble3d2 |> GenericChart.toChartHTML
 (*** include-it-raw ***)
-

@@ -20,9 +20,13 @@ let combineOptLists (first: List<'A> option) (second: List<'A> option) =
     | None, Some s -> Some s
     | _ -> None
 
-let getFullPlotlyJS() =
-    let assembly = Assembly.GetExecutingAssembly()
-    use str = assembly.GetManifestResourceStream("Plotly.NET.plotly-2.18.1.min.js")
+let getFullPlotlyJS () =
+    let assembly =
+        Assembly.GetExecutingAssembly()
+
+    use str =
+        assembly.GetManifestResourceStream("Plotly.NET.plotly-2.18.1.min.js")
+
     use r = new StreamReader(str)
     r.ReadToEnd()
 

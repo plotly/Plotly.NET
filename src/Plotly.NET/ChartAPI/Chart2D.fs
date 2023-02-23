@@ -235,40 +235,40 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(false)>] ?UseWebGL: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-                Chart.Scatter(
-                    X = x,
-                    Y = y,
-                    Mode = mode,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?MultiOpacity = MultiOpacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition,
-                    ?MarkerColor = MarkerColor,
-                    ?MarkerColorScale = MarkerColorScale,
-                    ?MarkerOutline = MarkerOutline,
-                    ?MarkerSymbol = MarkerSymbol,
-                    ?MultiMarkerSymbol = MultiMarkerSymbol,
-                    ?Marker = Marker,
-                    ?LineColor = LineColor,
-                    ?LineColorScale = LineColorScale,
-                    ?LineWidth = LineWidth,
-                    ?LineDash = LineDash,
-                    ?Line = Line,
-                    ?AlignmentGroup = AlignmentGroup,
-                    ?OffsetGroup = OffsetGroup,
-                    ?StackGroup = StackGroup,
-                    ?Orientation = Orientation,
-                    ?GroupNorm = GroupNorm,
-                    ?Fill = Fill,
-                    ?FillColor = FillColor,
-                    ?FillPattern = FillPattern,
-                    ?UseWebGL = UseWebGL,
-                    ?UseDefaults = UseDefaults
-                )
+            Chart.Scatter(
+                X = x,
+                Y = y,
+                Mode = mode,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
+                ?FillPattern = FillPattern,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a Scatter chart. Scatter charts are the basis of Point, Line, and Bubble Charts in Plotly, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
@@ -3638,7 +3638,7 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            
+
         /// <summary>
         /// Visualizes the distribution of the 2-dimensional input data as 2D Histogram.
         ///
@@ -3689,28 +3689,28 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-                Chart.Histogram2D(
-                    X = x,
-                    Y = y,
-                    ?Z = Z,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?XGap = XGap,
-                    ?YGap = YGap,
-                    ?HistFunc = HistFunc,
-                    ?HistNorm = HistNorm,
-                    ?NBinsX = NBinsX,
-                    ?NBinsY = NBinsY,
-                    ?XBins = XBins,
-                    ?YBins = YBins,
-                    ?ColorBar = ColorBar,
-                    ?ColorScale = ColorScale,
-                    ?ShowScale = ShowScale,
-                    ?ReverseScale = ReverseScale,
-                    ?ZSmooth = ZSmooth,
-                    ?UseDefaults = UseDefaults
-                )
+            Chart.Histogram2D(
+                X = x,
+                Y = y,
+                ?Z = Z,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?XGap = XGap,
+                ?YGap = YGap,
+                ?HistFunc = HistFunc,
+                ?HistNorm = HistNorm,
+                ?NBinsX = NBinsX,
+                ?NBinsY = NBinsY,
+                ?XBins = XBins,
+                ?YBins = YBins,
+                ?ColorBar = ColorBar,
+                ?ColorScale = ColorScale,
+                ?ShowScale = ShowScale,
+                ?ReverseScale = ReverseScale,
+                ?ZSmooth = ZSmooth,
+                ?UseDefaults = UseDefaults
+            )
 
 
         /// <summary>
@@ -4467,7 +4467,7 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            
+
         /// <summary>
         /// Computes a 2D histogram contour plot, also known as a density contour plot, which is a 2-dimensional generalization of a histogram which resembles a contour plot but is computed by grouping a set of points specified by their x and y coordinates into bins, and applying an aggregation function such as count or sum (if z is provided) to compute the value to be used to compute contours.
         ///
@@ -4531,35 +4531,35 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?NContours: int,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
-                Chart.Histogram2DContour(
-                    X = x,
-                    Y = y,
-                    ?Name                   = Name,
-                    ?ShowLegend             = ShowLegend,
-                    ?Opacity                = Opacity,
-                    ?Z                      = Z,
-                    ?HistFunc               = HistFunc,
-                    ?HistNorm               = HistNorm,
-                    ?NBinsX                 = NBinsX,
-                    ?NBinsY                 = NBinsY,
-                    ?BinGroup               = BinGroup,
-                    ?XBinGroup              = XBinGroup,
-                    ?XBins                  = XBins,
-                    ?YBinGroup              = YBinGroup,
-                    ?YBins                  = YBins,
-                    ?Marker                 = Marker,
-                    ?ContourLineColor       = ContourLineColor,
-                    ?ContourLineDash        = ContourLineDash,
-                    ?ContourLineSmoothing   = ContourLineSmoothing,
-                    ?ContourLine            = ContourLine,
-                    ?ColorBar               = ColorBar,
-                    ?ColorScale             = ColorScale,
-                    ?ShowScale              = ShowScale,
-                    ?ReverseScale           = ReverseScale,
-                    ?Contours               = Contours,
-                    ?NContours              = NContours,
-                    ?UseDefaults            = UseDefaults
-                )
+            Chart.Histogram2DContour(
+                X = x,
+                Y = y,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Z = Z,
+                ?HistFunc = HistFunc,
+                ?HistNorm = HistNorm,
+                ?NBinsX = NBinsX,
+                ?NBinsY = NBinsY,
+                ?BinGroup = BinGroup,
+                ?XBinGroup = XBinGroup,
+                ?XBins = XBins,
+                ?YBinGroup = YBinGroup,
+                ?YBins = YBins,
+                ?Marker = Marker,
+                ?ContourLineColor = ContourLineColor,
+                ?ContourLineDash = ContourLineDash,
+                ?ContourLineSmoothing = ContourLineSmoothing,
+                ?ContourLine = ContourLine,
+                ?ColorBar = ColorBar,
+                ?ColorScale = ColorScale,
+                ?ShowScale = ShowScale,
+                ?ReverseScale = ReverseScale,
+                ?Contours = Contours,
+                ?NContours = NContours,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a heatmap.
@@ -4698,27 +4698,27 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-                Chart.Heatmap(
-                    zData = zData,
-                    X = colNames,
-                    Y = rowNames,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?XGap = XGap,
-                    ?YGap = YGap,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?ColorBar = ColorBar,
-                    ?ColorScale = ColorScale,
-                    ?ShowScale = ShowScale,
-                    ?ReverseScale = ReverseScale,
-                    ?ZSmooth = ZSmooth,
-                    ?Transpose = Transpose,
-                    ?UseWebGL = UseWebGL,
-                    ?ReverseYAxis = ReverseYAxis,
-                    ?UseDefaults = UseDefaults
-                )
+            Chart.Heatmap(
+                zData = zData,
+                X = colNames,
+                Y = rowNames,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?XGap = XGap,
+                ?YGap = YGap,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?ColorBar = ColorBar,
+                ?ColorScale = ColorScale,
+                ?ShowScale = ShowScale,
+                ?ReverseScale = ReverseScale,
+                ?ZSmooth = ZSmooth,
+                ?Transpose = Transpose,
+                ?UseWebGL = UseWebGL,
+                ?ReverseYAxis = ReverseYAxis,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a annotated heatmap.
@@ -5177,7 +5177,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
-                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5214,11 +5214,11 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setLinearAxis(
+            |> GenericChart.addLayout (
+                Layout.init ()
+                |> Layout.setLinearAxis (
                     id = StyleParam.SubPlotId.XAxis 1,
-                    axis = LinearAxis.init(RangeSlider = RangeSlider.init(?Visible = ShowXAxisRangeSlider))
+                    axis = LinearAxis.init (RangeSlider = RangeSlider.init (?Visible = ShowXAxisRangeSlider))
                 )
             )
 
@@ -5264,30 +5264,30 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
-                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-                Chart.OHLC(
-                    ``open``        = ``open``,
-                    high            = high,
-                    low             = low,
-                    close           = close,
-                    X               = x,
-                    ?Name           = Name,
-                    ?ShowLegend     = ShowLegend,
-                    ?Opacity        = Opacity,
-                    ?Text           = Text,
-                    ?MultiText      = MultiText,
-                    ?Line           = Line,
-                    ?IncreasingColor= IncreasingColor,
-                    ?Increasing     = Increasing,
-                    ?DecreasingColor= DecreasingColor,
-                    ?Decreasing     = Decreasing,
-                    ?TickWidth      = TickWidth,
-                    ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
-                    ?UseDefaults    = UseDefaults
-                )
+            Chart.OHLC(
+                ``open`` = ``open``,
+                high = high,
+                low = low,
+                close = close,
+                X = x,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?Line = Line,
+                ?IncreasingColor = IncreasingColor,
+                ?Increasing = Increasing,
+                ?DecreasingColor = DecreasingColor,
+                ?Decreasing = Decreasing,
+                ?TickWidth = TickWidth,
+                ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates an OHLC chart.
@@ -5323,7 +5323,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
-                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5393,7 +5393,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
-                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
@@ -5430,11 +5430,11 @@ module Chart2D =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
-            |> GenericChart.addLayout(
-                Layout.init()
-                |> Layout.setLinearAxis(
+            |> GenericChart.addLayout (
+                Layout.init ()
+                |> Layout.setLinearAxis (
                     id = StyleParam.SubPlotId.XAxis 1,
-                    axis = LinearAxis.init(RangeSlider = RangeSlider.init(?Visible = ShowXAxisRangeSlider))
+                    axis = LinearAxis.init (RangeSlider = RangeSlider.init (?Visible = ShowXAxisRangeSlider))
                 )
             )
 
@@ -5480,30 +5480,30 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
-                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 
-                Chart.Candlestick(
-                    ``open``        = ``open``,
-                    high            = high,
-                    low             = low,
-                    close           = close,
-                    X               = x,
-                    ?Name           = Name,
-                    ?ShowLegend     = ShowLegend,
-                    ?Opacity        = Opacity,
-                    ?Text           = Text,
-                    ?MultiText      = MultiText,
-                    ?Line           = Line,
-                    ?IncreasingColor= IncreasingColor,
-                    ?Increasing     = Increasing,
-                    ?DecreasingColor= DecreasingColor,
-                    ?Decreasing     = Decreasing,
-                    ?WhiskerWidth   = WhiskerWidth,
-                    ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
-                    ?UseDefaults    = UseDefaults
-                )
+            Chart.Candlestick(
+                ``open`` = ``open``,
+                high = high,
+                low = low,
+                close = close,
+                X = x,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?Line = Line,
+                ?IncreasingColor = IncreasingColor,
+                ?Increasing = Increasing,
+                ?DecreasingColor = DecreasingColor,
+                ?Decreasing = Decreasing,
+                ?WhiskerWidth = WhiskerWidth,
+                ?ShowXAxisRangeSlider = ShowXAxisRangeSlider,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a candlestick chart.
@@ -5539,7 +5539,7 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?DecreasingColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?Decreasing: FinanceMarker,
                 [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
-                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider : bool,
+                [<Optional; DefaultParameterValue(true)>] ?ShowXAxisRangeSlider: bool,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
 

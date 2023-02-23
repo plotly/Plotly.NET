@@ -15,7 +15,8 @@ index: 3
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -55,7 +56,7 @@ Consider the following GeoJSON:
 open FSharp.Data
 open Newtonsoft.Json
 
-let geoJson = 
+let geoJson =
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
     |> JsonConvert.DeserializeObject // the easiest way to use the GeoJSON object is deserializing the JSON string.
 
@@ -92,9 +93,9 @@ To visualize some data using these counties as locations on a choropleth map, we
 #r "nuget: Deedle"
 open Deedle
 
-let data = 
+let data =
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",",schema="fips=string,unemp=float")
+    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",", schema = "fips=string,unemp=float")
 
 (**
 The data looks like this:
@@ -108,17 +109,10 @@ data.Print()
 As the data contains the fips code and associated unemployment data, we can use the fips codes as locations and the unemployment as z data:
 *)
 
-let locations: string [] = 
-    data
-    |> Frame.getCol "fips"
-    |> Series.values
-    |> Array.ofSeq
+let locations: string[] =
+    data |> Frame.getCol "fips" |> Series.values |> Array.ofSeq
 
-let z: int [] = 
-    data
-    |> Frame.getCol "unemp"
-    |> Series.values
-    |> Array.ofSeq
+let z: int[] = data |> Frame.getCol "unemp" |> Series.values |> Array.ofSeq
 
 
 (**
@@ -129,17 +123,12 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 
 let choroplethMapbox =
-    Chart.ChoroplethMapbox(
-        locations = locations,
-        z = z,
-        geoJson = geoJson,
-        FeatureIdKey="id"
-    )
-    |> Chart.withMapbox(
-        Mapbox.init(
-            Style=StyleParam.MapboxStyle.OpenStreetMap, // Use the free open street map base map layer
-            Center=(-104.6,50.45)
-        ) 
+    Chart.ChoroplethMapbox(locations = locations, z = z, geoJson = geoJson, FeatureIdKey = "id")
+    |> Chart.withMapbox (
+        Mapbox.init (
+            Style = StyleParam.MapboxStyle.OpenStreetMap, // Use the free open street map base map layer
+            Center = (-104.6, 50.45)
+        )
     )
 
 (*** condition: ipynb ***)

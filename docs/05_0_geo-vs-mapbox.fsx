@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -52,9 +53,9 @@ In the default plotly template, a map frame and physical features such as a coas
 
 open Plotly.NET
 
-let baseMapOnly = 
+let baseMapOnly =
     Chart.PointGeo(locations = []) // deliberately empty chart to show the base map only
-    |> Chart.withMarginSize(0,0,0,0)
+    |> Chart.withMarginSize (0, 0, 0, 0)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -72,24 +73,24 @@ Here is a map with all physical features enabled and styled, at a larger-scale 1
 open Plotly.NET.LayoutObjects
 
 let myGeo =
-    Geo.init(
-        Resolution=StyleParam.GeoResolution.R50,
-        ShowCoastLines=true, 
-        CoastLineColor=Color.fromString "RebeccaPurple",
-        ShowLand=true, 
-        LandColor=Color.fromString "LightGreen",
-        ShowOcean=true, 
-        OceanColor=Color.fromString "LightBlue",
-        ShowLakes=true, 
-        LakeColor=Color.fromString "Blue",
-        ShowRivers=true, 
-        RiverColor=Color.fromString "Blue"
+    Geo.init (
+        Resolution = StyleParam.GeoResolution.R50,
+        ShowCoastLines = true,
+        CoastLineColor = Color.fromString "RebeccaPurple",
+        ShowLand = true,
+        LandColor = Color.fromString "LightGreen",
+        ShowOcean = true,
+        OceanColor = Color.fromString "LightBlue",
+        ShowLakes = true,
+        LakeColor = Color.fromString "Blue",
+        ShowRivers = true,
+        RiverColor = Color.fromString "Blue"
     )
 
 let moreFeaturesBaseMap =
     Chart.PointGeo(locations = [])
     |> Chart.withGeo myGeo
-    |> Chart.withMarginSize(0,0,0,0)
+    |> Chart.withMarginSize (0, 0, 0, 0)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -113,18 +114,18 @@ Here is a map with only cultural features enabled and styled, at a 1:50m resolut
 *)
 
 let countryGeo =
-    Geo.init(
-        Visible=false, 
-        Resolution=StyleParam.GeoResolution.R50,
-        ShowCountries=true, 
-        CountryColor=Color.fromString "RebeccaPurple"
+    Geo.init (
+        Visible = false,
+        Resolution = StyleParam.GeoResolution.R50,
+        ShowCountries = true,
+        CountryColor = Color.fromString "RebeccaPurple"
     )
 
 
 let countryBaseMap =
     Chart.PointGeo(locations = [])
     |> Chart.withGeo countryGeo
-    |> Chart.withMarginSize(0,0,0,0)
+    |> Chart.withMarginSize (0, 0, 0, 0)
 
 (*** condition: ipynb ***)
 #if IPYNB

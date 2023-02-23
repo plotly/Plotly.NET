@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,10 +36,10 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
-let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+open Plotly.NET
+
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y' = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 
 (**
 use the `Shape.init` function to generate a shape, and either the `Chart.withShape` or the `Chart.withShapes` function to add
@@ -49,28 +50,29 @@ multiple shapes at once.
 
 open Plotly.NET.LayoutObjects
 
-let s1 = Shape.init (
-    ShapeType = StyleParam.ShapeType.Rectangle,
-    X0 = 2.,
-    X1=4.,
-    Y0=3.,
-    Y1=4.,
-    Opacity=0.3,
-    FillColor= Color.fromHex "#d3d3d3"
-)
-let s2 = Shape.init (
-    ShapeType = StyleParam.ShapeType.Rectangle,
-    X0 = 5.,
-    X1=7.,
-    Y0=3.,
-    Y1=4.,
-    Opacity=0.3,
-    FillColor= Color.fromHex "#d3d3d3"
-)
+let s1 =
+    Shape.init (
+        ShapeType = StyleParam.ShapeType.Rectangle,
+        X0 = 2.,
+        X1 = 4.,
+        Y0 = 3.,
+        Y1 = 4.,
+        Opacity = 0.3,
+        FillColor = Color.fromHex "#d3d3d3"
+    )
 
-let shapes =
-    Chart.Line(x,y',Name="line")    
-    |> Chart.withShapes([s1;s2])
+let s2 =
+    Shape.init (
+        ShapeType = StyleParam.ShapeType.Rectangle,
+        X0 = 5.,
+        X1 = 7.,
+        Y0 = 3.,
+        Y1 = 4.,
+        Opacity = 0.3,
+        FillColor = Color.fromHex "#d3d3d3"
+    )
+
+let shapes = Chart.Line(x, y', Name = "line") |> Chart.withShapes ([ s1; s2 ])
 //|> Chart.withShape(Options.Shape(StyleOption.ShapeType.Rectangle,2.,4.,3.,4.,Opacity=0.3,Fillcolor="#d3d3d3"))
 
 (*** condition: ipynb ***)
@@ -81,4 +83,3 @@ shapes
 (***hide***)
 shapes |> GenericChart.toChartHTML
 (***include-it-raw***)
-

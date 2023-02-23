@@ -15,7 +15,8 @@ index: 4
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -34,18 +35,11 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 *)
 
 open System
-open Plotly.NET 
+open Plotly.NET
 
 
 let cone =
-    Chart.Cone(
-        x = [1; 1; 1],
-        y = [1; 2; 3],
-        z = [1; 1; 1],
-        u = [1; 2; 3],
-        v = [1; 1; 2],
-        w = [4; 4; 1]
-    )
+    Chart.Cone(x = [ 1; 1; 1 ], y = [ 1; 2; 3 ], z = [ 1; 1; 1 ], u = [ 1; 2; 3 ], v = [ 1; 1; 2 ], w = [ 4; 4; 1 ])
 
 (*** condition: ipynb ***)
 #if IPYNB

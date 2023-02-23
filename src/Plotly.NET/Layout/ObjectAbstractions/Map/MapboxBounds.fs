@@ -24,13 +24,7 @@ type MapboxBounds() =
             [<Optional; DefaultParameterValue(null)>] ?South: float,
             [<Optional; DefaultParameterValue(null)>] ?West: float
         ) =
-        MapboxBounds()
-        |> MapboxBounds.style (
-            ?East = East,
-            ?North = North,
-            ?South = South,
-            ?West = West
-        )
+        MapboxBounds() |> MapboxBounds.style (?East = East, ?North = North, ?South = South, ?West = West)
 
     /// <summary>
     /// Returns a function that applies the given styles to a MapoxBounds object.

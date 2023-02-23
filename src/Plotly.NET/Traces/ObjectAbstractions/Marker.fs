@@ -86,8 +86,8 @@ type Marker() =
         ) =
         Marker()
         |> Marker.style (
-            ?Angle=Angle,
-            ?AngleRef=AngleRef,
+            ?Angle = Angle,
+            ?AngleRef = AngleRef,
             ?AutoColorScale = AutoColorScale,
             ?CAuto = CAuto,
             ?CMax = CMax,

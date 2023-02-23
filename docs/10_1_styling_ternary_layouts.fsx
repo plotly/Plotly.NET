@@ -15,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,32 +37,22 @@ let's first create some data for the purpose of creating example charts:
 open Plotly.NET
 
 // a coordinates
-let a  = [ 1; 2; 3; 4; 5; 6; 7;]
+let a = [ 1; 2; 3; 4; 5; 6; 7 ]
 
 // b coordinates
-let b  = a |> List.rev
+let b = a |> List.rev
 
 //c
-let c  = [ 2; 2; 2; 2; 2; 2; 2;]
+let c = [ 2; 2; 2; 2; 2; 2; 2 ]
 
 (**
 Consider this combined ternary chart:
 *)
 
 let combinedTernary =
-    [
-        Chart.PointTernary(
-            A = a,
-            B = b,
-            C = c
-        )
-        Chart.LineTernary(
-            A = a,
-            C = c,
-            Sum = 10
-        )
-    ]
-    
+    [ Chart.PointTernary(A = a, B = b, C = c)
+      Chart.LineTernary(A = a, C = c, Sum = 10) ]
+
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -80,12 +71,12 @@ Use the `Chart.withTernary` function and initialize a Ternary layout with the de
 *)
 open Plotly.NET.LayoutObjects
 
-let styledTernary = 
+let styledTernary =
     combinedTernary
-    |> Chart.withTernary(
-        Ternary.init(
-            AAxis = LinearAxis.init(Title = Title.init("A"), Color = Color.fromKeyword ColorKeyword.DarkOrchid),
-            BAxis = LinearAxis.init(Title = Title.init("B"), Color = Color.fromKeyword ColorKeyword.DarkRed)
+    |> Chart.withTernary (
+        Ternary.init (
+            AAxis = LinearAxis.init (Title = Title.init ("A"), Color = Color.fromKeyword ColorKeyword.DarkOrchid),
+            BAxis = LinearAxis.init (Title = Title.init ("B"), Color = Color.fromKeyword ColorKeyword.DarkRed)
         )
     )
 
@@ -106,8 +97,8 @@ You could pass these axes to `Chart.withTernary` as above, but for the case wher
 
 let styledTernary2 =
     styledTernary
-    |> Chart.withCAxis(LinearAxis.init(Title = Title.init("C"), Color = Color.fromKeyword ColorKeyword.DarkCyan))
-    
+    |> Chart.withCAxis (LinearAxis.init (Title = Title.init ("C"), Color = Color.fromKeyword ColorKeyword.DarkCyan))
+
 
 
 (*** condition: ipynb ***)

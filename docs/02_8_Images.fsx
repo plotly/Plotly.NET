@@ -15,7 +15,8 @@ index: 9
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -40,16 +41,15 @@ There are multiple ways of generating image charts:
 *)
 
 // 3d collection containing color values
-open Plotly.NET 
+open Plotly.NET
 
-let colors = [
-    [[0  ;0  ;255]; [255;255;0  ]; [0  ;0  ;255]]
-    [[255;0  ;0  ]; [255;0  ;255]; [255;0  ;255]]
-    [[0  ;255;0  ]; [0  ;255;255]; [255;0  ;0  ]]
-]
+let colors =
+    [ [ [ 0; 0; 255 ]; [ 255; 255; 0 ]; [ 0; 0; 255 ] ]
+      [ [ 255; 0; 0 ]; [ 255; 0; 255 ]; [ 255; 0; 255 ] ]
+      [ [ 0; 255; 0 ]; [ 0; 255; 255 ]; [ 255; 0; 0 ] ] ]
 
-let imageRaw = 
-    Chart.Image(Z=colors)
+let imageRaw =
+    Chart.Image(Z = colors)
     |> Chart.withTitle "Image chart from raw color component arrays"
 
 (*** condition: ipynb ***)
@@ -65,8 +65,8 @@ imageRaw |> GenericChart.toChartHTML
 To change the color model to HSL for example, add the `ColorModel` argument:
 *)
 
-let imageRawHSL = 
-    Chart.Image(Z=colors, ColorModel=StyleParam.ColorModel.HSL)
+let imageRawHSL =
+    Chart.Image(Z = colors, ColorModel = StyleParam.ColorModel.HSL)
     |> Chart.withTitle "HSL color model"
 
 (*** condition: ipynb ***)
@@ -84,15 +84,17 @@ imageRawHSL |> GenericChart.toChartHTML
 Note that this way of creating image charts uses the RGBA color model.
 *)
 
-let argbs = [
-    [ColorKeyword.AliceBlue     ; ColorKeyword.CornSilk ; ColorKeyword.LavenderBlush ] |> List.map ARGB.fromKeyword
-    [ColorKeyword.DarkGray      ; ColorKeyword.Snow     ; ColorKeyword.MidnightBlue  ] |> List.map ARGB.fromKeyword
-    [ColorKeyword.LightSteelBlue; ColorKeyword.DarkKhaki; ColorKeyword.LightAkyBlue  ] |> List.map ARGB.fromKeyword
-]
+let argbs =
+    [ [ ColorKeyword.AliceBlue; ColorKeyword.CornSilk; ColorKeyword.LavenderBlush ]
+      |> List.map ARGB.fromKeyword
+      [ ColorKeyword.DarkGray; ColorKeyword.Snow; ColorKeyword.MidnightBlue ]
+      |> List.map ARGB.fromKeyword
+      [ ColorKeyword.LightSteelBlue
+        ColorKeyword.DarkKhaki
+        ColorKeyword.LightAkyBlue ]
+      |> List.map ARGB.fromKeyword ]
 
-let imageARGB = 
-    Chart.Image(z = argbs)
-    |> Chart.withTitle "ARGB image chart"
+let imageARGB = Chart.Image(z = argbs) |> Chart.withTitle "ARGB image chart"
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -111,15 +113,10 @@ open System.IO
 
 let imageSource = $@"{__SOURCE_DIRECTORY__}/img/logo.png"
 
-let base64String = 
-    imageSource
-    |> File.ReadAllBytes
-    |> System.Convert.ToBase64String
+let base64String = imageSource |> File.ReadAllBytes |> System.Convert.ToBase64String
 
-let logoImage = 
-    Chart.Image(
-        Source=($"data:image/jpg;base64,{base64String}")
-    )
+let logoImage =
+    Chart.Image(Source = ($"data:image/jpg;base64,{base64String}"))
     |> Chart.withTitle "This is Plotly.NET:"
 
 (*** condition: ipynb ***)

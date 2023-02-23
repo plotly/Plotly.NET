@@ -10,8 +10,8 @@ module StyleParam =
 
 
     //--------------------------
-// #A#
-//--------------------------
+    // #A#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type AngleRef =
@@ -47,24 +47,24 @@ module StyleParam =
 
     [<RequireQualifiedAccess>]
     type TickAutoMargin =
-        | Height 
-        | Width  
-        | Left   
-        | Right  
-        | Top    
-        | Bottom 
+        | Height
+        | Width
+        | Left
+        | Right
+        | Top
+        | Bottom
         | All
         | Custom of seq<TickAutoMargin>
 
         static member toString =
             function
             | Height -> "height"
-            | Width  -> "width"
-            | Left   -> "left"
-            | Right  -> "right"
-            | Top    -> "top"
+            | Width -> "width"
+            | Left -> "left"
+            | Right -> "right"
+            | Top -> "top"
             | Bottom -> "bottom"
-            | All    -> "height+width+left+right+top+bottom"
+            | All -> "height+width+left+right+top+bottom"
             | Custom s -> s |> Seq.map (fun a -> a |> TickAutoMargin.toString) |> String.concat "+"
 
         static member convert = TickAutoMargin.toString >> box
@@ -305,8 +305,8 @@ module StyleParam =
         member this.Convert() = this |> AngularUnit.convert
 
     //--------------------------
-// #B#
-//--------------------------
+    // #B#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type BackOff =
@@ -422,8 +422,8 @@ module StyleParam =
         member this.Convert() = this |> BranchValues.convert
 
     //--------------------------
-// #C#
-//--------------------------
+    // #C#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type CategoryArrangement =
@@ -607,11 +607,11 @@ module StyleParam =
 
         static member convert =
             function
-            | RGB (r, g, b) -> [ r; g; b ] |> box
-            | RGBA (r, g, b, a) -> [ r; g; b; a ] |> box
-            | RGBA256 (i, d, k, m) -> [ i; d; k; m ] |> box
-            | HSL (h, s, l) -> [ h; s; l ] |> box
-            | HSLA (h, s, l, a) -> [ h; s; l; a ] |> box
+            | RGB(r, g, b) -> [ r; g; b ] |> box
+            | RGBA(r, g, b, a) -> [ r; g; b; a ] |> box
+            | RGBA256(i, d, k, m) -> [ i; d; k; m ] |> box
+            | HSL(h, s, l) -> [ h; s; l ] |> box
+            | HSLA(h, s, l, a) -> [ h; s; l; a ] |> box
 
         member this.Convert() = this |> ColorComponentBound.convert
 
@@ -769,7 +769,7 @@ module StyleParam =
 
         static member convert =
             function
-            | Custom (cScale) ->
+            | Custom(cScale) ->
                 if Seq.length cScale < 2 then
                     failwith
                         "Color scale did not contain enough values. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required"
@@ -949,21 +949,21 @@ module StyleParam =
         member this.Convert() = this |> ConeSizeMode.convert
 
 
-//--------------------------
-// #D#
-//--------------------------
+    //--------------------------
+    // #D#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type DoubleClick =
         | Reset
-        | Autosize     
-        | ResetAutosize      
-        | NoInteraction   
+        | Autosize
+        | ResetAutosize
+        | NoInteraction
 
         static member convert =
             function
-            | Reset         -> box "reset"
-            | Autosize      -> box "autosize"
+            | Reset -> box "reset"
+            | Autosize -> box "autosize"
             | ResetAutosize -> box "reset+autosize"
             | NoInteraction -> box false
 
@@ -1084,8 +1084,8 @@ module StyleParam =
         member this.Convert() = this |> DrawingStyle.convert
 
     //--------------------------
-// #E#
-//--------------------------
+    // #E#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type EntryWidthMode =
@@ -1101,7 +1101,7 @@ module StyleParam =
         static member convert = EntryWidthMode.toString >> box
         override this.ToString() = this |> EntryWidthMode.toString
         member this.Convert() = this |> EntryWidthMode.convert
-        
+
     [<RequireQualifiedAccess>]
     type ErrorType =
         | Percent
@@ -1148,8 +1148,8 @@ module StyleParam =
         member this.Convert() = this |> ExponentFormat.convert
 
     //--------------------------
-// #F#
-//--------------------------
+    // #F#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type FunnelMode =
@@ -1248,8 +1248,8 @@ module StyleParam =
         member this.Convert() = this |> FillRule.convert
 
     //--------------------------
-// #G#
-//--------------------------
+    // #G#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type GradientType =
@@ -1397,8 +1397,8 @@ module StyleParam =
         member this.Convert() = this |> GeoProjectionType.convert
 
     //--------------------------
-// #H#
-//--------------------------
+    // #H#
+    //--------------------------
 
     type HoverInfo =
         | X
@@ -1550,8 +1550,8 @@ module StyleParam =
         member this.Convert() = this |> HorizontalAlign.convert
 
     //--------------------------
-// #I#
-//--------------------------
+    // #I#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type IcicleCount =
@@ -1710,18 +1710,18 @@ module StyleParam =
 
 
     //--------------------------
-// #J#
+    // #J#
 
     [<RequireQualifiedAccess>]
     type JitterPoints = BoxPoints
 
     //--------------------------
-// #K#
-//--------------------------
+    // #K#
+    //--------------------------
 
     //--------------------------
-// #L#
-//--------------------------
+    // #L#
+    //--------------------------
 
 
     /// Specifies whether shapes are drawn below or above traces. Default is Above
@@ -1902,8 +1902,8 @@ module StyleParam =
         member this.Convert() = this |> YAnchorPosition.convert
 
     //--------------------------
-// #M#
-//--------------------------
+    // #M#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type Method =
@@ -2280,8 +2280,8 @@ module StyleParam =
         member this.Convert() = this |> MarkerSizeMode.convert
 
     //--------------------------
-// #N#
-//--------------------------
+    // #N#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type NewSelectionMode =
@@ -2293,13 +2293,15 @@ module StyleParam =
             | Immediate -> "immediate"
             | Gradual -> "gradual"
 
-        static member convert = NewSelectionMode.toString >> box
+        static member convert =
+            NewSelectionMode.toString >> box
+
         override this.ToString() = this |> NewSelectionMode.toString
         member this.Convert() = this |> NewSelectionMode.convert
 
     //--------------------------
-// #O#
-//--------------------------
+    // #O#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type Orientation =
@@ -2316,8 +2318,8 @@ module StyleParam =
         member this.Convert() = this |> Orientation.convert
 
     //--------------------------
-// #P#
-//--------------------------
+    // #P#
+    //--------------------------
 
 
     [<RequireQualifiedAccess>]
@@ -2398,8 +2400,8 @@ module StyleParam =
         member this.Convert() = this |> PolarGridShape.convert
 
     //--------------------------
-// #Q#
-//--------------------------
+    // #Q#
+    //--------------------------
 
     /// Sets the method used to compute the sample's Q1 and Q3 quartiles
     [<RequireQualifiedAccess>]
@@ -2420,8 +2422,8 @@ module StyleParam =
 
 
     //--------------------------
-// #R#
-//--------------------------
+    // #R#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type RangesliderRangeMode =
@@ -2473,7 +2475,7 @@ module StyleParam =
 
         static member convert =
             function
-            | MinMax (min, max) -> box [| min; max |]
+            | MinMax(min, max) -> box [| min; max |]
             | Values arr -> box arr
 
         member this.Convert() = this |> Range.convert
@@ -2499,29 +2501,29 @@ module StyleParam =
 
 
     //--------------------------
-// #S#
-//--------------------------
+    // #S#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type ScrollZoom =
         | Cartesian
-        | GL3D     
-        | Geo      
-        | Mapbox   
-        | All      
-        | NoZoom   
+        | GL3D
+        | Geo
+        | Mapbox
+        | All
+        | NoZoom
 
         static member convert =
             function
             | Cartesian -> box "cartesian"
-            | GL3D      -> box "gl3d"
-            | Geo       -> box "geo"
-            | Mapbox    -> box "mapbox"
-            | All       -> box true
-            | NoZoom    -> box false
+            | GL3D -> box "gl3d"
+            | Geo -> box "geo"
+            | Mapbox -> box "mapbox"
+            | All -> box true
+            | NoZoom -> box false
 
         member this.Convert() = this |> ScrollZoom.convert
-        
+
     [<RequireQualifiedAccess>]
     type ScatterMode =
         | Group
@@ -2776,7 +2778,7 @@ module StyleParam =
 
         static member toInteger =
             function
-            | Modified (symbol, modifier) -> (symbol |> MarkerSymbol.toInteger) + SymbolStyle.toModifier modifier
+            | Modified(symbol, modifier) -> (symbol |> MarkerSymbol.toInteger) + SymbolStyle.toModifier modifier
             | Circle -> 0
             | Square -> 1
             | Diamond -> 2
@@ -3075,8 +3077,8 @@ module StyleParam =
 
 
     //--------------------------
-// #T#
-//--------------------------
+    // #T#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type TriangulationAlgorithm =
@@ -3528,8 +3530,8 @@ module StyleParam =
 
 
     //--------------------------
-// #U#
-//--------------------------
+    // #U#
+    //--------------------------
     [<RequireQualifiedAccess>]
     type UpdateMenuType =
         | Dropdown
@@ -3600,8 +3602,8 @@ module StyleParam =
         member this.Convert() = this |> UniformTextMode.convert
 
     //--------------------------
-// #V#
-//--------------------------
+    // #V#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type ViolinSide =
@@ -3664,8 +3666,8 @@ module StyleParam =
         member this.Convert() = this |> VerticalAlign.convert
 
     //--------------------------
-// #W#
-//--------------------------
+    // #W#
+    //--------------------------
 
     [<RequireQualifiedAccess>]
     type WaterfallMode =

@@ -53,8 +53,8 @@ type Template() =
         template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF) |> DynObj.setValueOpt template "layout"
         template
 
-    static member mapTraceTemplates (styleF: #Trace [] -> #Trace []) (template: Template) =
-        template.TryGetTypedValue<#Trace []>("data") |> Option.map (styleF) |> DynObj.setValueOpt template "data"
+    static member mapTraceTemplates (styleF: #Trace[] -> #Trace[]) (template: Template) =
+        template.TryGetTypedValue<#Trace[]>("data") |> Option.map (styleF) |> DynObj.setValueOpt template "data"
         template
 
     static member withColorWay (colorway: Color) (template: Template) =

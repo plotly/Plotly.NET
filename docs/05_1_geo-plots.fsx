@@ -15,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -33,21 +34,33 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 
 let's first create some data for the purpose of creating example charts:
 *)
-open Plotly.NET 
+open Plotly.NET
 
-let cityNames = [
-    "Montreal"; "Toronto"; "Vancouver"; "Calgary"; "Edmonton";
-    "Ottawa"; "Halifax"; "Victoria"; "Winnepeg"; "Regina"
-]
+let cityNames =
+    [ "Montreal"
+      "Toronto"
+      "Vancouver"
+      "Calgary"
+      "Edmonton"
+      "Ottawa"
+      "Halifax"
+      "Victoria"
+      "Winnepeg"
+      "Regina" ]
 
-let lon = [
-    -73.57; -79.24; -123.06; -114.1; -113.28;
-    -75.43; -63.57; -123.21; -97.13; -104.6
-]
-let lat = [
-    45.5; 43.4; 49.13; 51.1; 53.34; 45.24;
-    44.64; 48.25; 49.89; 50.45
-]
+let lon =
+    [ -73.57
+      -79.24
+      -123.06
+      -114.1
+      -113.28
+      -75.43
+      -63.57
+      -123.21
+      -97.13
+      -104.6 ]
+
+let lat = [ 45.5; 43.4; 49.13; 51.1; 53.34; 45.24; 44.64; 48.25; 49.89; 50.45 ]
 
 (**
 The simplest type of geo plot is plotting the (lon,lat) pairs of a location via `Chart.PointGeo`. 
@@ -60,15 +73,15 @@ let pointGeo =
     Chart.PointGeo(
         longitudes = lon,
         latitudes = lat,
-        MultiText=cityNames,
-        TextPosition=StyleParam.TextPosition.TopCenter
+        MultiText = cityNames,
+        TextPosition = StyleParam.TextPosition.TopCenter
     )
-    |> Chart.withGeoStyle(
-        Scope=StyleParam.GeoScope.NorthAmerica, 
-        Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
+    |> Chart.withGeoStyle (
+        Scope = StyleParam.GeoScope.NorthAmerica,
+        Projection = GeoProjection.init (StyleParam.GeoProjectionType.AzimuthalEqualArea),
         CountryColor = Color.fromString "lightgrey"
     )
-    |> Chart.withMarginSize(0,0,0,0)
+    |> Chart.withMarginSize (0, 0, 0, 0)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -88,38 +101,43 @@ frame containing the source and target locations of American Airlines flights fr
 
 #r "nuget: Deedle"
 #r "nuget: FSharp.Data"
+
 open Deedle
 open FSharp.Data
 open System.IO
 open System.Text
 
-let data = 
-    Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/c34aaa0b1b3cddad335173cb7bc0181897201ee6/2011_february_aa_flight_paths.csv"
-    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+let data =
+    Http.RequestString
+        "https://raw.githubusercontent.com/plotly/datasets/c34aaa0b1b3cddad335173cb7bc0181897201ee6/2011_february_aa_flight_paths.csv"
+    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",")
 
-let opacityVals : float [] = data.["cnt"] |> Series.values |> fun s -> s |> Seq.map (fun v -> v/(Seq.max s)) |> Array.ofSeq
+let opacityVals: float[] =
+    data.["cnt"]
+    |> Series.values
+    |> fun s -> s |> Seq.map (fun v -> v / (Seq.max s)) |> Array.ofSeq
+
 let startCoords = Series.zipInner data.["start_lon"] data.["start_lat"]
 let endCoords = Series.zipInner data.["end_lon"] data.["end_lat"]
 let coords = Series.zipInner startCoords endCoords |> Series.values
 
-let flights = 
-    coords 
-    |> Seq.mapi (fun i (startCoords,endCoords) ->
+let flights =
+    coords
+    |> Seq.mapi (fun i (startCoords, endCoords) ->
         Chart.LineGeo(
-            lonlat = [startCoords; endCoords],
+            lonlat = [ startCoords; endCoords ],
             Opacity = opacityVals.[i],
             MarkerColor = Color.fromString "red"
-        )
-    )
+        ))
     |> Chart.combine
-    |> Chart.withLegend(false)
-    |> Chart.withGeoStyle(
-        Scope=StyleParam.GeoScope.NorthAmerica, 
-        Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
-        ShowLand=true,
+    |> Chart.withLegend (false)
+    |> Chart.withGeoStyle (
+        Scope = StyleParam.GeoScope.NorthAmerica,
+        Projection = GeoProjection.init (StyleParam.GeoProjectionType.AzimuthalEqualArea),
+        ShowLand = true,
         LandColor = Color.fromString "lightgrey"
     )
-    |> Chart.withMarginSize(0,0,50,0)
+    |> Chart.withMarginSize (0, 0, 50, 0)
     |> Chart.withTitle "Feb. 2011 American Airline flights"
 
 (*** condition: ipynb ***)

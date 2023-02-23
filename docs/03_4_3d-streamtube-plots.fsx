@@ -15,7 +15,8 @@ index: 5
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,17 +37,18 @@ let's first create some data for the purpose of creating example charts:
 
 #r "nuget: Deedle"
 #r "nuget: FSharp.Data"
+
 open Deedle
 open FSharp.Data
 open System
-open Plotly.NET 
+open Plotly.NET
 open Plotly.NET.TraceObjects
 
 let tubeData =
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv"
     |> Frame.ReadCsvString
 
-let streamTube = 
+let streamTube =
     Chart.StreamTube(
         x = (tubeData.["x"] |> Series.values),
         y = (tubeData.["y"] |> Series.values),
@@ -54,15 +56,15 @@ let streamTube =
         u = (tubeData.["u"] |> Series.values),
         v = (tubeData.["v"] |> Series.values),
         w = (tubeData.["w"] |> Series.values),
-        TubeStarts = 
-            StreamTubeStarts.init(
+        TubeStarts =
+            StreamTubeStarts.init (
                 X = Array.init 16 (fun _ -> 80),
-                Y = [20;30;40;50;20;30;40;50;20;30;40;50;20;30;40;50],
-                Z = [0;0;0;0;5;5;5;5;10;10;10;10;15;15;15;15]
+                Y = [ 20; 30; 40; 50; 20; 30; 40; 50; 20; 30; 40; 50; 20; 30; 40; 50 ],
+                Z = [ 0; 0; 0; 0; 5; 5; 5; 5; 10; 10; 10; 10; 15; 15; 15; 15 ]
             )
     )
 
-    
+
 (*** condition: ipynb ***)
 #if IPYNB
 streamTube

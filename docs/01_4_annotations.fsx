@@ -15,7 +15,8 @@ index: 5
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,10 +36,10 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
-let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+open Plotly.NET
+
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 
 (**
 use the `Annotation.init` function to generate a shape, and either the `Chart.withAnnotation` or the `Chart.withAnnotations` function to add
@@ -48,12 +49,19 @@ multiple annotations at once.
 
 open Plotly.NET.LayoutObjects
 
-let a1 = Annotation.init (X=2.,Y=4.,Text = "Hi there!")
-let a2 = Annotation.init (X=5.,Y=7.,Text="I am another annotation!",BGColor= Color.fromString "white",BorderColor= Color.fromString  "black")
+let a1 = Annotation.init (X = 2., Y = 4., Text = "Hi there!")
+
+let a2 =
+    Annotation.init (
+        X = 5.,
+        Y = 7.,
+        Text = "I am another annotation!",
+        BGColor = Color.fromString "white",
+        BorderColor = Color.fromString "black"
+    )
 
 let annotations =
-    Chart.Line(x = x, y = y,Name="line")    
-    |> Chart.withAnnotations([a1;a2])
+    Chart.Line(x = x, y = y, Name = "line") |> Chart.withAnnotations ([ a1; a2 ])
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -63,4 +71,3 @@ annotations
 (***hide***)
 annotations |> GenericChart.toChartHTML
 (***include-it-raw***)
-

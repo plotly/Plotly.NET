@@ -15,7 +15,8 @@ index: 5
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -43,16 +44,16 @@ open FSharp.Data
 open Deedle
 open Plotly.NET
 
-let data = 
+let data =
     Http.RequestString @"https://raw.githubusercontent.com/plotly/datasets/master/iris-data.csv"
-    |> fun csv -> Frame.ReadCsvString(csv,true,separators=",")
+    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",")
 
 let sepalLengthData = data.["sepal length"] |> Series.values
-let sepalWidthData = data.["sepal width"]  |> Series.values
+let sepalWidthData = data.["sepal width"] |> Series.values
 let petalLengthData = data.["petal length"] |> Series.values
-let petalWidthData = data.["petal width"]  |> Series.values
+let petalWidthData = data.["petal width"] |> Series.values
 
-let colors = 
+let colors =
     data
     |> Frame.getCol "class"
     |> Series.values
@@ -61,8 +62,7 @@ let colors =
         match x with
         | "Iris-setosa" -> 0.
         | "Iris-versicolor" -> 0.5
-        | _ -> 1.
-    )
+        | _ -> 1.)
     |> Color.fromColorScaleValues
 
 
@@ -73,23 +73,17 @@ relationships among the variables in the dataset.
 ## Splom of the iris dataset
 *)
 
-let splom1 = 
+let splom1 =
     Chart.Splom(
-        keyValues = [
-            "sepal length" , sepalLengthData
-            "sepal width"  , sepalWidthData
-            "petal length" , petalLengthData
-            "petal width"  , petalWidthData
-        ],
+        keyValues =
+            [ "sepal length", sepalLengthData
+              "sepal width", sepalWidthData
+              "petal length", petalLengthData
+              "petal width", petalWidthData ],
         MarkerColor = colors
     )
-    |> Chart.withLayout(
-        Layout.init(
-            HoverMode = StyleParam.HoverMode.Closest,
-            DragMode = StyleParam.DragMode.Select
-        )
-    )
-    |> Chart.withSize (1000,1000)
+    |> Chart.withLayout (Layout.init (HoverMode = StyleParam.HoverMode.Closest, DragMode = StyleParam.DragMode.Select))
+    |> Chart.withSize (1000, 1000)
 
 
 (*** condition: ipynb ***)
@@ -109,24 +103,18 @@ Use `ShowDiagonal`, `ShowUpperHalf` or `ShowLowerHalf` to customize the cells sh
 Here are some examples:
 *)
 
-let noDiagonal = 
+let noDiagonal =
     Chart.Splom(
-        keyValues = [
-            "sepal length" , sepalLengthData
-            "sepal width"  , sepalWidthData
-            "petal length" , petalLengthData
-            "petal width"  , petalWidthData
-        ],
+        keyValues =
+            [ "sepal length", sepalLengthData
+              "sepal width", sepalWidthData
+              "petal length", petalLengthData
+              "petal width", petalWidthData ],
         MarkerColor = colors,
         ShowDiagonal = false
     )
-    |> Chart.withLayout(
-        Layout.init(
-            HoverMode = StyleParam.HoverMode.Closest,
-            DragMode = StyleParam.DragMode.Select
-        )
-    )
-    |> Chart.withSize (1000,1000)
+    |> Chart.withLayout (Layout.init (HoverMode = StyleParam.HoverMode.Closest, DragMode = StyleParam.DragMode.Select))
+    |> Chart.withSize (1000, 1000)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -140,22 +128,16 @@ noDiagonal |> GenericChart.toChartHTML
 
 let noLowerHalf =
     Chart.Splom(
-        keyValues = [
-            "sepal length" , sepalLengthData
-            "sepal width"  , sepalWidthData
-            "petal length" , petalLengthData
-            "petal width"  , petalWidthData
-        ],
+        keyValues =
+            [ "sepal length", sepalLengthData
+              "sepal width", sepalWidthData
+              "petal length", petalLengthData
+              "petal width", petalWidthData ],
         MarkerColor = colors,
         ShowLowerHalf = false
     )
-    |> Chart.withLayout(
-        Layout.init(
-            HoverMode = StyleParam.HoverMode.Closest,
-            DragMode = StyleParam.DragMode.Select
-        )
-    )
-    |> Chart.withSize (1000,1000)
+    |> Chart.withLayout (Layout.init (HoverMode = StyleParam.HoverMode.Closest, DragMode = StyleParam.DragMode.Select))
+    |> Chart.withSize (1000, 1000)
 
 (*** condition: ipynb ***)
 #if IPYNB

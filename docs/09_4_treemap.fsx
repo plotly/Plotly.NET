@@ -16,7 +16,8 @@ index: 5
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -45,31 +46,30 @@ For even more styling control, use the respective TraceStyle function `TraceDoma
 open Plotly.NET
 open Plotly.NET.TraceObjects
 
-let treemapStyled = 
-    let labelsParents = [
-        ("A",""), 20
-        ("B",""), 1
-        ("C",""), 2
-        ("D",""), 3
-        ("E",""), 4
+let treemapStyled =
+    let labelsParents =
+        [ ("A", ""), 20
+          ("B", ""), 1
+          ("C", ""), 2
+          ("D", ""), 3
+          ("E", ""), 4
 
-        ("AA","A"), 15
-        ("AB","A"), 5
+          ("AA", "A"), 15
+          ("AB", "A"), 5
 
-        ("BA","B"), 1
+          ("BA", "B"), 1
 
-        ("AAA", "AA"), 10
-        ("AAB", "AA"), 5
-    ]
+          ("AAA", "AA"), 10
+          ("AAB", "AA"), 5 ]
 
     Chart.Treemap(
         labelsparents = (labelsParents |> Seq.map fst),
-        Values = (labelsParents |> Seq.map snd), 
+        Values = (labelsParents |> Seq.map snd),
         BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
         SectionColorScale = StyleParam.Colorscale.Viridis,
         ShowSectionColorScale = true,
         SectionOutlineColor = Color.fromKeyword Black,
-        Tiling = TreemapTiling.init(Packing = StyleParam.TreemapTilingPacking.SliceDice)
+        Tiling = TreemapTiling.init (Packing = StyleParam.TreemapTilingPacking.SliceDice)
     )
 
 (*** condition: ipynb ***)
@@ -80,4 +80,3 @@ treemapStyled
 (***hide***)
 treemapStyled |> GenericChart.toChartHTML
 (***include-it-raw***)
-

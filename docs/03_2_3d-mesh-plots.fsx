@@ -15,7 +15,8 @@ index: 3
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,29 +36,26 @@ let's first create some data for the purpose of creating example charts:
 *)
 
 open System
-open Plotly.NET 
+open Plotly.NET
 
 
 //---------------------- Generate linearly spaced vector ----------------------
-let linspace (min,max,n) = 
-    if n <= 2 then failwithf "n needs to be larger then 2"
+let linspace (min, max, n) =
+    if n <= 2 then
+        failwithf "n needs to be larger then 2"
+
     let bw = float (max - min) / (float n - 1.)
     Array.init n (fun i -> min + (bw * float i))
-    //[|min ..bw ..max|]
+//[|min ..bw ..max|]
 
 //---------------------- Create example data ----------------------
 let size = 100
-let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
-let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+let x = linspace (-2. * Math.PI, 2. * Math.PI, size)
+let y = linspace (-2. * Math.PI, 2. * Math.PI, size)
 
-let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+let f x y = -(5. * x / (x ** 2. + y ** 2. + 1.))
 
-let z = 
-    Array.init size (fun i -> 
-        Array.init size (fun j -> 
-            f x.[j] y.[i] 
-        )
-    )
+let z = Array.init size (fun i -> Array.init size (fun j -> f x.[j] y.[i]))
 
 let rnd = System.Random()
 let a = Array.init 50 (fun _ -> rnd.NextDouble())
@@ -66,14 +64,8 @@ let c = Array.init 50 (fun _ -> rnd.NextDouble())
 
 open Plotly.NET.TraceObjects
 
-let mesh3d =
-    Chart.Mesh3D(
-        x = a,
-        y = b,
-        z = c,
-        FlatShading = true
-    )
-    
+let mesh3d = Chart.Mesh3D(x = a, y = b, z = c, FlatShading = true)
+
 (*** condition: ipynb ***)
 #if IPYNB
 mesh3d

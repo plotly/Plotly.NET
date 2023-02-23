@@ -16,7 +16,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -37,19 +38,20 @@ let's first create some data for the purpose of creating example charts:
 *)
 
 
-open Plotly.NET 
+open Plotly.NET
 
 let rnd = System.Random()
-let x = [for i=0 to 500 do yield rnd.NextDouble() ]
+
+let x =
+    [ for i = 0 to 500 do
+          yield rnd.NextDouble() ]
 
 (**
 A histogram consisting of rectangles whose area is proportional to the frequency of a variable and whose width is equal to the class interval.
 The histogram chart represents the distribution of numerical data and can be created using the `Chart.Histogram` function:.
 *)
 
-let histo1 =
-    Chart.Histogram(X = x)
-    |> Chart.withSize(500.,500.)
+let histo1 = Chart.Histogram(X = x) |> Chart.withSize (500., 500.)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -59,4 +61,3 @@ histo1
 (***hide***)
 histo1 |> GenericChart.toChartHTML
 (***include-it-raw***)
-

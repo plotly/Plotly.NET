@@ -15,7 +15,8 @@ index: 8
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,15 +36,13 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
- 
-let matrix =
-    [[1.;1.5;0.7;2.7];
-    [2.;0.5;1.2;1.4];
-    [0.1;2.6;2.4;3.0];]
+open Plotly.NET
 
-let rownames = ["p3";"p2";"p1"]
-let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+let matrix =
+    [ [ 1.; 1.5; 0.7; 2.7 ]; [ 2.; 0.5; 1.2; 1.4 ]; [ 0.1; 2.6; 2.4; 3.0 ] ]
+
+let rownames = [ "p3"; "p2"; "p1" ]
+let colnames = [ "Tp0"; "Tp30"; "Tp60"; "Tp160" ]
 
 (**
 
@@ -55,10 +54,7 @@ A heatmap needs at least 2 dimensional data that represents the z dimension. the
 *)
 
 // Generating the Heatmap with only z Data
-let heat1 =
-    Chart.Heatmap(
-        zData = matrix
-    )
+let heat1 = Chart.Heatmap(zData = matrix)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -78,12 +74,7 @@ If it is however desired to represent a 2D matrix exactly how it is notated, inv
 
 // Addning row/column names and inverting the Y axis:
 let heat2 =
-    Chart.Heatmap(
-        zData = matrix,
-        colNames = colnames,
-        rowNames = rownames,
-        ReverseYAxis = true
-    )
+    Chart.Heatmap(zData = matrix, colNames = colnames, rowNames = rownames, ReverseYAxis = true)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -103,11 +94,8 @@ Here is an example that adds a title to the colorbar:
 *)
 
 let heat3 =
-    Chart.Heatmap(
-        zData = matrix,
-        ColorScale = StyleParam.Colorscale.Viridis
-    )
-    |> Chart.withColorBarStyle(TitleText = "Im the ColorBar")
+    Chart.Heatmap(zData = matrix, ColorScale = StyleParam.Colorscale.Viridis)
+    |> Chart.withColorBarStyle (TitleText = "Im the ColorBar")
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -127,18 +115,10 @@ use `Chart.AnnotatedHeatmap` to add an annotation text to each z value:
 
 let heat4 =
     Chart.AnnotatedHeatmap(
-        zData = [
-            [1..5]
-            [6..10]
-            [11..15]
-        ],
-        annotationText = [
-            ["1,1";"1,2";"1,3"]
-            ["2,1";"2,2";"2,3"]
-            ["3,1";"3,2";"3,3"]
-        ],
-        X = ["C1";"C2";"C3"],
-        Y = ["R1";"R2";"R3"],
+        zData = [ [ 1..5 ]; [ 6..10 ]; [ 11..15 ] ],
+        annotationText = [ [ "1,1"; "1,2"; "1,3" ]; [ "2,1"; "2,2"; "2,3" ]; [ "3,1"; "3,2"; "3,3" ] ],
+        X = [ "C1"; "C2"; "C3" ],
+        Y = [ "R1"; "R2"; "R3" ],
         ReverseYAxis = true
     )
 

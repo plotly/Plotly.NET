@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,13 +37,13 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
+open Plotly.NET
+
 // radial coordinates
-let radial  = [ 1; 2; 3; 4; 5; 6; 7;]
+let radial = [ 1; 2; 3; 4; 5; 6; 7 ]
 
 // angular coordinates
-let theta  = [0; 45; 90; 135; 200; 320; 184;]
+let theta = [ 0; 45; 90; 135; 200; 320; 184 ]
 
 (**
 A polar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart 
@@ -76,9 +77,9 @@ use `Chart.LinePolar` to create a polar plot that displays a line connecting inp
 You can for example change the line style using `Chart.withLineStyle`
 *)
 
-let linePolar = 
+let linePolar =
     Chart.LinePolar(r = radial, theta = theta)
-    |> Chart.withLineStyle(Color=Color.fromString "purple",Dash=StyleParam.DrawingStyle.DashDot)
+    |> Chart.withLineStyle (Color = Color.fromString "purple", Dash = StyleParam.DrawingStyle.DashDot)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -97,13 +98,13 @@ use `Chart.SpinePolar` to create a polar plot that displays a smoothed line conn
 As for all other plots above, You can for example add labels to each datum:
 *)
 
-let splinePolar = 
+let splinePolar =
     Chart.SplinePolar(
         r = radial,
         theta = theta,
-        MultiText=["one";"two";"three";"four";"five";"six";"seven"],
-        TextPosition=StyleParam.TextPosition.TopCenter,
-        ShowMarkers=true
+        MultiText = [ "one"; "two"; "three"; "four"; "five"; "six"; "seven" ],
+        TextPosition = StyleParam.TextPosition.TopCenter,
+        ShowMarkers = true
     )
 
 (*** condition: ipynb ***)

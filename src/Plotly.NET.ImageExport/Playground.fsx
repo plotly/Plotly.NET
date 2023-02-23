@@ -172,10 +172,10 @@ open FSharpAux
 open System
 open System.IO
 
-open Plotly.NET 
+open Plotly.NET
 
 open System
-open Plotly.NET 
+open Plotly.NET
 
 #r "nuget: FSharp.Data"
 #r "nuget: Deedle"
@@ -205,39 +205,36 @@ open PuppeteerSharp
 open Plotly.NET.ImageExport
 open GenericChartExtensions
 
-let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
+let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 let xyz = Seq.zip3 x y x
 
-let simpleChart = Chart.Point([1.,1.])
+let simpleChart = Chart.Point([ 1., 1. ])
 
-let complexChart = 
-    [
-        [Chart.Line(x,y); Chart.Line(x,y); Chart.Line(x,y)]
-        [Chart.Histogram2DContour(x,y); Chart.Point(x,y); Chart.Point(x,y)]
-        [Chart.Spline(x,y); Chart.Spline(x,y); Chart.Spline(x,y)]
-    ]
+let complexChart =
+    [ [ Chart.Line(x, y); Chart.Line(x, y); Chart.Line(x, y) ]
+      [ Chart.Histogram2DContour(x, y); Chart.Point(x, y); Chart.Point(x, y) ]
+      [ Chart.Spline(x, y); Chart.Spline(x, y); Chart.Spline(x, y) ] ]
     |> Chart.Grid()
 
 
 
-complexChart
-|> Chart.show
+complexChart |> Chart.show
 
 simpleChart
 |> Chart.saveJPG (
     __SOURCE_DIRECTORY__ + "/testrenders/simple",
     EngineType = ExportEngine.PuppeteerSharp,
-    Width= 1000,
-    Height= 1000
+    Width = 1000,
+    Height = 1000
 )
 
 open FSharp.Data
 open Deedle
 
-let dataDensityMapbox = 
+let dataDensityMapbox =
     Http.RequestString "https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv"
-    |> fun d -> Frame.ReadCsvString(d,true,separators=",")
+    |> fun d -> Frame.ReadCsvString(d, true, separators = ",")
 
 dataDensityMapbox.Print()
 
@@ -246,41 +243,44 @@ let latDensity = dataDensityMapbox.["Latitude"] |> Series.values
 let magnitudes = dataDensityMapbox.["Magnitude"] |> Series.values
 
 let map =
-    Chart.DensityMapbox(
-        lonDensity,
-        latDensity,
-        Z = magnitudes,
-        Radius=8.,
-        Colorscale=StyleParam.Colorscale.Viridis
-    )
-    |> Chart.withMapbox(
-        Mapbox.init(
-            Style = StyleParam.MapboxStyle.StamenTerrain,
-            Center = (60.,30.)
-        )
-    )
+    Chart.DensityMapbox(lonDensity, latDensity, Z = magnitudes, Radius = 8., Colorscale = StyleParam.Colorscale.Viridis)
+    |> Chart.withMapbox (Mapbox.init (Style = StyleParam.MapboxStyle.StamenTerrain, Center = (60., 30.)))
 
 
 let jpgString =
-    Chart.Point([1.,1.])
+    Chart.Point([ 1., 1. ])
 
-    |> Chart.toBase64JPGString()
-    |> fun f -> File.WriteAllText(@"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testBase64JPG.txt", f)
+    |> Chart.toBase64JPGString ()
+    |> fun f ->
+        File.WriteAllText(
+            @"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testBase64JPG.txt",
+            f
+        )
 
 let pngString =
-    Chart.Point([1.,1.])
-    |> Chart.toBase64PNGString()
-    |> fun f -> File.WriteAllText(@"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testBase64PNG.txt", f)
+    Chart.Point([ 1., 1. ])
+    |> Chart.toBase64PNGString ()
+    |> fun f ->
+        File.WriteAllText(
+            @"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testBase64PNG.txt",
+            f
+        )
 
-let a = 
-    File.ReadAllBytes(@"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testPNG.png")
+let a =
+    File.ReadAllBytes(
+        @"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testPNG.png"
+    )
     |> Convert.ToBase64String
 
-Chart.Point([1.,1.])
-|> Chart.toBase64PNGString()
+Chart.Point([ 1., 1. ])
+|> Chart.toBase64PNGString ()
 |> fun x -> x.Contains(a)
 
-let svgString = 
-    Chart.Point([1.,1.])
-    |> Chart.toSVGString()
-    |> fun f -> File.WriteAllText(@"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testSVGURI.txt", f)
+let svgString =
+    Chart.Point([ 1., 1. ])
+    |> Chart.toSVGString ()
+    |> fun f ->
+        File.WriteAllText(
+            @"C:\Users\schne\source\repos\plotly\Plotly.NET\tests\Plotly.NET.ImageExport.Tests\data\testSVGURI.txt",
+            f
+        )

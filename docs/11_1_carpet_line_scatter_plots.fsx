@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -36,17 +37,17 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
-  
+open Plotly.NET
+
 //carpet coordinate data
-let a = [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.]
-let b = [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.]
-let y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.]
+let a = [ 4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6. ]
+let b = [ 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3. ]
+let y = [ 2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10. ]
 
 //carpet plot data
-let aData = [4.; 5.; 5.; 6.]
-let bData = [1.; 1.; 2.; 3.]
-let sizes = [5; 10; 15; 20]
+let aData = [ 4.; 5.; 5.; 6. ]
+let bData = [ 1.; 1.; 2.; 3. ]
+let sizes = [ 5; 10; 15; 20 ]
 
 (**
 A [carpet plot](https://en.wikipedia.org/wiki/Carpet_plot) is any of a few different specific types of plot. The more common plot referred to as a carpet plot is one that illustrates the interaction between two or more independent variables and one or more dependent variables in a two-dimensional plot. 
@@ -68,13 +69,7 @@ In plotly, carpet plots are different to all other trace types in the regard tha
 Use `Chart.Carpet` to define these `coordinate traces`. All carpets have a mandatory identifier, which will be used by other traces to define which carpet coordinate system to use.
 *)
 
-let carpet = 
-    Chart.Carpet(
-        carpetId ="carpetIdentifier", 
-        A = a, 
-        B = b, 
-        Y = y
-    )
+let carpet = Chart.Carpet(carpetId = "carpetIdentifier", A = a, B = b, Y = y)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -90,16 +85,9 @@ carpet |> GenericChart.toChartHTML
 
 use `Chart.PointCarpet` to create a point plot on the referenced carpet coordinate system:
 *)
-let carpetPoint = 
-    [
-        carpet
-        Chart.PointCarpet(
-            a = aData,
-            b = bData,
-            carpetAnchorId = "carpetIdentifier", 
-            Name = "Point"
-        )
-    ]
+let carpetPoint =
+    [ carpet
+      Chart.PointCarpet(a = aData, b = bData, carpetAnchorId = "carpetIdentifier", Name = "Point") ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -117,16 +105,9 @@ carpetPoint |> GenericChart.toChartHTML
 use `Chart.LineCarpet` to create a line plot on the referenced carpet coordinate system:
 *)
 
-let carpetLine = 
-    [
-        carpet
-        Chart.LineCarpet(
-            a = aData,
-            b = bData,
-            carpetAnchorId = "carpetIdentifier",
-            Name = "Line"
-        )
-    ]
+let carpetLine =
+    [ carpet
+      Chart.LineCarpet(a = aData, b = bData, carpetAnchorId = "carpetIdentifier", Name = "Line") ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -144,16 +125,9 @@ carpetLine |> GenericChart.toChartHTML
 use `Chart.LineCarpet` to create a spline plot on the referenced carpet coordinate system:
 *)
 
-let carpetSpline = 
-    [
-        carpet
-        Chart.SplineCarpet(
-            a = aData,
-            b = bData,
-            carpetAnchorId = "carpetIdentifier",
-            Name = "Spline"
-        )
-    ]
+let carpetSpline =
+    [ carpet
+      Chart.SplineCarpet(a = aData, b = bData, carpetAnchorId = "carpetIdentifier", Name = "Spline") ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -171,15 +145,9 @@ carpetSpline |> GenericChart.toChartHTML
 use `Chart.LineCarpet` to create a bubble plot on the referenced carpet coordinate system:
 *)
 
-let carpetBubble = 
-    [
-        carpet
-        Chart.BubbleCarpet(
-            absizes = (Seq.zip3 aData bData sizes),
-            carpetAnchorId = "carpetIdentifier",
-            Name = "Bubble"
-        )
-    ]
+let carpetBubble =
+    [ carpet
+      Chart.BubbleCarpet(absizes = (Seq.zip3 aData bData sizes), carpetAnchorId = "carpetIdentifier", Name = "Bubble") ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -190,7 +158,3 @@ carpetBubble
 (***hide***)
 carpetBubble |> GenericChart.toChartHTML
 (***include-it-raw***)
-
-
-
-

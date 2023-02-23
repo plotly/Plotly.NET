@@ -7,6 +7,7 @@ open System.Runtime.InteropServices
 
 type NewShape() =
     inherit DynamicObj()
+
     /// <summary>
     /// Returns a new NewShape object with the given styling.
     /// </summary>
@@ -26,14 +27,14 @@ type NewShape() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float
 
         ) =
-        NewShape() 
+        NewShape()
         |> NewShape.style (
-            ?DrawDirection= DrawDirection,
-            ?FillColor    = FillColor,
-            ?FillRule     = FillRule,
-            ?Layer        = Layer,
-            ?Line         = Line,
-            ?Opacity      = Opacity
+            ?DrawDirection = DrawDirection,
+            ?FillColor = FillColor,
+            ?FillRule = FillRule,
+            ?Layer = Layer,
+            ?Line = Line,
+            ?Opacity = Opacity
         )
 
     /// <summary>
@@ -57,12 +58,10 @@ type NewShape() =
         (fun (newShape: NewShape) ->
 
             DrawDirection |> DynObj.setValueOptBy newShape "drawdirection" StyleParam.DrawDirection.convert
-            FillColor     |> DynObj.setValueOpt newShape "fillcolor"
-            FillRule      |> DynObj.setValueOptBy newShape "fillrule" StyleParam.FillRule.convert
-            Layer         |> DynObj.setValueOptBy newShape "layer" StyleParam.Layer.convert
-            Line          |> DynObj.setValueOpt newShape "line"
-            Opacity       |> DynObj.setValueOpt newShape "opacity"
-            
+            FillColor |> DynObj.setValueOpt newShape "fillcolor"
+            FillRule |> DynObj.setValueOptBy newShape "fillrule" StyleParam.FillRule.convert
+            Layer |> DynObj.setValueOptBy newShape "layer" StyleParam.Layer.convert
+            Line |> DynObj.setValueOpt newShape "line"
+            Opacity |> DynObj.setValueOpt newShape "opacity"
+
             newShape)
-
-

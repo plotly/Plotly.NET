@@ -15,7 +15,8 @@ index: 5
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -39,48 +40,46 @@ There are different types of indicator charts, depending on the `IndicatorMode` 
 - Any combination of the above with `Gauge` adds a customizable gauge that indicates where the value lies inside a given range.
 *)
 
-open Plotly.NET 
+open Plotly.NET
 open Plotly.NET.TraceObjects
 open Plotly.NET.LayoutObjects
 
 let allIndicatorTypes =
-    [
-        Chart.Indicator(
-            value = 120., 
-            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
-            Title = "Bullet gauge",
-            DeltaReference = 90.,
-            Range = StyleParam.Range.MinMax(-200., 200.),
-            GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
-            ShowGaugeAxis = false,
-            Domain  = Domain.init(Row = 0, Column = 0)
-        )
-        Chart.Indicator(
-            value = 200., 
-            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
-            Title = "Angular gauge",
-            Delta = IndicatorDelta.init(Reference=160),
-            Range = StyleParam.Range.MinMax(0., 250.),
-            Domain = Domain.init(Row = 0, Column = 1)
-        )
-        Chart.Indicator(
-            value = 300., 
-            mode = StyleParam.IndicatorMode.NumberDelta,
-            Title = "number and delta",
-            DeltaReference = 90.,
-            Domain  = Domain.init(Row = 1, Column = 0)
-        )        
-        Chart.Indicator(
-            value = 40., 
-            mode = StyleParam.IndicatorMode.Delta,
-            Title = "delta",
-            DeltaReference = 90.,
-            Domain  = Domain.init(Row = 1, Column = 1)
-        )
-    ]
+    [ Chart.Indicator(
+          value = 120.,
+          mode = StyleParam.IndicatorMode.NumberDeltaGauge,
+          Title = "Bullet gauge",
+          DeltaReference = 90.,
+          Range = StyleParam.Range.MinMax(-200., 200.),
+          GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
+          ShowGaugeAxis = false,
+          Domain = Domain.init (Row = 0, Column = 0)
+      )
+      Chart.Indicator(
+          value = 200.,
+          mode = StyleParam.IndicatorMode.NumberDeltaGauge,
+          Title = "Angular gauge",
+          Delta = IndicatorDelta.init (Reference = 160),
+          Range = StyleParam.Range.MinMax(0., 250.),
+          Domain = Domain.init (Row = 0, Column = 1)
+      )
+      Chart.Indicator(
+          value = 300.,
+          mode = StyleParam.IndicatorMode.NumberDelta,
+          Title = "number and delta",
+          DeltaReference = 90.,
+          Domain = Domain.init (Row = 1, Column = 0)
+      )
+      Chart.Indicator(
+          value = 40.,
+          mode = StyleParam.IndicatorMode.Delta,
+          Title = "delta",
+          DeltaReference = 90.,
+          Domain = Domain.init (Row = 1, Column = 1)
+      ) ]
     |> Chart.combine
-    |> Chart.withLayoutGridStyle(Rows = 2, Columns = 2)
-    |> Chart.withMarginSize(Left = 200)
+    |> Chart.withLayoutGridStyle (Rows = 2, Columns = 2)
+    |> Chart.withMarginSize (Left = 200)
 
 
 (*** condition: ipynb ***)
@@ -91,4 +90,3 @@ allIndicatorTypes
 (***hide***)
 allIndicatorTypes |> GenericChart.toChartHTML
 (***include-it-raw***)
-

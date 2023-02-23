@@ -15,7 +15,8 @@ index: 2
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -34,10 +35,10 @@ Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(Plot
 let's first create some data for the purpose of creating example charts:
 *)
 
-open Plotly.NET 
-  
-let values = [20; 14; 23;]
-let keys   = ["Product A"; "Product B"; "Product C";]
+open Plotly.NET
+
+let values = [ 20; 14; 23 ]
+let keys = [ "Product A"; "Product B"; "Product C" ]
 
 (**
 A bar chart or bar graph is a chart that presents grouped data with rectangular bars with 
@@ -47,11 +48,7 @@ or horizontally. A vertical bar chart is called a column bar chart.
 ### Column Charts
 *)
 
-let column = 
-    Chart.Column(
-        values = values,
-        Keys = keys
-    )
+let column = Chart.Column(values = values, Keys = keys)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -66,11 +63,7 @@ column |> GenericChart.toChartHTML
 ### Bar Charts
 *)
 
-let bar =
-    Chart.Bar(
-        values = values,
-        Keys = keys
-    )
+let bar = Chart.Bar(values = values, Keys = keys)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -93,18 +86,8 @@ Basically those charts are just normal bar/column charts with the Layout propert
 *)
 
 let stackedBar =
-    [
-        Chart.StackedBar(
-            values = values,
-            Keys = keys,
-            Name="old"
-        );
-        Chart.StackedBar(
-            values = [8; 21; 13;],
-            Keys = keys,
-            Name = "new"
-        )
-    ]
+    [ Chart.StackedBar(values = values, Keys = keys, Name = "old")
+      Chart.StackedBar(values = [ 8; 21; 13 ], Keys = keys, Name = "new") ]
     |> Chart.combine
 
 (*** condition: ipynb ***)
@@ -121,18 +104,8 @@ stackedBar |> GenericChart.toChartHTML
 *)
 
 let stackedColumn =
-    [
-        Chart.StackedColumn(
-            values = values,
-            Keys = keys,
-            Name = "old"
-        )
-        Chart.StackedColumn(
-            values = [8; 21; 13;],
-            Keys = keys,
-            Name = "new"
-        )
-    ]
+    [ Chart.StackedColumn(values = values, Keys = keys, Name = "old")
+      Chart.StackedColumn(values = [ 8; 21; 13 ], Keys = keys, Name = "new") ]
     |> Chart.combine
 
 (*** condition: ipynb ***)

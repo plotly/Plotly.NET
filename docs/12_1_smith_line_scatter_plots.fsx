@@ -15,7 +15,8 @@ index: 1
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
-Plotly.NET.Defaults.DefaultDisplayOptions <- Plotly.NET.DisplayOptions.init(PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
+Plotly.NET.Defaults.DefaultDisplayOptions <-
+    Plotly.NET.DisplayOptions.init (PlotlyJSReference = Plotly.NET.PlotlyJSReference.NoReference)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -35,16 +36,16 @@ let's first create some data for the purpose of creating example charts:
 
 *)
 
-open Plotly.NET 
+open Plotly.NET
 
 // real coordinates
-let real  = [0.5; 1.; 2.; 3.]
-  
+let real = [ 0.5; 1.; 2.; 3. ]
+
 // imaginary coordinates
-let imaginary  = [0.5; 1.; 2.; 3.]
+let imaginary = [ 0.5; 1.; 2.; 3. ]
 
 (**
-The Smith chart, invented by Phillip H. Smith (1905–1987) and independently by Mizuhashi Tosaku, is a graphical calculator or nomogram designed for electrical and electronics engineers specializing in radio frequency (RF) engineering to assist in solving problems with transmission lines and matching circuits 
+The Smith chart, invented by Phillip H. Smith (1905ï¿½1987) and independently by Mizuhashi Tosaku, is a graphical calculator or nomogram designed for electrical and electronics engineers specializing in radio frequency (RF) engineering to assist in solving problems with transmission lines and matching circuits 
 
 The Smith chart is a mathematical transformation of the two-dimensional Cartesian complex plane. Complex numbers with positive real parts map inside the circle. Those with negative real parts map outside the circle. If we are dealing only with impedances with non-negative resistive components, our interest is focused on the area inside the circle.
 
@@ -57,7 +58,7 @@ Still, you can plot any kind of imaginary numbers on this plane.
 use `Chart.PointSmith` to create a chart that displays points on a smith subplot:
 *)
 
-let pointSmith = Chart.PointSmith(real,imaginary)
+let pointSmith = Chart.PointSmith(real, imaginary)
 (*** condition: ipynb ***)
 #if IPYNB
 pointSmith
@@ -75,14 +76,14 @@ use `Chart.LineSmith` to create a plot that displays a line connecting the data 
 This example also changes the styles of the line.
 *)
 
-let lineSmith = 
+let lineSmith =
     Chart.LineSmith(
         real = real,
         imag = imaginary,
         LineDash = StyleParam.DrawingStyle.DashDot,
         LineColor = Color.fromKeyword Purple
     )
-  
+
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -101,13 +102,13 @@ use `Chart.BubbleSmith` to create a plot that displays datums on a smith subplot
 As for all other plots above, You can for example add labels to each datum:
 *)
 
-let bubbleSmith = 
+let bubbleSmith =
     Chart.BubbleSmith(
         real = real,
         imag = imaginary,
-        sizes = [10;20;30;40],
-        MultiText=["one";"two";"three";"four";"five";"six";"seven"],
-        TextPosition=StyleParam.TextPosition.TopCenter
+        sizes = [ 10; 20; 30; 40 ],
+        MultiText = [ "one"; "two"; "three"; "four"; "five"; "six"; "seven" ],
+        TextPosition = StyleParam.TextPosition.TopCenter
     )
 
 (*** condition: ipynb ***)

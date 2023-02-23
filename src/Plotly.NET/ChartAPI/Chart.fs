@@ -38,7 +38,9 @@ type Chart =
                     $"{path}.html"
 
             File.WriteAllText(file, html)
-            if show then file |> openOsSpecificFile
+
+            if show then
+                file |> openOsSpecificFile
 
     /// <summary>
     /// Saves the given chart as a temporary html file and opens it in the browser.
@@ -257,8 +259,8 @@ type Chart =
             ch
             |> mapTrace (
                 TraceStyle.Marker(
-                    ?Angle=Angle,
-                    ?AngleRef=AngleRef,
+                    ?Angle = Angle,
+                    ?AngleRef = AngleRef,
                     ?AutoColorScale = AutoColorScale,
                     ?CAuto = CAuto,
                     ?CMax = CMax,
@@ -2465,9 +2467,9 @@ type Chart =
     [<CompiledName("WithLayoutGridStyle")>]
     static member withLayoutGridStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?Rows: int,
             [<Optional; DefaultParameterValue(null)>] ?Columns: int,
             [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
@@ -2727,8 +2729,8 @@ type Chart =
     // TODO: Include withLegend & withLegendStyle
 
     //Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) If "circle", a circle is drawn from
-//((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking
-//(`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)
+    //((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) If "rect", a rectangle is drawn linking
+    //(`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`)
 
     /// <summary>
     ///
@@ -2775,7 +2777,9 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Selection>>("selections") |> Option.defaultValue Seq.empty |> Seq.append selections
+                    layout.TryGetTypedValue<seq<Selection>>("selections")
+                    |> Option.defaultValue Seq.empty
+                    |> Seq.append selections
 
                 else
                     selections
@@ -2784,7 +2788,7 @@ type Chart =
 
     [<CompiledName("WithSelection")>]
     static member withSelection(selection: Selection, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
-        Chart.withSelections([ selection ], ?Append = Append)
+        Chart.withSelections ([ selection ], ?Append = Append)
 
     //==============================================================================================================
     //======================================= General Config object styling ========================================
@@ -2917,45 +2921,45 @@ type Chart =
 
             let config =
                 Config.init (
-                    ?StaticPlot              = StaticPlot,
-                    ?TypesetMath             = TypesetMath,
-                    ?PlotlyServerUrl         = PlotlyServerUrl,
-                    ?Editable                = Editable,
-                    ?Edits                   = Edits,
-                    ?EditSelection           = EditSelection,
-                    ?Autosizable             = Autosizable,
-                    ?Responsive              = Responsive,
-                    ?FillFrame               = FillFrame,
-                    ?FrameMargins            = FrameMargins,
-                    ?ScrollZoom              = ScrollZoom,
-                    ?DoubleClick             = DoubleClick,
-                    ?DoubleClickDelay        = DoubleClickDelay,
-                    ?ShowAxisDragHandles     = ShowAxisDragHandles,
+                    ?StaticPlot = StaticPlot,
+                    ?TypesetMath = TypesetMath,
+                    ?PlotlyServerUrl = PlotlyServerUrl,
+                    ?Editable = Editable,
+                    ?Edits = Edits,
+                    ?EditSelection = EditSelection,
+                    ?Autosizable = Autosizable,
+                    ?Responsive = Responsive,
+                    ?FillFrame = FillFrame,
+                    ?FrameMargins = FrameMargins,
+                    ?ScrollZoom = ScrollZoom,
+                    ?DoubleClick = DoubleClick,
+                    ?DoubleClickDelay = DoubleClickDelay,
+                    ?ShowAxisDragHandles = ShowAxisDragHandles,
                     ?ShowAxisRangeEntryBoxes = ShowAxisRangeEntryBoxes,
-                    ?ShowTips                = ShowTips,
-                    ?ShowLink                = ShowLink,
-                    ?LinkText                = LinkText,
-                    ?SendData                = SendData,
-                    ?ShowSources             = ShowSources,
-                    ?DisplayModeBar          = DisplayModeBar,
-                    ?ShowSendToCloud         = ShowSendToCloud,
-                    ?ShowEditInChartStudio   = ShowEditInChartStudio,
-                    ?ModeBarButtonsToRemove  = ModeBarButtonsToRemove,
-                    ?ModeBarButtonsToAdd     = ModeBarButtonsToAdd,
-                    ?ModeBarButtons          = ModeBarButtons,
-                    ?ToImageButtonOptions    = ToImageButtonOptions,
-                    ?Displaylogo             = Displaylogo,
-                    ?Watermark               = Watermark,
-                    ?plotGlPixelRatio        = plotGlPixelRatio,
-                    ?SetBackground           = SetBackground,
-                    ?TopojsonURL             = TopojsonURL,
-                    ?MapboxAccessToken       = MapboxAccessToken,
-                    ?Logging                 = Logging,
-                    ?NotifyOnLogging         = NotifyOnLogging,
-                    ?QueueLength             = QueueLength,
-                    ?GlobalTransforms        = GlobalTransforms,
-                    ?Locale                  = Locale,
-                    ?Locales                 = Locales
+                    ?ShowTips = ShowTips,
+                    ?ShowLink = ShowLink,
+                    ?LinkText = LinkText,
+                    ?SendData = SendData,
+                    ?ShowSources = ShowSources,
+                    ?DisplayModeBar = DisplayModeBar,
+                    ?ShowSendToCloud = ShowSendToCloud,
+                    ?ShowEditInChartStudio = ShowEditInChartStudio,
+                    ?ModeBarButtonsToRemove = ModeBarButtonsToRemove,
+                    ?ModeBarButtonsToAdd = ModeBarButtonsToAdd,
+                    ?ModeBarButtons = ModeBarButtons,
+                    ?ToImageButtonOptions = ToImageButtonOptions,
+                    ?Displaylogo = Displaylogo,
+                    ?Watermark = Watermark,
+                    ?plotGlPixelRatio = plotGlPixelRatio,
+                    ?SetBackground = SetBackground,
+                    ?TopojsonURL = TopojsonURL,
+                    ?MapboxAccessToken = MapboxAccessToken,
+                    ?Logging = Logging,
+                    ?NotifyOnLogging = NotifyOnLogging,
+                    ?QueueLength = QueueLength,
+                    ?GlobalTransforms = GlobalTransforms,
+                    ?Locale = Locale,
+                    ?Locales = Locales
                 )
 
             ch |> Chart.withConfig config)
@@ -2987,9 +2991,9 @@ type Chart =
         (
             nRows: int,
             nCols: int,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
             [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
             [<Optional; DefaultParameterValue(null)>] ?XGap: float,
@@ -3072,7 +3076,8 @@ type Chart =
                         StyleParam.SubPlotId.Polar(i + 1)
 
                     gChart
-                    |> GenericChart.mapTrace (fun t -> t :?> TracePolar |> TracePolarStyle.SetPolar polarAnchor :> Trace)
+                    |> GenericChart.mapTrace (fun t ->
+                        t :?> TracePolar |> TracePolarStyle.SetPolar polarAnchor :> Trace)
                     |> Chart.withPolar (polar, (i + 1))
 
                 | TraceID.Smith ->
@@ -3086,7 +3091,8 @@ type Chart =
                         StyleParam.SubPlotId.Smith(i + 1)
 
                     gChart
-                    |> GenericChart.mapTrace (fun t -> t :?> TraceSmith |> TraceSmithStyle.SetSmith polarAnchor :> Trace)
+                    |> GenericChart.mapTrace (fun t ->
+                        t :?> TraceSmith |> TraceSmithStyle.SetSmith polarAnchor :> Trace)
                     |> Chart.withSmith (smith, (i + 1))
 
                 | TraceID.Geo ->
@@ -3105,7 +3111,9 @@ type Chart =
                     let mapbox =
                         layout.TryGetTypedValue<Mapbox> "mapbox"
                         |> Option.defaultValue (Mapbox.init ())
-                        |> Mapbox.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
+                        |> Mapbox.style (
+                            Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
+                        )
 
                     let mapboxAnchor =
                         StyleParam.SubPlotId.Mapbox(i + 1)
@@ -3176,9 +3184,9 @@ type Chart =
     [<CompiledName("Grid")>]
     static member Grid
         (
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
             [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
             [<Optional; DefaultParameterValue(null)>] ?XGap: float,
@@ -3268,9 +3276,9 @@ type Chart =
     [<CompiledName("SingleStack")>]
     static member SingleStack
         (
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) [] [],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId [],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId [],
+            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
+            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
             [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
             [<Optional; DefaultParameterValue(null)>] ?XGap: float,
@@ -3386,7 +3394,7 @@ type Chart =
 
 
     // ############################################################
-// ####################### Apply to DisplayOptions
+    // ####################### Apply to DisplayOptions
 
     // <summary>
     /// Sets the given DisplayOptions on the input chart.
@@ -3436,7 +3444,7 @@ type Chart =
     static member withDescription (description: XmlNode list) (ch: GenericChart) =
         ch |> mapDisplayOptions (DisplayOptions.addDescription description)
 
-    /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's head 
+    /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's head
     [<CompiledName("WithAdditionalHeadTags")>]
     static member withAdditionalHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
         ch |> mapDisplayOptions (DisplayOptions.addAdditionalHeadTags additionalHeadTags)
@@ -3449,26 +3457,23 @@ type Chart =
 
     /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions
     [<CompiledName("WithMathTex")>]
-    static member withMathTex(
-        [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
-        [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
-    ) =
-        let version = MathJaxVersion |> Option.defaultValue 3
+    static member withMathTex
+        (
+            [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
+            [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+        ) =
+        let version =
+            MathJaxVersion |> Option.defaultValue 3
 
         let tags =
             if version = 2 then
                 Globals.MATHJAX_V2_TAGS
-            else 
-               Globals.MATHJAX_V3_TAGS
+            else
+                Globals.MATHJAX_V3_TAGS
 
         (fun (ch: GenericChart) ->
 
             if (AppendTags |> Option.defaultValue true) then
-                ch 
-                |> Chart.withAdditionalHeadTags tags
-                |> Chart.withConfigStyle(TypesetMath=true)
+                ch |> Chart.withAdditionalHeadTags tags |> Chart.withConfigStyle (TypesetMath = true)
             else
-                ch 
-                |> Chart.withHeadTags tags
-                |> Chart.withConfigStyle(TypesetMath=true)
-        )
+                ch |> Chart.withHeadTags tags |> Chart.withConfigStyle (TypesetMath = true))

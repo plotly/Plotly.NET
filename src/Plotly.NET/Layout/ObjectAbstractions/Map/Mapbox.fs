@@ -75,6 +75,7 @@ type Mapbox() =
             AccessToken |> DynObj.setValueOpt mapBox "accesstoken"
             Style |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
             Bounds |> DynObj.setValueOpt mapBox "bounds"
+
             Center
             |> Option.map (fun (lon, lat) ->
                 let t = DynamicObj()
