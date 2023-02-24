@@ -4,17 +4,23 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get -y install python3 python3-pip python3-dev ipython3
 
-RUN pip3 install --no-cache notebook
+RUN python3 -m pip install --no-cache-dir notebook jupyterlab
 
-ARG NB_USER=plotlynet
+ARG NB_USER=jovyan
 ARG NB_UID=1000
-RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER
+ENV USER ${NB_USER}
+ENV NB_UID ${NB_UID}
+ENV HOME /home/${NB_USER}
 
-USER $NB_USER
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
 
-ENV HOME=/home/$NB_USER
-
-WORKDIR $HOME
+COPY . ${HOME}
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
 
 ENV PATH="${PATH}:$HOME/.dotnet/tools/"
 
