@@ -139,5 +139,5 @@ type DisplayOptions() =
     static member tryGetPlotlyReference(displayOpts: DisplayOptions) =
         displayOpts.TryGetTypedValue<PlotlyJSReference>("PlotlyJSReference")
 
-    static member getPlotlyPlotlyReference(displayOpts: DisplayOptions) =
+    static member getPlotlyReference(displayOpts: DisplayOptions) =
         displayOpts |> DisplayOptions.tryGetPlotlyReference |> Option.defaultValue (PlotlyJSReference.NoReference)

@@ -259,7 +259,7 @@ module GenericChart =
             displayOpts |> DisplayOptions.getDescription
 
         let plotlyReference =
-            displayOpts |> DisplayOptions.getPlotlyPlotlyReference
+            displayOpts |> DisplayOptions.getPlotlyReference
 
         div
             []
@@ -301,7 +301,7 @@ module GenericChart =
             (displayOpts |> DisplayOptions.getDescription)
 
         let plotlyReference =
-            displayOpts |> DisplayOptions.getPlotlyPlotlyReference
+            displayOpts |> DisplayOptions.getPlotlyReference
 
         HTML.Doc(
             chart =

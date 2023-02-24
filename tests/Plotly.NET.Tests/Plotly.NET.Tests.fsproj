@@ -18,6 +18,7 @@
     <Compile Include="LayoutObjects\Slider.fs" />
     <Compile Include="LayoutObjects\LinearAxis.fs" />
     <Compile Include="ConfigObjects\Config.fs" />
+    <Compile Include="DisplayOptions\DisplayOptions.fs" />
     <Compile Include="Traces\TraceStaticMembers.fs" />
     <Compile Include="Traces\TraceStyle.fs" />
     <Compile Include="Traces\TraceID.fs" />
