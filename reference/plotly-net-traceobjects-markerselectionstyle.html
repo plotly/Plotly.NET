@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 3.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.0.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -97,7 +97,7 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
+        Controls the style of selected markers in supported traces
       </p>
     </div>
   </div>
@@ -126,7 +126,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2361', 2361)" onmouseover="showTip(event, '2361', 2361)">
+              <code onmouseout="hideTip(event, '2552', 2552)" onmouseover="showTip(event, '2552', 2552)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -135,7 +135,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2361">
+              <div class="fsdocs-tip" id="2552">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>MarkerSelectionStyle<span>()</span></span></code>
@@ -160,7 +160,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Selection.fs#L9-9" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/TraceSelection.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -202,7 +202,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2362', 2362)" onmouseover="showTip(event, '2362', 2362)">
+              <code onmouseout="hideTip(event, '2553', 2553)" onmouseover="showTip(event, '2553', 2553)">
                 <p>
                   <a id="init">
                     <a href="#init">
@@ -211,7 +211,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2362">
+              <div class="fsdocs-tip" id="2553">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>MarkerSelectionStyle.init&#32;<span><span>(<span>?Opacity,&#32;?Color,&#32;?Size</span>)</span></span></span></code>
@@ -225,6 +225,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the opacity of the selected/unselected markers
                     </span>
                     <br/>
                     <span>
@@ -233,6 +235,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of the selected/unselected markers
                     </span>
                     <br/>
                     <span>
@@ -240,7 +244,9 @@
                         ?Size
                       </b>
                       :
-                      <code>float</code>
+                      <code>int</code>
+                       - 
+                      Sets the size of the selected/unselected markers
                     </span>
                     <br/>
                   </ul>
@@ -264,12 +270,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Selection.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/TraceSelection.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a new MarkerSelectionStyle object with the given styles
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -280,7 +288,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the opacity of the selected/unselected markers
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Color
@@ -288,15 +300,23 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the color of the selected/unselected markers
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Size
                 </span>
                 :
-                <code>float</code>
+                <code>int</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the size of the selected/unselected markers
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -312,7 +332,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2363', 2363)" onmouseover="showTip(event, '2363', 2363)">
+              <code onmouseout="hideTip(event, '2554', 2554)" onmouseover="showTip(event, '2554', 2554)">
                 <p>
                   <a id="style">
                     <a href="#style">
@@ -321,7 +341,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2363">
+              <div class="fsdocs-tip" id="2554">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>MarkerSelectionStyle.style&#32;<span><span>(<span>?Opacity,&#32;?Color,&#32;?Size</span>)</span></span></span></code>
@@ -335,6 +355,8 @@
                       </b>
                       :
                       <code>float</code>
+                       - 
+                      Sets the opacity of the selected/unselected markers
                     </span>
                     <br/>
                     <span>
@@ -343,6 +365,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of the selected/unselected markers
                     </span>
                     <br/>
                     <span>
@@ -350,7 +374,9 @@
                         ?Size
                       </b>
                       :
-                      <code>float</code>
+                      <code>int</code>
+                       - 
+                      Sets the size of the selected/unselected markers
                     </span>
                     <br/>
                   </ul>
@@ -374,12 +400,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Selection.fs#L20-20" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/TraceSelection.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a function that applies the given styles to a MarkerSelectionStyle object
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -390,7 +418,11 @@
                 :
                 <code>float</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the opacity of the selected/unselected markers
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Color
@@ -398,15 +430,23 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the color of the selected/unselected markers
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Size
                 </span>
                 :
-                <code>float</code>
+                <code>int</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the size of the selected/unselected markers
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>

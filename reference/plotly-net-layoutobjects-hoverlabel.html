@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 3.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.0.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -98,7 +98,7 @@
     <div>
       <p class="fsdocs-summary">
         
- Hoverlabel type inherits from dynamic object
+ Hoverlabels that appear while hovering over elements on charts
 
       </p>
     </div>
@@ -128,7 +128,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2162', 2162)" onmouseover="showTip(event, '2162', 2162)">
+              <code onmouseout="hideTip(event, '2332', 2332)" onmouseover="showTip(event, '2332', 2332)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -137,7 +137,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2162">
+              <div class="fsdocs-tip" id="2332">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Hoverlabel<span>()</span></span></code>
@@ -204,29 +204,41 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2163', 2163)" onmouseover="showTip(event, '2163', 2163)">
+              <code onmouseout="hideTip(event, '2333', 2333)" onmouseover="showTip(event, '2333', 2333)">
                 <p>
                   <a id="init">
                     <a href="#init">
-                      <code><span>Hoverlabel.init&#32;<span><span>(<span>?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?Align,&#32;?Namelength</span>)</span></span></span></code>
+                      <code><span>Hoverlabel.init&#32;<span><span>(<span>?Align,&#32;?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?GroupTitleFont,&#32;?Namelength</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2163">
+              <div class="fsdocs-tip" id="2333">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Hoverlabel.init&#32;<span><span>(<span>?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?Align,&#32;?Namelength</span>)</span></span></span></code>
+                  <code><span>Hoverlabel.init&#32;<span><span>(<span>?Align,&#32;?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?GroupTitleFont,&#32;?Namelength</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
+                        ?Align
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-align.html">Align</a></code>
+                       - 
+                      Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
                         ?BgColor
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the background color of all hover labels on graph
                     </span>
                     <br/>
                     <span>
@@ -235,6 +247,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the border color of all hover labels on graph.
                     </span>
                     <br/>
                     <span>
@@ -243,14 +257,18 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the default hover label font used by all traces on the graph.
                     </span>
                     <br/>
                     <span>
                       <b>
-                        ?Align
+                        ?GroupTitleFont
                       </b>
                       :
-                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-align.html">Align</a></code>
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the font for group titles in hover (unified modes). Defaults to `hoverlabel.font`.
                     </span>
                     <br/>
                     <span>
@@ -259,6 +277,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
                     </span>
                     <br/>
                   </ul>
@@ -282,41 +302,17 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Hoverlabel.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Hoverlabel.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Initialized Line object
-
+ Returns a new Hoverlabel object with the given styles
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?BgColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?BorderColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Font
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Align
@@ -324,7 +320,59 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-align.html">Align</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?BgColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the background color of all hover labels on graph
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?BorderColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the border color of all hover labels on graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Font
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the default hover label font used by all traces on the graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GroupTitleFont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the font for group titles in hover (unified modes). Defaults to `hoverlabel.font`.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Namelength
@@ -332,7 +380,11 @@
                 :
                 <code>int</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -348,19 +400,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2164', 2164)" onmouseover="showTip(event, '2164', 2164)">
+              <code onmouseout="hideTip(event, '2334', 2334)" onmouseover="showTip(event, '2334', 2334)">
                 <p>
                   <a id="style">
                     <a href="#style">
-                      <code><span>Hoverlabel.style&#32;<span><span>(<span>?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?Align,&#32;?Namelength</span>)</span></span></span></code>
+                      <code><span>Hoverlabel.style&#32;<span><span>(<span>?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?GroupTitleFont,&#32;?Align,&#32;?Namelength</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2164">
+              <div class="fsdocs-tip" id="2334">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Hoverlabel.style&#32;<span><span>(<span>?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?Align,&#32;?Namelength</span>)</span></span></span></code>
+                  <code><span>Hoverlabel.style&#32;<span><span>(<span>?BgColor,&#32;?BorderColor,&#32;?Font,&#32;?GroupTitleFont,&#32;?Align,&#32;?Namelength</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -371,6 +423,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the background color of all hover labels on graph
                     </span>
                     <br/>
                     <span>
@@ -379,6 +433,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the border color of all hover labels on graph.
                     </span>
                     <br/>
                     <span>
@@ -387,6 +443,18 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the default hover label font used by all traces on the graph.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?GroupTitleFont
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Sets the font for group titles in hover (unified modes). Defaults to `hoverlabel.font`.
                     </span>
                     <br/>
                     <span>
@@ -395,6 +463,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-align.html">Align</a></code>
+                       - 
+                      Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
                     </span>
                     <br/>
                     <span>
@@ -403,6 +473,8 @@
                       </b>
                       :
                       <code>int</code>
+                       - 
+                      Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
                     </span>
                     <br/>
                   </ul>
@@ -426,12 +498,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Hoverlabel.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Hoverlabel.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a function that applies the given styles to a Legend object
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -442,7 +516,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the background color of all hover labels on graph
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?BorderColor
@@ -450,7 +528,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the border color of all hover labels on graph.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Font
@@ -458,7 +540,23 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the default hover label font used by all traces on the graph.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GroupTitleFont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the font for group titles in hover (unified modes). Defaults to `hoverlabel.font`.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Align
@@ -466,7 +564,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-align.html">Align</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Namelength
@@ -474,7 +576,11 @@
                 :
                 <code>int</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>

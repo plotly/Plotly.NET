@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 3.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.0.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -126,7 +126,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2334', 2334)" onmouseover="showTip(event, '2334', 2334)">
+              <code onmouseout="hideTip(event, '2522', 2522)" onmouseover="showTip(event, '2522', 2522)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -135,7 +135,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2334">
+              <div class="fsdocs-tip" id="2522">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>IndicatorDelta<span>()</span></span></code>
@@ -202,19 +202,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2335', 2335)" onmouseover="showTip(event, '2335', 2335)">
+              <code onmouseout="hideTip(event, '2523', 2523)" onmouseover="showTip(event, '2523', 2523)">
                 <p>
                   <a id="init">
                     <a href="#init">
-                      <code><span>IndicatorDelta.init&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Reference,&#32;?Relative,&#32;?ValueFormat</span>)</span></span></span></code>
+                      <code><span>IndicatorDelta.init&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Prefix,&#32;?Reference,&#32;?Relative,&#32;?Suffix,&#32;?ValueFormat</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2335">
+              <div class="fsdocs-tip" id="2523">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>IndicatorDelta.init&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Reference,&#32;?Relative,&#32;?ValueFormat</span>)</span></span></span></code>
+                  <code><span>IndicatorDelta.init&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Prefix,&#32;?Reference,&#32;?Relative,&#32;?Suffix,&#32;?ValueFormat</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -225,6 +225,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
+                       - 
+                      Sets the style of decreasing deltas.
                     </span>
                     <br/>
                     <span>
@@ -233,6 +235,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Set the font used to display the delta
                     </span>
                     <br/>
                     <span>
@@ -241,6 +245,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
+                       - 
+                      Sets the style of increasing deltas.
                     </span>
                     <br/>
                     <span>
@@ -249,6 +255,18 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-indicatordeltaposition.html">IndicatorDeltaPosition</a></code>
+                       - 
+                      Sets the position of delta with respect to the number.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Prefix
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets a prefix appearing before the delta.
                     </span>
                     <br/>
                     <span>
@@ -257,6 +275,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      Sets the reference value to compute the delta. By default, it is set to the current value.
                     </span>
                     <br/>
                     <span>
@@ -265,6 +285,18 @@
                       </b>
                       :
                       <code>bool</code>
+                       - 
+                      Show relative change
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Suffix
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets a suffix appearing next to the delta.
                     </span>
                     <br/>
                     <span>
@@ -273,6 +305,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
                     </span>
                     <br/>
                   </ul>
@@ -296,12 +330,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Indicator.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Indicator.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a new IndicatorDelta object with the given styles
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -312,7 +348,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the style of decreasing deltas.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Font
@@ -320,7 +360,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Set the font used to display the delta
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Increasing
@@ -328,7 +372,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the style of increasing deltas.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Position
@@ -336,7 +384,23 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-indicatordeltaposition.html">IndicatorDeltaPosition</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the position of delta with respect to the number.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Prefix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a prefix appearing before the delta.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Reference
@@ -344,7 +408,11 @@
                 :
                 <code>'a</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the reference value to compute the delta. By default, it is set to the current value.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Relative
@@ -352,7 +420,23 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Show relative change
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Suffix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a suffix appearing next to the delta.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ValueFormat
@@ -360,7 +444,11 @@
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
@@ -376,19 +464,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2336', 2336)" onmouseover="showTip(event, '2336', 2336)">
+              <code onmouseout="hideTip(event, '2524', 2524)" onmouseover="showTip(event, '2524', 2524)">
                 <p>
                   <a id="style">
                     <a href="#style">
-                      <code><span>IndicatorDelta.style&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Reference,&#32;?Relative,&#32;?ValueFormat</span>)</span></span></span></code>
+                      <code><span>IndicatorDelta.style&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Prefix,&#32;?Reference,&#32;?Relative,&#32;?Suffix,&#32;?ValueFormat</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2336">
+              <div class="fsdocs-tip" id="2524">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>IndicatorDelta.style&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Reference,&#32;?Relative,&#32;?ValueFormat</span>)</span></span></span></code>
+                  <code><span>IndicatorDelta.style&#32;<span><span>(<span>?Decreasing,&#32;?Font,&#32;?Increasing,&#32;?Position,&#32;?Prefix,&#32;?Reference,&#32;?Relative,&#32;?Suffix,&#32;?ValueFormat</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -399,6 +487,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
+                       - 
+                      Sets the style of decreasing deltas.
                     </span>
                     <br/>
                     <span>
@@ -407,6 +497,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                       - 
+                      Set the font used to display the delta
                     </span>
                     <br/>
                     <span>
@@ -415,6 +507,8 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
+                       - 
+                      Sets the style of increasing deltas.
                     </span>
                     <br/>
                     <span>
@@ -423,6 +517,18 @@
                       </b>
                       :
                       <code><a href="https://plotly.net/reference/plotly-net-styleparam-indicatordeltaposition.html">IndicatorDeltaPosition</a></code>
+                       - 
+                      Sets the position of delta with respect to the number.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Prefix
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets a prefix appearing before the delta.
                     </span>
                     <br/>
                     <span>
@@ -431,6 +537,8 @@
                       </b>
                       :
                       <code>'a</code>
+                       - 
+                      Sets the reference value to compute the delta. By default, it is set to the current value.
                     </span>
                     <br/>
                     <span>
@@ -439,6 +547,18 @@
                       </b>
                       :
                       <code>bool</code>
+                       - 
+                      Show relative change
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Suffix
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets a suffix appearing next to the delta.
                     </span>
                     <br/>
                     <span>
@@ -447,6 +567,8 @@
                       </b>
                       :
                       <code>string</code>
+                       - 
+                      Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
                     </span>
                     <br/>
                   </ul>
@@ -470,12 +592,14 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Indicator.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/ObjectAbstractions/Indicator.fs#L84-84" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Returns a function that applies the given styles to an IndicatorDelta object
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -486,7 +610,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the style of decreasing deltas.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Font
@@ -494,7 +622,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Set the font used to display the delta
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Increasing
@@ -502,7 +634,11 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-traceobjects-indicatorsymbol.html">IndicatorSymbol</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the style of increasing deltas.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Position
@@ -510,7 +646,23 @@
                 :
                 <code><a href="https://plotly.net/reference/plotly-net-styleparam-indicatordeltaposition.html">IndicatorDeltaPosition</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the position of delta with respect to the number.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Prefix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a prefix appearing before the delta.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Reference
@@ -518,7 +670,11 @@
                 :
                 <code>'a</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the reference value to compute the delta. By default, it is set to the current value.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?Relative
@@ -526,7 +682,23 @@
                 :
                 <code>bool</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Show relative change
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Suffix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a suffix appearing next to the delta.
+                </p>
+              </dd>
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   ?ValueFormat
@@ -534,7 +706,11 @@
                 :
                 <code>string</code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
+                </p>
+              </dd>
             </dl>
             <dl class="fsdocs-returns">
               <dt>
