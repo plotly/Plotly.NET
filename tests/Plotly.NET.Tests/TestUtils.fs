@@ -39,8 +39,8 @@ module HtmlCodegen =
     let emptyLayout chart =
         "var layout = {};" |> chartGeneratedContains chart
 
-module LayoutObjects =
-    
+module Objects =
+
     let jsonFieldIsSetWith fieldName expected (object:#DynamicObj) =
         Expect.equal
             ((object :> DynamicObj)?($"{fieldName}") |> JsonConvert.SerializeObject) 

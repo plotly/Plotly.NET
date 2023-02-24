@@ -6,7 +6,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
-open TestUtils.LayoutObjects
+open TestUtils.Objects
 
 let fullAxis =
     LinearAxis.init(

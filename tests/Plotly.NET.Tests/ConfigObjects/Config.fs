@@ -6,7 +6,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.ConfigObjects
 open DynamicObj
 
-open TestUtils.LayoutObjects
+open TestUtils.Objects
 
 let config = 
     Config.init(
@@ -94,4 +94,48 @@ let ``Config json tests`` =
         testCase "globalTransforms" (fun _ -> config |> jsonFieldIsSetWith "globalTransforms" "\"function(x) => {return x}\"")
         testCase "locale" (fun _ -> config |> jsonFieldIsSetWith "locale" "\"de-DE\"")
         testCase "locales" (fun _ -> config |> jsonFieldIsSetWith "locales" """{"yes":"no"}""")
+    ]
+
+
+let combined = 
+    Config.combine 
+        (Config.init(
+            ModeBarButtonsToRemove = [StyleParam.ModeBarButton.AutoScale2d],
+            ModeBarButtonsToAdd = [StyleParam.ModeBarButton.DrawCircle],
+            ModeBarButtons = [[StyleParam.ModeBarButton.DrawClosedPath; StyleParam.ModeBarButton.DrawOpenPath]]
+        )) 
+        (Config.init(
+            ModeBarButtonsToRemove = [StyleParam.ModeBarButton.DrawCircle],
+            ModeBarButtonsToAdd = [StyleParam.ModeBarButton.AutoScale2d],
+            ModeBarButtons = [[StyleParam.ModeBarButton.OrbitRotation]]
+        ))
+
+let expectedCombined = 
+    Config.init(
+        ModeBarButtonsToRemove = [StyleParam.ModeBarButton.AutoScale2d; StyleParam.ModeBarButton.DrawCircle],
+        ModeBarButtonsToAdd = [StyleParam.ModeBarButton.DrawCircle; StyleParam.ModeBarButton.AutoScale2d],
+        ModeBarButtons = [[StyleParam.ModeBarButton.DrawClosedPath; StyleParam.ModeBarButton.DrawOpenPath];[StyleParam.ModeBarButton.OrbitRotation]]
+    )
+
+[<Tests>]
+let ``Config API tests`` =
+    testList "ConfigObjects.Config API" [
+        testCase "combine ModeBarButtonsToRemove" (fun _ -> 
+            Expect.sequenceEqual 
+                (combined.TryGetTypedValue<seq<string>>("modeBarButtonsToRemove")).Value
+                (expectedCombined.TryGetTypedValue<seq<string>>("modeBarButtonsToRemove")).Value
+                "Config.combine did not return the correct object"
+        )         
+        testCase "combine ModeBarButtonsToAdd" (fun _ -> 
+            Expect.sequenceEqual 
+                (combined.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd")).Value
+                (expectedCombined.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd")).Value
+                "Config.combine did not return the correct object"
+        )         
+        testCase "combine ModeBarButtons" (fun _ -> 
+            Expect.sequenceEqual 
+                (Seq.concat (combined.TryGetTypedValue<seq<seq<string>>>("modeBarButtons")).Value)
+                (Seq.concat (expectedCombined.TryGetTypedValue<seq<seq<string>>>("modeBarButtons")).Value)
+                "Config.combine did not return the correct object"
+        ) 
     ]

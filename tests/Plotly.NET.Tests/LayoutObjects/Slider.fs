@@ -4,7 +4,7 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 
-open TestUtils.LayoutObjects
+open TestUtils.Objects
 
 let slider =
     Slider.init(
