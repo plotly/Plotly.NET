@@ -4,7 +4,7 @@
 [![Build and test](https://github.com/plotly/Plotly.NET/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/plotly/Plotly.NET/actions/workflows/build-and-test.yml)
 [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
 [![Discord](https://img.shields.io/discord/836161044501889064?color=purple&label=Join%20our%20Discord%21&logo=discord&logoColor=white)](https://discord.gg/k3kUtFY8DB)
-![](https://img.shields.io/badge/supported%20plotly.js%20version-2.6.3-blue)
+![](https://img.shields.io/badge/supported%20plotly.js%20version-2.18.1-blue)
 
 We have published a software paper on Plotly.NET. If you are using Plotly.NET for your research please cite or look at :
 

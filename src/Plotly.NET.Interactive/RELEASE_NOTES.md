@@ -1,4 +1,4 @@
-### 4.0.0 - TBD
+### 4.0.0 - February 24 2023
 
 - Update .NET interactive references
 - [Use new DisplayOptions functions to use requirejs with the Global plotlyjs version](https://github.com/plotly/Plotly.NET/commit/c1704d87709e79b5359f00f647a32785ea31a9ad)

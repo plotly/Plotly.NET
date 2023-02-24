@@ -1,4 +1,4 @@
-### 4.0.0 - TBD
+### 4.0.0 - February 24 2023
 
 [Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/4)
 
