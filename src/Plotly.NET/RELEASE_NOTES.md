@@ -1,5 +1,17 @@
 ### 4.0.0 - TBD
 
+[Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/4)
+
+- [Add high level arg for base layer style to all mapbox charts](https://github.com/plotly/Plotly.NET/commit/5cd6c9966beb9bceebf31dc2d8269ee3b5d5d815)
+
+- [Add ShowXAxisRangeSlider argument for Chart.OHLC and Chart.Candlestick](https://github.com/plotly/Plotly.NET/commit/86a810c1c63410527da740986494590ea3aaee91)
+
+- [Add multicategory data support for 2D traces](https://github.com/plotly/Plotly.NET/commit/197cea162acd445d752837a55e29e5742d59d939)
+
+- [Add high level camera projection args to all 3D chart apis](https://github.com/plotly/Plotly.NET/commit/d60b4540995f4b0a3c67c31464f9403337ff9c50)
+
+- [Add missing Config params](https://github.com/plotly/Plotly.NET/commit/12cd47329fb0c161b386ba07f1e1210eea3e35fe)
+
 - [Refactor DisplayOptions - An object to control the way Charts are displayed in generated HTML files](https://github.com/plotly/Plotly.NET/issues/293):
     - Add various functions to manipulate DisplayOptions, Refactor DisplayOptions as DynamicObj (again)
     - Add `PlotlyJSReference` type and logic to handle various ways of referencing plotly.js in HTML output:
