@@ -271,7 +271,7 @@ let multicategoryOHLC =
 let ``Multicategory ohlc tests`` =
     testList "MulticategoryData.OHLC" [
         testCase "Multicategory ohlc data" ( fun () ->
-            """var data = [{"type":"ohlc","x":[["A","A"],["AA","AB"]],"close":[0.5,1.0],"open":[1,2],"high":[3,4],"low":[0,1],"increasing":{"marker":{},"line":{}},"decreasing":{"marker":{},"line":{}}}];"""
+            """var data = [{"type":"ohlc","x":[["A","A"],["AA","AB"]],"close":[0.5,1.0],"open":[1,2],"high":[3,4],"low":[0,1],"increasing":{"line":{}},"decreasing":{"line":{}}}];"""
             |> chartGeneratedContains multicategoryOHLC
         );
         testCase "Multicategory ohlc layout" ( fun () ->
@@ -294,7 +294,7 @@ let multicategoryCandlestick =
 let ``Multicategory candlestick tests`` =
     testList "MulticategoryData.Candlestick" [
         testCase "Multicategory candlestick data" ( fun () ->
-            """var data = [{"type":"candlestick","x":[["A","A"],["AA","AB"]],"close":[0.5,1.0],"open":[1,2],"high":[3,4],"low":[0,1],"increasing":{"marker":{},"line":{}},"decreasing":{"marker":{},"line":{}}}];"""
+            """var data = [{"type":"candlestick","x":[["A","A"],["AA","AB"]],"close":[0.5,1.0],"open":[1,2],"high":[3,4],"low":[0,1],"increasing":{"line":{}},"decreasing":{"line":{}}}];"""
             |> chartGeneratedContains multicategoryCandlestick
         );
         testCase "Multicategory candlestick layout" ( fun () ->
