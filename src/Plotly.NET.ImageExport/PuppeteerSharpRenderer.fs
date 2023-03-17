@@ -36,7 +36,7 @@ type PuppeteerSharpRenderer() =
             DynObj.setValue l "width" "100%"
             DynObj.setValue l "height" "100%"
             l)
-        |> GenericChart.toChartHTML
+        |> GenericChart.toEmbeddedHTML
         |> fun html -> html.Replace("width: 600px; height: 600px;", "width: 100%; height: 100%;")
 
     /// adapted from the original C# implementation by @ilyalatt : https://github.com/ilyalatt/Plotly.NET.PuppeteerRenderer
