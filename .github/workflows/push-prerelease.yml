@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup .NET 6
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.301'  # I highly recommend fixing a version
           include-prerelease: true
           
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         
       - name: 'Add myget as source'
         run: |
