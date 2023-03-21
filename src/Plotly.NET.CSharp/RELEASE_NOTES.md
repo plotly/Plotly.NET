@@ -1,3 +1,8 @@
+### 0.9.0 - March 21 2023
+
+- Update package to work with Plotly.NET 4.0
+- use strict dependency range to prevent major version increases from Plotly.NET from breaking dependent packages.
+
 ### 0.8.0 - August 23 2022
 
 completed C# bindings for the missing domain and smith charts:

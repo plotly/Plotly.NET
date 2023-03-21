@@ -1,3 +1,9 @@
+### 4.0.0 - March 21 2023
+
+- Update package to work with Plotly.NET 4.0
+- fix [#377](https://github.com/plotly/Plotly.NET/issues/377) 
+- use strict dependency range to prevent major version increases from Plotly.NET from breaking dependent packages.
+
 ### 3.0.1 - July 04 2022
 
 (unlisted)
