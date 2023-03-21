@@ -1,3 +1,7 @@
+### 0.10.0 - March 21 2023
+
+- Add WithLegend and WithLegendStyle extension methods to GenericChart
+
 ### 0.9.0 - March 21 2023
 
 - Update package to work with Plotly.NET 4.0
