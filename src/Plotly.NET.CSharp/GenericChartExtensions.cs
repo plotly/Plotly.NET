@@ -1,4 +1,5 @@
-﻿using Plotly.NET;
+﻿using Microsoft.FSharp.Core;
+using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
 using System.Runtime.InteropServices;
@@ -365,5 +366,101 @@ namespace Plotly.NET.CSharp
                     rangeSlider: rangeSlider,
                     Id: Id.ToOption()
                 ).Invoke(gChart);
+
+        /// <summary>
+        /// Sets the Legend for the chart's layout
+        ///
+        /// If there is already a Legend set, the objects are combined.
+        /// </summary>
+        /// <param name="gChart">The chart for which to set the legend</param>
+        /// <param name="legend">The new Legend for the chart's layout</param>
+        public static GenericChart.GenericChart WithLegend(
+            this GenericChart.GenericChart gChart,
+            Legend legend
+        )
+            =>
+                Plotly.NET.Chart.WithLegend(
+                    legend: legend
+                ).Invoke(gChart);
+
+        /// <summary>
+        /// Sets the given Legend styles on the input chart's Legend.
+        ///
+        /// If there is already a Legend set , the styles are applied to it. If there is no Legend present, a new Legend object with the given styles will be set.
+        /// </summary>
+        /// <param name="gChart">The chart for which to set the legend styles</param>
+        /// <param name="BGColor">Sets the legend background color. Defaults to `layout.paper_bgcolor`.</param>
+        /// <param name="BorderColor">Sets the color of the border enclosing the legend.</param>
+        /// <param name="BorderWidth">Sets the width (in px) of the border enclosing the legend.</param>
+        /// <param name="EntryWidth">Sets the width (in px or fraction) of the legend. Use 0 to size the entry based on the text width, when `entrywidthmode` is set to "pixels".</param>
+        /// <param name="EntryWidthMode">Determines what entrywidth means.</param>
+        /// <param name="Font">Sets the font used to text the legend items.</param>
+        /// <param name="GroupClick">Determines the behavior on legend group item click. "toggleitem" toggles the visibility of the individual item clicked on the graph. "togglegroup" toggles the visibility of all items in the same legendgroup as the item clicked on the graph.</param>
+        /// <param name="GroupTitleFont">Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.</param>
+        /// <param name="ItemClick">Determines the behavior on legend item click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item click interactions.</param>
+        /// <param name="ItemDoubleClick">Determines the behavior on legend item double-click. "toggle" toggles the visibility of the item clicked on the graph. "toggleothers" makes the clicked item the sole visible item on the graph. "false" disables legend item double-click interactions.</param>
+        /// <param name="ItemSizing">Determines if the legend items symbols scale with their corresponding "trace" attributes or remain "constant" independent of the symbol size on the graph.</param>
+        /// <param name="ItemWidth">Sets the width (in px) of the legend item symbols (the part other than the title.text).</param>
+        /// <param name="Orientation">Sets the orientation of the legend.</param>
+        /// <param name="Title">Sets the title of the legend.</param>
+        /// <param name="TraceGroupGap">Sets the amount of vertical space (in px) between legend groups.</param>
+        /// <param name="TraceOrder">Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".</param>
+        /// <param name="UIRevision">Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.</param>
+        /// <param name="VerticalAlign">Sets the vertical alignment of the symbols with respect to their associated text.</param>
+        /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
+        /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
+        /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
+        /// <param name="YAnchor">Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.</param>
+        public static GenericChart.GenericChart WithLegendStyle(
+            this GenericChart.GenericChart gChart,
+            Optional<Color> BGColor = default, 
+            Optional<Color> BorderColor = default, 
+            Optional<double> BorderWidth = default, 
+            Optional<double> EntryWidth = default, 
+            Optional<StyleParam.EntryWidthMode> EntryWidthMode = default,
+            Optional<Font> Font = default, 
+            Optional<StyleParam.TraceGroupClickOptions> GroupClick = default, 
+            Optional<Font> GroupTitleFont = default, 
+            Optional<StyleParam.TraceItemClickOptions> ItemClick = default,
+            Optional<StyleParam.TraceItemClickOptions> ItemDoubleClick = default, 
+            Optional<StyleParam.TraceItemSizing> ItemSizing = default,
+            Optional<int> ItemWidth = default,
+            Optional<StyleParam.Orientation> Orientation = default, 
+            Optional<Title> Title = default, 
+            Optional<double> TraceGroupGap = default, 
+            Optional<StyleParam.TraceOrder> TraceOrder = default, 
+            Optional<string> UIRevision = default, 
+            Optional<StyleParam.VerticalAlign> VerticalAlign = default, 
+            Optional<double> X = default, 
+            Optional<StyleParam.XAnchorPosition> XAnchor = default, 
+            Optional<double> Y = default, 
+            Optional<StyleParam.YAnchorPosition> YAnchor = default
+       )
+            =>
+                Plotly.NET.Chart.WithLegendStyle(
+                    BGColor: BGColor.ToOption(),
+                    BorderColor: BorderColor.ToOption(),
+                    BorderWidth: BorderWidth.ToOption(),
+                    EntryWidth: EntryWidth.ToOption(),
+                    EntryWidthMode: EntryWidthMode.ToOption(),
+                    Font: Font.ToOption(),
+                    GroupClick: GroupClick.ToOption(),
+                    GroupTitleFont: GroupTitleFont.ToOption(),
+                    ItemClick: ItemClick.ToOption(),
+                    ItemDoubleClick: ItemDoubleClick.ToOption(),
+                    ItemSizing: ItemSizing.ToOption(),
+                    ItemWidth: ItemWidth.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    Title: Title.ToOption(),
+                    TraceGroupGap: TraceGroupGap.ToOption(),
+                    TraceOrder: TraceOrder.ToOption(),
+                    UIRevision: UIRevision.ToOption(),
+                    VerticalAlign: VerticalAlign.ToOption(),
+                    X: X.ToOption(),
+                    XAnchor: XAnchor.ToOption(),
+                    Y: Y.ToOption(),
+                    YAnchor: YAnchor.ToOption()                    
+                ).Invoke(gChart);
+
     }
 }

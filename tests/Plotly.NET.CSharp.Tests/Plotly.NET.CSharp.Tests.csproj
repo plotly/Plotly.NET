@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\src\Plotly.NET.CSharp\Plotly.NET.CSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="extensionmethods\" />
+  </ItemGroup>
+
 </Project>
