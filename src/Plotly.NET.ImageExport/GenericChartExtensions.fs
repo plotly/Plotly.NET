@@ -18,7 +18,7 @@ module GenericChartExtensions =
         /// <param name="EngineType"></param>
         /// <param name="Width"></param>
         /// <param name="Height"></param>
-        [<CompiledName("ToBase64JPGString")>]
+        [<CompiledName("ToBase64JPGStringAsync")>]
         [<Extension>]
         member this.ToBase64JPGStringAsync
             (
@@ -132,7 +132,7 @@ module GenericChartExtensions =
                 [<Optional; DefaultParameterValue(null)>] ?Width: int,
                 [<Optional; DefaultParameterValue(null)>] ?Height: int
             ) =
-            this |> Chart.savePNG (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
+            this |> Chart.savePNGAsync (path, ?EngineType = EngineType, ?Width = Width, ?Height = Height)
 
         /// <summary>
         /// Saves the GenericChart as PNG image
