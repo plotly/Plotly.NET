@@ -62,11 +62,11 @@ let pkgDir = "pkg"
 /// binaries are built using this configuration.
 let configuration = "Release"
 
+// test projects (.NET)
 let CoreTestProject = ProjectInfo.create("Plotly.NET.Tests", "tests/Plotly.NET.Tests/Plotly.NET.Tests.fsproj")
 let ImageExportTestProject = ProjectInfo.create("Plotly.NET.ImageExport.Tests", "tests/Plotly.NET.ImageExport.Tests/Plotly.NET.ImageExport.Tests.fsproj")
 let CSharpInteroperabilityTestProject = ProjectInfo.create("Plotly.NET.Tests.CSharpInteroperability", "tests/Plotly.NET.Tests.CSharpInteroperability/Plotly.NET.Tests.CSharpInteroperability.csproj")
 let CSharpTestProject = ProjectInfo.create("Plotly.NET.CSharp.Tests", "tests/Plotly.NET.CSharp.Tests/Plotly.NET.CSharp.Tests.csproj")
-let StrongNameTestProject = ProjectInfo.create("Plotly.NET.Tests.StrongName", "tests/Plotly.NET.Tests.StrongName/Plotly.NET.Tests.StrongName.fsproj")
 
 /// contains project info about all test projects
 let testProjects =
@@ -74,6 +74,13 @@ let testProjects =
         CoreTestProject 
         ImageExportTestProject
         CSharpTestProject
+    ]
+
+    // test projects (.NET framework)
+let StrongNameTestProject = ProjectInfo.create("Plotly.NET.Tests.StrongName", "tests/Plotly.NET.Tests.StrongName/Plotly.NET.Tests.StrongName.fsproj")
+
+let testProjectsNetFX =
+    [
         StrongNameTestProject
     ]
 

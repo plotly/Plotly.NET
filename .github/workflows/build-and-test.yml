@@ -34,6 +34,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.x.x
-    - name: Build and test
+    - name: Build and test (includes netfx)
       working-directory: ./
-      run: ./build.cmd runtests
+      run: ./build.cmd runtestsnetfx
