@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module Violin =
     [<Tests>]
     let ``Violin tests`` =
-        testList "Violin" []
+        testList "HTMLCodegen.Chart2D" [
+            testList "Violin" [
+
+            ]
+        ]

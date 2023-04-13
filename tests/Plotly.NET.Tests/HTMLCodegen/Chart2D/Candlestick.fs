@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module Candlestick =
     [<Tests>]
     let ``Candlestick tests`` =
-        testList "Candlestick" []
+        testList "HTMLCodegen.Chart2D" [
+            testList "Candlestick" [
+
+            ]
+        ]

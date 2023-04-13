@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module Treemap =
     [<Tests>]
     let ``Treemap tests`` =
-        testList "Treemap" []
+        testList "HTMLCodegen.ChartDomain" [
+            testList "Treemap" [
+
+            ]
+        ]

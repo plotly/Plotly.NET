@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module ScatterGeo =
     [<Tests>]
     let ``ScatterGeo tests`` =
-        testList "ScatterGeo" []
+        testList "HTMLCodegen.ChartMap" [
+            testList "ScatterGeo" [
+
+            ]
+        ]

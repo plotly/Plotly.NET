@@ -8,7 +8,6 @@ open Plotly.NET.GenericChart
 open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
-
 module Point =
     [<Tests>]
     let ``Point tests`` =

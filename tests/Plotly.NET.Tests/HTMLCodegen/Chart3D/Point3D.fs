@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module Point3D =
     [<Tests>]
     let ``Point3D tests`` =
-        testList "Point3D" []
+        testList "HTMLCodegen.Chart3D" [
+            testList "Point3D" [
+
+            ]
+        ]

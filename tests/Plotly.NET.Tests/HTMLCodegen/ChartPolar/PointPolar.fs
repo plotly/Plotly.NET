@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module PointPolar =
     [<Tests>]
     let ``PointPolar tests`` =
-        testList "PointPolar" []
+        testList "HTMLCodegen.ChartPolar" [
+            testList "PointPolar" [
+
+            ]
+        ]

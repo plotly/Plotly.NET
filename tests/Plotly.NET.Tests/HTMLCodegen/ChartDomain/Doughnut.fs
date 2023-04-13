@@ -5,9 +5,14 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
+open Plotly.NET.Tests
 
 open TestUtils.HtmlCodegen
 module Doughnut =
     [<Tests>]
     let ``Doughnut tests`` =
-        testList "Doughnut" []
+        testList "HTMLCodegen.ChartDomain" [
+            testList "Doughnut" [
+
+            ]
+        ]
