@@ -66,6 +66,7 @@ let CoreTestProject = ProjectInfo.create("Plotly.NET.Tests", "tests/Plotly.NET.T
 let ImageExportTestProject = ProjectInfo.create("Plotly.NET.ImageExport.Tests", "tests/Plotly.NET.ImageExport.Tests/Plotly.NET.ImageExport.Tests.fsproj")
 let CSharpInteroperabilityTestProject = ProjectInfo.create("Plotly.NET.Tests.CSharpInteroperability", "tests/Plotly.NET.Tests.CSharpInteroperability/Plotly.NET.Tests.CSharpInteroperability.csproj")
 let CSharpTestProject = ProjectInfo.create("Plotly.NET.CSharp.Tests", "tests/Plotly.NET.CSharp.Tests/Plotly.NET.CSharp.Tests.csproj")
+let StrongNameTestProject = ProjectInfo.create("Plotly.NET.Tests.StrongName", "tests/Plotly.NET.Tests.StrongName/Plotly.NET.Tests.StrongName.fsproj")
 
 /// contains project info about all test projects
 let testProjects =
@@ -73,6 +74,7 @@ let testProjects =
         CoreTestProject 
         ImageExportTestProject
         CSharpTestProject
+        StrongNameTestProject
     ]
 
 let CoreProject = ProjectInfo.create("Plotly.NET", "src/Plotly.NET/Plotly.NET.fsproj", "src/Plotly.NET/RELEASE_NOTES.md")
