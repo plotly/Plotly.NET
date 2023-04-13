@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module ScatterTernary = ()
+module ScatterTernary =
+    [<Tests>]
+    let ``ScatterTernary tests`` =
+        testList "ScatterTernary" []

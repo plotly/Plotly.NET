@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Cone = ()
+module Cone =
+    [<Tests>]
+    let ``Cone tests`` =
+        testList "Cone" []

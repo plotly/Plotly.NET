@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Range = ()
+module Range =
+    [<Tests>]
+    let ``Range tests`` =
+        testList "Range" []

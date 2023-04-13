@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Indicator = ()
+module Indicator =
+    [<Tests>]
+    let ``Indicator tests`` =
+        testList "Indicator" []

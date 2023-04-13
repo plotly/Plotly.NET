@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module BubbleTernary = ()
+module BubbleTernary =
+    [<Tests>]
+    let ``BubbleTernary tests`` =
+        testList "BubbleTernary" []

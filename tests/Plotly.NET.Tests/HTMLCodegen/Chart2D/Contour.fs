@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Contour = ()
+module Contour =
+    [<Tests>]
+    let ``Contour tests`` =
+        testList "Contour" []

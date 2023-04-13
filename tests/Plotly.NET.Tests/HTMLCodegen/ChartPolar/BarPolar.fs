@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module BarPolar = ()
+module BarPolar =
+    [<Tests>]
+    let ``BarPolar tests`` =
+        testList "BarPolar" []

@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Surface = ()
+module Surface =
+    [<Tests>]
+    let ``Surface tests`` =
+        testList "Surface" []

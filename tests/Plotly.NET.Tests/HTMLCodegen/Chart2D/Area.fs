@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Area = ()
+module Area =
+    [<Tests>]
+    let ``Area tests`` =
+        testList "Area" []

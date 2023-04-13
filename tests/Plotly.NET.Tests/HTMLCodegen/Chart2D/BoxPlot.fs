@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module BoxPlot = ()
+module BoxPlot =
+    [<Tests>]
+    let ``BoxPlot tests`` =
+        testList "BoxPlot" []

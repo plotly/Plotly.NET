@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Image = ()
+module Image =
+    [<Tests>]
+    let ``Image tests`` =
+        testList "Image" []

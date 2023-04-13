@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Line3D = ()
+module Line3D =
+    [<Tests>]
+    let ``Line3D tests`` =
+        testList "Line3D" []

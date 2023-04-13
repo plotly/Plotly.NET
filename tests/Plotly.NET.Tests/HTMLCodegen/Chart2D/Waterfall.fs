@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Waterfall = ()
+module Waterfall =
+    [<Tests>]
+    let ``Waterfall tests`` =
+        testList "Waterfall" []

@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module OHLC = ()
+module OHLC =
+    [<Tests>]
+    let ``OHLC tests`` =
+        testList "OHLC" []

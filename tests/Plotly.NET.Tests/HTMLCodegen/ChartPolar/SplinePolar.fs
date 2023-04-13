@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module SplinePolar = ()
+module SplinePolar =
+    [<Tests>]
+    let ``SplinePolar tests`` =
+        testList "SplinePolar" []

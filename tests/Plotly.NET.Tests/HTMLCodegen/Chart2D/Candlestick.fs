@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Candlestick = ()
+module Candlestick =
+    [<Tests>]
+    let ``Candlestick tests`` =
+        testList "Candlestick" []

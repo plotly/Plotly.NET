@@ -1,6 +1,7 @@
-﻿module Plotly.NET.Tests
+﻿module CoreTests
 open Expecto
 
 [<EntryPoint>]
 let main argv =
     Tests.runTestsInAssemblyWithCLIArgs [] argv
+    

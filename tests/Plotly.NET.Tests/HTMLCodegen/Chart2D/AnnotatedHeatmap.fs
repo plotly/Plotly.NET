@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module AnnotatedHeatmap = ()
+module AnnotatedHeatmap =
+    [<Tests>]
+    let ``AnnotatedHeatmap tests`` =
+        testList "AnnotatedHeatmap" []

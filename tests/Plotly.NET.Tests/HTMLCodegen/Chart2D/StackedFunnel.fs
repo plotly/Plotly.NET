@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module StackedFunnel = ()
+module StackedFunnel =
+    [<Tests>]
+    let ``StackedFunnel tests`` =
+        testList "StackedFunnel" []

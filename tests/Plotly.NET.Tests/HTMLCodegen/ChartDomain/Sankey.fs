@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Sankey = ()
+module Sankey =
+    [<Tests>]
+    let ``Sankey tests`` =
+        testList "Sankey" []

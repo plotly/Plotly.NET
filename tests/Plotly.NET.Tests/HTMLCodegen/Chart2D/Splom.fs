@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Splom = ()
+module Splom =
+    [<Tests>]
+    let ``Splom tests`` =
+        testList "Splom" []

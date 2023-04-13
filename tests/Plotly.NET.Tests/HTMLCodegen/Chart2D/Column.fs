@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Column = ()
+module Column =
+    [<Tests>]
+    let ``Column tests`` =
+        testList "Column" []

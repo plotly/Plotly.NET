@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module BubbleCarpet = ()
+module BubbleCarpet =
+    [<Tests>]
+    let ``BubbleCarpet tests`` =
+        testList "BubbleCarpet" []

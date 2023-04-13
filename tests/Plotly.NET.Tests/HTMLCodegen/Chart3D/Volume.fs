@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Volume = ()
+module Volume =
+    [<Tests>]
+    let ``Volume tests`` =
+        testList "Volume" []

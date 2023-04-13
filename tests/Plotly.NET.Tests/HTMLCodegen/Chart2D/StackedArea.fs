@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module StackedArea = ()
+module StackedArea =
+    [<Tests>]
+    let ``StackedArea tests`` =
+        testList "StackedArea" []

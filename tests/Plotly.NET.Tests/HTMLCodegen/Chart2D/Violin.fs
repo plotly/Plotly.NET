@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Violin = ()
+module Violin =
+    [<Tests>]
+    let ``Violin tests`` =
+        testList "Violin" []

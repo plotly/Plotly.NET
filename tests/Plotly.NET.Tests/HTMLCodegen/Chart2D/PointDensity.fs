@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module PointDensity = ()
+module PointDensity =
+    [<Tests>]
+    let ``PointDensity tests`` =
+        testList "PointDensity" []

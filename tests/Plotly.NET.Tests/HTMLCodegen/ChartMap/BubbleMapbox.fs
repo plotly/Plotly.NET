@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module BubbleMapbox = ()
+module BubbleMapbox =
+    [<Tests>]
+    let ``BubbleMapbox tests`` =
+        testList "BubbleMapbox" []

@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module StreamTube = ()
+module StreamTube =
+    [<Tests>]
+    let ``StreamTube tests`` =
+        testList "StreamTube" []

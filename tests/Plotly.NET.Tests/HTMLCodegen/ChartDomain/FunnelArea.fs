@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module FunnelArea = ()
+module FunnelArea =
+    [<Tests>]
+    let ``FunnelArea tests`` =
+        testList "FunnelArea" []

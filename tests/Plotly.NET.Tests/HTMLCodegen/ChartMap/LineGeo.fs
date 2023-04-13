@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module LineGeo = ()
+module LineGeo =
+    [<Tests>]
+    let ``LineGeo tests`` =
+        testList "LineGeo" []

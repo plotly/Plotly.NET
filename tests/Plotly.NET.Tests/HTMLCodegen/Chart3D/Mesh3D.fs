@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Mesh3D = ()
+module Mesh3D =
+    [<Tests>]
+    let ``Mesh3D tests`` =
+        testList "Mesh3D" []

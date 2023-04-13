@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module ParralelCategories = ()
+module ParralelCategories =
+    [<Tests>]
+    let ``ParralelCategories tests`` =
+        testList "ParralelCategories" []

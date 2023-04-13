@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Histogram2DContour = ()
+module Histogram2DContour =
+    [<Tests>]
+    let ``Histogram2DContour tests`` =
+        testList "Histogram2DContour" []

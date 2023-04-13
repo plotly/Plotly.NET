@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Pie = ()
+module Pie =
+    [<Tests>]
+    let ``Pie tests`` =
+        testList "Pie" []

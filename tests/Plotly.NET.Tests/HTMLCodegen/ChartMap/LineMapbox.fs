@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module LineMapbox = ()
+module LineMapbox =
+    [<Tests>]
+    let ``LineMapbox tests`` =
+        testList "LineMapbox" []

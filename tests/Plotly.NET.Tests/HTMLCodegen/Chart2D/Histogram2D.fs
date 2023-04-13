@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module Histogram2D = ()
+module Histogram2D =
+    [<Tests>]
+    let ``Histogram2D tests`` =
+        testList "Histogram2D" []

@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module IsoSurface = ()
+module IsoSurface =
+    [<Tests>]
+    let ``IsoSurface tests`` =
+        testList "IsoSurface" []

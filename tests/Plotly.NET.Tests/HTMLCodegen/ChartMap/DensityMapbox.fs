@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module DensityMapbox = ()
+module DensityMapbox =
+    [<Tests>]
+    let ``DensityMapbox tests`` =
+        testList "DensityMapbox" []

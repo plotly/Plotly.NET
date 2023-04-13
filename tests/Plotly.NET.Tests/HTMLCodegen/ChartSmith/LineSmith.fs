@@ -7,4 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-module LineSmith = ()
+module LineSmith =
+    [<Tests>]
+    let ``LineSmith tests`` =
+        testList "LineSmith" []
