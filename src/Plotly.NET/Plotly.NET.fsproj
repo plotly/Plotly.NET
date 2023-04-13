@@ -163,7 +163,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="DynamicObj" Version="2.0.0" />
-    <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
+    <PackageReference Include="Giraffe.ViewEngine.StrongName" Version="2.0.0-alpha1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Layout\ObjectAbstractions\Carpet\" />
