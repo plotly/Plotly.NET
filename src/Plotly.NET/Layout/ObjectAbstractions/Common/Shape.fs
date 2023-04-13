@@ -15,6 +15,7 @@ type Shape() =
     /// <param name="Editable">Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.</param>
     /// <param name="FillColor">Sets the color filling the shape's interior. Only applies to closed shapes.</param>
     /// <param name="FillRule">Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule</param>
+    /// <param name="Label">The text label of this shape.</param>
     /// <param name="Layer">Specifies whether shapes are drawn below or above traces.</param>
     /// <param name="Line">Sets the Shape outline</param>
     /// <param name="Name">When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.</param>
@@ -38,6 +39,7 @@ type Shape() =
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FillRule: StyleParam.FillRule,
+            [<Optional; DefaultParameterValue(null)>] ?Label: ShapeLabel,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?Name: string,
@@ -62,6 +64,7 @@ type Shape() =
             ?Editable = Editable,
             ?FillColor = FillColor,
             ?FillRule = FillRule,
+            ?Label = Label,
             ?Layer = Layer,
             ?Line = Line,
             ?Name = Name,
@@ -88,6 +91,7 @@ type Shape() =
     /// <param name="Editable">Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.</param>
     /// <param name="FillColor">Sets the color filling the shape's interior. Only applies to closed shapes.</param>
     /// <param name="FillRule">Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule</param>
+    /// <param name="Label">The text label of this shape.</param>
     /// <param name="Layer">Specifies whether shapes are drawn below or above traces.</param>
     /// <param name="Line">Sets the Shape outline</param>
     /// <param name="Name">When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.</param>
@@ -111,6 +115,7 @@ type Shape() =
             [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FillRule: StyleParam.FillRule,
+            [<Optional; DefaultParameterValue(null)>] ?Label: ShapeLabel,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?Name: string,
@@ -135,6 +140,7 @@ type Shape() =
             Editable |> DynObj.setValueOpt shape "editable"
             FillColor |> DynObj.setValueOpt shape "fillcolor"
             FillRule |> DynObj.setValueOptBy shape "fillrule" StyleParam.FillRule.convert
+            Label |> DynObj.setValueOpt shape "label"
             Layer |> DynObj.setValueOptBy shape "layer" StyleParam.Layer.convert
             Line |> DynObj.setValueOpt shape "line"
             Name |> DynObj.setValueOpt shape "name"

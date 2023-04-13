@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\src\Plotly.NET\plotly-2.18.1.min.js" />
-    <EmbeddedResource Include="..\..\src\Plotly.NET\plotly-2.18.1.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
+    <EmbeddedResource Include="..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
     <Compile Include="TestUtils.fs" />
     <Compile Include="ChartAPIs\WithAxis.fs" />
     <Compile Include="ChartAPIs\Combine.fs" />

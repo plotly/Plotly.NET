@@ -11,7 +11,7 @@ module HtmlCodegen =
 
     let getFullPlotlyJS() =
         let assembly = Assembly.GetExecutingAssembly()
-        use str = assembly.GetManifestResourceStream("Plotly.NET.Tests.plotly-2.18.1.min.js")
+        use str = assembly.GetManifestResourceStream($"Plotly.NET.Tests.plotly-{Globals.PLOTLYJS_VERSION}.min.js")
         use r = new StreamReader(str)
         r.ReadToEnd()
 

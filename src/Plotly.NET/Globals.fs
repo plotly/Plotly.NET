@@ -7,7 +7,7 @@ open Giraffe.ViewEngine
 
 /// The plotly js version loaded from cdn in rendered html docs
 [<Literal>]
-let PLOTLYJS_VERSION = "2.18.1"
+let PLOTLYJS_VERSION = "2.19.1"
 
 [<Literal>]
 let SCRIPT_TEMPLATE =

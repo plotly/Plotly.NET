@@ -34,10 +34,14 @@
     <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Remove="Layout\ObjectAbstractions\2D\**" />
+    <EmbeddedResource Remove="Layout\ObjectAbstractions\Carpet\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="RELEASE_NOTES.md" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <EmbeddedResource Include="plotly-2.18.1.min.js" />
-    <EmbeddedResource Include="plotly-2.18.1.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="plotly-2.19.1.min.js" />
+    <EmbeddedResource Include="plotly-2.19.1.min.js.LICENSE.txt" />
     <Compile Include="Globals.fs" />
     <Compile Include="InternalUtils.fs" />
     <Compile Include="CommonAbstractions\ColorKeyword.fs" />
@@ -62,6 +66,7 @@
     <Compile Include="Layout\ObjectAbstractions\Common\Domain.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ActiveShape.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\NewShape.fs" />
+    <Compile Include="Layout\ObjectAbstractions\Common\ShapeLabel.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Shape.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\ActiveSelection.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\NewSelection.fs" />
@@ -137,7 +142,6 @@
     <Compile Include="Traces\TraceDomain.fs" />
     <Compile Include="Traces\TraceSmith.fs" />
     <Compile Include="Traces\TraceID.fs" />
-    <Folder Include="Layout\ObjectAbstractions\2D\" />
     <Compile Include="Config\ObjectAbstractions\Edits.fs" />
     <Compile Include="Config\ObjectAbstractions\ToImageButtonOptions.fs" />
     <Compile Include="Config\Config.fs" />
@@ -164,8 +168,5 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="DynamicObj" Version="2.0.0" />
     <PackageReference Include="Giraffe.ViewEngine.StrongName" Version="2.0.0-alpha1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layout\ObjectAbstractions\Carpet\" />
   </ItemGroup>
 </Project>

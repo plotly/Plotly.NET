@@ -3079,6 +3079,17 @@ module StyleParam =
     //--------------------------
     // #T#
     //--------------------------
+    [<RequireQualifiedAccess>]
+    type TextAngle =
+        | Auto
+        | Degrees of float
+
+        static member convert =
+            function
+            | Auto -> box "auto"
+            | Degrees d -> box d
+
+        member this.Convert() = this |> TextAngle.convert
 
     [<RequireQualifiedAccess>]
     type TriangulationAlgorithm =

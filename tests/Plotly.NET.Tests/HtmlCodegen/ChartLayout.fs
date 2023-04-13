@@ -286,22 +286,90 @@ let ``Multicharts and subplots`` =
 let shapesChart =
     let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
     let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    let s1 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=2.,X1=4.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
-    let s2 = Shape.init (ShapeType=StyleParam.ShapeType.Rectangle,X0=5.,X1=7.,Y0=3.,Y1=4.,Opacity=0.3,FillColor=Color.fromHex "#d3d3d3")
+    let s1 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Rectangle,
+            X0=2.,X1=4.,Y0=3.,Y1=4.,
+            Opacity=0.3,
+            FillColor=Color.fromHex "#d3d3d3"
+        )
+    let s2 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Circle,
+            X0=5.,X1=7.,Y0=3.,Y1=4.,
+            Opacity=0.3,
+            FillColor=Color.fromHex "#d3d3d3"
+        )
+    let s3 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Line,
+                X0=1.,X1=2.,Y0=1.,Y1=2.,
+                Opacity=0.3,
+                FillColor=Color.fromHex "#d3d3d3"
+        )
+    let s4 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.SvgPath,
+            Path=" M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z"
+        )
     Chart.Line(x = x,y = y',Name="line", UseDefaults = false)    
-    |> Chart.withShapes([s1;s2])
+    |> Chart.withShapes([s1;s2;s3;s4])
+
+let shapesWithLabelsChart =
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let s1 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Rectangle,
+            X0=2.,X1=4.,Y0=3.,Y1=4.,
+            Opacity=0.3,
+            FillColor=Color.fromHex "#d3d3d3",
+            Label = ShapeLabel.init(Text="Rectangle")
+        )
+    let s2 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Circle,
+            X0=5.,X1=7.,Y0=3.,Y1=4.,
+            Opacity=0.3,
+            FillColor=Color.fromHex "#d3d3d3",
+            Label = ShapeLabel.init(Text="Circle")
+        )
+    let s3 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Line,
+                X0=1.,X1=2.,Y0=1.,Y1=2.,
+                Opacity=0.3,
+                FillColor=Color.fromHex "#d3d3d3",
+                Label = ShapeLabel.init(Text="Line")
+        )
+    let s4 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.SvgPath,
+            Path=" M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z",
+            Label = ShapeLabel.init(Text="SVGPath", TextAngle = StyleParam.TextAngle.Degrees 33)
+        )
+    Chart.Line(x = x,y = y',Name="line", UseDefaults = false)    
+    |> Chart.withShapes([s1;s2;s3;s4])
 
 
 [<Tests>]
 let ``Shapes`` =
     testList "ChartLayout.Shapes" [
-        testCase "Data" ( fun () ->
+        testCase "Shapes Data" ( fun () ->
             """var data = [{"type":"scatter","name":"line","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];"""
             |> chartGeneratedContains shapesChart
         );
-        testCase "Layout" ( fun () ->
-            """var layout = {"shapes":[{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0},{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"rect","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0}]};"""
+        testCase "Shapes Layout" ( fun () ->
+            """var layout = {"shapes":[{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0},{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"circle","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0},{"fillcolor":"rgba(211, 211, 211, 1.0)","opacity":0.3,"type":"line","x0":1.0,"x1":2.0,"y0":1.0,"y1":2.0},{"path":" M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z","type":"path"}]};"""
             |> chartGeneratedContains shapesChart
+        );        
+        testCase "Shapes with labels Data" ( fun () ->
+            """var data = [{"type":"scatter","name":"line","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];"""
+            |> chartGeneratedContains shapesWithLabelsChart
+        );
+        testCase "Shapes with labels Layout" ( fun () ->
+            """var layout = {"shapes":[{"fillcolor":"rgba(211, 211, 211, 1.0)","label":{"text":"Rectangle"},"opacity":0.3,"type":"rect","x0":2.0,"x1":4.0,"y0":3.0,"y1":4.0},{"fillcolor":"rgba(211, 211, 211, 1.0)","label":{"text":"Circle"},"opacity":0.3,"type":"circle","x0":5.0,"x1":7.0,"y0":3.0,"y1":4.0},{"fillcolor":"rgba(211, 211, 211, 1.0)","label":{"text":"Line"},"opacity":0.3,"type":"line","x0":1.0,"x1":2.0,"y0":1.0,"y1":2.0},{"label":{"text":"SVGPath","textangle":33.0},"path":" M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z","type":"path"}]};"""
+            |> chartGeneratedContains shapesWithLabelsChart
         );
     ]
 

@@ -25,7 +25,7 @@ let getFullPlotlyJS () =
         Assembly.GetExecutingAssembly()
 
     use str =
-        assembly.GetManifestResourceStream("Plotly.NET.plotly-2.18.1.min.js")
+        assembly.GetManifestResourceStream($"Plotly.NET.plotly-{Globals.PLOTLYJS_VERSION}.min.js")
 
     use r = new StreamReader(str)
     r.ReadToEnd()

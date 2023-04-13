@@ -11,48 +11,39 @@ open Newtonsoft.Json
 
 [<EntryPoint>]
 let main argv =
-    Config.init(
-        StaticPlot              = false,
-        TypesetMath             = true,
-        PlotlyServerUrl         = "myserver.me.meme",
-        Editable                = true,
-        Edits                   = Edits.init(AnnotationPosition = true, ShapePosition = true),
-        EditSelection           = true,
-        Autosizable             = true,
-        Responsive              = true,
-        FillFrame               = true,
-        FrameMargins            = 1.337,
-        ScrollZoom              = StyleParam.ScrollZoom.All,
-        DoubleClick             = StyleParam.DoubleClick.Reset,
-        DoubleClickDelay        = 1337,
-        ShowAxisDragHandles     = true,
-        ShowAxisRangeEntryBoxes = true,
-        ShowTips                = true,
-        ShowLink                = true,
-        LinkText                = "never gonna give you up",
-        SendData                = true,
-        ShowSources             = true,
-        DisplayModeBar          = true,
-        ShowSendToCloud         = true,
-        ShowEditInChartStudio   = true,
-        ModeBarButtonsToRemove  = [StyleParam.ModeBarButton.AutoScale2d],
-        ModeBarButtonsToAdd     = [StyleParam.ModeBarButton.DrawCircle],
-        ModeBarButtons          = [[StyleParam.ModeBarButton.DrawClosedPath; StyleParam.ModeBarButton.DrawOpenPath];[StyleParam.ModeBarButton.OrbitRotation]],
-        ToImageButtonOptions    = ToImageButtonOptions.init(Format = StyleParam.ImageFormat.SVG, Filename="soos.svg"),
-        Displaylogo             = true,
-        Watermark               = true,
-        plotGlPixelRatio        = 1.0,
-        SetBackground           = box "function(x) => {return x}",
-        TopojsonURL             = "myserver.me.meme",
-        MapboxAccessToken       = "4Tw20BlzLT",
-        Logging                 = 2,
-        NotifyOnLogging         = 2,
-        QueueLength             = 1337,
-        GlobalTransforms        = box "function(x) => {return x}",
-        Locale                  = "de-DE",
-        Locales                 = box """{"yes": "no"}"""
-    )
-    :> DynamicObj 
-    |> JsonConvert.SerializeObject
-    |> printfn "%A"
+    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y' = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    let s1 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Rectangle,
+            X0=2.,X1=4.,Y0=3.,Y1=4.,
+            Opacity=0.3,
+            FillColor=Color.fromHex "#d3d3d3",
+            Label = ShapeLabel.init(Text="Rectangle")
+        )
+    let s2 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Circle,
+            X0=5.,X1=7.,Y0=3.,Y1=4.,
+            Opacity=0.3,
+            FillColor=Color.fromHex "#d3d3d3",
+            Label = ShapeLabel.init(Text="Circle")
+        )
+    let s3 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.Line,
+                X0=1.,X1=2.,Y0=1.,Y1=2.,
+                Opacity=0.3,
+                FillColor=Color.fromHex "#d3d3d3",
+                Label = ShapeLabel.init(Text="Line")
+        )
+    let s4 = 
+        Shape.init(
+            ShapeType=StyleParam.ShapeType.SvgPath,
+            Path=" M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z",
+            Label = ShapeLabel.init(Text="SVGPath", TextAngle = StyleParam.TextAngle.Degrees 33)
+        )
+    Chart.Line(x = x,y = y',Name="line", UseDefaults = false)    
+    |> Chart.withShapes([s1;s2;s3;s4])
+    |> Chart.show
     0
