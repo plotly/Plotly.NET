@@ -20,6 +20,8 @@ let createTestBuildTask (name: string) (deps: BuildTask.TaskInfo list) (projects
     }
 
 let buildTestsAll = createTestBuildTask "BuildTestsAll" [clean; build] (testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
+
+let buildTestsAllNoNetFX = createTestBuildTask "BuildTestsAllNoNetFX" [clean; build] (testProjectsCore @ testProjectsExtensionsLibs)
    
 let buildTestsCore = createTestBuildTask "BuildTestsCore" [clean; build] testProjectsCore
 
@@ -44,6 +46,9 @@ let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: 
 
 /// runs the all test projects via `dotnet test`
 let runTestsAll = createRunTestTask "RunTestsAll" [ clean; build; buildTestsAll ] (testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
+
+/// runs the all test projects except those targeting netfx via `dotnet test`
+let runTestsAllNoNetFX = createRunTestTask "RunTestsAllNoNetFX" [ clean; build; buildTestsAllNoNetFX ] (testProjectsCore @ testProjectsExtensionsLibs)
 
 /// runs the core test projects via `dotnet test`
 let runTestsCore = createRunTestTask "RunTestsCore" [ clean; build; buildTestsCore; buildTestsCore] testProjectsCore 
