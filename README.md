@@ -142,6 +142,7 @@ Chart.Point<int, int, string>(
 ```
 ![notebook quichstart in C#](docs/img/notebook_quickstart_csharp.png)
 </details>
+
 ## Samples and tutorials
 
 You can find extensive documentation with samples and tutorials of the core `Plotly.NET` library [📖 here](http://plotly.github.io/Plotly.NET/).
