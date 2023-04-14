@@ -1,4 +1,4 @@
-﻿module CoreTests
+﻿module Main
 open Expecto
 
 [<EntryPoint>]

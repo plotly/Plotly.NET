@@ -13,9 +13,6 @@
     <Compile Include="TestUtils.fs" />
     <!--Test charts-->
     <Compile Include="TestCharts\Chart2D\Scatter.fs" />
-    <Compile Include="TestCharts\Chart2D\Point.fs" />
-    <Compile Include="TestCharts\Chart2D\Line.fs" />
-    <Compile Include="TestCharts\Chart2D\Spline.fs" />
     <Compile Include="TestCharts\Chart2D\Bubble.fs" />
     <Compile Include="TestCharts\Chart2D\Range.fs" />
     <Compile Include="TestCharts\Chart2D\Area.fs" />
@@ -93,36 +90,8 @@
     <Compile Include="TestCharts\ChartSmith\PointSmith.fs" />
     <Compile Include="TestCharts\ChartSmith\LineSmith.fs" />
     <Compile Include="TestCharts\ChartSmith\BubbleSmith.fs" />
+    <Compile Include="HTMLCodegen\Chart2D.fs" />
     <!--HTMLCodegen-->
-    <Compile Include="HTMLCodegen\Chart2D\Scatter.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Point.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Line.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Spline.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Bubble.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Range.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Area.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\SplineArea.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\StackedArea.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Funnel.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\StackedFunnel.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Waterfall.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Bar.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\StackedBar.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Column.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\StackedColumn.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Histogram.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Histogram2D.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\BoxPlot.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Violin.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Histogram2DContour.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Heatmap.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\AnnotatedHeatmap.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Image.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Contour.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\OHLC.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Candlestick.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\Splom.fs" />
-    <Compile Include="HTMLCodegen\Chart2D\PointDensity.fs" />
     <Compile Include="HTMLCodegen\Chart3D\Scatter3D.fs" />
     <Compile Include="HTMLCodegen\Chart3D\Point3D.fs" />
     <Compile Include="HTMLCodegen\Chart3D\Line3D.fs" />
@@ -214,5 +183,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
+    <ProjectReference Include="..\..\Common\FSharpTestBase\FSharpTestBase.fsproj" />
   </ItemGroup>
 </Project>

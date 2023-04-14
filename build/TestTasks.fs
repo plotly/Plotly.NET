@@ -19,15 +19,15 @@ let createTestBuildTask (name: string) (deps: BuildTask.TaskInfo list) (projects
         )
     }
 
-let buildTestsAll = createTestBuildTask "BuildTestsAll" [clean; build] (testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
+let buildTestsAll = createTestBuildTask "BuildTestsAll" [clean; build] (testBaseProjects @ testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
 
-let buildTestsAllNoNetFX = createTestBuildTask "BuildTestsAllNoNetFX" [clean; build] (testProjectsCore @ testProjectsExtensionsLibs)
+let buildTestsAllNoNetFX = createTestBuildTask "BuildTestsAllNoNetFX" [clean; build] (testBaseProjects @ testProjectsCore @ testProjectsExtensionsLibs)
    
-let buildTestsCore = createTestBuildTask "BuildTestsCore" [clean; build] testProjectsCore
+let buildTestsCore = createTestBuildTask "BuildTestsCore" [clean; build] (testBaseProjects @ testProjectsCore)
 
-let buildTestsNetFX = createTestBuildTask "BuildTestsNetFX" [clean; build] testProjectsNetFX
+let buildTestsNetFX = createTestBuildTask "BuildTestsNetFX" [clean; build] (testBaseProjects @ testProjectsNetFX)
 
-let buildTestsExtensionsLibs = createTestBuildTask "BuildTestsExtensionsLibs" [clean; build] testProjectsExtensionsLibs
+let buildTestsExtensionsLibs = createTestBuildTask "BuildTestsExtensionsLibs" [clean; build] (testBaseProjects @ testProjectsExtensionsLibs)
 
 
 let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: ProjectInfo list) =

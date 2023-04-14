@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Library.fs" />
+    <Compile Include="TestCharts\Chart2DTestCharts.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 
 </Project>

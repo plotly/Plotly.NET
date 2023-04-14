@@ -25,13 +25,15 @@ build.cmd runTestsAll
 build.sh runTestsCore
 ```
 
-Available test targets are (WIP):
+Available test targets are:
 
-- `runTestsAll` - runs all tests
-- `runTestsCore` - runs all tests in the `CoreTests` folder
-- `runTestsExtensionLibs` - runs all tests in the `ExtensionLibTests` folder
-- `runTestsJSTests` - runs all tests in the `JSTests` folder
-- `runTestsCSharp` - runs all tests in the `CSharpTests` folder
+- `RunTestsAll` - runs all tests
+- `RunTestsAllNoNetFX` - runs all tests except the ones that require .NET Framework
+- `RunTestsCore` - runs all tests in the `CoreTests` folder except the ones that require .NET Framework
+- `RunTestsCoreWithNetFX` - runs all tests in the `CoreTests` folder including the ones that require .NET Framework
+- `RunTestsNetFX` - runs all tests that require .NET Framework
+- `RunTestsExtensionLibs` - runs all tests in the `ExtensionLibTests` folder
+- `RunTestsJSTests` - runs all tests in the `JSTests` folder
 
 
 ## Folder structure

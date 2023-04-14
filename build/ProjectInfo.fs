@@ -62,6 +62,15 @@ let pkgDir = "pkg"
 /// binaries are built using this configuration.
 let configuration = "Release"
 
+// test base projects (need to be built first)
+let FSharpTestBaseProject = ProjectInfo.create("FSharpTestBase", "tests/Common/FSharpTestBase/FSharpTestBase.fsproj")
+let CSharpTestBaseProject = ProjectInfo.create("CSharpTestBase", "tests/Common/CSharpTestBase/CSharpTestBase.csproj")
+
+let testBaseProjects = [
+    FSharpTestBaseProject
+    CSharpTestBaseProject
+]
+
 // test projects (.NET)
 let CoreTestProject = ProjectInfo.create("CoreTests", "tests/CoreTests/CoreTests/CoreTests.fsproj")
 let CSharpInteroperabilityTestProject = ProjectInfo.create("CSharpInteroperabilityTests", "tests/CoreTests/CSharpInteroperabilityTests/CSharpInteroperabilityTests.csproj")
