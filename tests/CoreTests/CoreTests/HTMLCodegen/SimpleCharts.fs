@@ -533,7 +533,7 @@ let imageARGBChart =
 
 open System.IO
 
-let imageSource = $@"{__SOURCE_DIRECTORY__}../../../../docs/img/logo.png"
+let imageSource = $@"{__SOURCE_DIRECTORY__}../../../../../docs/img/logo.png"
 
 let base64String = 
     imageSource

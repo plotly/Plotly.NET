@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plotly.NET.CSharp\Plotly.NET.CSharp.csproj" />
+    <ProjectReference Include="..\..\..\src\Plotly.NET.CSharp\Plotly.NET.CSharp.csproj" />
   </ItemGroup>
 
 </Project>

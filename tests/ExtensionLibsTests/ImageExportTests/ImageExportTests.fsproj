@@ -21,6 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plotly.NET.ImageExport\Plotly.NET.ImageExport.fsproj" />
+    <ProjectReference Include="..\..\..\src\Plotly.NET.ImageExport\Plotly.NET.ImageExport.fsproj" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ open Fake.Core
 open Fake.DotNet
 open Fake.IO.Globbing.Operators
 
-let pack = BuildTask.create "Pack" [ clean; build; runTests ] {
+let pack = BuildTask.create "Pack" [ clean; build; runTestsAll ] {
     projects
     |> List.iter (fun pInfo ->
         if promptYesNo $"creating stable package for {pInfo.Name}{System.Environment.NewLine}\tpackage version: {pInfo.PackageVersionTag}{System.Environment.NewLine}\tassembly version: {pInfo.AssemblyVersion}{System.Environment.NewLine}\tassembly informational version: {pInfo.AssemblyInformationalVersion}{System.Environment.NewLine} OK?" then
@@ -62,7 +62,7 @@ let packPrerelease =
         [
             clean
             build
-            runTests
+            runTestsAll
         ] {
         projects
         |> List.iter (fun pInfo ->

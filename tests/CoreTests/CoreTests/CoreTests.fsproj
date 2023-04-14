@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
-    <EmbeddedResource Include="..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
     <Compile Include="TestUtils.fs" />
     <!--Test charts-->
     <Compile Include="TestCharts\Chart2D\Scatter.fs" />
@@ -213,6 +213,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
+    <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 </Project>

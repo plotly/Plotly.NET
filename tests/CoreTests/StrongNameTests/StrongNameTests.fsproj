@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
@@ -7,7 +7,7 @@
     <GenerateProgramFile>false</GenerateProgramFile>
     <IsTestProject>true</IsTestProject>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../../../key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
+    <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 
 </Project>

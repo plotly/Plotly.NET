@@ -63,26 +63,30 @@ let pkgDir = "pkg"
 let configuration = "Release"
 
 // test projects (.NET)
-let CoreTestProject = ProjectInfo.create("Plotly.NET.Tests", "tests/Plotly.NET.Tests/Plotly.NET.Tests.fsproj")
-let ImageExportTestProject = ProjectInfo.create("Plotly.NET.ImageExport.Tests", "tests/Plotly.NET.ImageExport.Tests/Plotly.NET.ImageExport.Tests.fsproj")
-let CSharpInteroperabilityTestProject = ProjectInfo.create("Plotly.NET.Tests.CSharpInteroperability", "tests/Plotly.NET.Tests.CSharpInteroperability/Plotly.NET.Tests.CSharpInteroperability.csproj")
-let CSharpTestProject = ProjectInfo.create("Plotly.NET.CSharp.Tests", "tests/Plotly.NET.CSharp.Tests/Plotly.NET.CSharp.Tests.csproj")
+let CoreTestProject = ProjectInfo.create("CoreTests", "tests/CoreTests/CoreTests/CoreTests.fsproj")
+let CSharpInteroperabilityTestProject = ProjectInfo.create("CSharpInteroperabilityTests", "tests/CoreTests/CSharpInteroperabilityTests/CSharpInteroperabilityTests.csproj")
 
-/// contains project info about all test projects
-let testProjects =
-    [
-        CoreTestProject 
-        ImageExportTestProject
-        CSharpTestProject
-    ]
+/// contains project info about the core test projects
+let testProjectsCore = [
+    CoreTestProject
+    CSharpInteroperabilityTestProject
+]
 
-    // test projects (.NET framework)
-let StrongNameTestProject = ProjectInfo.create("Plotly.NET.Tests.StrongName", "tests/Plotly.NET.Tests.StrongName/Plotly.NET.Tests.StrongName.fsproj")
+let ImageExportTestProject = ProjectInfo.create("ImageExportTests", "tests/ExtensionLibsTests/ImageExportTests/ImageExportTests.fsproj")
+let CSharpTestProject = ProjectInfo.create("CSharpTests", "tests/ExtensionLibsTests/CSharpTests/CSharpTests.csproj")
 
-let testProjectsNetFX =
-    [
-        StrongNameTestProject
-    ]
+///
+let testProjectsExtensionsLibs = [
+    ImageExportTestProject
+    CSharpTestProject
+]
+
+// test projects (.NET framework)
+let StrongNameTestProject = ProjectInfo.create("StrongNameTests", "tests/CoreTests/StrongNameTests/StrongNameTests.fsproj")
+
+let testProjectsNetFX = [
+    StrongNameTestProject
+]
 
 let CoreProject = ProjectInfo.create("Plotly.NET", "src/Plotly.NET/Plotly.NET.fsproj", "src/Plotly.NET/RELEASE_NOTES.md")
 let InteractiveProject = ProjectInfo.create("Plotly.NET.Interactive", "src/Plotly.NET.Interactive/Plotly.NET.Interactive.fsproj", "src/Plotly.NET.Interactive/RELEASE_NOTES.md")

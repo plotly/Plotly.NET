@@ -6,34 +6,31 @@ open Fake.DotNet
 open ProjectInfo
 open BasicTasks
 
-let buildTests = BuildTask.create "BuildTests" [clean; build] {
-    testProjects
-    |> List.iter (fun pInfo ->
-        let proj = pInfo.ProjFile
-        proj
-        |> DotNet.build (fun p ->
-            p
-            |> DotNet.Options.withCustomParams (Some "--no-dependencies")
+let createTestBuildTask (name: string) (deps: BuildTask.TaskInfo list) (projects: ProjectInfo list) =
+    BuildTask.create name deps {
+        projects
+        |> List.iter (fun pInfo ->
+            let proj = pInfo.ProjFile
+            proj
+            |> DotNet.build (fun p ->
+                p
+                |> DotNet.Options.withCustomParams (Some "--no-dependencies")
+            )
         )
-    )
-}
+    }
 
-let buildTestsNetFX = BuildTask.create "BuildTestsNetFX" [clean; build] {
-    testProjectsNetFX
-    |> List.iter (fun pInfo ->
-        let proj = pInfo.ProjFile
-        proj
-        |> DotNet.build (fun p ->
-            p
-            |> DotNet.Options.withCustomParams (Some "--no-dependencies")
-        )
-    )
-}
+let buildTestsAll = createTestBuildTask "BuildTestsAll" [clean; build] (testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
+   
+let buildTestsCore = createTestBuildTask "BuildTestsCore" [clean; build] testProjectsCore
 
-/// runs the individual test projects via `dotnet test`
-let runTests =
-    BuildTask.create "RunTests" [ clean; build; buildTests ] {
-        testProjects
+let buildTestsNetFX = createTestBuildTask "BuildTestsNetFX" [clean; build] testProjectsNetFX
+
+let buildTestsExtensionsLibs = createTestBuildTask "BuildTestsExtensionsLibs" [clean; build] testProjectsExtensionsLibs
+
+
+let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: ProjectInfo list) =
+    BuildTask.create name deps {
+        projects
         |> Seq.iter (fun testProjectInfo ->
             Fake.DotNet.DotNet.test
                 (fun testParams ->
@@ -45,43 +42,17 @@ let runTests =
                 testProjectInfo.ProjFile)
     }
 
-/// runs the individual test projects via `dotnet test`
-let runTestsWithNetFX =
-    BuildTask.create "RunTestsNetFX" [ clean; build; buildTests; buildTestsNetFX] {
-        testProjects
-        @ testProjectsNetFX
-        |> Seq.iter (fun testProjectInfo ->
-            Fake.DotNet.DotNet.test
-                (fun testParams ->
-                    { testParams with
-                        Logger = Some "console;verbosity=detailed"
-                        Configuration = DotNet.BuildConfiguration.fromString configuration
-                        NoBuild = true
-                    })
-                testProjectInfo.ProjFile)
-    }
+/// runs the all test projects via `dotnet test`
+let runTestsAll = createRunTestTask "RunTestsAll" [ clean; build; buildTestsAll ] (testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
 
-// to do: use this once we have actual tests
-let runTestsWithCodeCov =
-    BuildTask.create "RunTestsWithCodeCov" [ clean; build ] {
-        let standardParams =
-            Fake.DotNet.MSBuild.CliArguments.Create()
+/// runs the core test projects via `dotnet test`
+let runTestsCore = createRunTestTask "RunTestsCore" [ clean; build; buildTestsCore; buildTestsCore] testProjectsCore 
 
-        testProjects
-        |> Seq.iter (fun testProjectInfo ->
-            Fake.DotNet.DotNet.test
-                (fun testParams ->
-                    { testParams with
-                        MSBuildParams =
-                            { standardParams with
-                                Properties =
-                                    [
-                                        "AltCover", "true"
-                                        "AltCoverCobertura", "../../codeCov.xml"
-                                        "AltCoverForce", "true"
-                                    ]
-                            }
-                        Logger = Some "console;verbosity=detailed"
-                    })
-                testProjectInfo.ProjFile)
-    }
+/// runs the core netfx test projects via `dotnet test`
+let runTestsNetFX = createRunTestTask "RunTestsNetFX" [ clean; build; buildTestsNetFX;] testProjectsNetFX
+
+/// runs the core and core netfx test projects via `dotnet test`
+let runTestsCoreWithNetFX = createRunTestTask "RunTestsCoreWithNetFX" [ clean; build; buildTestsCore; buildTestsNetFX;] (testProjectsCore @ testProjectsNetFX)
+
+/// runs the extension lib test projects via `dotnet test`
+let runTestsExtensionLibs = createRunTestTask "RunTestsExtensionLibs" [ clean; build; buildTestsExtensionsLibs] testProjectsExtensionsLibs

@@ -18,6 +18,20 @@ initializeContext ()
 
 open BasicTasks
 
+//workaround for tasks created with functions not being runnable.
+
+//let _ = TestTasks.buildTestsAll |> ignore
+//let _ = TestTasks.buildTestsCore |> ignore
+//let _ = TestTasks.buildTestsNetFX |> ignore
+//let _ = TestTasks.buildTestsExtensionsLibs |> ignore
+
+//let _ = TestTasks.runTestsAll |> ignore
+//let _ = TestTasks.runTestsCore |> ignore
+//let _ = TestTasks.runTestsNetFX |> ignore
+//let _ = TestTasks.runTestsCoreWithNetFX |> ignore
+//let _ = TestTasks.runTestsExtensionLibs |> ignore
+
+
 let sourceFiles =
     !! "src/Plotly.NET/**/*.fs"
     ++ "src/Plotly.NET.ImageExport/**/*.fs"
@@ -33,7 +47,7 @@ let _release =
         [
             clean
             build
-            runTests
+            runTestsAll
             pack
             buildDocs
             createTag
@@ -49,7 +63,7 @@ let _preRelease =
             setPrereleaseTag
             clean
             build
-            runTests
+            runTestsAll
             packPrerelease
             buildDocsPrerelease
             createPrereleaseTag
@@ -64,7 +78,7 @@ let _releaseNoDocs =
         [
             clean
             build
-            runTests
+            runTestsAll
             pack
             createTag
             publishNuget
@@ -78,7 +92,7 @@ let _preReleaseNoDocs =
             setPrereleaseTag
             clean
             build
-            runTests
+            runTestsAll
             packPrerelease
             createPrereleaseTag
             publishNugetPrerelease

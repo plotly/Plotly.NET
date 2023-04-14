@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plotly.NET\Plotly.NET.fsproj" />
+    <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 
 </Project>
