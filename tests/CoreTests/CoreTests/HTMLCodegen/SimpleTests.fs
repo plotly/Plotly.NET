@@ -7,7 +7,7 @@ open Plotly.NET.TraceObjects
 open Plotly.NET.GenericChart
 
 open TestUtils.HtmlCodegen
-open Plotly.NET.Tests
+open Chart2DTestCharts
 
 [<Tests>]
 let ``Html layout tests`` =

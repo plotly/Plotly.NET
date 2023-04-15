@@ -35,6 +35,11 @@ Available test targets are:
 - `RunTestsExtensionLibs` - runs all tests in the `ExtensionLibTests` folder
 - `RunTestsJSTests` - runs all tests in the `JSTests` folder
 
+### Using Visual Studio Test Explorer
+
+You can also run tests from within Visual Studio using the Test Explorer.
+
+Just note that test projects targeting .NET Framework will not be visible in the Test Explorer, as they are not supported by the Test Explorer.
 
 ## Folder structure
 

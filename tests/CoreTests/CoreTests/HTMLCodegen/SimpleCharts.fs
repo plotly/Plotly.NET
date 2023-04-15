@@ -8,113 +8,72 @@ open Plotly.NET.GenericChart
 open Plotly.NET.StyleParam
 
 open TestUtils.HtmlCodegen
+open Chart2DTestCharts
 
-let columnChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Column(values = values, Keys = keys, UseDefaults = false)
 
-let barChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    Chart.Bar(values = values, Keys = keys, UseDefaults = false)
 
-let stackedBarChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    [
-        Chart.StackedBar(values = values, Keys = keys, Name="old", UseDefaults = false);
-        Chart.StackedBar(values = [8; 21; 13;], Keys = keys, Name="new", UseDefaults = false)
-    ]
-    |> Chart.combine
 
-let stackedColumnChart =
-    let values = [20; 14; 23;]
-    let keys   = ["Product A"; "Product B"; "Product C";]
-    [
-        Chart.StackedColumn(values = values, Keys = keys,Name="old", UseDefaults = false);
-        Chart.StackedColumn(values = [8; 21; 13;], Keys = keys,Name="new", UseDefaults = false)
-    ]
-    |> Chart.combine
+
+
 
 [<Tests>]
 let ``Bar and column charts`` =
     testList "SimpleCharts.Bar and column charts" [
         testCase "Column chart data" ( fun () ->
             """var data = [{"type":"bar","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{"pattern":{}}}];"""
-            |> chartGeneratedContains columnChart
+            |> chartGeneratedContains Column.``Simple column chart``
         );
         testCase "Column chart layout" ( fun () ->
-            emptyLayout columnChart
+            emptyLayout Column.``Simple column chart``
         );
         testCase "Bar chart data" ( fun () ->
             """var data = [{"type":"bar","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}}];"""
-            |> chartGeneratedContains barChart
+            |> chartGeneratedContains Bar.``Simple bar chart``
         );
         testCase "Bar chart layout" ( fun () ->
-            emptyLayout barChart
+            emptyLayout Bar.``Simple bar chart``
         );
         testCase "Stacked bar data" ( fun () ->
             """var data = [{"type":"bar","name":"old","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}},{"type":"bar","name":"new","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}}];"""
-            |> chartGeneratedContains stackedBarChart
+            |> chartGeneratedContains Bar.``Two stacked bars chart``
         );
         testCase "Stacked bar layout" ( fun () ->
             "var layout = {\"barmode\":\"stack\"};"
-            |> chartGeneratedContains stackedColumnChart
+            |> chartGeneratedContains Bar.``Two stacked bars chart``
         );
         testCase "Stacked column data" ( fun () ->
             """var data = [{"type":"bar","name":"old","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{"pattern":{}}},{"type":"bar","name":"new","x":["Product A","Product B","Product C"],"y":[8,21,13],"orientation":"v","marker":{"pattern":{}}}];"""
-            |> chartGeneratedContains stackedColumnChart
+            |> chartGeneratedContains Column.``Two stacked columns chart``
         );
         testCase "Stacked column layout" ( fun () ->
             "var layout = {\"barmode\":\"stack\"};"
-            |> chartGeneratedContains stackedColumnChart
+            |> chartGeneratedContains Column.``Two stacked columns chart``
         );
     ]
-
-
-let simpleAreaChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.Area(x = x, y = y, UseDefaults = false)
-
-let withSplineChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    Chart.SplineArea(x = x, y = y, UseDefaults = false)
-
-let stackedAreaChart =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y  = [5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5.]
-    [
-        Chart.StackedArea(x = x, y = y, UseDefaults = false)
-        Chart.StackedArea(x = x, y = (y |> Seq.rev), UseDefaults = false)
-    ]
-    |> Chart.combine
 
 [<Tests>]
 let ``Area charts`` =
     testList "SimpleCharts.Area charts" [
         testCase "Simple area data" ( fun () ->
             """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"marker":{},"line":{},"fill":"tozeroy","fillpattern":{}}];"""
-            |> chartGeneratedContains simpleAreaChart
+            |> chartGeneratedContains Area.``Simple area chart``
         );
         testCase "Simple area layout" ( fun () ->
-            emptyLayout simpleAreaChart
+            emptyLayout Area.``Simple area chart``
         );
         testCase "Spline data" ( fun () ->
             """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"marker":{},"line":{"shape":"spline"},"fill":"tozeroy","fillpattern":{}}];"""
-            |> chartGeneratedContains withSplineChart
+            |> chartGeneratedContains SplineArea.``Simple spline area chart``
         );
         testCase "Spline layout" ( fun () ->
-            emptyLayout withSplineChart
+            emptyLayout SplineArea.``Simple spline area chart``
         );
         testCase "Stacked area data" ( fun () ->
             """var data = [{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0],"stackgroup":"stackedarea","marker":{},"line":{},"fill":"tonexty","fillpattern":{}},{"type":"scatter","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,5.5,4.5,7.5,2.5,5.0,7.5,5.0,2.5,5.0],"stackgroup":"stackedarea","marker":{},"line":{},"fill":"tonexty","fillpattern":{}}];"""
-            |> chartGeneratedContains stackedAreaChart
+            |> chartGeneratedContains StackedArea.``Two stacked areas chart``
         );
         testCase "Stacked area layout" ( fun () ->
-            emptyLayout stackedAreaChart
+            emptyLayout StackedArea.``Two stacked areas chart``
         );
     ]
 
