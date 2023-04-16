@@ -7,6 +7,25 @@ open Plotly.NET
 open DynamicObj
 open Newtonsoft.Json
 
+module DataGeneration =
+    
+    //---------------------- Generate linearly spaced vector ----------------------
+    let linspace (min,max,n) = 
+        if n <= 2 then failwithf "n needs to be larger then 2"
+        let bw = float (max - min) / (float n - 1.)
+        Array.init n (fun i -> min + (bw * float i))
+
+    //-------------------- Generate linearly spaced mesh grid ---------------------
+    let mgrid (min,max,n) = 
+
+        let data = linspace(min,max,n)
+
+        let z = [|for i in 1 .. n do [|for i in 1 .. n do yield data|]|]
+        let x = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[i-1]|]|]|]
+        let y = [|for i in 1 .. n do [|for j in 1 .. n do yield [|for k in 1 .. n do yield data.[j-1]|]|]|]
+
+        x,y,z
+
 module HtmlCodegen =
 
     let getLogoPNG() =
