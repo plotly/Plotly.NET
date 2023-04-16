@@ -2,7 +2,6 @@
 
 open Plotly.NET
 
-
 module Pie = 
 
     let ``Simple pie chart`` =

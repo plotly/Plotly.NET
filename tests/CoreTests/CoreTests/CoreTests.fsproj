@@ -10,7 +10,6 @@
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
-    <Compile Include="TestUtils.fs" />
     <!--Test charts-->
     <Compile Include="HTMLCodegen\Chart2D.fs" />
     <!--HTMLCodegen-->

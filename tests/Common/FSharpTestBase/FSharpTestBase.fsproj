@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Deedle" Version="2.4.1" />
+    <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="FSharp.Data" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
   </ItemGroup>
 

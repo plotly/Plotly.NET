@@ -283,7 +283,7 @@ module Image =
         |> Chart.withTitle "ARGB image chart"
 
     let ``Image chart from base64 string`` = 
-        let base64String = TestUtils.getLogoPNG()
+        let base64String = TestUtils.HtmlCodegen.getLogoPNG()
         Chart.Image(
             Source=($"data:image/jpg;base64,{base64String}"),
             UseDefaults = false

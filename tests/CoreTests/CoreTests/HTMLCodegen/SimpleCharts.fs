@@ -229,6 +229,4 @@ let ``Image charts`` =
             """var layout = {"title":{"text":"This is Plotly.NET:"}};"""
             |> chartGeneratedContains Image.``Image chart from base64 string``
         );        
-
-       
     ]
