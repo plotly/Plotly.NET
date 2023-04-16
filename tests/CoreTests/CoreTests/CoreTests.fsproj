@@ -43,6 +43,8 @@
     <Compile Include="Main.fs" />
   </ItemGroup>
 
+  <ItemGroup />
+
   <ItemGroup>
     <PackageReference Include="Deedle" Version="2.4.1" />
     <PackageReference Include="Expecto" Version="9.*" />

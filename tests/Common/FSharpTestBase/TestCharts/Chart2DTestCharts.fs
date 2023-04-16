@@ -79,9 +79,33 @@ module Spline =
         Chart.Spline(x = x, y = y, Name="spline", UseDefaults = false)   
 
         
-module Bubble = ()
+module Bubble = 
 
-module Range = ()
+    let ``Simple bubble chart`` =
+        let x = [2; 4; 6;]
+        let y = [4; 1; 6;]
+        let size = [19; 26; 55;]
+        Chart.Bubble(x = x, y = y,sizes = size, UseDefaults = false)
+
+module Range = 
+
+    let ``Styled range chart`` =
+        let rnd = System.Random(5)
+    
+        let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+        let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    
+        let yUpper = y |> List.map (fun v -> v + rnd.NextDouble())
+        let yLower = y |> List.map (fun v -> v - rnd.NextDouble())
+        Chart.Range(
+            x = x, 
+            y = y,
+            upper = yUpper,
+            lower = yLower,
+            mode = StyleParam.Mode.Lines_Markers,
+            MarkerColor=Color.fromString "grey",
+            RangeColor=Color.fromString "lightblue", 
+            UseDefaults = false)
 
 module Area = 
     
@@ -161,11 +185,110 @@ module Violin = ()
 
 module Histogram2DContour = ()
 
-module Heatmap = ()
+module Heatmap = 
+    
+    let ``simple heatmap with custom colorscale`` =
+        let matrix =
+            [[1.;1.5;0.7;2.7];
+            [2.;0.5;1.2;1.4];
+            [0.1;2.6;2.4;3.0];]
+    
+        let rownames = ["p3";"p2";"p1"]
+        let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    
+        let colorscaleValue = 
+            StyleParam.Colorscale.Custom [(0.0,Color.fromString "#3D9970");(1.0,Color.fromString "#001f3f")]
+    
+        Chart.Heatmap(
+            zData = matrix,
+            colNames = colnames,
+            rowNames = rownames,
+            ColorScale=colorscaleValue,
+            ShowScale=true, 
+            UseDefaults = false
+        )
+        |> Chart.withSize(700,500)
+        |> Chart.withMarginSize(Left=200.)
 
-module AnnotatedHeatmap = ()
+        
+    let ``Simple heatmal with custom colorscale and styled colorbar`` =
+        let matrix =
+            [[1.;1.5;0.7;2.7];
+            [2.;0.5;1.2;1.4];
+            [0.1;2.6;2.4;3.0];]
+    
+        let rownames = ["p3";"p2";"p1"]
+        let colnames = ["Tp0";"Tp30";"Tp60";"Tp160"]
+    
+        let colorscaleValue = 
+            StyleParam.Colorscale.Custom [(0.0,Color.fromString "#3D9970");(1.0,Color.fromString "#001f3f")]
+    
+        Chart.Heatmap(
+            zData = matrix,
+            colNames = colnames,
+            rowNames = rownames,
+            ColorScale=colorscaleValue,
+            ShowScale=true, 
+            UseDefaults = false
+        )
+        |> Chart.withSize(700.,500.)
+        |> Chart.withMarginSize(Left=200.)
+        |> Chart.withColorBarStyle(TitleText = "Im the Colorbar")
 
-module Image = ()
+
+module AnnotatedHeatmap = 
+
+
+    let ``Simple annotated heatmap`` = 
+        Chart.AnnotatedHeatmap(
+            zData = [
+                [1..5]
+                [6..10]
+                [11..15]
+            ],
+            annotationText = [
+                ["1,1";"1,2";"1,3"]
+                ["2,1";"2,2";"2,3"]
+                ["3,1";"3,2";"3,3"]
+            ],
+            X = ["C1";"C2";"C3"],
+            Y = ["R1";"R2";"R3"],
+            ReverseYAxis = true,
+            UseDefaults = false
+        )
+
+module Image = 
+
+    let private colors = [
+        [[0  ;0  ;255]; [255;255;0  ]; [0  ;0  ;255]]
+        [[255;0  ;0  ]; [255;0  ;255]; [255;0  ;255]]
+        [[0  ;255;0  ]; [0  ;255;255]; [255;0  ;0  ]]
+    ]
+
+    let ``Raw color component image chart`` = 
+        Chart.Image(Z=colors, UseDefaults = false)
+        |> Chart.withTitle "Image chart from raw color component arrays"
+
+    let ``HSL image chart`` = 
+        Chart.Image(Z=colors, ColorModel=StyleParam.ColorModel.HSL, UseDefaults = false)
+        |> Chart.withTitle "HSL color model"
+
+    let ``ARGB image chart`` = 
+        let argbs = [
+            [ColorKeyword.AliceBlue     ; ColorKeyword.CornSilk ; ColorKeyword.LavenderBlush ] |> List.map ARGB.fromKeyword
+            [ColorKeyword.DarkGray      ; ColorKeyword.Snow     ; ColorKeyword.MidnightBlue  ] |> List.map ARGB.fromKeyword
+            [ColorKeyword.LightSteelBlue; ColorKeyword.DarkKhaki; ColorKeyword.LightAkyBlue  ] |> List.map ARGB.fromKeyword
+        ]
+        Chart.Image(z = argbs, UseDefaults = false)
+        |> Chart.withTitle "ARGB image chart"
+
+    let ``Image chart from base64 string`` = 
+        let base64String = TestUtils.getLogoPNG()
+        Chart.Image(
+            Source=($"data:image/jpg;base64,{base64String}"),
+            UseDefaults = false
+        )
+        |> Chart.withTitle "This is Plotly.NET:"
 
 module Contour = ()
 

@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\docs\img\logo.png" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="TestUtils.fs" />
+    <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
     <Compile Include="TestCharts\Chart2DTestCharts.fs" />
   </ItemGroup>
 
