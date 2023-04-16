@@ -1,6 +1,10 @@
 ﻿module Chart2DTestCharts
 
+open System
 open Plotly.NET
+open Plotly.NET.TraceObjects
+
+open TestUtils.DataGeneration
 
 module Point =
     
@@ -78,7 +82,6 @@ module Spline =
         let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
         Chart.Spline(x = x, y = y, Name="spline", UseDefaults = false)   
 
-        
 module Bubble = 
 
     let ``Simple bubble chart`` =
@@ -132,7 +135,6 @@ module StackedArea =
         ]
         |> Chart.combine
 
-
 module Funnel = ()
 
 module StackedFunnel = ()
@@ -175,15 +177,100 @@ module Column =
 
 module StackedColumn = ()
 
-module Histogram = ()
+module Histogram = 
 
-module Histogram2D = ()
+    let ``Simple histogram`` =
+        let rnd = System.Random(5)
+        let x = [for i=0 to 500 do yield rnd.NextDouble() ]
+        Chart.Histogram(X = x, UseDefaults = false)
+        |> Chart.withSize(500, 500)
 
-module BoxPlot = ()
 
-module Violin = ()
+module Histogram2D = 
 
-module Histogram2DContour = ()
+    let ``Histogram2D of 2D normal distribution`` =
+        let rnd = System.Random(5)
+        let n = 2000
+        let a = -1.
+        let b = 1.2
+        let step i = a +  ((b - a) / float (n - 1)) * float i
+    
+        //---------------------- generate data distributed in x and y direction ---------------------- 
+        let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
+        let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
+        Chart.Histogram2D (x = x, y = y, UseDefaults = false)
+
+module BoxPlot = 
+
+    let ``Simple boxplot with boxpoints`` =
+        let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+        Chart.BoxPlot(X = x, Y = y,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false)
+
+    let ``Simple horizontal boxplot with boxpoints`` =
+        let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+        Chart.BoxPlot(X = y,Y = x,Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All,Orientation=StyleParam.Orientation.Horizontal, UseDefaults = false)
+
+    let ``Combined chart with 2 horizontal boxplots`` =
+        let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        [
+            Chart.BoxPlot(data = y , orientation = StyleParam.Orientation.Horizontal, Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+            Chart.BoxPlot(data = y', orientation = StyleParam.Orientation.Horizontal, Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
+        ]
+        |> Chart.combine
+
+module Violin = 
+
+    let ``Simple violin plot with jitterpoints`` =
+        let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+        Chart.Violin (
+            X = x, Y = y,
+            Points=StyleParam.JitterPoints.All, 
+            UseDefaults = false
+        )
+
+    let ``Simple horizontal violin plot with jitterpoints`` =
+        let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        let x = ["bin1";"bin2";"bin1";"bin2";"bin1";"bin2";"bin1";"bin1";"bin2";"bin1"]
+        Chart.Violin(
+            X = y, Y = x,
+            Jitter=0.1,
+            Points=StyleParam.JitterPoints.All,
+            Orientation=StyleParam.Orientation.Horizontal,
+            MeanLine=MeanLine.init(Visible=true), 
+            UseDefaults = false
+        )
+
+    let ``Combined chart with 2 horizontal violin plots`` =
+        let y =  [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        let y' =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+        [
+            Chart.Violin (data = y , orientation = StyleParam.Orientation.Horizontal, Name="bin1",Jitter=0.1,Points=StyleParam.BoxPoints.All, UseDefaults = false)
+            Chart.Violin (data = y', orientation = StyleParam.Orientation.Horizontal, Name="bin2",Jitter=0.1,Points=StyleParam.BoxPoints.All, UseDefaults = false)
+        ]
+        |> Chart.combine
+
+module Histogram2DContour = 
+
+    let ``Histogram2DContour of 2D normal distribution`` =
+
+        let rnd = System.Random(5)
+        let n = 2000
+        let a = -1.
+        let b = 1.2
+        let step i = a +  ((b - a) / float (n - 1)) * float i
+    
+        //---------------------- generate data distributed in x and y direction ---------------------- 
+        let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
+        let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
+        [
+            Chart.Histogram2DContour (x = x, y = y,ContourLine=Line.init(Width=0.), UseDefaults = false)
+            Chart.Point(x = x,y = y,Opacity=0.3, UseDefaults = false)
+        ]
+        |> Chart.combine
 
 module Heatmap = 
     
@@ -290,12 +377,65 @@ module Image =
         )
         |> Chart.withTitle "This is Plotly.NET:"
 
-module Contour = ()
+module Contour = 
+
+    let ``Contour plot with peak and sink`` =
+    
+        // Create example data
+        let size = 100
+        let x = linspace(-2. * Math.PI, 2. * Math.PI, size)
+        let y = linspace(-2. * Math.PI, 2. * Math.PI, size)
+    
+        let f x y = - (5. * x / (x**2. + y**2. + 1.) )
+    
+        let z = 
+            Array.init size (fun i -> 
+                Array.init size (fun j -> 
+                    f x.[j] y.[i] 
+                )
+            )
+
+        Chart.Contour(zData = z, UseDefaults = false)
+        |> Chart.withSize(600.,600.)
 
 module OHLC = ()
 
 module Candlestick = ()
 
-module Splom = ()
+module Splom = 
 
-module PointDensity = ()
+    let ``Simple scatterplot matrix`` =
+        let data = 
+            [
+                "A",[|1.;4.;3.4;0.7;|]
+                "B",[|3.;1.5;1.7;2.3;|]
+                "C",[|2.;4.;3.1;5.|]
+                "D",[|4.;2.;2.;4.;|]
+            ]
+        Chart.Splom(keyValues = data, MarkerColor=Color.fromString "blue", UseDefaults = false)
+
+
+module PointDensity = 
+
+    
+    let ``Simple PointDensity chart`` = 
+        let rnd = new System.Random(5)
+        let x = [for i in 0 .. 100 -> rnd.NextDouble()]
+        let y = [for i in 0 .. 100 -> rnd.NextDouble()]
+        Chart.PointDensity(x = x,y = y,UseDefaults = false)
+
+    let ``Styled PointDensity chart`` = 
+        let rnd = new System.Random(5)
+        let x = [for i in 0 .. 100 -> rnd.NextDouble()]
+        let y = [for i in 0 .. 100 -> rnd.NextDouble()]
+        Chart.PointDensity(
+            x = x,
+            y = y,
+            PointMarkerColor = Color.fromKeyword Purple,
+            PointMarkerSymbol = StyleParam.MarkerSymbol.X,
+            PointMarkerSize = 4,
+            ColorScale = StyleParam.Colorscale.Viridis,
+            ColorBar = ColorBar.init(Title = Title.init("Density")),
+            ShowContourLabels = true,
+            UseDefaults = false
+        )

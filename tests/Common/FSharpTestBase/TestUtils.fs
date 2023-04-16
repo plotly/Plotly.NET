@@ -26,6 +26,17 @@ module DataGeneration =
 
         x,y,z
 
+    let normal (rnd:System.Random) mu tau =
+        let mutable v1 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable v2 = 2.0 * rnd.NextDouble() - 1.0
+        let mutable r = v1 * v1 + v2 * v2
+        while (r >= 1.0 || r = 0.0) do
+            v1 <- 2.0 * rnd.NextDouble() - 1.0
+            v2 <- 2.0 * rnd.NextDouble() - 1.0
+            r <- v1 * v1 + v2 * v2
+        let fac = sqrt(-2.0*(log r)/r)
+        (tau * v1 * fac + mu)
+
 module HtmlCodegen =
 
     let getLogoPNG() =

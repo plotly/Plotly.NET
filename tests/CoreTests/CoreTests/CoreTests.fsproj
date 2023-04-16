@@ -29,7 +29,6 @@
     <Compile Include="Traces\TraceID.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
-    <Compile Include="HtmlCodegen\DistributionCharts.fs" />
     <Compile Include="HtmlCodegen\GeoMapCharts.fs" />
     <Compile Include="HtmlCodegen\MapboxMapCharts.fs" />
     <Compile Include="HtmlCodegen\FinanceCharts.fs" />
