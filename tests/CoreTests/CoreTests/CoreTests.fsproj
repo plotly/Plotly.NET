@@ -12,6 +12,7 @@
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
     <!--Test charts-->
     <Compile Include="HTMLCodegen\Chart2D.fs" />
+    <Compile Include="HtmlCodegen\ChartDomain.fs" />
     <!--HTMLCodegen-->
 
     <Compile Include="ChartAPIs\WithAxis.fs" />
@@ -27,7 +28,6 @@
     <Compile Include="Traces\TraceID.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
-    <Compile Include="HtmlCodegen\SimpleCharts.fs" />
     <Compile Include="HtmlCodegen\Charts3D.fs" />
     <Compile Include="HtmlCodegen\DistributionCharts.fs" />
     <Compile Include="HtmlCodegen\GeoMapCharts.fs" />
@@ -41,8 +41,6 @@
     <Compile Include="HtmlCodegen\MulticategoryData.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
-
-  <ItemGroup />
 
   <ItemGroup>
     <PackageReference Include="Deedle" Version="2.4.1" />
