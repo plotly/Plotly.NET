@@ -298,7 +298,7 @@ module Heatmap =
         |> Chart.withMarginSize(Left=200.)
 
         
-    let ``Simple heatmal with custom colorscale and styled colorbar`` =
+    let ``Simple heatmap with custom colorscale and styled colorbar`` =
         let matrix =
             [[1.;1.5;0.7;2.7];
             [2.;0.5;1.2;1.4];

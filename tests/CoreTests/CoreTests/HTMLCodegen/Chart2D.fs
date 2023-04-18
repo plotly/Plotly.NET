@@ -353,11 +353,11 @@ module Heatmap =
                 );
                 testCase "Heatmap styled data" ( fun () ->
                     """var data = [{"type":"heatmap","x":["Tp0","Tp30","Tp60","Tp160"],"y":["p3","p2","p1"],"z":[[1.0,1.5,0.7,2.7],[2.0,0.5,1.2,1.4],[0.1,2.6,2.4,3.0]],"colorscale":[[0.0,"#3D9970"],[1.0,"#001f3f"]],"showscale":true,"colorbar":{"title":{"text":"Im the Colorbar"}}}];"""
-                    |> chartGeneratedContains Heatmap.``Simple heatmal with custom colorscale and styled colorbar``
+                    |> chartGeneratedContains Heatmap.``Simple heatmap with custom colorscale and styled colorbar``
                 );
                 testCase "Heatmap styled layout" ( fun () ->
                     "var layout = {\"width\":700,\"height\":500,\"margin\":{\"l\":200.0}};"
-                    |> chartGeneratedContains Heatmap.``Simple heatmal with custom colorscale and styled colorbar``
+                    |> chartGeneratedContains Heatmap.``Simple heatmap with custom colorscale and styled colorbar``
                 );
             ]
         ]
@@ -436,6 +436,7 @@ module Contour =
                 );
             ]
         ]
+
 module OHLC =
     [<Tests>]
     let ``OHLC chart HTML codegeneration tests`` =

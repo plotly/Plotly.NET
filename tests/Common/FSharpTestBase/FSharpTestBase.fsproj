@@ -15,6 +15,7 @@
     <Compile Include="TestUtils.fs" />
     <Compile Include="TestCharts\Chart2DTestCharts.fs" />
     <Compile Include="TestCharts\Chart3DTestCharts.fs" />
+    <Compile Include="TestCharts\ChartMapTestCharts.fs" />
     <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
   </ItemGroup>
 

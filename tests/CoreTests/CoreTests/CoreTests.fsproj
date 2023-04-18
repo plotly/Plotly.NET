@@ -13,6 +13,7 @@
     <!--Test charts-->
     <Compile Include="HTMLCodegen\Chart2D.fs" />
     <Compile Include="HtmlCodegen\Chart3D.fs" />
+    <Compile Include="HtmlCodegen\ChartMap.fs" />
     <Compile Include="HtmlCodegen\ChartDomain.fs" />
     <!--HTMLCodegen-->
 
@@ -29,8 +30,6 @@
     <Compile Include="Traces\TraceID.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
-    <Compile Include="HtmlCodegen\GeoMapCharts.fs" />
-    <Compile Include="HtmlCodegen\MapboxMapCharts.fs" />
     <Compile Include="HtmlCodegen\FinanceCharts.fs" />
     <Compile Include="HtmlCodegen\PolarCharts.fs" />
     <Compile Include="HtmlCodegen\TernaryCharts.fs" />
