@@ -298,7 +298,7 @@ namespace Plotly.NET.CSharp
         /// <param name="gChart">The chart in which to change the mapbox</param>
         /// <param name="mapbox">The Mapbox to set on the chart's layout</param>
         /// <param name="Id">The target mapbox id on which the Mapbox should be set. Default is 1.</param>
-        public static GenericChart.GenericChart WithMabox(
+        public static GenericChart.GenericChart WithMapbox(
             this GenericChart.GenericChart gChart,
             Mapbox mapbox, 
             Optional<int> Id = default
@@ -324,7 +324,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Pitch">Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).</param>
         /// <param name="Layers">Sets the layers of this Mapbox</param>
         /// <param name="Id">The target mapbox id</param>
-        public static GenericChart.GenericChart WithMaboxStyle(
+        public static GenericChart.GenericChart WithMapboxStyle(
             this GenericChart.GenericChart gChart,
             Optional<Domain> Domain = default, 
             Optional<string> AccessToken = default, 

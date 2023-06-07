@@ -133,8 +133,8 @@ added C# bindings for statistical charts
 Optional arguments are now wrapped in a custom `Optional<T>` type to allow usage of both reference and value types for optional arguments across the whole API.
 
 Some GenericChart extension methods were also added:
-- WithMabox
-- WithMaboxStyle
+- WithMapbox
+- WithMapboxStyle
 
 ### 0.0.1 - June 15 2022
 
