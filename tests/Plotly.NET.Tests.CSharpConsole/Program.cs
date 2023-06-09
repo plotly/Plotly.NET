@@ -520,7 +520,7 @@ namespace TestConsoleApp
                                     Name: "bubblemapbox"
                                 ),
                             }
-                        ).WithMaboxStyle(
+                        ).WithMapboxStyle(
                             Style: MapboxStyle.OpenStreetMap,
                             Id: 38
                         ).WithTraceInfo(
@@ -531,7 +531,7 @@ namespace TestConsoleApp
                             longitudes: new int [] { 1,2,2,2,3,4,5,5 },
                             latitudes:  new int [] { 1,2,2,2,3,4,5,5 },
                             ShowScale: false
-                        ).WithMaboxStyle(
+                        ).WithMapboxStyle(
                             Style: MapboxStyle.OpenStreetMap,
                             Id: 39
                         ).WithTraceInfo(
