@@ -30,7 +30,6 @@
     <Compile Include="Traces\TraceID.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
-    <Compile Include="HtmlCodegen\FinanceCharts.fs" />
     <Compile Include="HtmlCodegen\PolarCharts.fs" />
     <Compile Include="HtmlCodegen\TernaryCharts.fs" />
     <Compile Include="HtmlCodegen\CarpetCharts.fs" />

@@ -52,7 +52,35 @@ module Doughnut =
             UseDefaults = false
         )
 
-module FunnelArea = ()
+module FunnelArea = 
+
+    let ``Simple funnelarea chart`` = 
+        let values = [|5; 4; 3; 2; 1|]
+        let text = [|"The 1st"; "The 2nd"; "The 3rd"; "The 4th"; "The 5th"|]
+        let line = Line.init (Color=Color.fromString "purple", Width=3.)
+        Chart.FunnelArea(values=values, MultiText=text, SectionOutline=line, UseDefaults = false)
+
+
+    
+    let ``Styled funnelarea chart`` =
+        let values = [|5; 4; 3|]
+        let labels = [|"The 1st"; "The 2nd"; "The 3rd"|]
+
+        Chart.FunnelArea(
+            values = values,
+            Labels = labels,
+            MultiText = labels,
+            SectionColors = [
+                Color.fromKeyword Aqua
+                Color.fromKeyword Salmon
+                Color.fromKeyword Tan
+            ],
+            SectionOutlineColor = Color.fromKeyword Black,
+            SectionOutlineWidth = 2.,
+            AspectRatio = 0.75,
+            BaseRatio = 0.1,
+            UseDefaults = false
+        )
 
 module Sunburst = ()
 
@@ -203,6 +231,50 @@ module Table =
         |> Chart.withSize(Width=chartwidth)
         |> Chart.withTitle "Sequence A"
 
-module Indicator = ()
+module Indicator = 
+    
+    open Plotly.NET.TraceObjects
+    open Plotly.NET.LayoutObjects
+
+    let ``Angular gauge indicator`` =
+        ChartDomain.Chart.Indicator(
+            value = 200., 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
+            Delta   = IndicatorDelta.init(Reference=160),
+            Range   = StyleParam.Range.MinMax(0., 250.),
+            Domain  = Domain.init(Row = 0, Column = 0), 
+            UseDefaults = false
+        )
+
+    let ``Bullet gauge indicator`` =
+        Chart.Indicator(
+            value = 120, 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
+            DeltaReference = 90,
+            Range = StyleParam.Range.MinMax(-200., 200.),
+            GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
+            ShowGaugeAxis = false,
+            Domain  = Domain.init(Row = 0, Column = 1), 
+            UseDefaults = false
+        )
+
+    let ``Delta indicator with reference`` =
+        Chart.Indicator(
+            value = "300", 
+            mode = StyleParam.IndicatorMode.NumberDelta,
+            DeltaReference = 90.,
+            Domain  = Domain.init(Row = 1, Column = 0), 
+            UseDefaults = false
+        )
+
+    let ``Delta indicator`` =
+        Chart.Indicator(
+            value = 40., 
+            mode = StyleParam.IndicatorMode.Delta,
+            DeltaReference = 90.,
+            Domain  = Domain.init(Row = 1, Column = 1), 
+            UseDefaults = false
+        )
+
 
 module Icicle = ()

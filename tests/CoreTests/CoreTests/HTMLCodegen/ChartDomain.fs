@@ -51,6 +51,20 @@ module FunnelArea =
     let ``FunnelArea chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
             testList "FunnelArea" [
+                testCase "Funnel area data" ( fun () ->
+                """var data = [{"type":"funnelarea","values":[5,4,3,2,1],"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"],"marker":{"line":{"color":"purple","width":3.0}}}];"""
+                |> chartGeneratedContains FunnelArea.``Simple funnelarea chart``
+                );
+                testCase "Funnel area layout" ( fun () ->
+                    emptyLayout FunnelArea.``Simple funnelarea chart``
+                );        
+                testCase "Funnel area styled data" ( fun () ->
+                    """var data = [{"type":"funnelarea","values":[5,4,3],"labels":["The 1st","The 2nd","The 3rd"],"text":["The 1st","The 2nd","The 3rd"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0}},"aspectratio":0.75,"baseratio":0.1}];"""
+                    |> chartGeneratedContains FunnelArea.``Styled funnelarea chart``
+                );
+                testCase "Funnel area styled layout" ( fun () ->
+                    emptyLayout FunnelArea.``Styled funnelarea chart``
+                );
             ]
         ]
 
@@ -136,6 +150,34 @@ module Indicator =
     let ``Indicator chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
             testList "Indicator" [
+                testCase "Angular gauge indicator data" ( fun () ->
+                    """var data = [{"type":"indicator","mode":"number+delta+gauge","value":200.0,"domain":{"row":0,"column":0},"delta":{"reference":160},"gauge":{"axis":{"range":[0.0,250.0]}}}];"""
+                    |> chartGeneratedContains Indicator.``Angular gauge indicator``
+                );
+                testCase "Angular gauge indicator layout" ( fun () ->
+                    emptyLayout Indicator.``Angular gauge indicator``
+                );
+                testCase "Bullet gauge indicator data" ( fun () ->
+                    """var data = [{"type":"indicator","mode":"number+delta+gauge","value":120,"domain":{"row":0,"column":1},"delta":{"reference":90},"gauge":{"axis":{"visible":false,"range":[-200.0,200.0]},"shape":"bullet"}}];"""
+                    |> chartGeneratedContains Indicator.``Bullet gauge indicator``
+                );
+                testCase "Bullet gauge indicator layout" ( fun () ->
+                    emptyLayout Indicator.``Bullet gauge indicator``
+                );
+                testCase "Delta indicator with reference data" ( fun () ->
+                    """var data = [{"type":"indicator","mode":"number+delta","value":"300","domain":{"row":1,"column":0},"delta":{"reference":90.0},"gauge":{"axis":{}}}];"""
+                    |> chartGeneratedContains Indicator.``Delta indicator with reference``
+                );
+                testCase "Delta indicator with reference layout" ( fun () ->
+                    emptyLayout Indicator.``Delta indicator with reference``
+                );
+                testCase "Delta indicator data" ( fun () ->
+                    """var data = [{"type":"indicator","mode":"delta","value":40.0,"domain":{"row":1,"column":1},"delta":{"reference":90.0},"gauge":{"axis":{}}}];"""
+                    |> chartGeneratedContains Indicator.``Delta indicator``
+                );
+                testCase "Delta indicator layout" ( fun () ->
+                    emptyLayout Indicator.``Delta indicator``
+                );
             ]
         ]
 

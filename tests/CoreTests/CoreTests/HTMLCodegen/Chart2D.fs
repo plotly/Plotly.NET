@@ -149,6 +149,14 @@ module Funnel =
     let ``Funnel chart HTML codegeneration tests`` =
         testList "HTMLCodegen.Chart2D" [
             testList "Funnel" [
+                testCase "Funnel data" ( fun () ->
+                    """var data = [{"type":"funnel","x":[1200.0,909.4,600.6,300.0,80.0],"y":["Sales person A","Sales person B","Sales person C","Sales person D","Sales person E"],"marker":{"color":"59D4E8","line":{"color":"3E4E88","width":2.0}},"connector":{"line":{"color":"royalblue","width":3.0,"dash":"dot"}}}];"""
+                    |> chartGeneratedContains Funnel.``Simple funnel chart``
+                );
+                testCase "Funnel layout" ( fun () ->
+                    "var layout = {\"margin\":{\"l\":100}};"
+                    |> chartGeneratedContains Funnel.``Simple funnel chart``
+                );
             ]
         ]
 
@@ -442,6 +450,22 @@ module OHLC =
     let ``OHLC chart HTML codegeneration tests`` =
         testList "HTMLCodegen.Chart2D" [
             testList "OHLC" [
+                testCase "simple OHLC data" ( fun () ->
+                    """var data = [{"type":"ohlc","x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"increasing":{"line":{}},"decreasing":{"line":{}}}];"""
+                    |> chartGeneratedContains OHLC.``Simple OHLC chart``
+                );
+                testCase "simple OHLC layout" ( fun () ->
+                    """var layout = {"xaxis":{"rangeslider":{"yaxis":{}}}};"""
+                    |> chartGeneratedContains OHLC.``Simple OHLC chart``
+                );
+                testCase "OHLC no range slider data" ( fun () ->
+                    """var data = [{"type":"ohlc","x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"increasing":{"line":{}},"decreasing":{"line":{}}}];"""
+                    |> chartGeneratedContains OHLC.``Simple OHLC chart without range slider``
+                );
+                testCase "OHLC no range slider layout" ( fun () ->
+                    """var layout = {"xaxis":{"rangeslider":{"visible":false,"yaxis":{}}}};"""
+                    |> chartGeneratedContains OHLC.``Simple OHLC chart without range slider``
+                );
             ]
         ]
 
@@ -450,6 +474,22 @@ module Candlestick =
     let ``Candlestick chart HTML codegeneration tests`` =
         testList "HTMLCodegen.Chart2D" [
             testList "Candlestick" [
+                testCase "simple Candlestick data" ( fun () ->
+                    """var data = [{"type":"candlestick","x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"increasing":{"line":{}},"decreasing":{"line":{}}}];"""
+                    |> chartGeneratedContains Candlestick.``Simple candlestick chart``
+                );
+                testCase "simple Candlestick layout" ( fun () ->
+                    """var layout = {"xaxis":{"rangeslider":{"yaxis":{}}}};"""
+                    |> chartGeneratedContains Candlestick.``Simple candlestick chart``
+                );
+                testCase "Candlestick no range slider data" ( fun () ->
+                    """var data = [{"type":"candlestick","x":["2020-01-17T13:40:00","2020-01-17T13:41:00","2020-01-17T13:42:00","2020-01-17T13:43:00","2020-01-17T13:44:00","2020-01-17T13:45:00","2020-01-17T13:46:00","2020-01-17T13:47:00","2020-01-17T13:48:00","2020-01-17T13:49:00","2020-01-17T13:50:00"],"close":[0.6888,0.68877,0.68886,0.68879,0.68874,0.68868,0.68883,0.68899,0.68889,0.68893,0.68891],"open":[0.68888,0.68883,0.68878,0.68886,0.68879,0.68875,0.68869,0.68883,0.68898,0.68889,0.68891],"high":[0.68888,0.68884,0.68889,0.68886,0.68879,0.68877,0.68887,0.68899,0.689,0.68893,0.68896],"low":[0.68879,0.68875,0.68878,0.68876,0.68873,0.68867,0.68869,0.68883,0.68885,0.68881,0.68886],"increasing":{"line":{}},"decreasing":{"line":{}}}];"""
+                    |> chartGeneratedContains Candlestick.``Simple candlestick chart without range slider``
+                );
+                testCase "Candlestick no range slider layout" ( fun () ->
+                    """var layout = {"xaxis":{"rangeslider":{"visible":false,"yaxis":{}}}};"""
+                    |> chartGeneratedContains Candlestick.``Simple candlestick chart without range slider``
+                );
             ]
         ]
 
