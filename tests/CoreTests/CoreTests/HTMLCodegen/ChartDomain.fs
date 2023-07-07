@@ -73,6 +73,20 @@ module Sunburst =
     let ``Sunburst chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
             testList "Sunburst" [
+                testCase "Sunburst data" ( fun () ->
+                    """var data = [{"type":"sunburst","parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"labels":["A","B","C","D","E"],"text":["At","Bt","Ct","Dt","Et"],"marker":{"line":{}}}];"""
+                    |> chartGeneratedContains Sunburst.``Simple sunburst chart``
+                );
+                testCase "Sunburst layout" ( fun () ->
+                    emptyLayout Sunburst.``Simple sunburst chart``
+                );       
+                testCase "Sunburst styled data" ( fun () ->
+                    """var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];"""
+                    |> chartGeneratedContains Sunburst.``Styled sunburst chart``
+                );
+                testCase "Sunburst styled layout" ( fun () ->
+                    emptyLayout Sunburst.``Styled sunburst chart``
+                );
             ]
         ]
 
@@ -81,22 +95,57 @@ module Treemap =
     let ``Treemap chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
             testList "Treemap" [
+                testCase "Treemap styled data" ( fun () ->
+                    """var data = [{"type":"treemap","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","tiling":{"packing":"slice-dice"}}];"""
+                    |> chartGeneratedContains Treemap.``Styled treemap chart``
+                );
+                testCase "Treemap styled layout" ( fun () ->
+                    emptyLayout Treemap.``Styled treemap chart``
+                );
             ]
         ]
 
-module ParralelCoord =
+module ParallelCoord =
     [<Tests>]
-    let ``ParralelCoord chart HTML codegeneration tests`` =
+    let ``ParallelCoord chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
-            testList "ParralelCoord" [
+            testList "ParallelCoord" [
+                 testCase "Parallel coordinates data" ( fun () ->
+                    """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1.0,4.0,3.4,0.7],"axis":{}},{"label":"B","values":[3.0,1.5,1.7,2.3],"axis":{}},{"label":"C","values":[2.0,4.0,3.1,5.0],"axis":{}},{"label":"D","values":[4.0,2.0,2.0,4.0],"axis":{}}],"line":{"color":"blue"}}];"""
+                    |> chartGeneratedContains ParallelCoord.``Simple parallel coordinates chart``
+                );
+                testCase "Parallel coordinates layout" ( fun () ->
+                    emptyLayout ParallelCoord.``Simple parallel coordinates chart``
+                );
+                testCase "Parallel coordinates styled data" ( fun () ->
+                    """var data = [{"type":"parcoords","dimensions":[{"label":"1","values":[1,2,3,4],"range":[0.0,8.0],"axis":{}},{"label":"2","values":[4,3,2,1],"range":[0.0,8.0],"axis":{}},{"label":"3","values":[1,2,3,4],"range":[0.0,8.0],"axis":{}},{"label":"4","values":[4,3,2,1],"range":[0.0,8.0],"axis":{}}],"line":{"color":[1,2,3,4],"colorscale":"Viridis"}}];"""
+                    |> chartGeneratedContains ParallelCoord.``Styled parallel coordinates chart``
+                );
+                testCase "Parallel coordinates styled layout" ( fun () ->
+                    emptyLayout ParallelCoord.``Styled parallel coordinates chart``
+                );
             ]
         ]
 
-module ParralelCategories =
+module ParallelCategories =
     [<Tests>]
-    let ``ParralelCategories chart HTML codegeneration tests`` =
+    let ``ParallelCategories chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
-            testList "ParralelCategories" [
+            testList "ParallelCategories" [
+                testCase "Parallel categories data" ( fun () ->
+                    """var data = [{"type":"parcats","dimensions":[{"label":"A","values":["Cat1","Cat1","Cat1","Cat1","Cat2","Cat2","Cat3"],"axis":{}},{"label":"B","values":[0,1,0,1,0,0,0],"ticktext":["YES","NO"],"axis":{}}],"line":{"color":[0.0,1.0,0.0,1.0,0.0,0.0,0.0],"colorscale":"Blackbody"}}];"""
+                    |> chartGeneratedContains ParallelCategories.``Simple parallel categories chart``
+                );
+                testCase "Parallel categories layout" ( fun () ->
+                    emptyLayout ParallelCategories.``Simple parallel categories chart``
+                );        
+                testCase "Parallel categories styled data" ( fun () ->
+                    """var data = [{"type":"parcats","dimensions":[{"label":"Lvl1","values":["A","A","A","B","B","B","C","D"],"axis":{}},{"label":"Lvl2","values":["AA","AA","AB","AB","AB","AB","AB","AB"],"axis":{}},{"label":"Lvl3","values":["AAA","AAB","AAC","AAC","AAB","AAB","AAA","AAA"],"axis":{}}],"line":{"color":[0,1,2,2,1,1,0,0],"colorscale":"Viridis"},"bundlecolors":false}];"""
+                    |> chartGeneratedContains ParallelCategories.``Styled parallel categories chart``
+                );
+                testCase "Parallel categories styled layout" ( fun () ->
+                    emptyLayout ParallelCategories.``Styled parallel categories chart``
+                );
             ]
         ]
 
@@ -105,6 +154,13 @@ module Sankey =
     let ``Sankey chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
             testList "Sankey" [
+                testCase "Sankey data" ( fun () ->
+                    """var data = [{"type":"sankey","node":{"label":["A1","A2","B1","B2","C1","C2","D1"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0}},"link":{"color":["rgba(130, 139, 251, 1.0)","rgba(130, 139, 251, 1.0)","rgba(242, 119, 98, 1.0)","rgba(51, 214, 171, 1.0)","rgba(188, 130, 251, 1.0)","rgba(188, 130, 251, 1.0)","rgba(255, 180, 123, 1.0)","rgba(71, 220, 245, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0},"source":[0,0,1,2,3,3,4,5],"target":[2,3,3,4,4,5,6,6],"value":[8,4,2,7,3,2,5,2]}}];"""
+                    |> chartGeneratedContains Sankey.``Styled sankey chart``
+                )
+                testCase "Sankey layout" ( fun () ->
+                    emptyLayout Sankey.``Styled sankey chart``
+                )
             ]
         ]
 
@@ -186,5 +242,19 @@ module Icicle =
     let ``Icicle chart HTML codegeneration tests`` =
         testList "HTMLCodegen.ChartDomain" [
             testList "Icicle" [
+                testCase "Icicle data" ( fun () ->
+                    """var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"marker":{"colorscale":"Viridis","line":{},"showscale":true},"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"}}];"""
+                    |> chartGeneratedContains Icicle.``Simple icicle chart``
+                )
+                testCase "Icicle layout" ( fun () ->
+                    emptyLayout Icicle.``Simple icicle chart``
+                )        
+                testCase "Icicle styled data" ( fun () ->
+                    """var data = [{"type":"icicle","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","tiling":{"flip":"x+y"},"pathbar":{}}];"""
+                    |> chartGeneratedContains Icicle.``Styled icicle chart``
+                )
+                testCase "Icicle styled layout" ( fun () ->
+                    emptyLayout Icicle.``Styled icicle chart``
+                )
             ]
         ]

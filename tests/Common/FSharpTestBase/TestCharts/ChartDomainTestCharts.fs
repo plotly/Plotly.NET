@@ -1,6 +1,7 @@
 ﻿module ChartDomainTestCharts
 
 open Plotly.NET
+open Plotly.NET.TraceObjects
 
 module Pie = 
 
@@ -82,15 +83,175 @@ module FunnelArea =
             UseDefaults = false
         )
 
-module Sunburst = ()
+module Sunburst = 
 
-module Treemap = ()
+    
+    let ``Simple sunburst chart`` =
+        Chart.Sunburst(
+            labels = ["A";"B";"C";"D";"E"],
+            parents = ["";"";"B";"B";""],
+            Values=[5.;0.;3.;2.;3.],
+            MultiText=["At";"Bt";"Ct";"Dt";"Et"], 
+            UseDefaults = false
+        )
 
-module ParralelCoord = ()
+    let ``Styled sunburst chart`` = 
+        let labelsParents = [
+            ("A",""), 20
+            ("B",""), 1
+            ("C",""), 2
+            ("D",""), 3
+            ("E",""), 4
 
-module ParralelCategories = ()
+            ("AA","A"), 15
+            ("AB","A"), 5
 
-module Sankey = ()
+            ("BA","B"), 1
+
+            ("AAA", "AA"), 10
+            ("AAB", "AA"), 5
+        ]
+
+        Chart.Sunburst(
+            labelsparents = (labelsParents |> Seq.map fst),
+            Values = (labelsParents |> Seq.map snd), 
+            BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+            SectionColorScale = StyleParam.Colorscale.Viridis,
+            ShowSectionColorScale = true,
+            SectionOutlineColor = Color.fromKeyword Black,
+            Rotation = 45,
+            UseDefaults = false
+        )
+
+module Treemap = 
+    
+    
+    let ``Styled treemap chart`` = 
+        let labelsParents = [
+            ("A",""), 20
+            ("B",""), 1
+            ("C",""), 2
+            ("D",""), 3
+            ("E",""), 4
+
+            ("AA","A"), 15
+            ("AB","A"), 5
+
+            ("BA","B"), 1
+
+            ("AAA", "AA"), 10
+            ("AAB", "AA"), 5
+        ]
+
+        Chart.Treemap(
+            labelsparents = (labelsParents |> Seq.map fst),
+            Values = (labelsParents |> Seq.map snd), 
+            BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+            SectionColorScale = StyleParam.Colorscale.Viridis,
+            ShowSectionColorScale = true,
+            SectionOutlineColor = Color.fromKeyword Black,
+            Tiling = TreemapTiling.init(Packing = StyleParam.TreemapTilingPacking.SliceDice),
+            UseDefaults = false
+        )
+
+module ParallelCoord = 
+    
+    let ``Simple parallel coordinates chart`` =
+        let data = 
+            [
+                "A",[1.;4.;3.4;0.7;]
+                "B",[3.;1.5;1.7;2.3;]
+                "C",[2.;4.;3.1;5.]
+                "D",[4.;2.;2.;4.;]
+            ]
+        Chart.ParallelCoord(keyValues = data,LineColor=Color.fromString "blue", UseDefaults = false)
+
+    let ``Styled parallel coordinates chart`` =
+
+        let dims = 
+            [
+                Dimension.initParallel(Label = "1", Values = ([1;2;3;4] ), Range = StyleParam.Range.MinMax(0., 8.))
+                Dimension.initParallel(Label = "2", Values = ([1;2;3;4] |> List.rev ), Range = StyleParam.Range.MinMax(0., 8.))
+                Dimension.initParallel(Label = "3", Values = ([1;2;3;4] ), Range = StyleParam.Range.MinMax(0., 8.))
+                Dimension.initParallel(Label = "4", Values = ([1;2;3;4] |> List.rev ), Range = StyleParam.Range.MinMax(0., 8.))
+            ]
+
+        let colors = 
+            [1;2;3;4]
+            |> Color.fromColorScaleValues
+
+        Chart.ParallelCoord(
+            dimensions = dims,
+            LineColorScale = StyleParam.Colorscale.Viridis,
+            LineColor = colors,
+            UseDefaults = false
+        )
+
+module ParallelCategories = 
+
+    let ``Simple parallel categories chart`` =
+        let dims =
+            [
+                Dimension.initParallel(Values = ["Cat1";"Cat1";"Cat1";"Cat1";"Cat2";"Cat2";"Cat3"],Label="A")
+                Dimension.initParallel(Values = [0;1;0;1;0;0;0],Label="B",TickText=["YES";"NO"])
+            ]
+    
+        Chart.ParallelCategories(
+            dimensions = dims,
+            LineColor=Color.fromColorScaleValues [0.;1.;0.;1.;0.;0.;0.],
+            LineColorScale = StyleParam.Colorscale.Blackbody, 
+            UseDefaults = false
+        )
+
+    let ``Styled parallel categories chart`` =
+        let dims =
+            [
+                Dimension.initParallel(Values = ["A";"A";"A";"B";"B";"B";"C";"D"],Label="Lvl1")
+                Dimension.initParallel(Values = ["AA";"AA";"AB";"AB";"AB";"AB";"AB";"AB"],Label="Lvl2")
+                Dimension.initParallel(Values = ["AAA";"AAB";"AAC";"AAC";"AAB";"AAB";"AAA";"AAA"],Label="Lvl3")
+            ]
+
+        Chart.ParallelCategories(
+            dimensions = dims,
+            LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
+            LineColorScale = StyleParam.Colorscale.Viridis,
+            BundleColors = false,
+            UseDefaults = false
+        )
+
+module Sankey = 
+    
+    let ``Styled sankey chart`` = 
+        Chart.Sankey(
+            nodeLabels = ["A1"; "A2"; "B1"; "B2"; "C1"; "C2"; "D1"],
+            linkedNodeIds = [
+                0,2
+                0,3
+                1,3
+                2,4
+                3,4
+                3,5
+                4,6
+                5,6
+            ],
+            NodeOutlineColor = Color.fromKeyword Black,
+            NodeOutlineWidth = 1.,
+            linkValues = [8; 4; 2; 7; 3; 2; 5; 2],
+            LinkColor = Color.fromColors [
+                Color.fromHex "#828BFB"
+                Color.fromHex "#828BFB"
+                Color.fromHex "#F27762"
+                Color.fromHex "#33D6AB"
+                Color.fromHex "#BC82FB"
+                Color.fromHex "#BC82FB"
+                Color.fromHex "#FFB47B"
+                Color.fromHex "#47DCF5"
+            ],
+            LinkOutlineColor = Color.fromKeyword Black,
+            LinkOutlineWidth = 1.,
+            UseDefaults = false
+        )
+
 
 module Table =
 
@@ -277,4 +438,44 @@ module Indicator =
         )
 
 
-module Icicle = ()
+module Icicle = 
+
+    let ``Simple icicle chart`` =
+        Chart.Icicle(
+            labels  = ["Eve"; "Cain"; "Seth"; "Enos"; "Noam"; "Abel"; "Awan"; "Enoch"; "Azura"],
+            parents = [""; "Eve"; "Eve"; "Seth"; "Seth"; "Eve"; "Eve"; "Awan"; "Eve"],
+            ShowSectionColorScale = true,
+            SectionColorScale = StyleParam.Colorscale.Viridis,
+            TilingOrientation = StyleParam.Orientation.Vertical,
+            TilingFlip = StyleParam.TilingFlip.Y,
+            PathBarEdgeShape = StyleParam.PathbarEdgeShape.BackSlash, 
+            UseDefaults = false
+        )
+
+    let ``Styled icicle chart`` = 
+        let labelsParents = [
+            ("A",""), 20
+            ("B",""), 1
+            ("C",""), 2
+            ("D",""), 3
+            ("E",""), 4
+
+            ("AA","A"), 15
+            ("AB","A"), 5
+
+            ("BA","B"), 1
+
+            ("AAA", "AA"), 10
+            ("AAB", "AA"), 5
+        ]
+
+        Chart.Icicle(
+            labelsparents = (labelsParents |> Seq.map fst),
+            Values = (labelsParents |> Seq.map snd), 
+            BranchValues = StyleParam.BranchValues.Total, // branch values are the total of their childrens values
+            SectionColorScale = StyleParam.Colorscale.Viridis,
+            ShowSectionColorScale = true,
+            SectionOutlineColor = Color.fromKeyword Black,
+            Tiling = IcicleTiling.init(Flip = StyleParam.TilingFlip.XY),
+            UseDefaults = false
+        )
