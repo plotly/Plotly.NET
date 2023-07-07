@@ -22,7 +22,7 @@ jobs:
       run: chmod u+x build.sh
     - name: Build and test
       working-directory: ./
-      run: ./build.sh runtests
+      run: ./build.sh runtestsallnonetfx
 
   build-and-test-windows:
     
@@ -36,4 +36,4 @@ jobs:
         dotnet-version: 6.x.x
     - name: Build and test (includes netfx)
       working-directory: ./
-      run: ./build.cmd runtestsnetfx
+      run: ./build.cmd runtestsall

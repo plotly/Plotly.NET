@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\docs\img\logo.png" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="TestUtils.fs" />
+    <Compile Include="TestCharts\Chart2DTestCharts.fs" />
+    <Compile Include="TestCharts\Chart3DTestCharts.fs" />
+    <Compile Include="TestCharts\ChartPolarTestCharts.fs" />
+    <Compile Include="TestCharts\ChartMapTestCharts.fs" />
+    <Compile Include="TestCharts\ChartTernaryTestCharts.fs" />
+    <Compile Include="TestCharts\ChartCarpetTestCharts.fs" />
+    <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
+    <Compile Include="TestCharts\ChartSmithTestCharts.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Deedle" Version="2.4.1" />
+    <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="FSharp.Data" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Plotly.NET\Plotly.NET.fsproj" />
+  </ItemGroup>
+
+</Project>

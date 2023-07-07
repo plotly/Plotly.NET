@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET", "src\Plotly.NET\Plotly.NET.fsproj", "{0CF51626-E5F1-453E-A689-2D95B436D96B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{61781406-92F2-4717-AB99-C67C02D4A112}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		key.snk = key.snk
+		LICENSE = LICENSE
+		README.md = README.md
+		RELEASE_NOTES.md = RELEASE_NOTES.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2FF92462-3027-47B2-BB69-0ADD97F11943}"
+	ProjectSection(SolutionItems) = preProject
+		build.cmd = build.cmd
+		build.sh = build.sh
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "build", "build\build.fsproj", "{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Dotnet|Any CPU = Dotnet|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CF51626-E5F1-453E-A689-2D95B436D96B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF51626-E5F1-453E-A689-2D95B436D96B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF51626-E5F1-453E-A689-2D95B436D96B}.Dotnet|Any CPU.ActiveCfg = Dotnet|Any CPU
+		{0CF51626-E5F1-453E-A689-2D95B436D96B}.Dotnet|Any CPU.Build.0 = Dotnet|Any CPU
+		{0CF51626-E5F1-453E-A689-2D95B436D96B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF51626-E5F1-453E-A689-2D95B436D96B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3356D9F4-4BCF-47D7-A9BB-CCB998E37B1D} = {2FF92462-3027-47B2-BB69-0ADD97F11943}
+	EndGlobalSection
+EndGlobal
