@@ -20,6 +20,7 @@
     <Compile Include="TestCharts\ChartTernaryTestCharts.fs" />
     <Compile Include="TestCharts\ChartCarpetTestCharts.fs" />
     <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
+    <Compile Include="TestCharts\ChartSmithTestCharts.fs" />
   </ItemGroup>
 
   <ItemGroup>
