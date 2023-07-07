@@ -18,6 +18,7 @@
     <Compile Include="TestCharts\ChartPolarTestCharts.fs" />
     <Compile Include="TestCharts\ChartMapTestCharts.fs" />
     <Compile Include="TestCharts\ChartTernaryTestCharts.fs" />
+    <Compile Include="TestCharts\ChartCarpetTestCharts.fs" />
     <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
   </ItemGroup>
 
