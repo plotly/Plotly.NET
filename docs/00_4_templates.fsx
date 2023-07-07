@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 ## Using premade templates
 
-premade templates can be accessed via the `ChartTemplates` module. In fact, the `ChartTemplates.plotly` template is always active by default (see [global defaults](./005_defaults.html))
+premade templates can be accessed via the `ChartTemplates` module. In fact, the `ChartTemplates.plotly` template is always active by default (see [global defaults](./00_5_defaults.html))
 *)
 open Plotly.NET
 
