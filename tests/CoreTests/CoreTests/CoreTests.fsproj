@@ -10,7 +10,7 @@
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js" />
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.19.1.min.js.LICENSE.txt" />
-    <!--Test charts-->
+    <!--HTMLCodegen-->
     <Compile Include="HTMLCodegen\Chart2D.fs" />
     <Compile Include="HTMLCodegen\Chart3D.fs" />
     <Compile Include="HTMLCodegen\ChartPolar.fs" />
@@ -19,8 +19,10 @@
     <Compile Include="HTMLCodegen\ChartCarpet.fs" />
     <Compile Include="HTMLCodegen\ChartDomain.fs" />
     <Compile Include="HTMLCodegen\ChartSmith.fs" />
-    <!--HTMLCodegen-->
-
+    <Compile Include="HTMLCodegen\SimpleTests.fs" />
+    <Compile Include="HTMLCodegen\ChartLayout.fs" />
+    <Compile Include="HTMLCodegen\MulticategoryData.fs" />
+    <!--Misc-->
     <Compile Include="ChartAPIs\WithAxis.fs" />
     <Compile Include="ChartAPIs\Combine.fs" />
     <Compile Include="CommonAbstractions\StyleParams.fs" />
@@ -32,9 +34,6 @@
     <Compile Include="Traces\TraceStaticMembers.fs" />
     <Compile Include="Traces\TraceStyle.fs" />
     <Compile Include="Traces\TraceID.fs" />
-    <Compile Include="HtmlCodegen\SimpleTests.fs" />
-    <Compile Include="HtmlCodegen\ChartLayout.fs" />
-    <Compile Include="HtmlCodegen\MulticategoryData.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
