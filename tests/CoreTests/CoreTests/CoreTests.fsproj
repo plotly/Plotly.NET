@@ -15,6 +15,7 @@
     <Compile Include="HtmlCodegen\Chart3D.fs" />
     <Compile Include="HtmlCodegen\ChartPolar.fs" />
     <Compile Include="HtmlCodegen\ChartMap.fs" />
+    <Compile Include="HtmlCodegen\ChartTernary.fs" />
     <Compile Include="HtmlCodegen\ChartDomain.fs" />
     <!--HTMLCodegen-->
 
@@ -31,7 +32,6 @@
     <Compile Include="Traces\TraceID.fs" />
     <Compile Include="HtmlCodegen\SimpleTests.fs" />
     <Compile Include="HtmlCodegen\ChartLayout.fs" />
-    <Compile Include="HtmlCodegen\TernaryCharts.fs" />
     <Compile Include="HtmlCodegen\CarpetCharts.fs" />
     <Compile Include="HtmlCodegen\CategoricalCharts.fs" />
     <Compile Include="HtmlCodegen\SmithCharts.fs" />

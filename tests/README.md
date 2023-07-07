@@ -64,7 +64,7 @@ Currently, the following test projects are contained:
 
 #### CoreTests.fsproj
 
-The largets test suirte by far that tests all things Plotly.NET, such as HTML code generation, JSON serialization, Object validity, etc.
+The largets test suite by far that tests all things Plotly.NET, such as HTML code generation, JSON serialization, Object validity, etc.
 
 #### CSharpInteroperabilityTests.csproj
 
