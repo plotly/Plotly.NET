@@ -37,7 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[4.0.0, 5.0.0)" />
     <PackageReference Include="DynamicObj" Version="2.0.0" />
-    <PackageReference Include="PuppeteerSharp" Version="9.0.2" />
+    <PackageReference Include="PuppeteerSharp" Version="10.1.0" />
   </ItemGroup>
   <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
     <ItemGroup>

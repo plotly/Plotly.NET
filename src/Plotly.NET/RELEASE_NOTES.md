@@ -1,3 +1,25 @@
+### 4.1.0 - TBD
+
+This is a maintenance release that aims to keep up with plotlyjs 2.x incremental updates.
+
+The only major change is the usage of Giraffe.ViewEngine.StrongName instead of Giraffe.ViewEngine as html dsl.
+This could be considered as a breaking change, but it's not because the Giraffe.ViewEngine.StrongName package is a drop-in replacement for Giraffe.ViewEngine with the only difference being a signed assembly
+
+- Keep up with plotlyjs 2.x incremental updates:
+  - v2.19:
+    - [Add labelalias to various axes](https://github.com/plotly/Plotly.NET/commit/f9e14fb616b1815487f002ebc35ad8bbde3b110f)
+    - [Add label attribute to shapes](https://github.com/plotly/Plotly.NET/commit/2f94e879d23b0bdd259ec76cff99ae8946b375b2)
+
+- misc fixes and improvements:
+  - []()
+
+**Additional extension package releases:**:
+
+- [Plotly.NET.ImageExport (4.0.0 -> 5.0.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.ImageExport/RELEASE_NOTES.md)
+- [Plotly.NET.Interactive (4.1.0 -> 4.2.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.Interactive/RELEASE_NOTES.md)
+- [Plotly.NET.CSharp (0.10.0 -> 0.11.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.CSharp/RELEASE_NOTES.md)
+
+
 ### 4.0.0 - February 24 2023
 
 [Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/4)

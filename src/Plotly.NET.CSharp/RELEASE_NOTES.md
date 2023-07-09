@@ -1,3 +1,7 @@
+### 0.11.0 - TBD
+
+- BREAKING: [Fix a typo in `WithMapbox` and `WithMapboxStyle`method names](https://github.com/plotly/Plotly.NET/commit/963921c68787e1368ebf79b41810024ec77c0006), thanks [hdavid333](https://github.com/hdavid333)!
+
 ### 0.10.0 - March 21 2023
 
 - Add WithLegend and WithLegendStyle extension methods to GenericChart

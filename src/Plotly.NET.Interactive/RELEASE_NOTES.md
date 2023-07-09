@@ -1,3 +1,6 @@
+## 4.2.0 - TBD
+- Update .NET interactive references
+
 ## 4.1.0 - March 21 2023
 - Update .NET interactive references
 - use strict dependency range to prevent major version increases from Plotly.NET from breaking dependent packages.
