@@ -1,20 +1,15 @@
-open System
-open Deedle
-open System.IO
-open Plotly.NET
-open Plotly.NET.LayoutObjects
-open Plotly.NET.TraceObjects
-open Plotly.NET.ConfigObjects
-open DynamicObj
-open Giraffe.ViewEngine
-open Newtonsoft.Json
+﻿module PlotlyJS_2_19_TestCharts
 
-[<EntryPoint>]
-let main argv =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+open Plotly.NET
+open Plotly.NET.TraceObjects
+open Plotly.NET.LayoutObjects
+
+module ShapeLabel =
     
-    let shapes = 
+    let internal x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let internal y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
+    
+    let internal shapes = 
         [
             Shape.init(
                 ShapeType=StyleParam.ShapeType.Rectangle,
@@ -43,10 +38,20 @@ let main argv =
                 Label = ShapeLabel.init(Text="SVGPath", TextAngle = StyleParam.TextAngle.Degrees 33)
             )
         ]
-    shapes
-    |> Seq.iter (fun shape ->
+
+
+    let ``Rectangular shape with label`` =
         Chart.Line(x = x,y = y, UseDefaults = false)    
-        |> Chart.withShape(shape)
-        |> Chart.show
-    )
-    0
+        |> Chart.withShape(shapes[0])
+
+    let ``Circular shape with label and padding`` =
+        Chart.Line(x = x,y = y, UseDefaults = false)    
+        |> Chart.withShape(shapes[1])
+
+    let ``Line shape with label`` =
+        Chart.Line(x = x,y = y, UseDefaults = false)    
+        |> Chart.withShape(shapes[2])
+
+    let ``SVGPath shape with angled label`` =
+        Chart.Line(x = x,y = y, UseDefaults = false)    
+        |> Chart.withShape(shapes[3])

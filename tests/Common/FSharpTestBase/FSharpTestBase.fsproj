@@ -21,6 +21,7 @@
     <Compile Include="TestCharts\ChartCarpetTestCharts.fs" />
     <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
     <Compile Include="TestCharts\ChartSmithTestCharts.fs" />
+    <Compile Include="TestCharts\UpstreamFeatures\2.19.fs" />
   </ItemGroup>
 
   <ItemGroup>
