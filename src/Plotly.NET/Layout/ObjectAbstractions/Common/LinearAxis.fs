@@ -83,6 +83,7 @@ type LinearAxis() =
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
     /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
     /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
     /// <param name="Domain">Sets the domain of this axis (in plot fraction).</param>
     /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
@@ -167,6 +168,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
             [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
             [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Domain: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?Position: float,
@@ -252,6 +254,7 @@ type LinearAxis() =
             ?Anchor = Anchor,
             ?Side = Side,
             ?Overlaying = Overlaying,
+            ?LabelAlias = LabelAlias,
             ?Layer = Layer,
             ?Domain = Domain,
             ?Position = Position,
@@ -338,6 +341,7 @@ type LinearAxis() =
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
     /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
     /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
     /// <param name="Domain">Sets the domain of this axis (in plot fraction).</param>
     /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
@@ -418,6 +422,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
             [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
             [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Domain: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?Position: float,
@@ -500,6 +505,7 @@ type LinearAxis() =
             ?Anchor = Anchor,
             ?Side = Side,
             ?Overlaying = Overlaying,
+            ?LabelAlias = LabelAlias,
             ?Layer = Layer,
             ?Domain = Domain,
             ?Position = Position,
@@ -556,6 +562,7 @@ type LinearAxis() =
     /// <param name="EndLine">Determines whether or not a line is drawn at along the final value of this axis. If "true", the end line is drawn on top of the grid lines.</param>
     /// <param name="EndLineColor">Sets the line color of the end line.</param>
     /// <param name="EndLineWidth">Sets the width (in px) of the end line.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="LabelPadding">Extra padding between label and the axis</param>
     /// <param name="LabelPrefix">Sets a axis label prefix.</param>
     /// <param name="LabelSuffix">Sets a axis label suffix.</param>
@@ -612,6 +619,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?EndLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?EndLineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?EndLineWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?LabelPadding: int,
             [<Optional; DefaultParameterValue(null)>] ?LabelPrefix: string,
             [<Optional; DefaultParameterValue(null)>] ?LabelSuffix: string,
@@ -669,6 +677,7 @@ type LinearAxis() =
             ?EndLine = EndLine,
             ?EndLineColor = EndLineColor,
             ?EndLineWidth = EndLineWidth,
+            ?LabelAlias = LabelAlias,
             ?LabelPadding = LabelPadding,
             ?LabelPrefix = LabelPrefix,
             ?LabelSuffix = LabelSuffix,
@@ -701,6 +710,7 @@ type LinearAxis() =
     /// <param name="ShowTickSuffix">Same as `showtickprefix` but for tick suffixes.</param>
     /// <param name="TickSuffix">Sets a tick label suffix.</param>
     /// <param name="ShowExponent">If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="ExponentFormat">Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</param>
     /// <param name="MinExponent">Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".</param>
     /// <param name="SeparateThousands">If "true", even 4-digit integers are separated</param>
@@ -713,6 +723,7 @@ type LinearAxis() =
     static member initIndicatorGauge
         (
             [<Optional; DefaultParameterValue(null)>] ?DTick: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
             [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
@@ -741,6 +752,7 @@ type LinearAxis() =
         LinearAxis()
         |> LinearAxis.style (
             ?DTick = DTick,
+            ?LabelAlias = LabelAlias,
             ?ExponentFormat = ExponentFormat,
             ?MinExponent = MinExponent,
             ?NTicks = NTicks,
@@ -841,6 +853,7 @@ type LinearAxis() =
     /// <param name="Anchor">If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to "free", this axis' position is determined by `position`.</param>
     /// <param name="Side">Determines whether a x (y) axis is positioned at the "bottom" ("left") or "top" ("right") of the plotting area.</param>
     /// <param name="Overlaying">If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If "false", this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
     /// <param name="Domain">Sets the domain of this axis (in plot fraction).</param>
     /// <param name="Position">Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".</param>
@@ -942,6 +955,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
             [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
             [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Domain: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?Position: float,
@@ -1044,6 +1058,7 @@ type LinearAxis() =
             Anchor |> DynObj.setValueOptBy axis "anchor" StyleParam.LinearAxisId.convert
             Side |> DynObj.setValueOptBy axis "side" StyleParam.Side.convert
             Overlaying |> DynObj.setValueOptBy axis "overlaying" StyleParam.LinearAxisId.convert
+            LabelAlias |> DynObj.setValueOpt axis "labelalias"
             Layer |> DynObj.setValueOptBy axis "layer" StyleParam.Layer.convert
             Domain |> DynObj.setValueOptBy axis "domain" StyleParam.Range.convert
             Position |> DynObj.setValueOpt axis "position"

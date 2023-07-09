@@ -17,6 +17,7 @@ type ColorBar() =
     /// <param name="BorderWidth">Sets the width (in px) or the border enclosing this color bar.</param>
     /// <param name="DTick">Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L&lt;f&gt;", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M&lt;n&gt;" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"</param>
     /// <param name="ExponentFormat">Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Len">Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is this length minus the padding on both ends.</param>
     /// <param name="LenMode">Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of plot "fraction" or in "pixels. Use `len` to set the value.</param>
     /// <param name="MinExponent">Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is "SI" or "B".</param>
@@ -61,6 +62,7 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?DTick: IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Len: float,
             [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
@@ -107,6 +109,7 @@ type ColorBar() =
             ?BorderWidth = BorderWidth,
             ?DTick = DTick,
             ?ExponentFormat = ExponentFormat,
+            ?LabelAlias = LabelAlias,
             ?Len = Len,
             ?LenMode = LenMode,
             ?MinExponent = MinExponent,
@@ -156,6 +159,7 @@ type ColorBar() =
     /// <param name="BorderWidth">Sets the width (in px) or the border enclosing this color bar.</param>
     /// <param name="DTick">Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L&lt;f&gt;", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M&lt;n&gt;" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"</param>
     /// <param name="ExponentFormat">Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Len">Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is this length minus the padding on both ends.</param>
     /// <param name="LenMode">Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of plot "fraction" or in "pixels. Use `len` to set the value.</param>
     /// <param name="MinExponent">Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is "SI" or "B".</param>
@@ -200,6 +204,7 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?DTick: IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Len: float,
             [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
             [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
@@ -247,6 +252,7 @@ type ColorBar() =
             BorderWidth |> DynObj.setValueOpt colorBar "borderwidth"
             DTick |> DynObj.setValueOpt colorBar "dtick"
             ExponentFormat |> DynObj.setValueOptBy colorBar "exponentformat" StyleParam.ExponentFormat.convert
+            LabelAlias |> DynObj.setValueOpt colorBar "labelalias"
             Len |> DynObj.setValueOpt colorBar "len"
             LenMode |> DynObj.setValueOptBy colorBar "lenmode" StyleParam.UnitMode.convert
             MinExponent |> DynObj.setValueOpt colorBar "min3xponent"

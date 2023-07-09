@@ -56,6 +56,7 @@ type AngularAxis() =
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="TickLabelStep">Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
     static member init
         (
@@ -102,6 +103,7 @@ type AngularAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
             [<Optional; DefaultParameterValue(null)>] ?TickLabelStep: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer
         ) =
         AngularAxis()
@@ -149,6 +151,7 @@ type AngularAxis() =
             ?TickFormat = TickFormat,
             ?TickFormatStops = TickFormatStops,
             ?TickLabelStep = TickLabelStep,
+            ?LabelAlias = LabelAlias,
             ?Layer = Layer
         )
 
@@ -198,6 +201,7 @@ type AngularAxis() =
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="TickLabelStep">Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".</param>
+    /// <param name="LabelAlias">Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.</param>
     /// <param name="Layer">Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.</param>
     static member style
         (
@@ -244,6 +248,7 @@ type AngularAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
             [<Optional; DefaultParameterValue(null)>] ?TickLabelStep: int,
+            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer
         ) =
         fun (angularAxis: AngularAxis) ->
@@ -291,6 +296,7 @@ type AngularAxis() =
             TickFormat |> DynObj.setValueOpt angularAxis "tickformat"
             TickFormatStops |> DynObj.setValueOpt angularAxis "tickformatstops"
             TickLabelStep |> DynObj.setValueOpt angularAxis "ticklabelstep"
+            LabelAlias |> DynObj.setValueOpt angularAxis "labelalias"
             Layer |> DynObj.setValueOptBy angularAxis "layer" StyleParam.Layer.convert
 
             angularAxis

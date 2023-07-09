@@ -11,42 +11,72 @@ open Newtonsoft.Json
 
 [<EntryPoint>]
 let main argv =
-    let x  = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
-    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-    
-    let shapes = 
+
+    let labelAlias = DynamicObj() 
+    labelAlias?("1") <- "<b>ONE</b>"
+    labelAlias?("0\u00B0") <- "<b>ZERO</b>"
+
+    let linAxis = LinearAxis.init(LabelAlias=labelAlias)
+    let angularAxis = AngularAxis.init(LabelAlias=labelAlias)
+    let radialAxis = RadialAxis.init(LabelAlias=labelAlias)
+    let imaginaryAxis = ImaginaryAxis.init(LabelAlias=labelAlias)
+    let realAxis = RealAxis.init(LabelAlias=labelAlias)
+    let colorBar = ColorBar.init(LabelAlias=labelAlias)
+
+    [
+        Chart.Point([1,1], UseDefaults = false) 
+        |> Chart.withXAxis(linAxis)
+        |> Chart.withYAxis(linAxis)
+
+        Chart.Point3D([1,1,1], UseDefaults = false)
+        |> Chart.withXAxis(linAxis, Id = StyleParam.SubPlotId.Scene 1)
+        |> Chart.withYAxis(linAxis, Id = StyleParam.SubPlotId.Scene 1)
+        |> Chart.withZAxis(linAxis)
+
+        Chart.PointPolar([1,1], UseDefaults = false)
+        |> Chart.withAngularAxis(angularAxis)
+        |> Chart.withRadialAxis(radialAxis)
+
+        Chart.PointTernary([1,1,1], UseDefaults = false)
+        |> Chart.withAAxis(linAxis)
+        |> Chart.withBAxis(linAxis)
+        |> Chart.withCAxis(linAxis)
+
+
         [
-            Shape.init(
-                ShapeType=StyleParam.ShapeType.Rectangle,
-                X0=2.,X1=4.,Y0=3.,Y1=4.,
-                Opacity=0.3,
-                FillColor=Color.fromHex "#d3d3d3",
-                Label = ShapeLabel.init(Text="Rectangle")
+            Chart.Carpet(
+                carpetId = "carpet1",
+                A = [4.; 4.; 4.; 4.5; 4.5; 4.5; 5.; 5.; 5.; 6.; 6.; 6.], 
+                B = [1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.; 1.; 2.; 3.], 
+                Y = [2.; 3.5; 4.; 3.; 4.5; 5.; 5.5; 6.5; 7.5; 8.; 8.5; 10.], 
+                AAxis = linAxis,
+                BAxis = linAxis,
+                UseDefaults = false
             )
-            Shape.init(
-                ShapeType=StyleParam.ShapeType.Circle,
-                X0=5.,X1=7.,Y0=3.,Y1=4.,
-                Opacity=0.3,
-                FillColor=Color.fromHex "#d3d3d3",
-                Label = ShapeLabel.init(Text="Circle", Padding = 20)
-            )
-            Shape.init(
-                ShapeType=StyleParam.ShapeType.Line,
-                    X0=1.,X1=2.,Y0=1.,Y1=2.,
-                    Opacity=0.3,
-                    FillColor=Color.fromHex "#d3d3d3",
-                    Label = ShapeLabel.init(Text="Line")
-            )
-            Shape.init(
-                ShapeType=StyleParam.ShapeType.SvgPath,
-                Path=" M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z",
-                Label = ShapeLabel.init(Text="SVGPath", TextAngle = StyleParam.TextAngle.Degrees 33)
-            )
+
         ]
-    shapes
-    |> Seq.iter (fun shape ->
-        Chart.Line(x = x,y = y, UseDefaults = false)    
-        |> Chart.withShape(shape)
-        |> Chart.show
-    )
+        |> Chart.combine
+
+        Chart.Heatmap([[1;2];[3;4]], UseDefaults = false)
+        |> Chart.withXAxis(linAxis)
+        |> Chart.withYAxis(linAxis)
+        |> Chart.withColorBar(colorBar)
+
+        Chart.PointSmith([1,2], UseDefaults = false)
+        |> Chart.withImaginaryAxis(imaginaryAxis)
+        |> Chart.withRealAxis(realAxis)
+
+        Chart.Indicator(
+            value = 1, 
+            mode = StyleParam.IndicatorMode.NumberDeltaGauge,
+            DeltaReference = 0,
+            Range = StyleParam.Range.MinMax(-1., 1.),
+            GaugeShape = StyleParam.IndicatorGaugeShape.Bullet,
+            ShowGaugeAxis = true,
+            GaugeAxis = linAxis,
+            UseDefaults = false
+        )
+
+    ]
+    |> List.iter Chart.show
     0
