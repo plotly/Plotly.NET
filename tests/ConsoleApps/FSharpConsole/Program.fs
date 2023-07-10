@@ -12,14 +12,21 @@ open Newtonsoft.Json
 [<EntryPoint>]
 let main argv =
     Chart.Point(
-        [1,2],
+        [(0,10);(10,10)],
         UseDefaults = false
     )
-    |> Chart.withTitle(
-        Title.init(
-            Text = """Lorem ipsum dolor sit amet, <br>consetetur sadipscing elitr, sed diam nonumy eirmod <br>tempor invidunt ut labore et dolore magna aliquyam erat, <br>sed diam voluptua. At vero eos et accusam et justo <br>duo dolores et ea rebum. Stet clita kasd gubergren,<br>no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br>sed diam nonumy eirmod tempor invidunt ut labore et <br>dolore magna aliquyam erat, sed diam voluptua. <br>At vero eos et accusam et justo duo dolores et ea rebum. <br>Stet clita kasd gubergren, no sea takimata sanctus est <br>Lorem ipsum dolor sit amet.""",
-            AutoMargin = true
+    |> Chart.withShape(
+        Shape.init(
+            X0 = 0,
+            X1 = 10,
+            Y0 = 10,
+            Y1 = 10,
+            ShapeType = StyleParam.ShapeType.Line,
+            Label = ShapeLabel.init(
+                TextTemplate = "Here are the values i can access:<br><b>Raw variables (from shape definition):</b><br><br>x0: %{x0}<br>x1: %{x1}<br>y0: %{y0}<br>y1: %{y1}<br><br><b>Calculated variables:</b><br><br>xcenter (calculated as (x0+x1)/2): %{xcenter}<br>ycenter (calculated as (y0+y1)/2): %{ycenter}<br>dx (calculated as x1-x0): %{dx}<br>dy (calculated as y1-y0): %{dy}<br>width (calculated as abs(x1-x0)): %{width}<br>height (calculated as abs(y1-y0)): %{height}<br>length (calculated as sqrt(dx^2+dy^2)) -- for lines only: %{length}<br>slope (calculated as (y1-y0)/(x1-x0)): %{slope}<br>"
+            )
         )
     )
+    |> Chart.withSize(1000,1000)
     |> Chart.show
     0
