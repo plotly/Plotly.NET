@@ -15,7 +15,7 @@ This could be considered as a breaking change, but it's not because the Giraffe.
     - [Add label attribute to shapes](https://github.com/plotly/Plotly.NET/commit/2f94e879d23b0bdd259ec76cff99ae8946b375b2)
 
 - misc fixes and improvements:
-  - []()
+  - [Add json generation functions for GenericChart](https://github.com/plotly/Plotly.NET/commit/6a87f86c31f76b05e1b7be00f9034c175e90c72f)
 
 **Additional extension package releases:**:
 
