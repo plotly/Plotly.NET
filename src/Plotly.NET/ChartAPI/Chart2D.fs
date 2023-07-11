@@ -544,7 +544,7 @@ module Chart2D =
         /// <summary> Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -661,7 +661,7 @@ module Chart2D =
 
         /// <summary>Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -768,7 +768,7 @@ module Chart2D =
         /// Very similar to Line Plots, spline charts are typically used to visualize an evolution of Y depending on X. </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -909,7 +909,7 @@ module Chart2D =
         /// Very similar to Line Plots, spline charts are typically used to visualize an evolution of Y depending on X.
         /// </summary>
         /// <param name="xy">Sets the x,y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -1553,7 +1553,7 @@ module Chart2D =
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -1664,7 +1664,7 @@ module Chart2D =
 
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -1771,7 +1771,7 @@ module Chart2D =
         /// <summary>Creates a Spline area chart, which uses a smoothed Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -1884,7 +1884,7 @@ module Chart2D =
 
         /// <summary>Creates a Spline area chart, which uses a smoothed Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -1992,7 +1992,7 @@ module Chart2D =
         /// <summary> Creates a stacked Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis. Multiple Charts of this type are stacked on top of each others y dimensions</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -2093,7 +2093,7 @@ module Chart2D =
 
         /// <summary> Creates a stacked Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis. Multiple Charts of this type are stacked on top of each others y dimensions</summary>
         /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -3367,7 +3367,7 @@ module Chart2D =
         /// <param name="Line">Sets the outline of the histogram's bars.</param>
         /// <param name="XError">Sets the x error of this trace.</param>
         /// <param name="YError">Sets the y error of this trace.</param>
-        /// <param name="Cumulative">Sets wether and how the cumulative distribution is displayed</param>
+        /// <param name="Cumulative">Sets whether and how the cumulative distribution is displayed</param>
         /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -3488,7 +3488,7 @@ module Chart2D =
         /// <param name="Line">Sets the outline of the histogram's bars.</param>
         /// <param name="XError">Sets the x error of this trace.</param>
         /// <param name="YError">Sets the y error of this trace.</param>
-        /// <param name="Cumulative">Sets wether and how the cumulative distribution is displayed</param>
+        /// <param name="Cumulative">Sets whether and how the cumulative distribution is displayed</param>
         /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -3578,7 +3578,7 @@ module Chart2D =
         /// <param name="YBins">Sets the binning across the y dimension</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -3660,7 +3660,7 @@ module Chart2D =
         /// <param name="YBins">Sets the binning across the y dimension</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -4033,12 +4033,12 @@ module Chart2D =
         /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
         /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
         /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
-        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="ShowBox">Whether and how to draw a miniature box plot</param>
         /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
         /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
         /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
         /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
-        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="MeanLine">Whether and how to draw the meanline</param>
         /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
         /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
         /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
@@ -4161,12 +4161,12 @@ module Chart2D =
         /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
         /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
         /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
-        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="ShowBox">Whether and how to draw a miniature box plot</param>
         /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
         /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
         /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
         /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
-        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="MeanLine">Whether and how to draw the meanline</param>
         /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
         /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
         /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
@@ -4272,12 +4272,12 @@ module Chart2D =
         /// <param name="Outline">Sets the box outline (use this for more finegrained control than the other outline-associated arguments).</param>
         /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
         /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
-        /// <param name="ShowBox">Wether and how to draw a miniature box plot</param>
+        /// <param name="ShowBox">Whether and how to draw a miniature box plot</param>
         /// <param name="BoxWidth">Sets the width of the miniature box plot</param>
         /// <param name="BoxFillColor">Sets the fill color of the miniature box plot</param>
         /// <param name="Box">Sets the styles of the miniature box plot (use this for more finegrained control than the other box-associated arguments)</param>
         /// <param name="BandWidth">Sets the bandwidth used to compute the kernel density estimate. By default, the bandwidth is determined by Silverman's rule of thumb.</param>
-        /// <param name="MeanLine">Wether and how to draw the meanline</param>
+        /// <param name="MeanLine">Whether and how to draw the meanline</param>
         /// <param name="ScaleGroup">If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together</param>
         /// <param name="ScaleMode">Sets the metric by which the width of each violin is determined."width" means each violin has the same (max) width"count" means the violins are scaled by the number of sample points makingup each violin.</param>
         /// <param name="Side">Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under "overlay" mode, where one trace has `side` set to "positive" and the other to "negative".</param>
@@ -4387,7 +4387,7 @@ module Chart2D =
         /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="Contours">Sets the style of the contours</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
@@ -4495,7 +4495,7 @@ module Chart2D =
         /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="Contours">Sets the style of the contours</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
@@ -4580,12 +4580,12 @@ module Chart2D =
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="Transpose">Transposes the z data.</param>
-        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
-        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Whether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Heatmap
@@ -4667,12 +4667,12 @@ module Chart2D =
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="Transpose">Transposes the z data.</param>
-        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
-        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Whether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Heatmap
@@ -4742,12 +4742,12 @@ module Chart2D =
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="Transpose">Transposes the z data.</param>
-        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
-        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Whether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member AnnotatedHeatmap
@@ -4847,12 +4847,12 @@ module Chart2D =
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="Transpose">Transposes the z data.</param>
-        /// <param name="UseWebGL">Wether or not to use WebGL to render this trace</param>
-        /// <param name="ReverseYAxis">Wether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
+        /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Whether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member AnnotatedHeatmap
@@ -5036,7 +5036,7 @@ module Chart2D =
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
-        /// <param name="ShowScale">Wether or not to show the colorscale/colorbar</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="Transpose">Transposes the z data.</param>
         /// <param name="ContourLineDash">Sets the contour line dash style</param>
@@ -5155,7 +5155,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
-        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
+        /// <param name="ShowXAxisRangeSlider">Whether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
@@ -5243,7 +5243,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
-        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
+        /// <param name="ShowXAxisRangeSlider">Whether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
@@ -5306,7 +5306,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
-        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
+        /// <param name="ShowXAxisRangeSlider">Whether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member OHLC
@@ -5372,7 +5372,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
-        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
+        /// <param name="ShowXAxisRangeSlider">Whether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         static member Candlestick
             (
@@ -5459,7 +5459,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
-        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
+        /// <param name="ShowXAxisRangeSlider">Whether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Candlestick
@@ -5522,7 +5522,7 @@ module Chart2D =
         /// <param name="DecreasingColor">Sets the color of decreasing values</param>
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
-        /// <param name="ShowXAxisRangeSlider">Wether or not to show a rangeslider for the xaxis</param>
+        /// <param name="ShowXAxisRangeSlider">Whether or not to show a rangeslider for the xaxis</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member Candlestick
@@ -5584,7 +5584,7 @@ module Chart2D =
         /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
         /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
         /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
-        /// <param name="ShowDiagonal">Wether or not to show the matrix diagional</param>
+        /// <param name="ShowDiagonal">Whether or not to show the matrix diagional</param>
         /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
         /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
         /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
@@ -5663,7 +5663,7 @@ module Chart2D =
         /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
         /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
         /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
-        /// <param name="ShowDiagonal">Wether or not to show the matrix diagional</param>
+        /// <param name="ShowDiagonal">Whether or not to show the matrix diagional</param>
         /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
         /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
         /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
@@ -5729,15 +5729,15 @@ module Chart2D =
         /// <param name="ContourLineColor">Sets the color of the contour lines of the histogram2dcontour trace.</param>
         /// <param name="ContourLineSmoothing">Sets the smoothing of the contour lines of the histogram2dcontour trace.</param>
         /// <param name="ContourLineWidth">Sets the width of the contour lines of the histogram2dcontour trace.</param>
-        /// <param name="ShowContourLines">Wether or not to show contour lines</param>
-        /// <param name="ShowContourLabels">Wether or not to show contour labels</param>
+        /// <param name="ShowContourLines">Whether or not to show contour lines</param>
+        /// <param name="ShowContourLabels">Whether or not to show contour labels</param>
         /// <param name="ContourColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
         /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
         /// <param name="ContourOpacity">Sets the opacity of the histogram2dcontour trace.</param>
         /// <param name="ColorBar">Sets the color bar.</param>
         /// <param name="ColorScale">Sets the colorscale of the histogram2dcontour trace.</param>
-        /// <param name="ShowScale">wether or not to show the colorbar</param>
+        /// <param name="ShowScale">whether or not to show the colorbar</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
         static member PointDensity

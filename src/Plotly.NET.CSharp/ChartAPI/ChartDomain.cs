@@ -101,7 +101,7 @@ namespace Plotly.NET.CSharp
         /// <summary>
         /// Creates a doughnut chart.
         ///
-        /// A doughnut chart is a variation of the pie chart that has a fraction cut fron the center of the slices.
+        /// A doughnut chart is a variation of the pie chart that has a fraction cut from the center of the slices.
         /// </summary>
         /// <param name="values">Sets the values of the sectors</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
@@ -276,8 +276,8 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
         /// <param name="SectionColors">Sets the colors associated with each section.</param>
         /// <param name="SectionColorScale">Sets the colorscale for the section values</param>
-        /// <param name="ShowSectionColorScale">Wether or not to show the section colorbar</param>
-        /// <param name="ReverseSectionColorScale">Wether or not to show the section colorscale</param>
+        /// <param name="ShowSectionColorScale">Whether or not to show the section colorbar</param>
+        /// <param name="ReverseSectionColorScale">Whether or not to show the section colorscale</param>
         /// <param name="SectionOutlineColor">Sets the color of the section outline.</param>
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
@@ -286,8 +286,8 @@ namespace Plotly.NET.CSharp
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
-        /// <param name="Root">Sets the styles fot the root of this trace.</param>
-        /// <param name="Leaf">Sets the styles fot the leaves of this trace.</param>
+        /// <param name="Root">Sets the styles for the root of this trace.</param>
+        /// <param name="Leaf">Sets the styles for the leaves of this trace.</param>
         /// <param name="Level">Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.</param>
         /// <param name="MaxDepth">Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.</param>
         /// <param name="Rotation">Rotates the whole diagram counterclockwise by some angle. By default the first slice starts at 3 o'clock.</param>
@@ -383,8 +383,8 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
         /// <param name="SectionColors">Sets the colors associated with each section.</param>
         /// <param name="SectionColorScale">Sets the colorscale for the section values</param>
-        /// <param name="ShowSectionColorScale">Wether or not to show the section colorbar</param>
-        /// <param name="ReverseSectionColorScale">Wether or not to show the section colorscale</param>
+        /// <param name="ShowSectionColorScale">Whether or not to show the section colorbar</param>
+        /// <param name="ReverseSectionColorScale">Whether or not to show the section colorscale</param>
         /// <param name="SectionOutlineColor">Sets the color of the section outline.</param>
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
@@ -395,7 +395,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
         /// <param name="Tiling">Sets the tiling for this trace.</param>
         /// <param name="PathBar">Sets the path bar for this trace.</param>
-        /// <param name="Root">Sets the styles fot the root of this trace.</param>
+        /// <param name="Root">Sets the styles for the root of this trace.</param>
         /// <param name="Level">Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.</param>
         /// <param name="MaxDepth">Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -481,8 +481,8 @@ namespace Plotly.NET.CSharp
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="LineColor">Sets the color of the lines that are connecting the datums on the dimensions</param>
         /// <param name="LineColorScale">Sets the colorscale of the lines that are connecting the datums on the dimensions</param>
-        /// <param name="ShowLineColorScale">Wether or not to show the colorbar of the lines that are connecting the datums on the dimensions</param>
-        /// <param name="ReverseLineColorScale">Wether or not to reverse the colorscale of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ShowLineColorScale">Whether or not to show the colorbar of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ReverseLineColorScale">Whether or not to reverse the colorscale of the lines that are connecting the datums on the dimensions</param>
         /// <param name="Line">Sets the lines that are connecting the datums on the dimensions (use this for more finegrained control than the other line-associated arguments).</param>
         /// <param name="LabelAngle">Sets the angle of the labels with respect to the horizontal. For example, a `tickangle` of -90 draws the labels vertically. Tilted labels with "labelangle" may be positioned better inside margins when `labelposition` is set to "bottom".</param>
         /// <param name="LabelFont">Sets the label font of this trace.</param>
@@ -536,8 +536,8 @@ namespace Plotly.NET.CSharp
         /// <param name="LineColor">Sets the color of the lines that are connecting the datums on the dimensions</param>
         /// <param name="LineShape">Sets the shape of the lines that are connecting the datums on the dimensions</param>
         /// <param name="LineColorScale">Sets the colorscale of the lines that are connecting the datums on the dimensions</param>
-        /// <param name="ShowLineColorScale">Wether or not to show the colorbar of the lines that are connecting the datums on the dimensions</param>
-        /// <param name="ReverseLineColorScale">Wether or not to reverse the colorscale of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ShowLineColorScale">Whether or not to show the colorbar of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ReverseLineColorScale">Whether or not to reverse the colorscale of the lines that are connecting the datums on the dimensions</param>
         /// <param name="Line">Sets the lines that are connecting the datums on the dimensions (use this for more finegrained control than the other line-associated arguments).</param>
         /// <param name="Arrangement">Sets the drag interaction mode for categories and dimensions. If `perpendicular`, the categories can only move along a line perpendicular to the paths. If `freeform`, the categories can freely move on the plane. If `fixed`, the categories and dimensions are stationary.</param>
         /// <param name="BundleColors">Sort paths so that like colors are bundled together within each category.</param>
@@ -676,7 +676,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Number">Sets the styles of the displayed number</param>
         /// <param name="GaugeShape">Sets the shape of the gauge</param>
         /// <param name="Gauge">Sets the styles of the gauge</param>
-        /// <param name="ShowGaugeAxis">Wether or not to show the gauge axis</param>
+        /// <param name="ShowGaugeAxis">Whether or not to show the gauge axis</param>
         /// <param name="GaugeAxis">Sets the gauge axis</param>
         /// <param name="UseDefaults"></param>
         public static GenericChart.GenericChart Indicator<ValueType>(
@@ -735,8 +735,8 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
         /// <param name="SectionColors">Sets the colors associated with each section.</param>
         /// <param name="SectionColorScale">Sets the colorscale for the section values</param>
-        /// <param name="ShowSectionColorScale">Wether or not to show the section colorbar</param>
-        /// <param name="ReverseSectionColorScale">Wether or not to show the section colorscale</param>
+        /// <param name="ShowSectionColorScale">Whether or not to show the section colorbar</param>
+        /// <param name="ReverseSectionColorScale">Whether or not to show the section colorscale</param>
         /// <param name="SectionOutlineColor">Sets the color of the section outline.</param>
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
@@ -750,7 +750,7 @@ namespace Plotly.NET.CSharp
         /// <param name="PathBarEdgeShape">Sets the edge shape of the pathbar.</param>
         /// <param name="PathBar">Sets the pathbar</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
-        /// <param name="Root">Sets the styles fot the root of this trace.</param>
+        /// <param name="Root">Sets the styles for the root of this trace.</param>
         /// <param name="Level">Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.</param>
         /// <param name="MaxDepth">Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>

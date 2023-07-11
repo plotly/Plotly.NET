@@ -1,6 +1,6 @@
 ### 2.0.0 +
 
-Starting from 2.0.0, Versions of Plotly.NET and expansion packages are decoupled, meaning this single realease notes page does not work anymore.
+Starting from 2.0.0, Versions of Plotly.NET and expansion packages are decoupled, meaning this single release notes page does not work anymore.
 
 For the individual package release notes, please refer to these files:
 - [Plotly.NET](./src/Plotly.NET/RELEASE_NOTES.md)
@@ -39,7 +39,7 @@ All APIs have changed significantly - this release is incompatible with 1.x and 
 	- There are 5 main categories of abstractions: `Trace` (chart data and type), `Layout`(non-data chart styling), `Config`(render options), `DisplayOptions`(html display options), `StyleParam`(DSL for styling options)
 	- Many properties used in these levels are themselves objects, which are in the respective `*Objects` namespace (e.g. `Geo`, which determines map layout of geo traces is an object on the `Layout` and therefore in the `LaoutObjects` namespace.)
 	- every object is based on `DynamicObj` and its properties can therefore be further customised by dynamic member assignment. Therefore, every plotly property can be set manually, even those which do not have direct abstractions.
-- There are now several `Trace` types for each kind of subplot (`Trace2D`, `Trace3D`, etc.) and eqivalent `Chart` types (`Chart2D`, `Chart3D`, etc). while not visible from the top level api (everything kan be accessed via the unified `Chart` API), this greatly improves correct multi chart layouting.
+- There are now several `Trace` types for each kind of subplot (`Trace2D`, `Trace3D`, etc.) and equivalent `Chart` types (`Chart2D`, `Chart3D`, etc). while not visible from the top level api (everything kan be accessed via the unified `Chart` API), this greatly improves correct multi chart layouting.
 - There are 3 ways of creating charts with increasing level of customization: 
     1. The `Chart` API as a unified API surface for chart creation and styling
         - `Chart.<ChartType>`  (e.g. `Chart.Point`) for chart creation from data and some chart specific styling options
@@ -259,7 +259,7 @@ Additional functionality and plots thanks to external open source contributors:
 
 ### 1.1.2 - Aug 16 2018
 * Support .net framework 4.7
-* Minor improvments 
+* Minor improvements
 
 ### 1.1.1 - Jun 22 2018
 * Support netStandard 2.0

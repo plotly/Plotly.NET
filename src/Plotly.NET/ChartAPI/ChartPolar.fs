@@ -378,7 +378,7 @@ module ChartPolar =
         /// </summary>
         /// <param name="r">Sets the radial coordinates of the plotted data</param>
         /// <param name="theta">Sets the angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Wether to show markers for the datums additionally to the line</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -489,7 +489,7 @@ module ChartPolar =
         /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a line.
         /// </summary>
         /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Wether to show markers for the datums additionally to the line</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -576,7 +576,7 @@ module ChartPolar =
         /// </summary>
         /// <param name="r">Sets the radial coordinates of the plotted data</param>
         /// <param name="theta">Sets the angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Wether to show markers for the datums additionally to the line</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -691,7 +691,7 @@ module ChartPolar =
         /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a smoothed line.
         /// </summary>
         /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Wether to show markers for the datums additionally to the line</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>

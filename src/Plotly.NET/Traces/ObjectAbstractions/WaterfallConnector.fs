@@ -12,7 +12,7 @@ open System.Runtime.InteropServices
 ///
 /// Line          : Sets the Line style for this WaterfallConnector
 ///
-/// Visible       : Wether or not connectors are visible
+/// Visible       : Whether or not connectors are visible
 ///
 /// ConnectorMode : Sets the shape of connector lines.
 type WaterfallConnector() =

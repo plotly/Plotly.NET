@@ -170,7 +170,7 @@ namespace Plotly.NET.CSharp
         /// </summary>
         /// <param name="real">Sets the real component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
         /// <param name="imag">Sets the imaginary component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.</param>
-        /// <param name="ShowMarkers">Wether or not to show markers for each datum.</param>
+        /// <param name="ShowMarkers">Whether or not to show markers for each datum.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
