@@ -117,6 +117,22 @@ module GenericChart =
                 Frames = []
             }
 
+    type ChartDTO =
+        {
+            [<JsonProperty("data")>]
+            Data: Trace list
+            [<JsonProperty("layout")>]
+            Layout: Layout
+            [<JsonProperty("config")>]
+            Config: Config
+        }
+        static member create data layout config =
+            {
+                Data = data
+                Layout = layout
+                Config = config
+            }
+
     //TO-DO refactor as type with static members to remove verbose top namespace from 'GenericChart.GenericChart'
     type GenericChart =
         | Chart of Trace * Layout * Config * DisplayOptions
@@ -316,6 +332,47 @@ module GenericChart =
             Description = description
         )
         |> RenderView.AsString.htmlDocument
+
+    /// <summary>
+    /// Serializes a GenericChart to a JSON string, representing the data and layout of the GenericChart:
+    ///
+    /// {
+    ///
+    /// "data": [ -serialized traces array- ] ,
+    ///
+    /// "layout": { -serialized layout object- } ,
+    ///
+    /// "frames": [ -empty array, not supported yet, legacy stuff- ]
+    ///
+    /// }
+    /// </summary>
+    /// <param name="gChart">the chart to serialize</param>
+    let toFigureJson gChart =
+        gChart
+        |> toFigure
+        |> fun f -> JsonConvert.SerializeObject(f, Globals.JSON_CONFIG)
+
+    /// <summary>
+    /// Serializes a GenericChart to a JSON string, representing the data, layout and config of the GenericChart:
+    ///
+    /// {
+    ///
+    /// "data": [ -serialized traces array- ] ,
+    ///
+    /// "layout": { -serialized layout object- } ,
+    ///
+    /// "config": { -serialized config object- }
+    ///
+    /// }
+    /// </summary>
+    /// <param name="gChart">the chart to serialize</param>
+    let toJson gChart =
+
+        ChartDTO.create 
+            (getTraces gChart)
+            (getLayout gChart)
+            (getConfig gChart)
+        |> fun dto -> JsonConvert.SerializeObject(dto, Globals.JSON_CONFIG)
 
     /// Creates a new GenericChart whose traces are the results of applying the given function to each of the trace of the GenericChart.
     let mapTrace f gChart =

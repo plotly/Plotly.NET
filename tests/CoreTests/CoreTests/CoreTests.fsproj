@@ -22,6 +22,8 @@
     <Compile Include="HTMLCodegen\SimpleTests.fs" />
     <Compile Include="HTMLCodegen\ChartLayout.fs" />
     <Compile Include="HTMLCodegen\MulticategoryData.fs" />
+    <!--JSONGen-->
+    <Compile Include="JSONGen\Chart2D.fs" />
     <!--Misc-->
     <Compile Include="ChartAPIs\WithAxis.fs" />
     <Compile Include="ChartAPIs\Combine.fs" />

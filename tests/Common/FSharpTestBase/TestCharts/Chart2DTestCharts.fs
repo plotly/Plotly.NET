@@ -163,6 +163,8 @@ module Bar =
         let keys   = ["Product A"; "Product B"; "Product C";]
         Chart.Bar(values = values, Keys = keys, UseDefaults = false)
 
+module StackedBar = 
+
     let ``Two stacked bars chart`` =
         let values = [20; 14; 23;]
         let keys   = ["Product A"; "Product B"; "Product C";]
@@ -172,8 +174,6 @@ module Bar =
         ]
         |> Chart.combine
 
-module StackedBar = ()
-
 module Column = 
 
     let ``Simple column chart`` =
@@ -181,6 +181,9 @@ module Column =
         let keys   = ["Product A"; "Product B"; "Product C";]
         Chart.Column(values = values, Keys = keys, UseDefaults = false)
 
+module StackedColumn = 
+
+    
     let ``Two stacked columns chart`` =
         let values = [20; 14; 23;]
         let keys   = ["Product A"; "Product B"; "Product C";]
@@ -189,8 +192,6 @@ module Column =
             Chart.StackedColumn(values = [8; 21; 13;], Keys = keys,Name="new", UseDefaults = false)
         ]
         |> Chart.combine
-
-module StackedColumn = ()
 
 module Histogram = 
 

@@ -203,6 +203,16 @@ module HtmlCodegen =
     let emptyLayout chart =
         "var layout = {};" |> chartGeneratedContains chart
 
+module JsonGen =
+    
+    let jsonIs chart expected =
+        let json = chart |> GenericChart.toJson
+        Expect.equal json expected $"JSON not equal to expected value."
+
+    let figureJsonIs chart expected =
+        let json = chart |> GenericChart.toFigureJson
+        Expect.equal json expected $"JSON not equal to expected value."
+
 module Objects =
 
     let jsonFieldIsSetWith fieldName expected (object:#DynamicObj) =

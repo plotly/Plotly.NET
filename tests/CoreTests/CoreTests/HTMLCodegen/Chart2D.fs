@@ -198,11 +198,11 @@ module StackedBar =
             testList "StackedBar" [
                 testCase "Stacked bar data" ( fun () ->
                     """var data = [{"type":"bar","name":"old","x":[20,14,23],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}},{"type":"bar","name":"new","x":[8,21,13],"y":["Product A","Product B","Product C"],"orientation":"h","marker":{"pattern":{}}}];"""
-                    |> chartGeneratedContains Bar.``Two stacked bars chart``
+                    |> chartGeneratedContains StackedBar.``Two stacked bars chart``
                 );
                 testCase "Stacked bar layout" ( fun () ->
                     "var layout = {\"barmode\":\"stack\"};"
-                    |> chartGeneratedContains Bar.``Two stacked bars chart``
+                    |> chartGeneratedContains StackedBar.``Two stacked bars chart``
                 );
             ]
         ]
@@ -229,11 +229,11 @@ module StackedColumn =
             testList "StackedColumn" [
                 testCase "Stacked column data" ( fun () ->
                     """var data = [{"type":"bar","name":"old","x":["Product A","Product B","Product C"],"y":[20,14,23],"orientation":"v","marker":{"pattern":{}}},{"type":"bar","name":"new","x":["Product A","Product B","Product C"],"y":[8,21,13],"orientation":"v","marker":{"pattern":{}}}];"""
-                    |> chartGeneratedContains Column.``Two stacked columns chart``
+                    |> chartGeneratedContains StackedColumn.``Two stacked columns chart``
                 );
                 testCase "Stacked column layout" ( fun () ->
                     "var layout = {\"barmode\":\"stack\"};"
-                    |> chartGeneratedContains Column.``Two stacked columns chart``
+                    |> chartGeneratedContains StackedColumn.``Two stacked columns chart``
                 );
             ]
         ]
