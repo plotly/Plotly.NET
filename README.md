@@ -29,7 +29,7 @@
 
 Plotly.NET is an Interactive charting library for **.NET** programming languages 📈🚀. 
 
-It is built on top of plotly.js and provides several API layers for creating, styling and rendering ✨**beatiful data visualizations**✨.
+It is built on top of plotly.js and provides several API layers for creating, styling and rendering ✨**beautiful data visualizations**✨.
 
 To get a deep-dive into the rationale behind the design choices of Plotly.NET, check out our [F1000Research paper](https://doi.org/10.12688/f1000research.123971.1)!
 

@@ -18,7 +18,7 @@ type Trace(traceTypeName: string) =
     member val ``type`` = traceTypeName with get, set
 
     /// <summary>
-    /// Returns Some(dynamic member value) of the trace object's underlying DynamicObj when a dynamic member eith the given name exists, and None otherwise.
+    /// Returns Some(dynamic member value) of the trace object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="trace">The trace to get the dynamic member value from</param>
@@ -286,7 +286,7 @@ type TraceStyle() =
     /// Sets trace information on the given trace.
     /// </summary>
     /// <param name="Name">Sets the name of the chart's trace(s). When the chart is a multichart (it contains multiple traces), the name is suffixed by '_%i' where %i is the index of the trace.</param>
-    /// <param name="Visible">Wether or not the chart's traces are visible</param>
+    /// <param name="Visible">Whether or not the chart's traces are visible</param>
     /// <param name="ShowLegend">Determines whether or not item(s) corresponding to this chart's trace(s) is/are shown in the legend.</param>
     /// <param name="LegendRank">Sets the legend rank for the chart's trace(s). Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
     /// <param name="LegendGroup">Sets the legend group for the chart's trace(s). Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
@@ -441,7 +441,7 @@ type TraceStyle() =
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="Colorscale">Sets the line colorscale</param>
     /// <param name="ReverseScale">Reverses the color mapping if true.</param>
-    /// <param name="ShowScale">Wether or not to show the color bar</param>
+    /// <param name="ShowScale">Whether or not to show the color bar</param>
     /// <param name="ColorBar">Sets the colorbar.</param>
     /// <param name="Dash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="Shape">Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.</param>

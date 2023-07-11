@@ -185,7 +185,7 @@ namespace Plotly.NET.CSharp
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="z">Sets the z coordinates of the plotted data.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the datums additionally to the line</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -361,7 +361,7 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="Contours">Sets the contours on the surface</param>
         /// <param name="ColorScale">Sets the colorscale of the surface</param>
-        /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         public static GenericChart.GenericChart Surface<ZType, XType, YType, TextType>(
             IEnumerable<IEnumerable<ZType>> zData, 
@@ -424,7 +424,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Color">Sets the color of the whole mesh</param>
         /// <param name="Contour">Sets the style and visibility of contours</param>
         /// <param name="ColorScale">Sets the colorscale</param>
-        /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="FlatShading">Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.</param>
         /// <param name="TriangulationAlgorithm">Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied.</param>
@@ -503,7 +503,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorScale">Sets the colorscale</param>
-        /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="SizeMode">Determines whether `sizeref` is set as a "scaled" (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as "absolute" value (in the same units as the vector field).</param>
         /// <param name="ConeAnchor">Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.</param>
@@ -580,7 +580,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorScale">Sets the colorscale</param>
-        /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="MaxDisplayed">The maximum number of displayed segments in a streamtube.</param>
         /// <param name="TubeStarts">Use this object to specify custom tube start positions</param>
@@ -650,7 +650,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorScale">Sets the colorscale</param>
-        /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="IsoMin">Sets the minimum boundary for iso-surface plot.</param>
         /// <param name="IsoMax">Sets the maximum boundary for iso-surface plot.</param>
@@ -729,7 +729,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
         /// <param name="ColorScale">Sets the colorscale</param>
-        /// <param name="ShowScale">Wether or not to show the colorbar/colorscale</param>
+        /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="ColorBar">Sets the colorbar</param>
         /// <param name="IsoMin">Sets the minimum boundary for iso-surface plot.</param>
         /// <param name="IsoMax">Sets the maximum boundary for iso-surface plot.</param>

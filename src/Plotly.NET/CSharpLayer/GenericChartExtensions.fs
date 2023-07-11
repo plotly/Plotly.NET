@@ -645,7 +645,7 @@ module GenericChartExtensions =
         ///
         /// Center          : Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
         ///
-        /// Visible         : Wether or not the base layers are visible
+        /// Visible         : Whether or not the base layers are visible
         ///
         /// Domain          : The domain of this geo subplot
         ///

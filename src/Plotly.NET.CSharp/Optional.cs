@@ -12,14 +12,14 @@ namespace Plotly.NET.CSharp
     /// with a type constraint for `IConvertible`. This means that these parameters can be both value and reference types 
     /// (e.g. `double` and `System.DateTime` both implement IConvertible).
     /// If we now have a optional parameter of type `T? where T: IConvertible` the compiler will not allow this 
-    /// without further type constrainst to eithe reference or value type.
+    /// without further type constrainst to either reference or value type.
     /// This is a problem because we want to 1. allow both, and 2. have a reliable way of determining if the value was not set 
     /// because the F# API expects to be passed `Option.None` in that case.
     /// There exist other workarounds like checking if the value is default or null, but that changes valid default values actually set to null as well.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="Value">The value to mark as optional</param>
-    /// <param name="IsSome">Wether or not the wrapped value is valid. This is used downstream to determine wether to wrap this value into `Option.Some` (if true) or `Option.None` (if false)</param>
+    /// <param name="IsSome">Whether or not the wrapped value is valid. This is used downstream to determine whether to wrap this value into `Option.Some` (if true) or `Option.None` (if false)</param>
     public readonly record struct Optional<T>(T Value, bool IsSome)
     {
         /// <summary>

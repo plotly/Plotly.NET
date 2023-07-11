@@ -23,7 +23,7 @@ type Chart =
     /// Optionally opens the generated file in the browser.
     /// </summary>
     /// <param name="path">The path to save the chart html at.</param>
-    /// <param name="OpenInBrowser">Wether or not to open the generated file in the browser (default: false)</param>
+    /// <param name="OpenInBrowser">Whether or not to open the generated file in the browser (default: false)</param>
     [<CompiledName("SaveHtml")>]
     static member saveHtml(path: string, [<Optional; DefaultParameterValue(null)>] ?OpenInBrowser: bool) =
         fun (ch: GenericChart) ->
@@ -85,7 +85,7 @@ type Chart =
     /// Sets trace information on the given chart.
     /// </summary>
     /// <param name="Name">Sets the name of the chart's trace(s). When the chart is a multichart (it contains multiple traces), the name is suffixed by '_%i' where %i is the index of the trace.</param>
-    /// <param name="Visible">Wether or not the chart's traces are visible</param>
+    /// <param name="Visible">Whether or not the chart's traces are visible</param>
     /// <param name="ShowLegend">Determines whether or not item(s) corresponding to this chart's trace(s) is/are shown in the legend.</param>
     /// <param name="LegendRank">Sets the legend rank for the chart's trace(s). Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
     /// <param name="LegendGroup">Sets the legend group for the chart's trace(s). Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
@@ -159,7 +159,7 @@ type Chart =
     /// Sets the marker for the chart's trace(s).
     /// </summary>
     /// <param name="marker">The new marker for the chart's trace(s)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already a marker (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already a marker (default is false)</param>
     [<CompiledName("SetMarker")>]
     static member setMarker(marker: Marker, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -300,7 +300,7 @@ type Chart =
     /// Sets the line for the chart's trace(s).
     /// </summary>
     /// <param name="line">The new Line for the chart's trace(s)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already a Line (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already a Line (default is false)</param>
     [<CompiledName("SetLine")>]
     static member setLine(line: Line, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -334,7 +334,7 @@ type Chart =
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="Colorscale">Sets the line colorscale</param>
     /// <param name="ReverseScale">Reverses the color mapping if true.</param>
-    /// <param name="ShowScale">Wether or not to show the color bar</param>
+    /// <param name="ShowScale">Whether or not to show the color bar</param>
     /// <param name="ColorBar">Sets the colorbar.</param>
     /// <param name="Dash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
     /// <param name="Shape">Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.</param>
@@ -399,7 +399,7 @@ type Chart =
     /// Sets the error for the x dimension for the chart's trace(s).
     /// </summary>
     /// <param name="xError">The new Error in the x dimension for the chart's trace(s)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Error object set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Error object set (default is false)</param>
     [<CompiledName("SetXError")>]
     static member setXError(xError: Error, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -477,7 +477,7 @@ type Chart =
     /// Sets the error for the y dimension for the chart's trace(s).
     /// </summary>
     /// <param name="yError">The new Error in the x dimension for the chart's trace(s)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Error object set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Error object set (default is false)</param>
     [<CompiledName("SetYError")>]
     static member setYError(yError: Error, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -555,7 +555,7 @@ type Chart =
     /// Sets the error for the z dimension for the chart's trace(s).
     /// </summary>
     /// <param name="zError">The new Error in the x dimension for the chart's trace(s)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Error object set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Error object set (default is false)</param>
     [<CompiledName("SetZError")>]
     static member setZError(zError: Error, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -633,7 +633,7 @@ type Chart =
     /// Sets the ColorBar for the chart's trace(s).
     /// </summary>
     /// <param name="colorBar">The new ColorBar for the chart's trace(s)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
     [<CompiledName("SetColorBar")>]
     static member setColorBar(colorBar: ColorBar, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -983,8 +983,8 @@ type Chart =
     /// </summary>
     /// <param name="axis">The x axis to set on the chart's layout</param>
     /// <param name="id">The target axis id with which the axis should be set.</param>
-    /// <param name="SceneAxis">If set on a scene, define wether it is the x, y or z axis. default is x.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="SceneAxis">If set on a scene, define whether it is the x, y or z axis. default is x.</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetAxis")>]
     static member setAxis
         (
@@ -1464,7 +1464,7 @@ type Chart =
     /// </summary>
     /// <param name="scene">The Scene object to set on the chart's layout</param>
     /// <param name="id">The target scene id with which the Scene object should be set.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Scene set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Scene set (default is false)</param>
     [<CompiledName("SetScene")>]
     static member setScene
         (
@@ -1554,7 +1554,7 @@ type Chart =
     /// </summary>
     /// <param name="polar">The Polar object to set on the chart's layout</param>
     /// <param name="id">The target polar id with which the Polar object should be set.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Polar set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Polar set (default is false)</param>
     [<CompiledName("SetPolar")>]
     static member setPolar
         (
@@ -1632,7 +1632,7 @@ type Chart =
     /// </summary>
     /// <param name="angularAxis">The AngularAxis to set on the target polar object on the chart's layout</param>
     /// <param name="id">The target polar id with which the AngularAxis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetAngularAxis")>]
     static member setAngularAxis
         (
@@ -1691,7 +1691,7 @@ type Chart =
     /// </summary>
     /// <param name="radialAxis">The RadialAxis to set on the target polar object on the chart's layout</param>
     /// <param name="id">The target polar id with which the RadialAxis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetRadialAxis")>]
     static member setRadialAxis
         (
@@ -1750,7 +1750,7 @@ type Chart =
     /// </summary>
     /// <param name="smith">The Smith object to set on the chart's layout</param>
     /// <param name="id">The target smith id with which the Smith object should be set.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Smith set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Smith set (default is false)</param>
     [<CompiledName("SetSmith")>]
     static member setSmith
         (
@@ -1807,7 +1807,7 @@ type Chart =
     /// </summary>
     /// <param name="imaginaryAxis">The ImaginaryAxis to set on the target polar object on the chart's layout</param>
     /// <param name="id">The target polar id with which the ImaginaryAxis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetImaginaryAxis")>]
     static member setImaginaryAxis
         (
@@ -1866,7 +1866,7 @@ type Chart =
     /// </summary>
     /// <param name="realAxis">The RealAxis to set on the target smith object on the chart's layout</param>
     /// <param name="id">The target smith id with which the RealAxis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetRealAxis")>]
     static member setRealAxis
         (
@@ -1924,7 +1924,7 @@ type Chart =
     /// </summary>
     /// <param name="geo">The Geo object to set on the chart's layout</param>
     /// <param name="id">The target Geo id with which the Geo object should be set.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Geo set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Geo set (default is false)</param>
     [<CompiledName("SetGeo")>]
     static member setGeo(geo: Geo, id: StyleParam.SubPlotId, [<Optional; DefaultParameterValue(null)>] ?Combine: bool) =
 
@@ -1960,7 +1960,7 @@ type Chart =
     /// <param name="Scope">Set the scope of the map.</param>
     /// <param name="Projection">Determines the type of projection used to display the map</param>
     /// <param name="Center">Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.</param>
-    /// <param name="Visible">Wether or not the base layers are visible</param>
+    /// <param name="Visible">Whether or not the base layers are visible</param>
     /// <param name="Domain">The domain of this geo subplot</param>
     /// <param name="ShowCoastLines">Sets whether or not the coastlines are drawn.</param>
     /// <param name="CoastLineColor">Sets the coastline color.</param>
@@ -2099,7 +2099,7 @@ type Chart =
     /// </summary>
     /// <param name="mapbox">The Mapbox object to set on the chart's layout</param>
     /// <param name="id">The target Mapbox id with which the Mapbox object should be set.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Mapbox set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Mapbox set (default is false)</param>
     [<CompiledName("SetMapbox")>]
     static member setMapbox
         (
@@ -2176,7 +2176,7 @@ type Chart =
     /// </summary>
     /// <param name="ternary">The Ternary object to set on the chart's layout</param>
     /// <param name="id">The target Ternary id with which the Ternary object should be set.</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an Ternary set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Ternary set (default is false)</param>
     [<CompiledName("SetTernary")>]
     static member setTernary
         (
@@ -2247,7 +2247,7 @@ type Chart =
     /// </summary>
     /// <param name="aAxis">The a Axis to set on the target ternary object on the chart's layout</param>
     /// <param name="id">The target ternary id with which the a Axis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetAAxis")>]
     static member setAAxis
         (
@@ -2307,7 +2307,7 @@ type Chart =
     /// </summary>
     /// <param name="bAxis">The b Axis to set on the target ternary object on the chart's layout</param>
     /// <param name="id">The target ternary id with which the b Axis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetBAxis")>]
     static member setBAxis
         (
@@ -2367,7 +2367,7 @@ type Chart =
     /// </summary>
     /// <param name="cAxis">The c Axis to set on the target ternary object on the chart's layout</param>
     /// <param name="id">The target ternary id with which the c Axis should be set.(default is 1)</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already an axis set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an axis set (default is false)</param>
     [<CompiledName("SetCAxis")>]
     static member setCAxis
         (
@@ -2426,7 +2426,7 @@ type Chart =
     /// Sets the LayoutGrid for the chart's layout.
     /// </summary>
     /// <param name="layoutGrid">The new LayoutGrid for the chart's layout</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already a ColorBar object set (default is false)</param>
     [<CompiledName("SetLayoutGrid")>]
     static member setLayoutGrid(layoutGrid: LayoutGrid, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -2504,7 +2504,7 @@ type Chart =
     /// Sets the Legend for the chart's layout.
     /// </summary>
     /// <param name="legend">The new Legend for the chart's layout</param>
-    /// <param name="Combine">Wether or not to combine the objects if there is already a Legend object set (default is false)</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already a Legend object set (default is false)</param>
     [<CompiledName("SetLegend")>]
     static member setLegend(legend: Legend, ?Combine: bool) =
         let combine = defaultArg Combine false
@@ -3043,8 +3043,8 @@ type Chart =
 
                     gChart
                     |> Chart.withAxisAnchor (xAnchor, yAnchor) // set adapted axis anchors
-                    |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
-                    |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, wether or not they will be used later)
+                    |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
+                    |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
                     |> GenericChart.mapLayout (fun l ->
                         if i > 0 then
                             // remove default axes from consecutive charts, otherwise they will override the first one

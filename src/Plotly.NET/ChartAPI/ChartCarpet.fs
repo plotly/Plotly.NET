@@ -104,7 +104,7 @@ module ChartCarpet =
         ///
         /// In general, ScatterCarpet creates a plot that uses the given carpet identifier as coordinate system.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         ///
         /// ScatterCarpet charts are the basis of PointCarpet, LineCarpet, and BubbleCarpet Charts, and can be customized as such. We also provide abstractions for those: Chart.LineCarpet, Chart.PointCarpet, Chart.BubbleCarpet
         /// </summary>
@@ -210,7 +210,7 @@ module ChartCarpet =
         ///
         /// In general, ScatterCarpet creates a plot that uses the given carpet identifier as coordinate system.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         ///
         /// ScatterCarpet charts are the basis of PointCarpet, LineCarpet, and BubbleCarpet Charts, and can be customized as such. We also provide abstractions for those: Chart.LineCarpet, Chart.PointCarpet, Chart.BubbleCarpet
         /// </summary>
@@ -300,7 +300,7 @@ module ChartCarpet =
         ///
         /// In general, PointCarpet creates a point plot that uses the given carpet identifier as coordinate system.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
         /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
@@ -377,7 +377,7 @@ module ChartCarpet =
         ///
         /// In general, PointCarpet creates a point plot that uses the given carpet identifier as coordinate system.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
         /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
@@ -446,12 +446,12 @@ module ChartCarpet =
         ///
         /// In general, LineCarpet creates a line plot that uses the given carpet identifier as coordinate system.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
         /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
         /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -542,11 +542,11 @@ module ChartCarpet =
         ///
         /// In general, LineCarpet creates a line plot that uses the given carpet identifier as coordinate system.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
         /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -630,12 +630,12 @@ module ChartCarpet =
         /// In general, SplineCarpet creates a spline plot that uses the given carpet identifier as coordinate system.
         /// A spline chart is a line chart in which data points are connected by smoothed curves.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
         /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
         /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -749,11 +749,11 @@ module ChartCarpet =
         /// In general, SplineCarpet creates a spline plot that uses the given carpet identifier as coordinate system.
         /// A spline chart is a line chart in which data points are connected by smoothed curves.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="ab">Sets the a and b-axis coordinates on the carpet.</param>
         /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
-        /// <param name="ShowMarkers">Wether to show markers for the individual data points</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -842,7 +842,7 @@ module ChartCarpet =
         ///
         /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="a">Sets the a-axis coordinates on the carpet.</param>
         /// <param name="b">Sets the b-axis coordinates on the carpet.</param>
@@ -951,7 +951,7 @@ module ChartCarpet =
         ///
         /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
         ///
-        /// Wether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
+        /// Whether the resulting plot is a cheater or true carpet plot depends on the referenced carpet.
         /// </summary>
         /// <param name="absizes">Sets the a and b-axis coordinates on the carpet and the associated bubble size.</param>
         /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>

@@ -969,7 +969,7 @@ module StyleParam =
 
         member this.Convert() = this |> DoubleClick.convert
 
-    /// Sets this figure's behavior when a user preforms a mouse 'drag' in the plot area. When set to 'zoom', a portion of the plot will be highlighted,
+    /// Sets this figure's behavior when a user performs a mouse 'drag' in the plot area. When set to 'zoom', a portion of the plot will be highlighted,
     /// when the viewer exits the drag, this highlighted section will be zoomed in on. When set to 'pan', data in the plot will move along with the viewers
     /// dragging motions. A user can always depress the 'shift' key to access the whatever functionality has not been set as the default. In 3D plots, the
     /// default drag mode is 'rotate' which rotates the scene.
@@ -1782,7 +1782,7 @@ module StyleParam =
         member this.Convert() = this |> LocationFormat.convert
 
 
-    /// Determines wether the rows of a LayoutGrid are enumerated from the top or the bottom.
+    /// Determines whether the rows of a LayoutGrid are enumerated from the top or the bottom.
     [<RequireQualifiedAccess>]
     type LayoutGridRowOrder =
         | TopToBottom
@@ -3264,7 +3264,7 @@ module StyleParam =
         override this.ToString() = this |> TextPosition.toString
         member this.Convert() = this |> TextPosition.convert
 
-    /// Determines which trace information appear on the graph and  on hove (HoverInfo)
+    /// Determines which trace information appear on the graph and on hover (HoverInfo)
     //Any combination of "label", "text", "value", "percent" joined with a "+" OR "none".
     //examples: "label", "text", "label+text", "label+text+value", "none"
     [<RequireQualifiedAccess>]
