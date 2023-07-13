@@ -205,7 +205,7 @@ The docs are contained in `.fsx` and `.md` files in the `docs` folder. To develo
 
 ## Contributors 
 
-Plotly.NET is a community maintained open source projects. Big thanks to all contributors!
+Plotly.NET is a community maintained open source project. Big thanks to all contributors!
 
 <a href="https://github.com/plotly/Plotly.NET/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=plotly/Plotly.NET" />
@@ -232,7 +232,7 @@ The `Plotly.NET.CSharp` package (written in C#, using the F# API internally) is 
 </details>
 
 <details>
-<summary>Can i use Plotly.NET in [insert your UI library here]?</summary>
+<summary>Can I use Plotly.NET in [insert your UI library here]?</summary>
 
 <br>
 
