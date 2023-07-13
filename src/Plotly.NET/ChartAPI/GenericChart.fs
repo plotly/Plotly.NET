@@ -54,10 +54,10 @@ type HTML() =
 
         let plotlyScriptRef =
             match plotlyReference with
-            | CDN cdn -> script [ _src cdn ] []
+            | CDN cdn -> script [ _src cdn; _charset "utf-8"] []
             | Full ->
                 script
-                    [ _type "text/javascript" ]
+                    [ _type "text/javascript"; _charset "utf-8"]
                     [
                         rawText (InternalUtils.getFullPlotlyJS ())
                     ]
