@@ -42,7 +42,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.1.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -457,19 +457,19 @@
 <p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/00_4_templates.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
 <a href="https://plotly.net/00_4_templates.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
 <h2><a name="Using-premade-templates" class="anchor" href="#Using-premade-templates">Using premade templates</a></h2>
-<p>premade templates can be accessed via the <code>ChartTemplates</code> module. In fact, the <code>ChartTemplates.plotly</code> template is always active by default (see <a href="./005_defaults.html">global defaults</a>)</p>
+<p>premade templates can be accessed via the <code>ChartTemplates</code> module. In fact, the <code>ChartTemplates.plotly</code> template is always active by default (see <a href="./00_5_defaults.html">global defaults</a>)</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 14)" onmouseover="showTip(event, 'fs1', 14)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="id">NET</span>
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="id">lightMirrored</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="id">Point</span><span class="pn">(</span><span class="fn">xy</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1</span><span class="pn">,</span> <span class="n">2</span> <span class="pn">]</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="m">ChartTemplates</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="id">lightMirrored</span>
 </code></pre>
-<div><div id="ee284f5a-bfaa-4241-8f08-8196b5c18e87"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_ee284f5abfaa42418f088196b5c18e87 = function() {
+<div><div id="be616576-1bf2-4fdb-81fc-83c5a9f6a7fc"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_be6165761bf24fdb81fc83c5a9f6a7fc = function() {
     var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
     var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
     var config = {"responsive":true};
-    Plotly.newPlot('ee284f5a-bfaa-4241-8f08-8196b5c18e87', data, layout, config);
+    Plotly.newPlot('be616576-1bf2-4fdb-81fc-83c5a9f6a7fc', data, layout, config);
 };
-renderPlotly_ee284f5abfaa42418f088196b5c18e87();
+renderPlotly_be6165761bf24fdb81fc83c5a9f6a7fc();
 </script></div>
 <p>Here are the contents of the template <code>plotly</code> which is used by default for all charts: <a href="https://github.com/plotly/Plotly.NET/blob/6e28decca64441320d8cffab5bcfee664b118c36/src/Plotly.NET/Templates/ChartTemplates.fs#L163-L665">https://github.com/plotly/Plotly.NET/blob/6e28decca64441320d8cffab5bcfee664b118c36/src/Plotly.NET/Templates/ChartTemplates.fs#L163-L665</a></p>
 <h2><a name="Creating-custom-templates" class="anchor" href="#Creating-custom-templates">Creating custom templates</a></h2>
@@ -489,13 +489,13 @@ renderPlotly_ee284f5abfaa42418f088196b5c18e87();
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 51)" onmouseover="showTip(event, 'fs36', 51)" class="id">myTemplateExampleChart</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs10', 52)" onmouseover="showTip(event, 'fs10', 52)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 53)" onmouseover="showTip(event, 'fs37', 53)" class="id">Point</span><span class="pn">(</span><span class="fn">xy</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1</span><span class="pn">,</span> <span class="n">2</span> <span class="pn">]</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 54)" onmouseover="showTip(event, 'fs10', 54)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 55)" onmouseover="showTip(event, 'fs12', 55)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs33', 56)" onmouseover="showTip(event, 'fs33', 56)" class="id">myTemplate</span>
 </code></pre>
-<div><div id="af5a2017-4cda-4a2a-96fc-2c4c9eab57b5"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_af5a20174cda4a2a96fc2c4c9eab57b5 = function() {
+<div><div id="0c68fa2e-48e4-435d-a716-7f059bec6e16"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_0c68fa2e48e4435da7167f059bec6e16 = function() {
     var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
     var layout = {"width":600,"height":600,"template":{"layout":{"title":{"text":"I will always be there now!"}},"data":{"scatter":[{"marker":{"size":20,"symbol":"47"}}]}}};
     var config = {"responsive":true};
-    Plotly.newPlot('af5a2017-4cda-4a2a-96fc-2c4c9eab57b5', data, layout, config);
+    Plotly.newPlot('0c68fa2e-48e4-435d-a716-7f059bec6e16', data, layout, config);
 };
-renderPlotly_af5a20174cda4a2a96fc2c4c9eab57b5();
+renderPlotly_0c68fa2e48e4435da7167f059bec6e16();
 </script></div>
 
                 </div>
@@ -577,9 +577,9 @@ from Plotly.NET<br /><em>&lt;summary&gt;
 <div class="fsdocs-tip" id="fs21">Multiple items<br />type Title =
   inherit DynamicObj
   new: unit -&gt; Title
-  static member init: ?Text: string * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?Y: float -&gt; Title
-  static member style: ?Text: string * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?Y: float -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new: unit -&gt; Title</div>
-<div class="fsdocs-tip" id="fs22">static member Title.init: ?Text: string * ?Font: Font * ?Standoff: int * ?Side: StyleParam.Side * ?X: float * ?Y: float -&gt; Title</div>
+  static member init: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?XAnchor: XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: YAnchorPosition * ?YRef: string -&gt; Title
+  static member style: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?XAnchor: XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: YAnchorPosition * ?YRef: string -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new: unit -&gt; Title</div>
+<div class="fsdocs-tip" id="fs22">static member Title.init: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: StyleParam.Side * ?X: float * ?XAnchor: StyleParam.XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: StyleParam.YAnchorPosition * ?YRef: string -&gt; Title</div>
 <div class="fsdocs-tip" id="fs23">val traceTemplates: Trace2D list</div>
 <div class="fsdocs-tip" id="fs24">Multiple items<br />type Trace2D =
   inherit Trace

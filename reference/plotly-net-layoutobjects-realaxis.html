@@ -35,7 +35,7 @@
                         </figure>
                     </a>
                     <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.0.0</h5>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.1.0</h5>
                 </div>
                 <div class="content">
                     <!-- BEGIN SEARCH BOX: this adds support for the search box -->
@@ -126,7 +126,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2406', 2406)" onmouseover="showTip(event, '2406', 2406)">
+              <code onmouseout="hideTip(event, '2309', 2309)" onmouseover="showTip(event, '2309', 2309)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -135,7 +135,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2406">
+              <div class="fsdocs-tip" id="2309">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>RealAxis<span>()</span></span></code>
@@ -202,19 +202,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2407', 2407)" onmouseover="showTip(event, '2407', 2407)">
+              <code onmouseout="hideTip(event, '2310', 2310)" onmouseover="showTip(event, '2310', 2310)">
                 <p>
                   <a id="init">
                     <a href="#init">
-                      <code><span>RealAxis.init&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
+                      <code><span>RealAxis.init&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?LabelAlias,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2407">
+              <div class="fsdocs-tip" id="2310">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>RealAxis.init&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
+                  <code><span>RealAxis.init&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?LabelAlias,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -267,6 +267,16 @@
                       <code>string</code>
                        - 
                       Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LabelAlias
+                      </b>
+                      :
+                      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+                       - 
+                      Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
                     </span>
                     <br/>
                     <span>
@@ -490,7 +500,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Smith/RealAxis.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Smith/RealAxis.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -559,6 +569,18 @@
               <dd class="fsdocs-param-docs">
                 <p>
                   Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LabelAlias
+                </span>
+                :
+                <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
                 </p>
               </dd>
               <dt class="fsdocs-param">
@@ -816,19 +838,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2408', 2408)" onmouseover="showTip(event, '2408', 2408)">
+              <code onmouseout="hideTip(event, '2311', 2311)" onmouseover="showTip(event, '2311', 2311)">
                 <p>
                   <a id="style">
                     <a href="#style">
-                      <code><span>RealAxis.style&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
+                      <code><span>RealAxis.style&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?LabelAlias,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2408">
+              <div class="fsdocs-tip" id="2311">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>RealAxis.style&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
+                  <code><span>RealAxis.style&#32;<span><span>(<span>?Color,&#32;?GridColor,&#32;?GridDash,&#32;?GridWidth,&#32;?HoverFormat,&#32;?LabelAlias,&#32;?Layer,&#32;?LineColor,&#32;?LineWidth,&#32;?ShowGrid,&#32;?ShowLine,&#32;?ShowTickLabels,&#32;?ShowTickSuffix,&#32;?ShowTickPrefix,&#32;?Side,&#32;?TickAngle,&#32;?TickColor,&#32;?TickFont,&#32;?TickFormat,&#32;?TickLen,&#32;?TickPrefix,&#32;?Ticks,&#32;?TickSuffix,&#32;?TickVals,&#32;?TickWidth,&#32;?Visible</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -881,6 +903,16 @@
                       <code>string</code>
                        - 
                       Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LabelAlias
+                      </b>
+                      :
+                      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+                       - 
+                      Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
                     </span>
                     <br/>
                     <span>
@@ -1104,7 +1136,7 @@
                 <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
                 <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Smith/RealAxis.fs#L126-126" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Smith/RealAxis.fs#L130-130" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://plotly.net/content/img/github.png" class="normal"/>
                 <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1173,6 +1205,18 @@
               <dd class="fsdocs-param-docs">
                 <p>
                   Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LabelAlias
+                </span>
+                :
+                <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
                 </p>
               </dd>
               <dt class="fsdocs-param">
