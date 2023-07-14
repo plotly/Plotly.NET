@@ -6,6 +6,7 @@ The only major change is the usage of Giraffe.ViewEngine.StrongName instead of G
 This could be considered as a breaking change, but it's not because the Giraffe.ViewEngine.StrongName package is a drop-in replacement for Giraffe.ViewEngine with the only difference being a signed assembly
 
 - Keep up with plotlyjs 2.x incremental updates:
+  - v2.22+ will be on Plotly.NET 5.0, because it introduces breaking changes.
   - v2.21:
     - [Add texttemplate attribute to shape.label](https://github.com/plotly/Plotly.NET/commit/77fc2b0c8a9de28a4745230eddd6196eb818b716)
   - v2.20:

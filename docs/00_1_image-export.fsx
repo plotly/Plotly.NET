@@ -13,7 +13,7 @@ index: 2
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
-#r "nuget: Giraffe.ViewEngine, 1.4.0"
+#r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
 #r "nuget: PuppeteerSharp, 9.0.2"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 #r "../src/Plotly.NET.ImageExport/bin/Release/netstandard2.0/Plotly.NET.ImageExport.dll"
