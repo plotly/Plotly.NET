@@ -1,4 +1,4 @@
-### 4.1.0 - TBD
+### 4.1.0 - July 14 2023
 
 This is a maintenance release that aims to keep up with plotlyjs 2.x incremental updates.
 

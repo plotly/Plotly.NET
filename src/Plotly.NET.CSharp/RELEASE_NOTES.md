@@ -1,4 +1,4 @@
-### 0.11.0 - TBD
+### 0.11.0 - July 14 2023
 
 - BREAKING: [Fix a typo in `WithMapbox` and `WithMapboxStyle`method names](https://github.com/plotly/Plotly.NET/commit/963921c68787e1368ebf79b41810024ec77c0006), thanks [hdavid333](https://github.com/hdavid333)!
 

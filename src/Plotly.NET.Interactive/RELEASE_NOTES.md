@@ -1,4 +1,4 @@
-## 4.2.0 - TBD
+## 4.2.0 - July 14 2023
 - Update .NET interactive references
 
 ## 4.1.0 - March 21 2023
