@@ -99,7 +99,7 @@ type HTML() =
 
 /// Module to represent a GenericChart
 [<Extension>]
-module GenericChart =
+module rec GenericChart =
 
     type Figure =
         {
@@ -228,9 +228,7 @@ module GenericChart =
     //         let l' = getLayouts gChart
     //         MultiChart (traces, Some (layouts@l'))
 
-    open Plotly.NET.LayoutObjects
     // Combines two GenericChart
-
     let combine (gCharts: seq<GenericChart>) =
         // temporary hard fix for some props, see https://github.com/CSBiology/DynamicObj/issues/11
 
