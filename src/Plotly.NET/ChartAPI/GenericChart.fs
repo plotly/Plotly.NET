@@ -139,9 +139,7 @@ module rec GenericChart =
         | MultiChart of Trace list * Layout * Config * DisplayOptions
         
         member this.ToDump () =
-            //let temp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid()}.html")
-            
-            let html = System.IO.File.ReadAllText "d:\\temp\\chart.html"
+            let html = toEmbeddedHTML this
     
             let iFrameType = Type.GetType("LINQPad.Controls.IFrame, LINQPad.Runtime")
             let iFrame = System.Activator.CreateInstance(iFrameType, html, true);
