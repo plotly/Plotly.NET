@@ -140,13 +140,16 @@ module rec GenericChart =
         
         /// Method to support dumping charts in LINQPad.
         // See https://www.linqpad.net/CustomizingDump.aspx
-        member private this.ToDump () =
+        member private this.ToDump () : System.Object =
             let html = toEmbeddedHTML this
     
             let iFrameType = Type.GetType("LINQPad.Controls.IFrame, LINQPad.Runtime")
-            let iFrame = System.Activator.CreateInstance(iFrameType, html, true);
-    
-            iFrame
+            
+            if isNull iFrameType then
+                this
+            else
+                let iFrame = System.Activator.CreateInstance(iFrameType, html, true);
+                iFrame
 
     let toFigure (gChart: GenericChart) =
         match gChart with
