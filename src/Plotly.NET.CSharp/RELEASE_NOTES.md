@@ -1,3 +1,7 @@
+### 0.11.1 - July 25 2023
+
+- bump version range of Plotly.NET to [4.1.0, 5.0.0)
+
 ### 0.11.0 - July 14 2023
 
 - BREAKING: [Fix a typo in `WithMapbox` and `WithMapboxStyle`method names](https://github.com/plotly/Plotly.NET/commit/963921c68787e1368ebf79b41810024ec77c0006), thanks [hdavid333](https://github.com/hdavid333)!

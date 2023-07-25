@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[4.0.0, 5.0.0)" />
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[4.1.0, 5.0.0)" />
     <PackageReference Include="DynamicObj" Version="2.0.0" />
     <PackageReference Include="PuppeteerSharp" Version="10.1.0" />
   </ItemGroup>

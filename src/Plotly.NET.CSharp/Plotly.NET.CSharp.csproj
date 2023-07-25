@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[4.0.0, 5.0.0)" />
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[4.1.0, 5.0.0)" />
   </ItemGroup>
   <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
     <ItemGroup>

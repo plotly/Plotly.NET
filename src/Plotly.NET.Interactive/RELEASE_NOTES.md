@@ -1,3 +1,7 @@
+## 4.2.1 - July 25 2023
+
+- bump version range of Plotly.NET to [4.1.0, 5.0.0)
+
 ## 4.2.0 - July 14 2023
 - Update .NET interactive references
 

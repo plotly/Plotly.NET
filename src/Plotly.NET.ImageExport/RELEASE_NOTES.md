@@ -1,3 +1,7 @@
+### 5.0.1 - July 25 2023
+
+- bump version range of Plotly.NET to [4.1.0, 5.0.0)
+
 ### 5.0.0 - July 14 2023
 
 - BREAKING: [Fix async function incorrectly not having the 'Async' suffix in compiled name](https://github.com/plotly/Plotly.NET/commit/43b1fcea330460c2ee19ad20f4fca99edfb4beb6), thanks [hdavid333](https://github.com/hdavid333)
