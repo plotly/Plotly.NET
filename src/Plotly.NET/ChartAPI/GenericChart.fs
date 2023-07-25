@@ -138,7 +138,7 @@ module rec GenericChart =
         | Chart of Trace * Layout * Config * DisplayOptions
         | MultiChart of Trace list * Layout * Config * DisplayOptions
         
-        member this.ToDump () =
+        member private this.ToDump () =
             let html = toEmbeddedHTML this
     
             let iFrameType = Type.GetType("LINQPad.Controls.IFrame, LINQPad.Runtime")
