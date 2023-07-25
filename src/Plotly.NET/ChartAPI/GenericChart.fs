@@ -138,6 +138,8 @@ module rec GenericChart =
         | Chart of Trace * Layout * Config * DisplayOptions
         | MultiChart of Trace list * Layout * Config * DisplayOptions
         
+        /// Method to support dumping charts in LINQPad.
+        // See https://www.linqpad.net/CustomizingDump.aspx
         member private this.ToDump () =
             let html = toEmbeddedHTML this
     
