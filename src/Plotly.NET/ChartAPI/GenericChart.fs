@@ -99,7 +99,7 @@ type HTML() =
 
 /// Module to represent a GenericChart
 [<Extension>]
-module GenericChart =
+module rec GenericChart =
 
     type Figure =
         {
@@ -137,6 +137,19 @@ module GenericChart =
     type GenericChart =
         | Chart of Trace * Layout * Config * DisplayOptions
         | MultiChart of Trace list * Layout * Config * DisplayOptions
+        
+        /// Method to support dumping charts in LINQPad.
+        // See https://www.linqpad.net/CustomizingDump.aspx
+        member private this.ToDump () : System.Object =
+            let html = toEmbeddedHTML this
+    
+            let iFrameType = Type.GetType("LINQPad.Controls.IFrame, LINQPad.Runtime")
+            
+            if isNull iFrameType then
+                this
+            else
+                let iFrame = System.Activator.CreateInstance(iFrameType, html, true);
+                iFrame
 
     let toFigure (gChart: GenericChart) =
         match gChart with
@@ -218,9 +231,7 @@ module GenericChart =
     //         let l' = getLayouts gChart
     //         MultiChart (traces, Some (layouts@l'))
 
-    open Plotly.NET.LayoutObjects
     // Combines two GenericChart
-
     let combine (gCharts: seq<GenericChart>) =
         // temporary hard fix for some props, see https://github.com/CSBiology/DynamicObj/issues/11
 
