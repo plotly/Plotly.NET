@@ -13,6 +13,7 @@ index: 1
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "../data/Deedle.dll"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-
@@ -34,10 +35,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 let's first create some data for the purpose of creating example charts:
 *)
-#r "nuget: FsHttp"
-#r "nuget: Deedle"
 
-open FsHttp
 open Deedle
 
 let data =

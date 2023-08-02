@@ -35,7 +35,7 @@ _This section is WIP._
 
 ### Table of contents
 
-- [Library design(#Library-design)
+- [Library design](#Library-design)
 - [GenericChart](#GenericChart)
 - [Layers of abstraction](#Layers-of-abstraction)
     - [The Chart module](#The-Chart-module)

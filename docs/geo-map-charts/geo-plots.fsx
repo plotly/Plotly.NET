@@ -13,6 +13,7 @@ index: 2
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "nuget: Deedle"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-
@@ -98,8 +99,6 @@ To connect the given (lon,lat) pairs via straight lines, use `Chart.LineGeo`.
 Below is an example that pulls external data as a Deedle data 
 frame containing the source and target locations of American Airlines flights from Feb. 2011:
 *)
-
-#r "nuget: Deedle"
 
 open Deedle
 open System.IO

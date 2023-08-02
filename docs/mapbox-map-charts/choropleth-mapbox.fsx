@@ -13,6 +13,7 @@ index: 3
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "../data/Deedle.dll"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-
@@ -90,13 +91,11 @@ To visualize some data using these counties as locations on a choropleth map, we
 *)
 
 // we use the awesome Deedle data frame library to parse and extract our location and z data
-#r "nuget: Deedle"
-
 open Deedle
 
 let data =
     __SOURCE_DIRECTORY__ + "/../data/fips-unemp-16.csv"
-    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",", schema = "fips=string,unemp=float")
+    |> fun csv -> Frame.ReadCsv(csv, true, separators = ",", schema = "fips=string,unemp=float")
 
 (**
 The data looks like this:

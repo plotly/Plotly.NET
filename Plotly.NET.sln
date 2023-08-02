@@ -123,7 +123,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_3D-charts", "03_3D-charts", "{A731D91F-56BB-4A68-8AB2-857E3BC28E2F}"
 	ProjectSection(SolutionItems) = preProject
 		docs\3D-charts\3d-cone-charts.fsx = docs\3D-charts\3d-cone-charts.fsx
-		docs\3D-charts\3d-isosurface-plots .fsx = docs\3D-charts\3d-isosurface-plots .fsx
 		docs\3D-charts\3d-mesh-plots.fsx = docs\3D-charts\3d-mesh-plots.fsx
 		docs\3D-charts\3d-scatter-plots.fsx = docs\3D-charts\3d-scatter-plots.fsx
 		docs\3D-charts\3d-streamtube-plots.fsx = docs\3D-charts\3d-streamtube-plots.fsx

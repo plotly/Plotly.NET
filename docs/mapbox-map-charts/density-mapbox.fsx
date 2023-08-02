@@ -13,6 +13,7 @@ index: 4
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "../data/Deedle.dll"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-
@@ -39,10 +40,8 @@ This Chart uses [Mapbox layers]({{root}}/6_0_geo-vs-mapbox.html) and might need 
 *)
 // we are using the awesome FSharp.Data project here to perform a http request,
 // and the awesome Deedle library to read the data as a data frame
-#r "nuget: FsHttp"
-
 open Deedle
-
+ 
 let dataDensityMapbox =
     __SOURCE_DIRECTORY__ + "/../data/earthquakes-23k.csv"
     |> fun d -> Frame.ReadCsv(d, true, separators = ",")

@@ -13,6 +13,7 @@ index: 2
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "../data/Deedle.dll"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-
@@ -73,36 +74,33 @@ For even more styling control, use the respective TraceStyle function `TraceDoma
 *)
 
 open Plotly.NET.TraceObjects
-
-#r "nuget: Deedle"
-
 open Deedle
 
 let parcoordsStyled =
 
     let data =
-        __SOURCE_DIRECTORY__ + "/../data/iris.csv"
+        __SOURCE_DIRECTORY__ + "/../data/iris_cat.csv"
         |> Frame.ReadCsv
 
     let dims =
         [ Dimension.initParallel (
               Label = "sepal_length",
-              Values = (data |> Frame.getCol "sepal length" |> Series.values),
+              Values = (data |> Frame.getCol "sepal_length" |> Series.values),
               Range = StyleParam.Range.MinMax(0., 8.)
           )
           Dimension.initParallel (
               Label = "sepal_width",
-              Values = (data |> Frame.getCol "sepal width" |> Series.values),
+              Values = (data |> Frame.getCol "sepal_width" |> Series.values),
               Range = StyleParam.Range.MinMax(0., 8.)
           )
           Dimension.initParallel (
               Label = "petal_length",
-              Values = (data |> Frame.getCol "petal length" |> Series.values),
+              Values = (data |> Frame.getCol "petal_length" |> Series.values),
               Range = StyleParam.Range.MinMax(0., 8.)
           )
           Dimension.initParallel (
               Label = "petal_width",
-              Values = (data |> Frame.getCol "petal width" |> Series.values),
+              Values = (data |> Frame.getCol "petal_width" |> Series.values),
               Range = StyleParam.Range.MinMax(0., 8.)
           ) ]
 

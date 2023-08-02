@@ -13,6 +13,7 @@ index: 3
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "../data/Deedle.dll"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-
@@ -295,17 +296,12 @@ Consider the following GeoJSON:
 *)
 
 // we are using the awesome FSharp.Data project here to perform a http request
-#r "nuget: FsHttp"
-
-open FsHttp
 open Newtonsoft.Json
+open System.IO
 
 let geoJson =
-    http {
-        GET @"https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
-    } 
-    |> Request.send
-    |> Response.toFormattedText
+    (__SOURCE_DIRECTORY__ + "/../data/geojson-counties-fips.json")
+    |> File.ReadAllText
     |> JsonConvert.DeserializeObject // the easiest way to use the GeoJSON object is deserializing the JSON string.
 
 (**
@@ -338,18 +334,12 @@ To visualize some data using these counties as locations on a choropleth map, we
 *)
 
 // we use the awesome Deedle data frame library to parse and extract our location and z data
-#r "nuget: Deedle"
 
 open Deedle
 
 let data =
-    http {
-        GET @"https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv"
-    } 
-    |> Request.send
-    |> Response.toFormattedText
-    |> fun csv -> Frame.ReadCsvString(csv, true, separators = ",", schema = "fips=string,unemp=float")
-
+    __SOURCE_DIRECTORY__ + "/../data/fips-unemp-16.csv"
+    |> fun csv -> Frame.ReadCsv(csv, true, separators = ",", schema = "fips=string,unemp=float")
 
 (**
 The data looks like this:
