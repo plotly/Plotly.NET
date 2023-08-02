@@ -1,3 +1,11 @@
+### 4.2.0 - August 02 2023
+
+This release makes Plotly.NET compatible with [LINQPad](https://www.linqpad.net/). 
+
+Read more about this on the respective [pull request](https://github.com/plotly/Plotly.NET/pull/404).
+
+Thanks a lot to [@Peter-B-](https://github.com/Peter-B-).
+
 ### 4.1.0 - July 14 2023
 
 This is a maintenance release that aims to keep up with plotlyjs 2.x incremental updates.

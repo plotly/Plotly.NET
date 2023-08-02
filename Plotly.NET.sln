@@ -42,73 +42,6 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Interactive", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F1E1-4094-9DE4-B047581E01F0}"
 	ProjectSection(SolutionItems) = preProject
-		docs\00_0_basics.fsx = docs\00_0_basics.fsx
-		docs\00_1_image-export.fsx = docs\00_1_image-export.fsx
-		docs\00_2_display-options.fsx = docs\00_2_display-options.fsx
-		docs\00_3_chart-config.fsx = docs\00_3_chart-config.fsx
-		docs\00_4_templates.fsx = docs\00_4_templates.fsx
-		docs\00_5_defaults.fsx = docs\00_5_defaults.fsx
-		docs\00_6_multi-arguments.fsx = docs\00_6_multi-arguments.fsx
-		docs\00_7_working-with-colors.fsx = docs\00_7_working-with-colors.fsx
-		docs\01_0_axis-styling.fsx = docs\01_0_axis-styling.fsx
-		docs\01_1_errorbars.fsx = docs\01_1_errorbars.fsx
-		docs\01_2_multiple-charts.fsx = docs\01_2_multiple-charts.fsx
-		docs\01_3_shapes.fsx = docs\01_3_shapes.fsx
-		docs\01_4_annotations.fsx = docs\01_4_annotations.fsx
-		docs\01_5_layout_images.fsx = docs\01_5_layout_images.fsx
-		docs\01_6_Sliders.fsx = docs\01_6_Sliders.fsx
-		docs\01_7_update_menus.fsx = docs\01_7_update_menus.fsx
-		docs\02_0_line-scatter-plots.fsx = docs\02_0_line-scatter-plots.fsx
-		docs\02_1_bar-and-column-charts.fsx = docs\02_1_bar-and-column-charts.fsx
-		docs\02_2_area-plots.fsx = docs\02_2_area-plots.fsx
-		docs\02_3_range-plots.fsx = docs\02_3_range-plots.fsx
-		docs\02_4_bubble-charts.fsx = docs\02_4_bubble-charts.fsx
-		docs\02_5_pie-doughnut-charts.fsx = docs\02_5_pie-doughnut-charts.fsx
-		docs\02_6_table.fsx = docs\02_6_table.fsx
-		docs\02_7_heatmaps.fsx = docs\02_7_heatmaps.fsx
-		docs\02_8_Images.fsx = docs\02_8_Images.fsx
-		docs\02_9_multicategory.fsx = docs\02_9_multicategory.fsx
-		docs\03_0_3d-scatter-plots.fsx = docs\03_0_3d-scatter-plots.fsx
-		docs\03_1_3d-surface-plots.fsx = docs\03_1_3d-surface-plots.fsx
-		docs\03_2_3d-mesh-plots.fsx = docs\03_2_3d-mesh-plots.fsx
-		docs\03_3_3d-cone-charts.fsx = docs\03_3_3d-cone-charts.fsx
-		docs\03_4_3d-streamtube-plots.fsx = docs\03_4_3d-streamtube-plots.fsx
-		docs\03_5_3d-volume-plots.fsx = docs\03_5_3d-volume-plots.fsx
-		docs\03_6_3d-isosurface-plots .fsx = docs\03_6_3d-isosurface-plots .fsx
-		docs\04_0_histograms.fsx = docs\04_0_histograms.fsx
-		docs\04_1_box-plots.fsx = docs\04_1_box-plots.fsx
-		docs\04_2_violin-plots.fsx = docs\04_2_violin-plots.fsx
-		docs\04_3_contour-plots.fsx = docs\04_3_contour-plots.fsx
-		docs\04_4_2d-histograms.fsx = docs\04_4_2d-histograms.fsx
-		docs\04_5_splom.fsx = docs\04_5_splom.fsx
-		docs\04_6_point-density.fsx = docs\04_6_point-density.fsx
-		docs\05_0_geo-vs-mapbox.fsx = docs\05_0_geo-vs-mapbox.fsx
-		docs\05_1_geo-plots.fsx = docs\05_1_geo-plots.fsx
-		docs\05_2_choropleth-map.fsx = docs\05_2_choropleth-map.fsx
-		docs\06_0_geo-vs-mapbox.fsx = docs\06_0_geo-vs-mapbox.fsx
-		docs\06_1_mapbox-plots.fsx = docs\06_1_mapbox-plots.fsx
-		docs\06_2_choropleth-mapbox.fsx = docs\06_2_choropleth-mapbox.fsx
-		docs\06_3_density-mapbox.fsx = docs\06_3_density-mapbox.fsx
-		docs\07_0_ohlc.fsx = docs\07_0_ohlc.fsx
-		docs\07_1_candlestick.fsx = docs\07_1_candlestick.fsx
-		docs\07_2_funnel.fsx = docs\07_2_funnel.fsx
-		docs\07_3_funnel_area.fsx = docs\07_3_funnel_area.fsx
-		docs\07_4_indicator.fsx = docs\07_4_indicator.fsx
-		docs\07_5_waterfall.fsx = docs\07_5_waterfall.fsx
-		docs\08_0_polar_line-scatter-plots.fsx = docs\08_0_polar_line-scatter-plots.fsx
-		docs\08_1_polar_bar_charts.fsx = docs\08_1_polar_bar_charts.fsx
-		docs\08_2_styling_polar_layouts.fsx = docs\08_2_styling_polar_layouts.fsx
-		docs\09_0_parallel-categories.fsx = docs\09_0_parallel-categories.fsx
-		docs\09_1_parallel-coords.fsx = docs\09_1_parallel-coords.fsx
-		docs\09_2_sankey.fsx = docs\09_2_sankey.fsx
-		docs\09_3_icicle.fsx = docs\09_3_icicle.fsx
-		docs\09_4_treemap.fsx = docs\09_4_treemap.fsx
-		docs\09_5_sunburst.fsx = docs\09_5_sunburst.fsx
-		docs\10_0_ternary_line_scatter_plots.fsx = docs\10_0_ternary_line_scatter_plots.fsx
-		docs\10_1_styling_ternary_layouts.fsx = docs\10_1_styling_ternary_layouts.fsx
-		docs\11_1_carpet_line_scatter_plots.fsx = docs\11_1_carpet_line_scatter_plots.fsx
-		docs\11_2_contourcarpet_plots.fsx = docs\11_2_contourcarpet_plots.fsx
-		docs\12_1_smith_line_scatter_plots.fsx = docs\12_1_smith_line_scatter_plots.fsx
 		docs\Dockerfile = docs\Dockerfile
 		docs\index.fsx = docs\index.fsx
 		docs\NuGet.config = docs\NuGet.config
@@ -172,6 +105,138 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpTestBase", "tests\Common\CSharpTestBase\CSharpTestBase.csproj", "{9B73CE85-9F85-42DB-8CEC-7A49B70189ED}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpTestBase", "tests\Common\FSharpTestBase\FSharpTestBase.fsproj", "{18F778B2-3409-4309-8C9B-596109072481}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_simple-charts", "02_simple-charts", "{72F32BE1-D22B-49F9-AC20-47EE94EA7B95}"
+	ProjectSection(SolutionItems) = preProject
+		docs\simple-charts\area-plots.fsx = docs\simple-charts\area-plots.fsx
+		docs\simple-charts\bar-and-column-charts.fsx = docs\simple-charts\bar-and-column-charts.fsx
+		docs\simple-charts\bubble-charts.fsx = docs\simple-charts\bubble-charts.fsx
+		docs\simple-charts\heatmaps.fsx = docs\simple-charts\heatmaps.fsx
+		docs\simple-charts\images.fsx = docs\simple-charts\images.fsx
+		docs\simple-charts\line-scatter-plots.fsx = docs\simple-charts\line-scatter-plots.fsx
+		docs\simple-charts\multicategory.fsx = docs\simple-charts\multicategory.fsx
+		docs\simple-charts\pie-doughnut-charts.fsx = docs\simple-charts\pie-doughnut-charts.fsx
+		docs\simple-charts\range-plots.fsx = docs\simple-charts\range-plots.fsx
+		docs\simple-charts\table.fsx = docs\simple-charts\table.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_3D-charts", "03_3D-charts", "{A731D91F-56BB-4A68-8AB2-857E3BC28E2F}"
+	ProjectSection(SolutionItems) = preProject
+		docs\3D-charts\3d-cone-charts.fsx = docs\3D-charts\3d-cone-charts.fsx
+		docs\3D-charts\3d-isosurface-plots .fsx = docs\3D-charts\3d-isosurface-plots .fsx
+		docs\3D-charts\3d-mesh-plots.fsx = docs\3D-charts\3d-mesh-plots.fsx
+		docs\3D-charts\3d-scatter-plots.fsx = docs\3D-charts\3d-scatter-plots.fsx
+		docs\3D-charts\3d-streamtube-plots.fsx = docs\3D-charts\3d-streamtube-plots.fsx
+		docs\3D-charts\3d-surface-plots.fsx = docs\3D-charts\3d-surface-plots.fsx
+		docs\3D-charts\3d-volume-plots.fsx = docs\3D-charts\3d-volume-plots.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11_carpet-charts", "11_carpet-charts", "{2107C818-7626-4F2C-8D8C-640BA3AC73E7}"
+	ProjectSection(SolutionItems) = preProject
+		docs\carpet-charts\carpet_line_scatter_plots.fsx = docs\carpet-charts\carpet_line_scatter_plots.fsx
+		docs\carpet-charts\contourcarpet_plots.fsx = docs\carpet-charts\contourcarpet_plots.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A9025690-FABC-4BD3-AC94-F31B60A948B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_distribution-charts", "04_distribution-charts", "{F1E45BDD-4538-45DE-BB9F-D13589920741}"
+	ProjectSection(SolutionItems) = preProject
+		docs\distribution-charts\2d-histograms.fsx = docs\distribution-charts\2d-histograms.fsx
+		docs\distribution-charts\box-plots.fsx = docs\distribution-charts\box-plots.fsx
+		docs\distribution-charts\contour-plots.fsx = docs\distribution-charts\contour-plots.fsx
+		docs\distribution-charts\histograms.fsx = docs\distribution-charts\histograms.fsx
+		docs\distribution-charts\point-density.fsx = docs\distribution-charts\point-density.fsx
+		docs\distribution-charts\splom.fsx = docs\distribution-charts\splom.fsx
+		docs\distribution-charts\violin-plots.fsx = docs\distribution-charts\violin-plots.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_chart-layout", "01_chart-layout", "{C7D0EF67-9A18-49DD-AC79-944E384BD8D0}"
+	ProjectSection(SolutionItems) = preProject
+		docs\chart-layout\annotations.fsx = docs\chart-layout\annotations.fsx
+		docs\chart-layout\axis-styling.fsx = docs\chart-layout\axis-styling.fsx
+		docs\chart-layout\errorbars.fsx = docs\chart-layout\errorbars.fsx
+		docs\chart-layout\layout_images.fsx = docs\chart-layout\layout_images.fsx
+		docs\chart-layout\multiple-charts.fsx = docs\chart-layout\multiple-charts.fsx
+		docs\chart-layout\shapes.fsx = docs\chart-layout\shapes.fsx
+		docs\chart-layout\sliders.fsx = docs\chart-layout\sliders.fsx
+		docs\chart-layout\update_menus.fsx = docs\chart-layout\update_menus.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09_categorical-charts", "09_categorical-charts", "{5CF8B13D-1FDA-4CE2-8E94-D4CCF3C2FF7E}"
+	ProjectSection(SolutionItems) = preProject
+		docs\categorical-charts\icicle.fsx = docs\categorical-charts\icicle.fsx
+		docs\categorical-charts\parallel-categories.fsx = docs\categorical-charts\parallel-categories.fsx
+		docs\categorical-charts\parallel-coords.fsx = docs\categorical-charts\parallel-coords.fsx
+		docs\categorical-charts\sankey.fsx = docs\categorical-charts\sankey.fsx
+		docs\categorical-charts\sunburst.fsx = docs\categorical-charts\sunburst.fsx
+		docs\categorical-charts\treemap.fsx = docs\categorical-charts\treemap.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_general", "00_general", "{1DC28919-9EA4-4C4F-8498-0F8F6ED310AB}"
+	ProjectSection(SolutionItems) = preProject
+		docs\general\basics.fsx = docs\general\basics.fsx
+		docs\general\chart-config.fsx = docs\general\chart-config.fsx
+		docs\general\defaults.fsx = docs\general\defaults.fsx
+		docs\general\display-options.fsx = docs\general\display-options.fsx
+		docs\general\image-export.fsx = docs\general\image-export.fsx
+		docs\general\multi-arguments.fsx = docs\general\multi-arguments.fsx
+		docs\general\styling-markers.fsx = docs\general\styling-markers.fsx
+		docs\general\templates.fsx = docs\general\templates.fsx
+		docs\general\working-with-colors.fsx = docs\general\working-with-colors.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07_finance-charts", "07_finance-charts", "{4F46C723-889A-45F7-977C-60146455B6AA}"
+	ProjectSection(SolutionItems) = preProject
+		docs\finance-charts\candlestick.fsx = docs\finance-charts\candlestick.fsx
+		docs\finance-charts\funnel.fsx = docs\finance-charts\funnel.fsx
+		docs\finance-charts\funnel_area.fsx = docs\finance-charts\funnel_area.fsx
+		docs\finance-charts\indicator.fsx = docs\finance-charts\indicator.fsx
+		docs\finance-charts\ohlc.fsx = docs\finance-charts\ohlc.fsx
+		docs\finance-charts\waterfall.fsx = docs\finance-charts\waterfall.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_geo-map-charts", "05_geo-map-charts", "{A872A11A-9459-42A9-8B14-0195B66D121F}"
+	ProjectSection(SolutionItems) = preProject
+		docs\geo-map-charts\choropleth-map.fsx = docs\geo-map-charts\choropleth-map.fsx
+		docs\geo-map-charts\geo-plots.fsx = docs\geo-map-charts\geo-plots.fsx
+		docs\geo-map-charts\geo-vs-mapbox.fsx = docs\geo-map-charts\geo-vs-mapbox.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_mapbox-map-charts", "06_mapbox-map-charts", "{722ED5DC-FF5E-44C1-A91B-2D094B92B3DA}"
+	ProjectSection(SolutionItems) = preProject
+		docs\mapbox-map-charts\choropleth-mapbox.fsx = docs\mapbox-map-charts\choropleth-mapbox.fsx
+		docs\mapbox-map-charts\density-mapbox.fsx = docs\mapbox-map-charts\density-mapbox.fsx
+		docs\mapbox-map-charts\geo-vs-mapbox.fsx = docs\mapbox-map-charts\geo-vs-mapbox.fsx
+		docs\mapbox-map-charts\mapbox-plots.fsx = docs\mapbox-map-charts\mapbox-plots.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "12_smith-charts", "12_smith-charts", "{D36E0ABA-B89C-42D9-A2AD-CFA1B3D1E08A}"
+	ProjectSection(SolutionItems) = preProject
+		docs\smith-charts\smith_line_scatter_plots.fsx = docs\smith-charts\smith_line_scatter_plots.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08_polar-charts", "08_polar-charts", "{7432D5ED-0D0D-4F15-A3AC-CC2BFA4F211F}"
+	ProjectSection(SolutionItems) = preProject
+		docs\polar-charts\polar_bar_charts.fsx = docs\polar-charts\polar_bar_charts.fsx
+		docs\polar-charts\polar_line-scatter-plots.fsx = docs\polar-charts\polar_line-scatter-plots.fsx
+		docs\polar-charts\styling_polar_layouts.fsx = docs\polar-charts\styling_polar_layouts.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10_ternary-charts", "10_ternary-charts", "{2DF92AB2-7B8C-48D5-B779-26BA1F31BCA1}"
+	ProjectSection(SolutionItems) = preProject
+		docs\ternary-charts\styling_ternary_layouts.fsx = docs\ternary-charts\styling_ternary_layouts.fsx
+		docs\ternary-charts\ternary_line_scatter_plots.fsx = docs\ternary-charts\ternary_line_scatter_plots.fsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{0D955C86-2E86-4D50-828A-6CF5AD99A119}"
+	ProjectSection(SolutionItems) = preProject
+		docs\data\2011_february_aa_flight_paths.csv = docs\data\2011_february_aa_flight_paths.csv
+		docs\data\fips-unemp-16.csv = docs\data\fips-unemp-16.csv
+		docs\data\geojson-counties-fips.json = docs\data\geojson-counties-fips.json
+		docs\data\iris.csv = docs\data\iris.csv
+		docs\data\streamtube-wind.csv = docs\data\streamtube-wind.csv
+		docs\data\volcano.csv = docs\data\volcano.csv
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -291,6 +356,21 @@ Global
 		{6CFE1FBD-0999-4704-9F79-8A3D31580477} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
 		{9B73CE85-9F85-42DB-8CEC-7A49B70189ED} = {6CFE1FBD-0999-4704-9F79-8A3D31580477}
 		{18F778B2-3409-4309-8C9B-596109072481} = {6CFE1FBD-0999-4704-9F79-8A3D31580477}
+		{72F32BE1-D22B-49F9-AC20-47EE94EA7B95} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{A731D91F-56BB-4A68-8AB2-857E3BC28E2F} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{2107C818-7626-4F2C-8D8C-640BA3AC73E7} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{A9025690-FABC-4BD3-AC94-F31B60A948B4} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
+		{F1E45BDD-4538-45DE-BB9F-D13589920741} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{C7D0EF67-9A18-49DD-AC79-944E384BD8D0} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{5CF8B13D-1FDA-4CE2-8E94-D4CCF3C2FF7E} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{1DC28919-9EA4-4C4F-8498-0F8F6ED310AB} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{4F46C723-889A-45F7-977C-60146455B6AA} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{A872A11A-9459-42A9-8B14-0195B66D121F} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{722ED5DC-FF5E-44C1-A91B-2D094B92B3DA} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{D36E0ABA-B89C-42D9-A2AD-CFA1B3D1E08A} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{7432D5ED-0D0D-4F15-A3AC-CC2BFA4F211F} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{2DF92AB2-7B8C-48D5-B779-26BA1F31BCA1} = {A9025690-FABC-4BD3-AC94-F31B60A948B4}
+		{0D955C86-2E86-4D50-828A-6CF5AD99A119} = {7B09CC0A-F1E1-4094-9DE4-B047581E01F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}

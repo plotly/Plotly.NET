@@ -1,6 +1,8 @@
 (*** hide ***)
 
 (*** condition: prepare ***)
+#r "nuget: Deedle"
+#r "nuget: FsHttp"
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
@@ -19,7 +21,6 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 # Plotly.NET
  
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/{{fsdocs-source-basename}}.ipynb)&emsp;
-[![Script]({{root}}img/badge-script.svg)]({{root}}{{fsdocs-source-basename}}.fsx)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
 Plotly.NET provides functions for generating and rendering plotly.js charts in **.NET** programming languages 📈🚀. 
@@ -106,7 +107,7 @@ If the interactive extension does not work, please file an issue and we will try
 
 A possible fix for this is the inclusion of Dotnet.Interactive preview package sources. To use these, add the following lines before referencning Plotly.NET.Interactive:
 
-```
+```no-hl
 #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json"
 #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json"
 ```
