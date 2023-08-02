@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Basics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <meta name="description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Basics">
+
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:title" content="Plotly.NET documentation for: Basics" />
+    <meta property="og:url" content="https://plotly.net/general/basics.html">
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    <meta property="og:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Basics">
+    <meta property="og:image" content="https://plotly.net/">
+
+    <!-- Twitter cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://plotly.net/general/basics.html">
+    <meta property="twitter:url" content="https://plotly.net">
+    <meta name="twitter:title" content="Plotly.NET documentation for: Basics">
+    <meta name="twitter:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Basics">
+    <meta name="twitter:image" content="https://plotly.net/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.18.1.min.js"></script>
+    <script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  General
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header">
+  Chart Layout
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-header">
+  Simple Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header">
+  3D Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header">
+  Distribution Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-header">
+  Geo map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Polar Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Categorical Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Carpet Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header">
+  Smith Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    
+<p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/general/basics.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/general/basics.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<h1><a name="Plotly-NET-basics" class="anchor" href="#Plotly-NET-basics">Plotly.NET basics</a></h1>
+<p><em>This section is WIP.</em></p>
+<h3><a name="Table-of-contents" class="anchor" href="#Table-of-contents">Table of contents</a></h3>
+<ul>
+<li><a href="#Library-design">Library design</a></li>
+<li><a href="#GenericChart">GenericChart</a></li>
+<li>
+<a href="#Layers-of-abstraction">Layers of abstraction</a>
+<ul>
+<li><a href="#The-Chart-module">The Chart module</a></li>
+<li><a href="#The-TraceStyle-modules">The TraceStyle modules</a></li>
+<li><a href="#Dynamic-object">Dynamic object</a></li>
+</ul>
+</li>
+</ul>
+<h2><a name="Library-design" class="anchor" href="#Library-design">Library design</a></h2>
+<p>Plotly.NET is a .NET wrapper for creation of <a href="https://plot.ly">plotly charts</a>. This means that, under the hood, all functionality creates JSON objects that can be rendered by plotly.</p>
+<p>A plotly.js chart consists of 3 objects:</p>
+<ul>
+<li><code>data</code>, which is a collection of <code>traces</code> which represent the data and chart type used to visualize the data</li>
+<li><code>layout</code>, which controls the general chart layout such as axis positions and styles</li>
+<li><code>config</code> high level properties of the chart like making all chart elements editable or the tool bar on top</li>
+</ul>
+<p>These are mirrored in Plotly.NET's central type, <code>GenericChart</code>:</p>
+<h2><a name="GenericChart" class="anchor" href="#GenericChart">GenericChart</a></h2>
+<p>The central type that gets created by all Chart constructors is <code>GenericChart</code>, which itself represents either a single chart or a multi chart (as a Discriminate Union type). It looks like this:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="rt">GenericChart</span> <span class="o">=</span>
+    <span class="pn">|</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="uc">Chart</span> <span class="k">of</span> <span class="id">Trace</span> <span class="pn">*</span> <span class="id">Layout</span> <span class="pn">*</span> <span class="id">Config</span> <span class="pn">*</span> <span class="id">DisplayOptions</span>
+    <span class="pn">|</span> <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="uc">MultiChart</span> <span class="k">of</span> <span class="id">Trace</span> <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="rt">list</span> <span class="pn">*</span> <span class="id">Layout</span> <span class="pn">*</span> <span class="id">Config</span> <span class="pn">*</span> <span class="id">DisplayOptions</span>
+</code></pre>
+<p>As you can see, a <code>GenericChart</code> consists of four top level objects - <code>Trace</code> (multiple of those in the case of a MultiChart) , <code>Layout</code>, <code>Config</code>, and <code>DisplayOptions</code>.</p>
+<ul>
+<li><code>Trace</code> is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.</li>
+<li><code>Layout</code> is everything of the chart that is not dataset specific - e.g. the shape and style of axes, the chart title, etc.</li>
+<li><code>Config</code> is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top</li>
+<li><code>DisplayOptions</code> is an object that contains meta information about how the html document that contains the chart.</li>
+</ul>
+<h2><a name="Layers-of-abstraction" class="anchor" href="#Layers-of-abstraction">Layers of abstraction</a></h2>
+<p>Plotly.NET uses multiple layers of abstractions to generate valid plotly.js JSON objects with different levels of control and complexity:</p>
+<h3><a name="The-Chart-module" class="anchor" href="#The-Chart-module">The Chart module</a></h3>
+<p>The <code>Chart</code> module provides the highest layer of abstraction. Here, plotly.js trace types are broken down to the most common and useful styling options, and combined with common layout settings.
+It also provides composite charts which consist of multiple traces such as <code>Chart.Range</code>, which really is a combination of 3 scatter traces.</p>
+<p>In general, we recommend always using named arguments - even for mandatory arguments - as future changes/addition to the API might change the argument order.</p>
+<p>Here is an example on how to create a simple 2D point chart:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 18)" onmouseover="showTip(event, 'fs1', 18)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 19)" onmouseover="showTip(event, 'fs2', 19)" class="id">NET</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 20)" onmouseover="showTip(event, 'fs13', 20)" class="id">pointChart</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 22)" onmouseover="showTip(event, 'fs15', 22)" class="id">Point</span><span class="pn">(</span><span class="fn">xy</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1</span><span class="pn">,</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span><span class="pn">,</span> <span class="n">4</span> <span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+<div><div id="bed50e43-46cc-44f7-8fa1-1c9c39c36471"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_bed50e4346cc44f78fa11c9c39c36471 = function() {
+    var data = [{"type":"scatter","mode":"markers","x":[1,3],"y":[2,4],"marker":{},"line":{}}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}}};
+    var config = {"responsive":true};
+    Plotly.newPlot('bed50e43-46cc-44f7-8fa1-1c9c39c36471', data, layout, config);
+};
+renderPlotly_bed50e4346cc44f78fa11c9c39c36471();
+</script></div>
+<h3><a name="The-TraceStyle-modules" class="anchor" href="#The-TraceStyle-modules">The TraceStyle modules</a></h3>
+<p>The TraceStyle modules offer access to all parameters supported by plotly.js for the respective trace type. If you want to create a <code>scatter</code> trace, you can use the function
+<code>Trace2D.initScatter</code>, which will initialize an empty trace of type <code>scatter</code> and apply a styling function to it. This function would be <code>Trace2DStyle.Scatter</code>, which can apply all scatter related parameters to a trace.
+In contrast to the <code>Chart</code> module, the parameters are named exactly the same as in plotly.js (but in PascalCase).</p>
+<p>To create a GenericChart from a <code>Trace</code> object, you can use <code>GenericChart.ofTraceObject</code>.
+Compare how many more styling options you have compared to <code>Chart.Point</code> above, but also take a look at how more verbose you have to be.
+You can clearly see the advantages and disadvantages of both approaches.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="id">withTraceStyle</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="rt">Trace2D</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 28)" onmouseover="showTip(event, 'fs20', 28)" class="id">initScatter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 29)" onmouseover="showTip(event, 'fs21', 29)" class="rt">Trace2DStyle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 30)" onmouseover="showTip(event, 'fs22', 30)" class="id">Scatter</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 31)" onmouseover="showTip(event, 'fs23', 31)" class="fn">X</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1</span><span class="pn">;</span> <span class="n">3</span> <span class="pn">]</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs24', 32)" onmouseover="showTip(event, 'fs24', 32)" class="fn">Y</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">2</span><span class="pn">;</span> <span class="n">4</span> <span class="pn">]</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 34)" onmouseover="showTip(event, 'fs25', 34)" class="id">ofTraceObject</span> <span class="k">true</span>
+</code></pre>
+<div><div id="d28048ad-4717-4142-bbb0-1fd42528c400"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_d28048ad47174142bbb01fd42528c400 = function() {
+    var data = [{"type":"scatter","x":[1,3],"y":[2,4]}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}}};
+    var config = {"responsive":true};
+    Plotly.newPlot('d28048ad-4717-4142-bbb0-1fd42528c400', data, layout, config);
+};
+renderPlotly_d28048ad47174142bbb01fd42528c400();
+</script></div>
+<h3><a name="Dynamic-object" class="anchor" href="#Dynamic-object">Dynamic object</a></h3>
+<p>The prime directive for all functions provided by Plotly.NET is the construction of valid plotly JSON objects.
+For this purpose, <code>Trace</code>, <code>Layout</code>, and <code>Config</code> (and many other internal objects) are inheriting from <a href="https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET/DynamicObj.fs"><code>DynamicObj</code></a>,
+an extension of <code>DynamicObject</code> which makes it possible to set arbitraryly named and typed properties of these objects via the <code>?</code> operator.</p>
+<p>If you want to exactly mirror a plotly.js tutorial, or want to set properties that for any reason are not abstracted in Plotly.NET,
+it can be useful to use the power of DynamicObj to set the parameters directly. Just make sure that the property name is exactly the same as in plotly.js (all lowercase)</p>
+<p>So if you want to set any kind of property on one of these objects you can do it in a very declarative way like this:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 38)" onmouseover="showTip(event, 'fs26', 38)" class="id">myTrace</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 39)" onmouseover="showTip(event, 'fs27', 39)" class="fn">Trace</span><span class="pn">(</span><span class="s">&quot;scatter&quot;</span><span class="pn">)</span> <span class="c">// create a scatter trace</span>
+<span onmouseout="hideTip(event, 'fs26', 40)" onmouseover="showTip(event, 'fs26', 40)" class="pn">myTrace</span><span class="o">?</span><span class="id">x</span> <span class="k">&lt;-</span> <span class="pn">[</span> <span class="n">0</span><span class="pn">;</span> <span class="n">3</span> <span class="pn">]</span> <span class="c">// set the x property (the x dimension of the data)</span>
+<span onmouseout="hideTip(event, 'fs26', 41)" onmouseover="showTip(event, 'fs26', 41)" class="pn">myTrace</span><span class="o">?</span><span class="id">y</span> <span class="k">&lt;-</span> <span class="pn">[</span> <span class="n">2</span><span class="pn">;</span> <span class="n">4</span> <span class="pn">]</span> <span class="c">// set the y property (the y dimension of the data)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 42)" onmouseover="showTip(event, 'fs28', 42)" class="id">withDynObj</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 43)" onmouseover="showTip(event, 'fs16', 43)" class="m">GenericChart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 44)" onmouseover="showTip(event, 'fs25', 44)" class="id">ofTraceObject</span> <span class="k">true</span> <span onmouseout="hideTip(event, 'fs26', 45)" onmouseover="showTip(event, 'fs26', 45)" class="id">myTrace</span>
+</code></pre>
+<div><div id="d858ca37-ba93-4324-979a-c3515a78f294"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_d858ca37ba934324979ac3515a78f294 = function() {
+    var data = [{"type":"scatter","x":[0,3],"y":[2,4]}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}}};
+    var config = {"responsive":true};
+    Plotly.newPlot('d858ca37-ba93-4324-979a-c3515a78f294', data, layout, config);
+};
+renderPlotly_d858ca37ba934324979ac3515a78f294();
+</script></div>
+<p>lets have a look at the trace object that will be created. The relevant section of the html generated with Chart.Show is the following:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="javascript"><span class="k">var</span> data <span class="o">=</span> [{<span class="s">"type"</span>:<span class="s">"scatter"</span>,<span class="s">"x"</span>:[<span class="n">0</span>,<span class="n">1</span>,<span class="n">2</span>],<span class="s">"y"</span>:[<span class="n">0</span>,<span class="n">1</span>,<span class="n">2</span>]}];
+</code></pre></td></tr></table>
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs3">module Defaults
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Contains mutable global default values.
+
+ Changing these values will apply the default values to all consecutive Chart generations.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs4">val mutable DefaultDisplayOptions: DisplayOptions</div>
+<div class="fsdocs-tip" id="fs5">Multiple items<br />type DisplayOptions =
+  inherit DynamicObj
+  new: unit -&gt; DisplayOptions
+  static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
+  static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getPlotlyReference: displayOpts: DisplayOptions -&gt; PlotlyJSReference
+  static member init: ?AdditionalHeadTags: XmlNode list * ?Description: XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions
+  static member initCDNOnly: unit -&gt; DisplayOptions
+  ...<br /><br />--------------------<br />new: unit -&gt; DisplayOptions</div>
+<div class="fsdocs-tip" id="fs6">static member DisplayOptions.init: ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?Description: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
+<div class="fsdocs-tip" id="fs7">type PlotlyJSReference =
+  | CDN of string
+  | Full
+  | Require of string
+  | NoReference<br /><em>&lt;summary&gt;
+Sets how plotly is referenced in the head of html docs.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">union case PlotlyJSReference.NoReference: PlotlyJSReference</div>
+<div class="fsdocs-tip" id="fs9">type GenericChart =
+  | Chart of obj * obj * obj * obj
+  | MultiChart of obj * obj * obj * obj</div>
+<div class="fsdocs-tip" id="fs10">union case GenericChart.Chart: obj * obj * obj * obj -&gt; GenericChart</div>
+<div class="fsdocs-tip" id="fs11">union case GenericChart.MultiChart: obj * obj * obj * obj -&gt; GenericChart</div>
+<div class="fsdocs-tip" id="fs12">type &#39;T list = List&lt;&#39;T&gt;<br /><em>&lt;summary&gt;The type of immutable singly-linked lists. &lt;/summary&gt;<br />&lt;remarks&gt;See the &lt;see cref=&quot;T:Microsoft.FSharp.Collections.ListModule&quot; /&gt; module for further operations related to lists.
+
+ Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1; 2; 3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+
+  See also &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/lists&quot;&gt;F# Language Guide - Lists&lt;/a&gt;.
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val pointChart: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs14">type Chart =
+  static member AnnotatedHeatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * annotationText: seq&lt;#seq&lt;string&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a3&gt; * ?MultiX: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?XGap: int * ?Y: seq&lt;&#39;a4&gt; * ?MultiY: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?YGap: int * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 1 overload
+  static member Area: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?FillColor: Color * ?FillPatternShape: PatternShape * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Bar: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member BoxPlot: ?X: seq&lt;&#39;a0&gt; * ?MultiX: seq&lt;seq&lt;&#39;a0&gt;&gt; * ?Y: seq&lt;&#39;a1&gt; * ?MultiY: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?FillColor: Color * ?MarkerColor: Color * ?Marker: Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: BoxPoints * ?BoxMean: BoxMean * ?Jitter: float * ?PointPos: float * ?Orientation: Orientation * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: QuartileMethod * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a0 :&gt; IConvertible and &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible) + 2 overloads
+  static member Bubble: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * sizes: seq&lt;int&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Candlestick: ``open`` : seq&lt;#IConvertible&gt; * high: seq&lt;#IConvertible&gt; * low: seq&lt;#IConvertible&gt; * close: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;a4&gt; * ?MultiX: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?Line: Line * ?IncreasingColor: Color * ?Increasing: FinanceMarker * ?DecreasingColor: Color * ?Decreasing: FinanceMarker * ?WhiskerWidth: float * ?ShowXAxisRangeSlider: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 2 overloads
+  static member Column: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member Contour: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?Transpose: bool * ?ContourLineColor: Color * ?ContourLineDash: DrawingStyle * ?ContourLineSmoothing: float * ?ContourLine: Line * ?ContoursColoring: ContourColoring * ?ContoursOperation: ConstraintOperation * ?ContoursType: ContourType * ?ShowContourLabels: bool * ?ContourLabelFont: Font * ?Contours: Contours * ?FillColor: Color * ?NContours: int * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible)
+  static member Funnel: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Width: float * ?Offset: float * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?MarkerColor: Color * ?MarkerOutline: Line * ?Marker: Marker * ?TextInfo: TextInfo * ?ConnectorLineColor: Color * ?ConnectorLineStyle: DrawingStyle * ?ConnectorFillColor: Color * ?ConnectorLine: Line * ?Connector: FunnelConnector * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible)
+  static member Heatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  ...</div>
+<div class="fsdocs-tip" id="fs15">static member Chart.Point: xy: seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;c * ?MultiText: seq&lt;&#39;c&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: seq&lt;StyleParam.MarkerSymbol&gt; * ?Marker: TraceObjects.Marker * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;c :&gt; System.IConvertible)<br />static member Chart.Point: x: seq&lt;#System.IConvertible&gt; * y: seq&lt;#System.IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: seq&lt;StyleParam.MarkerSymbol&gt; * ?Marker: TraceObjects.Marker * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;a2 :&gt; System.IConvertible)</div>
+<div class="fsdocs-tip" id="fs16">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val toChartHTML: gChart: GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs18">val withTraceStyle: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs19">Multiple items<br />type Trace2D =
+  inherit Trace
+  new: traceTypeName: string -&gt; Trace2D
+  static member initBar: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initBoxPlot: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initCandlestick: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initContour: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initFunnel: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHeatmap: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHeatmapGL: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHistogram: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  ...<br /><em>&lt;summary&gt;
+ The most commonly-used kind of subplot is a two-dimensional Cartesian subplot. Traces compatible with these subplots
+ support xaxis and yaxis attributes whose values must refer to corresponding objects in the layout portion of the figure.
+ For example, if xaxis=&quot;x&quot;, and yaxis=&quot;y&quot; (which is the default) then this trace is drawn on the subplot at the intersection
+ of the axes configured under layout.xaxis and layout.yaxis, but if xaxis=&quot;x2&quot; and yaxis=&quot;y3&quot; then the trace is drawn at the
+ intersection of the axes configured under layout.xaxis2 and layout.yaxis3. Note that attributes such as layout.xaxis and
+ layout.xaxis2 etc do not have to be explicitly defined, in which case default values will be inferred. Multiple traces of
+ different types can be drawn on the same subplot.
+
+ X- and Y-axes support the type attribute, which enables them to represent continuous values (type=&quot;linear&quot;, type=&quot;log&quot;),
+ temporal values (type=&quot;date&quot;) or categorical values (type=&quot;category&quot;, type=&quot;multicategory). Axes can also be overlaid on
+ top of one another to create dual-axis or multiple-axis charts. 2-d cartesian subplots lend themselves very well to creating
+ &quot;small multiples&quot; figures, also known as facet or trellis plots.
+
+ The following trace types are compatible with 2D-cartesian subplots via the xaxis and yaxis attributes:
+
+ - scatter-like trace types: scatter and scattergl can be used to draw scatter plots, line plots and curves, time-series plots,
+ bubble charts, dot plots and filled areas and also support error bars
+
+ - bar, funnel, waterfall: bar-like trace types which can also be used to draw timelines and Gantt charts
+
+ - histogram: an aggregating bar-like trace type
+
+ - box and violin: 1-dimensional distribution-like trace types
+
+ - histogram2D and histogram2Dcontour: 2-dimensional distribution-like density trace types
+
+ - image, heatmap and contour: matrix trace types
+
+ - ohlc and candlestick: stock-like trace types
+
+ - splom: multi-dimensional scatter plots which implicitly refer to many 2-d cartesian subplots at once.
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: traceTypeName: string -&gt; Trace2D</div>
+<div class="fsdocs-tip" id="fs20">static member Trace2D.initScatter: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D</div>
+<div class="fsdocs-tip" id="fs21">Multiple items<br />type Trace2DStyle =
+  new: unit -&gt; Trace2DStyle
+  static member Bar: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?X0: #IConvertible * ?DX: #IConvertible * ?Y: seq&lt;&#39;e&gt; * ?MultiY: seq&lt;seq&lt;&#39;e&gt;&gt; * ?Y0: #IConvertible * ?DY: #IConvertible * ?Base: #IConvertible * ?Width: &#39;i * ?MultiWidth: seq&lt;&#39;i&gt; * ?Offset: &#39;j * ?MultiOffset: seq&lt;&#39;j&gt; * ?Text: &#39;k * ?MultiText: seq&lt;&#39;k&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?TextTemplate: string * ?MultiTextTemplate: seq&lt;string&gt; * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Marker: Marker * ?TextAngle: float * ?TextFont: Font * ?XError: Error * ?YError: Error * ?SelectedPoints: seq&lt;#IConvertible&gt; * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?ClipOnAxis: bool * ?Constraintext: ConstrainText * ?HoverLabel: Hoverlabel * ?InsideTextAnchor: InsideTextAnchor * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;k :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member BoxPlot: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?X0: #IConvertible * ?DX: #IConvertible * ?Y: seq&lt;&#39;e&gt; * ?MultiY: seq&lt;seq&lt;&#39;e&gt;&gt; * ?Y0: #IConvertible * ?DY: #IConvertible * ?Width: float * ?Text: &#39;h * ?MultiText: seq&lt;&#39;h&gt; * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Marker: Marker * ?Line: Line * ?BoxMean: BoxMean * ?BoxPoints: BoxPoints * ?Notched: bool * ?NotchWidth: float * ?WhiskerWidth: float * ?Q1: seq&lt;IConvertible&gt; * ?Median: seq&lt;IConvertible&gt; * ?Q3: seq&lt;IConvertible&gt; * ?LowerFence: seq&lt;IConvertible&gt; * ?UpperFence: seq&lt;IConvertible&gt; * ?NotchSpan: seq&lt;IConvertible&gt; * ?Mean: seq&lt;IConvertible&gt; * ?SD: seq&lt;IConvertible&gt; * ?QuartileMethod: QuartileMethod * ?SelectedPoints: seq&lt;#IConvertible&gt; * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?FillColor: Color * ?HoverLabel: Hoverlabel * ?HoverOn: HoverOn * ?PointPos: float * ?Jitter: float * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;h :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Candlestick: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?Close: seq&lt;#IConvertible&gt; * ?Open: seq&lt;#IConvertible&gt; * ?High: seq&lt;#IConvertible&gt; * ?Low: seq&lt;#IConvertible&gt; * ?Text: &#39;g * ?MultiText: seq&lt;&#39;g&gt; * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Line: Line * ?WhiskerWidth: float * ?SelectedPoints: seq&lt;#IConvertible&gt; * ?Increasing: FinanceMarker * ?Decreasing: FinanceMarker * ?HoverLabel: Hoverlabel * ?XCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;g :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Contour: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?X0: #IConvertible * ?DX: #IConvertible * ?XType: CoordinateType * ?Y: seq&lt;&#39;e&gt; * ?MultiY: seq&lt;seq&lt;&#39;e&gt;&gt; * ?Y0: #IConvertible * ?DY: #IConvertible * ?YType: CoordinateType * ?Z: seq&lt;#seq&lt;&#39;i&gt;&gt; * ?Text: &#39;j * ?MultiText: seq&lt;&#39;j&gt; * ?TextTemplate: string * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Line: Line * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?ZMax: #IConvertible * ?ZMid: #IConvertible * ?ZMin: #IConvertible * ?AutoContour: bool * ?ConnectGaps: bool * ?Contours: Contours * ?FillColor: Color * ?HoverLabel: Hoverlabel * ?HoverOnGaps: bool * ?NContours: int * ?Transpose: bool * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Funnel: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?X0: #IConvertible * ?DX: #IConvertible * ?Y: seq&lt;&#39;e&gt; * ?MultiY: seq&lt;seq&lt;&#39;e&gt;&gt; * ?Y0: #IConvertible * ?DY: #IConvertible * ?Width: float * ?Offset: float * ?Text: &#39;h * ?MultiText: seq&lt;&#39;h&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?TextTemplate: string * ?MultiTextTemplate: seq&lt;string&gt; * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Marker: Marker * ?TextAngle: float * ?TextFont: Font * ?TextInfo: TextInfo * ?SelectedPoints: seq&lt;#IConvertible&gt; * ?ClipOnAxis: bool * ?Connector: FunnelConnector * ?Constraintext: ConstrainText * ?HoverLabel: Hoverlabel * ?InsideTextAnchor: InsideTextAnchor * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?UIRevision: string -&gt; (&#39;o -&gt; &#39;o) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;h :&gt; IConvertible and &#39;o :&gt; Trace)
+  static member Heatmap: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?X0: #IConvertible * ?DX: #IConvertible * ?XType: CoordinateType * ?XGap: int * ?Y: seq&lt;&#39;e&gt; * ?MultiY: seq&lt;seq&lt;&#39;e&gt;&gt; * ?Y0: #IConvertible * ?DY: #IConvertible * ?YType: CoordinateType * ?YGap: int * ?Z: seq&lt;#seq&lt;&#39;i&gt;&gt; * ?Text: &#39;j * ?MultiText: seq&lt;&#39;j&gt; * ?TextTemplate: string * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?ZMax: #IConvertible * ?ZMid: #IConvertible * ?ZMin: #IConvertible * ?ZSmooth: SmoothAlg * ?ConnectGaps: bool * ?HoverLabel: Hoverlabel * ?HoverOnGaps: bool * ?Transpose: bool * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?Y: seq&lt;&#39;c&gt; * ?MultiY: seq&lt;seq&lt;&#39;c&gt;&gt; * ?Text: &#39;d * ?MultiText: seq&lt;&#39;d&gt; * ?TextPosition: TextPosition * ?TextTemplate: string * ?MultiTextTemplate: seq&lt;string&gt; * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?HistFunc: HistFunc * ?HistNorm: HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?AutoBinX: bool * ?AutoBinY: bool * ?BinGroup: string * ?XBins: Bins * ?YBins: Bins * ?Marker: Marker * ?TextAngle: float * ?TextFont: Font * ?Line: Line * ?XError: Error * ?YError: Error * ?SelectedPoints: seq&lt;#IConvertible&gt; * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?ClipOnAxis: bool * ?Constraintext: ConstrainText * ?Cumulative: Cumulative * ?HoverLabel: Hoverlabel * ?InsideTextAnchor: InsideTextAnchor * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram2D: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?XGap: int * ?Y: seq&lt;&#39;c&gt; * ?MultiY: seq&lt;seq&lt;&#39;c&gt;&gt; * ?YGap: int * ?Z: seq&lt;#seq&lt;&#39;e&gt;&gt; * ?TextTemplate: string * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?HistFunc: HistFunc * ?HistNorm: HistNorm * ?NBinsX: int * ?NBinsY: int * ?AutoBinX: bool * ?AutoBinY: bool * ?BinGroup: string * ?XBinGroup: string * ?XBins: Bins * ?YBinGroup: string * ?YBins: Bins * ?Marker: Marker * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?ZMin: float * ?ZMid: float * ?ZMax: float * ?ZSmooth: SmoothAlg * ?HoverLabel: Hoverlabel * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram2DContour: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?Y: seq&lt;&#39;c&gt; * ?MultiY: seq&lt;seq&lt;&#39;c&gt;&gt; * ?Z: seq&lt;#seq&lt;&#39;e&gt;&gt; * ?TextTemplate: string * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#IConvertible&gt; * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?HistFunc: HistFunc * ?HistNorm: HistNorm * ?NBinsX: int * ?NBinsY: int * ?AutoBinX: bool * ?AutoBinY: bool * ?BinGroup: string * ?XBinGroup: string * ?XBins: Bins * ?YBinGroup: string * ?YBins: Bins * ?Marker: Marker * ?Line: Line * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?Zmin: float * ?Zmid: float * ?Zmax: float * ?AutoContour: bool * ?Contours: Contours * ?HoverLabel: Hoverlabel * ?NContours: int * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;T :&gt; Trace)
+  ...<br /><em>&lt;summary&gt;
+ Create various functions for applying 2D chart styles to traces
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; Trace2DStyle</div>
+<div class="fsdocs-tip" id="fs22">static member Trace2DStyle.Scatter: ?Name: string * ?Visible: StyleParam.Visible * ?ShowLegend: bool * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Mode: StyleParam.Mode * ?Ids: seq&lt;#System.IConvertible&gt; * ?X: seq&lt;&#39;b&gt; * ?MultiX: seq&lt;seq&lt;&#39;b&gt;&gt; * ?X0: #System.IConvertible * ?DX: #System.IConvertible * ?Y: seq&lt;&#39;e&gt; * ?MultiY: seq&lt;seq&lt;&#39;e&gt;&gt; * ?Y0: #System.IConvertible * ?DY: #System.IConvertible * ?Text: &#39;h * ?MultiText: seq&lt;&#39;h&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?TextTemplate: string * ?MultiTextTemplate: seq&lt;string&gt; * ?HoverText: string * ?MultiHoverText: seq&lt;string&gt; * ?HoverInfo: StyleParam.HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: seq&lt;string&gt; * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: seq&lt;#System.IConvertible&gt; * ?XAxis: StyleParam.LinearAxisId * ?YAxis: StyleParam.LinearAxisId * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?XPeriod: #System.IConvertible * ?XPeriodAlignment: StyleParam.PeriodAlignment * ?XPeriod0: #System.IConvertible * ?YPeriod: #System.IConvertible * ?YPeriodAlignment: StyleParam.PeriodAlignment * ?YPeriod0: #System.IConvertible * ?Marker: TraceObjects.Marker * ?Line: Line * ?TextFont: Font * ?XError: TraceObjects.Error * ?YError: TraceObjects.Error * ?SelectedPoints: seq&lt;#System.IConvertible&gt; * ?Selected: TraceObjects.TraceSelection * ?Unselected: TraceObjects.TraceSelection * ?ClipOnAxis: bool * ?ConnectGaps: bool * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?HoverLabel: LayoutObjects.Hoverlabel * ?HoverOn: StyleParam.HoverOn * ?StackGaps: StyleParam.StackGaps * ?XCalendar: StyleParam.Calendar * ?YCalendar: StyleParam.Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; System.IConvertible and &#39;e :&gt; System.IConvertible and &#39;h :&gt; System.IConvertible and &#39;T :&gt; Trace)</div>
+<div class="fsdocs-tip" id="fs23">argument X: seq&lt;int&gt; option<br /><em>&lt;summary&gt;
+ Create a function that applies the styles of a scatter plot to a Trace object
+ &lt;/summary&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover.&lt;/param&gt;<br />&lt;param name=&quot;Visible&quot;&gt;Determines whether or not this trace is visible. If &quot;legendonly&quot;, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;LegendRank&quot;&gt;Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `&quot;reversed&quot; `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.&lt;/param&gt;<br />&lt;param name=&quot;LegendGroup&quot;&gt;Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.&lt;/param&gt;<br />&lt;param name=&quot;LegendGroupTitle&quot;&gt;Sets the legend group title for this trace.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opacity of the trace.&lt;/param&gt;<br />&lt;param name=&quot;Mode&quot;&gt;Determines the drawing mode for this scatter trace. If the provided `mode` includes &quot;text&quot; then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is &quot;lines+markers&quot;. Otherwise, &quot;lines&quot;.&lt;/param&gt;<br />&lt;param name=&quot;Ids&quot;&gt;Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.&lt;/param&gt;<br />&lt;param name=&quot;X&quot;&gt;Sets the x coordinates.&lt;/param&gt;<br />&lt;param name=&quot;MultiX&quot;&gt;Sets the x coordinates.&lt;/param&gt;<br />&lt;param name=&quot;X0&quot;&gt;Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.&lt;/param&gt;<br />&lt;param name=&quot;DX&quot;&gt;Sets the x coordinate step. See `x0` for more info.&lt;/param&gt;<br />&lt;param name=&quot;Y&quot;&gt;Sets the y coordinates.&lt;/param&gt;<br />&lt;param name=&quot;MultiY&quot;&gt;Sets the y coordinates.&lt;/param&gt;<br />&lt;param name=&quot;Y0&quot;&gt;Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.&lt;/param&gt;<br />&lt;param name=&quot;DY&quot;&gt;Sets the y coordinate step. See `y0` for more info.&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. If trace `hoverinfo` contains a &quot;text&quot; flag and &quot;hovertext&quot; is not set, these elements will be seen in the hover labels.&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. If trace `hoverinfo` contains a &quot;text&quot; flag and &quot;hovertext&quot; is not set, these elements will be seen in the hover labels.&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the positions of the `text` elements with respects to the (x,y) coordinates.&lt;/param&gt;<br />&lt;param name=&quot;MultiTextPosition&quot;&gt;Sets the positions of the `text` elements with respects to the (x,y) coordinates.&lt;/param&gt;<br />&lt;param name=&quot;TextTemplate&quot;&gt;Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot;. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.&lt;/param&gt;<br />&lt;param name=&quot;MultiTextTemplate&quot;&gt;Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot;. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.&lt;/param&gt;<br />&lt;param name=&quot;HoverText&quot;&gt;Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. To be seen, trace `hoverinfo` must contain a &quot;text&quot; flag.&lt;/param&gt;<br />&lt;param name=&quot;MultiHoverText&quot;&gt;Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. To be seen, trace `hoverinfo` must contain a &quot;text&quot; flag.&lt;/param&gt;<br />&lt;param name=&quot;HoverInfo&quot;&gt;Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.&lt;/param&gt;<br />&lt;param name=&quot;HoverTemplate&quot;&gt;Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot; as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, &quot;xother&quot; will be added to those with different x positions from the first point. An underscore before or after &quot;(x|y)other&quot; will add a space on that side, only when this field is shown. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&amp;lt;extra&amp;gt;` is displayed in the secondary box, for example &quot;&amp;lt;extra&amp;gt;{fullData.name}&amp;lt;/extra&amp;gt;&quot;. To hide the secondary box completely, use an empty tag `&amp;lt;extra&amp;gt;&amp;lt;/extra&amp;gt;`.&lt;/param&gt;<br />&lt;param name=&quot;MultiHoverTemplate&quot;&gt;Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot; as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, &quot;xother&quot; will be added to those with different x positions from the first point. An underscore before or after &quot;(x|y)other&quot; will add a space on that side, only when this field is shown. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&amp;lt;extra&amp;gt;` is displayed in the secondary box, for example &quot;&amp;lt;extra&amp;gt;{fullData.name}&amp;lt;/extra&amp;gt;&quot;. To hide the secondary box completely, use an empty tag `&amp;lt;extra&amp;gt;&amp;lt;/extra&amp;gt;`.&lt;/param&gt;<br />&lt;param name=&quot;XHoverFormat&quot;&gt;Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3&#39;s date formatter: &quot;%h&quot; for half of the year as a decimal number as well as &quot;%{n}f&quot; for fractional seconds with n digits. For example, &quot;2016-10-13 09:15:23.456&quot; with tickformat &quot;%H~%M~%S.%2f&quot; would display &quot;09~15~23.46&quot;By default the values are formatted using `xaxis.hoverformat`.&lt;/param&gt;<br />&lt;param name=&quot;YHoverFormat&quot;&gt;Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3&#39;s date formatter: &quot;%h&quot; for half of the year as a decimal number as well as &quot;%{n}f&quot; for fractional seconds with n digits. For example, &quot;2016-10-13 09:15:23.456&quot; with tickformat &quot;%H~%M~%S.%2f&quot; would display &quot;09~15~23.46&quot;By default the values are formatted using `xaxis.hoverformat`.&lt;/param&gt;<br />&lt;param name=&quot;Meta&quot;&gt;Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.&lt;/param&gt;<br />&lt;param name=&quot;CustomData&quot;&gt;Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, &quot;scatter&quot; traces also appends customdata items in the markers DOM elements&lt;/param&gt;<br />&lt;param name=&quot;XAxis&quot;&gt;Sets a reference between this trace&#39;s x coordinates and a 2D cartesian x axis. If &quot;x&quot; (the default value), the x coordinates refer to `layout.xaxis`. If &quot;x2&quot;, the x coordinates refer to `layout.xaxis2`, and so on.&lt;/param&gt;<br />&lt;param name=&quot;YAxis&quot;&gt;Sets a reference between this trace&#39;s y coordinates and a 2D cartesian y axis. If &quot;y&quot; (the default value), the y coordinates refer to `layout.yaxis`. If &quot;y2&quot;, the y coordinates refer to `layout.yaxis2`, and so on.&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is &quot;legendonly&quot; but not if it is `false`. Sets the stacking direction. With &quot;v&quot; (&quot;h&quot;), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.&lt;/param&gt;<br />&lt;param name=&quot;GroupNorm&quot;&gt;Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used - including if `visible` is &quot;legendonly&quot; but not if it is `false`. Sets the normalization for the sum of this `stackgroup`. With &quot;fraction&quot;, the value of each trace at each location is divided by the sum of all trace values at that location. &quot;percent&quot; is the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple `stackgroup`s on one subplot, each will be normalized within its own set.&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;StackGroup&quot;&gt;Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `orientation` is &quot;h&quot;). If blank or omitted this trace will not be stacked. Stacking also turns `fill` on by default, using &quot;tonexty&quot; (&quot;tonextx&quot;) if `orientation` is &quot;h&quot; (&quot;v&quot;) and sets the default `mode` to &quot;lines&quot; irrespective of point count. You can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.&lt;/param&gt;<br />&lt;param name=&quot;XPeriod&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the period positioning in milliseconds or &quot;M&amp;lt;n&amp;gt;&quot; on the x axis. Special values in the form of &quot;M&amp;lt;n&amp;gt;&quot; could be used to declare the number of months. In this case `n` must be a positive integer.&lt;/param&gt;<br />&lt;param name=&quot;XPeriodAlignment&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the alignment of data points on the x axis.&lt;/param&gt;<br />&lt;param name=&quot;XPeriod0&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.&lt;/param&gt;<br />&lt;param name=&quot;YPeriod&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the period positioning in milliseconds or &quot;M&amp;lt;n&amp;gt;&quot; on the y axis. Special values in the form of &quot;M&amp;lt;n&amp;gt;&quot; could be used to declare the number of months. In this case `n` must be a positive integer.&lt;/param&gt;<br />&lt;param name=&quot;YPeriodAlignment&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the alignment of data points on the y axis.&lt;/param&gt;<br />&lt;param name=&quot;YPeriod0&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker of this trace.&lt;/param&gt;<br />&lt;param name=&quot;Line&quot;&gt;Sets the line of this trace.&lt;/param&gt;<br />&lt;param name=&quot;TextFont&quot;&gt;Sets the text font of this trace.&lt;/param&gt;<br />&lt;param name=&quot;XError&quot;&gt;Sets the x error of this trace.&lt;/param&gt;<br />&lt;param name=&quot;YError&quot;&gt;Sets the y error of this trace.&lt;/param&gt;<br />&lt;param name=&quot;SelectedPoints&quot;&gt;Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.&lt;/param&gt;<br />&lt;param name=&quot;Selected&quot;&gt;Sets the style of selected points of this trace.&lt;/param&gt;<br />&lt;param name=&quot;Unselected&quot;&gt;Sets the style of unselected points of this trace.&lt;/param&gt;<br />&lt;param name=&quot;ClipOnAxis&quot;&gt;Determines whether or not markers and text nodes are clipped about the subplot axes. To show markers and text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to &quot;below traces&quot;.&lt;/param&gt;<br />&lt;param name=&quot;ConnectGaps&quot;&gt;Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.&lt;/param&gt;<br />&lt;param name=&quot;Fill&quot;&gt;Sets the area to fill with a solid color. Defaults to &quot;none&quot; unless this trace is stacked, then it gets &quot;tonexty&quot; (&quot;tonextx&quot;) if `orientation` is &quot;v&quot; (&quot;h&quot;) Use with `fillcolor` if not &quot;none&quot;. &quot;tozerox&quot; and &quot;tozeroy&quot; fill to x=0 and y=0 respectively. &quot;tonextx&quot; and &quot;tonexty&quot; fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like &quot;tozerox&quot; and &quot;tozeroy&quot;. &quot;toself&quot; connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. &quot;tonext&quot; fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like &quot;toself&quot; if there is no trace before it. &quot;tonext&quot; should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.&lt;/param&gt;<br />&lt;param name=&quot;FillColor&quot;&gt;Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.&lt;/param&gt;<br />&lt;param name=&quot;FillPattern&quot;&gt;Sets the pattern within the marker.&lt;/param&gt;<br />&lt;param name=&quot;HoverLabel&quot;&gt;Sets the style of the hoverlabels of this trace.&lt;/param&gt;<br />&lt;param name=&quot;HoverOn&quot;&gt;Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is &quot;toself&quot; or &quot;tonext&quot; and there are no markers or text, then the default is &quot;fills&quot;, otherwise it is &quot;points&quot;.&lt;/param&gt;<br />&lt;param name=&quot;StackGaps&quot;&gt;Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the `stackgroup` will be used - including if `visible` is &quot;legendonly&quot; but not if it is `false`. Determines how we handle locations at which other traces in this group have data but this one does not. With &quot;infer zero&quot; we insert a zero at these locations. With &quot;interpolate&quot; we linearly interpolate between existing values, and extrapolate a constant beyond the existing values.&lt;/param&gt;<br />&lt;param name=&quot;XCalendar&quot;&gt;Sets the calendar system to use with `x` date data.&lt;/param&gt;<br />&lt;param name=&quot;YCalendar&quot;&gt;Sets the calendar system to use with `y` date data.&lt;/param&gt;<br />&lt;param name=&quot;UIRevision&quot;&gt;Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">argument Y: seq&lt;int&gt; option<br /><em>&lt;summary&gt;
+ Create a function that applies the styles of a scatter plot to a Trace object
+ &lt;/summary&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover.&lt;/param&gt;<br />&lt;param name=&quot;Visible&quot;&gt;Determines whether or not this trace is visible. If &quot;legendonly&quot;, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;LegendRank&quot;&gt;Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `&quot;reversed&quot; `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.&lt;/param&gt;<br />&lt;param name=&quot;LegendGroup&quot;&gt;Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.&lt;/param&gt;<br />&lt;param name=&quot;LegendGroupTitle&quot;&gt;Sets the legend group title for this trace.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opacity of the trace.&lt;/param&gt;<br />&lt;param name=&quot;Mode&quot;&gt;Determines the drawing mode for this scatter trace. If the provided `mode` includes &quot;text&quot; then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is &quot;lines+markers&quot;. Otherwise, &quot;lines&quot;.&lt;/param&gt;<br />&lt;param name=&quot;Ids&quot;&gt;Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.&lt;/param&gt;<br />&lt;param name=&quot;X&quot;&gt;Sets the x coordinates.&lt;/param&gt;<br />&lt;param name=&quot;MultiX&quot;&gt;Sets the x coordinates.&lt;/param&gt;<br />&lt;param name=&quot;X0&quot;&gt;Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.&lt;/param&gt;<br />&lt;param name=&quot;DX&quot;&gt;Sets the x coordinate step. See `x0` for more info.&lt;/param&gt;<br />&lt;param name=&quot;Y&quot;&gt;Sets the y coordinates.&lt;/param&gt;<br />&lt;param name=&quot;MultiY&quot;&gt;Sets the y coordinates.&lt;/param&gt;<br />&lt;param name=&quot;Y0&quot;&gt;Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.&lt;/param&gt;<br />&lt;param name=&quot;DY&quot;&gt;Sets the y coordinate step. See `y0` for more info.&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. If trace `hoverinfo` contains a &quot;text&quot; flag and &quot;hovertext&quot; is not set, these elements will be seen in the hover labels.&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. If trace `hoverinfo` contains a &quot;text&quot; flag and &quot;hovertext&quot; is not set, these elements will be seen in the hover labels.&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the positions of the `text` elements with respects to the (x,y) coordinates.&lt;/param&gt;<br />&lt;param name=&quot;MultiTextPosition&quot;&gt;Sets the positions of the `text` elements with respects to the (x,y) coordinates.&lt;/param&gt;<br />&lt;param name=&quot;TextTemplate&quot;&gt;Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot;. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.&lt;/param&gt;<br />&lt;param name=&quot;MultiTextTemplate&quot;&gt;Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot;. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.&lt;/param&gt;<br />&lt;param name=&quot;HoverText&quot;&gt;Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. To be seen, trace `hoverinfo` must contain a &quot;text&quot; flag.&lt;/param&gt;<br />&lt;param name=&quot;MultiHoverText&quot;&gt;Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace&#39;s (x,y) coordinates. To be seen, trace `hoverinfo` must contain a &quot;text&quot; flag.&lt;/param&gt;<br />&lt;param name=&quot;HoverInfo&quot;&gt;Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.&lt;/param&gt;<br />&lt;param name=&quot;HoverTemplate&quot;&gt;Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot; as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, &quot;xother&quot; will be added to those with different x positions from the first point. An underscore before or after &quot;(x|y)other&quot; will add a space on that side, only when this field is shown. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&amp;lt;extra&amp;gt;` is displayed in the secondary box, for example &quot;&amp;lt;extra&amp;gt;{fullData.name}&amp;lt;/extra&amp;gt;&quot;. To hide the secondary box completely, use an empty tag `&amp;lt;extra&amp;gt;&amp;lt;/extra&amp;gt;`.&lt;/param&gt;<br />&lt;param name=&quot;MultiHoverTemplate&quot;&gt;Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example &quot;y: %{y}&quot; as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, &quot;xother&quot; will be added to those with different x positions from the first point. An underscore before or after &quot;(x|y)other&quot; will add a space on that side, only when this field is shown. Numbers are formatted using d3-format&#39;s syntax %{variable:d3-format}, for example &quot;Price: %{y:$.2f}&quot;. https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format&#39;s syntax %{variable|d3-time-format}, for example &quot;Day: %{2019-01-01|%A}&quot;. https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `&amp;lt;extra&amp;gt;` is displayed in the secondary box, for example &quot;&amp;lt;extra&amp;gt;{fullData.name}&amp;lt;/extra&amp;gt;&quot;. To hide the secondary box completely, use an empty tag `&amp;lt;extra&amp;gt;&amp;lt;/extra&amp;gt;`.&lt;/param&gt;<br />&lt;param name=&quot;XHoverFormat&quot;&gt;Sets the hover text formatting rulefor `x` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3&#39;s date formatter: &quot;%h&quot; for half of the year as a decimal number as well as &quot;%{n}f&quot; for fractional seconds with n digits. For example, &quot;2016-10-13 09:15:23.456&quot; with tickformat &quot;%H~%M~%S.%2f&quot; would display &quot;09~15~23.46&quot;By default the values are formatted using `xaxis.hoverformat`.&lt;/param&gt;<br />&lt;param name=&quot;YHoverFormat&quot;&gt;Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3&#39;s date formatter: &quot;%h&quot; for half of the year as a decimal number as well as &quot;%{n}f&quot; for fractional seconds with n digits. For example, &quot;2016-10-13 09:15:23.456&quot; with tickformat &quot;%H~%M~%S.%2f&quot; would display &quot;09~15~23.46&quot;By default the values are formatted using `xaxis.hoverformat`.&lt;/param&gt;<br />&lt;param name=&quot;Meta&quot;&gt;Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.&lt;/param&gt;<br />&lt;param name=&quot;CustomData&quot;&gt;Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, &quot;scatter&quot; traces also appends customdata items in the markers DOM elements&lt;/param&gt;<br />&lt;param name=&quot;XAxis&quot;&gt;Sets a reference between this trace&#39;s x coordinates and a 2D cartesian x axis. If &quot;x&quot; (the default value), the x coordinates refer to `layout.xaxis`. If &quot;x2&quot;, the x coordinates refer to `layout.xaxis2`, and so on.&lt;/param&gt;<br />&lt;param name=&quot;YAxis&quot;&gt;Sets a reference between this trace&#39;s y coordinates and a 2D cartesian y axis. If &quot;y&quot; (the default value), the y coordinates refer to `layout.yaxis`. If &quot;y2&quot;, the y coordinates refer to `layout.yaxis2`, and so on.&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is &quot;legendonly&quot; but not if it is `false`. Sets the stacking direction. With &quot;v&quot; (&quot;h&quot;), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.&lt;/param&gt;<br />&lt;param name=&quot;GroupNorm&quot;&gt;Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used - including if `visible` is &quot;legendonly&quot; but not if it is `false`. Sets the normalization for the sum of this `stackgroup`. With &quot;fraction&quot;, the value of each trace at each location is divided by the sum of all trace values at that location. &quot;percent&quot; is the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple `stackgroup`s on one subplot, each will be normalized within its own set.&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;StackGroup&quot;&gt;Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `orientation` is &quot;h&quot;). If blank or omitted this trace will not be stacked. Stacking also turns `fill` on by default, using &quot;tonexty&quot; (&quot;tonextx&quot;) if `orientation` is &quot;h&quot; (&quot;v&quot;) and sets the default `mode` to &quot;lines&quot; irrespective of point count. You can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.&lt;/param&gt;<br />&lt;param name=&quot;XPeriod&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the period positioning in milliseconds or &quot;M&amp;lt;n&amp;gt;&quot; on the x axis. Special values in the form of &quot;M&amp;lt;n&amp;gt;&quot; could be used to declare the number of months. In this case `n` must be a positive integer.&lt;/param&gt;<br />&lt;param name=&quot;XPeriodAlignment&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the alignment of data points on the x axis.&lt;/param&gt;<br />&lt;param name=&quot;XPeriod0&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.&lt;/param&gt;<br />&lt;param name=&quot;YPeriod&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the period positioning in milliseconds or &quot;M&amp;lt;n&amp;gt;&quot; on the y axis. Special values in the form of &quot;M&amp;lt;n&amp;gt;&quot; could be used to declare the number of months. In this case `n` must be a positive integer.&lt;/param&gt;<br />&lt;param name=&quot;YPeriodAlignment&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the alignment of data points on the y axis.&lt;/param&gt;<br />&lt;param name=&quot;YPeriod0&quot;&gt;Only relevant when the axis `type` is &quot;date&quot;. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker of this trace.&lt;/param&gt;<br />&lt;param name=&quot;Line&quot;&gt;Sets the line of this trace.&lt;/param&gt;<br />&lt;param name=&quot;TextFont&quot;&gt;Sets the text font of this trace.&lt;/param&gt;<br />&lt;param name=&quot;XError&quot;&gt;Sets the x error of this trace.&lt;/param&gt;<br />&lt;param name=&quot;YError&quot;&gt;Sets the y error of this trace.&lt;/param&gt;<br />&lt;param name=&quot;SelectedPoints&quot;&gt;Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.&lt;/param&gt;<br />&lt;param name=&quot;Selected&quot;&gt;Sets the style of selected points of this trace.&lt;/param&gt;<br />&lt;param name=&quot;Unselected&quot;&gt;Sets the style of unselected points of this trace.&lt;/param&gt;<br />&lt;param name=&quot;ClipOnAxis&quot;&gt;Determines whether or not markers and text nodes are clipped about the subplot axes. To show markers and text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to &quot;below traces&quot;.&lt;/param&gt;<br />&lt;param name=&quot;ConnectGaps&quot;&gt;Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.&lt;/param&gt;<br />&lt;param name=&quot;Fill&quot;&gt;Sets the area to fill with a solid color. Defaults to &quot;none&quot; unless this trace is stacked, then it gets &quot;tonexty&quot; (&quot;tonextx&quot;) if `orientation` is &quot;v&quot; (&quot;h&quot;) Use with `fillcolor` if not &quot;none&quot;. &quot;tozerox&quot; and &quot;tozeroy&quot; fill to x=0 and y=0 respectively. &quot;tonextx&quot; and &quot;tonexty&quot; fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like &quot;tozerox&quot; and &quot;tozeroy&quot;. &quot;toself&quot; connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. &quot;tonext&quot; fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like &quot;toself&quot; if there is no trace before it. &quot;tonext&quot; should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.&lt;/param&gt;<br />&lt;param name=&quot;FillColor&quot;&gt;Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.&lt;/param&gt;<br />&lt;param name=&quot;FillPattern&quot;&gt;Sets the pattern within the marker.&lt;/param&gt;<br />&lt;param name=&quot;HoverLabel&quot;&gt;Sets the style of the hoverlabels of this trace.&lt;/param&gt;<br />&lt;param name=&quot;HoverOn&quot;&gt;Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is &quot;toself&quot; or &quot;tonext&quot; and there are no markers or text, then the default is &quot;fills&quot;, otherwise it is &quot;points&quot;.&lt;/param&gt;<br />&lt;param name=&quot;StackGaps&quot;&gt;Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the `stackgroup` will be used - including if `visible` is &quot;legendonly&quot; but not if it is `false`. Determines how we handle locations at which other traces in this group have data but this one does not. With &quot;infer zero&quot; we insert a zero at these locations. With &quot;interpolate&quot; we linearly interpolate between existing values, and extrapolate a constant beyond the existing values.&lt;/param&gt;<br />&lt;param name=&quot;XCalendar&quot;&gt;Sets the calendar system to use with `x` date data.&lt;/param&gt;<br />&lt;param name=&quot;YCalendar&quot;&gt;Sets the calendar system to use with `y` date data.&lt;/param&gt;<br />&lt;param name=&quot;UIRevision&quot;&gt;Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">val ofTraceObject: useDefaults: bool -&gt; trace: Trace -&gt; GenericChart.GenericChart<br /><em>&lt;summary&gt;
+ Converts from a trace object and a layout object into GenericChart. If useDefaults = true, also sets the default Chart properties found in `Defaults`
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">val myTrace: Trace</div>
+<div class="fsdocs-tip" id="fs27">Multiple items<br />type Trace =
+  inherit DynamicObj
+  new: traceTypeName: string -&gt; Trace
+  static member getColorAxisAnchor: trace: #Trace -&gt; SubPlotId
+  static member getColorBar: trace: #Trace -&gt; ColorBar
+  static member getDomain: trace: #Trace -&gt; Domain
+  static member getLine: trace: #Trace -&gt; Line
+  static member getMarker: trace: #Trace -&gt; Marker
+  static member getStackGroup: trace: #Trace -&gt; string
+  static member getXError: trace: #Trace -&gt; Error
+  static member getYError: trace: #Trace -&gt; Error
+  ...<br /><em>&lt;summary&gt;
+ A Trace object in the context of plotly charts contains the data to visualize and additional styling parameters.
+
+ This is the base object that contains visualization-unspecific getters and setters for the underlying DynamicObj.
+
+ Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `Trace2D`
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: traceTypeName: string -&gt; Trace</div>
+<div class="fsdocs-tip" id="fs28">val withDynObj: GenericChart.GenericChart</div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>

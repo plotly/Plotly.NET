@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Axis styling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
+    <meta name="description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Axis styling">
+
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:title" content="Plotly.NET documentation for: Axis styling" />
+    <meta property="og:url" content="https://plotly.net/chart-layout/axis-styling.html">
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Plotly.NET" />
+    <meta property="og:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Axis styling">
+    <meta property="og:image" content="https://plotly.net/">
+
+    <!-- Twitter cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://plotly.net/chart-layout/axis-styling.html">
+    <meta property="twitter:url" content="https://plotly.net">
+    <meta name="twitter:title" content="Plotly.NET documentation for: Axis styling">
+    <meta name="twitter:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Axis styling">
+    <meta name="twitter:image" content="https://plotly.net/">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.18.1.min.js"></script>
+    <script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head> 
+
+<body>
+    <div class="columns is-fullheight m-0">
+        <div id="fsdocs-menu" class="column is-2 is-paddingless">
+            <aside class="menu">
+                <div class="container is-paddingless is-marginless has-background-dark">
+                    <a href="https://plotly.net/">
+                        <figure class="image is-128x128 container">
+                            <img src="https://plotly.net/img/logo.png">
+                        </figure>
+                    </a>
+                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
+                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
+                </div>
+                <div class="content">
+                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+                    <div id="header">
+                        <div class="searchbox" id="fsdocs-searchbox">
+                            <label for="search-by">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
+                            <span data-search-clear="">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END SEARCH BOX: this adds support for the search box -->
+                    <ul class="navbar-nav">
+                        <li class="nav-header">Links</li>
+                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
+                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
+                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
+                        <li class="nav-header">
+  General
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header">
+  Chart Layout
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-header">
+  Simple Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header">
+  3D Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header">
+  Distribution Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-header">
+  Geo map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header">
+  Mapbox map charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header">
+  Finance Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Polar Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Categorical Charts
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header">
+  Ternary Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header">
+  Carpet Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header">
+  Smith Plots
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="column is-10 is-paddingless">
+            <div class="section pt-4">
+                <div class="container" id="fsdocs-content">
+                    
+<h1><a name="Axis-styling" class="anchor" href="#Axis-styling">Axis styling</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/chart-layout/axis-styling.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/chart-layout/axis-styling.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<p><em>Summary:</em> This example shows how to style chart axes in F#.</p>
+<p>let's first create some data for the purpose of creating example charts:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 14)" onmouseover="showTip(event, 'fs1', 14)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="id">NET</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="id">x</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1.</span><span class="pn">;</span> <span class="n">2.</span><span class="pn">;</span> <span class="n">3.</span><span class="pn">;</span> <span class="n">4.</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">6.</span><span class="pn">;</span> <span class="n">7.</span><span class="pn">;</span> <span class="n">8.</span><span class="pn">;</span> <span class="n">9.</span><span class="pn">;</span> <span class="n">10.</span> <span class="pn">]</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="id">y</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">2.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">5.</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">2.5</span><span class="pn">;</span> <span class="n">1.5</span><span class="pn">;</span> <span class="n">3.5</span><span class="pn">;</span> <span class="n">1.</span> <span class="pn">]</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="id">y&#39;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="id">y</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="fn">y</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="fn">y</span> <span class="o">*</span> <span class="n">2.</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs12', 24)" onmouseover="showTip(event, 'fs12', 24)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 25)" onmouseover="showTip(event, 'fs15', 25)" class="id">rev</span>
+</code></pre>
+<h2><a name="Single-axis-styling" class="anchor" href="#Single-axis-styling">Single axis styling</a></h2>
+<p>To style a specific axis of a plot, use the respective <code>Chart.with*_AxisStyle</code> function:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 26)" onmouseover="showTip(event, 'fs16', 26)" class="id">plot1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="fn">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 30)" onmouseover="showTip(event, 'fs9', 30)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs20', 31)" onmouseover="showTip(event, 'fs20', 31)" class="fn">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 32)" onmouseover="showTip(event, 'fs10', 32)" class="id">y</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 33)" onmouseover="showTip(event, 'fs17', 33)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 34)" onmouseover="showTip(event, 'fs21', 34)" class="id">withXAxisStyle</span> <span class="pn">(</span><span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;X axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span> <span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 35)" onmouseover="showTip(event, 'fs17', 35)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 36)" onmouseover="showTip(event, 'fs22', 36)" class="id">withYAxisStyle</span> <span class="pn">(</span><span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;Y axis title&quot;</span><span class="pn">,</span> <span class="fn">MinMax</span> <span class="o">=</span> <span class="pn">(</span><span class="o">-</span><span class="n">1.</span><span class="pn">,</span> <span class="n">10.</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<div><div id="87f268b1-912a-498e-9e25-79a9e480eae3"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_87f268b1912a498e9e2579a9e480eae3 = function() {
+    var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"xaxis":{"title":{"text":"X axis title"},"range":[-1.0,10.0]},"yaxis":{"title":{"text":"Y axis title"},"range":[-1.0,10.0]}};
+    var config = {"responsive":true};
+    Plotly.newPlot('87f268b1-912a-498e-9e25-79a9e480eae3', data, layout, config);
+};
+renderPlotly_87f268b1912a498e9e2579a9e480eae3();
+</script></div>
+<p>for even more fine-grained control, initialize a new axis and replace the old one of the plot with ````.
+The following example creates two mirrored axes with inside ticks, one of them with a log scale:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 40)" onmouseover="showTip(event, 'fs1', 40)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 41)" onmouseover="showTip(event, 'fs2', 41)" class="id">NET</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 42)" onmouseover="showTip(event, 'fs25', 42)" class="id">LayoutObjects</span> <span class="c">// this namespace contains all object abstractions for layout styling</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 43)" onmouseover="showTip(event, 'fs26', 43)" class="id">mirroredXAxis</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs27', 44)" onmouseover="showTip(event, 'fs27', 44)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 45)" onmouseover="showTip(event, 'fs28', 45)" class="id">init</span> <span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs29', 46)" onmouseover="showTip(event, 'fs29', 46)" class="fn">Title</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs29', 47)" onmouseover="showTip(event, 'fs29', 47)" class="rt">Title</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 48)" onmouseover="showTip(event, 'fs30', 48)" class="id">init</span> <span class="pn">(</span><span class="fn">Text</span> <span class="o">=</span> <span class="s">&quot;Mirrored axis&quot;</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">ShowLine</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+        <span class="fn">Mirror</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 49)" onmouseover="showTip(event, 'fs31', 49)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 50)" onmouseover="showTip(event, 'fs32', 50)" class="rt">Mirror</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="id">AllTicks</span><span class="pn">,</span>
+        <span class="fn">ShowGrid</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
+        <span class="fn">Ticks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 52)" onmouseover="showTip(event, 'fs31', 52)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 53)" onmouseover="showTip(event, 'fs34', 53)" class="rt">TickOptions</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 54)" onmouseover="showTip(event, 'fs35', 54)" class="id">Inside</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 55)" onmouseover="showTip(event, 'fs36', 55)" class="id">mirroredLogYAxis</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs27', 56)" onmouseover="showTip(event, 'fs27', 56)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 57)" onmouseover="showTip(event, 'fs28', 57)" class="id">init</span> <span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs29', 58)" onmouseover="showTip(event, 'fs29', 58)" class="fn">Title</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs29', 59)" onmouseover="showTip(event, 'fs29', 59)" class="rt">Title</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 60)" onmouseover="showTip(event, 'fs30', 60)" class="id">init</span> <span class="pn">(</span><span class="fn">Text</span> <span class="o">=</span> <span class="s">&quot;Log axis&quot;</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">AxisType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 61)" onmouseover="showTip(event, 'fs31', 61)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 62)" onmouseover="showTip(event, 'fs37', 62)" class="rt">AxisType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 63)" onmouseover="showTip(event, 'fs38', 63)" class="id">Log</span><span class="pn">,</span>
+        <span class="fn">ShowLine</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+        <span class="fn">Mirror</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 64)" onmouseover="showTip(event, 'fs31', 64)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 65)" onmouseover="showTip(event, 'fs32', 65)" class="rt">Mirror</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 66)" onmouseover="showTip(event, 'fs33', 66)" class="id">AllTicks</span><span class="pn">,</span>
+        <span class="fn">ShowGrid</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
+        <span class="fn">Ticks</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 67)" onmouseover="showTip(event, 'fs31', 67)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 68)" onmouseover="showTip(event, 'fs34', 68)" class="rt">TickOptions</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 69)" onmouseover="showTip(event, 'fs35', 69)" class="id">Inside</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 70)" onmouseover="showTip(event, 'fs39', 70)" class="id">plot2</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs17', 71)" onmouseover="showTip(event, 'fs17', 71)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 72)" onmouseover="showTip(event, 'fs18', 72)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 73)" onmouseover="showTip(event, 'fs19', 73)" class="fn">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 74)" onmouseover="showTip(event, 'fs9', 74)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs20', 75)" onmouseover="showTip(event, 'fs20', 75)" class="fn">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 76)" onmouseover="showTip(event, 'fs10', 76)" class="id">y</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 77)" onmouseover="showTip(event, 'fs17', 77)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 78)" onmouseover="showTip(event, 'fs40', 78)" class="id">withXAxis</span> <span onmouseout="hideTip(event, 'fs26', 79)" onmouseover="showTip(event, 'fs26', 79)" class="id">mirroredXAxis</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 80)" onmouseover="showTip(event, 'fs17', 80)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 81)" onmouseover="showTip(event, 'fs41', 81)" class="id">withYAxis</span> <span onmouseout="hideTip(event, 'fs36', 82)" onmouseover="showTip(event, 'fs36', 82)" class="id">mirroredLogYAxis</span>
+</code></pre>
+<div><div id="0c581d98-e976-49cb-a379-f4f0093040f0"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_0c581d98e97649cba379f4f0093040f0 = function() {
+    var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"xaxis":{"title":{"text":"Mirrored axis"},"ticks":"inside","mirror":"allticks","showline":true,"showgrid":false},"yaxis":{"title":{"text":"Log axis"},"type":"log","ticks":"inside","mirror":"allticks","showline":true,"showgrid":false}};
+    var config = {"responsive":true};
+    Plotly.newPlot('0c581d98-e976-49cb-a379-f4f0093040f0', data, layout, config);
+};
+renderPlotly_0c581d98e97649cba379f4f0093040f0();
+</script></div>
+<h3><a name="Formatting-the-tick-label" class="anchor" href="#Formatting-the-tick-label">Formatting the tick label</a></h3>
+<p>You can use <code>TickFormat</code> to format the tick label. The formatting rule uses the d3 formatting mini-languages which are very similar to those in Python. See <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format">here</a> for numbers and <a href="https://github.com/d3/d3-time-format#locale_format">here</a> for dates. Plotly adds two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46".</p>
+<p>This example styles the x-axis tick labels as dollars and the y-axis tick label as percentages with one decimal place.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 86)" onmouseover="showTip(event, 'fs42', 86)" class="id">dollarAxis</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 87)" onmouseover="showTip(event, 'fs27', 87)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 88)" onmouseover="showTip(event, 'fs28', 88)" class="id">init</span> <span class="pn">(</span><span class="fn">TickFormat</span> <span class="o">=</span> <span class="s">&quot;$&quot;</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 89)" onmouseover="showTip(event, 'fs43', 89)" class="id">percentAxis</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 90)" onmouseover="showTip(event, 'fs27', 90)" class="rt">LinearAxis</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 91)" onmouseover="showTip(event, 'fs28', 91)" class="id">init</span> <span class="pn">(</span><span class="fn">TickFormat</span> <span class="o">=</span> <span class="s">&quot;.1%&quot;</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 92)" onmouseover="showTip(event, 'fs44', 92)" class="id">plot3</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs17', 93)" onmouseover="showTip(event, 'fs17', 93)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 94)" onmouseover="showTip(event, 'fs18', 94)" class="id">Point</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 95)" onmouseover="showTip(event, 'fs19', 95)" class="fn">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 96)" onmouseover="showTip(event, 'fs9', 96)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs20', 97)" onmouseover="showTip(event, 'fs20', 97)" class="fn">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 98)" onmouseover="showTip(event, 'fs10', 98)" class="id">y</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 99)" onmouseover="showTip(event, 'fs17', 99)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 100)" onmouseover="showTip(event, 'fs40', 100)" class="id">withXAxis</span> <span onmouseout="hideTip(event, 'fs42', 101)" onmouseover="showTip(event, 'fs42', 101)" class="id">dollarAxis</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 102)" onmouseover="showTip(event, 'fs17', 102)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 103)" onmouseover="showTip(event, 'fs41', 103)" class="id">withYAxis</span> <span onmouseout="hideTip(event, 'fs43', 104)" onmouseover="showTip(event, 'fs43', 104)" class="id">percentAxis</span>
+</code></pre>
+<div><div id="1046a58c-fa81-404d-b966-7e7079571df6"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_1046a58cfa81404db9667e7079571df6 = function() {
+    var data = [{"type":"scatter","mode":"markers","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{}}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"xaxis":{"tickformat":"$"},"yaxis":{"tickformat":".1%"}};
+    var config = {"responsive":true};
+    Plotly.newPlot('1046a58c-fa81-404d-b966-7e7079571df6', data, layout, config);
+};
+renderPlotly_1046a58cfa81404db9667e7079571df6();
+</script></div>
+<h2><a name="Multiple-axes" class="anchor" href="#Multiple-axes">Multiple axes</a></h2>
+<p>Assign different axis anchors to subplots to map them to different axes.</p>
+<h3><a name="Multiple-axes-on-different-sides-of-the-chart" class="anchor" href="#Multiple-axes-on-different-sides-of-the-chart">Multiple axes on different sides of the chart</a></h3>
+<p>The following example first creates a multichart containing two plots with different axis anchors.
+Subsequently, multiple axes with the respective anchors are added to the plot.
+Note that the same can be done as above, defining axes beforehand.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 108)" onmouseover="showTip(event, 'fs45', 108)" class="id">anchoredAt1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs17', 109)" onmouseover="showTip(event, 'fs17', 109)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 110)" onmouseover="showTip(event, 'fs46', 110)" class="id">Line</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 111)" onmouseover="showTip(event, 'fs47', 111)" class="fn">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 112)" onmouseover="showTip(event, 'fs9', 112)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 113)" onmouseover="showTip(event, 'fs48', 113)" class="fn">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 114)" onmouseover="showTip(event, 'fs10', 114)" class="id">y</span><span class="pn">,</span> <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;anchor 1&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 115)" onmouseover="showTip(event, 'fs17', 115)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs49', 116)" onmouseover="showTip(event, 'fs49', 116)" class="id">withAxisAnchor</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 117)" onmouseover="showTip(event, 'fs50', 117)" class="fn">Y</span> <span class="o">=</span> <span class="n">1</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs51', 118)" onmouseover="showTip(event, 'fs51', 118)" class="id">anchoredAt2</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs17', 119)" onmouseover="showTip(event, 'fs17', 119)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 120)" onmouseover="showTip(event, 'fs46', 120)" class="id">Line</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 121)" onmouseover="showTip(event, 'fs47', 121)" class="fn">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 122)" onmouseover="showTip(event, 'fs9', 122)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 123)" onmouseover="showTip(event, 'fs48', 123)" class="fn">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 124)" onmouseover="showTip(event, 'fs11', 124)" class="id">y&#39;</span><span class="pn">,</span> <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;anchor 2&quot;</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 125)" onmouseover="showTip(event, 'fs17', 125)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs49', 126)" onmouseover="showTip(event, 'fs49', 126)" class="id">withAxisAnchor</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 127)" onmouseover="showTip(event, 'fs50', 127)" class="fn">Y</span> <span class="o">=</span> <span class="n">2</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs52', 128)" onmouseover="showTip(event, 'fs52', 128)" class="id">twoXAxes1</span> <span class="o">=</span>
+    <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs45', 129)" onmouseover="showTip(event, 'fs45', 129)" class="id">anchoredAt1</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs51', 130)" onmouseover="showTip(event, 'fs51', 130)" class="id">anchoredAt2</span> <span class="pn">]</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 131)" onmouseover="showTip(event, 'fs17', 131)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 132)" onmouseover="showTip(event, 'fs53', 132)" class="id">combine</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 133)" onmouseover="showTip(event, 'fs17', 133)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 134)" onmouseover="showTip(event, 'fs54', 134)" class="id">withYAxisStyle</span> <span class="pn">(</span><span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;axis 1&quot;</span><span class="pn">,</span> <span class="fn">Side</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 135)" onmouseover="showTip(event, 'fs31', 135)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 136)" onmouseover="showTip(event, 'fs55', 136)" class="rt">Side</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 137)" onmouseover="showTip(event, 'fs56', 137)" class="id">Left</span><span class="pn">,</span> <span class="fn">Id</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 138)" onmouseover="showTip(event, 'fs31', 138)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 139)" onmouseover="showTip(event, 'fs57', 139)" class="rt">SubPlotId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 140)" onmouseover="showTip(event, 'fs58', 140)" class="id">YAxis</span> <span class="n">1</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 141)" onmouseover="showTip(event, 'fs17', 141)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 142)" onmouseover="showTip(event, 'fs54', 142)" class="id">withYAxisStyle</span> <span class="pn">(</span>
+        <span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;axis2&quot;</span><span class="pn">,</span>
+        <span class="fn">Side</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 143)" onmouseover="showTip(event, 'fs31', 143)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 144)" onmouseover="showTip(event, 'fs55', 144)" class="rt">Side</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 145)" onmouseover="showTip(event, 'fs59', 145)" class="id">Right</span><span class="pn">,</span>
+        <span class="fn">Id</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 146)" onmouseover="showTip(event, 'fs31', 146)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 147)" onmouseover="showTip(event, 'fs57', 147)" class="rt">SubPlotId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 148)" onmouseover="showTip(event, 'fs58', 148)" class="id">YAxis</span> <span class="n">2</span><span class="pn">,</span>
+        <span class="fn">Overlaying</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 149)" onmouseover="showTip(event, 'fs31', 149)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 150)" onmouseover="showTip(event, 'fs60', 150)" class="rt">LinearAxisId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 151)" onmouseover="showTip(event, 'fs61', 151)" class="id">Y</span> <span class="n">1</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="ef7921a8-c456-426b-b147-3a8afb3ccd07"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_ef7921a8c456426bb1473a8afb3ccd07 = function() {
+    var data = [{"type":"scatter","name":"anchor 1","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"yaxis":"y"},{"type":"scatter","name":"anchor 2","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"marker":{},"line":{},"yaxis":"y2"}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"yaxis":{"title":{"text":"axis 1"},"side":"left"},"yaxis2":{"title":{"text":"axis2"},"side":"right","overlaying":"y"}};
+    var config = {"responsive":true};
+    Plotly.newPlot('ef7921a8-c456-426b-b147-3a8afb3ccd07', data, layout, config);
+};
+renderPlotly_ef7921a8c456426bb1473a8afb3ccd07();
+</script></div>
+<h3><a name="Multiple-axes-on-the-same-side-of-the-chart" class="anchor" href="#Multiple-axes-on-the-same-side-of-the-chart">Multiple axes on the same side of the chart</a></h3>
+<p>Analogous to above, but move the whole plot to the right by adjusting its domain, and then add a second axis to the left:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs62', 155)" onmouseover="showTip(event, 'fs62', 155)" class="id">twoXAxes2</span> <span class="o">=</span>
+    <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs45', 156)" onmouseover="showTip(event, 'fs45', 156)" class="id">anchoredAt1</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs51', 157)" onmouseover="showTip(event, 'fs51', 157)" class="id">anchoredAt2</span> <span class="pn">]</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 158)" onmouseover="showTip(event, 'fs17', 158)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 159)" onmouseover="showTip(event, 'fs53', 159)" class="id">combine</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 160)" onmouseover="showTip(event, 'fs17', 160)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 161)" onmouseover="showTip(event, 'fs54', 161)" class="id">withYAxisStyle</span> <span class="pn">(</span><span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;first y-axis&quot;</span><span class="pn">,</span> <span class="fn">ShowLine</span> <span class="o">=</span> <span class="k">true</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 162)" onmouseover="showTip(event, 'fs17', 162)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 163)" onmouseover="showTip(event, 'fs63', 163)" class="id">withXAxisStyle</span> <span class="pn">(</span>
+        <span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;x-axis&quot;</span><span class="pn">,</span>
+        <span onmouseout="hideTip(event, 'fs64', 164)" onmouseover="showTip(event, 'fs64', 164)" class="fn">Domain</span> <span class="o">=</span> <span class="pn">(</span><span class="n">0.3</span><span class="pn">,</span> <span class="n">1.0</span><span class="pn">)</span> <span class="c">// moves the first axis and the whole plot to the right</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs17', 165)" onmouseover="showTip(event, 'fs17', 165)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 166)" onmouseover="showTip(event, 'fs54', 166)" class="id">withYAxisStyle</span> <span class="pn">(</span>
+        <span class="fn">TitleText</span> <span class="o">=</span> <span class="s">&quot;second y-axis&quot;</span><span class="pn">,</span>
+        <span class="fn">Side</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 167)" onmouseover="showTip(event, 'fs31', 167)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 168)" onmouseover="showTip(event, 'fs55', 168)" class="rt">Side</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 169)" onmouseover="showTip(event, 'fs56', 169)" class="id">Left</span><span class="pn">,</span>
+        <span class="fn">Id</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 170)" onmouseover="showTip(event, 'fs31', 170)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 171)" onmouseover="showTip(event, 'fs57', 171)" class="rt">SubPlotId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 172)" onmouseover="showTip(event, 'fs58', 172)" class="id">YAxis</span> <span class="n">2</span><span class="pn">,</span>
+        <span class="fn">Overlaying</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 173)" onmouseover="showTip(event, 'fs31', 173)" class="m">StyleParam</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 174)" onmouseover="showTip(event, 'fs60', 174)" class="rt">LinearAxisId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 175)" onmouseover="showTip(event, 'fs61', 175)" class="id">Y</span> <span class="n">1</span><span class="pn">,</span>
+        <span class="fn">Position</span> <span class="o">=</span> <span class="n">0.10</span><span class="pn">,</span> <span class="c">// position the axis beteen the leftmost edge and the firt axis at 0.3</span>
+        <span class="c">//Anchor=StyleParam.AxisAnchorId.Free,</span>
+        <span class="fn">ShowLine</span> <span class="o">=</span> <span class="k">true</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="ad7832dd-3b60-4834-b51e-09f510dc1d06"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_ad7832dd3b604834b51e09f510dc1d06 = function() {
+    var data = [{"type":"scatter","name":"anchor 1","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,1.5,5.0,1.5,3.0,2.5,2.5,1.5,3.5,1.0],"marker":{},"line":{},"yaxis":"y"},{"type":"scatter","name":"anchor 2","mode":"lines","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[2.0,7.0,3.0,5.0,5.0,6.0,3.0,10.0,3.0,4.0],"marker":{},"line":{},"yaxis":"y2"}];
+    var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"yaxis":{"title":{"text":"first y-axis"},"side":"left","showline":true},"yaxis2":{"title":{"text":"second y-axis"},"side":"left","overlaying":"y","showline":true,"position":0.1},"xaxis":{"title":{"text":"x-axis"},"domain":[0.3,1.0]}};
+    var config = {"responsive":true};
+    Plotly.newPlot('ad7832dd-3b60-4834-b51e-09f510dc1d06', data, layout, config);
+};
+renderPlotly_ad7832dd3b604834b51e09f510dc1d06();
+</script></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div class="fsdocs-tip" id="fs3">module Defaults
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Contains mutable global default values.
+
+ Changing these values will apply the default values to all consecutive Chart generations.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs4">val mutable DefaultDisplayOptions: DisplayOptions</div>
+<div class="fsdocs-tip" id="fs5">Multiple items<br />type DisplayOptions =
+  inherit DynamicObj
+  new: unit -&gt; DisplayOptions
+  static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
+  static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getPlotlyReference: displayOpts: DisplayOptions -&gt; PlotlyJSReference
+  static member init: ?AdditionalHeadTags: XmlNode list * ?Description: XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions
+  static member initCDNOnly: unit -&gt; DisplayOptions
+  ...<br /><br />--------------------<br />new: unit -&gt; DisplayOptions</div>
+<div class="fsdocs-tip" id="fs6">static member DisplayOptions.init: ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?Description: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
+<div class="fsdocs-tip" id="fs7">type PlotlyJSReference =
+  | CDN of string
+  | Full
+  | Require of string
+  | NoReference<br /><em>&lt;summary&gt;
+Sets how plotly is referenced in the head of html docs.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">union case PlotlyJSReference.NoReference: PlotlyJSReference</div>
+<div class="fsdocs-tip" id="fs9">val x: float list</div>
+<div class="fsdocs-tip" id="fs10">val y: float list</div>
+<div class="fsdocs-tip" id="fs11">val y&#39;: float list</div>
+<div class="fsdocs-tip" id="fs12">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations for working with values of type &lt;see cref=&quot;T:Microsoft.FSharp.Collections.list`1&quot; /&gt;.&lt;/summary&gt;<br />&lt;namespacedoc&gt;&lt;summary&gt;Operations for collections such as lists, arrays, sets, maps and sequences. See also 
+    &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/fsharp-collection-types&quot;&gt;F# Collection Types&lt;/a&gt; in the F# Language Guide.
+ &lt;/summary&gt;&lt;/namespacedoc&gt;</em><br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...<br /><em>&lt;summary&gt;The type of immutable singly-linked lists.&lt;/summary&gt;<br />&lt;remarks&gt;Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1;2;3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+ &lt;/remarks&gt;<br />&lt;exclude /&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list<br /><em>&lt;summary&gt;Builds a new collection whose elements are the results of applying the given function
+ to each of the elements of the collection.&lt;/summary&gt;<br />&lt;param name=&quot;mapping&quot;&gt;The function to transform elements from the input list.&lt;/param&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The list of transformed elements.&lt;/returns&gt;<br />&lt;example id=&quot;map-1&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ let inputs = [ &quot;a&quot;; &quot;bbb&quot;; &quot;cc&quot; ]
+
+ inputs |&amp;gt; List.map (fun x -&amp;gt; x.Length)
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;[ 1; 3; 2 ]&lt;/c&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">val y: float</div>
+<div class="fsdocs-tip" id="fs15">val rev: list: &#39;T list -&gt; &#39;T list<br /><em>&lt;summary&gt;Returns a new list with the elements in reverse order.&lt;/summary&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The reversed list.&lt;/returns&gt;<br />&lt;example id=&quot;rev-1&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
+ let inputs = [ 0; 1; 2 ]
+
+ inputs |&amp;gt; List.rev
+ &lt;/code&gt;
+ Evaluates to &lt;c&gt;[ 2; 1; 0 ]&lt;/c&gt;.
+ &lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">val plot1: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs17">type Chart =
+  static member AnnotatedHeatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * annotationText: seq&lt;#seq&lt;string&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a3&gt; * ?MultiX: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?XGap: int * ?Y: seq&lt;&#39;a4&gt; * ?MultiY: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?YGap: int * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 1 overload
+  static member Area: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?FillColor: Color * ?FillPatternShape: PatternShape * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Bar: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member BoxPlot: ?X: seq&lt;&#39;a0&gt; * ?MultiX: seq&lt;seq&lt;&#39;a0&gt;&gt; * ?Y: seq&lt;&#39;a1&gt; * ?MultiY: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?FillColor: Color * ?MarkerColor: Color * ?Marker: Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: BoxPoints * ?BoxMean: BoxMean * ?Jitter: float * ?PointPos: float * ?Orientation: Orientation * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: QuartileMethod * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a0 :&gt; IConvertible and &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible) + 2 overloads
+  static member Bubble: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * sizes: seq&lt;int&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
+  static member Candlestick: ``open`` : seq&lt;#IConvertible&gt; * high: seq&lt;#IConvertible&gt; * low: seq&lt;#IConvertible&gt; * close: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;a4&gt; * ?MultiX: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?Line: Line * ?IncreasingColor: Color * ?Increasing: FinanceMarker * ?DecreasingColor: Color * ?Decreasing: FinanceMarker * ?WhiskerWidth: float * ?ShowXAxisRangeSlider: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 2 overloads
+  static member Column: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member Contour: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?Transpose: bool * ?ContourLineColor: Color * ?ContourLineDash: DrawingStyle * ?ContourLineSmoothing: float * ?ContourLine: Line * ?ContoursColoring: ContourColoring * ?ContoursOperation: ConstraintOperation * ?ContoursType: ContourType * ?ShowContourLabels: bool * ?ContourLabelFont: Font * ?Contours: Contours * ?FillColor: Color * ?NContours: int * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible)
+  static member Funnel: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Width: float * ?Offset: float * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?MarkerColor: Color * ?MarkerOutline: Line * ?Marker: Marker * ?TextInfo: TextInfo * ?ConnectorLineColor: Color * ?ConnectorLineStyle: DrawingStyle * ?ConnectorFillColor: Color * ?ConnectorLine: Line * ?Connector: FunnelConnector * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible)
+  static member Heatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  ...</div>
+<div class="fsdocs-tip" id="fs18">static member Chart.Point: xy: seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: seq&lt;StyleParam.MarkerSymbol&gt; * ?Marker: TraceObjects.Marker * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;a2 :&gt; System.IConvertible)<br />static member Chart.Point: x: seq&lt;#System.IConvertible&gt; * y: seq&lt;#System.IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;c * ?MultiText: seq&lt;&#39;c&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: seq&lt;StyleParam.MarkerSymbol&gt; * ?Marker: TraceObjects.Marker * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;c :&gt; System.IConvertible)</div>
+<div class="fsdocs-tip" id="fs19">argument x: seq&lt;float&gt;<br /><em>&lt;summary&gt;
+ Creates a Point chart, which uses Points in a 2D space to visualize data.
+ &lt;/summary&gt;<br />&lt;param name=&quot;x&quot;&gt;Sets the x coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;y&quot;&gt;Sets the y coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opactity of the trace&lt;/param&gt;<br />&lt;param name=&quot;MultiOpacity&quot;&gt;Sets the opactity of individual datum markers&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the position of text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiTextPosition&quot;&gt;Sets the position of text associated with individual datum&lt;/param&gt;<br />&lt;param name=&quot;MarkerColor&quot;&gt;Sets the color of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerColorScale&quot;&gt;Sets the colorscale of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerOutline&quot;&gt;Sets the outline of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerSymbol&quot;&gt;Sets the marker symbol for each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiMarkerSymbol&quot;&gt;Sets the marker symbol for each individual datum&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker (use this for more finegrained control than the other marker-associated arguments)&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;StackGroup&quot;&gt;Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to &quot;lines&quot; irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.&lt;/param&gt;<br />&lt;param name=&quot;GroupNorm&quot;&gt;Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used&lt;/param&gt;<br />&lt;param name=&quot;UseWebGL&quot;&gt;If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">argument y: seq&lt;float&gt;<br /><em>&lt;summary&gt;
+ Creates a Point chart, which uses Points in a 2D space to visualize data.
+ &lt;/summary&gt;<br />&lt;param name=&quot;x&quot;&gt;Sets the x coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;y&quot;&gt;Sets the y coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opactity of the trace&lt;/param&gt;<br />&lt;param name=&quot;MultiOpacity&quot;&gt;Sets the opactity of individual datum markers&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the position of text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiTextPosition&quot;&gt;Sets the position of text associated with individual datum&lt;/param&gt;<br />&lt;param name=&quot;MarkerColor&quot;&gt;Sets the color of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerColorScale&quot;&gt;Sets the colorscale of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerOutline&quot;&gt;Sets the outline of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerSymbol&quot;&gt;Sets the marker symbol for each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiMarkerSymbol&quot;&gt;Sets the marker symbol for each individual datum&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker (use this for more finegrained control than the other marker-associated arguments)&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;StackGroup&quot;&gt;Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to &quot;lines&quot; irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.&lt;/param&gt;<br />&lt;param name=&quot;GroupNorm&quot;&gt;Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used&lt;/param&gt;<br />&lt;param name=&quot;UseWebGL&quot;&gt;If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">static member Chart.withXAxisStyle: ?TitleText: string * ?TitleFont: Font * ?TitleStandoff: int * ?Title: Title * ?Color: Color * ?AxisType: StyleParam.AxisType * ?MinMax: (#System.IConvertible * #System.IConvertible) * ?Mirror: StyleParam.Mirror * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?ShowLine: bool * ?LineColor: Color * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: StyleParam.DrawingStyle * ?ZeroLine: bool * ?ZeroLineColor: Color * ?Anchor: StyleParam.LinearAxisId * ?Side: StyleParam.Side * ?Overlaying: StyleParam.LinearAxisId * ?Domain: (float * float) * ?Position: float * ?CategoryOrder: StyleParam.CategoryOrder * ?CategoryArray: seq&lt;#System.IConvertible&gt; * ?RangeSlider: LayoutObjects.RangeSlider * ?RangeSelector: LayoutObjects.RangeSelector * ?BackgroundColor: Color * ?ShowBackground: bool * ?Id: StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs22">static member Chart.withYAxisStyle: ?TitleText: string * ?TitleFont: Font * ?TitleStandoff: int * ?Title: Title * ?Color: Color * ?AxisType: StyleParam.AxisType * ?MinMax: (#System.IConvertible * #System.IConvertible) * ?Mirror: StyleParam.Mirror * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?ShowLine: bool * ?LineColor: Color * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: StyleParam.DrawingStyle * ?ZeroLine: bool * ?ZeroLineColor: Color * ?Anchor: StyleParam.LinearAxisId * ?Side: StyleParam.Side * ?Overlaying: StyleParam.LinearAxisId * ?AutoShift: bool * ?Shift: int * ?Domain: (float * float) * ?Position: float * ?CategoryOrder: StyleParam.CategoryOrder * ?CategoryArray: seq&lt;#System.IConvertible&gt; * ?RangeSlider: LayoutObjects.RangeSlider * ?RangeSelector: LayoutObjects.RangeSelector * ?BackgroundColor: Color * ?ShowBackground: bool * ?Id: StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs23">module GenericChart
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Module to represent a GenericChart
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">val toChartHTML: gChart: GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs25">namespace Plotly.NET.LayoutObjects</div>
+<div class="fsdocs-tip" id="fs26">val mirroredXAxis: LinearAxis</div>
+<div class="fsdocs-tip" id="fs27">Multiple items<br />type LinearAxis =
+  inherit DynamicObj
+  new: unit -&gt; LinearAxis
+  static member init: ?Visible: bool * ?Color: Color * ?Title: Title * ?AxisType: AxisType * ?AutoTypeNumbers: AutoTypeNumbers * ?AutoRange: AutoRange * ?AutoShift: bool * ?RangeMode: RangeMode * ?Range: Range * ?FixedRange: bool * ?ScaleAnchor: LinearAxisId * ?ScaleRatio: float * ?Constrain: AxisConstraint * ?ConstrainToward: AxisConstraintDirection * ?Matches: LinearAxisId * ?Rangebreaks: seq&lt;Rangebreak&gt; * ?TickMode: TickMode * ?NTicks: int * ?Tick0: #IConvertible * ?DTick: #IConvertible * ?TickVals: seq&lt;#IConvertible&gt; * ?TickText: seq&lt;#IConvertible&gt; * ?Ticks: TickOptions * ?TicksOn: CategoryTickAnchor * ?TickLabelMode: TickLabelMode * ?TickLabelPosition: TickLabelPosition * ?TickLabelStep: int * ?TickLabelOverflow: TickLabelOverflow * ?Mirror: Mirror * ?TickLen: int * ?TickWidth: int * ?TickColor: Color * ?ShowTickLabels: bool * ?AutoMargin: TickAutoMargin * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?SpikeDash: DrawingStyle * ?SpikeMode: SpikeMode * ?SpikeSnap: SpikeSnap * ?TickFont: Font * ?TickAngle: int * ?ShowTickPrefix: ShowTickOption * ?TickPrefix: string * ?ShowTickSuffix: ShowTickOption * ?TickSuffix: string * ?ShowExponent: ShowExponent * ?ExponentFormat: ExponentFormat * ?MinExponent: float * ?Minor: Minor * ?SeparateThousands: bool * ?TickFormat: string * ?TickFormatStops: seq&lt;TickFormatStop&gt; * ?HoverFormat: string * ?ShowLine: bool * ?LineColor: Color * ?LineWidth: float * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: DrawingStyle * ?GridWidth: float * ?ZeroLine: bool * ?ZeroLineColor: Color * ?ZeroLineWidth: float * ?Shift: int * ?ShowDividers: bool * ?DividerColor: Color * ?DividerWidth: int * ?Anchor: LinearAxisId * ?Side: Side * ?Overlaying: LinearAxisId * ?LabelAlias: DynamicObj * ?Layer: Layer * ?Domain: Range * ?Position: float * ?CategoryOrder: CategoryOrder * ?CategoryArray: seq&lt;#IConvertible&gt; * ?UIRevision: #IConvertible * ?RangeSlider: RangeSlider * ?RangeSelector: RangeSelector * ?Calendar: Calendar * ?BackgroundColor: Color * ?ShowBackground: bool -&gt; LinearAxis
+  static member initCarpet: ?Color: Color * ?Title: Title * ?AxisType: AxisType * ?AutoTypeNumbers: AutoTypeNumbers * ?AutoRange: AutoRange * ?RangeMode: RangeMode * ?Range: Range * ?FixedRange: bool * ?TickMode: TickMode * ?NTicks: int * ?Tick0: #IConvertible * ?DTick: #IConvertible * ?TickVals: seq&lt;#IConvertible&gt; * ?TickText: seq&lt;#IConvertible&gt; * ?Ticks: TickOptions * ?ShowTickLabels: bool * ?TickFont: Font * ?TickAngle: int * ?ShowTickPrefix: ShowTickOption * ?TickPrefix: string * ?ShowTickSuffix: ShowTickOption * ?TickSuffix: string * ?ShowExponent: ShowExponent * ?ExponentFormat: ExponentFormat * ?MinExponent: float * ?SeparateThousands: bool * ?TickFormat: string * ?TickFormatStops: seq&lt;TickFormatStop&gt; * ?ShowLine: bool * ?LineColor: Color * ?LineWidth: float * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: DrawingStyle * ?GridWidth: float * ?CategoryOrder: CategoryOrder * ?CategoryArray: seq&lt;#IConvertible&gt; * ?ArrayDTick: int * ?ArrayTick0: int * ?CheaterType: CheaterType * ?EndLine: bool * ?EndLineColor: Color * ?EndLineWidth: int * ?LabelAlias: DynamicObj * ?LabelPadding: int * ?LabelPrefix: string * ?LabelSuffix: string * ?MinorGridColor: Color * ?MinorGridDash: DrawingStyle * ?MinorGridCount: int * ?MinorGridWidth: int * ?Smoothing: float * ?StartLine: bool * ?StartLineColor: Color * ?StartLineWidth: int -&gt; LinearAxis
+  static member initCategorical: categoryOrder: CategoryOrder * ?Visible: bool * ?Color: Color * ?Title: Title * ?AutoTypeNumbers: AutoTypeNumbers * ?AutoRange: AutoRange * ?AutoShift: bool * ?RangeMode: RangeMode * ?Range: Range * ?FixedRange: bool * ?ScaleAnchor: LinearAxisId * ?ScaleRatio: float * ?Constrain: AxisConstraint * ?ConstrainToward: AxisConstraintDirection * ?Matches: LinearAxisId * ?Rangebreaks: seq&lt;Rangebreak&gt; * ?TickMode: TickMode * ?NTicks: int * ?Tick0: #IConvertible * ?DTick: #IConvertible * ?TickVals: seq&lt;#IConvertible&gt; * ?TickText: seq&lt;#IConvertible&gt; * ?Ticks: TickOptions * ?TicksOn: CategoryTickAnchor * ?TickLabelMode: TickLabelMode * ?TickLabelPosition: TickLabelPosition * ?TickLabelOverflow: TickLabelOverflow * ?Mirror: Mirror * ?TickLen: int * ?TickWidth: int * ?TickColor: Color * ?ShowTickLabels: bool * ?AutoMargin: TickAutoMargin * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?SpikeDash: DrawingStyle * ?SpikeMode: SpikeMode * ?SpikeSnap: SpikeSnap * ?TickFont: Font * ?TickAngle: int * ?ShowTickPrefix: ShowTickOption * ?TickPrefix: string * ?ShowTickSuffix: ShowTickOption * ?TickSuffix: string * ?ShowExponent: ShowExponent * ?ExponentFormat: ExponentFormat * ?MinExponent: float * ?Minor: Minor * ?SeparateThousands: bool * ?TickFormat: string * ?TickFormatStops: seq&lt;TickFormatStop&gt; * ?HoverFormat: string * ?ShowLine: bool * ?LineColor: Color * ?LineWidth: float * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: DrawingStyle * ?GridWidth: float * ?ZeroLine: bool * ?ZeroLineColor: Color * ?ZeroLineWidth: float * ?Shift: int * ?ShowDividers: bool * ?DividerColor: Color * ?DividerWidth: int * ?Anchor: LinearAxisId * ?Side: Side * ?Overlaying: LinearAxisId * ?LabelAlias: DynamicObj * ?Layer: Layer * ?Domain: Range * ?Position: float * ?CategoryArray: seq&lt;#IConvertible&gt; * ?UIRevision: #IConvertible * ?RangeSlider: RangeSlider * ?RangeSelector: RangeSelector * ?Calendar: Calendar -&gt; LinearAxis
+  static member initIndicatorGauge: ?DTick: #IConvertible * ?LabelAlias: DynamicObj * ?ExponentFormat: ExponentFormat * ?MinExponent: float * ?NTicks: int * ?Range: Range * ?SeparateThousands: bool * ?ShowExponent: ShowExponent * ?ShowTickLabels: bool * ?ShowTickPrefix: ShowTickOption * ?ShowTickSuffix: ShowTickOption * ?Tick0: #IConvertible * ?TickAngle: int * ?TickColor: Color * ?TickFont: Font * ?TickFormat: string * ?TickFormatStops: seq&lt;TickFormatStop&gt; * ?TickLen: int * ?TickMode: TickMode * ?TickPrefix: string * ?Ticks: TickOptions * ?TickSuffix: string * ?TickText: seq&lt;#IConvertible&gt; * ?TickVals: seq&lt;#IConvertible&gt; * ?TickWidth: int * ?Visible: bool -&gt; LinearAxis
+  static member style: ?Visible: bool * ?Color: Color * ?Title: Title * ?AxisType: AxisType * ?AutoTypeNumbers: AutoTypeNumbers * ?AutoRange: AutoRange * ?AutoShift: bool * ?RangeMode: RangeMode * ?Range: Range * ?FixedRange: bool * ?ScaleAnchor: LinearAxisId * ?ScaleRatio: float * ?Constrain: AxisConstraint * ?ConstrainToward: AxisConstraintDirection * ?Matches: LinearAxisId * ?Rangebreaks: seq&lt;Rangebreak&gt; * ?TickMode: TickMode * ?NTicks: int * ?Tick0: #IConvertible * ?DTick: #IConvertible * ?TickVals: seq&lt;#IConvertible&gt; * ?TickText: seq&lt;#IConvertible&gt; * ?Ticks: TickOptions * ?TicksOn: CategoryTickAnchor * ?TickLabelMode: TickLabelMode * ?TickLabelPosition: TickLabelPosition * ?TickLabelStep: int * ?TickLabelOverflow: TickLabelOverflow * ?Mirror: Mirror * ?TickLen: int * ?TickWidth: int * ?TickColor: Color * ?ShowTickLabels: bool * ?AutoMargin: TickAutoMargin * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?SpikeDash: DrawingStyle * ?SpikeMode: SpikeMode * ?SpikeSnap: SpikeSnap * ?TickFont: Font * ?TickAngle: int * ?ShowTickPrefix: ShowTickOption * ?TickPrefix: string * ?ShowTickSuffix: ShowTickOption * ?TickSuffix: string * ?ShowExponent: ShowExponent * ?ExponentFormat: ExponentFormat * ?MinExponent: float * ?Minor: Minor * ?SeparateThousands: bool * ?TickFormat: string * ?TickFormatStops: seq&lt;TickFormatStop&gt; * ?HoverFormat: string * ?ShowLine: bool * ?LineColor: Color * ?LineWidth: float * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: DrawingStyle * ?GridWidth: float * ?ZeroLine: bool * ?ZeroLineColor: Color * ?ZeroLineWidth: float * ?Shift: int * ?ShowDividers: bool * ?DividerColor: Color * ?DividerWidth: int * ?Anchor: LinearAxisId * ?Side: Side * ?Overlaying: LinearAxisId * ?LabelAlias: DynamicObj * ?Layer: Layer * ?Domain: Range * ?Position: float * ?CategoryOrder: CategoryOrder * ?CategoryArray: seq&lt;#IConvertible&gt; * ?UIRevision: #IConvertible * ?RangeSlider: RangeSlider * ?RangeSelector: RangeSelector * ?Calendar: Calendar * ?ArrayDTick: int * ?ArrayTick0: int * ?CheaterType: CheaterType * ?EndLine: bool * ?EndLineColor: Color * ?EndLineWidth: int * ?LabelPadding: int * ?LabelPrefix: string * ?LabelSuffix: string * ?MinorGridColor: Color * ?MinorGridDash: DrawingStyle * ?MinorGridCount: int * ?MinorGridWidth: int * ?Smoothing: float * ?StartLine: bool * ?StartLineColor: Color * ?StartLineWidth: int * ?BackgroundColor: Color * ?ShowBackground: bool -&gt; (LinearAxis -&gt; LinearAxis)<br /><em>&lt;summary&gt;Linear axes can be used as x and y scales on 2D plots, and as x,y, and z scales on 3D plots.&lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; LinearAxis</div>
+<div class="fsdocs-tip" id="fs28">static member LinearAxis.init: ?Visible: bool * ?Color: Color * ?Title: Title * ?AxisType: StyleParam.AxisType * ?AutoTypeNumbers: StyleParam.AutoTypeNumbers * ?AutoRange: StyleParam.AutoRange * ?AutoShift: bool * ?RangeMode: StyleParam.RangeMode * ?Range: StyleParam.Range * ?FixedRange: bool * ?ScaleAnchor: StyleParam.LinearAxisId * ?ScaleRatio: float * ?Constrain: StyleParam.AxisConstraint * ?ConstrainToward: StyleParam.AxisConstraintDirection * ?Matches: StyleParam.LinearAxisId * ?Rangebreaks: seq&lt;Rangebreak&gt; * ?TickMode: StyleParam.TickMode * ?NTicks: int * ?Tick0: #System.IConvertible * ?DTick: #System.IConvertible * ?TickVals: seq&lt;#System.IConvertible&gt; * ?TickText: seq&lt;#System.IConvertible&gt; * ?Ticks: StyleParam.TickOptions * ?TicksOn: StyleParam.CategoryTickAnchor * ?TickLabelMode: StyleParam.TickLabelMode * ?TickLabelPosition: StyleParam.TickLabelPosition * ?TickLabelStep: int * ?TickLabelOverflow: StyleParam.TickLabelOverflow * ?Mirror: StyleParam.Mirror * ?TickLen: int * ?TickWidth: int * ?TickColor: Color * ?ShowTickLabels: bool * ?AutoMargin: StyleParam.TickAutoMargin * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?SpikeDash: StyleParam.DrawingStyle * ?SpikeMode: StyleParam.SpikeMode * ?SpikeSnap: StyleParam.SpikeSnap * ?TickFont: Font * ?TickAngle: int * ?ShowTickPrefix: StyleParam.ShowTickOption * ?TickPrefix: string * ?ShowTickSuffix: StyleParam.ShowTickOption * ?TickSuffix: string * ?ShowExponent: StyleParam.ShowExponent * ?ExponentFormat: StyleParam.ExponentFormat * ?MinExponent: float * ?Minor: Minor * ?SeparateThousands: bool * ?TickFormat: string * ?TickFormatStops: seq&lt;TickFormatStop&gt; * ?HoverFormat: string * ?ShowLine: bool * ?LineColor: Color * ?LineWidth: float * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: StyleParam.DrawingStyle * ?GridWidth: float * ?ZeroLine: bool * ?ZeroLineColor: Color * ?ZeroLineWidth: float * ?Shift: int * ?ShowDividers: bool * ?DividerColor: Color * ?DividerWidth: int * ?Anchor: StyleParam.LinearAxisId * ?Side: StyleParam.Side * ?Overlaying: StyleParam.LinearAxisId * ?LabelAlias: DynamicObj.DynamicObj * ?Layer: StyleParam.Layer * ?Domain: StyleParam.Range * ?Position: float * ?CategoryOrder: StyleParam.CategoryOrder * ?CategoryArray: seq&lt;#System.IConvertible&gt; * ?UIRevision: #System.IConvertible * ?RangeSlider: RangeSlider * ?RangeSelector: RangeSelector * ?Calendar: StyleParam.Calendar * ?BackgroundColor: Color * ?ShowBackground: bool -&gt; LinearAxis</div>
+<div class="fsdocs-tip" id="fs29">Multiple items<br />type Title =
+  inherit DynamicObj
+  new: unit -&gt; Title
+  static member init: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?XAnchor: XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: YAnchorPosition * ?YRef: string -&gt; Title
+  static member style: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?XAnchor: XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: YAnchorPosition * ?YRef: string -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new: unit -&gt; Title</div>
+<div class="fsdocs-tip" id="fs30">static member Title.init: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: StyleParam.Side * ?X: float * ?XAnchor: StyleParam.XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: StyleParam.YAnchorPosition * ?YRef: string -&gt; Title</div>
+<div class="fsdocs-tip" id="fs31">module StyleParam
+
+from Plotly.NET</div>
+<div class="fsdocs-tip" id="fs32">type Mirror =
+  | True
+  | Ticks
+  | False
+  | All
+  | AllTicks
+  member Convert: unit -&gt; obj
+  static member convert: (Mirror -&gt; obj)<br /><em>&lt;summary&gt;
+ Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If &quot;true&quot;, the axis lines are mirrored.
+ If &quot;ticks&quot;, the axis lines and ticks are mirrored. If &quot;false&quot;, mirroring is disable. If &quot;all&quot;, axis lines are mirrored on all shared-axes subplots. If &quot;allticks&quot;, axis lines and ticks are mirrored on all shared-axes subplots.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">union case StyleParam.Mirror.AllTicks: StyleParam.Mirror</div>
+<div class="fsdocs-tip" id="fs34">type TickOptions =
+  | Outside
+  | Inside
+  | Empty
+  member Convert: unit -&gt; obj
+  override ToString: unit -&gt; string
+  static member convert: (TickOptions -&gt; obj)
+  static member toString: (TickOptions -&gt; string)<br /><em>&lt;summary&gt;
+ Determines whether ticks are drawn or not. If &quot;&quot;, this axis&#39; ticks are not drawn. If &quot;outside&quot; (&quot;inside&quot;), this axis&#39; are drawn outside (inside) the axis lines.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">union case StyleParam.TickOptions.Inside: StyleParam.TickOptions</div>
+<div class="fsdocs-tip" id="fs36">val mirroredLogYAxis: LinearAxis</div>
+<div class="fsdocs-tip" id="fs37">type AxisType =
+  | Auto
+  | Linear
+  | Log
+  | Date
+  | Category
+  | MultiCategory
+  member Convert: unit -&gt; obj
+  override ToString: unit -&gt; string
+  static member convert: (AxisType -&gt; obj)
+  static member toString: (AxisType -&gt; string)<br /><em>&lt;summary&gt;
+ Sets the axis type. By default (Auto), plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">union case StyleParam.AxisType.Log: StyleParam.AxisType</div>
+<div class="fsdocs-tip" id="fs39">val plot2: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs40">static member Chart.withXAxis: xAxis: LinearAxis * ?Id: StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs41">static member Chart.withYAxis: yAxis: LinearAxis * ?Id: StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs42">val dollarAxis: LinearAxis</div>
+<div class="fsdocs-tip" id="fs43">val percentAxis: LinearAxis</div>
+<div class="fsdocs-tip" id="fs44">val plot3: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs45">val anchoredAt1: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs46">static member Chart.Line: xy: seq&lt;#System.IConvertible * #System.IConvertible&gt; * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: seq&lt;StyleParam.MarkerSymbol&gt; * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;a2 :&gt; System.IConvertible)<br />static member Chart.Line: x: seq&lt;#System.IConvertible&gt; * y: seq&lt;#System.IConvertible&gt; * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;c * ?MultiText: seq&lt;&#39;c&gt; * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: seq&lt;StyleParam.TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: seq&lt;StyleParam.MarkerSymbol&gt; * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;c :&gt; System.IConvertible)</div>
+<div class="fsdocs-tip" id="fs47">argument x: seq&lt;float&gt;<br /><em>&lt;summary&gt; Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.&lt;/summary&gt;<br />&lt;param name=&quot;x&quot;&gt;Sets the x coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;y&quot;&gt;Sets the y coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;ShowMarkers&quot;&gt;Whether to show markers for the individual data points&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opactity of the trace&lt;/param&gt;<br />&lt;param name=&quot;MultiOpacity&quot;&gt;Sets the opactity of individual datum markers&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the position of text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiTextPosition&quot;&gt;Sets the position of text associated with individual datum&lt;/param&gt;<br />&lt;param name=&quot;MarkerColor&quot;&gt;Sets the color of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerColorScale&quot;&gt;Sets the colorscale of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerOutline&quot;&gt;Sets the outline of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerSymbol&quot;&gt;Sets the marker symbol for each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiMarkerSymbol&quot;&gt;Sets the marker symbol for each individual datum&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker (use this for more finegrained control than the other marker-associated arguments)&lt;/param&gt;<br />&lt;param name=&quot;LineColor&quot;&gt;Sets the color of the line&lt;/param&gt;<br />&lt;param name=&quot;LineColorScale&quot;&gt;Sets the colorscale of the line&lt;/param&gt;<br />&lt;param name=&quot;LineWidth&quot;&gt;Sets the width of the line&lt;/param&gt;<br />&lt;param name=&quot;LineDash&quot;&gt;sets the drawing style of the line&lt;/param&gt;<br />&lt;param name=&quot;Line&quot;&gt;Sets the line (use this for more finegrained control than the other line-associated arguments)&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;StackGroup&quot;&gt;Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to &quot;lines&quot; irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.&lt;/param&gt;<br />&lt;param name=&quot;GroupNorm&quot;&gt;Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used&lt;/param&gt;<br />&lt;param name=&quot;Fill&quot;&gt;Sets the area to fill with a solid color. Defaults to &quot;none&quot; unless this trace is stacked, then it gets &quot;tonexty&quot; (&quot;tonextx&quot;) if `orientation` is &quot;v&quot; (&quot;h&quot;) Use with `FillColor` if not &quot;none&quot;. &quot;tozerox&quot; and &quot;tozeroy&quot; fill to x=0 and y=0 respectively. &quot;tonextx&quot; and &quot;tonexty&quot; fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like &quot;tozerox&quot; and &quot;tozeroy&quot;. &quot;toself&quot; connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. &quot;tonext&quot; fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like &quot;toself&quot; if there is no trace before it. &quot;tonext&quot; should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.&lt;/param&gt;<br />&lt;param name=&quot;FillColor&quot;&gt;Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.&lt;/param&gt;<br />&lt;param name=&quot;FillPattern&quot;&gt;Sets the pattern within the marker.&lt;/param&gt;<br />&lt;param name=&quot;UseWebGL&quot;&gt;If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">argument y: seq&lt;float&gt;<br /><em>&lt;summary&gt; Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.&lt;/summary&gt;<br />&lt;param name=&quot;x&quot;&gt;Sets the x coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;y&quot;&gt;Sets the y coordinates of the plotted data.&lt;/param&gt;<br />&lt;param name=&quot;ShowMarkers&quot;&gt;Whether to show markers for the individual data points&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opactity of the trace&lt;/param&gt;<br />&lt;param name=&quot;MultiOpacity&quot;&gt;Sets the opactity of individual datum markers&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the position of text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiTextPosition&quot;&gt;Sets the position of text associated with individual datum&lt;/param&gt;<br />&lt;param name=&quot;MarkerColor&quot;&gt;Sets the color of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerColorScale&quot;&gt;Sets the colorscale of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerOutline&quot;&gt;Sets the outline of the marker&lt;/param&gt;<br />&lt;param name=&quot;MarkerSymbol&quot;&gt;Sets the marker symbol for each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiMarkerSymbol&quot;&gt;Sets the marker symbol for each individual datum&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker (use this for more finegrained control than the other marker-associated arguments)&lt;/param&gt;<br />&lt;param name=&quot;LineColor&quot;&gt;Sets the color of the line&lt;/param&gt;<br />&lt;param name=&quot;LineColorScale&quot;&gt;Sets the colorscale of the line&lt;/param&gt;<br />&lt;param name=&quot;LineWidth&quot;&gt;Sets the width of the line&lt;/param&gt;<br />&lt;param name=&quot;LineDash&quot;&gt;sets the drawing style of the line&lt;/param&gt;<br />&lt;param name=&quot;Line&quot;&gt;Sets the line (use this for more finegrained control than the other line-associated arguments)&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;StackGroup&quot;&gt;Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to &quot;lines&quot; irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.&lt;/param&gt;<br />&lt;param name=&quot;GroupNorm&quot;&gt;Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used&lt;/param&gt;<br />&lt;param name=&quot;Fill&quot;&gt;Sets the area to fill with a solid color. Defaults to &quot;none&quot; unless this trace is stacked, then it gets &quot;tonexty&quot; (&quot;tonextx&quot;) if `orientation` is &quot;v&quot; (&quot;h&quot;) Use with `FillColor` if not &quot;none&quot;. &quot;tozerox&quot; and &quot;tozeroy&quot; fill to x=0 and y=0 respectively. &quot;tonextx&quot; and &quot;tonexty&quot; fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like &quot;tozerox&quot; and &quot;tozeroy&quot;. &quot;toself&quot; connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. &quot;tonext&quot; fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like &quot;toself&quot; if there is no trace before it. &quot;tonext&quot; should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.&lt;/param&gt;<br />&lt;param name=&quot;FillColor&quot;&gt;Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.&lt;/param&gt;<br />&lt;param name=&quot;FillPattern&quot;&gt;Sets the pattern within the marker.&lt;/param&gt;<br />&lt;param name=&quot;UseWebGL&quot;&gt;If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">static member Chart.withAxisAnchor: ?X: int * ?Y: int -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs50">argument Y: int option<br /><em>&lt;summary&gt;
+ Sets the axis anchor ids for the chart&#39;s cartesian and/or carpet trace(s).
+
+ If the traces are not of these types, nothing will be set and a warning message will be displayed.
+ &lt;/summary&gt;<br />&lt;param name=&quot;X&quot;&gt;The new x axis anchor id for the chart&#39;s cartesian and/or carpet trace(s)&lt;/param&gt;<br />&lt;param name=&quot;Y&quot;&gt;The new x axis anchor id for the chart&#39;s cartesian and/or carpet trace(s)&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs51">val anchoredAt2: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs52">val twoXAxes1: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs53">static member Chart.combine: gCharts: seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs54">static member Chart.withYAxisStyle: ?TitleText: string * ?TitleFont: Font * ?TitleStandoff: int * ?Title: Title * ?Color: Color * ?AxisType: StyleParam.AxisType * ?MinMax: (#System.IConvertible * #System.IConvertible) * ?Mirror: StyleParam.Mirror * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?ShowLine: bool * ?LineColor: Color * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: StyleParam.DrawingStyle * ?ZeroLine: bool * ?ZeroLineColor: Color * ?Anchor: StyleParam.LinearAxisId * ?Side: StyleParam.Side * ?Overlaying: StyleParam.LinearAxisId * ?AutoShift: bool * ?Shift: int * ?Domain: (float * float) * ?Position: float * ?CategoryOrder: StyleParam.CategoryOrder * ?CategoryArray: seq&lt;#System.IConvertible&gt; * ?RangeSlider: RangeSlider * ?RangeSelector: RangeSelector * ?BackgroundColor: Color * ?ShowBackground: bool * ?Id: StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs55">type Side =
+  | Top
+  | TopLeft
+  | Bottom
+  | Left
+  | Right
+  member Convert: unit -&gt; obj
+  override ToString: unit -&gt; string
+  static member convert: (Side -&gt; obj)
+  static member toString: (Side -&gt; string)</div>
+<div class="fsdocs-tip" id="fs56">union case StyleParam.Side.Left: StyleParam.Side</div>
+<div class="fsdocs-tip" id="fs57">type SubPlotId =
+  | XAxis of int
+  | YAxis of int
+  | ZAxis
+  | ColorAxis of int
+  | Geo of int
+  | Mapbox of int
+  | Polar of int
+  | Ternary of int
+  | Scene of int
+  | Carpet of string
+  ...
+  member Convert: unit -&gt; obj
+  override ToString: unit -&gt; string
+  static member convert: (SubPlotId -&gt; obj)
+  static member toString: (SubPlotId -&gt; string)</div>
+<div class="fsdocs-tip" id="fs58">union case StyleParam.SubPlotId.YAxis: int -&gt; StyleParam.SubPlotId</div>
+<div class="fsdocs-tip" id="fs59">union case StyleParam.Side.Right: StyleParam.Side</div>
+<div class="fsdocs-tip" id="fs60">type LinearAxisId =
+  | Free
+  | X of int
+  | Y of int
+  member Convert: unit -&gt; obj
+  override ToString: unit -&gt; string
+  static member convert: (LinearAxisId -&gt; obj)
+  static member toString: (LinearAxisId -&gt; string)</div>
+<div class="fsdocs-tip" id="fs61">union case StyleParam.LinearAxisId.Y: int -&gt; StyleParam.LinearAxisId</div>
+<div class="fsdocs-tip" id="fs62">val twoXAxes2: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs63">static member Chart.withXAxisStyle: ?TitleText: string * ?TitleFont: Font * ?TitleStandoff: int * ?Title: Title * ?Color: Color * ?AxisType: StyleParam.AxisType * ?MinMax: (#System.IConvertible * #System.IConvertible) * ?Mirror: StyleParam.Mirror * ?ShowSpikes: bool * ?SpikeColor: Color * ?SpikeThickness: int * ?ShowLine: bool * ?LineColor: Color * ?ShowGrid: bool * ?GridColor: Color * ?GridDash: StyleParam.DrawingStyle * ?ZeroLine: bool * ?ZeroLineColor: Color * ?Anchor: StyleParam.LinearAxisId * ?Side: StyleParam.Side * ?Overlaying: StyleParam.LinearAxisId * ?Domain: (float * float) * ?Position: float * ?CategoryOrder: StyleParam.CategoryOrder * ?CategoryArray: seq&lt;#System.IConvertible&gt; * ?RangeSlider: RangeSlider * ?RangeSelector: RangeSelector * ?BackgroundColor: Color * ?ShowBackground: bool * ?Id: StyleParam.SubPlotId -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
+<div class="fsdocs-tip" id="fs64">Multiple items<br />type Domain =
+  inherit DynamicObj
+  new: unit -&gt; Domain
+  static member init: ?X: Range * ?Y: Range * ?Row: int * ?Column: int -&gt; Domain
+  static member style: ?X: Range * ?Y: Range * ?Row: int * ?Column: int -&gt; (Domain -&gt; Domain)<br /><em>&lt;summary&gt;
+ Dimensions type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; Domain</div>
+
+    </div>
+
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
+    <!-- END SEARCH BOX: this adds support for the search box -->
+</body>
+
+</html>
