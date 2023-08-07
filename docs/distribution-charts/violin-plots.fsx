@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create violin plot charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -70,7 +70,7 @@ violin1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-By swapping x and y plus using `StyleParam.Orientation.Horizontal` we can flip the chart horizontaly.
+By swapping x and y plus using `StyleParam.Orientation.Horizontal`, we can flip the chart horizontally.
 *)
 open Plotly.NET.TraceObjects
 

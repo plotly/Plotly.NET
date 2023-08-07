@@ -37,7 +37,7 @@ In Plotly.NET, this is modelled by 2 arguments in the constructors:
 - The "single value version" (e.g. `Opacity`) that sets one value in the target property
 - The "multi value version" (e.g. `MultiOpacity`) that sets a collection of values in the target property
 
-**Multi-arguments always have precedent over single arguments, meaning setting both will always set the multi version**
+**Multi-arguments always have precedence over single arguments, meaning setting both will always set the multi version**
 
 Here is an example for bar charts:
 

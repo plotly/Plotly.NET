@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create heatmap charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -50,7 +50,7 @@ A heatmap chart can be created using the `Chart.Heatmap` functions.
 
 When creating heatmap charts, it is usually desirable to provide the values in matrix form, rownames and colnames.
 
-A heatmap needs at least 2 dimensional data that represents the z dimension. the X and Y dimension sizes can be inferred from the z data:
+A heatmap needs at least two-dimensional data that represents the z dimension. The X and Y dimension sizes can be inferred from the z data:
 *)
 
 // Generating the Heatmap with only z Data
@@ -68,7 +68,7 @@ heat1 |> GenericChart.toChartHTML
 (**
 ## Inverting the Y Axis
 
-Per default, the y axis starts at the origin of the X/Y plane. 
+By default, the y axis starts at the origin of the X/Y plane. 
 If it is however desired to represent a 2D matrix exactly how it is notated, invert the YAxis by setting `ReverseYAxis`.
 *)
 
@@ -110,7 +110,7 @@ heat3 |> GenericChart.toChartHTML
 (**
 ## Annotated Heatmaps
  
-use `Chart.AnnotatedHeatmap` to add an annotation text to each z value:
+Use `Chart.AnnotatedHeatmap` to add an annotation text to each z value:
 *)
 
 let heat4 =

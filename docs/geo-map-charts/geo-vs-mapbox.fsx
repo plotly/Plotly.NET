@@ -38,7 +38,7 @@ Plotly and therefore Plotly.NET supports two different kinds of maps:
 - **Mapbox maps** are tile-based maps. If your figure is created with a `Chart.*Mapbox` function or otherwise contains one or more traces of type `scattermapbox`, 
     `choroplethmapbox` or `densitymapbox`, the layout.mapbox object in your figure contains configuration information for the map itself.
     
-- **Geo maps** are outline-based maps. If your figure is created with a `Chart.ScatterGeo, `Chart.PointGeo`, `Chart.LineGeo` or `Chart.Choropleth` function or 
+- **Geo maps** are outline-based maps. If your figure is created with a `Chart.ScatterGeo`, `Chart.PointGeo`, `Chart.LineGeo` or `Chart.Choropleth` function or 
     otherwise contains one or more traces of type `scattergeo` or `choropleth`, the layout.geo object in your figure contains configuration information for the map itself.
     
 _This page documents Geo outline-based maps, and the [Mapbox Layers documentation]({{root}}mapbox-map-charts/geo-vs-mapbox.html) describes how to configure Mapbox tile-based maps._
@@ -67,7 +67,7 @@ baseMapOnly |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-To control the features of the map, a `Geo` object is used that can be associtaed with a given chart using the `Chart.WithGeo` function.
+To control the features of the map, a `Geo` object is used that can be associated with a given chart using the `Chart.WithGeo` function.
 Here is a map with all physical features enabled and styled, at a larger-scale 1:50m resolution:
 *)
 open Plotly.NET.LayoutObjects

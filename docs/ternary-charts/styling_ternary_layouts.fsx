@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to style polar layouts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 *)
 open Plotly.NET
 
@@ -67,7 +67,7 @@ combinedTernary |> GenericChart.toChartHTML
 (**
 ## Styling the polar layout
 
-Use the `Chart.withTernary` function and initialize a Ternary layout with the desired looks
+Use the `Chart.withTernary` function and initialize a Ternary layout with the desired looks:
 *)
 open Plotly.NET.LayoutObjects
 

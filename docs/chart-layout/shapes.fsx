@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create Shapes and add them to the Charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -42,7 +42,7 @@ let x = [ 1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10. ]
 let y' = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 
 (**
-use the `Shape.init` function to generate a shape, and either the `Chart.withShape` or the `Chart.withShapes` function to add
+Use the `Shape.init` function to generate a shape, and either the `Chart.withShape` or the `Chart.withShapes` function to add
 multiple shapes at once.
 
 **Attention**: Adding a shape after you added a previous one currently removes the old one. This is a bug and will be fixed

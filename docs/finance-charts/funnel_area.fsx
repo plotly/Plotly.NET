@@ -31,7 +31,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create funnel area charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 *)
 
 let values = [| 5; 4; 3; 2; 1 |]
@@ -64,7 +64,7 @@ funnelArea |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.FunnelArea`.
+This example shows the usage of some of the styling options using `Chart.FunnelArea`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.FunnelArea`
 *)
 

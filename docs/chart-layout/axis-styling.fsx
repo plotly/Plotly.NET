@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to style chart axes in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 *)
 
 open Plotly.NET
@@ -62,7 +62,7 @@ plot1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-for even more fine-grained control, initialize a new axis and replace the old one of the plot with ````.
+For even more fine-grained control, initialize a new axis and replace the old one of the plot with `Chart.with*_Axis`.
 The following example creates two mirrored axes with inside ticks, one of them with a log scale:
 *)
 

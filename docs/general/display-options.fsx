@@ -37,7 +37,7 @@ You can control the html document that gets created via `Chart.Show` with variou
 
 Naturally, these full html documents can not be embedded in this documentation page, so sometimes images have to suffice for demonstrations here.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -54,7 +54,7 @@ For rendering plotly.js charts in a html document, you need to reference plotly.
 Plotly.NET provides multiple ways to do that in the generated html:
 
 - `Full`: Include the full plotly.js source in a script tag. HTML files using this option are self-contained and can be used offline.
-- `CDN`: The default. uses a script tag in the head of the generated HTML to load plotly.js from a CDN.
+- `CDN`: The default. Uses a script tag in the head of the generated HTML to load plotly.js from a CDN.
 - `Require`: Use requirejs to load plotly. This option is for example used in Plotly.NET.Interactive inside notebooks.
 - `NoReference`: Don't include any plotly.js reference. Useful if you want to embed the output into another page that already references plotly - the documentation pages you are reading now are generated with this option.
 

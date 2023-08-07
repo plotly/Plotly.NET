@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create Range plot charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -74,7 +74,7 @@ range1 |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.Range`.
+This example shows the usage of some of the styling options using `Chart.Range`.
 *)
 open Plotly.NET.TraceObjects
 

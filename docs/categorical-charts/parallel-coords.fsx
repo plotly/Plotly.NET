@@ -34,7 +34,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create parallel coordinates plot in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -69,7 +69,7 @@ parcoords1 |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.ParallelCoord`.
+This example shows the usage of some of the styling options using `Chart.ParallelCoord`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.ParallelCoord`
 *)
 

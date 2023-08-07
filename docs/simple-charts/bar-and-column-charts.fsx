@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create bar and a column charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 *)
 
 open Plotly.NET
@@ -80,7 +80,7 @@ bar |> GenericChart.toChartHTML
 
 The following example shows how to create a stacked bar chart by combining bar charts created by combining multiple `Chart.StackedBar` charts: 
 
-Basically those charts are just normal bar/column charts with the Layout property `BarMode` set to `Stack`. You can do this yourself by changing the Chart layout.
+Basically, those charts are just normal bar/column charts with the Layout property `BarMode` set to `Stack`. You can do this yourself by changing the Chart layout.
 
 ### Stacked bar Charts
 *)

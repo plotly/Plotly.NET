@@ -37,7 +37,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 Icicle charts visualize hierarchical data using rectangular sectors that cascade from root to leaves in one of four directions: up, down, left, or right. 
 Similar to Sunburst charts and Treemaps charts, the hierarchy is defined by labels and parents attributes. 
 Click on one sector to zoom in/out, which also displays a pathbar on the top of your icicle. 
-To zoom out, you can click the parent sector or click the pathbar as well.
+To zoom out, you can click the parent sector or click the pathbar, as well.
 *)
 
 open Plotly.NET
@@ -71,7 +71,7 @@ icicle |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.Icicle`.
+This example shows the usage of some of the styling options using `Chart.Icicle`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Icicle`
 *)
 

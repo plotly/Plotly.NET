@@ -40,7 +40,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 ## The Color type
 
-There are many ways how plotly.js handles colors. In general, individual colors can be set the same way as in general html/css - so for example string representations of (a)rgb, hsl, or keywords such as "red"
+There are many ways how plotly.js handles colors. In general, individual colors can be set the same way as in general html/css - so for example string representations of (a)rgb, hsl, or keywords such as "red".
 Additionally to that, there are several ways of controlling color attributes of plotly objects:
 
 - Setting a single color which will be used for all elements in a collection, for example all markers: `"rgb(r,g,b)"` or `"red"`

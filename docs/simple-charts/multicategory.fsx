@@ -46,9 +46,9 @@ Since Plotly.NET v4, multicategory data are supported on the following 2D charts
 
 ## Scatter
 
-Note that this does not apply to all derived Charts such as `Chart.Point`, `Chart.Line`, `Chart.Bubble`, `Chart.Spline` etc. (to avoid creating dozens ov overloads for scatter derived traces)
+Note that this does not apply to all derived Charts such as `Chart.Point`, `Chart.Line`, `Chart.Bubble`, `Chart.Spline` etc. (to avoid creating dozens of overloads for scatter derived traces).
 
-You can however design those yourself using Chart.Scatter, here are some examples:
+You can, however, design those yourself using Chart.Scatter. Here are some examples:
 *)
 open Plotly.NET
 open System

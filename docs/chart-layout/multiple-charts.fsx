@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create charts with multiple subplots in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -71,7 +71,7 @@ combinedChart |> GenericChart.toChartHTML
 
 `Chart.Grid` creates a subplot grid. There are two overloads:
 
-You can either use Chart.Grid with a 1 dimensional sequence of Charts and specify the amount of rows and columns:
+You can either use Chart.Grid with a 1 dimensional sequence of Charts and specify the number of rows and columns:
 
 *)
 
@@ -133,8 +133,8 @@ grid2 |> GenericChart.toChartHTML
 
 (**
 To leave cells of the grid empty, you have to fill it with dummy charts via `Chart.Invisible()`.
-Pleas enote that when using a 2D sequence with unequal amounts of charts in the rows, the column amount will be set
-to the row with the highest amount of charts, and the other rows will be filled by invisible charts to the right.
+Pleas note that when using a 2D sequence with unequal numbers of charts in the rows, the column count will be set
+to the row with the highest number of charts, and the other rows will be filled by invisible charts to the right.
 *)
 
 //simple 2x2 subplot grid with an empty cell at position 1,2
@@ -164,7 +164,7 @@ grid3 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-use `Pattern=StyleParam.LayoutGridPatter.Coupled` to use one shared x axis per column and one shared y axis per row. 
+Use `Pattern=StyleParam.LayoutGridPatter.Coupled` to use one shared x axis per column and one shared y axis per row. 
 (Try zooming in the single subplots below)
 *)
 
@@ -196,7 +196,7 @@ grid4 |> GenericChart.toChartHTML
 ### Chart.SingleStack
 
 The `Chart.SingleStack` function is a special version of Chart.Grid that creates only one column from a 1D input chart sequence.
-It uses a shared x axis per default.
+It uses a shared x axis by default.
 
 As with all grid charts, you can also use the Chart.withLayoutGridStyle to style subplot grids:
 
@@ -228,7 +228,7 @@ singleStack |> GenericChart.toChartHTML
 
 Chart.Grid does some internal magic to make sure that all trace types get their grid cell according to plotly.js's inner logic. 
 
-The only thing you have to consider is, that when you are using nested combined charts, that these have to have the same trace type.
+The only thing you have to consider is that when you are using nested combined charts, they have to have the same trace type.
 
 Otherwise, you can freely combine all charts with Chart.Grid:
 
@@ -324,7 +324,7 @@ multipleTraceTypesGrid |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-If you are not sure if traceTypes are compatible, look at the `TraceIDs`:
+If you are not sure if trace types are compatible, look at the `TraceIDs`:
 *)
 
 let pointType = Chart.Point(xy = [ 1, 2 ]) |> GenericChart.getTraceID
