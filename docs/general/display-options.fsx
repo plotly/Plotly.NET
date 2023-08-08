@@ -31,11 +31,9 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 [![Binder]({{root}}img/badge-binder.svg)](https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/{{fsdocs-source-basename}}.ipynb)&emsp;
 [![Notebook]({{root}}img/badge-notebook.svg)]({{root}}{{fsdocs-source-basename}}.ipynb)
 
-*Summary:* This example shows how to alter the display options that control the html document that contains plotly charts
+*Summary:* This example shows how to alter the display options that control the html output that contains plotly charts
 
-You can control the html document that gets created via `Chart.Show` with various functions that change a chart's `DisplayOptions`.
-
-Naturally, these full html documents can not be embedded in this documentation page, so sometimes images have to suffice for demonstrations here.
+You can control the html output that gets created (e.g. documents created with `Chart.Show` or the output of `GenericChart.toChartHTML`) with various functions that change a chart's `DisplayOptions`.
 
 let's first create some data for the purpose of creating example charts:
 
@@ -49,16 +47,34 @@ let y = [ 2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1. ]
 (**
 ## Referencing PlotlyJS
 
-For rendering plotly.js charts in a html document, you need to reference plotly.js in some form (duh!)
+For rendering plotly.js charts in a html document, the document needs to reference plotly.js in some form. 
 
-Plotly.NET provides multiple ways to do that in the generated html:
+Plotly.NET has two fundamentally different html outputs:
 
-- `Full`: Include the full plotly.js source in a script tag. HTML files using this option are self-contained and can be used offline.
-- `CDN`: The default. uses a script tag in the head of the generated HTML to load plotly.js from a CDN.
-- `Require`: Use requirejs to load plotly. This option is for example used in Plotly.NET.Interactive inside notebooks.
-- `NoReference`: Don't include any plotly.js reference. Useful if you want to embed the output into another page that already references plotly - the documentation pages you are reading now are generated with this option.
+ 1. Full html documents, containing `<head>` tags.
 
-You can control this on a per-chart basis via `Chart.withDisplayOptionsStyle`, for example if you want to include a script tag with the full plotly.js source:
+ Functions that generate these files are: 
+    - [Chart.Show](/reference/plotly-net-chart.html#show)
+    - [Chart.saveHtml](/reference/plotly-net-chart.html#saveHtml)
+    - [GenericChart.toEmbeddedHtml](/reference/plotly-net-genericchart.html#toEmbeddedHTML)
+
+ 2. html fragments, containing only some html tags (e.g. a `<div>` containing a chart generation script). This is usually meant to included into another document that contains a reference to plotly.js.
+ 
+ Functions that generate these fragments are: 
+    - [GenericChart.toChartHTML](/reference/plotly-net-genericchart.html#toChartHTML)
+     
+<br>
+
+Plotly.NET provides multiple ways to reference plotly.js in generated html via the `PlotlyJSReference` type. These differ in their effect depending on if the output is a full html document or a fragment:
+
+| PlotlyJSReference Option | Description | Document | Fragment |
+| --- | --- | --- | --- |
+| `Full` | Include the full plotly.js source. | HTML documents created using this option are self-contained and can be used offline. | No effect |
+| `CDN` | (default) Include a reference to plotly.js from a CDN. | HTML documents created using this option will contain a reference in their `<head>` tag | No effect |
+| `Require` | Use requirejs to load plotly. | HTML documents created using this option will programmatically add a reference to require.js their `<head>` tag, which will then be used to load plotly.js | Fragments created using this option will programmatically add a reference to require.js when embedded into a html document, which will then be used to load plotly.js. |
+| `NoReference` | Don't include any plotly.js reference. Useful if you want to embed the output into another page that already references plotly - the documentation pages you are reading now are generated with this option. | No effect | No effect |
+
+You can control this on a per-chart basis via [Chart.withDisplayOptionsStyle](http://localhost:8901/reference/plotly-net-chart.html#withDisplayOptionsStyle), for example if you want to include a script tag with the full plotly.js source:
 
 *)
 
@@ -72,7 +88,7 @@ Chart.Point(x = x, y = y)
 
 Plotly.NET uses [Giraffe.ViewEngine](https://github.com/giraffe-fsharp/Giraffe.ViewEngine) internally to generate HTML documents, which means you can also use that DSL to add additional content to the output.
 
-For example, use `Chart.withDescription` to append a list of html tags below the rendered chart:
+For example, use [Chart.withDescription](/reference/plotly-net-chart.html#withDescription) to append a list of html tags below the rendered chart:
 *)
 
 open Giraffe.ViewEngine
@@ -99,7 +115,7 @@ desc1 |> GenericChart.toChartHTML
 
 _Note: the example here is shown via an image, as the docs themselves are html pages that cannot load additional head tags._
 
-You can add any number of additional html tags to the documents `<head>` tag using `Chart.WithAdditionalHeadTags`.
+You can add any number of additional html tags to document `<head>` tag using [Chart.WithAdditionalHeadTags](/reference/plotly-net-chart.html#withAdditionalHeadTags).
 
 For example, you can load external css libraries to style the chart description:
 *)
@@ -128,7 +144,7 @@ let desc3 =
 
 ## Using MathTeX
 
-`Chart.WithMathTex` is a prebuilt function to enable MathTeX for your generated plotly chart documents.
+[Chart.WithMathTex](/reference/plotly-net-chart.html#withMathTex) is a prebuilt function to enable MathTeX for your generated plotly chart documents.
 
 It will add a MathJax script reference to your document based on which version (either 2 or 3) you want to use:
 *)
