@@ -43,6 +43,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F1E1-4094-9DE4-B047581E01F0}"
 	ProjectSection(SolutionItems) = preProject
 		docs\Dockerfile = docs\Dockerfile
+		docs\404.fsx.txt = docs\404.fsx.txt
 		docs\index.fsx = docs\index.fsx
 		docs\NuGet.config = docs\NuGet.config
 		docs\_template.html = docs\_template.html
