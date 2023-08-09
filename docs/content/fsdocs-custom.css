@@ -389,6 +389,15 @@ code {
     padding: 0.25em 0.5em 0.25em;
 }
 
+p code {
+    background-color: whitesmoke !important;
+    color: #a00975 !important;
+    font-size: 0.875em;
+    font-weight: normal;
+    padding: 0.25em 0.25em 0.25em 0.25em !important;
+    border-radius: 0.25em;
+}
+
 hr {
     background-color: whitesmoke;
     border: none;
