@@ -71,7 +71,7 @@ Plotly.NET provides multiple ways to reference plotly.js in generated html via t
 | --- | --- | --- | --- |
 | `Full` | Include the full plotly.js source. | HTML documents created using this option are self-contained and can be used offline. | No effect |
 | `CDN` | (default) Include a reference to plotly.js from a CDN. | HTML documents created using this option will contain a reference in their `<head>` tag | No effect |
-| `Require` | Use requirejs to load plotly. | HTML documents created using this option will programmatically add a reference to require.js their `<head>` tag, which will then be used to load plotly.js | Fragments created using this option will programmatically add a reference to require.js when embedded into a html document, which will then be used to load plotly.js. |
+| `Require` | Use requirejs to load plotly. | HTML documents created using this option will programmatically add a reference to require.js in their `<head>` tag which will then be used to load plotly.js | Fragments created using this option will programmatically add a reference to require.js when embedded into a html document which will then be used to load plotly.js. |
 | `NoReference` | Don't include any plotly.js reference. Useful if you want to embed the output into another page that already references plotly - the documentation pages you are reading now are generated with this option. | No effect | No effect |
 
 You can control this on a per-chart basis via [Chart.withDisplayOptionsStyle](http://localhost:8901/reference/plotly-net-chart.html#withDisplayOptionsStyle), for example if you want to include a script tag with the full plotly.js source:
