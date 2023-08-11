@@ -119,7 +119,7 @@ editablePlot |> GenericChart.toChartHTML
 (** 
 ## Responsive charts
 
-To create a chart that is reponsive to its container size, use `Responsive=true` on the Config:
+To create a chart that is responsive to its container size, use `Responsive=true` on the Config:
 
 (try resizing the window)
 *)

@@ -34,8 +34,8 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 Waterfall charts are special bar charts that help visualizing the cumulative effect of sequentially introduced positive or negative values.
 
-In addition to the x and y values, a `WaterfallMeasure` can be passed corresponding to each xy pair (there is also a constructor overload using a tripel of x,y,measure).
-By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+In addition to the x and y values, a `WaterfallMeasure` can be passed, corresponding to each xy pair (there is also a constructor overload using a tripel of x,y,measure).
+By default, the values are considered as 'relative'. However, it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
 
 *)
 
@@ -74,7 +74,7 @@ waterfall1 |> GenericChart.toChartHTML
 (**
 ## Horizontal waterfall charts
 
-Set the orientation argument to `Horizontal` to create a horizontal waterfall. Keep in mind to correctly assign x and y values (the vallues are switched on the axes in comparison to the chart example above)
+Set the orientation argument to `Horizontal` to create a horizontal waterfall. Keep in mind to correctly assign x and y values (the values are switched on the axes in comparison to the chart example above)
 To keep better track of which measure belongs to which datum, use 
 *)
 

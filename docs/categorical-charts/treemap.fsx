@@ -39,7 +39,7 @@ The space inside each of the rectangles that compose a Treemap is highlighted ba
 
 ## Treemap example
 
-This example shows the usage of some of the styling possibility using `Chart.Treemap`.
+This example shows the usage of some of the styling options using `Chart.Treemap`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Treemap`
 *)
 

@@ -33,9 +33,10 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 *Summary:* This example shows how to create image charts in F#.
 
 There are multiple ways of generating image charts:
- - From 3 Dimensional color collections, where the inner arrays contain 3 (color dimensions without alpha channel) or 4 (color dimensions and alpha channel) values. The color model can be set separately as shown below.
- - From a 2 dimensional collection Plotly.NETs `ARGB` type that represents rgba values
- - From a base64 encoded image data source
+
+- From three-dimensional color collections, where the inner arrays contain 3 (color dimensions without alpha channel) or 4 (color dimensions and alpha channel) values. The color model can be set separately as shown below.
+- From a two-dimensional collection Plotly.NETs `ARGB` type that represents rgba values
+- From a base64 encoded image data source
 
 ## Creating Image charts from raw color arrays
 *)
@@ -62,7 +63,7 @@ imageRaw |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-To change the color model to HSL for example, add the `ColorModel` argument:
+To change the color model to HSL, for example, add the `ColorModel` argument:
 *)
 
 let imageRawHSL =

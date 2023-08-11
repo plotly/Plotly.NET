@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create line and point charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -47,7 +47,7 @@ A line or a point chart can be created using the `Chart.Line` and `Chart.Point` 
 
 ## Chart.Line with LineStyle
 
-The following example generates a line Plot containing X and Y values and applies a line style to it.
+The following example generates a line plot containing X and Y values and applies a line style to it.
 *)
 
 let line1 =
@@ -117,10 +117,10 @@ spline2 |> GenericChart.toChartHTML
 (** 
 ## Point chart with text label
 
-The following example calls the `Chart.Point` function to generate a scatter Plot containing X and Y values.
-Addtionally, text labels are added . 
+The following example calls the `Chart.Point` function to generate a scatter plot containing X and Y values.
+Additionally, text labels are added.
 
-If `TextPosition` is set the labels are drawn otherwise only shown when hovering over the points.
+If `TextPosition` is set, the labels are drawn, otherwise only shown when hovering over the points.
 *)
 
 

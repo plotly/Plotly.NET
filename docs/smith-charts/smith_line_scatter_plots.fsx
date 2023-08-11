@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create smith charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -45,7 +45,7 @@ let real = [ 0.5; 1.; 2.; 3. ]
 let imaginary = [ 0.5; 1.; 2.; 3. ]
 
 (**
-The Smith chart, invented by Phillip H. Smith (1905�1987) and independently by Mizuhashi Tosaku, is a graphical calculator or nomogram designed for electrical and electronics engineers specializing in radio frequency (RF) engineering to assist in solving problems with transmission lines and matching circuits 
+The Smith chart, invented by Phillip H. Smith (1905-1987) and independently by Mizuhashi Tosaku, is a graphical calculator or nomogram designed for electrical and electronics engineers specializing in radio frequency (RF) engineering to assist in solving problems with transmission lines and matching circuits 
 
 The Smith chart is a mathematical transformation of the two-dimensional Cartesian complex plane. Complex numbers with positive real parts map inside the circle. Those with negative real parts map outside the circle. If we are dealing only with impedances with non-negative resistive components, our interest is focused on the area inside the circle.
 
@@ -55,7 +55,7 @@ Still, you can plot any kind of imaginary numbers on this plane.
 
 ## point smith charts
 
-use `Chart.PointSmith` to create a chart that displays points on a smith subplot:
+Use `Chart.PointSmith` to create a chart that displays points on a smith subplot:
 *)
 
 let pointSmith = Chart.PointSmith(real, imaginary)
@@ -71,7 +71,7 @@ pointSmith |> GenericChart.toChartHTML
 (**
 ## line smith charts
 
-use `Chart.LineSmith` to create a plot that displays a line connecting the data on a smith subplot.
+Use `Chart.LineSmith` to create a plot that displays a line connecting the data on a smith subplot.
 
 This example also changes the styles of the line.
 *)
@@ -97,9 +97,9 @@ lineSmith |> GenericChart.toChartHTML
 (**
 ## bubble smith charts
 
-use `Chart.BubbleSmith` to create a plot that displays datums on a smith subplot, with an additional 3rd dimension set as the marker size.
+Use `Chart.BubbleSmith` to create a plot that displays datums on a smith subplot, with an additional 3rd dimension set as the marker size.
 
-As for all other plots above, You can for example add labels to each datum:
+As for all other plots above, you can, for example, add labels to each datum:
 *)
 
 let bubbleSmith =

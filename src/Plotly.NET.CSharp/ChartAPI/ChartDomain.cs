@@ -628,7 +628,7 @@ namespace Plotly.NET.CSharp
         /// <summary>
         /// Creates a table.
         ///
-        /// The data are arranged in a grid of rows and columns. Most styling can be specified for columns, rows or individual cells. Table is using a row-major order per default, ie. the grid is represented as a vector of row vectors.
+        /// The data are arranged in a grid of rows and columns. Most styling can be specified for columns, rows or individual cells. Table is using a row-major order by default, ie. the grid is represented as a vector of row vectors.
         /// </summary>
         /// <param name="header">Sets the header of the table</param>
         /// <param name="cells">Sets the cells of the table</param>

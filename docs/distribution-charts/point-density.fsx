@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create PointDensity plots in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -43,7 +43,7 @@ let y = [ for i in 0..100 -> rnd.NextDouble() ]
 (**
 `Chart.PointDensity` is a combination of a scatter plot and a histogram2dcontour.
 
-It helps assessing the 2 dimensional distribution of a scatter plot by adding density contours based on the same data.
+It helps assessing the two-dimensional distribution of a scatter plot by adding density contours based on the same data.
 *)
 
 open Plotly.NET
@@ -62,7 +62,7 @@ pointDensityChart |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.PointDensity`.
+This example shows the usage of some of the styling options using `Chart.PointDensity`.
 *)
 
 let pointDensityChartStyled =

@@ -33,7 +33,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create sunburst charts in F#.
 
-Sunburst Chart � also known as Ring Chart, Multi-level Pie Chart, and Radial Treemap � is typically used to visualize hierarchical data structures.
+Sunburst Chart, also known as Ring Chart, Multi-level Pie Chart, and Radial Treemap, is typically used to visualize hierarchical data structures.
 A Sunburst Chart consists of an inner circle surrounded by rings of deeper hierarchy levels.
 The angle of each segment is either proportional to a value or divided equally under its parent node.
 
@@ -55,7 +55,7 @@ let sunburstChart =
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.Sunburst`.
+This example shows the usage of some of the styling options using `Chart.Sunburst`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Sunburst`
 *)
 

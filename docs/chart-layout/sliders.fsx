@@ -34,7 +34,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 The sliders give the option of passing the arguments to the Plotly chart. In the example we use the visibility parameter to make the step chosen in the slider visible.
 
-The original exapmle is made with python and can be found [here](https://plotly.com/python/sliders)
+The original example is written in Python and can be found [here](https://plotly.com/python/sliders)
 *)
 
 open Plotly.NET
@@ -78,7 +78,7 @@ let sliderSteps =
     steps
     |> Seq.indexed
     |> Seq.map (fun (i, step) ->
-        // Create a visibility and a title parameters
+        // Create a visibility and a title parameter
         // The visibility parameter includes an array where every parameter
         // is mapped onto the trace visibility
         let visible =

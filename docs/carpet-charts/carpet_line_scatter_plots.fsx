@@ -33,7 +33,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create carpet charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -56,7 +56,7 @@ Besides the ability to incorporate more variables, another feature that distingu
 
 A conventional carpet plot can capture the interaction of up to three independent variables and three dependent variables and still be easily read and interpolated.
 
-Carpet plots have common applications within areas such as material science for showing elastic modulus in laminates,and within aeronautics.
+Carpet plots have common applications within areas such as material science for showing elastic modulus in laminates, and within aeronautics.
 
 A carpet plot with two independent variables and one dependent variable is often called a cheater plot for the use of a phantom "cheater" axis instead of the horizontal axis. 
 
@@ -66,7 +66,7 @@ A carpet plot with two independent variables and one dependent variable is often
 
 In plotly, carpet plots are different to all other trace types in the regard that the coordinate system of the carpet is not set on the layout, but is itself a trace.
 
-Use `Chart.Carpet` to define these `coordinate traces`. All carpets have a mandatory identifier, which will be used by other traces to define which carpet coordinate system to use.
+Use `Chart.Carpet` to define these `coordinate traces`. All carpets have a mandatory identifier which will be used by other traces to define which carpet coordinate system to use.
 *)
 
 let carpet = Chart.Carpet(carpetId = "carpetIdentifier", A = a, B = b, Y = y)
@@ -83,7 +83,7 @@ carpet |> GenericChart.toChartHTML
 (**
 ## Carpet point charts
 
-use `Chart.PointCarpet` to create a point plot on the referenced carpet coordinate system:
+Use `Chart.PointCarpet` to create a point plot on the referenced carpet coordinate system:
 *)
 let carpetPoint =
     [ carpet
@@ -102,7 +102,7 @@ carpetPoint |> GenericChart.toChartHTML
 (**
 ## Carpet line charts
 
-use `Chart.LineCarpet` to create a line plot on the referenced carpet coordinate system:
+Use `Chart.LineCarpet` to create a line plot on the referenced carpet coordinate system:
 *)
 
 let carpetLine =
@@ -122,7 +122,7 @@ carpetLine |> GenericChart.toChartHTML
 (**
 ## Carpet Spline charts
 
-use `Chart.LineCarpet` to create a spline plot on the referenced carpet coordinate system:
+Use `Chart.LineCarpet` to create a spline plot on the referenced carpet coordinate system:
 *)
 
 let carpetSpline =
@@ -142,7 +142,7 @@ carpetSpline |> GenericChart.toChartHTML
 (**
 ## Carpet bubble charts
 
-use `Chart.LineCarpet` to create a bubble plot on the referenced carpet coordinate system:
+Use `Chart.LineCarpet` to create a bubble plot on the referenced carpet coordinate system:
 *)
 
 let carpetBubble =

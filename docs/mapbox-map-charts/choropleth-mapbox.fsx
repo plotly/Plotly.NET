@@ -37,16 +37,16 @@ Choropleth Maps display divided geographical areas or regions that are coloured,
 a data variable. This provides a way to visualise values over a geographical area, which can show variation or 
 patterns across the displayed location.
 
-This choropleth map version uses [Mapbox Layers]({{root}}/6_0_geo-vs-mapbox.html). For the Geo variant, head over [here]({{root}}/5_2_choropleth-map.html)
+This choropleth map version uses [Mapbox Layers]({{root}}/6_0_geo-vs-mapbox.html). For the Geo variant, head over [here]({{root}}/5_2_choropleth-map.html).
 
 ChoroplethMapbox charts need GeoJSON formatted data.
 
 [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) is an open standard format designed for representing simple geographical features, along with their non-spatial attributes.
 
-GeoJSON, or at least the type of GeoJSON accepted by plotly.js are `FeatureCollection`s. A feature has for example the `geometry` field, which defines e.g. the corrdinates of it (think for example the coordinates of a polygon on the map)
+GeoJSON, or at least the type of GeoJSON accepted by plotly.js are `FeatureCollection`s. A feature has for example the `geometry` field, which defines e.g. the coordinates of it (think for example the coordinates of a polygon on the map)
 and the `properties` field, a key-value pair of properties of the feature. 
 
-If you want to use GeoJSON with Plotly.NET (or any plotly flavor really), you have to know the property of the feature you are mapping your data to. In the following example this is simply the `id` of a feature, but you can access any property by `property.key`.
+If you want to use GeoJSON with Plotly.NET (or any plotly flavor really), you have to know the property of the feature you are mapping your data to. In the following example, this is simply the `id` of a feature, but you can access any property by `property.key`.
 
 Consider the following GeoJSON:
 *)
@@ -87,7 +87,7 @@ it looks like this:
 
 It basically contains all US counties as polygons on the map. Note that the `id` property corresponds to the [**fips code**](https://en.wikipedia.org/wiki/FIPS_county_code).
 
-To visualize some data using these counties as locations on a choropleth map, we need some exmaple data:
+To visualize some data using these counties as locations on a choropleth map, we need some example data:
 *)
 
 // we use the awesome Deedle data frame library to parse and extract our location and z data

@@ -88,9 +88,10 @@ byStyle |> GenericChart.toChartHTML
 ## Marker Symbols
 
 Marker symbols control the appearance of points in a plot. There are some things to keep in mind when working with marker symbols:
- - 2D and 3D Markers are different types ()
- - 2D Markers can be modified using modification syntax
- - 3D Markers cannot be modified
+
+- 2D and 3D Markers are different types
+- 2D Markers can be modified using modification syntax
+- 3D Markers cannot be modified
 
 ### 2D Marker Symbols
 

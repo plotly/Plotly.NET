@@ -33,7 +33,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create candlestick charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 *)
  
 open Deedle
@@ -62,7 +62,7 @@ let candles =
 (**
 A candlestick chart is useful for plotting stock prices over time. A candle
 is a group of high, open, close and low values over a period of time, e.g. 1 minute, 5 minute, hour, day, etc..
-The x-axis is usually dateime values and y is a sequence of candle structures.
+The x-axis is usually datetime values and y is a sequence of candle structures.
 *)
 
 open Plotly.NET

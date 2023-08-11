@@ -129,7 +129,7 @@ withTraceStyle |> GenericChart.toChartHTML
 
 The prime directive for all functions provided by Plotly.NET is the construction of valid plotly JSON objects.
 For this purpose, `Trace`, `Layout`, and `Config` (and many other internal objects) are inheriting from [`DynamicObj`](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET/DynamicObj.fs),
-an extension of `DynamicObject` which makes it possible to set arbitraryly named and typed properties of these objects via the `?` operator.
+an extension of `DynamicObject` which makes it possible to set arbitrarily named and typed properties of these objects via the `?` operator.
 
 If you want to exactly mirror a plotly.js tutorial, or want to set properties that for any reason are not abstracted in Plotly.NET, 
 it can be useful to use the power of DynamicObj to set the parameters directly. Just make sure that the property name is exactly the same as in plotly.js (all lowercase)
@@ -153,7 +153,7 @@ withDynObj |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-lets have a look at the trace object that will be created. The relevant section of the html generated with Chart.Show is the following:
+Let's have a look at the trace object that will be created. The relevant section of the html generated with Chart.Show is the following:
 
 ```javascript
 var data = [{"type":"scatter","x":[0,1,2],"y":[0,1,2]}];

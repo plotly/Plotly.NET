@@ -33,7 +33,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create pie and doughnut charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 open Plotly.NET
@@ -74,7 +74,7 @@ doughnut1 |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.Pie`.
+This example shows the usage of some of the styling options using `Chart.Pie`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.Pie`
 *)
 

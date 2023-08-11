@@ -864,7 +864,7 @@ module Chart3D =
         /// Coordinates in `x` and `y` can either be 1D arrays or 2D arrays (e.g. to graph parametric surfaces). If not provided in `x` and `y`, the x and y coordinates are assumed to be linear starting at 0 with a unit step.
         /// The color scale corresponds to the `z` values by default. For custom color scales, use `surfacecolor` which should be a 2D array, where its bounds can be controlled using `cmin` and `cmax`.
         /// </summary>
-        /// <param name="zData">2 dimensional data array representing the surface's z values</param>
+        /// <param name="zData">Two-dimensional data array representing the surface's z values</param>
         /// <param name="X">Sets the x coordinates.</param>
         /// <param name="Y">Sets the y coordinates.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>

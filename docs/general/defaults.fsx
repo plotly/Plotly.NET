@@ -82,7 +82,7 @@ Defaults.DefaultTemplate <- ChartTemplates.plotly
 (**
 ## Ignoring global defaults
 
-All Chart functions have a `UseDefaults` argument, which when set to `false` will ignore all global defaults:
+All Chart functions have a `UseDefaults` argument which, when set to `false`, will ignore all global defaults:
 *)
 
 

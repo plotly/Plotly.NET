@@ -62,7 +62,7 @@ parcats |> GenericChart.toChartHTML
 (**
 ## More styled example
 
-This example shows the usage of some of the styling possibility using `Chart.ParallelCategories`.
+This example shows the usage of some of the styling options using `Chart.ParallelCategories`.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.ParallelCategories`
 *)
 

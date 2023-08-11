@@ -32,7 +32,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create contour plot in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -79,7 +79,7 @@ contour1 |> GenericChart.toChartHTML
 (**
 ## Smooth Contour Coloring
 
-to apply heatmap gradient coloring between each contour level, set the `ContourColoring` to `heatmap`:
+To apply heatmap gradient coloring between each contour level, set the `ContourColoring` to `heatmap`:
 *)
 
 let contour2 =

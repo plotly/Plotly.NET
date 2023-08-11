@@ -33,7 +33,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create ternary charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -61,7 +61,7 @@ Ternary plots are tools for analyzing compositional data in the three-dimensiona
 
 ## Ternary point charts
 
-use `Chart.PointTernary` to create a ternary plot that displays points on a ternary coordinate system:
+Use `Chart.PointTernary` to create a ternary plot that displays points on a ternary coordinate system:
 *)
 
 let ternaryPoint = Chart.PointTernary(A = a, B = b, C = c)
@@ -77,11 +77,11 @@ ternaryPoint |> GenericChart.toChartHTML
 (**
 ## Ternary line charts
 
-use `Chart.LineTernary` to create a ternary plot that displays a line connecting input the data on a ternary coordinate system:
+Use `Chart.LineTernary` to create a ternary plot that displays a line connecting input the data on a ternary coordinate system.
 
-As values on ternary plots sum to a constant, you can omit one dimension ofd the data by providing that sum.
+As values on ternary plots sum to a constant, you can omit one dimension of the data by providing that sum.
 
-You can also for example change the line style using `Chart.withLineStyle`
+You can also, for example, change the line style using `Chart.withLineStyle`:
 *)
 
 let lineTernary =

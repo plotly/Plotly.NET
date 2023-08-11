@@ -27,7 +27,7 @@ Plotly.NET provides functions for generating and rendering plotly.js charts in *
 
 **This documentation page is almost exclusively for the core F# API of Plotly.NET.** 
 
-It should be easy to translate them into C#. However, as work on the idiomatic C# API progresses, we will privde native C# docs as well.
+It should be easy to translate them into C#. However, as work on the idiomatic C# API progresses, we will provide native C# docs as well.
 
 ### Table of contents 
 
@@ -56,7 +56,7 @@ Plotly.NET consists of multiple packages. The two main ones are:
 
 ### For applications and libraries
 
-Plotly.NET packages are available on nuget to plug into your favorite package manager.
+Plotly.NET packages are available on NuGet to plug into your favorite package manager.
 
  - dotnet CLI
 
@@ -101,11 +101,11 @@ the interactive extensions for dotnet interactive have you covered for seamless 
 
 _Note_: 
 
-due to the currently fast development cycles of Dotnet Interactive, there might be increments in their versioning that renders the current version of Plotly.NET.Interactive incompatible (example [here](https://github.com/plotly/Plotly.NET/issues/67)).
+Due to the currently fast development cycles of .NET Interactive, there might be increments in their versioning that render the current version of Plotly.NET.Interactive incompatible (example [here](https://github.com/plotly/Plotly.NET/issues/67)).
 
 If the interactive extension does not work, please file an issue and we will try to get it running again as soon as possible.
 
-A possible fix for this is the inclusion of Dotnet.Interactive preview package sources. To use these, add the following lines before referencning Plotly.NET.Interactive:
+A possible fix for this is the inclusion of Dotnet.Interactive preview package sources. To use these, add the following lines before referencing Plotly.NET.Interactive:
 
 ```no-hl
 #i "nuget:https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json"
@@ -158,7 +158,7 @@ let myFirstStyledChart =
 
 (**
 **Attention:** Styling functions mutate 😈 the input chart, therefore possibly affecting bindings to intermediary results. 
-We recommend creating a single chart for each workflow to prevent unexpected results
+We recommend creating a single chart for each workflow to prevent unexpected results.
 
 ### Displaying a chart in the browser
 
@@ -170,7 +170,7 @@ The `Chart.Show` function will open a browser window and render the input chart 
 (***do-not-eval***)
 myFirstChart |> Chart.show
 
-(**Should render this chart in your brower:*)
+(**Should render this chart in your browser:*)
 
 (***hide***)
 myFirstChart |> GenericChart.toChartHTML
@@ -187,9 +187,9 @@ myFirstStyledChart |> GenericChart.toChartHTML
 
 
 (**
-### Displaying a chart in a notbook cell output
+### Displaying a chart in a notebook cell output
 
-In a notebook context you usually have (at leat when running on a jupyter server like binder) no access to the browser on the machine where plotly runs on.
+In a notebook context, you usually have (at least when running on a Jupyter server like Binder) no access to the browser on the machine where plotly runs on.
 That's why you can render charts directly in the cell output. Just end the cell with the chart value:
 *)
 
@@ -208,7 +208,7 @@ Chart.Point(xData, yData)
 (**
 ## Comparison: Usage in F# and C#
 
-One of the main design points of Plotly.NET it is to provide support for multiple flavors of chart generation. Here are 2 examples in different styles and languages that create an equivalent chart:
+One of the main design points of Plotly.NET is to provide support for multiple flavors of chart generation. Here are two examples in different styles and languages that create equivalent charts:
  
 ### Functional pipeline style in F#:
 *)
@@ -279,7 +279,7 @@ GenericChart.ofTraceObject true trace |> GenericChart.setLayout layout
 (**
 ### Declarative style in C# using the underlying `DynamicObj`:
 
-note that this works only when using the Plotly.NET core API, as the C# bindings only target the high level API.
+Note that this works only when using the Plotly.NET core API, as the C# bindings only target the high level API.
 
 ```csharp
 using System;
@@ -323,8 +323,8 @@ the project and submit pull requests. If you're adding a new public API, please 
 consider adding [samples][docs] that can be turned into a documentation. You might
 also want to read the [library design notes][readme] to understand how it works.
 
-The library is available under the OSI-approved MIT license, which allows modification and 
-redistribution for both commercial and non-commercial purposes. For more information see the 
+The library is available under the OSI-approved MIT license which allows modification and 
+redistribution for both commercial and non-commercial purposes. For more information, see the 
 [License file][license] in the GitHub repository. 
 
   [docs]: https://github.com/plotly/Plotly.NET/tree/dev/docs

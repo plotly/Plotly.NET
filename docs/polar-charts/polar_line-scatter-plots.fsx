@@ -33,7 +33,7 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 
 *Summary:* This example shows how to create polar charts in F#.
 
-let's first create some data for the purpose of creating example charts:
+Let's first create some data for the purpose of creating example charts:
 
 *)
 
@@ -56,7 +56,7 @@ Each data point is determined by the distance from the pole (the radial coordina
 
 ## Polar point charts
 
-use `Chart.PointPolar` to create a polar plot that displays points on a polar coordinate system:
+Use `Chart.PointPolar` to create a polar plot that displays points on a polar coordinate system:
 *)
 
 let pointPolar = Chart.PointPolar(r = radial, theta = theta)
@@ -72,9 +72,9 @@ pointPolar |> GenericChart.toChartHTML
 (**
 ## Polar line charts
 
-use `Chart.LinePolar` to create a polar plot that displays a line connecting input the data on a polar coordinate system.
+Use `Chart.LinePolar` to create a polar plot that displays a line connecting input the data on a polar coordinate system.
 
-You can for example change the line style using `Chart.withLineStyle`
+You can, for example, change the line style using `Chart.withLineStyle`
 *)
 
 let linePolar =
@@ -93,9 +93,9 @@ linePolar |> GenericChart.toChartHTML
 (**
 ## Polar Spline charts
 
-use `Chart.SpinePolar` to create a polar plot that displays a smoothed line connecting input the data on a polar coordinate system.
+Use `Chart.SpinePolar` to create a polar plot that displays a smoothed line connecting input the data on a polar coordinate system.
 
-As for all other plots above, You can for example add labels to each datum:
+As for all other plots above, you can, for example, add labels to each datum:
 *)
 
 let splinePolar =
