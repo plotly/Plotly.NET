@@ -87,11 +87,11 @@
     </dt>
     <dt>
       Base Type: 
-      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
     </dt>
     <dt>
       All Interfaces: 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
@@ -151,23 +151,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Geo.#ctor`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Geo.#ctor\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Geo.fs#L9-9" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -541,406 +524,410 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Geo.init`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Geo.init\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Geo.fs#L45-45" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Initialize a Geo object that determines the style of the map shown in geo traces
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FitBounds
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-geofitbounds.html">GeoFitBounds</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines if and how this subplot's view settings are auto-computed to fit trace data
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Resolution
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-georesolution.html">GeoResolution</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the resolution of the base layers
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Scope
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-geoscope.html">GeoScope</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Set the scope of the map.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Projection
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-geoprojection.html">GeoProjection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines the type of projection used to display the map
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Center
-                </span>
-                :
-                <code><span>float&#32;*&#32;float</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Visible
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Whether or not the base layers are visible
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Domain
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The domain of this geo subplot
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowCoastLines
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not the coastlines are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CoastLineColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the coastline color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CoastLineWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the coastline stroke width (in px).
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLand
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not land masses are filled in color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LandColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the land mass color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowOcean
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not oceans are filled in color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?OceanColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the ocean color
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLakes
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not lakes are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LakeColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color of the lakes.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowRivers
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not rivers are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?RiverColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets color of the rivers.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?RiverWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the stroke width (in px) of the rivers.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowCountries
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not country boundaries are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CountryColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets line color of the country boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CountryWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets line width (in px) of the country boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowSubunits
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?SubunitColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color of the subunits boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?SubunitWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the stroke width (in px) of the subunits boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowFrame
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not a frame is drawn around the map.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FrameColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color the frame.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FrameWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the stroke width (in px) of the frame.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?BgColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Set the background color of the map
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LatAxis
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the latitudinal axis for this geo trace
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LonAxis
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the longitudinal axis for this geo trace
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-geo.html">Geo</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Geo.init`')">
+                    <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                    <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Geo.init\'/>')">
+                    <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                    <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Geo.fs#L45-45" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                    <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Initialize a Geo object that determines the style of the map shown in geo traces
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FitBounds
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-geofitbounds.html">GeoFitBounds</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines if and how this subplot's view settings are auto-computed to fit trace data
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Resolution
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-georesolution.html">GeoResolution</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the resolution of the base layers
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Scope
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-geoscope.html">GeoScope</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Set the scope of the map.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Projection
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-geoprojection.html">GeoProjection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines the type of projection used to display the map
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Center
+                  </span>
+                  :
+                  <code><span>float&#32;*&#32;float</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Visible
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not the base layers are visible
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Domain
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The domain of this geo subplot
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowCoastLines
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not the coastlines are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CoastLineColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the coastline color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CoastLineWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the coastline stroke width (in px).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLand
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not land masses are filled in color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LandColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the land mass color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowOcean
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not oceans are filled in color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?OceanColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the ocean color
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLakes
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not lakes are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LakeColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of the lakes.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowRivers
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not rivers are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?RiverColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets color of the rivers.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?RiverWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the stroke width (in px) of the rivers.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowCountries
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not country boundaries are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CountryColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets line color of the country boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CountryWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets line width (in px) of the country boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowSubunits
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?SubunitColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of the subunits boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?SubunitWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the stroke width (in px) of the subunits boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowFrame
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not a frame is drawn around the map.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FrameColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color the frame.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FrameWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the stroke width (in px) of the frame.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?BgColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Set the background color of the map
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LatAxis
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the latitudinal axis for this geo trace
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LonAxis
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the longitudinal axis for this geo trace
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-geo.html">Geo</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
@@ -1285,406 +1272,410 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Geo.style`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Geo.style\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Geo.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Create a function that applies the given style parameters to a Geo object.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FitBounds
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-geofitbounds.html">GeoFitBounds</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines if and how this subplot's view settings are auto-computed to fit trace data
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Resolution
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-georesolution.html">GeoResolution</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the resolution of the base layers
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Scope
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-geoscope.html">GeoScope</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Set the scope of the map.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Projection
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-geoprojection.html">GeoProjection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines the type of projection used to display the map
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Center
-                </span>
-                :
-                <code><span>float&#32;*&#32;float</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Visible
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Whether or not the base layers are visible
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Domain
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The domain of this geo subplot
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowCoastLines
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not the coastlines are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CoastLineColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the coastline color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CoastLineWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the coastline stroke width (in px).
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLand
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not land masses are filled in color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LandColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the land mass color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowOcean
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not oceans are filled in color.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?OceanColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the ocean color
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLakes
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not lakes are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LakeColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color of the lakes.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowRivers
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not rivers are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?RiverColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets color of the rivers.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?RiverWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the stroke width (in px) of the rivers.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowCountries
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not country boundaries are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CountryColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets line color of the country boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CountryWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets line width (in px) of the country boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowSubunits
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?SubunitColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color of the subunits boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?SubunitWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the stroke width (in px) of the subunits boundaries.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowFrame
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets whether or not a frame is drawn around the map.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FrameColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color the frame.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FrameWidth
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the stroke width (in px) of the frame.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?BgColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Set the background color of the map
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LatAxis
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the latitudinal axis for this geo trace
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LonAxis
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the longitudinal axis for this geo trace
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-geo.html">Geo</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-geo.html">Geo</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Geo.style`')">
+                    <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                    <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Geo.style\'/>')">
+                    <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                    <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Map/Geo.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
+                    <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                    <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Create a function that applies the given style parameters to a Geo object.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FitBounds
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-geofitbounds.html">GeoFitBounds</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines if and how this subplot's view settings are auto-computed to fit trace data
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Resolution
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-georesolution.html">GeoResolution</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the resolution of the base layers
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Scope
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-geoscope.html">GeoScope</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Set the scope of the map.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Projection
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-geoprojection.html">GeoProjection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines the type of projection used to display the map
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Center
+                  </span>
+                  :
+                  <code><span>float&#32;*&#32;float</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the (lon,lat) coordinates of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise. For all projection types, the map's latitude center lies at the middle of the latitude range by default.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Visible
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not the base layers are visible
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Domain
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The domain of this geo subplot
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowCoastLines
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not the coastlines are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CoastLineColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the coastline color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CoastLineWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the coastline stroke width (in px).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLand
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not land masses are filled in color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LandColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the land mass color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowOcean
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not oceans are filled in color.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?OceanColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the ocean color
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLakes
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not lakes are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LakeColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of the lakes.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowRivers
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not rivers are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?RiverColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets color of the rivers.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?RiverWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the stroke width (in px) of the rivers.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowCountries
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not country boundaries are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CountryColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets line color of the country boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CountryWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets line width (in px) of the country boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowSubunits
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not boundaries of subunits within countries (e.g. states, provinces) are drawn.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?SubunitColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of the subunits boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?SubunitWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the stroke width (in px) of the subunits boundaries.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowFrame
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets whether or not a frame is drawn around the map.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FrameColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color the frame.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FrameWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the stroke width (in px) of the frame.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?BgColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Set the background color of the map
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LatAxis
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the latitudinal axis for this geo trace
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LonAxis
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-linearaxis.html">LinearAxis</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the longitudinal axis for this geo trace
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-geo.html">Geo</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-geo.html">Geo</a></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

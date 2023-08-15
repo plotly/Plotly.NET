@@ -474,19 +474,19 @@
 <p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/general/templates.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
 <a href="https://plotly.net/general/templates.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
 <h2><a name="Using-premade-templates" class="anchor" href="#Using-premade-templates">Using premade templates</a></h2>
-<p>premade templates can be accessed via the <code>ChartTemplates</code> module. In fact, the <code>ChartTemplates.plotly</code> template is always active by default (see <a href="./00_5_defaults.html">global defaults</a>)</p>
+<p>Premade templates can be accessed via the <code>ChartTemplates</code> module. In fact, the <code>ChartTemplates.plotly</code> template is always active by default (see <a href="./00_5_defaults.html">global defaults</a>)</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 14)" onmouseover="showTip(event, 'fs1', 14)" class="id">Plotly</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 15)" onmouseover="showTip(event, 'fs2', 15)" class="id">NET</span>
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="id">lightMirrored</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="id">Point</span><span class="pn">(</span><span class="fn">xy</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1</span><span class="pn">,</span> <span class="n">2</span> <span class="pn">]</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="m">ChartTemplates</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="id">lightMirrored</span>
 </code></pre>
-<div><div id="f02e49e7-3fd1-4365-a714-98aaee8ff7da"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_f02e49e73fd14365a71498aaee8ff7da = function() {
+<div><div id="c5b4a60f-8d13-4e8d-b171-92a8aa3af94e"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_c5b4a60f8d134e8db17192a8aa3af94e = function() {
     var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
     var layout = {"width":600,"height":600,"template":{"layout":{"paper_bgcolor":"white","plot_bgcolor":"white","xaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true},"yaxis":{"ticks":"inside","mirror":"all","showline":true,"zeroline":true}},"data":{}}};
     var config = {"responsive":true};
-    Plotly.newPlot('f02e49e7-3fd1-4365-a714-98aaee8ff7da', data, layout, config);
+    Plotly.newPlot('c5b4a60f-8d13-4e8d-b171-92a8aa3af94e', data, layout, config);
 };
-renderPlotly_f02e49e73fd14365a71498aaee8ff7da();
+renderPlotly_c5b4a60f8d134e8db17192a8aa3af94e();
 </script></div>
 <p>Here are the contents of the template <code>plotly</code> which is used by default for all charts: <a href="https://github.com/plotly/Plotly.NET/blob/6e28decca64441320d8cffab5bcfee664b118c36/src/Plotly.NET/Templates/ChartTemplates.fs#L163-L665">https://github.com/plotly/Plotly.NET/blob/6e28decca64441320d8cffab5bcfee664b118c36/src/Plotly.NET/Templates/ChartTemplates.fs#L163-L665</a></p>
 <h2><a name="Creating-custom-templates" class="anchor" href="#Creating-custom-templates">Creating custom templates</a></h2>
@@ -506,13 +506,13 @@ renderPlotly_f02e49e73fd14365a71498aaee8ff7da();
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 51)" onmouseover="showTip(event, 'fs36', 51)" class="id">myTemplateExampleChart</span> <span class="o">=</span>
     <span onmouseout="hideTip(event, 'fs10', 52)" onmouseover="showTip(event, 'fs10', 52)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 53)" onmouseover="showTip(event, 'fs37', 53)" class="id">Point</span><span class="pn">(</span><span class="fn">xy</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">1</span><span class="pn">,</span> <span class="n">2</span> <span class="pn">]</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs10', 54)" onmouseover="showTip(event, 'fs10', 54)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 55)" onmouseover="showTip(event, 'fs12', 55)" class="id">withTemplate</span> <span onmouseout="hideTip(event, 'fs33', 56)" onmouseover="showTip(event, 'fs33', 56)" class="id">myTemplate</span>
 </code></pre>
-<div><div id="ef146b56-c71a-4bfc-a657-58336e108acb"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_ef146b56c71a4bfca65758336e108acb = function() {
+<div><div id="bdb65d34-7347-49ae-9fed-73ae7426704b"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_bdb65d34734749ae9fed73ae7426704b = function() {
     var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];
     var layout = {"width":600,"height":600,"template":{"layout":{"title":{"text":"I will always be there now!"}},"data":{"scatter":[{"marker":{"size":20,"symbol":"47"}}]}}};
     var config = {"responsive":true};
-    Plotly.newPlot('ef146b56-c71a-4bfc-a657-58336e108acb', data, layout, config);
+    Plotly.newPlot('bdb65d34-7347-49ae-9fed-73ae7426704b', data, layout, config);
 };
-renderPlotly_ef146b56c71a4bfca65758336e108acb();
+renderPlotly_bdb65d34734749ae9fed73ae7426704b();
 </script></div>
 
                 </div>
@@ -692,7 +692,7 @@ from Plotly.NET</div>
   new: unit -&gt; Template
   static member init: layoutTemplate: Layout * ?TraceTemplates: seq&lt;#Trace&gt; -&gt; Template
   static member mapLayoutTemplate: styleF: (Layout -&gt; Layout) -&gt; template: Template -&gt; Template
-  static member mapTraceTemplates: styleF: (#Trace[] -&gt; #Trace[]) -&gt; template: Template -&gt; Template
+  static member mapTraceTemplates: styleF: (#Trace array -&gt; #Trace array) -&gt; template: Template -&gt; Template
   static member style: layoutTemplate: Layout * ?TraceTemplates: seq&lt;#Trace&gt; -&gt; (Template -&gt; Template)
   static member withColorWay: colorway: Color -&gt; template: Template -&gt; Template<br /><br />--------------------<br />new: unit -&gt; Template</div>
 <div class="fsdocs-tip" id="fs35">static member Template.init: layoutTemplate: Layout * ?TraceTemplates: seq&lt;#Trace&gt; -&gt; Template</div>
