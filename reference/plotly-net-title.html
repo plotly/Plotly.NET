@@ -87,11 +87,11 @@
     </dt>
     <dt>
       Base Type: 
-      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
     </dt>
     <dt>
       All Interfaces: 
-      <code><a href="https://learn.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
+      <code><a href="https://docs.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
@@ -151,6 +151,23 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Title.#ctor`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Title.#ctor\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/Title.fs#L7-7" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -324,172 +341,168 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Title.init`')">
-                    <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Title.init\'/>')">
-                    <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/Title.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Title.init`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Title.init\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/Title.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
  Returns a new Title object with the given styles. Note that this is a multi-purpose object that can be used as plot or different axis titles, with some attributes being only used in some layouts.
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Text
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For all titles: Sets the plot's title. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?AutoMargin
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Determines whether the title can automatically push the figure margins. If `yref='paper'` then the margin will expand to ensure that the title doesn’t overlap with the edges of the container. If `yref='container'` then the margins will ensure that the title doesn’t overlap with the plot area, tick labels, and axis titles. If `automargin=true` and the margins need to be expanded, then y will be set to a default 1 and yanchor will be set to an appropriate default to ensure that minimal margin space is needed. Note that when `yref='paper'`, only 1 or 0 are allowed y values. Invalid values will be reset to the default 1.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Font
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For all titles: Sets the title font. Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Standoff
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For axis titles: Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Side
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-side.html">Side</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For colorbar titles: Determines the location of color bar's title with respect to the color bar. Defaults to "top" when `orientation` if "v" and defaults to "right" when `orientation` if "h". Note that the title's location used to be set by the now deprecated `titleside` attribute.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?X
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the x position with respect to `xref` in normalized coordinates from "0" (left) to "1" (right).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?XAnchor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the title's horizontal alignment with respect to its x position. "left" means that the title starts at x, "right" means that the title ends at x and "center" means that the title's center is at x. "auto" divides `xref` by three and calculates the `xanchor` value automatically based on the value of `x`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?XRef
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Y
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the y position with respect to `yref` in normalized coordinates from "0" (bottom) to "1" (top). "auto" places the baseline of the title onto the vertical center of the top margin.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?YAnchor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the title's vertical alignment with respect to its y position. "top" means that the title's cap line is at y, "bottom" means that the title's baseline is at y and "middle" means that the title's midline is at y. "auto" divides `yref` by three and calculates the `yanchor` value automatically based on the value of `y`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?YRef
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.
-                  </p>
-                </dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For all titles: Sets the plot's title. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AutoMargin
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Determines whether the title can automatically push the figure margins. If `yref='paper'` then the margin will expand to ensure that the title doesn’t overlap with the edges of the container. If `yref='container'` then the margins will ensure that the title doesn’t overlap with the plot area, tick labels, and axis titles. If `automargin=true` and the margins need to be expanded, then y will be set to a default 1 and yanchor will be set to an appropriate default to ensure that minimal margin space is needed. Note that when `yref='paper'`, only 1 or 0 are allowed y values. Invalid values will be reset to the default 1.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Font
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For all titles: Sets the title font. Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Standoff
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For axis titles: Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Side
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-side.html">Side</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For colorbar titles: Determines the location of color bar's title with respect to the color bar. Defaults to "top" when `orientation` if "v" and defaults to "right" when `orientation` if "h". Note that the title's location used to be set by the now deprecated `titleside` attribute.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?X
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the x position with respect to `xref` in normalized coordinates from "0" (left) to "1" (right).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?XAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the title's horizontal alignment with respect to its x position. "left" means that the title starts at x, "right" means that the title ends at x and "center" means that the title's center is at x. "auto" divides `xref` by three and calculates the `xanchor` value automatically based on the value of `x`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?XRef
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Y
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the y position with respect to `yref` in normalized coordinates from "0" (bottom) to "1" (top). "auto" places the baseline of the title onto the vertical center of the top margin.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?YAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the title's vertical alignment with respect to its y position. "top" means that the title's cap line is at y, "bottom" means that the title's baseline is at y and "middle" means that the title's midline is at y. "auto" divides `yref` by three and calculates the `yanchor` value automatically based on the value of `y`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?YRef
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
           </td>
         </tr>
         <tr>
@@ -634,172 +647,168 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Title.style`')">
-                    <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Title.style\'/>')">
-                    <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/Title.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Title.style`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Title.style\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/Title.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
  Returns a function that applies the given styles to a Title object. Note that this is a multi-purpose object that can be used as plot or different axis titles, with some attributes being only used in some layouts
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Text
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For all titles: Sets the plot's title. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?AutoMargin
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Determines whether the title can automatically push the figure margins. If `yref='paper'` then the margin will expand to ensure that the title doesn’t overlap with the edges of the container. If `yref='container'` then the margins will ensure that the title doesn’t overlap with the plot area, tick labels, and axis titles. If `automargin=true` and the margins need to be expanded, then y will be set to a default 1 and yanchor will be set to an appropriate default to ensure that minimal margin space is needed. Note that when `yref='paper'`, only 1 or 0 are allowed y values. Invalid values will be reset to the default 1.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Font
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For all titles: Sets the title font. Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Standoff
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For axis titles: Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Side
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-side.html">Side</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For colorbar titles: Determines the location of color bar's title with respect to the color bar. Defaults to "top" when `orientation` if "v" and defaults to "right" when `orientation` if "h". Note that the title's location used to be set by the now deprecated `titleside` attribute.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?X
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the x position with respect to `xref` in normalized coordinates from "0" (left) to "1" (right).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?XAnchor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the title's horizontal alignment with respect to its x position. "left" means that the title starts at x, "right" means that the title ends at x and "center" means that the title's center is at x. "auto" divides `xref` by three and calculates the `xanchor` value automatically based on the value of `x`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?XRef
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Y
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the y position with respect to `yref` in normalized coordinates from "0" (bottom) to "1" (top). "auto" places the baseline of the title onto the vertical center of the top margin.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?YAnchor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the title's vertical alignment with respect to its y position. "top" means that the title's cap line is at y, "bottom" means that the title's baseline is at y and "middle" means that the title's midline is at y. "auto" divides `yref` by three and calculates the `yanchor` value automatically based on the value of `y`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?YRef
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    For plot titles: Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.
-                  </p>
-                </dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span><a href="https://plotly.net/reference/plotly-net-title.html">Title</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-title.html">Title</a></span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Text
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For all titles: Sets the plot's title. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AutoMargin
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Determines whether the title can automatically push the figure margins. If `yref='paper'` then the margin will expand to ensure that the title doesn’t overlap with the edges of the container. If `yref='container'` then the margins will ensure that the title doesn’t overlap with the plot area, tick labels, and axis titles. If `automargin=true` and the margins need to be expanded, then y will be set to a default 1 and yanchor will be set to an appropriate default to ensure that minimal margin space is needed. Note that when `yref='paper'`, only 1 or 0 are allowed y values. Invalid values will be reset to the default 1.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Font
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For all titles: Sets the title font. Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Standoff
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For axis titles: Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Side
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-side.html">Side</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For colorbar titles: Determines the location of color bar's title with respect to the color bar. Defaults to "top" when `orientation` if "v" and defaults to "right" when `orientation` if "h". Note that the title's location used to be set by the now deprecated `titleside` attribute.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?X
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the x position with respect to `xref` in normalized coordinates from "0" (left) to "1" (right).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?XAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-xanchorposition.html">XAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the title's horizontal alignment with respect to its x position. "left" means that the title starts at x, "right" means that the title ends at x and "center" means that the title's center is at x. "auto" divides `xref` by three and calculates the `xanchor` value automatically based on the value of `x`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?XRef
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Y
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the y position with respect to `yref` in normalized coordinates from "0" (bottom) to "1" (top). "auto" places the baseline of the title onto the vertical center of the top margin.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?YAnchor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-yanchorposition.html">YAnchorPosition</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the title's vertical alignment with respect to its y position. "top" means that the title's cap line is at y, "bottom" means that the title's baseline is at y and "middle" means that the title's midline is at y. "auto" divides `yref` by three and calculates the `yanchor` value automatically based on the value of `y`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?YRef
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  For plot titles: Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://plotly.net/reference/plotly-net-title.html">Title</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-title.html">Title</a></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
           </td>
         </tr>
       </tbody>

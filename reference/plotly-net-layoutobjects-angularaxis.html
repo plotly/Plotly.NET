@@ -87,11 +87,11 @@
     </dt>
     <dt>
       Base Type: 
-      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
     </dt>
     <dt>
       All Interfaces: 
-      <code><a href="https://learn.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
+      <code><a href="https://docs.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
@@ -151,6 +151,23 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.AngularAxis.#ctor`')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.AngularAxis.#ctor\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Polar/AngularAxis.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -637,7 +654,7 @@
                         ?LabelAlias
                       </b>
                       :
-                      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+                      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
                        - 
                       Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
                     </span>
@@ -664,580 +681,576 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.AngularAxis.init``6```')">
-                    <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.AngularAxis.init``6\'/>')">
-                    <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Polar/AngularAxis.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.AngularAxis.init``6```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.AngularAxis.init``6\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Polar/AngularAxis.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
  Initialize an AngularAxis object that can be used as a angular scale for polar coordinates.
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Visible
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?AxisType
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-axistype.html">AxisType</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the angular axis type. If "linear", set `thetaunit` to determine the unit in which axis value are shown. If "category, use `period` to set the number of integer coordinates around polar axis.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?AutoTypeNumbers
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-autotypenumbers.html">AutoTypeNumbers</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?CategoryOrder
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?CategoryArray
-                  </span>
-                  :
-                  <code><span>seq&lt;'a&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ThetaUnit
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-angularunit.html">AngularUnit</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the format unit of the formatted "theta" values. Has an effect only when `angularaxis.type` is "linear".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Period
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Set the angular period. Has an effect only when `angularaxis.type` is "category".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Direction
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the direction corresponding to positive angles.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Rotation
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets that start position (in degrees) of the angular axis By default, polar subplots with `direction` set to "counterclockwise" get a `rotation` of "0" which corresponds to due East (like what mathematicians prefer). In turn, polar with `direction` set to "clockwise" get a rotation of "90" which corresponds to due North (like on a compass),
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?HoverFormat
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?UIRevision
-                  </span>
-                  :
-                  <code>'b</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Controls persistence of user-driven changes in axis `rotation`. Defaults to `polar<N>.uirevision`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Color
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowLine
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether or not a line bounding this axis is drawn.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?LineColor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the axis line color.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?LineWidth
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the width (in px) of the axis line.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowGrid
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?GridColor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the color of the grid lines.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?GridDash
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?GridWidth
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the width (in px) of the grid lines.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickMode
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickmode.html">TickMode</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `TickVals` and the tick text is `TickText`. ("array" is the default value if `TickVals` is provided).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?NTicks
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to "auto".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Tick0
-                  </span>
-                  :
-                  <code>'c</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the placement of the first tick on this axis. Use with `dtick`. If the axis `type` is "log", then you must take the log of your starting tick (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`="L<f>" (see `dtick` for more info). If the axis `type` is "date", it should be a date string, like date data. If the axis `type` is "category", it should be a number, using the scale where each category is assigned a serial number from zero in the order it appears.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?DTick
-                  </span>
-                  :
-                  <code>'d</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L<f>", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M<n>" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickVals
-                  </span>
-                  :
-                  <code><span>seq&lt;'e&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `TickText`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickText
-                  </span>
-                  :
-                  <code><span>seq&lt;'f&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the text displayed at the ticks position via `TickVals`. Only has an effect if `tickmode` is set to "array". Used with `TickVals`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Ticks
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickoptions.html">TickOptions</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickLen
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick length (in px).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickWidth
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick width (in px).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickColor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick color.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowTickLabels
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether or not the tick labels are drawn.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowTickPrefix
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickPrefix
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets a tick label prefix.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowTickSuffix
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Same as `showtickprefix` but for tick suffixes.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickSuffix
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets a tick label suffix.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowExponent
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-showexponent.html">ShowExponent</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ExponentFormat
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-exponentformat.html">ExponentFormat</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?MinExponent
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?SeparateThousands
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    If "true", even 4-digit integers are separated
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickFont
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick font.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickAngle
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickFormat
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickFormatStops
-                  </span>
-                  :
-                  <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-tickformatstop.html">TickFormatStop</a>&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Set rules for customizing TickFormat on different zoom levels
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickLabelStep
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?LabelAlias
-                  </span>
-                  :
-                  <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Layer
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.
-                  </p>
-                </dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-angularaxis.html">AngularAxis</a></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Visible
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AxisType
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-axistype.html">AxisType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the angular axis type. If "linear", set `thetaunit` to determine the unit in which axis value are shown. If "category, use `period` to set the number of integer coordinates around polar axis.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AutoTypeNumbers
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-autotypenumbers.html">AutoTypeNumbers</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?CategoryOrder
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?CategoryArray
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ThetaUnit
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-angularunit.html">AngularUnit</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the format unit of the formatted "theta" values. Has an effect only when `angularaxis.type` is "linear".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Period
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Set the angular period. Has an effect only when `angularaxis.type` is "category".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Direction
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the direction corresponding to positive angles.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Rotation
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets that start position (in degrees) of the angular axis By default, polar subplots with `direction` set to "counterclockwise" get a `rotation` of "0" which corresponds to due East (like what mathematicians prefer). In turn, polar with `direction` set to "clockwise" get a rotation of "90" which corresponds to due North (like on a compass),
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?HoverFormat
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?UIRevision
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Controls persistence of user-driven changes in axis `rotation`. Defaults to `polar<N>.uirevision`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLine
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether or not a line bounding this axis is drawn.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the axis line color.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the axis line.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowGrid
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GridColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the color of the grid lines.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GridDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GridWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the grid lines.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickMode
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickmode.html">TickMode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `TickVals` and the tick text is `TickText`. ("array" is the default value if `TickVals` is provided).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?NTicks
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to "auto".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tick0
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the placement of the first tick on this axis. Use with `dtick`. If the axis `type` is "log", then you must take the log of your starting tick (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`="L<f>" (see `dtick` for more info). If the axis `type` is "date", it should be a date string, like date data. If the axis `type` is "category", it should be a number, using the scale where each category is assigned a serial number from zero in the order it appears.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?DTick
+                </span>
+                :
+                <code>'d</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L<f>", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M<n>" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickVals
+                </span>
+                :
+                <code><span>seq&lt;'e&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `TickText`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickText
+                </span>
+                :
+                <code><span>seq&lt;'f&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the text displayed at the ticks position via `TickVals`. Only has an effect if `tickmode` is set to "array". Used with `TickVals`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Ticks
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickoptions.html">TickOptions</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickLen
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick length (in px).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick width (in px).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick color.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowTickLabels
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether or not the tick labels are drawn.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowTickPrefix
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickPrefix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a tick label prefix.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowTickSuffix
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Same as `showtickprefix` but for tick suffixes.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickSuffix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a tick label suffix.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowExponent
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-showexponent.html">ShowExponent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ExponentFormat
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-exponentformat.html">ExponentFormat</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MinExponent
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?SeparateThousands
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  If "true", even 4-digit integers are separated
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickFont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick font.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickAngle
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickFormat
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickFormatStops
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-tickformatstop.html">TickFormatStop</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Set rules for customizing TickFormat on different zoom levels
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickLabelStep
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LabelAlias
+                </span>
+                :
+                <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Layer
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-angularaxis.html">AngularAxis</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
           </td>
         </tr>
         <tr>
@@ -1695,7 +1708,7 @@
                         ?LabelAlias
                       </b>
                       :
-                      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+                      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
                        - 
                       Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
                     </span>
@@ -1722,580 +1735,576 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <details>
-              <summary>
-                <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.AngularAxis.style``6```')">
-                    <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-                  </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.AngularAxis.style``6\'/>')">
-                    <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-                  </div>
-                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Polar/AngularAxis.fs#L206-206" class="fsdocs-source-link" title="Source on GitHub">
-                    <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                    <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-                  </a>
-                  <p class="fsdocs-summary">
-                    
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.AngularAxis.style``6```')">
+                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.AngularAxis.style``6\'/>')">
+                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
+                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Polar/AngularAxis.fs#L206-206" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://plotly.net/content/img/github.png" class="normal"/>
+                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
  Creates a function that applies the given style parameters to a AngularAxis object
  
-                  </p>
-                </div>
-              </summary>
-              <dl class="fsdocs-params">
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Visible
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?AxisType
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-axistype.html">AxisType</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the angular axis type. If "linear", set `thetaunit` to determine the unit in which axis value are shown. If "category, use `period` to set the number of integer coordinates around polar axis.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?AutoTypeNumbers
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-autotypenumbers.html">AutoTypeNumbers</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?CategoryOrder
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?CategoryArray
-                  </span>
-                  :
-                  <code><span>seq&lt;'a&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ThetaUnit
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-angularunit.html">AngularUnit</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the format unit of the formatted "theta" values. Has an effect only when `angularaxis.type` is "linear".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Period
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Set the angular period. Has an effect only when `angularaxis.type` is "category".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Direction
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the direction corresponding to positive angles.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Rotation
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets that start position (in degrees) of the angular axis By default, polar subplots with `direction` set to "counterclockwise" get a `rotation` of "0" which corresponds to due East (like what mathematicians prefer). In turn, polar with `direction` set to "clockwise" get a rotation of "90" which corresponds to due North (like on a compass),
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?HoverFormat
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?UIRevision
-                  </span>
-                  :
-                  <code>'b</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Controls persistence of user-driven changes in axis `rotation`. Defaults to `polar<N>.uirevision`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Color
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowLine
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether or not a line bounding this axis is drawn.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?LineColor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the axis line color.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?LineWidth
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the width (in px) of the axis line.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowGrid
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?GridColor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the color of the grid lines.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?GridDash
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?GridWidth
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the width (in px) of the grid lines.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickMode
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickmode.html">TickMode</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `TickVals` and the tick text is `TickText`. ("array" is the default value if `TickVals` is provided).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?NTicks
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to "auto".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Tick0
-                  </span>
-                  :
-                  <code>'c</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the placement of the first tick on this axis. Use with `dtick`. If the axis `type` is "log", then you must take the log of your starting tick (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`="L<f>" (see `dtick` for more info). If the axis `type` is "date", it should be a date string, like date data. If the axis `type` is "category", it should be a number, using the scale where each category is assigned a serial number from zero in the order it appears.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?DTick
-                  </span>
-                  :
-                  <code>'d</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L<f>", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M<n>" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickVals
-                  </span>
-                  :
-                  <code><span>seq&lt;'e&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `TickText`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickText
-                  </span>
-                  :
-                  <code><span>seq&lt;'f&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the text displayed at the ticks position via `TickVals`. Only has an effect if `tickmode` is set to "array". Used with `TickVals`.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Ticks
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickoptions.html">TickOptions</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickLen
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick length (in px).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickWidth
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick width (in px).
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickColor
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick color.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowTickLabels
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines whether or not the tick labels are drawn.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowTickPrefix
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickPrefix
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets a tick label prefix.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowTickSuffix
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Same as `showtickprefix` but for tick suffixes.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickSuffix
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets a tick label suffix.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ShowExponent
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-showexponent.html">ShowExponent</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?ExponentFormat
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-exponentformat.html">ExponentFormat</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?MinExponent
-                  </span>
-                  :
-                  <code>float</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?SeparateThousands
-                  </span>
-                  :
-                  <code>bool</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    If "true", even 4-digit integers are separated
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickFont
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick font.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickAngle
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickFormat
-                  </span>
-                  :
-                  <code>string</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickFormatStops
-                  </span>
-                  :
-                  <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-tickformatstop.html">TickFormatStop</a>&gt;</span></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Set rules for customizing TickFormat on different zoom levels
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?TickLabelStep
-                  </span>
-                  :
-                  <code>int</code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?LabelAlias
-                  </span>
-                  :
-                  <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
-                  </p>
-                </dd>
-                <dt class="fsdocs-param">
-                  <span class="fsdocs-param-name">
-                    ?Layer
-                  </span>
-                  :
-                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
-                </dt>
-                <dd class="fsdocs-param-docs">
-                  <p>
-                    Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.
-                  </p>
-                </dd>
-              </dl>
-              <dl class="fsdocs-returns">
-                <dt>
-                  <span class="fsdocs-return-name">
-                    Returns: 
-                  </span>
-                  <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-angularaxis.html">AngularAxis</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-angularaxis.html">AngularAxis</a></span></code>
-                </dt>
-                <dd class="fsdocs-return-docs"></dd>
-              </dl>
-            </details>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Visible
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AxisType
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-axistype.html">AxisType</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the angular axis type. If "linear", set `thetaunit` to determine the unit in which axis value are shown. If "category, use `period` to set the number of integer coordinates around polar axis.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?AutoTypeNumbers
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-autotypenumbers.html">AutoTypeNumbers</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?CategoryOrder
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-categoryorder.html">CategoryOrder</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?CategoryArray
+                </span>
+                :
+                <code><span>seq&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to "array". Used with `categoryorder`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ThetaUnit
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-angularunit.html">AngularUnit</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the format unit of the formatted "theta" values. Has an effect only when `angularaxis.type` is "linear".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Period
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Set the angular period. Has an effect only when `angularaxis.type` is "category".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Direction
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-direction.html">Direction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the direction corresponding to positive angles.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Rotation
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets that start position (in degrees) of the angular axis By default, polar subplots with `direction` set to "counterclockwise" get a `rotation` of "0" which corresponds to due East (like what mathematicians prefer). In turn, polar with `direction` set to "clockwise" get a rotation of "90" which corresponds to due North (like on a compass),
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?HoverFormat
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?UIRevision
+                </span>
+                :
+                <code>'b</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Controls persistence of user-driven changes in axis `rotation`. Defaults to `polar<N>.uirevision`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Color
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowLine
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether or not a line bounding this axis is drawn.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the axis line color.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LineWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the axis line.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowGrid
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GridColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the color of the grid lines.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GridDash
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-drawingstyle.html">DrawingStyle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?GridWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the width (in px) of the grid lines.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickMode
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickmode.html">TickMode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick mode for this axis. If "auto", the number of ticks is set via `nticks`. If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` ("linear" is the default value if `tick0` and `dtick` are provided). If "array", the placement of the ticks is set via `TickVals` and the tick text is `TickText`. ("array" is the default value if `TickVals` is provided).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?NTicks
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to "auto".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Tick0
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the placement of the first tick on this axis. Use with `dtick`. If the axis `type` is "log", then you must take the log of your starting tick (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`="L<f>" (see `dtick` for more info). If the axis `type` is "date", it should be a date string, like date data. If the axis `type` is "category", it should be a number, using the scale where each category is assigned a serial number from zero in the order it appears.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?DTick
+                </span>
+                :
+                <code>'d</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to "log" and "date" axes. If the axis `type` is "log", then ticks are set every 10^(n"dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. "log" has several special values; "L<f>", where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = "L0.5" will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use "D1" (all digits) or "D2" (only 2 and 5). `tick0` is ignored for "D1" and "D2". If the axis `type` is "date", then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. "date" also has special values "M<n>" gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to "2000-01-15" and `dtick` to "M3". To set ticks every 4 years, set `dtick` to "M48"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickVals
+                </span>
+                :
+                <code><span>seq&lt;'e&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `TickText`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickText
+                </span>
+                :
+                <code><span>seq&lt;'f&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the text displayed at the ticks position via `TickVals`. Only has an effect if `tickmode` is set to "array". Used with `TickVals`.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Ticks
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-tickoptions.html">TickOptions</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether ticks are drawn or not. If "", this axis' ticks are not drawn. If "outside" ("inside"), this axis' are drawn outside (inside) the axis lines.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickLen
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick length (in px).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickWidth
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick width (in px).
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickColor
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick color.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowTickLabels
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines whether or not the tick labels are drawn.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowTickPrefix
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  If "all", all tick labels are displayed with a prefix. If "first", only the first tick is displayed with a prefix. If "last", only the last tick is displayed with a suffix. If "none", tick prefixes are hidden.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickPrefix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a tick label prefix.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowTickSuffix
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-showtickoption.html">ShowTickOption</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Same as `showtickprefix` but for tick suffixes.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickSuffix
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets a tick label suffix.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ShowExponent
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-showexponent.html">ShowExponent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  If "all", all exponents are shown besides their significands. If "first", only the exponent of the first tick is shown. If "last", only the exponent of the last tick is shown. If "none", no exponents appear.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?ExponentFormat
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-exponentformat.html">ExponentFormat</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If "none", it appears as 1,000,000,000. If "e", 1e+9. If "E", 1E+9. If "power", 1x10^9 (with 9 in a super script). If "SI", 1G. If "B", 1B.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?MinExponent
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `TickFormat` is "SI" or "B".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?SeparateThousands
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  If "true", even 4-digit integers are separated
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickFont
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick font.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickAngle
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickFormat
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickFormatStops
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-tickformatstop.html">TickFormatStop</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Set rules for customizing TickFormat on different zoom levels
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?TickLabelStep
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` "log" or "multicategory", or when `tickmode` is "array".
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?LabelAlias
+                </span>
+                :
+                <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA and CA to Canada. The labels we would have shown must match the keys exactly, after adding any tickprefix or ticksuffix. labelalias can be used with any axis type, and both keys (if needed) and values (if desired) can include html-like tags or MathJax.
+                </p>
+              </dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ?Layer
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs">
+                <p>
+                  Sets the layer on which this axis is displayed. If "above traces", this axis is displayed above all the subplot's traces If "below traces", this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to "false" to show markers and/or text nodes above this axis.
+                </p>
+              </dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-angularaxis.html">AngularAxis</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-angularaxis.html">AngularAxis</a></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
           </td>
         </tr>
       </tbody>
