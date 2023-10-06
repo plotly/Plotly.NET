@@ -18,7 +18,6 @@
     <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup>

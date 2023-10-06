@@ -8,32 +8,32 @@ open Plotly.NET
 /// </summary>
 type IGenericChartRenderer =
 
-    ///<summary>Async function that returns a base64 encoded string representing the input chart as JPG file with the given width and height</summary>
-    abstract member RenderJPGAsync: int * int * GenericChart.GenericChart -> Task<string>
-    ///<summary>Function that returns a base64 encoded string representing the input chart as JPG file with the given width and height</summary>
-    abstract member RenderJPG: int * int * GenericChart.GenericChart -> string
+    ///<summary>Async function that returns a base64 encoded string representing the input chart as JPG file with the given width, height, and scale</summary>
+    abstract member RenderJPGAsync: width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> Task<string>
+    ///<summary>Function that returns a base64 encoded string representing the input chart as JPG file with the given width, height, and scale</summary>
+    abstract member RenderJPG: width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> string
 
-    ///<summary>Async function that saves the input chart as JPG file with the given width and height at the given path</summary>
-    abstract member SaveJPGAsync: string * int * int * GenericChart.GenericChart -> Task<unit>
-    ///<summary>Function that saves the input chart as JPG file with the given width and height at the given path</summary>
-    abstract member SaveJPG: string * int * int * GenericChart.GenericChart -> unit
+    ///<summary>Async function that saves the input chart as JPG file with the given width, height, and scale at the given path</summary>
+    abstract member SaveJPGAsync: path: string * width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> Task<unit>
+    ///<summary>Function that saves the input chart as JPG file with the given width, height, and scale at the given path</summary>
+    abstract member SaveJPG: path: string * width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> unit
 
-    ///<summary>Async function that returns a base64 encoded string representing the input chart as PNG file with the given width and height</summary>
-    abstract member RenderPNGAsync: int * int * GenericChart.GenericChart -> Task<string>
-    ///<summary>Function that returns a base64 encoded string representing the input chart as PNG file with the given width and height</summary>
-    abstract member RenderPNG: int * int * GenericChart.GenericChart -> string
+    ///<summary>Async function that returns a base64 encoded string representing the input chart as PNG file with the given width, height, and scale</summary>
+    abstract member RenderPNGAsync: width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> Task<string>
+    ///<summary>Function that returns a base64 encoded string representing the input chart as PNG file with the given width, height, and scale</summary>
+    abstract member RenderPNG: width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> string
 
-    ///<summary>Async function that saves the input chart as PNG file with the given width and height at the given path</summary>
-    abstract member SavePNGAsync: string * int * int * GenericChart.GenericChart -> Task<unit>
-    ///<summary>Function that saves the input chart as PNG file with the given width and height at the given path</summary>
-    abstract member SavePNG: string * int * int * GenericChart.GenericChart -> unit
+    ///<summary>Async function that saves the input chart as PNG file with the given width, height, and scale at the given path</summary>
+    abstract member SavePNGAsync: path: string * width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> Task<unit>
+    ///<summary>Function that saves the input chart as PNG file with the given width, height, and scale at the given path</summary>
+    abstract member SavePNG: path: string * width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> unit
 
-    ///<summary>Async function that returns a string representing the input chart as SVG file with the given width and height</summary>
-    abstract member RenderSVGAsync: int * int * GenericChart.GenericChart -> Task<string>
-    ///<summary>Function that returns string representing the input chart as SVG file with the given width and height</summary>
-    abstract member RenderSVG: int * int * GenericChart.GenericChart -> string
+    ///<summary>Async function that returns a string representing the input chart as SVG file with the given width, height, and scale</summary>
+    abstract member RenderSVGAsync: width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> Task<string>
+    ///<summary>Function that returns string representing the input chart as SVG file with the given width, height, and scale</summary>
+    abstract member RenderSVG: width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> string
 
-    ///<summary>Async function that saves the input chart as SVG file with the given width and height at the given path</summary>
-    abstract member SaveSVGAsync: string * int * int * GenericChart.GenericChart -> Task<unit>
-    ///<summary>Function that saves the input chart as SVG file with the given width and height at the given path</summary>
-    abstract member SaveSVG: string * int * int * GenericChart.GenericChart -> unit
+    ///<summary>Async function that saves the input chart as SVG file with the given width, height, and scale at the given path</summary>
+    abstract member SaveSVGAsync: path: string * width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> Task<unit>
+    ///<summary>Function that saves the input chart as SVG file with the given width, height, and scale at the given path</summary>
+    abstract member SaveSVG: path: string * width: int * height: int * scale: float * gChart: GenericChart.GenericChart -> unit

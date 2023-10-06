@@ -18,7 +18,7 @@ let readTestFilePlatformSpecific filePostfix =
         raise (Exception "Running tests on the current OS is not supported :(")
 
 [<Tests>]
-let ``Image export tests`` =
+let ``Image export base64 strings tests`` =
     // this has to run in sequence as the first call will establish chromium dependencies.
     // assigning exact equality on the produced images seems hard to do. 
     // the jpeg test for example works on windows, but produces a very slightly different base64 string on ubuntu.
@@ -51,11 +51,29 @@ let ``Image export tests`` =
             testCase "Chart.toBase64JPGString terminates" <| fun () ->
                 let actual = Chart.Point([1.,1.]) |> Chart.toBase64JPGString()
                 Expect.isTrue (actual.Length > 100) ""
+
             testCase "Chart.toBase64PNGString terminates" <| fun () ->
                 let actual = Chart.Point([1.,1.]) |> Chart.toBase64PNGString()
-                Expect.isTrue (actual.Length > 100) ""
+                Expect.isTrue (actual.Length > 100) ""            
+
             testCase "Chart.toSVGString terminates" <| fun () ->
                 let actual = Chart.Point([1.,1.]) |> Chart.toSVGString()
                 Expect.isTrue (actual.Length > 100) ""
+        ]
+    )
+
+[<Tests>]
+let ``Image export save files tests`` =
+    testSequencedGroup "ImageExport_Sequenced" (
+        testList "save files" [
+            testCase "Chart.saveJPG creates file" <| fun () ->
+                Chart.Point([1.,1.]) |> Chart.saveJPG("testChart.jpg")
+                Expect.isTrue (File.Exists("testChart.jpg.jpg")) "file does not exist."
+            testCase "Chart.savePNG creates file" <| fun () ->
+                Chart.Point([1.,1.]) |> Chart.savePNG("testChart.png")
+                Expect.isTrue (File.Exists("testChart.png.png")) "file does not exist."
+            testCase "Chart.saveSVG creates file" <| fun () ->
+                Chart.Point([1.,1.]) |> Chart.saveSVG("testChart.svg")
+                Expect.isTrue (File.Exists("testChart.svg.svg")) "file does not exist."
         ]
     )
