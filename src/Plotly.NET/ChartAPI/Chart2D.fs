@@ -2451,17 +2451,17 @@ module Chart2D =
             let increasing =
                 Increasing
                 |> Option.defaultValue (FinanceMarker.init ())
-                |> FinanceMarker.style (?MarkerColor = IncreasingColor)
+                |> FinanceMarker.style (?FillColor = IncreasingColor)
 
             let decreasing =
                 Decreasing
                 |> Option.defaultValue (FinanceMarker.init ())
-                |> FinanceMarker.style (?MarkerColor = DecreasingColor)
+                |> FinanceMarker.style (?FillColor = DecreasingColor)
 
             let totals =
                 Totals
                 |> Option.defaultValue (FinanceMarker.init ())
-                |> FinanceMarker.style (?MarkerColor = TotalsColor)
+                |> FinanceMarker.style (?FillColor = TotalsColor)
 
             Trace2D.initWaterfall (
                 Trace2DStyle.Waterfall(

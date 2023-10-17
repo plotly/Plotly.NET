@@ -9,10 +9,8 @@ open System.Runtime.InteropServices
 type FinanceMarker() =
     inherit DynamicObj()
 
-    [<Obsolete("the argument 'MarkerColor' is obsolete and will be dropped in the next major release")>]
     static member init
         (
-            [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
@@ -20,7 +18,6 @@ type FinanceMarker() =
         ) =
         FinanceMarker()
         |> FinanceMarker.style (
-            ?MarkerColor = MarkerColor,
             ?FillColor = FillColor,
             ?LineColor = LineColor,
             ?LineWidth = LineWidth,
@@ -28,10 +25,8 @@ type FinanceMarker() =
 
         )
 
-    [<Obsolete("the argument 'MarkerColor' is obsolete and will be dropped in the next major release")>]
     static member style
         (
-            [<Optional; DefaultParameterValue(null)>] ?MarkerColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,

@@ -1187,11 +1187,6 @@ type Chart =
 
         Chart.withXAxis (xaxis, ?Id = Id)
 
-    [<Obsolete("Use withXAxisRangeSlider instead")>]
-    [<CompiledName("WithX_AxisRangeSlider")>]
-    static member withX_AxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
-        Chart.withXAxisRangeSlider (rangeSlider, ?Id = Id)
-
     /// Sets the range slider for the xAxis
     [<CompiledName("WithXAxisRangeSlider")>]
     static member withXAxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
