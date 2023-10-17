@@ -1,3 +1,7 @@
+### 0.12.0 - TBD
+
+- bump version range of Plotly.NET to [5.0.0, 6.0.0)
+
 ### 0.11.1 - July 25 2023
 
 - bump version range of Plotly.NET to [4.1.0, 5.0.0)
