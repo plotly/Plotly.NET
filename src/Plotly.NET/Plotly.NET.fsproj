@@ -50,10 +50,10 @@
     <Compile Include="CommonAbstractions\TickFormatStop.fs" />
     <Compile Include="CommonAbstractions\Frame.fs" />
     <Compile Include="CommonAbstractions\Font.fs" />
+    <Compile Include="CommonAbstractions\Padding.fs" />
     <Compile Include="CommonAbstractions\Title.fs" />
     <Compile Include="CommonAbstractions\ColorBar.fs" />
     <Compile Include="CommonAbstractions\Line.fs" />
-    <Compile Include="Layout\ObjectAbstractions\Common\Padding.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\LayoutImage.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\Button.fs" />
     <Compile Include="Layout\ObjectAbstractions\Common\RangeSelector.fs" />
