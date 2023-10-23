@@ -15,13 +15,13 @@ namespace Plotly.NET.CSharp
         /// Returns the layout of the given chart
         /// </summary>
         /// <param name="gChart">The chart of which to get the layout</param>
-        public static Layout GetLayout(this GenericChart.GenericChart gChart) => GenericChart.getLayout(gChart);
+        public static Layout GetLayout(this GenericChart gChart) => GenericChart.getLayout(gChart);
 
         /// <summary>
         /// Returns all traces of the given chart as an array
         /// </summary>
         /// <param name="gChart">The chart of which to get all traces</param>
-        public static Trace [] GetTraces(this GenericChart.GenericChart gChart) => GenericChart.getTraces(gChart).ToArray();
+        public static Trace [] GetTraces(this GenericChart gChart) => GenericChart.getTraces(gChart).ToArray();
 
         /// <summary>
         /// Saves the given Chart as html file at the given path (.html file extension is added if not present).
@@ -31,7 +31,7 @@ namespace Plotly.NET.CSharp
         /// <param name="path">The path to save the chart html at.</param>
         /// <param name="OpenInBrowser">Whether or not to open the generated file in the browser (default: false)</param>
         public static void SaveHtml(
-            this GenericChart.GenericChart gChart,
+            this GenericChart gChart,
             string path,
             Optional<bool> OpenInBrowser = default
         ) =>
@@ -44,7 +44,7 @@ namespace Plotly.NET.CSharp
         /// Saves the given chart as a temporary html file and opens it in the browser.
         /// </summary>
         /// <param name="gChart">The chart to show in the browser</param>
-        public static void Show(this GenericChart.GenericChart gChart) => Plotly.NET.Chart.Show(gChart);
+        public static void Show(this GenericChart gChart) => Plotly.NET.Chart.Show(gChart);
 
         /// <summary>
         /// Sets trace information on the given chart.
@@ -56,8 +56,8 @@ namespace Plotly.NET.CSharp
         /// <param name="LegendRank">Sets the legend rank for the chart's trace(s). Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
         /// <param name="LegendGroup">Sets the legend group for the chart's trace(s). Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
         /// <param name="LegendGroupTitle">Sets the title for the chart's trace legend group </param>
-        public static GenericChart.GenericChart WithTraceInfo(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithTraceInfo(
+            this GenericChart gChart,
             Optional<string> Name = default,
             Optional<StyleParam.Visible> Visible = default,
             Optional<bool> ShowLegend = default,
@@ -75,8 +75,8 @@ namespace Plotly.NET.CSharp
             ).Invoke(gChart);
 
         /// Sets the size of a Chart (in pixels)
-        public static GenericChart.GenericChart WithSize(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithSize(
+            this GenericChart gChart,
             Optional<int> Width = default,
             Optional<int> Height = default
         ) =>
@@ -117,8 +117,8 @@ namespace Plotly.NET.CSharp
         /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
         /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
         /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
-        public static GenericChart.GenericChart WithXAxisStyle<MinType, MaxType, CategoryArrayType>(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithXAxisStyle<MinType, MaxType, CategoryArrayType>(
+            this GenericChart gChart,
             Optional<string> TitleText = default,
             Optional<Font> TitleFont = default,
             Optional<int> TitleStandoff = default,
@@ -221,8 +221,8 @@ namespace Plotly.NET.CSharp
         /// <param name="BackgroundColor">Sets the background color of this axis' wall. (Only has an effect on 3D scenes)</param>
         /// <param name="ShowBackground">Sets whether or not this axis' wall has a background color. (Only has an effect on 3D scenes)</param>
         /// <param name="Id">The target axis id on which the styles should be applied. Default is 1.</param>
-        public static GenericChart.GenericChart WithYAxisStyle<MinType, MaxType, CategoryArrayType>(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithYAxisStyle<MinType, MaxType, CategoryArrayType>(
+            this GenericChart gChart,
             Optional<string> TitleText = default,
             Optional<Font> TitleFont = default,
             Optional<int> TitleStandoff = default,
@@ -298,8 +298,8 @@ namespace Plotly.NET.CSharp
         /// <param name="gChart">The chart in which to change the mapbox</param>
         /// <param name="mapbox">The Mapbox to set on the chart's layout</param>
         /// <param name="Id">The target mapbox id on which the Mapbox should be set. Default is 1.</param>
-        public static GenericChart.GenericChart WithMapbox(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithMapbox(
+            this GenericChart gChart,
             Mapbox mapbox, 
             Optional<int> Id = default
         )
@@ -324,8 +324,8 @@ namespace Plotly.NET.CSharp
         /// <param name="Pitch">Sets the pitch angle of the map (in degrees, where "0" means perpendicular to the surface of the map) (mapbox.pitch).</param>
         /// <param name="Layers">Sets the layers of this Mapbox</param>
         /// <param name="Id">The target mapbox id</param>
-        public static GenericChart.GenericChart WithMapboxStyle(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithMapboxStyle(
+            this GenericChart gChart,
             Optional<Domain> Domain = default, 
             Optional<string> AccessToken = default, 
             Optional<StyleParam.MapboxStyle> Style = default, 
@@ -356,8 +356,8 @@ namespace Plotly.NET.CSharp
         /// <param name="rangeSlider">The rangeslider to set</param>
         /// <param name="Id">The id of the respective x axis</param>
         /// <returns></returns>
-        public static GenericChart.GenericChart WithXAxisRangeSlider(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithXAxisRangeSlider(
+            this GenericChart gChart,
             RangeSlider rangeSlider,
             Optional<StyleParam.SubPlotId> Id = default
         )
@@ -374,8 +374,8 @@ namespace Plotly.NET.CSharp
         /// </summary>
         /// <param name="gChart">The chart for which to set the legend</param>
         /// <param name="legend">The new Legend for the chart's layout</param>
-        public static GenericChart.GenericChart WithLegend(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithLegend(
+            this GenericChart gChart,
             Legend legend
         )
             =>
@@ -411,8 +411,8 @@ namespace Plotly.NET.CSharp
         /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
         /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
         /// <param name="YAnchor">Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.</param>
-        public static GenericChart.GenericChart WithLegendStyle(
-            this GenericChart.GenericChart gChart,
+        public static GenericChart WithLegendStyle(
+            this GenericChart gChart,
             Optional<Color> BGColor = default, 
             Optional<Color> BorderColor = default, 
             Optional<double> BorderWidth = default, 

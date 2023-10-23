@@ -45,7 +45,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.</param>
         /// <param name="CheaterSlope">The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been omitted.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Carpet<XType, MultiXType, YType, MultiYType, AType, BType>(
+        public static GenericChart Carpet<XType, MultiXType, YType, MultiYType, AType, BType>(
             string carpetId,
             Optional<string> Name = default,
             Optional<bool> ShowLegend = default,
@@ -124,7 +124,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ScatterCarpet<AType, BType, TextType>(
+        public static GenericChart ScatterCarpet<AType, BType, TextType>(
             IEnumerable<AType> a,
             IEnumerable<BType> b,
             StyleParam.Mode mode,
@@ -206,7 +206,7 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart PointCarpet<AType, BType, TextType>(
+        public static GenericChart PointCarpet<AType, BType, TextType>(
             IEnumerable<AType> a,
             IEnumerable<BType> b,
             string carpetAnchorId,
@@ -282,7 +282,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart LineCarpet<AType, BType, TextType>(
+        public static GenericChart LineCarpet<AType, BType, TextType>(
             IEnumerable<AType> a,
             IEnumerable<BType> b,
             string carpetAnchorId,
@@ -372,7 +372,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart SplineCarpet<AType, BType, TextType>(
+        public static GenericChart SplineCarpet<AType, BType, TextType>(
             IEnumerable<AType> a,
             IEnumerable<BType> b,
             string carpetAnchorId,
@@ -464,7 +464,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart BubbleCarpet<AType, BType, TextType>(
+        public static GenericChart BubbleCarpet<AType, BType, TextType>(
             IEnumerable<AType> a,
             IEnumerable<BType> b,
             IEnumerable<int> sizes,
@@ -551,7 +551,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
         /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ContourCarpet<ZType, AType, BType, TextType>(
+        public static GenericChart ContourCarpet<ZType, AType, BType, TextType>(
             IEnumerable<ZType> z,
             string carpetAnchorId,
             Optional<string> Name = default,

@@ -43,7 +43,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ScatterTernary<AType, BType, CType, SumType, TextType>(
+        public static GenericChart ScatterTernary<AType, BType, CType, SumType, TextType>(
             Optional<IEnumerable<AType>> A = default,
             Optional<IEnumerable<BType>> B = default,
             Optional<IEnumerable<CType>> C = default,
@@ -128,7 +128,7 @@ namespace Plotly.NET.CSharp
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart PointTernary<AType, BType, CType, SumType, TextType>(
+        public static GenericChart PointTernary<AType, BType, CType, SumType, TextType>(
             Optional<IEnumerable<AType>> A = default,
             Optional<IEnumerable<BType>> B = default,
             Optional<IEnumerable<CType>> C = default,
@@ -207,7 +207,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart LineTernary<AType, BType, CType, SumType, TextType>(
+        public static GenericChart LineTernary<AType, BType, CType, SumType, TextType>(
             Optional<IEnumerable<AType>> A = default,
             Optional<IEnumerable<BType>> B = default,
             Optional<IEnumerable<CType>> C = default,
@@ -301,7 +301,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart BubbleTernary<AType, BType, CType, SumType, TextType>(
+        public static GenericChart BubbleTernary<AType, BType, CType, SumType, TextType>(
             IEnumerable<int> sizes,
             Optional<IEnumerable<AType>> A = default,
             Optional<IEnumerable<BType>> B = default,

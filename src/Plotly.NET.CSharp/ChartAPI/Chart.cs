@@ -12,10 +12,10 @@ namespace Plotly.NET.CSharp
 {
     public static partial class Chart
     {
-        public static GenericChart.GenericChart Combine(IEnumerable<GenericChart.GenericChart> gCharts) => Plotly.NET.Chart.Combine(gCharts);
+        public static GenericChart Combine(IEnumerable<GenericChart> gCharts) => Plotly.NET.Chart.Combine(gCharts);
 
 
-        public static GenericChart.GenericChart Invisible()  => Plotly.NET.Chart.Invisible();
+        public static GenericChart Invisible()  => Plotly.NET.Chart.Invisible();
 
         /// <summary>
         /// Creates a subplot grid with the given dimensions (nRows x nCols) for the input charts.
@@ -33,8 +33,8 @@ namespace Plotly.NET.CSharp
         /// <param name ="Domain">Sets the domains of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.</param>
         /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
         /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
-        public static GenericChart.GenericChart Grid(
-            IEnumerable<GenericChart.GenericChart> gCharts,
+        public static GenericChart Grid(
+            IEnumerable<GenericChart> gCharts,
             int nRows,
             int nCols,
             Optional<Tuple<StyleParam.LinearAxisId, StyleParam.LinearAxisId>[][]> SubPlots = default,
@@ -48,7 +48,7 @@ namespace Plotly.NET.CSharp
             Optional<StyleParam.LayoutGridXSide> XSide = default,
             Optional<StyleParam.LayoutGridYSide> YSide = default
         ) =>
-            Plotly.NET.Chart.Grid<IEnumerable<GenericChart.GenericChart>>(
+            Plotly.NET.Chart.Grid<IEnumerable<GenericChart>>(
                 nRows: nRows,
                 nCols: nCols,
                 SubPlots: SubPlots.ToOption(),

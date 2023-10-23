@@ -7,7 +7,6 @@ open DynamicObj
 open System
 open System.IO
 
-open GenericChart
 open StyleParam
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices

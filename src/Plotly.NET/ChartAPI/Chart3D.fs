@@ -8,7 +8,6 @@ open System
 open System.IO
 //open FSharp.Care.Collections
 
-open GenericChart
 open StyleParam
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices

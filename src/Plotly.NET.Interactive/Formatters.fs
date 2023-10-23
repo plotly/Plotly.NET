@@ -1,7 +1,6 @@
 ﻿namespace Plotly.NET.Interactive
 
 open Plotly.NET
-open Plotly.NET.GenericChart
 
 module Formatters =
 

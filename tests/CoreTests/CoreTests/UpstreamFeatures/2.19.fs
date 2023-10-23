@@ -4,7 +4,7 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open Plotly.NET.GenericChart
+
 
 open TestUtils.HtmlCodegen
 open PlotlyJS_2_19_TestCharts

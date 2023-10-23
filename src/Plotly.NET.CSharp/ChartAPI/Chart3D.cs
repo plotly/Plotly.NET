@@ -45,7 +45,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Scatter3D<XType, YType, ZType, TextType>(
+        public static GenericChart Scatter3D<XType, YType, ZType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             IEnumerable<ZType> z,
@@ -129,7 +129,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Point3D<XType, YType, ZType, TextType>(
+        public static GenericChart Point3D<XType, YType, ZType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             IEnumerable<ZType> z,
@@ -207,7 +207,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Line3D<XType, YType, ZType, TextType>(
+        public static GenericChart Line3D<XType, YType, ZType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             IEnumerable<ZType> z,
@@ -292,7 +292,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Bubble3D<XType, YType, ZType, TextType>(
+        public static GenericChart Bubble3D<XType, YType, ZType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             IEnumerable<ZType> z,
@@ -363,7 +363,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ColorScale">Sets the colorscale of the surface</param>
         /// <param name="ShowScale">Whether or not to show the colorbar/colorscale</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Surface<ZType, XType, YType, TextType>(
+        public static GenericChart Surface<ZType, XType, YType, TextType>(
             IEnumerable<IEnumerable<ZType>> zData, 
             Optional<IEnumerable<XType>> X = default, 
             Optional<IEnumerable<YType>> Y = default, 
@@ -429,7 +429,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FlatShading">Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.</param>
         /// <param name="TriangulationAlgorithm">Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Mesh3D<XType, YType, ZType, IType, JType, KType, TextType>(
+        public static GenericChart Mesh3D<XType, YType, ZType, IType, JType, KType, TextType>(
             IEnumerable<XType> x, 
             IEnumerable<YType> y, 
             IEnumerable<ZType> z, 
@@ -508,7 +508,7 @@ namespace Plotly.NET.CSharp
         /// <param name="SizeMode">Determines whether `sizeref` is set as a "scaled" (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as "absolute" value (in the same units as the vector field).</param>
         /// <param name="ConeAnchor">Sets the cones' anchor with respect to their x/y/z positions. Note that "cm" denote the cone's center of mass which corresponds to 1/4 from the tail to tip.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Cone<XType, YType, ZType, UType, VType, WType, TextType>(
+        public static GenericChart Cone<XType, YType, ZType, UType, VType, WType, TextType>(
             IEnumerable<XType> x, 
             IEnumerable<YType> y, 
             IEnumerable<ZType> z, 
@@ -585,7 +585,7 @@ namespace Plotly.NET.CSharp
         /// <param name="MaxDisplayed">The maximum number of displayed segments in a streamtube.</param>
         /// <param name="TubeStarts">Use this object to specify custom tube start positions</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart StreamTube<XType, YType, ZType, UType, VType, WType, TextType>(
+        public static GenericChart StreamTube<XType, YType, ZType, UType, VType, WType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             IEnumerable<ZType> z,
@@ -659,7 +659,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Surface">Sets the surface.</param>
         /// <param name="OpacityScale">Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Volume<XType, YType, ZType, ValueType, TextType, OpacityScaleType>(
+        public static GenericChart Volume<XType, YType, ZType, ValueType, TextType, OpacityScaleType>(
             IEnumerable<XType> x, 
             IEnumerable<YType> y, 
             IEnumerable<ZType> z, 
@@ -737,7 +737,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Slices">Adds Slices through the volume</param>
         /// <param name="Surface">Sets the surface.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart IsoSurface<XType, YType, ZType, ValueType, TextType>(
+        public static GenericChart IsoSurface<XType, YType, ZType, ValueType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y, 
             IEnumerable<ZType> z,

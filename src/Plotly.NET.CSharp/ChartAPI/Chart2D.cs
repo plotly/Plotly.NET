@@ -46,7 +46,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Scatter<XType,YType,TextType>(
+        public static GenericChart Scatter<XType,YType,TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             StyleParam.Mode mode,
@@ -137,7 +137,7 @@ namespace Plotly.NET.CSharp
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Point<XType, YType, TextType>(
+        public static GenericChart Point<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<string> Name = default,
@@ -218,7 +218,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Line<XType, YType, TextType>(
+        public static GenericChart Line<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<bool> ShowMarkers = default,
@@ -317,7 +317,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Spline<XType, YType, TextType>(
+        public static GenericChart Spline<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<bool> ShowMarkers = default,
@@ -414,7 +414,7 @@ namespace Plotly.NET.CSharp
         /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Bubble<XType, YType, TextType>(
+        public static GenericChart Bubble<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             IEnumerable<int> sizes,
@@ -518,7 +518,7 @@ namespace Plotly.NET.CSharp
         /// <param name="UpperLine">Sets the line for the upper Y values.</param>
         /// <param name="UpperMarker">Sets the marker for the upper Y values.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Range<XType, YType, TextType>(
+        public static GenericChart Range<XType, YType, TextType>(
             IEnumerable<XType> x, 
             IEnumerable<YType> y, 
             IEnumerable<YType> upper, 
@@ -630,7 +630,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Area<XType, YType, TextType>(
+        public static GenericChart Area<XType, YType, TextType>(
             IEnumerable<XType> x, 
             IEnumerable<YType> y, 
             Optional<bool> ShowMarkers = default, 
@@ -725,7 +725,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart SplineArea<XType, YType, TextType>(
+        public static GenericChart SplineArea<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<bool> ShowMarkers = default,
@@ -820,7 +820,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart StackedArea<XType, YType, TextType>(
+        public static GenericChart StackedArea<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<bool> ShowMarkers = default,
@@ -914,7 +914,7 @@ namespace Plotly.NET.CSharp
         /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
         /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Funnel<XType, YType, TextType>(
+        public static GenericChart Funnel<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<string> Name = default,
@@ -1007,7 +1007,7 @@ namespace Plotly.NET.CSharp
         /// <param name="InsideTextFont">Sets the font used for `text` lying inside the bar.</param>
         /// <param name="OutsideTextFont">Sets the font used for `text` lying outside the bar.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart StackedFunnel<XType, YType, TextType>(
+        public static GenericChart StackedFunnel<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<string> Name = default,
@@ -1098,7 +1098,7 @@ namespace Plotly.NET.CSharp
         /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
         /// <param name="Orientation">Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is "legendonly" but not if it is `false`. Sets the stacking direction. With "v" ("h"), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Waterfall<XType, YType, TextType>(
+        public static GenericChart Waterfall<XType, YType, TextType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<string> Name = default,
@@ -1183,7 +1183,7 @@ namespace Plotly.NET.CSharp
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Bar<ValuesType, KeysType, TextType>(
+        public static GenericChart Bar<ValuesType, KeysType, TextType>(
             IEnumerable<ValuesType> values,
             Optional<IEnumerable<KeysType>> Keys = default, 
             Optional<string> Name = default, 
@@ -1261,7 +1261,7 @@ namespace Plotly.NET.CSharp
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart StackedBar<ValuesType, KeysType, TextType>(
+        public static GenericChart StackedBar<ValuesType, KeysType, TextType>(
             IEnumerable<ValuesType> values,
             Optional<IEnumerable<KeysType>> Keys = default,
             Optional<string> Name = default,
@@ -1338,7 +1338,7 @@ namespace Plotly.NET.CSharp
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Column<ValuesType, KeysType, TextType>(
+        public static GenericChart Column<ValuesType, KeysType, TextType>(
             IEnumerable<ValuesType> values,
             Optional<IEnumerable<KeysType>> Keys = default,
             Optional<string> Name = default,
@@ -1417,7 +1417,7 @@ namespace Plotly.NET.CSharp
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart StackedColumn<ValuesType, KeysType, TextType>(
+        public static GenericChart StackedColumn<ValuesType, KeysType, TextType>(
             IEnumerable<ValuesType> values,
             Optional<IEnumerable<KeysType>> Keys = default,
             Optional<string> Name = default,
@@ -1501,7 +1501,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Cumulative">Sets whether and how the cumulative distribution is displayed</param>
         /// <param name="HoverLabel">Sets the style of the hoverlabels of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Histogram<XType, YType, TextType>(
+        public static GenericChart Histogram<XType, YType, TextType>(
             Optional<IEnumerable<XType>> X = default,
             Optional<IEnumerable<YType>> Y = default,
             Optional<StyleParam.Orientation> Orientation = default,
@@ -1585,7 +1585,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Histogram2D<XType, YType, ZType>(
+        public static GenericChart Histogram2D<XType, YType, ZType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<IEnumerable<IEnumerable<ZType>>> Z = default,
@@ -1666,7 +1666,7 @@ namespace Plotly.NET.CSharp
         /// <param name="NotchWidth">Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).</param>
         /// <param name="QuartileMethod">Sets the method used to compute the sample's Q1 and Q3 quartiles. The "linear" method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The "exclusive" method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The "inclusive" method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart BoxPlot<XType, YType, TextType>(
+        public static GenericChart BoxPlot<XType, YType, TextType>(
             Optional<IEnumerable<XType>> X = default, 
             Optional<IEnumerable<YType>> Y = default, 
             Optional<string> Name = default, 
@@ -1764,7 +1764,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Span">Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to "manual".</param>
         /// <param name="SpanMode">Sets the method by which the span in data space where the density function will be computed. "soft" means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. "hard" means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode "manual" and fill in the `span` attribute.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Violin<XType, YType, TextType>(
+        public static GenericChart Violin<XType, YType, TextType>(
             Optional<IEnumerable<XType>> X = default,
             Optional<IEnumerable<YType>> Y = default,
             Optional<string> Name = default,
@@ -1869,7 +1869,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Contours">Sets the style of the contours</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Histogram2DContour<XType, YType, ZType>(
+        public static GenericChart Histogram2DContour<XType, YType, ZType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y,
             Optional<string> Name = default,
@@ -1956,7 +1956,7 @@ namespace Plotly.NET.CSharp
         /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
         /// <param name="ReverseYAxis">Whether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Heatmap<ZType, XType, YType, TextType>(
+        public static GenericChart Heatmap<ZType, XType, YType, TextType>(
             IEnumerable<IEnumerable<ZType>> zData, 
             Optional<string> Name = default, 
             Optional<bool> ShowLegend = default, 
@@ -2031,7 +2031,7 @@ namespace Plotly.NET.CSharp
         /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
         /// <param name="ReverseYAxis">Whether or not to reverse the y axis. If true, (0,0) will lie on the top left and increase downwards.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart AnnotatedHeatmap<ZType, XType, YType, TextType>(
+        public static GenericChart AnnotatedHeatmap<ZType, XType, YType, TextType>(
             IEnumerable<IEnumerable<ZType>> zData,
             IEnumerable<IEnumerable<string>> annotationText,
             Optional<string> Name = default,
@@ -2095,7 +2095,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ZMin">Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.</param>
         /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Image<IdType>(
+        public static GenericChart Image<IdType>(
             Optional<IEnumerable<IEnumerable<IEnumerable<int>>>> Z = default, 
             Optional<string> Source = default, 
             Optional<string> Name = default, 
@@ -2157,7 +2157,7 @@ namespace Plotly.NET.CSharp
         /// <param name="FillColor">Sets the fill color if `contours.type` is "constraint". Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Contour<ZType, XType, YType, TextType>(
+        public static GenericChart Contour<ZType, XType, YType, TextType>(
             IEnumerable<IEnumerable<ZType>> zData, 
             Optional<string> Name = default, 
             Optional<bool> ShowLegend = default, 
@@ -2242,7 +2242,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="TickWidth">Sets the width of the open/close tick marks relative to the "x" minimal interval.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart OHLC<OHLCType, XType, TextType>(
+        public static GenericChart OHLC<OHLCType, XType, TextType>(
             IEnumerable<OHLCType> open,
             IEnumerable<OHLCType> high,
             IEnumerable<OHLCType> low,
@@ -2307,7 +2307,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Decreasing">Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).</param>
         /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Candlestick<OHLCType, XType, TextType>(
+        public static GenericChart Candlestick<OHLCType, XType, TextType>(
             IEnumerable<OHLCType> open,
             IEnumerable<OHLCType> high,
             IEnumerable<OHLCType> low,
@@ -2372,7 +2372,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
         /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Splom<TextType>(
+        public static GenericChart Splom<TextType>(
             IEnumerable<Dimension> dimensions, 
             Optional<string> Name = default, 
             Optional<bool> ShowLegend = default, 
@@ -2439,7 +2439,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ColorScale">Sets the colorscale of the histogram2dcontour trace.</param>
         /// <param name="ShowScale">whether or not to show the colorbar</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart PointDensity<XType, YType>(
+        public static GenericChart PointDensity<XType, YType>(
             IEnumerable<XType> x,
             IEnumerable<YType> y, 
             Optional<double> PointOpacity = default, 

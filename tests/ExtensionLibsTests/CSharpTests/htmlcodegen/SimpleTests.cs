@@ -12,7 +12,7 @@ namespace CSharp.Tests.HtmlCodegen
 {
     public class SimpleTests
     {
-        static Plotly.NET.GenericChart.GenericChart simpleChart =
+        static Plotly.NET.GenericChart simpleChart =
             Chart.Point<double, double, string>(
                 x: Enumerable.Range(0, 11).Select(x => Convert.ToDouble(x)).ToArray(),
                 y: Enumerable.Range(0, 11).Select(x => Convert.ToDouble(x)).ToArray(),

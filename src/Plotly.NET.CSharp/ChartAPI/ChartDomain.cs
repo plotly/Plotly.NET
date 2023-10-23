@@ -41,7 +41,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Rotation">Instead of the first slice starting at 12 o'clock, rotate to some other angle.</param>
         /// <param name="Sort">Determines whether or not the sectors are reordered from largest to smallest.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Pie<ValuesType, LabelsType, TextType>(
+        public static GenericChart Pie<ValuesType, LabelsType, TextType>(
             IEnumerable<ValuesType> values,
             Optional<string> Name = default,
             Optional<bool> ShowLegend = default,
@@ -127,7 +127,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Rotation">Instead of the first slice starting at 12 o'clock, rotate to some other angle.</param>
         /// <param name="Sort">Determines whether or not the sectors are reordered from largest to smallest.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Doughnut<ValuesType, LabelsType, TextType>(
+        public static GenericChart Doughnut<ValuesType, LabelsType, TextType>(
             IEnumerable<ValuesType> values,
             Optional<string> Name = default,
             Optional<bool> ShowLegend = default,
@@ -210,7 +210,7 @@ namespace Plotly.NET.CSharp
         /// <param name="AspectRatio"></param>
         /// <param name="BaseRatio"></param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart FunnelArea<ValuesType, LabelsType, TextType>(
+        public static GenericChart FunnelArea<ValuesType, LabelsType, TextType>(
             IEnumerable<ValuesType> values, 
             Optional<string> Name = default, 
             Optional<bool> ShowLegend = default, 
@@ -293,7 +293,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Rotation">Rotates the whole diagram counterclockwise by some angle. By default the first slice starts at 3 o'clock.</param>
         /// <param name="Sort">Determines whether or not the sectors are reordered from largest to smallest.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Sunburst<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
+        public static GenericChart Sunburst<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
             IEnumerable<LabelsType> labels,
             IEnumerable<ParentsType> parents,
             Optional<IEnumerable<ValuesType>> Values = default,
@@ -399,7 +399,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Level">Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.</param>
         /// <param name="MaxDepth">Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Treemap<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
+        public static GenericChart Treemap<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
             IEnumerable<LabelsType> labels,
             IEnumerable<ParentsType> parents,
             Optional<IEnumerable<ValuesType>> Values = default,
@@ -490,7 +490,7 @@ namespace Plotly.NET.CSharp
         /// <param name="RangeFont">Sets the range font of this trace.</param>
         /// <param name="TickFont">Sets the tick font of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ParallelCoord(
+        public static GenericChart ParallelCoord(
             IEnumerable<Dimension> dimensions,
             Optional<string> Name = default,
             Optional<Color> LineColor = default,
@@ -545,7 +545,7 @@ namespace Plotly.NET.CSharp
         /// <param name="LabelFont">Sets the label font of this trace.</param>
         /// <param name="TickFont">Sets the tick font of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ParallelCategories(
+        public static GenericChart ParallelCategories(
             IEnumerable<Dimension> dimensions, 
             Optional<string> Name = default, 
             Optional<int> Counts = default, 
@@ -598,7 +598,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ValueFormat">Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.</param>
         /// <param name="ValueSuffix">Adds a unit to follow the value in the hover tooltip. Add a space if a separation is necessary from the value.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Sankey<IdsType>(
+        public static GenericChart Sankey<IdsType>(
             SankeyNodes nodes,
             SankeyLinks links,
             Optional<string> Name = default,
@@ -637,7 +637,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ColumnWidth">The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.</param>
         /// <param name="MultiColumnWidth">The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Table(
+        public static GenericChart Table(
             TableCells header, 
             TableCells cells, 
             Optional<string> Name = default, 
@@ -679,7 +679,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ShowGaugeAxis">Whether or not to show the gauge axis</param>
         /// <param name="GaugeAxis">Sets the gauge axis</param>
         /// <param name="UseDefaults"></param>
-        public static GenericChart.GenericChart Indicator<ValueType>(
+        public static GenericChart Indicator<ValueType>(
             ValueType value,
             StyleParam.IndicatorMode mode,
             Optional<StyleParam.Range> Range = default,
@@ -754,7 +754,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Level">Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.</param>
         /// <param name="MaxDepth">Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart Icicle<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
+        public static GenericChart Icicle<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
             IEnumerable<LabelsType> labels,
             IEnumerable<ParentsType> parents,
             Optional<IEnumerable<ValuesType>> Values = default,

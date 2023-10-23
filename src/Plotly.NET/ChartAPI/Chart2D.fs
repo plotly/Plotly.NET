@@ -8,7 +8,6 @@ open System
 open System.IO
 open System.Runtime.CompilerServices
 
-open GenericChart
 open System.Runtime.InteropServices
 
 [<AutoOpen>]

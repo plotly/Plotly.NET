@@ -26,7 +26,7 @@ type PuppeteerSharpRenderer() =
     /// adapted from the original C# implementation by @ilyalatt : https://github.com/ilyalatt/Plotly.NET.PuppeteerRenderer
     ///
     /// creates a full screen html site for the given chart
-    let toFullScreenHtml (gChart: GenericChart.GenericChart) =
+    let toFullScreenHtml (gChart: GenericChart) =
 
         gChart
         |> GenericChart.mapConfig (fun c ->
@@ -114,19 +114,19 @@ type PuppeteerSharpRenderer() =
 
     interface IGenericChartRenderer with
 
-        member this.RenderJPGAsync(width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.RenderJPGAsync(width: int, height: int, scale: float, gChart: GenericChart) =
             task {
                 use! browser = fetchAndLaunchBrowserAsync ()
 
                 return! tryRenderAsync browser width height scale StyleParam.ImageFormat.JPEG (gChart |> toFullScreenHtml)
             }
 
-        member this.RenderJPG(width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.RenderJPG(width: int, height: int, scale: float, gChart: GenericChart) =
             (this :> IGenericChartRenderer)
                 .RenderJPGAsync(width, height, scale, gChart)
             |> AsyncHelper.taskSync
 
-        member this.SaveJPGAsync(path: string, width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.SaveJPGAsync(path: string, width: int, height: int, scale: float, gChart: GenericChart) =
             task {
                 let! rendered =
                     (this :> IGenericChartRenderer)
@@ -135,24 +135,24 @@ type PuppeteerSharpRenderer() =
                 return rendered |> getBytesFromBase64String |> (fun base64 -> File.WriteAllBytes($"{path}.jpg", base64))
             }
 
-        member this.SaveJPG(path: string, width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.SaveJPG(path: string, width: int, height: int, scale: float, gChart: GenericChart) =
             (this :> IGenericChartRenderer)
                 .SaveJPGAsync(path, width, height, scale, gChart)
             |> AsyncHelper.taskSync
 
-        member this.RenderPNGAsync(width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.RenderPNGAsync(width: int, height: int, scale: float, gChart: GenericChart) =
             task {
                 use! browser = fetchAndLaunchBrowserAsync ()
 
                 return! tryRenderAsync browser width height scale StyleParam.ImageFormat.PNG (gChart |> toFullScreenHtml)
             }
 
-        member this.RenderPNG(width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.RenderPNG(width: int, height: int, scale: float, gChart: GenericChart) =
             (this :> IGenericChartRenderer)
                 .RenderPNGAsync(width, height, scale, gChart)
             |> AsyncHelper.taskSync
 
-        member this.SavePNGAsync(path: string, width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.SavePNGAsync(path: string, width: int, height: int, scale: float, gChart: GenericChart) =
             task {
                 let! rendered =
                     (this :> IGenericChartRenderer)
@@ -161,12 +161,12 @@ type PuppeteerSharpRenderer() =
                 return rendered |> getBytesFromBase64String |> (fun base64 -> File.WriteAllBytes($"{path}.png", base64))
             }
 
-        member this.SavePNG(path: string, width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.SavePNG(path: string, width: int, height: int, scale: float, gChart: GenericChart) =
             (this :> IGenericChartRenderer)
                 .SavePNGAsync(path, width, height, scale, gChart)
             |> AsyncHelper.taskSync
 
-        member this.RenderSVGAsync(width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.RenderSVGAsync(width: int, height: int, scale: float, gChart: GenericChart) =
             task {
                 use! browser = fetchAndLaunchBrowserAsync ()
 
@@ -176,12 +176,12 @@ type PuppeteerSharpRenderer() =
                 return renderedString |> fun svg -> System.Uri.UnescapeDataString(svg) |> skipDataTypeString
             }
 
-        member this.RenderSVG(width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.RenderSVG(width: int, height: int, scale: float, gChart: GenericChart) =
             (this :> IGenericChartRenderer)
                 .RenderSVGAsync(width, height, scale, gChart)
             |> AsyncHelper.taskSync
 
-        member this.SaveSVGAsync(path: string, width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.SaveSVGAsync(path: string, width: int, height: int, scale: float, gChart: GenericChart) =
             task {
                 let! rendered =
                     (this :> IGenericChartRenderer)
@@ -190,7 +190,7 @@ type PuppeteerSharpRenderer() =
                 return rendered |> fun svg -> File.WriteAllText($"{path}.svg", svg)
             }
 
-        member this.SaveSVG(path: string, width: int, height: int, scale: float, gChart: GenericChart.GenericChart) =
+        member this.SaveSVG(path: string, width: int, height: int, scale: float, gChart: GenericChart) =
             (this :> IGenericChartRenderer)
                 .SaveSVGAsync(path, width, height, scale, gChart)
             |> AsyncHelper.taskSync

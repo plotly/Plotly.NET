@@ -31,7 +31,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ReverseScale">Reverses the color mapping if true.</param>
         /// <param name="LocationMode">Determines the set of locations used to match entries in `locations` to regions on the map. Values "ISO-3", "USA-states", "country names" correspond to features on the base map and value "geojson-id" corresponds to features from a custom GeoJSON linked to the `geojson` attribute.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ChoroplethMap<ZType, TextType>(
+        public static GenericChart ChoroplethMap<ZType, TextType>(
             IEnumerable<string> locations, 
             IEnumerable<ZType> z, 
             Optional<string> Name = default, 
@@ -100,7 +100,7 @@ namespace Plotly.NET.CSharp
         /// <param name="GeoJson">Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
         /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example "properties.name".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ScatterGeo<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart ScatterGeo<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             StyleParam.Mode mode,
@@ -186,7 +186,7 @@ namespace Plotly.NET.CSharp
         /// <param name="GeoJson">Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
         /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example "properties.name".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart PointGeo<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart PointGeo<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             Optional<string> Name = default,
@@ -266,7 +266,7 @@ namespace Plotly.NET.CSharp
         /// <param name="GeoJson">Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
         /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example "properties.name".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart LineGeo<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart LineGeo<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             Optional<bool> ShowMarkers = default,
@@ -353,7 +353,7 @@ namespace Plotly.NET.CSharp
         /// <param name="GeoJson">Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
         /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example "properties.name".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart BubbleGeo<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart BubbleGeo<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             IEnumerable<int> sizes,
@@ -439,7 +439,7 @@ namespace Plotly.NET.CSharp
         /// <param name="EnableClustering">Whether or not to enable clustering for points</param>
         /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ScatterMapbox<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart ScatterMapbox<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             StyleParam.Mode mode,
@@ -527,7 +527,7 @@ namespace Plotly.NET.CSharp
         /// <param name="EnableClustering">Whether or not to enable clustering for points</param>
         /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart PointMapbox<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart PointMapbox<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             Optional<string> Name = default,
@@ -607,7 +607,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart LineMapbox<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart LineMapbox<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             Optional<bool> ShowMarkers = default,
@@ -690,7 +690,7 @@ namespace Plotly.NET.CSharp
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart BubbleMapbox<LongitudesType, LatitudesType, TextType>(
+        public static GenericChart BubbleMapbox<LongitudesType, LatitudesType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             IEnumerable<int> sizes,
@@ -762,7 +762,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ReverseScale">Reverses the color mapping if true.</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart ChoroplethMapbox<ZType, TextType>(
+        public static GenericChart ChoroplethMapbox<ZType, TextType>(
             IEnumerable<string> locations,
             IEnumerable<ZType> z,
             object geoJson,
@@ -820,7 +820,7 @@ namespace Plotly.NET.CSharp
         /// <param name="ReverseScale">Reverses the color mapping if true.</param>
         /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        public static GenericChart.GenericChart DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
+        public static GenericChart DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
             IEnumerable<LongitudesType> longitudes,
             IEnumerable<LatitudesType> latitudes,
             Optional<string> Name = default,

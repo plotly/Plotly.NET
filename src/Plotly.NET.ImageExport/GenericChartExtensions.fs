@@ -1,7 +1,6 @@
 ﻿namespace Plotly.NET.ImageExport
 
 open Plotly.NET
-open GenericChart
 open System
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices

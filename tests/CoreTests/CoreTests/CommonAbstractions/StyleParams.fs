@@ -4,7 +4,7 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open Plotly.NET.GenericChart
+
 open Newtonsoft.Json
 
 let cScale = StyleParam.Colorscale.Custom [0., Color.fromKeyword Red; 1., Color.fromKeyword Blue]

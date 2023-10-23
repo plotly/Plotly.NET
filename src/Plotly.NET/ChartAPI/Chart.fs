@@ -8,7 +8,6 @@ open DynamicObj
 open System
 open System.IO
 open Giraffe.ViewEngine
-open GenericChart
 open System.Runtime.InteropServices
 
 /// Provides a set of static methods for creating and styling charts.
@@ -102,7 +101,7 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapiTrace (fun i trace ->
+            |> GenericChart.mapiTrace (fun i trace ->
                 let naming i name =
                     name |> Option.map (fun v -> if i = 0 then v else sprintf "%s_%i" v i)
 
@@ -138,7 +137,7 @@ type Chart =
 
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace (fun trace ->
+            |> GenericChart.mapTrace (fun trace ->
                 match trace with
                 | :? Trace2D as trace -> trace |> Trace2DStyle.SetAxisAnchor(?X = idx, ?Y = idy) :> Trace
                 | :? TraceCarpet as trace when trace.``type`` = "carpet" ->
@@ -153,7 +152,7 @@ type Chart =
     /// <param name="id">The new color axis id for the chart's trace(s)</param>
     [<CompiledName("WithColorAxisAnchor")>]
     static member withColorAxisAnchor(id: int) =
-        fun (ch: GenericChart) -> ch |> mapTrace (Trace.setColorAxisAnchor id)
+        fun (ch: GenericChart) -> ch |> GenericChart.mapTrace (Trace.setColorAxisAnchor id)
 
     /// <summary>
     /// Sets the marker for the chart's trace(s).
@@ -257,7 +256,7 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace (
+            |> GenericChart.mapTrace (
                 TraceStyle.Marker(
                     ?Angle = Angle,
                     ?AngleRef = AngleRef,
@@ -370,7 +369,7 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace (
+            |> GenericChart.mapTrace (
                 TraceStyle.Line(
                     ?BackOff = BackOff,
                     ?AutoColorScale = AutoColorScale,
@@ -455,7 +454,7 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace (
+            |> GenericChart.mapTrace (
                 TraceStyle.XError(
                     ?Visible = Visible,
                     ?Type = Type,
@@ -533,7 +532,7 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace (
+            |> GenericChart.mapTrace (
                 TraceStyle.YError(
                     ?Visible = Visible,
                     ?Type = Type,
@@ -611,7 +610,7 @@ type Chart =
         ) =
         fun (ch: GenericChart) ->
             ch
-            |> mapTrace (
+            |> GenericChart.mapTrace (
                 TraceStyle.ZError(
                     ?Visible = Visible,
                     ?Type = Type,
@@ -2997,7 +2996,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
             [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
-        fun (gCharts: #seq<GenericChart.GenericChart>) ->
+        fun (gCharts: #seq<GenericChart>) ->
 
             let pattern =
                 defaultArg Pattern StyleParam.LayoutGridPattern.Independent
@@ -3205,7 +3204,7 @@ type Chart =
                     "To have more positional control, use Chart.Empty() in your Grid where you want to have empty cells."
 
                 let copy =
-                    gCharts |> Seq.map Seq.cast<GenericChart.GenericChart> // this is ugly but i did not find another way for the inner seq to be be a flexible type (so you can use list, array, and seq).
+                    gCharts |> Seq.map Seq.cast<GenericChart> // this is ugly but i did not find another way for the inner seq to be be a flexible type (so you can use list, array, and seq).
 
                 let newGrid =
                     copy
@@ -3283,7 +3282,7 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
 
-        fun (gCharts: #seq<GenericChart.GenericChart>) ->
+        fun (gCharts: #seq<GenericChart>) ->
 
             gCharts
             |> Chart.Grid(
@@ -3437,17 +3436,17 @@ type Chart =
     /// Show chart in browser
     [<CompiledName("WithDescription")>]
     static member withDescription (description: XmlNode list) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.addDescription description)
+        ch |> GenericChart.mapDisplayOptions (DisplayOptions.addDescription description)
 
     /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's head
     [<CompiledName("WithAdditionalHeadTags")>]
     static member withAdditionalHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.addAdditionalHeadTags additionalHeadTags)
+        ch |> GenericChart.mapDisplayOptions (DisplayOptions.addAdditionalHeadTags additionalHeadTags)
 
     /// Sets the given additional head tags on the chart's DisplayOptions. They will be included in the document's head
     [<CompiledName("WithHeadTags")>]
     static member withHeadTags (additionalHeadTags: XmlNode list) (ch: GenericChart) =
-        ch |> mapDisplayOptions (DisplayOptions.setAdditionalHeadTags additionalHeadTags)
+        ch |> GenericChart.mapDisplayOptions (DisplayOptions.setAdditionalHeadTags additionalHeadTags)
 
 
     /// Adds the necessary script tags to render tex strings to the chart's DisplayOptions

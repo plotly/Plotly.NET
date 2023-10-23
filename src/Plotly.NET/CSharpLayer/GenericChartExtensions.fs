@@ -7,7 +7,6 @@ open System.IO
 open Giraffe.ViewEngine
 
 open DynamicObj
-open GenericChart
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
 

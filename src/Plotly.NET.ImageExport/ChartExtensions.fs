@@ -4,7 +4,6 @@ open System
 open System.IO
 
 open Plotly.NET
-open GenericChart
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
 

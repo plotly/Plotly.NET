@@ -5,7 +5,6 @@ open System.Threading.Tasks
 open Microsoft.DotNet.Interactive
 open Microsoft.DotNet.Interactive.Formatting
 open Plotly.NET
-open Plotly.NET.GenericChart
 
 type FormatterKernelExtension() =
 

@@ -4,7 +4,7 @@ open Expecto
 open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open Plotly.NET.GenericChart
+
 open Giraffe.ViewEngine
 
 open TestUtils.HtmlCodegen
@@ -436,11 +436,11 @@ let ``Display options`` =
         );
         testCase "Chart description header" ( fun () ->
             "<h3>Hello</h3>"
-            |> substringIsInChart displayOptionsChartDescriptionChart toEmbeddedHTML
+            |> substringIsInChart displayOptionsChartDescriptionChart GenericChart.toEmbeddedHTML
         );
         testCase "Chart description paragraph" ( fun () ->
             "<p>F#</p>"
-            |> substringIsInChart displayOptionsChartDescriptionChart toEmbeddedHTML
+            |> substringIsInChart displayOptionsChartDescriptionChart GenericChart.toEmbeddedHTML
         );
         testCase "Additional head tags" ( fun () ->
             [ "<h1 class=\"title\">I am heading</h1>"
@@ -451,7 +451,7 @@ let ``Display options`` =
               "<p class=\"subtitle\">"
               "Hero subtitle"
             ]
-            |> substringListIsInChart additionalHeadTagsChart toEmbeddedHTML
+            |> substringListIsInChart additionalHeadTagsChart GenericChart.toEmbeddedHTML
         );
         testCase "MathTex v2 data" ( fun () ->
             """var data = [{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[1.0],"y":[2.0],"marker":{},"line":{}},{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[2.0],"y":[4.0],"marker":{},"line":{}}];"""
@@ -463,7 +463,7 @@ let ``Display options`` =
         );
         testCase "MathTex v2 include mathjax" ( fun () ->
             "https://cdnjs.cloudflare.com/ajax/libs/mathjax/"
-            |> substringIsInChart mathtexv2Chart toEmbeddedHTML
+            |> substringIsInChart mathtexv2Chart GenericChart.toEmbeddedHTML
         )        
         testCase "MathTex v3 data" ( fun () ->
             """var data = [{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[1.0],"y":[2.0],"marker":{},"line":{}},{"type":"scatter","name":"$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$","mode":"markers","x":[2.0],"y":[4.0],"marker":{},"line":{}}];"""
@@ -475,6 +475,6 @@ let ``Display options`` =
         );
         testCase "MathTex v3 include mathjax" ( fun () ->
             "https://cdn.jsdelivr.net/npm/mathjax@3"
-            |> substringIsInChart mathtexv3Chart toEmbeddedHTML
+            |> substringIsInChart mathtexv3Chart GenericChart.toEmbeddedHTML
         )
     ]

@@ -1,7 +1,6 @@
 ﻿using System;
 using Plotly.NET.CSharp;
 using static Plotly.NET.StyleParam;
-using static Plotly.NET.GenericChart;
 
 namespace TestConsoleApp
 {
@@ -13,13 +12,13 @@ namespace TestConsoleApp
                 nRows: 10,
                 nCols: 7,
                 gCharts:
-                    new GenericChart[]
+                    new Plotly.NET.GenericChart[]
                     {
                         //2D basic traces
 
                         //simple scatter derived
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Scatter<int, int, int>(
                                     x: new int [] { 1, 2, 3 },
@@ -58,7 +57,7 @@ namespace TestConsoleApp
 
                         //extended scatter derived
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Range<int, int, string>(
                                     x: new int [] { 1, 2, 3 },
@@ -94,7 +93,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("extended scatter-derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Bar<int,string,string>(
                                     values: new int [] { 1,2 },
@@ -117,7 +116,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("bar and derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Column<int,string,string>(
                                     values: new int [] { 3,4 },
@@ -181,7 +180,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("scientific/2D distributions", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.BoxPlot<int,int,string>(
                                     X: new int [] { 1,2,2,2,3,4,5,5 },
@@ -284,7 +283,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("finance charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.StackedFunnel<double, string, string>(
                                     x: new double [] { 1200, 909.4},
@@ -321,7 +320,7 @@ namespace TestConsoleApp
 
                         //3D traces
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Scatter3D<int,int,int,string>(
                                     x: new int[] { 1, 2 },
@@ -454,7 +453,7 @@ namespace TestConsoleApp
 
                         //geo/mapbox traces
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.ScatterGeo<int,int,string>(
                                     longitudes: new int [] { 1, 20 },
@@ -495,7 +494,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("other geo charts", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.ScatterMapbox<int,int,string>(
                                     longitudes: new int [] { 1, 2 },
@@ -594,7 +593,7 @@ namespace TestConsoleApp
                             ShowLegend: true
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
                                     carpetId: "carpet2",
@@ -615,7 +614,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
                                     carpetId: "carpet3",
@@ -635,7 +634,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
                                     carpetId: "carpet4",
@@ -655,7 +654,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
                                     carpetId: "carpet5",
@@ -675,7 +674,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
                                     carpetId: "carpet6",
@@ -696,7 +695,7 @@ namespace TestConsoleApp
                             LegendGroupTitle: Plotly.NET.Title.init("scattercarpet derived traces", Font: Plotly.NET.Font.init(Size: 20))
                         ),
                         Chart.Combine(
-                            new GenericChart []
+                            new Plotly.NET.GenericChart []
                             {
                                 Chart.Carpet<double,double,double,double,double,double>(
                                     carpetId: "carpet7",
