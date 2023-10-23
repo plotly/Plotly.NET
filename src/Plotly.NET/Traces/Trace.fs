@@ -196,6 +196,33 @@ type Trace(traceTypeName: string) =
             trace.SetValue("coloraxis", StyleParam.SubPlotId.convert id)
             trace)
 
+     /// <summary>
+    /// Returns the Legend anchor of the given trace.
+    ///
+    /// If there is no Legend set, returns "legend".
+    /// </summary>
+    /// <param name="trace">The trace to get the color axis anchor from</param>
+    static member getLegendAnchor(trace: #Trace) =
+        let idString =
+            trace |> Trace.tryGetTypedMember<string> ("legend") |> Option.defaultValue "legend"
+
+        if idString = "legend" then
+            StyleParam.SubPlotId.Legend 1
+        else
+            StyleParam.SubPlotId.Legend(idString.Replace("legend", "") |> int)
+
+    /// <summary>
+    /// Returns a function that sets the Legend anchor of the given trace.
+    /// </summary>
+    /// <param name="legendId">The new color axis anchor</param>
+    static member setLegendAnchor(legendId: int) =
+        let id =
+            StyleParam.SubPlotId.Legend legendId
+
+        (fun (trace: #Trace) ->
+            trace.SetValue("legend", StyleParam.SubPlotId.convert id)
+            trace)
+
     /// <summary>
     /// Returns the domain of the given trace.
     ///

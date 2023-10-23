@@ -30,6 +30,7 @@ type Legend() =
     /// <param name="TraceOrder">Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".</param>
     /// <param name="UIRevision">Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.</param>
     /// <param name="VerticalAlign">Sets the vertical alignment of the symbols with respect to their associated text.</param>
+    /// <param name="Visible">Determines whether or not this legend is visible.</param>
     /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
     /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
     /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
@@ -54,6 +55,7 @@ type Legend() =
             [<Optional; DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
             [<Optional; DefaultParameterValue(null)>] ?VerticalAlign: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
@@ -79,6 +81,7 @@ type Legend() =
             ?TraceOrder = TraceOrder,
             ?UIRevision = UIRevision,
             ?VerticalAlign = VerticalAlign,
+            ?Visible = Visible,
             ?X = X,
             ?XAnchor = XAnchor,
             ?Y = Y,
@@ -106,6 +109,7 @@ type Legend() =
     /// <param name="TraceOrder">Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".</param>
     /// <param name="UIRevision">Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.</param>
     /// <param name="VerticalAlign">Sets the vertical alignment of the symbols with respect to their associated text.</param>
+    /// <param name="Visible">Determines whether or not this legend is visible.</param>
     /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
     /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
     /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
@@ -130,6 +134,7 @@ type Legend() =
             [<Optional; DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
             [<Optional; DefaultParameterValue(null)>] ?VerticalAlign: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
@@ -154,6 +159,7 @@ type Legend() =
             TraceOrder |> DynObj.setValueOptBy legend "traceorder" StyleParam.TraceOrder.convert
             UIRevision |> DynObj.setValueOpt legend "uirevision"
             VerticalAlign |> DynObj.setValueOptBy legend "valign" StyleParam.VerticalAlign.convert
+            Visible |> DynObj.setValueOpt legend "visible"
             X |> DynObj.setValueOpt legend "x"
             XAnchor |> DynObj.setValueOptBy legend "xanchor" StyleParam.XAnchorPosition.convert
             Y |> DynObj.setValueOpt legend "y"

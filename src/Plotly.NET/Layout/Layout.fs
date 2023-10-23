@@ -15,7 +15,6 @@ type Layout() =
     /// </summary>
     /// <param name="Title">Sets the title of the layout.</param>
     /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
-    /// <param name="Legend">Sets the legend styles of the layout.</param>
     /// <param name="Margin">Sets the margins around the layout.</param>
     /// <param name="AutoSize">Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.</param>
     /// <param name="Width">Sets the plot's width (in px).</param>
@@ -92,7 +91,6 @@ type Layout() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Title: Title,
             [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Legend: Legend,
             [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
             [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
             [<Optional; DefaultParameterValue(null)>] ?Width: int,
@@ -170,7 +168,6 @@ type Layout() =
         |> Layout.style (
             ?Title = Title,
             ?ShowLegend = ShowLegend,
-            ?Legend = Legend,
             ?Margin = Margin,
             ?AutoSize = AutoSize,
             ?Width = Width,
@@ -250,7 +247,6 @@ type Layout() =
     /// </summary>
     /// <param name="Title">Sets the title of the layout.</param>
     /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
-    /// <param name="Legend">Sets the legend styles of the layout.</param>
     /// <param name="Margin">Sets the margins around the layout.</param>
     /// <param name="AutoSize">Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.</param>
     /// <param name="Width">Sets the plot's width (in px).</param>
@@ -327,7 +323,6 @@ type Layout() =
         (
             [<Optional; DefaultParameterValue(null)>] ?Title: Title,
             [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Legend: Legend,
             [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
             [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
             [<Optional; DefaultParameterValue(null)>] ?Width: int,
@@ -405,7 +400,6 @@ type Layout() =
 
             Title |> DynObj.setValueOpt layout "title"
             ShowLegend |> DynObj.setValueOpt layout "showlegend"
-            Legend |> DynObj.setValueOpt layout "legend"
             Margin |> DynObj.setValueOpt layout "margin"
             AutoSize |> DynObj.setValueOpt layout "autosize"
             Width |> DynObj.setValueOpt layout "width"
@@ -945,30 +939,57 @@ type Layout() =
             layout |> Layout.setLayoutGrid combined)
 
     /// <summary>
-    /// Returns the legend object of the given layout.
-    ///
-    /// If there is no legend set, returns an empty Legend object.
+    /// Returns Some(Legend) if there is an Legend object set on the layout with the given id, and None otherwise.
     /// </summary>
-    /// <param name="layout">The layout to get the legend from</param>
-    static member getLegend(layout: Layout) =
-        layout |> Layout.tryGetTypedMember<Legend> "legend" |> Option.defaultValue (Legend.init ())
-
-    /// <summary>
-    /// Returns a function that sets the Legend object of the given trace.
-    /// </summary>
-    /// <param name="legend">The new Legend object</param>
-    static member setLegend(legend: Legend) =
-        (fun (layout: Layout) ->
-            layout.SetValue("legend", legend)
-            layout)
+    /// <param name="id">The target Legend id</param>
+    static member tryGetLegendById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout.TryGetTypedValue<Legend>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given Legend object with the one already present on the layout.
     /// </summary>
-    /// <param name="legend">The updated Legend object</param>
-    static member updateLegend(legend: Legend) =
+    /// <param name="id">The target Legend id</param>
+    /// <param name="legend">The updated Legend object.</param>
+    static member updateLegendById(id: StyleParam.SubPlotId, legend: Legend) =
         (fun (layout: Layout) ->
-            let combined =
-                (DynObj.combine (layout |> Layout.getLegend) legend) :?> Legend
 
-            layout |> Layout.setLegend combined)
+            match id with
+            | StyleParam.SubPlotId.Legend _ ->
+
+                let legend' =
+                    match Layout.tryGetLegendById id layout with
+                    | Some l -> (DynObj.combine l legend) :?> Legend
+                    | None -> legend
+
+                legend' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+
+                layout
+            | _ ->
+                failwith
+                    $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a legend on layout")
+
+    /// <summary>
+    /// Returns the Legend object of the layout with the given id.
+    ///
+    /// If there is no Legend set, returns an empty Legend object.
+    /// </summary>
+    /// <param name="id">The target Legend id</param>
+    static member getLegendById(id: StyleParam.SubPlotId) =
+        (fun (layout: Layout) -> layout |> Layout.tryGetLegendById id |> Option.defaultValue (Legend.init ()))
+
+    /// <summary>
+    /// Sets a linear Legend object on the layout as a dynamic property with the given Legend id.
+    /// </summary>
+    /// <param name="id">The Legend id of the new Legend</param>
+    /// <param name="legend">The Legend to add to the layout.</param>
+    static member setLegend(id: StyleParam.SubPlotId, legend: Legend) =
+        (fun (layout: Layout) ->
+
+            match id with
+            | StyleParam.SubPlotId.Legend _ ->
+                legend |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
+                layout
+
+            | _ ->
+                failwith
+                    $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a Legend on layout")

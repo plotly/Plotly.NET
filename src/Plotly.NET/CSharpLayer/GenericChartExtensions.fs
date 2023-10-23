@@ -461,7 +461,6 @@ module GenericChartExtensions =
             (
                 [<Optional; DefaultParameterValue(null)>] ?Title: Title,
                 [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-                [<Optional; DefaultParameterValue(null)>] ?Legend: Legend,
                 [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
                 [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Width: int,
@@ -532,7 +531,6 @@ module GenericChartExtensions =
             |> Chart.withLayoutStyle (
                 ?Title = Title,
                 ?ShowLegend = ShowLegend,
-                ?Legend = Legend,
                 ?Margin = Margin,
                 ?AutoSize = AutoSize,
                 ?Width = Width,
@@ -611,11 +609,8 @@ module GenericChartExtensions =
 
         // Set the LayoutGrid options of a Chart
         [<CompiledName("WithLegend")>]
-        member this.WithLegend(legend: Legend) =
-            let layout =
-                GenericChart.getLayout this |> Layout.setLegend legend
-
-            GenericChart.setLayout layout this
+        member this.WithLegend(legend: Legend, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+            this |> Chart.withLegend (legend, ?Id = Id)
 
         /// Sets a map for the given chart (will only work with traces supporting geo, e.g. choropleth, scattergeo)
         [<CompiledName("WithMap")>]

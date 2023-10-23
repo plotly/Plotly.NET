@@ -155,6 +155,14 @@ type Chart =
         fun (ch: GenericChart) -> ch |> GenericChart.mapTrace (Trace.setColorAxisAnchor id)
 
     /// <summary>
+    /// Sets the legend id for the chart's trace(s).
+    /// </summary>
+    /// <param name="id">The new Legend id for the chart's trace(s)</param>
+    [<CompiledName("WithLegendAnchor")>]
+    static member withLegendAnchor(id: int) =
+        fun (ch: GenericChart) -> ch |> GenericChart.mapTrace (Trace.setLegendAnchor id)
+
+    /// <summary>
     /// Sets the marker for the chart's trace(s).
     /// </summary>
     /// <param name="marker">The new marker for the chart's trace(s)</param>
@@ -742,7 +750,6 @@ type Chart =
     /// </summary>
     /// <param name="Title">Sets the title of the layout.</param>
     /// <param name="ShowLegend">Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.</param>
-    /// <param name="Legend">Sets the legend styles of the layout.</param>
     /// <param name="Margin">Sets the margins around the layout.</param>
     /// <param name="AutoSize">Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.</param>
     /// <param name="Width">Sets the plot's width (in px).</param>
@@ -820,7 +827,6 @@ type Chart =
         (
             [<Optional; DefaultParameterValue(null)>] ?Title: Title,
             [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Legend: Legend,
             [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
             [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
             [<Optional; DefaultParameterValue(null)>] ?Width: int,
@@ -900,7 +906,6 @@ type Chart =
                 Layout.init (
                     ?Title = Title,
                     ?ShowLegend = ShowLegend,
-                    ?Legend = Legend,
                     ?Margin = Margin,
                     ?AutoSize = AutoSize,
                     ?Width = Width,
@@ -2495,32 +2500,44 @@ type Chart =
             ch |> Chart.withLayoutGrid grid)
 
     /// <summary>
-    /// Sets the Legend for the chart's layout.
+    /// Sets the given Legend with the given id on the input chart's layout.
     /// </summary>
-    /// <param name="legend">The new Legend for the chart's layout</param>
-    /// <param name="Combine">Whether or not to combine the objects if there is already a Legend object set (default is false)</param>
+    /// <param name="legend">The Legend to set on the chart's layout</param>
+    /// <param name="id">The target Legend id with which the Legend should be set.</param>
+    /// <param name="Combine">Whether or not to combine the objects if there is already an Legend set (default is false)</param>
     [<CompiledName("SetLegend")>]
-    static member setLegend(legend: Legend, ?Combine: bool) =
-        let combine = defaultArg Combine false
+    static member setLegend
+        (
+            legend: Legend,
+            id: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+        ) =
+            let combine = defaultArg Combine false
 
-        (fun (ch: GenericChart) ->
-            if combine then
-                ch |> GenericChart.mapLayout (Layout.updateLegend legend)
-            else
-                ch |> GenericChart.mapLayout (Layout.setLegend legend))
+            (fun (ch: GenericChart) ->
+                if combine then
+                    ch |> GenericChart.mapLayout (Layout.updateLegendById(id, legend))
+                else
+                    ch |> GenericChart.mapLayout (Layout.setLegend(id,legend))
+            )
 
     /// <summary>
-    /// Sets the Legend for the chart's layout
+    /// Sets the given Legend on the input chart's layout, optionally passing a target Legend id.
     ///
-    /// If there is already a Legend set, the objects are combined.
+    /// If there is already an Legend set at the given id, the Legend objects are combined.
     /// </summary>
-    /// <param name="legend">The new Legend for the chart's layout</param>
+    /// <param name="legend">The Legend to set on the chart's layout</param>
+    /// <param name="Id">The target Legend id with which the Legend should be set. Default is 1.</param>
     [<CompiledName("WithLegend")>]
-    static member withLegend(legend: Legend) =
-        (fun (ch: GenericChart) -> ch |> Chart.setLegend (legend, true))
+    static member withLegend(legend: Legend, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+        let id =
+            Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Legend
+
+        fun (ch: GenericChart) ->
+            ch |> Chart.setLegend (legend, id, Combine = true)
 
     /// <summary>
-    /// Sets the given Legend styles on the input chart's Legend.
+    /// Sets the given Legend styles on the input chart's Legend, optionally passing a target Legend id.
     ///
     /// If there is already a Legend set , the styles are applied to it. If there is no Legend present, a new Legend object with the given styles will be set.
     /// </summary>
@@ -2542,10 +2559,12 @@ type Chart =
     /// <param name="TraceOrder">Determines the order at which the legend items are displayed. If "normal", the items are displayed top-to-bottom in the same order as the input data. If "reversed", the items are displayed in the opposite order as "normal". If "grouped", the items are displayed in groups (when a trace `legendgroup` is provided). if "grouped+reversed", the items are displayed in the opposite order as "grouped".</param>
     /// <param name="UIRevision">Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.</param>
     /// <param name="VerticalAlign">Sets the vertical alignment of the symbols with respect to their associated text.</param>
+    /// <param name="Visible">Determines whether or not this legend is visible.</param>
     /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
     /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
     /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
     /// <param name="YAnchor">Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.</param>
+    /// <param name="Id">The target Legend id on which the styles should be applied. Default is 1.</param>
     [<CompiledName("WithLegendStyle")>]
     static member withLegendStyle
         (
@@ -2567,10 +2586,12 @@ type Chart =
             [<Optional; DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
             [<Optional; DefaultParameterValue(null)>] ?VerticalAlign: StyleParam.VerticalAlign,
+            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
-            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition,
+            [<Optional; DefaultParameterValue(null)>] ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let legend =
@@ -2593,13 +2614,14 @@ type Chart =
                     ?TraceOrder = TraceOrder,
                     ?UIRevision = UIRevision,
                     ?VerticalAlign = VerticalAlign,
+                    ?Visible = Visible,
                     ?X = X,
                     ?XAnchor = XAnchor,
                     ?Y = Y,
                     ?YAnchor = YAnchor
                 )
 
-            ch |> Chart.withLegend legend)
+            ch |> Chart.withLegend(legend, ?Id = Id))
 
     /// <summary>
     ///

@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\docs\img\logo.png" />
-    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.21.0.min.js" />
-    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.21.0.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.22.0.min.js" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.22.0.min.js.LICENSE.txt" />
   </ItemGroup>
   
   <ItemGroup>
