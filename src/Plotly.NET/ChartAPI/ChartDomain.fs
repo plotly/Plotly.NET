@@ -40,7 +40,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each bar</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="Direction">Specifies the direction at which succeeding sectors follow one another.</param>
         /// <param name="Hole">Sets the fraction of the radius to cut out of the pie. Use this to make a donut chart.</param>
@@ -67,6 +70,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
@@ -88,10 +94,15 @@ module ChartDomain =
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
 
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (?Colors = SectionColors, ?MultiOpacity = MultiOpacity, Outline = outline)
+                |> TraceObjects.Marker.style (?Colors = SectionColors, ?MultiOpacity = MultiOpacity, Outline = outline, Pattern = pattern)
 
 
             TraceDomain.initPie (
@@ -140,7 +151,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="Direction">Specifies the direction at which succeeding sectors follow one another.</param>
         /// <param name="Hole">Sets the fraction of the radius to cut out of the pie. Use this to make a donut chart.</param>
@@ -166,6 +180,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
@@ -195,6 +212,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?TextInfo = TextInfo,
                 ?Direction = Direction,
@@ -228,7 +248,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="Direction">Specifies the direction at which succeeding sectors follow one another.</param>
         /// <param name="Rotation">Instead of the first slice starting at 12 o'clock, rotate to some other angle.</param>
@@ -255,6 +278,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
@@ -287,6 +313,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?TextInfo = TextInfo,
                 ?Direction = Direction,
@@ -318,7 +347,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="Direction">Specifies the direction at which succeeding sectors follow one another.</param>
         /// <param name="Rotation">Instead of the first slice starting at 12 o'clock, rotate to some other angle.</param>
@@ -344,6 +376,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?Direction: StyleParam.Direction,
@@ -372,6 +407,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?TextInfo = TextInfo,
                 ?Direction = Direction,
@@ -403,7 +441,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="AspectRatio"></param>
         /// <param name="BaseRatio"></param>
@@ -426,6 +467,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?AspectRatio: float,
@@ -446,10 +490,15 @@ module ChartDomain =
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
 
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (?Colors = SectionColors, ?MultiOpacity = MultiOpacity, Outline = outline)
+                |> TraceObjects.Marker.style (?Colors = SectionColors, ?MultiOpacity = MultiOpacity, Outline = outline, Pattern = pattern)
 
 
             TraceDomain.initFunnelArea (
@@ -491,7 +540,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="AspectRatio"></param>
         /// <param name="BaseRatio"></param>
@@ -513,6 +565,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?AspectRatio: float,
@@ -537,6 +592,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?TextInfo = TextInfo,
                 ?AspectRatio = AspectRatio,
@@ -568,7 +626,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
@@ -600,6 +661,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
@@ -625,6 +689,11 @@ module ChartDomain =
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
 
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
@@ -634,7 +703,8 @@ module ChartDomain =
                     ?Colorscale = SectionColorScale,
                     ?ShowScale = ShowSectionColorScale,
                     ?ReverseScale = ReverseSectionColorScale,
-                    Outline = outline
+                    Outline = outline,
+                    Pattern = pattern
                 )
 
             TraceDomain.initSunburst (
@@ -687,7 +757,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
@@ -718,6 +791,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
@@ -753,6 +829,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?TextInfo = TextInfo,
                 ?BranchValues = BranchValues,
@@ -794,7 +873,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
@@ -827,6 +909,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
@@ -851,6 +936,11 @@ module ChartDomain =
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
 
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
@@ -860,7 +950,8 @@ module ChartDomain =
                     ?Colorscale = SectionColorScale,
                     ?ShowScale = ShowSectionColorScale,
                     ?ReverseScale = ReverseSectionColorScale,
-                    Outline = outline
+                    Outline = outline,
+                    Pattern = pattern
                 )
 
             TraceDomain.initTreemap (
@@ -915,7 +1006,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
@@ -947,6 +1041,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?TextInfo: StyleParam.TextInfo,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
@@ -983,6 +1080,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?TextInfo = TextInfo,
                 ?BranchValues = BranchValues,
@@ -1685,7 +1785,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
         /// <param name="TilingOrientation">Sets the orientation of the tiling.</param>
@@ -1720,6 +1823,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
                 [<Optional; DefaultParameterValue(null)>] ?Count: StyleParam.IcicleCount,
@@ -1747,6 +1853,11 @@ module ChartDomain =
                     ?MultiWidth = SectionOutlineMultiWidth
                 )
 
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
             let marker =
                 Marker
                 |> Option.defaultValue (TraceObjects.Marker.init ())
@@ -1756,7 +1867,8 @@ module ChartDomain =
                     ?Colorscale = SectionColorScale,
                     ?ShowScale = ShowSectionColorScale,
                     ?ReverseScale = ReverseSectionColorScale,
-                    Outline = outline
+                    Outline = outline,
+                    Pattern = pattern
                 )
 
             let tiling =
@@ -1817,7 +1929,10 @@ module ChartDomain =
         /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
         /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
         /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
-        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
         /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
         /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
         /// <param name="TilingOrientation">Sets the orientation of the tiling.</param>
@@ -1851,6 +1966,9 @@ module ChartDomain =
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineWidth: float,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutlineMultiWidth: seq<float>,
                 [<Optional; DefaultParameterValue(null)>] ?SectionOutline: Line,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPatternShape: StyleParam.PatternShape,
+                [<Optional; DefaultParameterValue(null)>] ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                [<Optional; DefaultParameterValue(null)>] ?MarkerPattern: Pattern,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
                 [<Optional; DefaultParameterValue(null)>] ?BranchValues: StyleParam.BranchValues,
                 [<Optional; DefaultParameterValue(null)>] ?Count: StyleParam.IcicleCount,
@@ -1889,6 +2007,9 @@ module ChartDomain =
                 ?SectionOutlineWidth = SectionOutlineWidth,
                 ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
                 ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape, 
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
                 ?Marker = Marker,
                 ?BranchValues = BranchValues,
                 ?Count = Count,

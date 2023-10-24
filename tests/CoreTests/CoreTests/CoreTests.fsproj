@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.23.2.min.js" />
-    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.23.2.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.24.3.min.js" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.24.3.min.js.LICENSE.txt" />
     <!--HTMLCodegen-->
     <Compile Include="HTMLCodegen\Chart2D.fs" />
     <Compile Include="HTMLCodegen\Chart3D.fs" />
@@ -36,6 +36,7 @@
     <Compile Include="Traces\TraceStaticMembers.fs" />
     <Compile Include="Traces\TraceStyle.fs" />
     <Compile Include="Traces\TraceID.fs" />
+    <Compile Include="UpstreamFeatures\2.24.fs" />
     <Compile Include="UpstreamFeatures\2.23.fs" />
     <Compile Include="UpstreamFeatures\2.22.fs" />
     <Compile Include="UpstreamFeatures\2.21.fs" />

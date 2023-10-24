@@ -40,8 +40,8 @@
   <ItemGroup>
     <None Include="RELEASE_NOTES.md" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
-    <EmbeddedResource Include="plotly-2.23.2.min.js" />
-    <EmbeddedResource Include="plotly-2.23.2.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="plotly-2.24.3.min.js" />
+    <EmbeddedResource Include="plotly-2.24.3.min.js.LICENSE.txt" />
     <Compile Include="Globals.fs" />
     <Compile Include="InternalUtils.fs" />
     <Compile Include="CommonAbstractions\ColorKeyword.fs" />

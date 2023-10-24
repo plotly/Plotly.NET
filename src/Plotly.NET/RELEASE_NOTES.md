@@ -5,6 +5,8 @@
 - Keep up with plotlyjs 2.x incremental updates:
     - v2.22:
         - [Implement multi legend support](https://github.com/plotly/Plotly.NET/issues/406)
+    - v2.23:
+        - [add `xref` and `yref` attributes for Legend and ColorBar](https://github.com/plotly/Plotly.NET/commit/a3e1abcfda7b316c704d477471be1294860b48b7)
 
 ### 4.2.0 - August 02 2023
 

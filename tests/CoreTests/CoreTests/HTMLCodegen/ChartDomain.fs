@@ -15,14 +15,14 @@ module Pie =
         testList "HTMLCodegen.ChartDomain" [
             testList "Pie" [
                 testCase "Pie data" ( fun () ->
-                """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{"line":{}}}];"""
+                """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"marker":{"line":{},"pattern":{}}}];"""
                 |> chartGeneratedContains Pie.``Simple pie chart``
                 );
                 testCase "Pie layout" ( fun () ->
                     emptyLayout Pie.``Simple pie chart``
                 );        
                 testCase "Pie styled data" ( fun () ->
-                    """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"pull":[0.0,0.3,0.0],"text":["Some","More","Stuff"],"textposition":["inside","outside","inside"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0}},"rotation":45.0}];"""
+                    """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"pull":[0.0,0.3,0.0],"text":["Some","More","Stuff"],"textposition":["inside","outside","inside"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0},"pattern":{}},"rotation":45.0}];"""
                     |> chartGeneratedContains Pie.``Styled pie chart``
                 );
                 testCase "Pie styled layout" ( fun () ->
@@ -37,7 +37,7 @@ module Doughnut =
         testList "HTMLCodegen.ChartDomain" [
             testList "Doughnut" [
                 testCase "Doughnut data" ( fun () ->
-                    """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"marker":{"line":{}},"hole":0.3}];"""
+                    """var data = [{"type":"pie","values":[19,26,55],"labels":["Residential","Non-Residential","Utility"],"text":["Residential","Non-Residential","Utility"],"marker":{"line":{},"pattern":{}},"hole":0.3}];"""
                     |> chartGeneratedContains Doughnut.``Simple doughnut chart``
                 );
                 testCase "Doughnut layout" ( fun () ->
@@ -52,14 +52,14 @@ module FunnelArea =
         testList "HTMLCodegen.ChartDomain" [
             testList "FunnelArea" [
                 testCase "Funnel area data" ( fun () ->
-                """var data = [{"type":"funnelarea","values":[5,4,3,2,1],"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"],"marker":{"line":{"color":"purple","width":3.0}}}];"""
+                """var data = [{"type":"funnelarea","values":[5,4,3,2,1],"text":["The 1st","The 2nd","The 3rd","The 4th","The 5th"],"marker":{"line":{"color":"purple","width":3.0},"pattern":{}}}];"""
                 |> chartGeneratedContains FunnelArea.``Simple funnelarea chart``
                 );
                 testCase "Funnel area layout" ( fun () ->
                     emptyLayout FunnelArea.``Simple funnelarea chart``
                 );        
                 testCase "Funnel area styled data" ( fun () ->
-                    """var data = [{"type":"funnelarea","values":[5,4,3],"labels":["The 1st","The 2nd","The 3rd"],"text":["The 1st","The 2nd","The 3rd"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0}},"aspectratio":0.75,"baseratio":0.1}];"""
+                    """var data = [{"type":"funnelarea","values":[5,4,3],"labels":["The 1st","The 2nd","The 3rd"],"text":["The 1st","The 2nd","The 3rd"],"marker":{"colors":["rgba(0, 255, 255, 1.0)","rgba(250, 128, 114, 1.0)","rgba(210, 180, 140, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":2.0},"pattern":{}},"aspectratio":0.75,"baseratio":0.1}];"""
                     |> chartGeneratedContains FunnelArea.``Styled funnelarea chart``
                 );
                 testCase "Funnel area styled layout" ( fun () ->
@@ -74,14 +74,14 @@ module Sunburst =
         testList "HTMLCodegen.ChartDomain" [
             testList "Sunburst" [
                 testCase "Sunburst data" ( fun () ->
-                    """var data = [{"type":"sunburst","parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"labels":["A","B","C","D","E"],"text":["At","Bt","Ct","Dt","Et"],"marker":{"line":{}}}];"""
+                    """var data = [{"type":"sunburst","parents":["","","B","B",""],"values":[5.0,0.0,3.0,2.0,3.0],"labels":["A","B","C","D","E"],"text":["At","Bt","Ct","Dt","Et"],"marker":{"line":{},"pattern":{}}}];"""
                     |> chartGeneratedContains Sunburst.``Simple sunburst chart``
                 );
                 testCase "Sunburst layout" ( fun () ->
                     emptyLayout Sunburst.``Simple sunburst chart``
                 );       
                 testCase "Sunburst styled data" ( fun () ->
-                    """var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","rotation":45}];"""
+                    """var data = [{"type":"sunburst","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"pattern":{},"showscale":true},"branchvalues":"total","rotation":45}];"""
                     |> chartGeneratedContains Sunburst.``Styled sunburst chart``
                 );
                 testCase "Sunburst styled layout" ( fun () ->
@@ -96,7 +96,7 @@ module Treemap =
         testList "HTMLCodegen.ChartDomain" [
             testList "Treemap" [
                 testCase "Treemap styled data" ( fun () ->
-                    """var data = [{"type":"treemap","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","tiling":{"packing":"slice-dice"}}];"""
+                    """var data = [{"type":"treemap","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"pattern":{},"showscale":true},"branchvalues":"total","tiling":{"packing":"slice-dice"}}];"""
                     |> chartGeneratedContains Treemap.``Styled treemap chart``
                 );
                 testCase "Treemap styled layout" ( fun () ->
@@ -243,14 +243,14 @@ module Icicle =
         testList "HTMLCodegen.ChartDomain" [
             testList "Icicle" [
                 testCase "Icicle data" ( fun () ->
-                    """var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"marker":{"colorscale":"Viridis","line":{},"showscale":true},"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"}}];"""
+                    """var data = [{"type":"icicle","parents":["","Eve","Eve","Seth","Seth","Eve","Eve","Awan","Eve"],"labels":["Eve","Cain","Seth","Enos","Noam","Abel","Awan","Enoch","Azura"],"marker":{"colorscale":"Viridis","line":{},"pattern":{},"showscale":true},"tiling":{"flip":"y","orientation":"v"},"pathbar":{"edgeshape":"\\"}}];"""
                     |> chartGeneratedContains Icicle.``Simple icicle chart``
                 )
                 testCase "Icicle layout" ( fun () ->
                     emptyLayout Icicle.``Simple icicle chart``
                 )        
                 testCase "Icicle styled data" ( fun () ->
-                    """var data = [{"type":"icicle","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"showscale":true},"branchvalues":"total","tiling":{"flip":"x+y"},"pathbar":{}}];"""
+                    """var data = [{"type":"icicle","parents":["","","","","","A","A","B","AA","AA"],"values":[20,1,2,3,4,15,5,1,10,5],"labels":["A","B","C","D","E","AA","AB","BA","AAA","AAB"],"marker":{"colorscale":"Viridis","line":{"color":"rgba(0, 0, 0, 1.0)"},"pattern":{},"showscale":true},"branchvalues":"total","tiling":{"flip":"x+y"},"pathbar":{}}];"""
                     |> chartGeneratedContains Icicle.``Styled icicle chart``
                 )
                 testCase "Icicle styled layout" ( fun () ->
