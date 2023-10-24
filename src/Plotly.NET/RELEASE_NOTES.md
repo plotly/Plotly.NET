@@ -3,6 +3,8 @@
 [Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/5)
 
 - Keep up with plotlyjs 2.x incremental updates:
+    - v2.22:
+        - [Implement multi legend support](https://github.com/plotly/Plotly.NET/issues/406)
 
 ### 4.2.0 - August 02 2023
 

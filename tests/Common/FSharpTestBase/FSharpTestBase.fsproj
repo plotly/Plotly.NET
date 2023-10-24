@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\docs\img\logo.png" />
-    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.22.0.min.js" />
-    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.22.0.min.js.LICENSE.txt" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.23.2.min.js" />
+    <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.23.2.min.js.LICENSE.txt" />
   </ItemGroup>
   
   <ItemGroup>
@@ -21,7 +21,8 @@
     <Compile Include="TestCharts\ChartCarpetTestCharts.fs" />
     <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
     <Compile Include="TestCharts\ChartSmithTestCharts.fs" />
-    <Compile Include="TestCharts\UpstreamFeatures\2.22.0.fs" />
+    <Compile Include="TestCharts\UpstreamFeatures\2.23.fs" />
+    <Compile Include="TestCharts\UpstreamFeatures\2.22.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.21.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.20.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.19.fs" />

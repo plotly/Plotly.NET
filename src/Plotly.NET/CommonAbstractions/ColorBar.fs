@@ -52,9 +52,11 @@ type ColorBar() =
     /// <param name="X">Sets the x position of the color bar (in plot fraction).</param>
     /// <param name="XAnchor">Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the color bar.</param>
     /// <param name="XPad">Sets the amount of padding (in px) along the x direction.</param>
+    /// <param name="XRef">Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.</param>
     /// <param name="Y">Sets the y position of the color bar (in plot fraction).</param>
     /// <param name="YAnchor">Sets this color bar's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the color bar.</param>
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
+    /// <param name="YRef">Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.</param>
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
@@ -98,9 +100,11 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.HorizontalAlign,
             [<Optional; DefaultParameterValue(null)>] ?XPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?XRef: string,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
             [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.VerticalAlign,
-            [<Optional; DefaultParameterValue(null)>] ?YPad: float
+            [<Optional; DefaultParameterValue(null)>] ?YPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?YRef: string
         ) =
         ColorBar()
         |> ColorBar.style (
@@ -145,9 +149,11 @@ type ColorBar() =
             ?X = X,
             ?XAnchor = XAnchor,
             ?XPad = XPad,
+            ?XRef = XRef,
             ?Y = Y,
             ?YAnchor = YAnchor,
-            ?YPad = YPad
+            ?YPad = YPad,
+            ?YRef = YRef
         )
 
 
@@ -240,9 +246,11 @@ type ColorBar() =
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.HorizontalAlign,
             [<Optional; DefaultParameterValue(null)>] ?XPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?XRef: string,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
             [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.VerticalAlign,
-            [<Optional; DefaultParameterValue(null)>] ?YPad: float
+            [<Optional; DefaultParameterValue(null)>] ?YPad: float,
+            [<Optional; DefaultParameterValue(null)>] ?YRef: string
         ) =
 
         (fun (colorBar: ColorBar) ->
@@ -288,8 +296,10 @@ type ColorBar() =
             X |> DynObj.setValueOpt colorBar "x"
             XAnchor |> DynObj.setValueOptBy colorBar "xanchor" StyleParam.HorizontalAlign.convert
             XPad |> DynObj.setValueOpt colorBar "xpad"
+            XRef |> DynObj.setValueOpt colorBar "xref"
             Y |> DynObj.setValueOpt colorBar "y"
             YAnchor |> DynObj.setValueOptBy colorBar "yanchor" StyleParam.VerticalAlign.convert
             YPad |> DynObj.setValueOpt colorBar "ypad"
+            YRef |> DynObj.setValueOpt colorBar "yref"
 
             colorBar)

@@ -33,8 +33,10 @@ type Legend() =
     /// <param name="Visible">Determines whether or not this legend is visible.</param>
     /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
     /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
+    /// <param name="XRef">Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.</param>
     /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
     /// <param name="YAnchor">Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.</param>
+    /// <param name="YRef">Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.</param>
     static member init
         (
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
@@ -58,8 +60,10 @@ type Legend() =
             [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
+            [<Optional; DefaultParameterValue(null)>] ?XRef: string,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
-            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition,
+            [<Optional; DefaultParameterValue(null)>] ?YRef: string
         ) =
         Legend()
         |> Legend.style (
@@ -84,8 +88,10 @@ type Legend() =
             ?Visible = Visible,
             ?X = X,
             ?XAnchor = XAnchor,
+            ?XRef = XRef,
             ?Y = Y,
-            ?YAnchor = YAnchor
+            ?YAnchor = YAnchor,
+            ?YRef = YRef
         )
 
     /// <summary>
@@ -112,8 +118,10 @@ type Legend() =
     /// <param name="Visible">Determines whether or not this legend is visible.</param>
     /// <param name="X">Sets the x position (in normalized coordinates) of the legend. Defaults to "1.02" for vertical legends and defaults to "0" for horizontal legends.</param>
     /// <param name="XAnchor">Sets the legend's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the legend. Value "auto" anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.</param>
+    /// <param name="XRef">Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.</param>
     /// <param name="Y">Sets the y position (in normalized coordinates) of the legend. Defaults to "1" for vertical legends, defaults to "-0.1" for horizontal legends on graphs w/o range sliders and defaults to "1.1" for horizontal legends on graph with one or multiple range sliders.</param>
     /// <param name="YAnchor">Sets the legend's vertical position anchor This anchor binds the `y` position to the "top", "middle" or "bottom" of the legend. Value "auto" anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.</param>
+    /// <param name="YRef">Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.</param>
     static member style
         (
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
@@ -137,8 +145,10 @@ type Legend() =
             [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?X: float,
             [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
+            [<Optional; DefaultParameterValue(null)>] ?XRef: string,
             [<Optional; DefaultParameterValue(null)>] ?Y: float,
-            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition
+            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition,
+            [<Optional; DefaultParameterValue(null)>] ?YRef: string
         ) =
         (fun (legend: Legend) ->
             BGColor |> DynObj.setValueOpt legend "bgcolor"
@@ -162,8 +172,10 @@ type Legend() =
             Visible |> DynObj.setValueOpt legend "visible"
             X |> DynObj.setValueOpt legend "x"
             XAnchor |> DynObj.setValueOptBy legend "xanchor" StyleParam.XAnchorPosition.convert
+            XRef |> DynObj.setValueOpt legend "xref"
             Y |> DynObj.setValueOpt legend "y"
             YAnchor |> DynObj.setValueOptBy legend "yanchor" StyleParam.YAnchorPosition.convert
+            YRef |> DynObj.setValueOpt legend "yref"
 
 
 
