@@ -2675,16 +2675,6 @@ type Chart =
 
             GenericChart.addLayout layout ch)
 
-    // Set showLegend of a Chart
-    [<CompiledName("WithLegend")>]
-    static member withLegend(showlegend) =
-        (fun (ch: GenericChart) ->
-            let layout =
-                Layout() |> Layout.style (ShowLegend = showlegend)
-
-            GenericChart.addLayout layout ch)
-
-
     /// Sets the size of a Chart (in pixels)
     [<CompiledName("WithSize")>]
     static member withSize

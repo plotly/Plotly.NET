@@ -134,7 +134,7 @@ module LineGeo =
             )
         )
         |> Chart.combine
-        |> Chart.withLegend(false)
+        |> Chart.withLayoutStyle(ShowLegend = false)
         |> Chart.withGeoStyle(
             Scope=StyleParam.GeoScope.NorthAmerica, 
             Projection=GeoProjection.init(StyleParam.GeoProjectionType.AzimuthalEqualArea),
@@ -210,7 +210,7 @@ module LineMapbox =
             )
         )
         |> Chart.combine
-        |> Chart.withLegend(false)
+        |> Chart.withLayoutStyle(ShowLegend = false)
         |> Chart.withMapbox(
             Mapbox.init(
                 Center=(-97.0372,32.8959)
