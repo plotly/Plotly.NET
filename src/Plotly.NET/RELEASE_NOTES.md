@@ -7,6 +7,9 @@
         - [Implement multi legend support](https://github.com/plotly/Plotly.NET/issues/406)
     - v2.23:
         - [add `xref` and `yref` attributes for Legend and ColorBar](https://github.com/plotly/Plotly.NET/commit/a3e1abcfda7b316c704d477471be1294860b48b7)
+    - v2.24:
+        - [add pattern to multiple traces](https://github.com/plotly/Plotly.NET/commit/f75125e7e8514299bc794ddddbaee6370e5b420a)
+
 
 ### 4.2.0 - August 02 2023
 

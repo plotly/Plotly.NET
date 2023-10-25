@@ -10,12 +10,52 @@ type Shape() =
     inherit DynamicObj()
 
     /// <summary>
+    /// Returns Some(dynamic member value) of the shape object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
+    /// </summary>
+    /// <param name="propName">The name of the dynamic member to get the value of</param>
+    /// <param name="shape">The shape to get the dynamic member value from</param>
+    static member tryGetTypedMember<'T> (propName: string) (shape:Shape) = shape.TryGetTypedValue<'T>(propName)
+
+    /// <summary>
+    /// Returns the Legend anchor of the given shape.
+    ///
+    /// If there is no Legend set, returns "legend".
+    /// </summary>
+    /// <param name="shape">The shape to get the Legend anchor from</param>
+    static member getLegendAnchor(shape: Shape) =
+        let idString =
+            shape |> Shape.tryGetTypedMember<string> ("legend") |> Option.defaultValue "legend"
+
+        if idString = "legend" then
+            StyleParam.SubPlotId.Legend 1
+        else
+            StyleParam.SubPlotId.Legend(idString.Replace("legend", "") |> int)
+
+    /// <summary>
+    /// Returns a function that sets the Legend anchor of the given shape.
+    /// </summary>
+    /// <param name="legendId">The new Legend anchor</param>
+    static member setLegendAnchor(legendId: int) =
+        let id =
+            StyleParam.SubPlotId.Legend legendId
+
+        (fun (shape: Shape) ->
+            shape.SetValue("legend", StyleParam.SubPlotId.convert id)
+            shape)
+
+    /// <summary>
     /// Returns a new Shape object with the given styling.
     /// </summary>
     /// <param name="Editable">Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.</param>
     /// <param name="FillColor">Sets the color filling the shape's interior. Only applies to closed shapes.</param>
     /// <param name="FillRule">Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule</param>
     /// <param name="Label">The text label of this shape.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this shape is shown in the legend.</param>
+    /// <param name="Legend">Sets the reference to a legend to show this shape in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.</param>
+    /// <param name="LegendRank">Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while with "reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e. according to their order in data and layout.</param>
+    /// <param name="LegendGroup">Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time when toggling legend items.</param>
+    /// <param name="LegendGroupTitle">Sets the legend group title for this shape.</param>
+    /// <param name="LegendWidth">Sets the width (in px or fraction) of the legend for this shape.</param>
     /// <param name="Layer">Specifies whether shapes are drawn below or above traces.</param>
     /// <param name="Line">Sets the Shape outline</param>
     /// <param name="Name">When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.</param>
@@ -40,6 +80,12 @@ type Shape() =
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FillRule: StyleParam.FillRule,
             [<Optional; DefaultParameterValue(null)>] ?Label: ShapeLabel,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Legend: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?LegendWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?Name: string,
@@ -65,6 +111,12 @@ type Shape() =
             ?FillColor = FillColor,
             ?FillRule = FillRule,
             ?Label = Label,
+            ?ShowLegend = ShowLegend,
+            ?Legend = Legend,
+            ?LegendRank = LegendRank,
+            ?LegendGroup = LegendGroup,
+            ?LegendGroupTitle = LegendGroupTitle,
+            ?LegendWidth = LegendWidth,
             ?Layer = Layer,
             ?Line = Line,
             ?Name = Name,
@@ -92,6 +144,12 @@ type Shape() =
     /// <param name="FillColor">Sets the color filling the shape's interior. Only applies to closed shapes.</param>
     /// <param name="FillRule">Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule</param>
     /// <param name="Label">The text label of this shape.</param>
+    /// <param name="ShowLegend">Determines whether or not an item corresponding to this shape is shown in the legend.</param>
+    /// <param name="Legend">Sets the reference to a legend to show this shape in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.</param>
+    /// <param name="LegendRank">Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while with "reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e. according to their order in data and layout.</param>
+    /// <param name="LegendGroup">Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time when toggling legend items.</param>
+    /// <param name="LegendGroupTitle">Sets the legend group title for this shape.</param>
+    /// <param name="LegendWidth">Sets the width (in px or fraction) of the legend for this shape.</param>
     /// <param name="Layer">Specifies whether shapes are drawn below or above traces.</param>
     /// <param name="Line">Sets the Shape outline</param>
     /// <param name="Name">When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.</param>
@@ -116,6 +174,12 @@ type Shape() =
             [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?FillRule: StyleParam.FillRule,
             [<Optional; DefaultParameterValue(null)>] ?Label: ShapeLabel,
+            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
+            [<Optional; DefaultParameterValue(null)>] ?Legend: StyleParam.SubPlotId,
+            [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
+            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?LegendWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?Layer: StyleParam.Layer,
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?Name: string,
@@ -141,6 +205,12 @@ type Shape() =
             FillColor |> DynObj.setValueOpt shape "fillcolor"
             FillRule |> DynObj.setValueOptBy shape "fillrule" StyleParam.FillRule.convert
             Label |> DynObj.setValueOpt shape "label"
+            ShowLegend |> DynObj.setValueOpt shape "showlegend"
+            Legend |> DynObj.setValueOptBy shape "legend" StyleParam.SubPlotId.convert
+            LegendRank |> DynObj.setValueOpt shape "legendrank"
+            LegendGroup |> DynObj.setValueOpt shape "legendgroup"
+            LegendGroupTitle |> DynObj.setValueOpt shape "legendgrouptitle"
+            LegendWidth |> DynObj.setValueOpt shape "legendwidth"
             Layer |> DynObj.setValueOptBy shape "layer" StyleParam.Layer.convert
             Line |> DynObj.setValueOpt shape "line"
             Name |> DynObj.setValueOpt shape "name"

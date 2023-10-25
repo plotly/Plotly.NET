@@ -201,7 +201,7 @@ type Trace(traceTypeName: string) =
     ///
     /// If there is no Legend set, returns "legend".
     /// </summary>
-    /// <param name="trace">The trace to get the color axis anchor from</param>
+    /// <param name="trace">The trace to get the Legend anchor from</param>
     static member getLegendAnchor(trace: #Trace) =
         let idString =
             trace |> Trace.tryGetTypedMember<string> ("legend") |> Option.defaultValue "legend"
@@ -214,7 +214,7 @@ type Trace(traceTypeName: string) =
     /// <summary>
     /// Returns a function that sets the Legend anchor of the given trace.
     /// </summary>
-    /// <param name="legendId">The new color axis anchor</param>
+    /// <param name="legendId">The new Legend anchor</param>
     static member setLegendAnchor(legendId: int) =
         let id =
             StyleParam.SubPlotId.Legend legendId

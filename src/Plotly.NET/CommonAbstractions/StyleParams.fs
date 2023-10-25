@@ -1348,53 +1348,177 @@ module StyleParam =
 
     [<RequireQualifiedAccess>]
     type GeoProjectionType =
-        | EquiRectangular
-        | Mercator
-        | Orthographic
-        | NaturalEarth
-        | Kavrayskiy7
-        | Miller
-        | Robinson
-        | Eckert4
-        | AzimuthalEqualArea
-        | AzimuthalEquidistant
-        | ConicEqualArea
-        | ConicConformal
-        | ConicEquidistant
-        | Gnomonic
-        | Stereographic
-        | Mollweide
-        | Hammer
-        | TransverseMercator
-        | AlbersUSA
-        | WinkelTripel
-        | Aitoff
-        | Sinusoidal
+        | Airy                      
+        | Aitoff                    
+        | Albers                    
+        | AlbersUSA                 
+        | August                    
+        | AzimuthalEqualArea        
+        | AzimuthalEquidistant      
+        | Baker                     
+        | Bertin1953                
+        | Boggs                     
+        | Bonne                     
+        | Bottomley                 
+        | Bromley                   
+        | Collignon                 
+        | ConicConformal            
+        | ConicEqualArea            
+        | ConicEquidistant          
+        | Craig                     
+        | Craster                   
+        | CylindricalEqualArea      
+        | CylindricalStereographic  
+        | Eckert1                   
+        | Eckert2                   
+        | Eckert3                   
+        | Eckert4                   
+        | Eckert5                   
+        | Eckert6                   
+        | Eisenlohr                 
+        | EqualEarth                
+        | Equirectangular           
+        | Fahey                     
+        | Foucaut                   
+        | FoucautSinusoidal         
+        | Ginzburg4                 
+        | Ginzburg5                 
+        | Ginzburg6                 
+        | Ginzburg8                 
+        | Ginzburg9                 
+        | Gnomonic                  
+        | Gringorten                
+        | GringortenQuincuncial     
+        | Guyou                     
+        | Hammer                    
+        | Hill                      
+        | Homolosine                
+        | Hufnagel                  
+        | Hyperelliptical           
+        | Kavrayskiy7               
+        | Lagrange                  
+        | Larrivee                  
+        | Laskowski                 
+        | Loximuthal                
+        | Mercator                  
+        | Miller                    
+        | Mollweide                 
+        | MtFlatPolarParabolic      
+        | MtFlatPolarQuartic        
+        | MtFlatPolarSinusoidal     
+        | NaturalEarth              
+        | NaturalEarth1             
+        | NaturalEarth2             
+        | NellHammer                
+        | Nicolosi                  
+        | Orthographic              
+        | Patterson                 
+        | PeirceQuincuncial         
+        | Polyconic                 
+        | RectangularPolyconic      
+        | Robinson                  
+        | Satellite                 
+        | SinuMollweide             
+        | Sinusoidal                
+        | Stereographic             
+        | Times                     
+        | TransverseMercator        
+        | VanDerGrinten             
+        | VanDerGrinten2            
+        | VanDerGrinten3            
+        | VanDerGrinten4            
+        | Wagner4                   
+        | Wagner6                   
+        | Wiechel                   
+        | WinkelTripel              
+        | Winkel3                   
 
         static member toString =
             function
-            | EquiRectangular -> "equirectangular"
-            | Mercator -> "mercator"
-            | Orthographic -> "orthographic"
-            | NaturalEarth -> "natural earth"
-            | Kavrayskiy7 -> "kavrayskiy7"
-            | Miller -> "miller"
-            | Robinson -> "robinson"
-            | Eckert4 -> "eckert4"
-            | AzimuthalEqualArea -> "azimuthal equal area"
-            | AzimuthalEquidistant -> "azimuthal equidistant"
-            | ConicEqualArea -> "conic equal area"
-            | ConicConformal -> "conic conformal"
-            | ConicEquidistant -> "conic equidistant"
-            | Gnomonic -> "gnomonic"
-            | Stereographic -> "stereographic"
-            | Mollweide -> "mollweide"
-            | Hammer -> "hammer"
-            | TransverseMercator -> "transverse mercator"
-            | AlbersUSA -> "albers usa"
-            | WinkelTripel -> "winkel tripel"
-            | Aitoff -> "aitoff"
-            | Sinusoidal -> "sinusoidal"
+                | Airy                      -> "airy" 
+                | Aitoff                    -> "aitoff" 
+                | Albers                    -> "albers" 
+                | AlbersUSA                 -> "albers usa" 
+                | August                    -> "august" 
+                | AzimuthalEqualArea        -> "azimuthal equal area" 
+                | AzimuthalEquidistant      -> "azimuthal equidistant" 
+                | Baker                     -> "baker" 
+                | Bertin1953                -> "bertin1953" 
+                | Boggs                     -> "boggs" 
+                | Bonne                     -> "bonne" 
+                | Bottomley                 -> "bottomley" 
+                | Bromley                   -> "bromley" 
+                | Collignon                 -> "collignon" 
+                | ConicConformal            -> "conic conformal" 
+                | ConicEqualArea            -> "conic equal area" 
+                | ConicEquidistant          -> "conic equidistant" 
+                | Craig                     -> "craig" 
+                | Craster                   -> "craster" 
+                | CylindricalEqualArea      -> "cylindrical equal area" 
+                | CylindricalStereographic  -> "cylindrical stereographic"
+                | Eckert1                   -> "eckert1" 
+                | Eckert2                   -> "eckert2" 
+                | Eckert3                   -> "eckert3" 
+                | Eckert4                   -> "eckert4" 
+                | Eckert5                   -> "eckert5" 
+                | Eckert6                   -> "eckert6" 
+                | Eisenlohr                 -> "eisenlohr" 
+                | EqualEarth                -> "equal earth" 
+                | Equirectangular           -> "equirectangular" 
+                | Fahey                     -> "fahey" 
+                | Foucaut                   -> "foucaut" 
+                | FoucautSinusoidal         -> "foucaut sinusoidal" 
+                | Ginzburg4                 -> "ginzburg4" 
+                | Ginzburg5                 -> "ginzburg5" 
+                | Ginzburg6                 -> "ginzburg6" 
+                | Ginzburg8                 -> "ginzburg8"
+                | Ginzburg9                 -> "ginzburg9" 
+                | Gnomonic                  -> "gnomonic" 
+                | Gringorten                -> "gringorten"
+                | GringortenQuincuncial     -> "gringorten quincuncial" 
+                | Guyou                     -> "guyou" 
+                | Hammer                    -> "hammer" 
+                | Hill                      -> "hill" 
+                | Homolosine                -> "homolosine" 
+                | Hufnagel                  -> "hufnagel" 
+                | Hyperelliptical           -> "hyperelliptical" 
+                | Kavrayskiy7               -> "kavrayskiy7" 
+                | Lagrange                  -> "lagrange" 
+                | Larrivee                  -> "larrivee" 
+                | Laskowski                 -> "laskowski" 
+                | Loximuthal                -> "loximuthal" 
+                | Mercator                  -> "mercator" 
+                | Miller                    -> "miller" 
+                | Mollweide                 -> "mollweide" 
+                | MtFlatPolarParabolic      -> "mt flat polar parabolic" 
+                | MtFlatPolarQuartic        -> "mt flat polar quartic" 
+                | MtFlatPolarSinusoidal     -> "mt flat polar sinusoidal" 
+                | NaturalEarth              -> "natural earth" 
+                | NaturalEarth1             -> "natural earth1" 
+                | NaturalEarth2             -> "natural earth2" 
+                | NellHammer                -> "nell hammer" 
+                | Nicolosi                  -> "nicolosi" 
+                | Orthographic              -> "orthographic" 
+                | Patterson                 -> "patterson" 
+                | PeirceQuincuncial         -> "peirce quincuncial" 
+                | Polyconic                 -> "polyconic" 
+                | RectangularPolyconic      -> "rectangular polyconic" 
+                | Robinson                  -> "robinson" 
+                | Satellite                 -> "satellite" 
+                | SinuMollweide             -> "sinu mollweide" 
+                | Sinusoidal                -> "sinusoidal" 
+                | Stereographic             -> "stereographic" 
+                | Times                     -> "times" 
+                | TransverseMercator        -> "transverse mercator" 
+                | VanDerGrinten             -> "van der grinten" 
+                | VanDerGrinten2            -> "van der grinten2" 
+                | VanDerGrinten3            -> "van der grinten3" 
+                | VanDerGrinten4            -> "van der grinten4" 
+                | Wagner4                   -> "wagner4" 
+                | Wagner6                   -> "wagner6"
+                | Wiechel                   -> "wiechel" 
+                | WinkelTripel              -> "winkel tripel"
+                | Winkel3                   -> "winkel3"
 
         static member convert =
             GeoProjectionType.toString >> box
