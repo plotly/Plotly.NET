@@ -87,7 +87,7 @@ candles1 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
-## Changing the increasing/decresing colors
+## Changing the increasing/decreasing colors
 *)
 
 let candles2 =
