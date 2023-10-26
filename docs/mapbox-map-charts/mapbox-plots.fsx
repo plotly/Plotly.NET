@@ -119,7 +119,7 @@ let flights =
             LineColor = Color.fromString "red"
         ))
     |> Chart.combine
-    |> Chart.withLegend (false)
+    |> Chart.withLayoutStyle (ShowLegend = false)
     |> Chart.withMapbox (Mapbox.init (Style = StyleParam.MapboxStyle.OpenStreetMap, Center = (-97.0372, 32.8959)))
     |> Chart.withMarginSize (0, 0, 50, 0)
     |> Chart.withTitle "Feb. 2011 American Airline flights"

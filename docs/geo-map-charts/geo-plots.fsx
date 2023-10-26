@@ -126,7 +126,7 @@ let flights =
             MarkerColor = Color.fromString "red"
         ))
     |> Chart.combine
-    |> Chart.withLegend (false)
+    |> Chart.withLayoutStyle (ShowLegend = false)
     |> Chart.withGeoStyle (
         Scope = StyleParam.GeoScope.NorthAmerica,
         Projection = GeoProjection.init (StyleParam.GeoProjectionType.AzimuthalEqualArea),
