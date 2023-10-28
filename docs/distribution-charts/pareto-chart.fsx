@@ -57,7 +57,7 @@ A Pareto chart is a type of chart that contains both bars and a line graph, wher
 The chart is named for the Pareto principle, which, in turn, derives its name from Vilfredo Pareto, a noted Italian economist. <sup>[Source](https://en.wikipedia.org/wiki/Pareto_chart)</sup>
 *)
 
-let pareto = Chart.Pareto(keysValues = data, Name="Language", Label="Respondants")
+let pareto = Chart.Pareto(keysValues = data, Name="Language", Label="Respondents")
 
 (*** condition: ipynb ***)
 #if IPYNB
