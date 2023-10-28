@@ -1548,7 +1548,7 @@ module Chart2D =
                 ?UseDefaults = UseDefaults
             )
             
-        /// <summary> Creates a Pareto chart </summary>
+        /// <summary> Creates a Pareto chart. </summary>
         /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="Label">Sets the y axis label.</param>

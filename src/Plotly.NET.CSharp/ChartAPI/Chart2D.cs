@@ -600,6 +600,23 @@ namespace Plotly.NET.CSharp
                     UpperName: UpperName.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
+        
+        /// <summary> Creates a Pareto chart. </summary>
+        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Label">Sets the y axis label.</param>
+        public static GenericChart Pareto<TLabel>(
+            IEnumerable<(TLabel,double)> keysValues
+            , Optional<string> Name
+            , Optional<string> Label
+            ) 
+            where TLabel : IConvertible
+            =>
+                Plotly.NET.Chart2D.Chart.Pareto<TLabel>(
+                    keysValues.Select(t => t.ToValueTuple())
+                    , Name: Name.ToOption()
+                    , Label: Label.ToOption()
+                );
 
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
