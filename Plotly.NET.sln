@@ -148,6 +148,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_distribution-charts", "0
 		docs\distribution-charts\point-density.fsx = docs\distribution-charts\point-density.fsx
 		docs\distribution-charts\splom.fsx = docs\distribution-charts\splom.fsx
 		docs\distribution-charts\violin-plots.fsx = docs\distribution-charts\violin-plots.fsx
+		docs\distribution-charts\pareto-chart.fsx = docs\distribution-charts\pareto-chart.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_chart-layout", "01_chart-layout", "{C7D0EF67-9A18-49DD-AC79-944E384BD8D0}"
