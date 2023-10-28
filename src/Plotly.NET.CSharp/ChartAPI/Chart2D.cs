@@ -613,7 +613,7 @@ namespace Plotly.NET.CSharp
             where TLabel : IConvertible
             =>
                 Plotly.NET.Chart2D.Chart.Pareto<TLabel>(
-                    keysValues.Select(t => t.ToValueTuple())
+                    keysValues.Select(t => t.ToTuple())
                     , Name: Name.ToOption()
                     , Label: Label.ToOption()
                 );

@@ -8,5 +8,5 @@ internal static class TupleExtensions
     /// <summary>
     /// Converts a 2 tuple.
     /// </summary>
-    internal static Tuple<T1,T2> ToValueTuple<T1,T2>(this ValueTuple<T1,T2> t) => Tuple.Create(t.Item1, t.Item2);
+    internal static Tuple<T1,T2> ToTuple<T1,T2>(this ValueTuple<T1,T2> t) => Tuple.Create(t.Item1, t.Item2);
 }
