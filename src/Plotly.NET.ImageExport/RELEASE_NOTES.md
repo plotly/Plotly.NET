@@ -1,5 +1,7 @@
 ### 6.0.0 - TBD
 
+- BREAKING: [Add Scale option to all image export extensions](https://github.com/plotly/Plotly.NET/commit/5090570cb0fd8281a4c197421994cec719b82ac9)
+- BREAKING:  Update PuppeteerSharp dependency to 12.0.0
 - bump version range of Plotly.NET to [5.0.0, 6.0.0)
 
 ### 5.0.1 - July 25 2023

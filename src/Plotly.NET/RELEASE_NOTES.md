@@ -9,7 +9,14 @@
         - [add `xref` and `yref` attributes for Legend and ColorBar](https://github.com/plotly/Plotly.NET/commit/a3e1abcfda7b316c704d477471be1294860b48b7)
     - v2.24:
         - [add pattern to multiple traces](https://github.com/plotly/Plotly.NET/commit/f75125e7e8514299bc794ddddbaee6370e5b420a)
+    - v2.25:
+        - [Add "Equal Earth" projection to geo subplots](https://github.com/plotly/Plotly.NET/commit/0ea7d3e0da77937e1b9d31bc4a6552d7499a660a)
+        - [Complete bindings for geo projections](https://github.com/plotly/Plotly.NET/commit/0ea7d3e0da77937e1b9d31bc4a6552d7499a660a)
+        - [Add options to include legends for shapes and newshape](https://github.com/plotly/Plotly.NET/commit/0ea7d3e0da77937e1b9d31bc4a6552d7499a660a)
 
+- [Plotly.NET.ImageExport (4.0.0 -> 5.0.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.ImageExport/RELEASE_NOTES.md)
+- [Plotly.NET.Interactive (4.1.0 -> 4.2.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.Interactive/RELEASE_NOTES.md)
+- [Plotly.NET.CSharp (0.10.0 -> 0.11.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.CSharp/RELEASE_NOTES.md)
 
 ### 4.2.0 - August 02 2023
 

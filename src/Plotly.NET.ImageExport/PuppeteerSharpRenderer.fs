@@ -89,7 +89,7 @@ type PuppeteerSharpRenderer() =
                 let launchOptions =
                     PuppeteerSharpRendererOptions.launchOptions
 
-                launchOptions.ExecutablePath <- revision.ExecutablePath
+                launchOptions.ExecutablePath <- revision.GetExecutablePath()
 
                 return! Puppeteer.LaunchAsync(launchOptions)
             | Some p ->
