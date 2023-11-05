@@ -12,6 +12,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Include="TestCharts\UpstreamFeatures\2.26.fs" />
     <Compile Include="TestUtils.fs" />
     <Compile Include="TestCharts\Chart2DTestCharts.fs" />
     <Compile Include="TestCharts\Chart3DTestCharts.fs" />
@@ -32,7 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="Deedle" Version="2.4.1" />
-    <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="Expecto" Version="10.*" />
     <PackageReference Include="FSharp.Data" Version="4.2.0" />
   </ItemGroup>
 

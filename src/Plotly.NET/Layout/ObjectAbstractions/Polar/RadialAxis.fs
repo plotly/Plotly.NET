@@ -16,6 +16,7 @@ type RadialAxis() =
     /// <param name="AxisType">Sets the angular axis type. If "linear", set `thetaunit` to determine the unit in which axis value are shown. If "category, use `period` to set the number of integer coordinates around polar axis.</param>
     /// <param name="AutoTypeNumbers">Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.</param>
     /// <param name="AutoRange">Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".</param>
+    /// <param name="AutoRangeOptions">Additional options for bounding the autorange</param>
     /// <param name="RangeMode">If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data. If "normal", the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).</param>
     /// <param name="Range">Sets the range of this axis. If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is "date", it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is "category", it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.</param>
     /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
@@ -29,6 +30,8 @@ type RadialAxis() =
     /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
     /// <param name="LineColor">Sets the axis line color.</param>
     /// <param name="LineWidth">Sets the width (in px) of the axis line.</param>
+    /// <param name="MaxAllowed">Determines the maximum range of this axis.</param>
+    /// <param name="MinAllowed">Determines the minimum range of this axis.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
     /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
@@ -66,6 +69,7 @@ type RadialAxis() =
             [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
             [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
             [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?AutoRangeOptions: AutoRangeOptions,
             [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
             [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
@@ -79,6 +83,8 @@ type RadialAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?MaxAllowed: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MinAllowed: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
@@ -117,6 +123,7 @@ type RadialAxis() =
             ?AxisType = AxisType,
             ?AutoTypeNumbers = AutoTypeNumbers,
             ?AutoRange = AutoRange,
+            ?AutoRangeOptions = AutoRangeOptions,
             ?RangeMode = RangeMode,
             ?Range = Range,
             ?CategoryOrder = CategoryOrder,
@@ -130,6 +137,8 @@ type RadialAxis() =
             ?ShowLine = ShowLine,
             ?LineColor = LineColor,
             ?LineWidth = LineWidth,
+            ?MaxAllowed = MaxAllowed,
+            ?MinAllowed = MinAllowed,
             ?ShowGrid = ShowGrid,
             ?GridColor = GridColor,
             ?GridDash = GridDash,
@@ -170,6 +179,7 @@ type RadialAxis() =
     /// <param name="AxisType">Sets the angular axis type. If "linear", set `thetaunit` to determine the unit in which axis value are shown. If "category, use `period` to set the number of integer coordinates around polar axis.</param>
     /// <param name="AutoTypeNumbers">Using "strict" a numeric string in trace data is not converted to a number. Using "convert types" a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.</param>
     /// <param name="AutoRange">Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".</param>
+    /// <param name="AutoRangeOptions">Additional options for bounding the autorange</param>
     /// <param name="RangeMode">If "tozero"`, the range extends to 0, regardless of the input data If "nonnegative", the range is non-negative, regardless of the input data. If "normal", the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).</param>
     /// <param name="Range">Sets the range of this axis. If the axis `type` is "log", then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is "date", it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is "category", it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.</param>
     /// <param name="CategoryOrder">Specifies the ordering logic for the case of categorical variables. By default, plotly uses "trace", which specifies the order that is present in the data supplied. Set `categoryorder` to "category ascending" or "category descending" if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to "array" to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the "trace" mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to "total ascending" or "total descending" if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.</param>
@@ -183,6 +193,8 @@ type RadialAxis() =
     /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
     /// <param name="LineColor">Sets the axis line color.</param>
     /// <param name="LineWidth">Sets the width (in px) of the axis line.</param>
+    /// <param name="MaxAllowed">Determines the maximum range of this axis.</param>
+    /// <param name="MinAllowed">Determines the minimum range of this axis.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
     /// <param name="GridDash">Sets the dash style of lines. Set to a dash type string ("solid", "dot", "dash", "longdash", "dashdot", or "longdashdot") or a dash length list in px (eg "5px,10px,2px,2px").</param>
@@ -220,6 +232,7 @@ type RadialAxis() =
             [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
             [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
             [<Optional; DefaultParameterValue(null)>] ?AutoRange: StyleParam.AutoRange,
+            [<Optional; DefaultParameterValue(null)>] ?AutoRangeOptions: AutoRangeOptions,
             [<Optional; DefaultParameterValue(null)>] ?RangeMode: StyleParam.RangeMode,
             [<Optional; DefaultParameterValue(null)>] ?Range: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
@@ -233,6 +246,8 @@ type RadialAxis() =
             [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: int,
+            [<Optional; DefaultParameterValue(null)>] ?MaxAllowed: #IConvertible,
+            [<Optional; DefaultParameterValue(null)>] ?MinAllowed: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
             [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
@@ -271,6 +286,7 @@ type RadialAxis() =
             AxisType |> DynObj.setValueOptBy radialAxis "type" StyleParam.AxisType.convert
             AutoTypeNumbers |> DynObj.setValueOptBy radialAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
             AutoRange |> DynObj.setValueOptBy radialAxis "autorange" StyleParam.AutoRange.convert
+            AutoRangeOptions |> DynObj.setValueOpt radialAxis "autorangeoptions"
             RangeMode |> DynObj.setValueOptBy radialAxis "rangemode" StyleParam.RangeMode.convert
             Range |> DynObj.setValueOptBy radialAxis "range" StyleParam.Range.convert
             CategoryOrder |> DynObj.setValueOptBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
@@ -284,6 +300,8 @@ type RadialAxis() =
             ShowLine |> DynObj.setValueOpt radialAxis "showline"
             LineColor |> DynObj.setValueOpt radialAxis "linecolor"
             LineWidth |> DynObj.setValueOpt radialAxis "linewidth"
+            MaxAllowed |> DynObj.setValueOpt radialAxis "maxallowed"
+            MinAllowed |> DynObj.setValueOpt radialAxis "minallowed"
             ShowGrid |> DynObj.setValueOpt radialAxis "showgrid"
             GridColor |> DynObj.setValueOpt radialAxis "gridcolor"
             GridDash |> DynObj.setValueOptBy radialAxis "griddash" StyleParam.DrawingStyle.convert

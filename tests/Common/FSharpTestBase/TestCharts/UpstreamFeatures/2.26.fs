@@ -1,18 +1,13 @@
-open System
-open Deedle
-open System.IO
+﻿module PlotlyJS_2_26_TestCharts
+
 open Plotly.NET
-open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
-open Plotly.NET.ConfigObjects
-open DynamicObj
-open Giraffe.ViewEngine
-open Newtonsoft.Json
+open Plotly.NET.LayoutObjects
 
-[<EntryPoint>]
-let main argv =
-    [
 
+module ``AutoRangeOptions`` = 
+
+    let ``Point chart with autorange options on x and y axes`` =
         Chart.Point(
             x = [0 .. 10],
             y = [0 .. 10],
@@ -36,7 +31,7 @@ let main argv =
             )
         )
 
-
+    let ``Point chart with minallowed and maxallowed on x and y axes`` =
         Chart.Point(
             x = [0 .. 10],
             y = [0 .. 10],
@@ -56,7 +51,7 @@ let main argv =
             )
         )
 
-
+    let ``Point3D chart with autorange options on x, y, and z axes`` =
 
         Chart.Point3D(
             x = [0 .. 10],
@@ -93,7 +88,7 @@ let main argv =
             )
         )
 
-
+    let ``Point3D chart with minallowed and maxallowed on x, y, and z axes`` =
 
         Chart.Point3D(
             x = [0 .. 10],
@@ -124,7 +119,7 @@ let main argv =
             )
         )
 
-
+    let ``PointPolar chart with autorange options on radial axis`` =
 
         Chart.PointPolar(
             r = [0 .. 10],
@@ -141,7 +136,7 @@ let main argv =
             )
         )
 
-
+    let ``PointPolar chart with minallowed and maxallowed on radial axis`` =
     
         Chart.PointPolar(
             r = [0 .. 10],
@@ -155,6 +150,3 @@ let main argv =
                 MaxAllowed = 8
             )
         )
-    ]
-    |> Seq.iter Chart.show
-    0

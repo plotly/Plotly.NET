@@ -11,7 +11,7 @@ namespace Plotly.NET.Tests.CSharp
         [Fact]
         public void OptionalArgumentsAndDynamicSettingAreEqual()
         {
-            var actual = LinearAxis.init<IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible>(Color: Color.fromString("red"), AxisType: StyleParam.AxisType.Linear);
+            var actual = LinearAxis.init<IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible>(Color: Color.fromString("red"), AxisType: StyleParam.AxisType.Linear);
 
             var expected = new LinearAxis();
             expected.SetValue("color", Color.fromString("red"));

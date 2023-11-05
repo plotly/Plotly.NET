@@ -124,18 +124,28 @@ module StyleParam =
         override this.ToString() = this |> Align.toString
         member this.Convert() = this |> Align.convert
 
-    /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to "false".
+    /// <summary>
+    /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided and it has a value for both the lower and upper bound, `autorange` is set to "false". Using "min" applies autorange only to set the minimum. Using "max" applies autorange only to set the maximum. Using "min reversed" applies autorange only to set the minimum on a reversed axis. Using "max reversed" applies autorange only to set the maximum on a reversed axis. Using "reversed" applies autorange on both ends and reverses the axis direction.
+    /// </summary>
     [<RequireQualifiedAccess>]
     type AutoRange =
         | True
         | False
         | Reversed
+        | MinReversed
+        | MaxReversed
+        | Min
+        | Max
 
         static member convert =
             function
             | True -> box true
             | False -> box false
             | Reversed -> box "reversed"
+            | MinReversed -> box "min reversed"
+            | MaxReversed -> box "max reversed"
+            | Min -> box "min"
+            | Max -> box "max"
 
         member this.Convert() = this |> AutoRange.convert
 
