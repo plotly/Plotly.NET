@@ -1552,12 +1552,14 @@ module Chart2D =
         /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="Label">Sets the y axis label.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
         [<Extension>]
         static member Pareto
             (
                 keysValues: seq<#IConvertible * float>
                 , [<Optional; DefaultParameterValue(null)>] ?Name: string
                 , [<Optional; DefaultParameterValue(null)>] ?Label: string
+                , [<Optional; DefaultParameterValue(true)>] ?ShowGrid: bool
             ) =
             let orderedLabels, orderedValues =
                 keysValues
@@ -1575,24 +1577,18 @@ module Chart2D =
                |> Seq.map (fun (label,value) -> label, value / sum * 100.) 
                
             let bars = Chart.Column(Seq.zip orderedLabels orderedValues,?Name=Name)
-              
-            let points = 
-                Chart.Point(
-                    paretoValues
-                    , ShowLegend = false
-                    , Marker     = Marker.init(Size = 8, Color = Color.fromKeyword Black, Symbol = StyleParam.MarkerSymbol.Cross, Angle = 45.)
-                )
-                |> Chart.withAxisAnchor (Y = 2)
-                   
+            
             let lines = 
                 Chart.Line(
                     paretoValues
-                    , Name       = "Cumulative %"
-                    , ShowLegend = true
+                    , Name        = "Cumulative %"
+                    , ShowLegend  = true
+                    , ShowMarkers = true
+                    , Marker      = Marker.init(Size = 8, Symbol = StyleParam.MarkerSymbol.Cross, Angle = 45.)
                 ) 
                 |> Chart.withAxisAnchor (Y = 2)
                    
-            [bars;lines;points] 
+            [bars;lines] 
             |> Chart.combine 
             |> Chart.withYAxisStyle (
                     ?TitleText = Label
@@ -1606,9 +1602,25 @@ module Chart2D =
                     , Id         = StyleParam.SubPlotId.YAxis 2
                     , MinMax     = (0.,100. * (1.+topPaddingRatio))
                     , Overlaying = StyleParam.LinearAxisId.Y 1
+                    , ?ShowGrid  = ShowGrid
                 )     
             
-
+        /// <summary> Creates a Pareto chart. </summary>
+        /// <param name="labels">Sets the labels that are matching the <see paramref="values"/>.</param>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Label">Sets the y axis label.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
+        static member Pareto
+            (
+                labels: seq<#IConvertible>
+                , values: seq<float>
+                , [<Optional; DefaultParameterValue(null)>] ?Name: string
+                , [<Optional; DefaultParameterValue(null)>] ?Label: string
+                , [<Optional; DefaultParameterValue(true)>] ?ShowGrid: bool
+            ) =
+            Chart.Pareto(Seq.zip labels values, ?Name=Name, ?Label=Label, ?ShowGrid=ShowGrid)
+            
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>

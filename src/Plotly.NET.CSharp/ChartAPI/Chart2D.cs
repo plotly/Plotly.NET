@@ -605,17 +605,42 @@ namespace Plotly.NET.CSharp
         /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="Label">Sets the y axis label.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
         public static GenericChart Pareto<TLabel>(
             IEnumerable<(TLabel,double)> keysValues
             , Optional<string> Name
             , Optional<string> Label
+            , Optional<bool> ShowGrid
             ) 
             where TLabel : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Pareto<TLabel>(
+                Chart2D.Chart.Pareto(
                     keysValues.Select(t => t.ToTuple())
                     , Name: Name.ToOption()
                     , Label: Label.ToOption()
+                    , ShowGrid: ShowGrid.ToOption()
+                );
+        /// <summary> Creates a Pareto chart. </summary>
+        /// <param name="labels">Sets the labels that are matching the <see paramref="values"/>.</param>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Label">Sets the y axis label.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
+        public static GenericChart Pareto<TLabel>(
+            IEnumerable<TLabel> labels
+            , IEnumerable<double> values
+            , Optional<string> Name
+            , Optional<string> Label
+            , Optional<bool> ShowGrid
+            ) 
+            where TLabel : IConvertible
+            =>
+                Chart2D.Chart.Pareto(
+                    labels
+                    , values
+                    , Name: Name.ToOption()
+                    , Label: Label.ToOption()
+                    , ShowGrid: ShowGrid.ToOption()
                 );
 
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
