@@ -165,3 +165,49 @@ module ``N-sigma (std deviations) box plots`` =
                 SDMultiple = 2.
             )
         )
+
+module ``New Side options for (legend) titles`` =
+    
+    let ``Point charts with horizontal legend title top left`` =
+        [
+            Chart.Point([1,2], UseDefaults = false)
+            Chart.Point([3,4], UseDefaults = false)
+        ]
+        |> Chart.combine
+        |> Chart.withLegendStyle(
+            Title = Title.init(
+                Text = "Legend title (top left)",
+                Side = StyleParam.Side.TopLeft
+            ),
+            Orientation = StyleParam.Orientation.Horizontal
+    )
+
+    let ``Point charts with horizontal legend title top center`` =
+        [
+            Chart.Point([1,2], UseDefaults = false)
+            Chart.Point([3,4], UseDefaults = false)
+        ]
+        |> Chart.combine
+        |> Chart.withLegendStyle(
+            Title = Title.init(
+                Text = "Legend title (top center)",
+                Side = StyleParam.Side.TopCenter
+            ),
+            Orientation = StyleParam.Orientation.Horizontal
+    )
+
+    let ``Point charts with horizontal legend title top right`` =
+        [
+            Chart.Point([1,2], UseDefaults = false)
+            Chart.Point([3,4], UseDefaults = false)
+        ]
+        |> Chart.combine
+        |> Chart.withLegendStyle(
+            Title = Title.init(
+                Text = "Legend title (top right)",
+                Side = StyleParam.Side.TopRight
+            ),
+            Orientation = StyleParam.Orientation.Horizontal
+    )
+
+

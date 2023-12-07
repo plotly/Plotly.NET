@@ -3069,6 +3069,8 @@ module StyleParam =
     type Side =
         | Top
         | TopLeft
+        | TopCenter
+        | TopRight
         | Bottom
         | Left
         | Right
@@ -3077,6 +3079,8 @@ module StyleParam =
             function
             | Top -> "top"
             | TopLeft -> "top left"
+            | TopCenter -> "top center"
+            | TopRight -> "top right"
             | Bottom -> "bottom"
             | Left -> "left"
             | Right -> "right"

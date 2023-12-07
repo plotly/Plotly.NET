@@ -11,16 +11,17 @@ open Newtonsoft.Json
 
 [<EntryPoint>]
 let main argv =
-    Chart.BoxPlot(
-        data = [-20; 1; 2; 3; 1; 2; 3; 3; 3; 3; 3; 1; 5; 20],
-        orientation = StyleParam.Orientation.Vertical,
-        SizeMode = StyleParam.BoxSizeMode.SD,
-        UseDefaults = false
-    )
-    |> GenericChart.mapTrace (
-        Trace2DStyle.BoxPlot(
-            SDMultiple = 2.
-        )
+    [
+        Chart.Point([1,2], UseDefaults = false)
+        Chart.Point([3,4], UseDefaults = false)
+    ]
+    |> Chart.combine
+    |> Chart.withLegendStyle(
+        Title = Title.init(
+            Text = "Legend title (top right)",
+            Side = StyleParam.Side.TopRight
+        ),
+        Orientation = StyleParam.Orientation.Horizontal
     )
     |> Chart.show
     0

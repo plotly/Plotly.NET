@@ -82,3 +82,35 @@ module ``N-sigma (std deviations) box plots`` =
                 )
             ]
         ]
+
+module ``New Side options for (legend) titles`` =
+    [<Tests>]
+    let ``New Title Side options`` =
+        testList "UpstreamFeatures.PlotlyJS_2_26" [
+            testList "New Side options for (legend) titles" [
+                testCase "top left data" ( fun () -> 
+                    """var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}},{"type":"scatter","mode":"markers","x":[3],"y":[4],"marker":{},"line":{}}];"""
+                    |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top left``
+                )
+                testCase "top left layout" ( fun () -> 
+                    """var layout = {"legend":{"orientation":"h","title":{"text":"Legend title (top left)","side":"top left"}}};"""
+                    |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top left``
+                )
+                testCase "top center data" ( fun () -> 
+                    """var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}},{"type":"scatter","mode":"markers","x":[3],"y":[4],"marker":{},"line":{}}];"""
+                    |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top center``
+                )
+                testCase "top center layout" ( fun () -> 
+                    """var layout = {"legend":{"orientation":"h","title":{"text":"Legend title (top center)","side":"top center"}}};"""
+                    |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top center``
+                )
+                testCase "top right data" ( fun () -> 
+                    """var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}},{"type":"scatter","mode":"markers","x":[3],"y":[4],"marker":{},"line":{}}];"""
+                    |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top right``
+                )
+                testCase "top right layout" ( fun () -> 
+                    """var layout = {"legend":{"orientation":"h","title":{"text":"Legend title (top right)","side":"top right"}}};"""
+                    |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top right``
+                )
+            ]
+        ]
