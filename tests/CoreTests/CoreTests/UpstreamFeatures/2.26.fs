@@ -114,3 +114,19 @@ module ``New Side options for (legend) titles`` =
                 )
             ]
         ]
+
+module ``New scaleanchor option for linear axes`` =
+    [<Tests>]
+    let ``New ScaleAnchor option`` =
+        testList "UpstreamFeatures.PlotlyJS_2_26" [
+            testList "New scaleanchor option for linear axes" [
+                testCase "scaleanchor=false data" ( fun () -> 
+                    """var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}}];"""
+                    |> chartGeneratedContains ``New scaleanchor option for linear axes``.``Point chart with scaleanchor=false``
+                )
+                testCase "scaleanchor=false layout" ( fun () -> 
+                    """var layout = {"xaxis":{"scaleanchor":false}};"""
+                    |> chartGeneratedContains ``New scaleanchor option for linear axes``.``Point chart with scaleanchor=false``
+                )
+            ]
+        ]

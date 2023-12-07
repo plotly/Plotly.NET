@@ -11,17 +11,11 @@ open Newtonsoft.Json
 
 [<EntryPoint>]
 let main argv =
-    [
-        Chart.Point([1,2], UseDefaults = false)
-        Chart.Point([3,4], UseDefaults = false)
-    ]
-    |> Chart.combine
-    |> Chart.withLegendStyle(
-        Title = Title.init(
-            Text = "Legend title (top right)",
-            Side = StyleParam.Side.TopRight
-        ),
-        Orientation = StyleParam.Orientation.Horizontal
+    Chart.Point([1,2], UseDefaults = false)
+    |> Chart.withXAxis(
+        LinearAxis.init(
+            ScaleAnchor = StyleParam.ScaleAnchor.False
+        )
     )
     |> Chart.show
     0

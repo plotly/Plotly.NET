@@ -211,3 +211,11 @@ module ``New Side options for (legend) titles`` =
     )
 
 
+module ``New scaleanchor option for linear axes`` =
+    let ``Point chart with scaleanchor=false`` =
+        Chart.Point([1,2], UseDefaults = false)
+        |> Chart.withXAxis(
+            LinearAxis.init(
+                ScaleAnchor = StyleParam.ScaleAnchor.False
+            )
+        )

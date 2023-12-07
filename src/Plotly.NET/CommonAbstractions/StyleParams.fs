@@ -2662,6 +2662,20 @@ module StyleParam =
     //--------------------------
 
     [<RequireQualifiedAccess>]
+    type ScaleAnchor =
+        | False
+        | X of int
+        | Y of int
+
+        static member convert =
+            function
+            | False -> box false
+            | X id -> (if id < 2 then "x" else sprintf "x%i" id) |> box
+            | Y id -> (if id < 2 then "y" else sprintf "y%i" id) |> box
+
+        member this.Convert() = this |> ScaleAnchor.convert
+
+    [<RequireQualifiedAccess>]
     type ScrollZoom =
         | Cartesian
         | GL3D
