@@ -67,3 +67,18 @@ module ``AutoRangeOptions`` =
                 )
             ]
         ]
+
+module ``N-sigma (std deviations) box plots`` =
+    [<Tests>]
+    let ``Sigma boxplots`` =
+        testList "UpstreamFeatures.PlotlyJS_2_26" [
+            testList "N-sigma (std deviations) box plots" [
+                testCase "2-Sigma box plot data" ( fun () -> 
+                    """var data = [{"type":"box","marker":{},"line":{},"sizemode":"sd","y":[-20,1,2,3,1,2,3,3,3,3,3,1,5,20],"sdmultiple":2.0}];"""
+                    |> chartGeneratedContains ``N-sigma (std deviations) box plots``.``2-sigma BoxPlot``
+                )
+                testCase "2-Sigma box plot layout" ( fun () -> 
+                    emptyLayout ``N-sigma (std deviations) box plots``.``2-sigma BoxPlot``
+                )
+            ]
+        ]

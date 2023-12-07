@@ -356,6 +356,23 @@ module StyleParam =
 
         member this.Convert() = this |> BoxPoints.convert
 
+    /// <summary>
+    /// Sets the upper and lower bound for the boxes quartiles means box is drawn between Q1 and Q3 SD means the box is drawn between Mean +- Standard Deviation
+    /// </summary>
+    [<RequireQualifiedAccess>]
+    type BoxSizeMode =
+        | Quartiles
+        | SD
+
+        static member toString =
+            function
+            | Quartiles -> "quartiles"
+            | SD -> "sd"
+
+        static member convert = BoxSizeMode.toString >> box
+        override this.ToString() = this |> BoxSizeMode.toString
+        member this.Convert() = this |> BoxSizeMode.convert
+
 
 
     [<RequireQualifiedAccess>]

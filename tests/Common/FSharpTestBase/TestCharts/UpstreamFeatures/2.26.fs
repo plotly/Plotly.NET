@@ -150,3 +150,18 @@ module ``AutoRangeOptions`` =
                 MaxAllowed = 8
             )
         )
+
+module ``N-sigma (std deviations) box plots`` =
+    
+    let ``2-sigma BoxPlot`` =
+        Chart.BoxPlot(
+            data = [-20; 1; 2; 3; 1; 2; 3; 3; 3; 3; 3; 1; 5; 20],
+            orientation = StyleParam.Orientation.Vertical,
+            SizeMode = StyleParam.BoxSizeMode.SD,
+            UseDefaults = false
+        )
+        |> GenericChart.mapTrace (
+            Trace2DStyle.BoxPlot(
+                SDMultiple = 2.
+            )
+        )

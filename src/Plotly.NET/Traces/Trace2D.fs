@@ -1090,6 +1090,7 @@ type Trace2DStyle() =
     /// <param name="LegendRank">Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.</param>
     /// <param name="LegendGroup">Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.</param>
     /// <param name="LegendGroupTitle">Sets the legend group title for this trace.</param>
+    /// <param name="LegendWidth">Sets the width (in px or fraction) of the legend for this trace.</param>
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
     /// <param name="X">Sets the x sample data or coordinates. See overview for more info.</param>
@@ -1129,6 +1130,7 @@ type Trace2DStyle() =
     /// <param name="BoxPoints">If "outliers", only the sample points lying outside the whiskers are shown If "suspectedoutliers", the outlier points are shown and points either less than 4"Q1-3"Q3 or greater than 4"Q3-3"Q1 are highlighted (see `outliercolor`) If "all", all sample points are shown If "false", only the box(es) are shown with no sample points Defaults to "suspectedoutliers" when `marker.outliercolor` or `marker.line.outliercolor` is set. Defaults to "all" under the q1/median/q3 signature. Otherwise defaults to "outliers".</param>
     /// <param name="Notched">Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 " IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes' notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to "false" unless `notchwidth` or `notchspan` is set.</param>
     /// <param name="NotchWidth">Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).</param>
+    /// <param name="ShowWhiskers">Determines whether or not whiskers are visible. Defaults to true for `sizemode` "quartiles", false for "sd".</param>
     /// <param name="WhiskerWidth">Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).</param>
     /// <param name="Q1">Sets the Quartile 1 values. There should be as many items as the number of boxes desired.</param>
     /// <param name="Median">Sets the Quartile 1 values. There should be as many items as the number of boxes desired.</param>
@@ -1138,6 +1140,7 @@ type Trace2DStyle() =
     /// <param name="NotchSpan">Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 " IQR / sqrt(N), where N is the sample size.</param>
     /// <param name="Mean">Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.</param>
     /// <param name="SD">Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.</param>
+    /// <param name="SDMultiple">Scales the box size when sizemode=sd Allowing boxes to be drawn across any stddev range For example 1-stddev, 3-stddev, 5-stddev</param>
     /// <param name="QuartileMethod">Sets the method used to compute the sample's Q1 and Q3 quartiles. The "linear" method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The "exclusive" method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The "inclusive" method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.</param>
     /// <param name="SelectedPoints">Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.</param>
     /// <param name="Selected">Sets the style of selected points of this trace.</param>
@@ -1147,6 +1150,7 @@ type Trace2DStyle() =
     /// <param name="HoverOn">Do the hover effects highlight individual boxes or sample points or both?</param>
     /// <param name="PointPos">Sets the position of the sample points in relation to the box(es). If "0", the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes</param>
     /// <param name="Jitter">Sets the amount of jitter in the sample points drawn. If "0", the sample points align along the distribution axis. If "1", the sample points are drawn in a random jitter of width equal to the width of the box(es).</param>
+    /// <param name="SizeMode">Sets the upper and lower bound for the boxes quartiles means box is drawn between Q1 and Q3 SD means the box is drawn between Mean +- Standard Deviation Argument sdmultiple (default 1) to scale the box size So it could be drawn 1-stddev, 3-stddev etc</param>
     /// <param name="XCalendar">Sets the calendar system to use with `x` date data.</param>
     /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
@@ -1159,6 +1163,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
             [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
             [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title,
+            [<Optional; DefaultParameterValue(null)>] ?LegendWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Ids: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?X: seq<#IConvertible>,
@@ -1198,6 +1203,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?BoxPoints: StyleParam.BoxPoints,
             [<Optional; DefaultParameterValue(null)>] ?Notched: bool,
             [<Optional; DefaultParameterValue(null)>] ?NotchWidth: float,
+            [<Optional; DefaultParameterValue(null)>] ?ShowWhiskers: bool,
             [<Optional; DefaultParameterValue(null)>] ?WhiskerWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?Q1: seq<IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Median: seq<IConvertible>,
@@ -1207,6 +1213,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?NotchSpan: seq<IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Mean: seq<IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?SD: seq<IConvertible>,
+            [<Optional; DefaultParameterValue(null)>] ?SDMultiple: float,
             [<Optional; DefaultParameterValue(null)>] ?QuartileMethod: StyleParam.QuartileMethod,
             [<Optional; DefaultParameterValue(null)>] ?SelectedPoints: seq<#IConvertible>,
             [<Optional; DefaultParameterValue(null)>] ?Selected: TraceSelection,
@@ -1216,6 +1223,7 @@ type Trace2DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?HoverOn: StyleParam.HoverOn,
             [<Optional; DefaultParameterValue(null)>] ?PointPos: float,
             [<Optional; DefaultParameterValue(null)>] ?Jitter: float,
+            [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.BoxSizeMode,
             [<Optional; DefaultParameterValue(null)>] ?XCalendar: StyleParam.Calendar,
             [<Optional; DefaultParameterValue(null)>] ?YCalendar: StyleParam.Calendar,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
@@ -1229,6 +1237,7 @@ type Trace2DStyle() =
             LegendRank |> DynObj.setValueOpt boxPlot "legendrank"
             LegendGroup |> DynObj.setValueOpt boxPlot "legendgroup"
             LegendGroupTitle |> DynObj.setValueOpt boxPlot "legendgrouptitle"
+            LegendWidth |> DynObj.setValueOpt boxPlot "legendwidth"
             Opacity |> DynObj.setValueOpt boxPlot "opacity"
             Ids |> DynObj.setValueOpt boxPlot "ids"
             (X, MultiX) |> DynObj.setSingleOrMultiOpt boxPlot "x"
@@ -1264,6 +1273,7 @@ type Trace2DStyle() =
             Notched |> DynObj.setValueOpt boxPlot "notched"
             NotchWidth |> DynObj.setValueOpt boxPlot "notchwidth"
             WhiskerWidth |> DynObj.setValueOpt boxPlot "whiskerwidth"
+            ShowWhiskers |> DynObj.setValueOpt boxPlot "showwhiskers"
             Q1 |> DynObj.setValueOpt boxPlot "q1"
             Median |> DynObj.setValueOpt boxPlot "median"
             Q3 |> DynObj.setValueOpt boxPlot "q3"
@@ -1272,6 +1282,7 @@ type Trace2DStyle() =
             NotchSpan |> DynObj.setValueOpt boxPlot "notchspan"
             Mean |> DynObj.setValueOpt boxPlot "mean"
             SD |> DynObj.setValueOpt boxPlot "sd"
+            SDMultiple |> DynObj.setValueOpt boxPlot "sdmultiple"
             QuartileMethod |> DynObj.setValueOptBy boxPlot "quartilemethod" StyleParam.QuartileMethod.convert
             SelectedPoints |> DynObj.setValueOpt boxPlot "selectedpoints"
             Selected |> DynObj.setValueOpt boxPlot "selected"
@@ -1281,6 +1292,7 @@ type Trace2DStyle() =
             HoverOn |> DynObj.setValueOptBy boxPlot "hoveron" StyleParam.HoverOn.convert
             PointPos |> DynObj.setValueOpt boxPlot "pointpos"
             Jitter |> DynObj.setValueOpt boxPlot "jitter"
+            SizeMode |> DynObj.setValueOptBy boxPlot "sizemode" StyleParam.BoxSizeMode.convert
             XCalendar |> DynObj.setValueOptBy boxPlot "xcalendar" StyleParam.Calendar.convert
             YCalendar |> DynObj.setValueOptBy boxPlot "ycalendar" StyleParam.Calendar.convert
             UIRevision |> DynObj.setValueOpt boxPlot "uirevision"
