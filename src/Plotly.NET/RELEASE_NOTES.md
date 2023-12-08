@@ -2,6 +2,8 @@
 
 [Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/5)
 
+- [Add Chart.Pareto](https://github.com/plotly/Plotly.NET/pull/431). This contribution started with the [fslab hackathon 2023](https://github.com/orgs/fslaborg/projects/6) and was submitted by [@rockfaith75](https://github.com/rockfaith75) and [@smoothdeveloper](https://github.com/smoothdeveloper), thank you!
+
 - Keep up with plotlyjs 2.x incremental updates:
     - v2.22:
         - [Implement multi legend support](https://github.com/plotly/Plotly.NET/issues/406)
@@ -13,6 +15,13 @@
         - [Add "Equal Earth" projection to geo subplots](https://github.com/plotly/Plotly.NET/commit/0ea7d3e0da77937e1b9d31bc4a6552d7499a660a)
         - [Complete bindings for geo projections](https://github.com/plotly/Plotly.NET/commit/0ea7d3e0da77937e1b9d31bc4a6552d7499a660a)
         - [Add options to include legends for shapes and newshape](https://github.com/plotly/Plotly.NET/commit/0ea7d3e0da77937e1b9d31bc4a6552d7499a660a)
+    - v2.26:
+        - [Add new autorange options](https://github.com/plotly/Plotly.NET/commit/92f92a5c9faef6710ef39438f8145183e3054575)
+        - [Add [n]-sigma (std deviations) box plots](https://github.com/plotly/Plotly.NET/commit/d1c63b97eadd8576d649986ba62f1c4951eda137)
+        - [Add "top left" & "top center" side options to legend title](https://github.com/plotly/Plotly.NET/commit/bebe507963c4af2a37ec6ad5afd960e1543c161a)
+        - [Add "false" option to scaleanchor](https://github.com/plotly/Plotly.NET/commit/bad6d531501e37f27b16b11bf83d8711640a7605)
+    - v2.27:
+        - []()
 
 - [Plotly.NET.ImageExport (4.0.0 -> 5.0.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.ImageExport/RELEASE_NOTES.md)
 - [Plotly.NET.Interactive (4.1.0 -> 4.2.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.Interactive/RELEASE_NOTES.md)
