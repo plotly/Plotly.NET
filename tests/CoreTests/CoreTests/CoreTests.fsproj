@@ -36,6 +36,7 @@
     <Compile Include="Traces\TraceStaticMembers.fs" />
     <Compile Include="Traces\TraceStyle.fs" />
     <Compile Include="Traces\TraceID.fs" />
+    <Compile Include="UpstreamFeatures\2.27.fs" />
     <Compile Include="UpstreamFeatures\2.26.fs" />
     <Compile Include="UpstreamFeatures\2.25.fs" />
     <Compile Include="UpstreamFeatures\2.24.fs" />

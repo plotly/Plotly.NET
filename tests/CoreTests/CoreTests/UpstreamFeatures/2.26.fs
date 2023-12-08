@@ -68,11 +68,11 @@ module ``AutoRangeOptions`` =
             ]
         ]
 
-module ``N-sigma (std deviations) box plots`` =
+module ``N-sigma box plots`` =
     [<Tests>]
     let ``Sigma boxplots`` =
         testList "UpstreamFeatures.PlotlyJS_2_26" [
-            testList "N-sigma (std deviations) box plots" [
+            testList "N-sigma box plots" [
                 testCase "2-Sigma box plot data" ( fun () -> 
                     """var data = [{"type":"box","marker":{},"line":{},"sizemode":"sd","y":[-20,1,2,3,1,2,3,3,3,3,3,1,5,20],"sdmultiple":2.0}];"""
                     |> chartGeneratedContains ``N-sigma (std deviations) box plots``.``2-sigma BoxPlot``
@@ -83,11 +83,11 @@ module ``N-sigma (std deviations) box plots`` =
             ]
         ]
 
-module ``New Side options for (legend) titles`` =
+module ``New Side options for legend titles`` =
     [<Tests>]
     let ``New Title Side options`` =
         testList "UpstreamFeatures.PlotlyJS_2_26" [
-            testList "New Side options for (legend) titles" [
+            testList "New Side options for legend titles" [
                 testCase "top left data" ( fun () -> 
                     """var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{}},{"type":"scatter","mode":"markers","x":[3],"y":[4],"marker":{},"line":{}}];"""
                     |> chartGeneratedContains ``New Side options for (legend) titles``.``Point charts with horizontal legend title top left``

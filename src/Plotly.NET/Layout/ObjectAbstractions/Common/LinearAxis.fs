@@ -69,6 +69,7 @@ type LinearAxis() =
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="HoverFormat">Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
+    /// <param name="InsideRange">Could be used to set the desired inside range of this axis (excluding the labels) when `ticklabelposition` of the anchored axis has "inside". Not implemented for axes with `type` "log". This would be ignored when `range` is provided.</param>
     /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
     /// <param name="LineColor">Sets the axis line color.</param>
     /// <param name="LineWidth">Sets the width (in px) of the axis line.</param>
@@ -157,6 +158,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
             [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?InsideRange: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
@@ -246,6 +248,7 @@ type LinearAxis() =
             ?TickFormat = TickFormat,
             ?TickFormatStops = TickFormatStops,
             ?HoverFormat = HoverFormat,
+            ?InsideRange = InsideRange,
             ?ShowLine = ShowLine,
             ?LineColor = LineColor,
             ?LineWidth = LineWidth,
@@ -848,8 +851,9 @@ type LinearAxis() =
     /// <param name="TickFormat">Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
     /// <param name="TickFormatStops">Set rules for customizing TickFormat on different zoom levels</param>
     /// <param name="HoverFormat">Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format. And for dates see: https://github.com/d3/d3-time-format#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with TickFormat "%H~%M~%S.%2f" would display "09~15~23.46"</param>
-    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
+    /// <param name="InsideRange">Could be used to set the desired inside range of this axis (excluding the labels) when `ticklabelposition` of the anchored axis has "inside". Not implemented for axes with `type` "log". This would be ignored when `range` is provided.</param>
     /// <param name="LineColor">Sets the axis line color.</param>
+    /// <param name="ShowLine">Determines whether or not a line bounding this axis is drawn.</param>
     /// <param name="LineWidth">Sets the width (in px) of the axis line.</param>
     /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn at every tick mark.</param>
     /// <param name="GridColor">Sets the color of the grid lines.</param>
@@ -953,6 +957,7 @@ type LinearAxis() =
             [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
             [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
             [<Optional; DefaultParameterValue(null)>] ?HoverFormat: string,
+            [<Optional; DefaultParameterValue(null)>] ?InsideRange: StyleParam.Range,
             [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
@@ -1059,6 +1064,7 @@ type LinearAxis() =
             TickFormat |> DynObj.setValueOpt axis "tickformat"
             TickFormatStops |> DynObj.setValueOpt axis "tickformatstops"
             HoverFormat |> DynObj.setValueOpt axis "hoverformat"
+            InsideRange |> DynObj.setValueOptBy axis "insiderange" StyleParam.Range.convert
             ShowLine |> DynObj.setValueOpt axis "showline"
             LineColor |> DynObj.setValueOpt axis "linecolor"
             LineWidth |> DynObj.setValueOpt axis "linewidth"

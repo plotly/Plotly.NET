@@ -12,6 +12,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Include="TestCharts\UpstreamFeatures\2.27.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.26.fs" />
     <Compile Include="TestUtils.fs" />
     <Compile Include="TestCharts\Chart2DTestCharts.fs" />
