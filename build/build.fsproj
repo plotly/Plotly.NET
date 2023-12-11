@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
@@ -19,14 +19,14 @@
 
   <ItemGroup>
     <PackageReference Include="BlackFox.Fake.BuildTask" Version="0.1.3" />
-    <PackageReference Include="Fake.Api.Github" Version="5.22.0" />
-    <PackageReference Include="Fake.Core.Process" Version="5.22.0" />
-    <PackageReference Include="Fake.Core.ReleaseNotes" Version="5.22.0" />
-    <PackageReference Include="Fake.Core.Target" Version="5.22.0" />
-    <PackageReference Include="Fake.DotNet.Cli" Version="5.22.0" />
-    <PackageReference Include="Fake.DotNet.MSBuild" Version="5.22.0" />
-    <PackageReference Include="Fake.IO.FileSystem" Version="5.22.0" />
-    <PackageReference Include="Fake.Tools.Git" Version="5.22.0" />
+    <PackageReference Include="Fake.Api.Github" Version="6.0.0" />
+    <PackageReference Include="Fake.Core.Process" Version="6.0.0" />
+    <PackageReference Include="Fake.Core.ReleaseNotes" Version="6.0.0" />
+    <PackageReference Include="Fake.Core.Target" Version="6.0.0" />
+    <PackageReference Include="Fake.DotNet.Cli" Version="6.0.0" />
+    <PackageReference Include="Fake.DotNet.MSBuild" Version="6.0.0" />
+    <PackageReference Include="Fake.IO.FileSystem" Version="6.0.0" />
+    <PackageReference Include="Fake.Tools.Git" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

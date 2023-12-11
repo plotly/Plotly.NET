@@ -30,6 +30,7 @@ let pack = BuildTask.create "Pack" [ clean; build; runTestsAll ] {
                                     "TargetsForTfmSpecificContentInPackage", "" //https://github.com/dotnet/fsharp/issues/12320
                                     ]
                                     @ p.MSBuildParams.Properties)
+                            DisableInternalBinLog = true
                         }
                     | _ ->
                         { p.MSBuildParams with
@@ -41,6 +42,7 @@ let pack = BuildTask.create "Pack" [ clean; build; runTestsAll ] {
                                     "TargetsForTfmSpecificContentInPackage", "" //https://github.com/dotnet/fsharp/issues/12320
                                     ]
                                     @ p.MSBuildParams.Properties)
+                            DisableInternalBinLog = true
                         }
                         
 
@@ -49,7 +51,7 @@ let pack = BuildTask.create "Pack" [ clean; build; runTestsAll ] {
                     OutputPath = Some pkgDir
                     NoBuild = true
                 }
-                |> DotNet.Options.withCustomParams (Some "--no-dependencies")
+                |> DotNet.Options.withCustomParams (Some "--no-dependencies -tl")
             )
         else
             failwith "aborted"
@@ -84,6 +86,7 @@ let packPrerelease =
                                         "PackageReleaseNotes",  (r.Notes |> String.concat "\r\n")
                                         "TargetsForTfmSpecificContentInPackage", "" //https://github.com/dotnet/fsharp/issues/12320
                                         ])
+                                DisableInternalBinLog = true
                             }
                         | _ -> 
                             { p.MSBuildParams with
@@ -94,6 +97,7 @@ let packPrerelease =
                                         "InformationalVersion", pInfo.AssemblyInformationalVersion
                                         "TargetsForTfmSpecificContentInPackage", "" //https://github.com/dotnet/fsharp/issues/12320
                                         ])
+                                DisableInternalBinLog = true
                             }
 
                     { p with
@@ -102,7 +106,7 @@ let packPrerelease =
                         MSBuildParams = msBuildParams
                         NoBuild = true
                     }
-                    |> DotNet.Options.withCustomParams (Some "--no-dependencies")
+                    |> DotNet.Options.withCustomParams (Some "--no-dependencies  -tl")
                 )
             else
                 failwith "aborted"

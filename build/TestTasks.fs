@@ -13,8 +13,11 @@ let createTestBuildTask (name: string) (deps: BuildTask.TaskInfo list) (projects
             let proj = pInfo.ProjFile
             proj
             |> DotNet.build (fun p ->
-                p
-                |> DotNet.Options.withCustomParams (Some "--no-dependencies")
+                {
+                    p with
+                        MSBuildParams = { p.MSBuildParams with DisableInternalBinLog = true}
+                }
+                |> DotNet.Options.withCustomParams (Some "--no-dependencies -tl")
             )
         )
     }
@@ -40,8 +43,12 @@ let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: 
                         Logger = Some "console;verbosity=detailed"
                         Configuration = DotNet.BuildConfiguration.fromString configuration
                         NoBuild = true
-                    })
-                testProjectInfo.ProjFile)
+                        MSBuildParams = { testParams.MSBuildParams with DisableInternalBinLog = true }
+                    }
+                    |> DotNet.Options.withCustomParams (Some "-tl")
+                )
+                testProjectInfo.ProjFile
+        )
     }
 
 /// runs the all test projects via `dotnet test`
