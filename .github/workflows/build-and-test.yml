@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.x.x
+        dotnet-version: 8.x.x
     - name: make script executable
       run: chmod u+x build.sh
     - name: Build and test
@@ -33,7 +33,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.x.x
+        dotnet-version: 8.x.x
     - name: Build and test (includes netfx)
       working-directory: ./
       run: ./build.cmd runtestsall

@@ -31,19 +31,15 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET", "src\Plotly.NE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{2461AFBF-6E10-4F7B-A0EA-3D62541C2EB1}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build-and-deploy-docs.yml = .github\workflows\build-and-deploy-docs.yml
 		.github\workflows\build-and-test.yml = .github\workflows\build-and-test.yml
-		.github\workflows\check-formatting.yml = .github\workflows\check-formatting.yml
-		.github\workflows\push-prerelease.yml = .github\workflows\push-prerelease.yml
-		.github\workflows\verify-docs.yml = .github\workflows\verify-docs.yml
 	EndProjectSection
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Plotly.NET.Interactive", "src\Plotly.NET.Interactive\Plotly.NET.Interactive.fsproj", "{0F135E3B-B0E1-42A9-B180-18C0221DC7B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F1E1-4094-9DE4-B047581E01F0}"
 	ProjectSection(SolutionItems) = preProject
-		docs\Dockerfile = docs\Dockerfile
 		docs\404.fsx.txt = docs\404.fsx.txt
+		docs\Dockerfile = docs\Dockerfile
 		docs\index.fsx = docs\index.fsx
 		docs\NuGet.config = docs\NuGet.config
 		docs\_template.html = docs\_template.html
@@ -145,10 +141,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_distribution-charts", "0
 		docs\distribution-charts\box-plots.fsx = docs\distribution-charts\box-plots.fsx
 		docs\distribution-charts\contour-plots.fsx = docs\distribution-charts\contour-plots.fsx
 		docs\distribution-charts\histograms.fsx = docs\distribution-charts\histograms.fsx
+		docs\distribution-charts\pareto-chart.fsx = docs\distribution-charts\pareto-chart.fsx
 		docs\distribution-charts\point-density.fsx = docs\distribution-charts\point-density.fsx
 		docs\distribution-charts\splom.fsx = docs\distribution-charts\splom.fsx
 		docs\distribution-charts\violin-plots.fsx = docs\distribution-charts\violin-plots.fsx
-		docs\distribution-charts\pareto-chart.fsx = docs\distribution-charts\pareto-chart.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_chart-layout", "01_chart-layout", "{C7D0EF67-9A18-49DD-AC79-944E384BD8D0}"
