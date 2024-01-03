@@ -283,7 +283,7 @@ module Histogram2DContour =
         let x = Array.init n (fun i -> ((step i)**3.) + (0.3 * (normal (rnd) 0. 2.) ))
         let y = Array.init n (fun i -> ((step i)**6.) + (0.3 * (normal (rnd) 0. 2.) ))
         [
-            Chart.Histogram2DContour (x = x, y = y,ContourLine=Line.init(Width=0.), UseDefaults = false)
+            Chart.Histogram2DContour (x = x, y = y,ContourLines=Line.init(Width=0.), UseDefaults = false)
             Chart.Point(x = x,y = y,Opacity=0.3, UseDefaults = false)
         ]
         |> Chart.combine
@@ -476,6 +476,6 @@ module PointDensity =
             PointMarkerSize = 4,
             ColorScale = StyleParam.Colorscale.Viridis,
             ColorBar = ColorBar.init(Title = Title.init("Density")),
-            ShowContourLabels = true,
+            ShowContoursLabels = true,
             UseDefaults = false
         )

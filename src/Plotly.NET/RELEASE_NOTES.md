@@ -21,7 +21,7 @@
         - [Add "top left" & "top center" side options to legend title](https://github.com/plotly/Plotly.NET/commit/bebe507963c4af2a37ec6ad5afd960e1543c161a)
         - [Add "false" option to scaleanchor](https://github.com/plotly/Plotly.NET/commit/bad6d531501e37f27b16b11bf83d8711640a7605)
     - v2.27:
-        - []()
+        - [Add insiderange to cartesian axes](https://github.com/plotly/Plotly.NET/commit/f7d24df0e76130a323c52f8f4d57cdbe8622d241)
 
 - [Plotly.NET.ImageExport (4.0.0 -> 5.0.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.ImageExport/RELEASE_NOTES.md)
 - [Plotly.NET.Interactive (4.1.0 -> 4.2.0)](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.Interactive/RELEASE_NOTES.md)

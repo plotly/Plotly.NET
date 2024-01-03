@@ -9,44 +9,15 @@ open DynamicObj
 open Giraffe.ViewEngine
 open Newtonsoft.Json
 
+let getZeroCollection n : float []=
+    Array.zeroCreate n 
+
 [<EntryPoint>]
 let main argv =
-    Chart.Line(
-        x = [1; 2; 3; 4],
-        y = [1; 1; 2; 3], 
+    Chart.Histogram2DContour(
+        MultiX = [["A";"A";"A";"B";"B"];["AA"; "AA"; "AB"; "BA"; "BB"]],
+        MultiY = [["A";"A";"A";"B";"B"];["AA"; "AA"; "AB"; "BA"; "BB"]],
         UseDefaults = false
-    )
-    |> Chart.withXAxis(
-        LinearAxis.init(
-            Anchor = StyleParam.LinearAxisId.Y 1,
-            Ticks = StyleParam.TickOptions.Inside,
-            TickLabelPosition = StyleParam.TickLabelPosition.Inside
-        )
-    )
-    |> Chart.withYAxis(
-        LinearAxis.init(
-            Anchor = StyleParam.LinearAxisId.X 1,
-            InsideRange = StyleParam.Range.ofMinMax(1, 3)
-        )
-    )
-    |> Chart.show
-    Chart.Line(
-        x = [1; 2; 3; 4],
-        y = [1; 1; 2; 3], 
-        UseDefaults = false
-    )
-    |> Chart.withXAxis(
-        LinearAxis.init(
-            Anchor = StyleParam.LinearAxisId.Y 1,
-            InsideRange = StyleParam.Range.ofMinMax(1, 3)
-        )
-    )
-    |> Chart.withYAxis(
-        LinearAxis.init(
-            Anchor = StyleParam.LinearAxisId.X 1,
-            Ticks = StyleParam.TickOptions.Inside,
-            TickLabelPosition = StyleParam.TickLabelPosition.Inside
-        )
     )
     |> Chart.show
     0

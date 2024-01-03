@@ -1548,79 +1548,6 @@ module Chart2D =
                 ?UseDefaults = UseDefaults
             )
             
-        /// <summary> Creates a Pareto chart. </summary>
-        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Label">Sets the y axis label.</param>
-        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
-        [<Extension>]
-        static member Pareto
-            (
-                keysValues: seq<#IConvertible * float>
-                , [<Optional; DefaultParameterValue(null)>] ?Name: string
-                , [<Optional; DefaultParameterValue(null)>] ?Label: string
-                , [<Optional; DefaultParameterValue(true)>] ?ShowGrid: bool
-            ) =
-            let orderedLabels, orderedValues =
-                keysValues
-                |> Seq.sortByDescending snd
-                |> Seq.unzip
-               
-            let sum = orderedValues |> Seq.sum
-            let topPaddingRatio = 0.05
-            let cumulativeSum = 
-                Seq.scan (+) 0. orderedValues
-                |> Seq.skip 1
-               
-            let paretoValues = 
-               Seq.zip orderedLabels cumulativeSum
-               |> Seq.map (fun (label,value) -> label, value / sum * 100.) 
-               
-            let bars = Chart.Column(Seq.zip orderedLabels orderedValues,?Name=Name)
-            
-            let lines = 
-                Chart.Line(
-                    paretoValues
-                    , Name        = "Cumulative %"
-                    , ShowLegend  = true
-                    , ShowMarkers = true
-                    , Marker      = Marker.init(Size = 8, Symbol = StyleParam.MarkerSymbol.Cross, Angle = 45.)
-                ) 
-                |> Chart.withAxisAnchor (Y = 2)
-                   
-            [bars;lines] 
-            |> Chart.combine 
-            |> Chart.withYAxisStyle (
-                    ?TitleText = Label
-                    , Id       = StyleParam.SubPlotId.YAxis 1
-                    , ShowGrid = false
-                    , MinMax   = (0.,sum * (1.+topPaddingRatio))
-                )
-            |> Chart.withYAxisStyle (
-                    TitleText    = "%"
-                    , Side       = StyleParam.Side.Right
-                    , Id         = StyleParam.SubPlotId.YAxis 2
-                    , MinMax     = (0.,100. * (1.+topPaddingRatio))
-                    , Overlaying = StyleParam.LinearAxisId.Y 1
-                    , ?ShowGrid  = ShowGrid
-                )     
-            
-        /// <summary> Creates a Pareto chart. </summary>
-        /// <param name="labels">Sets the labels that are matching the <see paramref="values"/>.</param>
-        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="Label">Sets the y axis label.</param>
-        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
-        static member Pareto
-            (
-                labels: seq<#IConvertible>
-                , values: seq<float>
-                , [<Optional; DefaultParameterValue(null)>] ?Name: string
-                , [<Optional; DefaultParameterValue(null)>] ?Label: string
-                , [<Optional; DefaultParameterValue(true)>] ?ShowGrid: bool
-            ) =
-            Chart.Pareto(Seq.zip labels values, ?Name=Name, ?Label=Label, ?ShowGrid=ShowGrid)
-            
         /// <summary> Creates an Area chart, which uses a Line plotted between the given datums in a 2D space, additionally colouring the area between the line and the Y Axis.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
@@ -4461,15 +4388,24 @@ module Chart2D =
         /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings. Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D) histogram `bingroup`</param>
         /// <param name="YBins">Sets the binning across the y dimension</param>
         /// <param name="Marker">Sets the marker of this trace.</param>
-        /// <param name="ContourLineDash">Sets the contour line dash style</param>
-        /// <param name="ContourLineColor">Sets the contour line color</param>
-        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
-        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContourLinesDash">Sets the contour line dash style</param>
+        /// <param name="ContourLinesColor">Sets the contour line color</param>
+        /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLinesWidth">Sets the width of the contour lines</param>
+        /// <param name="ContourLines">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ShowContourLines">Wether or not to show the contour line</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
+        /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
         /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
-        /// <param name="Contours">Sets the style of the contours</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
@@ -4493,28 +4429,58 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?YBinGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLines: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContourLines: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContoursLabels: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursLabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursStart: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursEnd: float,
+                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
-                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
                 [<Optional; DefaultParameterValue(null)>] ?NContours: int,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
+
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let contourLine =
-                ContourLine
+            let showContourLines =
+                defaultArg ShowContourLines false
+
+            let contourLineWidth =
+                ContourLinesWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+
+            let contours =
+                Contours
+                |> Option.defaultValue (TraceObjects.Contours.init ())
+                |> TraceObjects.Contours.style (
+                    ?Coloring = ContoursColoring,
+                    ?Operation = ContoursOperation,
+                    ?Start = ContoursStart,
+                    ?End = ContoursEnd,
+                    ?Type = ContoursType,
+                    ?ShowLabels = ShowContoursLabels,
+                    ?LabelFont = ContoursLabelFont
+                )
+
+            let contourLines =
+                ContourLines
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
-                    ?Color = ContourLineColor,
-                    ?Dash = ContourLineDash,
-                    ?Smoothing = ContourLineSmoothing
+                    Width = contourLineWidth,
+                    ?Color = ContourLinesColor,
+                    ?Dash = ContourLinesDash,
+                    ?Smoothing = ContourLinesSmoothing
                 )
 
             Trace2D.initHistogram2DContour (
@@ -4537,12 +4503,12 @@ module Chart2D =
                     ?YBinGroup = YBinGroup,
                     ?YBins = YBins,
                     ?Marker = Marker,
-                    Line = contourLine,
+                    Line = contourLines,
                     ?ColorBar = ColorBar,
                     ?ColorScale = ColorScale,
                     ?ShowScale = ShowScale,
                     ?ReverseScale = ReverseScale,
-                    ?Contours = Contours,
+                    Contours = contours,
                     ?NContours = NContours
                 )
             )
@@ -4569,10 +4535,20 @@ module Chart2D =
         /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings. Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D) histogram `bingroup`</param>
         /// <param name="YBins">Sets the binning across the y dimension</param>
         /// <param name="Marker">Sets the marker of this trace.</param>
-        /// <param name="ContourLineDash">Sets the contour line dash style</param>
-        /// <param name="ContourLineColor">Sets the contour line color</param>
-        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
-        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContourLinesDash">Sets the contour line dash style</param>
+        /// <param name="ContourLinesColor">Sets the contour line color</param>
+        /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLinesWidth">Sets the width of the contour lines</param>
+        /// <param name="ContourLines">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ShowContourLines">Wether or not to show the contour line</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
+        /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
         /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
         /// <param name="ColorScale">Sets the colorscale for this trace.</param>
         /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
@@ -4599,15 +4575,24 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?YBinGroup: string,
                 [<Optional; DefaultParameterValue(null)>] ?YBins: Bins,
                 [<Optional; DefaultParameterValue(null)>] ?Marker: Marker,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLines: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContourLines: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContoursLabels: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursLabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursStart: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursEnd: float,
+                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
                 [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
                 [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
-                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
                 [<Optional; DefaultParameterValue(null)>] ?NContours: int,
                 [<Optional; DefaultParameterValue(true)>] ?UseDefaults: bool
             ) =
@@ -4628,15 +4613,24 @@ module Chart2D =
                 ?YBinGroup = YBinGroup,
                 ?YBins = YBins,
                 ?Marker = Marker,
-                ?ContourLineColor = ContourLineColor,
-                ?ContourLineDash = ContourLineDash,
-                ?ContourLineSmoothing = ContourLineSmoothing,
-                ?ContourLine = ContourLine,
+                ?ContourLinesColor = ContourLinesColor,
+                ?ContourLinesDash = ContourLinesDash,
+                ?ContourLinesSmoothing = ContourLinesSmoothing,
+                ?ContourLinesWidth = ContourLinesWidth,
+                ?ContourLines = ContourLines,
+                ?ShowContourLines= ShowContourLines,
+                ?ContoursColoring = ContoursColoring,
+                ?ContoursOperation = ContoursOperation,
+                ?ContoursType = ContoursType,
+                ?ShowContoursLabels = ShowContoursLabels,
+                ?ContoursLabelFont = ContoursLabelFont,
+                ?ContoursStart = ContoursStart,
+                ?ContoursEnd = ContoursEnd,
+                ?Contours = Contours,
                 ?ColorBar = ColorBar,
                 ?ColorScale = ColorScale,
                 ?ShowScale = ShowScale,
                 ?ReverseScale = ReverseScale,
-                ?Contours = Contours,
                 ?NContours = NContours,
                 ?UseDefaults = UseDefaults
             )
@@ -5119,15 +5113,19 @@ module Chart2D =
         /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
         /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
         /// <param name="Transpose">Transposes the z data.</param>
-        /// <param name="ContourLineDash">Sets the contour line dash style</param>
-        /// <param name="ContourLineColor">Sets the contour line color</param>
-        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
-        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContourLinesDash">Sets the contour line dash style</param>
+        /// <param name="ContourLinesColor">Sets the contour line color</param>
+        /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLinesWidth">Sets the width of the contour lines</param>
+        /// <param name="ContourLines">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ShowContourLines">Wether or not to show the contour line</param>
         /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
         /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
         /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
         /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
         /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
+        /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
         /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
         /// <param name="FillColor">Sets the fill color if `contours.type` is "constraint". Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
         /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
@@ -5150,15 +5148,19 @@ module Chart2D =
                 [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
                 [<Optional; DefaultParameterValue(null)>] ?Transpose: bool,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineColor: Color,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineDash: StyleParam.DrawingStyle,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLineSmoothing: float,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLine: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLines: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContourLines: bool,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
                 [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
-                [<Optional; DefaultParameterValue(null)>] ?ShowContourLabels: bool,
-                [<Optional; DefaultParameterValue(null)>] ?ContourLabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContoursLabels: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursLabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursStart: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursEnd: float,
                 [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
                 [<Optional; DefaultParameterValue(null)>] ?FillColor: Color,
                 [<Optional; DefaultParameterValue(null)>] ?NContours: int,
@@ -5168,24 +5170,33 @@ module Chart2D =
             let useDefaults =
                 defaultArg UseDefaults true
 
+            let showContourLines =
+                defaultArg ShowContourLines false
+
+            let contourLinesWidth =
+                ContourLinesWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+
             let contours =
                 Contours
                 |> Option.defaultValue (TraceObjects.Contours.init ())
                 |> TraceObjects.Contours.style (
                     ?Coloring = ContoursColoring,
                     ?Operation = ContoursOperation,
+                    ?Start = ContoursStart,
+                    ?End = ContoursEnd,
                     ?Type = ContoursType,
-                    ?ShowLabels = ShowContourLabels,
-                    ?LabelFont = ContourLabelFont
+                    ?ShowLabels = ShowContoursLabels,
+                    ?LabelFont = ContoursLabelFont
                 )
 
-            let line =
-                ContourLine
+            let contourLines =
+                ContourLines
                 |> Option.defaultValue (Plotly.NET.Line.init ())
                 |> Plotly.NET.Line.style (
-                    ?Color = ContourLineColor,
-                    ?Dash = ContourLineDash,
-                    ?Smoothing = ContourLineSmoothing
+                    Width = contourLinesWidth,
+                    ?Color = ContourLinesColor,
+                    ?Dash = ContourLinesDash,
+                    ?Smoothing = ContourLinesSmoothing
                 )
 
             Trace2D.initContour (
@@ -5208,7 +5219,7 @@ module Chart2D =
                     ?FillColor = FillColor,
                     ?NContours = NContours,
                     Contours = contours,
-                    Line = line
+                    Line = contourLines
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
@@ -5806,15 +5817,22 @@ module Chart2D =
         /// <param name="PointMarkerColor">Sets the marker color of the point trace.</param>
         /// <param name="PointMarkerSymbol">Sets the marker symbol of the point trace.</param>
         /// <param name="PointMarkerSize">Sets the marker size of the point trace.</param>
-        /// <param name="ContourLineColor">Sets the color of the contour lines of the histogram2dcontour trace.</param>
-        /// <param name="ContourLineSmoothing">Sets the smoothing of the contour lines of the histogram2dcontour trace.</param>
-        /// <param name="ContourLineWidth">Sets the width of the contour lines of the histogram2dcontour trace.</param>
-        /// <param name="ShowContourLines">Whether or not to show contour lines</param>
-        /// <param name="ShowContourLabels">Whether or not to show contour labels</param>
-        /// <param name="ContourColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
-        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
-        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
-        /// <param name="ContourOpacity">Sets the opacity of the histogram2dcontour trace.</param>
+
+        /// <param name="ContourLinesDash">Sets the contour line dash style</param>
+        /// <param name="ContourLinesColor">Sets the contour line color</param>
+        /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLinesWidth">Sets the width of the contour lines</param>
+        /// <param name="ContourLines">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ShowContourLines">Wether or not to show the contour line</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
+        /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+
         /// <param name="ColorBar">Sets the color bar.</param>
         /// <param name="ColorScale">Sets the colorscale of the histogram2dcontour trace.</param>
         /// <param name="ShowScale">whether or not to show the colorbar</param>
@@ -5824,23 +5842,31 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?PointOpacity: float,
-                ?PointMarkerColor: Color,
-                ?PointMarkerSymbol: StyleParam.MarkerSymbol,
-                ?PointMarkerSize: int,
-                ?ContourLineColor: Color,
-                ?ContourLineSmoothing: float,
-                ?ContourLineWidth: float,
-                ?ShowContourLines: bool,
-                ?ShowContourLabels: bool,
-                ?ContourColoring: StyleParam.ContourColoring,
-                ?NContours: int,
-                ?HistNorm: StyleParam.HistNorm,
-                ?ContourOpacity: float,
-                ?ColorBar: ColorBar,
-                ?ColorScale: StyleParam.Colorscale,
-                ?ShowScale: bool,
-                ?UseDefaults: bool
+                [<Optional; DefaultParameterValue(null)>] ?PointOpacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?PointMarkerColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?PointMarkerSymbol: StyleParam.MarkerSymbol,
+                [<Optional; DefaultParameterValue(null)>] ?PointMarkerSize: int,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesColor: Color,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesDash: StyleParam.DrawingStyle,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesSmoothing: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLinesWidth: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContourLines: Line,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContourLines: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursColoring: StyleParam.ContourColoring,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursOperation: StyleParam.ConstraintOperation,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursType: StyleParam.ContourType,
+                [<Optional; DefaultParameterValue(null)>] ?ShowContoursLabels: bool,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursLabelFont: Font,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursStart: float,
+                [<Optional; DefaultParameterValue(null)>] ?ContoursEnd: float,
+                [<Optional; DefaultParameterValue(null)>] ?Contours: Contours,
+                [<Optional; DefaultParameterValue(null)>] ?NContours: int,
+                [<Optional; DefaultParameterValue(null)>] ?HistNorm: StyleParam.HistNorm,
+                [<Optional; DefaultParameterValue(null)>] ?ContourOpacity: float,
+                [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
+                [<Optional; DefaultParameterValue(null)>] ?ColorScale: StyleParam.Colorscale,
+                [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
+                [<Optional; DefaultParameterValue(null)>] ?UseDefaults: bool
             ) =
 
             let showContourLines =
@@ -5849,14 +5875,14 @@ module Chart2D =
             let pointOpacity =
                 defaultArg PointOpacity 0.3
 
-            let contourColoring =
-                defaultArg ContourColoring StyleParam.ContourColoring.Fill
+            let contoursColoring =
+                defaultArg ContoursColoring StyleParam.ContourColoring.Fill
 
             let useDefaults =
                 defaultArg UseDefaults true
 
-            let contourLineWidth =
-                ContourLineWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+            let contourLinesWidth =
+                ContourLinesWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
 
             let marker =
                 Marker.init (?Color = PointMarkerColor, ?Symbol = PointMarkerSymbol, ?Size = PointMarkerSize)
@@ -5872,18 +5898,27 @@ module Chart2D =
                     )
                 )
 
-            let contourLine =
-                Plotly.NET.Line.init (
-                    ?Color = ContourLineColor,
-                    ?Smoothing = ContourLineSmoothing,
-                    Width = contourLineWidth
+            let contourLines =
+                ContourLines
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    Width = contourLinesWidth,
+                    ?Color = ContourLinesColor,
+                    ?Dash = ContourLinesDash,
+                    ?Smoothing = ContourLinesSmoothing
                 )
 
             let contours =
-                Contours.init (
-                    ShowLines = showContourLines,
-                    Coloring = contourColoring,
-                    ?ShowLabels = ShowContourLabels
+                Contours
+                |> Option.defaultValue (TraceObjects.Contours.init ())
+                |> TraceObjects.Contours.style (
+                    Coloring = contoursColoring,
+                    ?Operation = ContoursOperation,
+                    ?Start = ContoursStart,
+                    ?End = ContoursEnd,
+                    ?Type = ContoursType,
+                    ?ShowLabels = ShowContoursLabels,
+                    ?LabelFont = ContoursLabelFont
                 )
 
             let densityContourTrace =
@@ -5892,7 +5927,7 @@ module Chart2D =
                         X = x,
                         Y = y,
                         Contours = contours,
-                        Line = contourLine,
+                        Line = contourLines,
                         ?NContours = NContours,
                         ?ColorBar = ColorBar,
                         ?ColorScale = ColorScale,
@@ -5907,3 +5942,76 @@ module Chart2D =
                 pointTrace :> Trace
             ]
             |> GenericChart.ofTraceObjects useDefaults
+
+        /// <summary> Creates a Pareto chart. </summary>
+        /// <param name="keysValues">Sets the (key,value) pairs that are plotted as the size and key of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Label">Sets the y axis label.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
+        [<Extension>]
+        static member Pareto
+            (
+                keysValues: seq<#IConvertible * float>
+                , [<Optional; DefaultParameterValue(null)>] ?Name: string
+                , [<Optional; DefaultParameterValue(null)>] ?Label: string
+                , [<Optional; DefaultParameterValue(true)>] ?ShowGrid: bool
+            ) =
+            let orderedLabels, orderedValues =
+                keysValues
+                |> Seq.sortByDescending snd
+                |> Seq.unzip
+               
+            let sum = orderedValues |> Seq.sum
+            let topPaddingRatio = 0.05
+            let cumulativeSum = 
+                Seq.scan (+) 0. orderedValues
+                |> Seq.skip 1
+               
+            let paretoValues = 
+               Seq.zip orderedLabels cumulativeSum
+               |> Seq.map (fun (label,value) -> label, value / sum * 100.) 
+               
+            let bars = Chart.Column(Seq.zip orderedLabels orderedValues,?Name=Name)
+            
+            let lines = 
+                Chart.Line(
+                    paretoValues
+                    , Name        = "Cumulative %"
+                    , ShowLegend  = true
+                    , ShowMarkers = true
+                    , Marker      = Marker.init(Size = 8, Symbol = StyleParam.MarkerSymbol.Cross, Angle = 45.)
+                ) 
+                |> Chart.withAxisAnchor (Y = 2)
+                   
+            [bars;lines] 
+            |> Chart.combine 
+            |> Chart.withYAxisStyle (
+                    ?TitleText = Label
+                    , Id       = StyleParam.SubPlotId.YAxis 1
+                    , ShowGrid = false
+                    , MinMax   = (0.,sum * (1.+topPaddingRatio))
+                )
+            |> Chart.withYAxisStyle (
+                    TitleText    = "%"
+                    , Side       = StyleParam.Side.Right
+                    , Id         = StyleParam.SubPlotId.YAxis 2
+                    , MinMax     = (0.,100. * (1.+topPaddingRatio))
+                    , Overlaying = StyleParam.LinearAxisId.Y 1
+                    , ?ShowGrid  = ShowGrid
+                )     
+            
+        /// <summary> Creates a Pareto chart. </summary>
+        /// <param name="labels">Sets the labels that are matching the <see paramref="values"/>.</param>
+        /// <param name="values">Sets the values that are plotted as the size of each bar.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Label">Sets the y axis label.</param>
+        /// <param name="ShowGrid">Determines whether or not grid lines are drawn. If "true", the grid lines are drawn for the pareto distribution figure; defaults to true.</param>
+        static member Pareto
+            (
+                labels: seq<#IConvertible>
+                , values: seq<float>
+                , [<Optional; DefaultParameterValue(null)>] ?Name: string
+                , [<Optional; DefaultParameterValue(null)>] ?Label: string
+                , [<Optional; DefaultParameterValue(true)>] ?ShowGrid: bool
+            ) =
+            Chart.Pareto(Seq.zip labels values, ?Name=Name, ?Label=Label, ?ShowGrid=ShowGrid)

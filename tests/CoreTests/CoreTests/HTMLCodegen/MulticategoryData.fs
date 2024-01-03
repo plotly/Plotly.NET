@@ -171,7 +171,7 @@ let multicategoryHistogram2DContour =
 let ``Multicategory histogram2Dcontour tests`` =
     testList "MulticategoryData.Histogram2DContour" [
         testCase "Multicategory histogram2Dcontour data" ( fun () ->
-            """var data = [{"type":"histogram2dcontour","x":[["A","A","A","B","B"],["AA","AA","AB","BA","BB"]],"y":[["A","A","A","B","B"],["AA","AA","AB","BA","BB"]],"line":{}}];"""
+            """var data = [{"type":"histogram2dcontour","x":[["A","A","A","B","B"],["AA","AA","AB","BA","BB"]],"y":[["A","A","A","B","B"],["AA","AA","AB","BA","BB"]],"line":{"width":0.0},"contours":{}}];"""
             |> chartGeneratedContains multicategoryHistogram2DContour
         );
         testCase "Multicategory histogram2Dcontour layout" ( fun () ->
@@ -249,7 +249,7 @@ let multicategoryContour =
 let ``Multicategory contour tests`` =
     testList "MulticategoryData.Contour" [
         testCase "Multicategory contour data" ( fun () ->
-            """var data = [{"type":"contour","x":[["A","A","B"],["AA","AB","BA"]],"y":[["A","A","B"],["AA","AB","BA"]],"z":[[1,2,3],[2,3,1],[3,1,2]],"line":{},"contours":{}}];"""
+            """var data = [{"type":"contour","x":[["A","A","B"],["AA","AB","BA"]],"y":[["A","A","B"],["AA","AB","BA"]],"z":[[1,2,3],[2,3,1],[3,1,2]],"line":{"width":0.0},"contours":{}}];"""
             |> chartGeneratedContains multicategoryContour
         );
         testCase "Multicategory contour layout" ( fun () ->
