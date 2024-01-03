@@ -4,6 +4,8 @@
 
 - [Add Chart.Pareto](https://github.com/plotly/Plotly.NET/pull/431). This contribution started with the [fslab hackathon 2023](https://github.com/orgs/fslaborg/projects/6) and was submitted by [@rockfaith75](https://github.com/rockfaith75) and [@smoothdeveloper](https://github.com/smoothdeveloper), thank you!
 
+- [Make Contours setting directly accessible on all supported traces](https://github.com/plotly/Plotly.NET/issues/426)
+
 - Keep up with plotlyjs 2.x incremental updates:
     - v2.22:
         - [Implement multi legend support](https://github.com/plotly/Plotly.NET/issues/406)
