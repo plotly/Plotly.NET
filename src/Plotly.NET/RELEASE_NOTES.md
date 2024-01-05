@@ -1,10 +1,14 @@
 ### 5.0.0 - TBD
 
+Major release with lots of bug fixes, improvements, and upstream feature additions from plotly.js. Many changes are backwards-incompatible with previous versions.
+
 [Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/5)
 
 - [Add Chart.Pareto](https://github.com/plotly/Plotly.NET/pull/431). This contribution started with the [fslab hackathon 2023](https://github.com/orgs/fslaborg/projects/6) and was submitted by [@rockfaith75](https://github.com/rockfaith75) and [@smoothdeveloper](https://github.com/smoothdeveloper), thank you!
 
-- [Make Contours setting directly accessible on all supported traces](https://github.com/plotly/Plotly.NET/issues/426)
+- Make Contours setting directly accessible on all supported traces, fixes [#426](https://github.com/plotly/Plotly.NET/issues/426)
+
+- [Expand DisplayOptions](https://github.com/plotly/Plotly.NET/commit/488568c789fa2fa050fc55f5bff26a8780ba216e) to include direct fields for document title, description, charset, and favicon, fixes [#374](https://github.com/plotly/Plotly.NET/issues/374)
 
 - Keep up with plotlyjs 2.x incremental updates:
     - v2.22:
