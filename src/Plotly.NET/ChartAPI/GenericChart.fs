@@ -296,8 +296,8 @@ type GenericChart =
 
         let displayOpts = GenericChart.getDisplayOptions gChart
 
-        let description =
-            displayOpts |> DisplayOptions.getDescription
+        let chartDescription =
+            displayOpts |> DisplayOptions.getChartDescription
 
         let plotlyReference =
             displayOpts |> DisplayOptions.getPlotlyReference
@@ -312,7 +312,7 @@ type GenericChart =
                         config = configJson,
                         plotlyReference = plotlyReference
                     )
-                yield! description
+                yield! chartDescription
             ]
 
     /// <summary>
@@ -349,16 +349,32 @@ type GenericChart =
 
         let displayOpts = GenericChart.getDisplayOptions gChart
 
+        let documentTitle =
+            (displayOpts |> DisplayOptions.getDocumentTitle)
+
+        let documentDescription =
+            (displayOpts |> DisplayOptions.getDocumentDescription)
+
+        let documentCharset =
+            (displayOpts |> DisplayOptions.getDocumentCharset)
+
+        let documentFavicon =
+            (displayOpts |> DisplayOptions.getDocumentFavicon)
+
         let additionalHeadTags =
             (displayOpts |> DisplayOptions.getAdditionalHeadTags)
 
-        let description =
-            (displayOpts |> DisplayOptions.getDescription)
+        let chartDescription =
+            (displayOpts |> DisplayOptions.getChartDescription)
 
         let plotlyReference =
             displayOpts |> DisplayOptions.getPlotlyReference
 
         HTML.Doc(
+            documentTitle = documentTitle,
+            documentDescription = documentDescription,
+            documentCharset = documentCharset,
+            documentFavicon = documentFavicon,
             chart =
                 HTML.CreateChartHTML(
                     data = tracesJson,
@@ -368,7 +384,7 @@ type GenericChart =
                 ),
             plotlyReference = plotlyReference,
             AdditionalHeadTags = additionalHeadTags,
-            Description = description
+            ChartDescription = chartDescription
         )
         |> RenderView.AsString.htmlDocument
 

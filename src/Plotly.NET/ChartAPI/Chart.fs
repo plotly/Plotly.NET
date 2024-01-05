@@ -3532,7 +3532,7 @@ type Chart =
     static member withDisplayOptionsStyle
         (
             [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?Description: XmlNode list,
+            [<Optional; DefaultParameterValue(null)>] ?ChartDescription: XmlNode list,
             [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
         ) =
         (fun (ch: GenericChart) ->
@@ -3540,17 +3540,21 @@ type Chart =
             let displayOpts' =
                 DisplayOptions.init (
                     ?AdditionalHeadTags = AdditionalHeadTags,
-                    ?Description = Description,
+                    ?ChartDescription = ChartDescription,
                     ?PlotlyJSReference = PlotlyJSReference
                 )
 
             GenericChart.addDisplayOptions displayOpts' ch)
 
 
-    /// Show chart in browser
+    /// <summary>
+    /// Adds the given chart deycription the to chart's DisplayOptions. They will be included in the document's head
+    /// </summary>
+    /// <param name="chartDescription">The chart description to add to the given chart's DisplayOptions object</param>
+    /// <param name="ch">The chart to add a description to</param>
     [<CompiledName("WithDescription")>]
-    static member withDescription (description: XmlNode list) (ch: GenericChart) =
-        ch |> GenericChart.mapDisplayOptions (DisplayOptions.addDescription description)
+    static member withDescription (chartDescription: XmlNode list) (ch: GenericChart) =
+        ch |> GenericChart.mapDisplayOptions (DisplayOptions.addChartDescription chartDescription)
 
     /// Adds the given additional html tags on the chart's DisplayOptions. They will be included in the document's head
     [<CompiledName("WithAdditionalHeadTags")>]

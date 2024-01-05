@@ -43,11 +43,20 @@ type HTML() =
                 ]
 
 
-    static member Doc(chart, plotlyReference: PlotlyJSReference, ?AdditionalHeadTags, ?Description) =
+    static member Doc(
+        chart, 
+        documentTitle: string,
+        documentDescription: string,
+        documentCharset: string,
+        documentFavicon: XmlNode,
+        plotlyReference: PlotlyJSReference, 
+        ?AdditionalHeadTags, 
+        ?ChartDescription
+    ) =
         let additionalHeadTags =
             defaultArg AdditionalHeadTags []
 
-        let description = defaultArg Description []
+        let chartDescription = defaultArg ChartDescription []
 
         let plotlyScriptRef =
             match plotlyReference with
@@ -68,9 +77,17 @@ type HTML() =
                     []
                     [
                         plotlyScriptRef
+                        title [] [ str documentTitle ]
+                        meta [ _charset documentCharset ]
+                        meta
+                            [
+                                _name "description"
+                                _content documentDescription
+                            ]
+                        documentFavicon
                         yield! additionalHeadTags
                     ]
-                body [] [ yield! chart; yield! description ]
+                body [] [ yield! chart; yield! chartDescription ]
             ]
 
     static member CreateChartHTML(data: string, layout: string, config: string, plotlyReference: PlotlyJSReference) =

@@ -26,24 +26,17 @@ module Defaults =
 
     let mutable DefaultDisplayOptions =
         DisplayOptions.init (
-            PlotlyJSReference = CDN $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js",
-            AdditionalHeadTags =
-                [
-                    title [] [ str "Plotly.NET Datavisualization" ]
-                    meta [ _charset "UTF-8" ]
-                    meta
-                        [
-                            _name "description"
-                            _content "A plotly.js graph generated with Plotly.NET"
-                        ]
-                    link
-                        [
-                            _id "favicon"
-                            _rel "shortcut icon"
-                            _type "image/png"
-                            _href $"data:image/png;base64,{Globals.LOGO_BASE64}"
-                        ]
-                ]
+            DocumentTitle = "Plotly.NET Datavisualization",
+            DocumentDescription = "A plotly.js graph generated with Plotly.NET",
+            DocumentCharset = "UTF-8",
+            DocumentFavicon = 
+                (link [
+                    _id "favicon"
+                    _rel "shortcut icon"
+                    _type "image/png"
+                    _href $"data:image/png;base64,{Globals.LOGO_BASE64}"
+                ]),
+            PlotlyJSReference = CDN $"https://cdn.plot.ly/plotly-{Globals.PLOTLYJS_VERSION}.min.js"
         )
 
     /// The default chart template. Default: ChartTemplates.plotly
