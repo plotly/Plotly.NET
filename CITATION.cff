@@ -10,5 +10,24 @@ authors:
   - family-names: Mühlhaus
     given-names: Timo
     orcid: https://orcid.org/0000-0003-3925-6778
-title: "Plotly.NET: A fully featured charting library for .NET programming languages [version 1; peer review: 1 approved]"
+title: "Plotly.NET: A fully featured charting library for .NET programming languages"
 doi: https://doi.org/10.12688/f1000research.123971.1
+preferred-citation:
+  type: article
+  authors:
+  - family-names: Schneider
+    given-names: Kevin
+    orcid: https://orcid.org/0000-0002-2198-5262
+  - family-names: Venn
+    given-names: Benedikt
+    orcid: https://orcid.org/0000-0003-4203-1596
+  - family-names: Mühlhaus
+    given-names: Timo
+    orcid: https://orcid.org/0000-0003-3925-6778
+  doi: "10.12688/f1000research.123971.1"
+  journal: "F1000Research"
+  month: 9
+  title: "iMLP, a predictor for internal matrix targeting-like sequences in mitochondrial proteins"
+  number: 1094
+  volume: 11
+  year: 2022
