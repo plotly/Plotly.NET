@@ -7,11 +7,13 @@ authors:
   - family-names: Venn
     given-names: Benedikt
     orcid: https://orcid.org/0000-0003-4203-1596
+  - family-names: WhiteBlackGoose
+    orcid: https://orcid.org/0000-0002-6948-1733
   - family-names: Mühlhaus
     given-names: Timo
     orcid: https://orcid.org/0000-0003-3925-6778
 title: "Plotly.NET: A fully featured charting library for .NET programming languages"
-doi: https://doi.org/10.12688/f1000research.123971.1
+doi: "10.5281/zenodo.6344285"
 preferred-citation:
   type: article
   authors:
