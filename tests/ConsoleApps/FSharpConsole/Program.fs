@@ -14,10 +14,33 @@ let getZeroCollection n : float []=
 
 [<EntryPoint>]
 let main argv =
-    Chart.Histogram2DContour(
-        MultiX = [["A";"A";"A";"B";"B"];["AA"; "AA"; "AB"; "BA"; "BB"]],
-        MultiY = [["A";"A";"A";"B";"B"];["AA"; "AA"; "AB"; "BA"; "BB"]],
+
+    let buttons = 
+        [ for i in 0 .. 9 -> 
+            UpdateMenuButton.init(
+                Label = $"0 - {i}", 
+                Name = $"{i}", 
+                Visible = true, 
+                Method = StyleParam.UpdateMethod.Relayout,
+                Args = (
+                    let tmp = DynamicObj()
+                    tmp?("xaxis.range") <- [0; i]
+                    tmp?("yaxis.range") <- [0; i]
+                    [tmp]
+                )
+            )
+        ]
+
+    Chart.Point(
+
+        x = [0 .. 10],
+        y = [0 .. 10],
         UseDefaults = false
+    )
+    |> Chart.withUpdateMenu(
+        UpdateMenu.init(
+            Buttons = buttons
+        )
     )
     |> Chart.show
     0

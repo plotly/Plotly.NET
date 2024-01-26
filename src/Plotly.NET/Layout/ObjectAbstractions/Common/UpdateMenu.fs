@@ -10,8 +10,8 @@ type UpdateMenuButton() =
 
     static member init
         (
-            [<Optional; DefaultParameterValue(null)>] ?Args: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Args2: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Args: seq<DynamicObj>,
+            [<Optional; DefaultParameterValue(null)>] ?Args2: seq<DynamicObj>,
             [<Optional; DefaultParameterValue(null)>] ?Execute: bool,
             [<Optional; DefaultParameterValue(null)>] ?Label: string,
             [<Optional; DefaultParameterValue(null)>] ?Method: StyleParam.UpdateMethod,
@@ -34,8 +34,8 @@ type UpdateMenuButton() =
 
     static member style
         (
-            [<Optional; DefaultParameterValue(null)>] ?Args: seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?Args2: seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?Args: seq<DynamicObj>,
+            [<Optional; DefaultParameterValue(null)>] ?Args2: seq<DynamicObj>,
             [<Optional; DefaultParameterValue(null)>] ?Execute: bool,
             [<Optional; DefaultParameterValue(null)>] ?Label: string,
             [<Optional; DefaultParameterValue(null)>] ?Method: StyleParam.UpdateMethod,
