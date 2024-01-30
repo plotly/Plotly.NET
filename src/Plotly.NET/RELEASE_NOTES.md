@@ -8,6 +8,8 @@ Major release with lots of bug fixes, improvements, and upstream feature additio
 
 - Make Contours setting directly accessible on all supported traces, fixes [#426](https://github.com/plotly/Plotly.NET/issues/426)
 
+- Allow DynamicObj for the args properties of update buttons, fixes [#414](https://github.com/plotly/Plotly.NET/issues/414)
+
 - [Expand DisplayOptions](https://github.com/plotly/Plotly.NET/commit/488568c789fa2fa050fc55f5bff26a8780ba216e) to include direct fields for document title, description, charset, and favicon, fixes [#374](https://github.com/plotly/Plotly.NET/issues/374)
 
 - Keep up with plotlyjs 2.x incremental updates:
