@@ -20,6 +20,7 @@ module PuppeteerSharpRendererOptions =
     let mutable localBrowserExecutablePath =
         None
 
+    let mutable navigationOptions = NavigationOptions()
 
 type PuppeteerSharpRenderer() =
 
@@ -68,7 +69,12 @@ type PuppeteerSharpRenderer() =
             let! page = browser.NewPageAsync() |> Async.AwaitTask
 
             try
-                let! _ = page.SetContentAsync(patchHtml width height scale format html) |> Async.AwaitTask
+                let! _ = 
+                    page.SetContentAsync(
+                        html = patchHtml width height scale format html,
+                        options = PuppeteerSharpRendererOptions.navigationOptions
+                    ) 
+                    |> Async.AwaitTask
                 let! imgHandle = page.WaitForExpressionAsync("window.plotlyImage") |> Async.AwaitTask
                 let! imgStr = imgHandle.JsonValueAsync<string>() |> Async.AwaitTask
                 return imgStr
