@@ -1557,15 +1557,17 @@ module StyleParam =
     // #H#
     //--------------------------
 
+    [<RequireQualifiedAccess>]
     type HoverInfo =
         | X
         | XY
         | XYZ
         | XYZText
+        | XYZTextName
         | Y
         | YZ
         | YZText
-        | YZTextNames
+        | YZTextName
         | Z
         | ZText
         | ZTextName
@@ -1573,6 +1575,8 @@ module StyleParam =
         | TextName
         | Name
         | All
+        | None
+        | Skip
 
         static member toString =
             function
@@ -1580,10 +1584,11 @@ module StyleParam =
             | XY -> "x+y"
             | XYZ -> "x+y+z"
             | XYZText -> "x+y+z+text"
+            | XYZTextName -> "x+y+z+text+name"
             | Y -> "y"
             | YZ -> "y+z"
             | YZText -> "y+z+text"
-            | YZTextNames -> "y+z+text+name"
+            | YZTextName -> "y+z+text+name"
             | Z -> "z"
             | ZText -> "z+text"
             | ZTextName -> "z+text+name"
@@ -1591,6 +1596,8 @@ module StyleParam =
             | TextName -> "text+name"
             | Name -> "name"
             | All -> "all"
+            | None -> "none"
+            | Skip -> "skip"
 
         static member convert = HoverInfo.toString >> box
         override this.ToString() = this |> HoverInfo.toString

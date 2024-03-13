@@ -45,6 +45,7 @@
     <Compile Include="UpstreamFeatures\2.21.fs" />
     <Compile Include="UpstreamFeatures\2.20.fs" />
     <Compile Include="UpstreamFeatures\2.19.fs" />
+    <Compile Include="FeatureAdditions\Fix_HoverInfo.fs" />
     <Compile Include="FeatureAdditions\UpdateMenuButton_Args.fs" />
     <Compile Include="FeatureAdditions\Accessible_Contours.fs" />
     <Compile Include="Main.fs" />

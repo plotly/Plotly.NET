@@ -9,38 +9,39 @@ open DynamicObj
 open Giraffe.ViewEngine
 open Newtonsoft.Json
 
-let getZeroCollection n : float []=
-    Array.zeroCreate n 
-
 [<EntryPoint>]
 let main argv =
 
-    let buttons = 
-        [ for i in 0 .. 9 -> 
-            UpdateMenuButton.init(
-                Label = $"0 - {i}", 
-                Name = $"{i}", 
-                Visible = true, 
-                Method = StyleParam.UpdateMethod.Relayout,
-                Args = (
-                    let tmp = DynamicObj()
-                    tmp?("xaxis.range") <- [0; i]
-                    tmp?("yaxis.range") <- [0; i]
-                    [tmp]
-                )
-            )
-        ]
-
-    Chart.Point(
-
-        x = [0 .. 10],
-        y = [0 .. 10],
-        UseDefaults = false
-    )
-    |> Chart.withUpdateMenu(
-        UpdateMenu.init(
-            Buttons = buttons
+    [
+        StyleParam.HoverInfo.X
+        StyleParam.HoverInfo.XY
+        StyleParam.HoverInfo.XYZ
+        StyleParam.HoverInfo.XYZText
+        StyleParam.HoverInfo.XYZTextName
+        StyleParam.HoverInfo.Y
+        StyleParam.HoverInfo.YZ
+        StyleParam.HoverInfo.YZText
+        StyleParam.HoverInfo.YZTextName
+        StyleParam.HoverInfo.Z
+        StyleParam.HoverInfo.ZText
+        StyleParam.HoverInfo.ZTextName
+        StyleParam.HoverInfo.Text
+        StyleParam.HoverInfo.TextName
+        StyleParam.HoverInfo.Name
+        StyleParam.HoverInfo.All
+        StyleParam.HoverInfo.None
+        StyleParam.HoverInfo.Skip
+    ]
+    |> List.mapi (fun i hi ->
+        Chart.Point3D(
+            xyz = [i + 1, i + 2, i + 3],
+            Name = $"NAME: trace with {hi.ToString()}",
+            Text = $"TEXT: trace with {hi.ToString()}",
+            UseDefaults = false
         )
+        |> GenericChart.mapTrace (Trace3DStyle.Scatter3D(HoverInfo = hi))
     )
+    |> Chart.combine
+    |> Chart.withSize(1000,1000)
     |> Chart.show
     0

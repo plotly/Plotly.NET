@@ -12,6 +12,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Include="TestCharts\FeatureAdditions\Fix_HoverInfo.fs" />
     <Compile Include="TestCharts\FeatureAdditions\UpdateMenuButton_Args.fs" />
     <Compile Include="TestCharts\FeatureAdditions\Accessible_Contours.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.27.fs" />
