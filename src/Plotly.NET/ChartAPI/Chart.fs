@@ -1128,7 +1128,7 @@ type Chart =
                             match sceneAxisId with
                             | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
                             | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
-                            | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
+                            | StyleParam.SubPlotId.ZAxis   -> scene |> Scene.getZAxis
                             | _ -> failwith "invalid scene axis id"
 
                         let updatedAxis =
@@ -1140,7 +1140,7 @@ type Chart =
                                 match sceneAxisId with
                                 | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
                                 | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                                | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                | StyleParam.SubPlotId.ZAxis   -> s |> Scene.setZAxis axis
                                 | _ -> failwith "invalid scene axis id"
 
                         layout |> Layout.updateSceneById (id, updatedScene)
@@ -1153,7 +1153,7 @@ type Chart =
                                 match sceneAxisId with
                                 | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
                                 | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                                | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                | StyleParam.SubPlotId.ZAxis   -> s |> Scene.setZAxis axis
                                 | _ -> failwith "invalid scene axis id"
 
                         layout |> Layout.updateSceneById (id, updatedScene))

@@ -47,4 +47,4 @@ type NewSelection() =
             line |> DynObj.setValue newSelection "line"
             Mode |> DynObj.setValueOptBy newSelection "mode" StyleParam.NewSelectionMode.convert
 
-            NewSelection)
+            newSelection)

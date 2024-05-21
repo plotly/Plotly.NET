@@ -12,36 +12,43 @@ open Newtonsoft.Json
 [<EntryPoint>]
 let main argv =
 
-    [
-        StyleParam.HoverInfo.X
-        StyleParam.HoverInfo.XY
-        StyleParam.HoverInfo.XYZ
-        StyleParam.HoverInfo.XYZText
-        StyleParam.HoverInfo.XYZTextName
-        StyleParam.HoverInfo.Y
-        StyleParam.HoverInfo.YZ
-        StyleParam.HoverInfo.YZText
-        StyleParam.HoverInfo.YZTextName
-        StyleParam.HoverInfo.Z
-        StyleParam.HoverInfo.ZText
-        StyleParam.HoverInfo.ZTextName
-        StyleParam.HoverInfo.Text
-        StyleParam.HoverInfo.TextName
-        StyleParam.HoverInfo.Name
-        StyleParam.HoverInfo.All
-        StyleParam.HoverInfo.None
-        StyleParam.HoverInfo.Skip
-    ]
-    |> List.mapi (fun i hi ->
-        Chart.Point3D(
-            xyz = [i + 1, i + 2, i + 3],
-            Name = $"NAME: trace with {hi.ToString()}",
-            Text = $"TEXT: trace with {hi.ToString()}",
-            UseDefaults = false
-        )
-        |> GenericChart.mapTrace (Trace3DStyle.Scatter3D(HoverInfo = hi))
+    let charts = 
+        [
+            Chart.Point3D([1,2,3], UseDefaults = false)
+            Chart.Point3D([1,2,3], UseDefaults = false)
+            Chart.Point3D([1,2,3], UseDefaults = false)
+            Chart.Point3D([1,2,3], UseDefaults = false)
+        ]
+
+    printfn "Individual Charts:"
+    printfn "Layout:"
+    charts
+    |> Seq.iter (fun c ->
+        GenericChart.getLayout c
+        |> DynamicObj.DynObj.print
     )
-    |> Chart.combine
-    |> Chart.withSize(1000,1000)
+    printfn "Traces:"
+    charts
+    |> Seq.iter (fun c ->
+        GenericChart.getTraces c
+        |> Seq.iter DynamicObj.DynObj.print
+    )
+
+    let grid = 
+        charts
+        |> Chart.Grid(2,2)
+
+    printfn "Grid:"
+    printfn "Layout:"
+    grid
+    |> GenericChart.getLayout
+    |> DynamicObj.DynObj.print
+    printfn "Traces:"
+    grid
+    |> GenericChart.getTraces
+    |> Seq.iter DynamicObj.DynObj.print
+
+    grid
     |> Chart.show
+
     0

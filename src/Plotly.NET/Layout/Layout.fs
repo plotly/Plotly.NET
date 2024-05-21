@@ -458,7 +458,7 @@ type Layout() =
             FunnelGap |> DynObj.setValueOpt layout "funnelgap"
             FunnelGroupGap |> DynObj.setValueOpt layout "funnelgroupgap"
             FunnelMode |> DynObj.setValueOptBy layout "funnelmode" StyleParam.FunnelMode.convert
-            ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors "
+            ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors"
             FunnelAreaColorWay |> DynObj.setValueOpt layout "funnelareacolorway"
             ExtendSunBurstColors |> DynObj.setValueOpt layout "extendsunburstcolors"
             SunBurstColorWay |> DynObj.setValueOpt layout "sunburstcolorway"
@@ -585,6 +585,34 @@ type Layout() =
         (fun (layout: Layout) -> layout |> Layout.tryGetLinearAxisById id |> Option.defaultValue (LinearAxis.init ()))
 
     /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid x axes (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the x axes from</param>
+    static member getXAxes (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidXAxisId kv.Key then
+                match layout.TryGetTypedValue<LinearAxis>(kv.Key) with
+                | Some axis -> Some (kv.Key, axis)
+                | None -> None
+            else None
+        )
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid y axes (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the y axes from</param>
+    static member getYAxes (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidYAxisId kv.Key then
+                match layout.TryGetTypedValue<LinearAxis>(kv.Key) with
+                | Some axis -> Some (kv.Key, axis)
+                | None -> None
+            else None
+        )
+
+    /// <summary>
     /// Sets a linear axis object on the layout as a dynamic property with the given axis id.
     /// </summary>
     /// <param name="id">The axis id of the new axis</param>
@@ -633,6 +661,21 @@ type Layout() =
     static member getSceneById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout |> Layout.tryGetSceneById id |> Option.defaultValue (Scene.init ()))
 
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid scenes (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the scenes from</param>
+    static member getScenes (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidSceneId kv.Key then
+                match layout.TryGetTypedValue<Scene>(kv.Key) with
+                | Some scene -> Some (kv.Key, scene)
+                | None -> None
+            else None
+        )
+
     /// <summary>
     /// Sets a scene object on the layout as a dynamic property with the given scene id.
     /// </summary>
@@ -673,6 +716,20 @@ type Layout() =
     /// <param name="id">The target geo id</param>
     static member getGeoById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout |> Layout.tryGetGeoById id |> Option.defaultValue (Geo.init ()))
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid geo subplots (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the geos from</param>
+    static member getGeos (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidGeoId kv.Key then
+                match layout.TryGetTypedValue<Geo>(kv.Key) with
+                | Some geo -> Some (kv.Key, geo)
+                | None -> None
+            else None
+        )
 
     /// <summary>
     /// Sets a geo object on the layout as a dynamic property with the given geo id.
@@ -716,6 +773,20 @@ type Layout() =
     /// <param name="id">The target mapbox id</param>
     static member getMapboxById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout |> Layout.tryGetMapboxById id |> Option.defaultValue (Mapbox.init ()))
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid mapbox subplots (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the mapboxes from</param>
+    static member getMapboxes (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidMapboxId kv.Key then
+                match layout.TryGetTypedValue<Mapbox>(kv.Key) with
+                | Some mapbox -> Some (kv.Key, mapbox)
+                | None -> None
+            else None
+        )
 
     /// <summary>
     /// Sets a mapbox object on the layout as a dynamic property with the given mapbox id.
@@ -763,6 +834,20 @@ type Layout() =
         (fun (layout: Layout) -> layout |> Layout.tryGetPolarById id |> Option.defaultValue (Polar.init ()))
 
     /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid polar subplots (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the polars from</param>
+    static member getPolars (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidPolarId kv.Key then
+                match layout.TryGetTypedValue<Polar>(kv.Key) with
+                | Some polar -> Some (kv.Key, polar)
+                | None -> None
+            else None
+        )
+
+    /// <summary>
     /// Sets a polar object on the layout as a dynamic property with the given polar id.
     /// </summary>
     /// <param name="id">The scene id of the new geo</param>
@@ -806,6 +891,20 @@ type Layout() =
     /// <param name="id">The target smith id</param>
     static member getSmithById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout |> Layout.tryGetSmithById id |> Option.defaultValue (Smith.init ()))
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid smith subplots (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the smiths from</param>
+    static member getSmiths (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidSmithId kv.Key then
+                match layout.TryGetTypedValue<Smith>(kv.Key) with
+                | Some smith -> Some (kv.Key, smith)
+                | None -> None
+            else None
+        )
 
     /// <summary>
     /// Sets a smith object on the layout as a dynamic property with the given smith id.
@@ -853,6 +952,20 @@ type Layout() =
         (fun (layout: Layout) -> layout |> Layout.tryGetColorAxisById id |> Option.defaultValue (ColorAxis.init ()))
 
     /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid color axes (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the color axes from</param>
+    static member getColorAxes (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidColorAxisId kv.Key then
+                match layout.TryGetTypedValue<ColorAxis>(kv.Key) with
+                | Some colorAxis -> Some (kv.Key, colorAxis)
+                | None -> None
+            else None
+        )
+
+    /// <summary>
     /// Sets a ColorAxis object on the layout as a dynamic property with the given ColorAxis id.
     /// </summary>
     /// <param name="id">The ColorAxis id of the new ColorAxis</param>
@@ -896,6 +1009,20 @@ type Layout() =
     /// <param name="id">The target ternary id</param>
     static member getTernaryById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout |> Layout.tryGetTernaryById id |> Option.defaultValue (Ternary.init ()))
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid ternary subplots (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the ternaries from</param>
+    static member getTernaries (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidTernaryId kv.Key then
+                match layout.TryGetTypedValue<Ternary>(kv.Key) with
+                | Some ternary -> Some (kv.Key, ternary)
+                | None -> None
+            else None
+        )
 
     /// <summary>
     /// Sets a Ternary object on the layout as a dynamic property with the given Ternary id.
@@ -944,6 +1071,20 @@ type Layout() =
     /// <param name="id">The target Legend id</param>
     static member tryGetLegendById(id: StyleParam.SubPlotId) =
         (fun (layout: Layout) -> layout.TryGetTypedValue<Legend>(StyleParam.SubPlotId.toString id))
+
+    /// <summary>
+    /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid legends (if the key matches and object can be cast to the correct type).
+    /// </summary>
+    /// <param name="layout">The layout to get the color axes from</param>
+    static member getLegends (layout: Layout) =
+        layout.GetProperties(includeInstanceProperties = false)
+        |> Seq.choose (fun kv -> 
+            if StyleParam.SubPlotId.isValidLegendId kv.Key then
+                match layout.TryGetTypedValue<Legend>(kv.Key) with
+                | Some legend -> Some (kv.Key, legend)
+                | None -> None
+            else None
+        )
 
     /// <summary>
     /// Combines the given Legend object with the one already present on the layout.
