@@ -46,6 +46,7 @@
     <Compile Include="UpstreamFeatures\2.21.fs" />
     <Compile Include="UpstreamFeatures\2.20.fs" />
     <Compile Include="UpstreamFeatures\2.19.fs" />
+    <Compile Include="FeatureAdditions\Fix_3d_GridPosition.fs" />
     <Compile Include="FeatureAdditions\Grid_SubPlotTitles.fs" />
     <Compile Include="FeatureAdditions\Fix_HoverInfo.fs" />
     <Compile Include="FeatureAdditions\UpdateMenuButton_Args.fs" />

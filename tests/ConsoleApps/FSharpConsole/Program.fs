@@ -11,21 +11,22 @@ open Newtonsoft.Json
 
 [<EntryPoint>]
 let main args = 
+    let x = [1.; 2.; 3.; 4.; 5.; 6.; 7.; 8.; 9.; 10.; ]
+    let y = [2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
     [
-        Chart.Point(xy = [1,2; 2,3], UseDefaults = false)
-        Chart.PointTernary(abc = [1,2,3; 2,3,4], UseDefaults = false)
-        Chart.Heatmap(zData = [[1; 2];[3; 4]], ShowScale=false, UseDefaults = false)
-        Chart.Point3D(xyz = [1,3,2], UseDefaults = false)
-        Chart.PointMapbox(lonlat = [1,2], UseDefaults = false) |> Chart.withMapbox(Mapbox.init(Style = StyleParam.MapboxStyle.OpenStreetMap))
-        [
-            // you can use nested combined charts, but they have to have the same trace type (Cartesian2D in this case)
-            let y =  [2.; 1.5; 5.; 1.5; 2.; 2.5; 2.1; 2.5; 1.5; 1.;2.; 1.5; 5.; 1.5; 3.; 2.5; 2.5; 1.5; 3.5; 1.]
-            Chart.BoxPlot(X = "y" ,Y = y,Name="bin1",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
-            Chart.BoxPlot(X = "y'",Y = y,Name="bin2",Jitter=0.1,BoxPoints=StyleParam.BoxPoints.All, UseDefaults = false);
-        ]
-        |> Chart.combine
+        Chart.Point(x = x, y = y, UseDefaults = false) 
+        |> Chart.withYAxisStyle("This title must")
+    
+        Chart.Line(x = x, y = y, UseDefaults = false) 
+        |> Chart.withYAxisStyle("be set on the",ZeroLine=false)
+        
+        Chart.Spline(x = x, y = y, UseDefaults = false) 
+        |> Chart.withYAxisStyle("respective subplots",ZeroLine=false)
     ]
-    |> Chart.SingleStack()
-    |> Chart.withSize(1000,1000)
+    |> Chart.SingleStack(Pattern = StyleParam.LayoutGridPattern.Coupled)
+    //move xAxis to bottom and increase spacing between plots by using the withLayoutGridStyle function
+    |> Chart.withLayoutGridStyle(XSide=StyleParam.LayoutGridXSide.Bottom,YGap= 0.1)
+    |> Chart.withTitle("Hi i am the new SingleStackChart")
+    |> Chart.withXAxisStyle("im the shared xAxis")
     |> Chart.show
     0
