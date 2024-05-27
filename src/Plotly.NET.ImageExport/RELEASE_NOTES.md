@@ -1,4 +1,4 @@
-### 6.0.0 - TBD
+### 6.0.0 - May 27 2024
 
 - BREAKING: [Add Scale option to all image export extensions](https://github.com/plotly/Plotly.NET/commit/5090570cb0fd8281a4c197421994cec719b82ac9)
 - BREAKING:  Update PuppeteerSharp dependency to 12.0.0
