@@ -252,7 +252,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains subPlotChart
         );
         testCase "Subplot grids layout" ( fun () ->
-            "var layout = {\"xaxis\":{\"title\":{\"text\":\"x1\"}},\"yaxis\":{\"title\":{\"text\":\"y1\"}},\"xaxis2\":{\"title\":{\"text\":\"x2\"}},\"yaxis2\":{\"title\":{\"text\":\"y2\"}},\"xaxis3\":{\"title\":{\"text\":\"x3\"}},\"yaxis3\":{\"title\":{\"text\":\"y3\"}},\"xaxis4\":{\"title\":{\"text\":\"x4\"}},\"yaxis4\":{\"title\":{\"text\":\"y4\"}},\"grid\":{\"rows\":2,\"columns\":2,\"pattern\":\"independent\"}};"
+            """var layout = {"yaxis":{"title":{"text":"y1"}},"xaxis":{"title":{"text":"x1"}},"yaxis2":{"title":{"text":"y2"}},"xaxis2":{"title":{"text":"x2"}},"yaxis3":{"title":{"text":"y3"}},"xaxis3":{"title":{"text":"x3"}},"yaxis4":{"title":{"text":"y4"}},"xaxis4":{"title":{"text":"x4"}},"annotations":[],"grid":{"rows":2,"columns":2,"roworder":"top to bottom","pattern":"independent"}};"""
             |> chartGeneratedContains subPlotChart
         );        
         testCase "MultiTrace Subplot grid data" ( fun () ->
@@ -260,7 +260,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "MultiTrace Subplot grid layout" ( fun () ->
-            """var layout = {"xaxis":{},"yaxis":{},"scene":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":0,"column":1}},"scene2":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":0,"column":1}},"polar3":{"domain":{"row":0,"column":2}},"geo4":{"domain":{"row":1,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":1,"column":1}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"ternary6":{"domain":{"row":1,"column":2}},"xaxis7":{},"yaxis7":{},"smith9":{"domain":{"row":2,"column":2}},"xaxis10":{},"yaxis10":{},"grid":{"rows":4,"columns":3,"pattern":"independent"},"width":1000,"height":1000};"""
+            """var layout = {"xaxis":{},"yaxis":{},"scene2":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":0,"column":1}},"polar3":{"domain":{"row":0,"column":2}},"geo4":{"domain":{"row":1,"column":0}},"mapbox5":{"style":"open-street-map","domain":{"row":1,"column":1}},"ternary6":{"domain":{"row":1,"column":2}},"xaxis7":{},"yaxis7":{},"smith9":{"domain":{"row":2,"column":2}},"xaxis10":{},"yaxis10":{},"annotations":[],"grid":{"rows":4,"columns":3,"roworder":"top to bottom","pattern":"independent"},"width":1000,"height":1000};"""
             |> chartGeneratedContains multiTraceGrid
         );
         testCase "Single Stack data" ( fun () -> 
@@ -268,7 +268,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains singleStackChart
         );
         testCase "Single Stack layout" ( fun () -> 
-            "var layout = {\"yaxis\":{\"title\":{\"text\":\"This title must\"}},\"xaxis\":{\"title\":{\"text\":\"im the shared xAxis\"}},\"xaxis2\":{},\"yaxis2\":{\"title\":{\"text\":\"be set on the\"},\"zeroline\":false},\"xaxis3\":{},\"yaxis3\":{\"title\":{\"text\":\"respective subplots\"},\"zeroline\":false},\"grid\":{\"rows\":3,\"columns\":1,\"pattern\":\"coupled\",\"ygap\":0.1,\"xside\":\"bottom\"},\"title\":{\"text\":\"Hi i am the new SingleStackChart\"}};"
+            """var layout = {"xaxis":{"title":{"text":"im the shared xAxis"}},"yaxis":{"title":{"text":"This title must"}},"xaxis2":{},"yaxis2":{"title":{"text":"be set on the"},"zeroline":false},"xaxis3":{},"yaxis3":{"title":{"text":"respective subplots"},"zeroline":false},"annotations":[],"grid":{"rows":3,"columns":1,"roworder":"top to bottom","pattern":"coupled","ygap":0.1,"xside":"bottom"},"title":{"text":"Hi i am the new SingleStackChart"}};"""
             |> chartGeneratedContains singleStackChart
         );        
         
@@ -277,7 +277,7 @@ let ``Multicharts and subplots`` =
             |> chartGeneratedContains multiTraceSingleStack
         );
         testCase "MultiTrace Single Stack layout" ( fun () -> 
-            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":1,"column":0}},"xaxis3":{},"yaxis3":{},"scene":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":3,"column":0}},"scene4":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":3,"column":0}},"mapbox":{"style":"open-street-map","domain":{"row":4,"column":0}},"mapbox5":{"style":"open-street-map","domain":{"row":4,"column":0}},"xaxis6":{},"yaxis6":{},"grid":{"rows":6,"columns":1,"pattern":"independent"},"width":1000,"height":1000};"""
+            """var layout = {"xaxis":{},"yaxis":{},"ternary2":{"domain":{"row":1,"column":0}},"xaxis3":{},"yaxis3":{},"scene4":{"camera":{"projection":{"type":"perspective"}},"domain":{"row":3,"column":0}},"mapbox5":{"style":"open-street-map","domain":{"row":4,"column":0}},"xaxis6":{},"yaxis6":{},"annotations":[],"grid":{"rows":6,"columns":1,"roworder":"top to bottom","pattern":"independent"},"width":1000,"height":1000};"""
             |> chartGeneratedContains multiTraceSingleStack
         );
     ]

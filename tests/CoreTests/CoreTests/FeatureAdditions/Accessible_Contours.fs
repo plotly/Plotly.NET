@@ -41,7 +41,7 @@ module ``Contours should be accessible #426`` =
                 |> chartGeneratedContains ``Contours should be accessible #426``.``Contours trace Grid chart with shared color axis and adapted contours ranges``
             }
             test "Chart Grid with shared color axis and corrected contours ranges layout" {
-                """var layout = {"xaxis":{},"yaxis":{},"xaxis2":{},"yaxis2":{},"xaxis3":{},"yaxis3":{},"grid":{"rows":2,"columns":2,"pattern":"independent"}};"""
+                """var layout = {"xaxis":{},"yaxis":{},"xaxis2":{},"yaxis2":{},"xaxis3":{},"yaxis3":{},"annotations":[],"grid":{"rows":2,"columns":2,"roworder":"top to bottom","pattern":"independent"}};"""
                 |> chartGeneratedContains ``Contours should be accessible #426``.``Contours trace Grid chart with shared color axis and adapted contours ranges``
             }
         ]

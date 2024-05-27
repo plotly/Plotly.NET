@@ -29,6 +29,7 @@
     <Compile Include="ChartAPIs\Combine.fs" />
     <Compile Include="CommonAbstractions\StyleParams.fs" />
     <Compile Include="CommonAbstractions\Colors.fs" />
+    <Compile Include="LayoutObjects\Layout.fs" />
     <Compile Include="LayoutObjects\Slider.fs" />
     <Compile Include="LayoutObjects\LinearAxis.fs" />
     <Compile Include="ConfigObjects\Config.fs" />
@@ -45,6 +46,8 @@
     <Compile Include="UpstreamFeatures\2.21.fs" />
     <Compile Include="UpstreamFeatures\2.20.fs" />
     <Compile Include="UpstreamFeatures\2.19.fs" />
+    <Compile Include="FeatureAdditions\Fix_3d_GridPosition.fs" />
+    <Compile Include="FeatureAdditions\Grid_SubPlotTitles.fs" />
     <Compile Include="FeatureAdditions\Fix_HoverInfo.fs" />
     <Compile Include="FeatureAdditions\UpdateMenuButton_Args.fs" />
     <Compile Include="FeatureAdditions\Accessible_Contours.fs" />

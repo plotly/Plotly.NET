@@ -1,6 +1,8 @@
 ﻿namespace Plotly.NET
 
 open System
+open System.Text
+open System.Text.RegularExpressions
 // https://plot.ly/javascript/reference/
 // https://plot.ly/javascript-graphing-library/reference/
 
@@ -284,9 +286,23 @@ module StyleParam =
                 else
                     sprintf "legend%i" id
 
+        static member isValidXAxisId (id: string) = Regex.IsMatch(id, "xaxis[0-9]*")
+        static member isValidYAxisId (id: string) = Regex.IsMatch(id, "yaxis[0-9]*")
+        static member isValidZAxisId (id: string) = Regex.IsMatch(id, "zaxis")
+        static member isValidColorAxisId (id: string) = Regex.IsMatch(id, "coloraxis[0-9]*")
+        static member isValidGeoId (id: string) = Regex.IsMatch(id, "geo[0-9]*")
+        static member isValidMapboxId (id: string) = Regex.IsMatch(id, "mapbox[0-9]*")
+        static member isValidPolarId (id: string) = Regex.IsMatch(id, "polar[0-9]*")
+        static member isValidTernaryId (id: string) = Regex.IsMatch(id, "ternary[0-9]*")
+        static member isValidSceneId (id: string) = Regex.IsMatch(id, "scene[0-9]*")
+        static member isValidSmithId (id: string) = Regex.IsMatch(id, "smith[0-9]*")
+        static member isValidLegendId (id: string) = Regex.IsMatch(id, "legend[0-9]*")
+
         static member convert = SubPlotId.toString >> box
         override this.ToString() = this |> SubPlotId.toString
         member this.Convert() = this |> SubPlotId.convert
+
+
 
     [<RequireQualifiedAccess>]
     type AutoTypeNumbers =

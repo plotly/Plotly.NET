@@ -12,6 +12,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Include="TestCharts\FeatureAdditions\Fix_3d_GridPosition.fs" />
+    <Compile Include="TestCharts\FeatureAdditions\Grid_SubPlotTitles.fs" />
     <Compile Include="TestCharts\FeatureAdditions\Fix_HoverInfo.fs" />
     <Compile Include="TestCharts\FeatureAdditions\UpdateMenuButton_Args.fs" />
     <Compile Include="TestCharts\FeatureAdditions\Accessible_Contours.fs" />

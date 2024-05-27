@@ -1128,7 +1128,7 @@ type Chart =
                             match sceneAxisId with
                             | StyleParam.SubPlotId.XAxis _ -> scene |> Scene.getXAxis
                             | StyleParam.SubPlotId.YAxis _ -> scene |> Scene.getYAxis
-                            | StyleParam.SubPlotId.ZAxis _ -> scene |> Scene.getZAxis
+                            | StyleParam.SubPlotId.ZAxis   -> scene |> Scene.getZAxis
                             | _ -> failwith "invalid scene axis id"
 
                         let updatedAxis =
@@ -1140,7 +1140,7 @@ type Chart =
                                 match sceneAxisId with
                                 | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
                                 | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                                | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                | StyleParam.SubPlotId.ZAxis   -> s |> Scene.setZAxis axis
                                 | _ -> failwith "invalid scene axis id"
 
                         layout |> Layout.updateSceneById (id, updatedScene)
@@ -1153,7 +1153,7 @@ type Chart =
                                 match sceneAxisId with
                                 | StyleParam.SubPlotId.XAxis _ -> s |> Scene.setXAxis axis
                                 | StyleParam.SubPlotId.YAxis _ -> s |> Scene.setYAxis axis
-                                | StyleParam.SubPlotId.ZAxis _ -> s |> Scene.setZAxis axis
+                                | StyleParam.SubPlotId.ZAxis   -> s |> Scene.setZAxis axis
                                 | _ -> failwith "invalid scene axis id"
 
                         layout |> Layout.updateSceneById (id, updatedScene))
@@ -3072,18 +3072,32 @@ type Chart =
 
             ch |> Chart.withConfig config)
 
-
-
     //==============================================================================================================
     //================================= More complicated composite methods =========================================
     //==============================================================================================================
 
 
     /// <summary>
-    /// Creates a subplot grid with the given dimensions (nRows x nCols) for the input charts.
+    /// Creates a subplot grid with the given dimensions (nRows x nCols) for the input charts. The default row order is from top to bottom.
+    ///
+    /// For each input chart, a corresponding subplot cell is created in the grid. The following limitations apply to the individual grid cells:
+    ///
+    /// - only one pair of 2D cartesian axes is allowed per cell. If there are multiple x or y axes on an input chart, the first one is used, and the rest is discarded (meaning, it is removed from the combined layout).
+    ///   if you need multiple axes per grid cell, create a custom grid by manually creating axes with custom domains instead.
+    ///   The new id of the axes corresponds to the number of the grid cell, e.g. the third grid cell will contain xaxis3 and yaxis3
+    ///
+    /// - For other subplot layouts (Cartesian3D, Polar, Ternary, Geo, Mapbox, Smith), the same rule applies: only one subplot per grid cell, the first one is used, the rest is discarded.
+    ///   The new id of the subplot layout corresponds to the number of the grid cell, e.g. the third grid cell will contain scene3 etc.
+    ///
+    /// - The Domain of traces that calculate their position by domain only (e.g. Pie traces) are replaced by a domain pointing to the new grid position.
+    ///
+    /// - If SubPlotTitles are provided, they are used as the titles of the individual cells in ascending order. If the number of titles is less than the number of subplots, the remaining subplots are left without a title.
     /// </summary>
     /// <param name ="nRows">The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
     /// <param name ="nCols">The number of columns in the grid. If you provide a 2D `subplots` array, the length of its longest row is used as the default. If you give an `xaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.</param>
+    /// <param name ="SubPlotTitles">A collection of titles for the individual subplots.</param>
+    /// <param name ="SubPlotTitleFont">The font of the subplot titles</param>
+    /// <param name ="SubPlotTitleOffset">A vertical offset applied to each subplot title, moving it upwards if positive and vice versa</param>
     /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
     /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
     /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
@@ -3099,6 +3113,9 @@ type Chart =
         (
             nRows: int,
             nCols: int,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitles: #seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleOffset: float,
             [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
             [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
@@ -3112,11 +3129,75 @@ type Chart =
         ) =
         fun (gCharts: #seq<GenericChart>) ->
 
+            // calculates the grid cell dimensions (in fractions of paper size), that is, the start and end points of each cell in a row or column
+            let getGridCellDimensions (gridDimensionStart: float) (gridDimensionEnd: float) (gap: float) (length: int) (reversed: bool) =
+                // adapted from grid cell layout logic directly in plotly.js source code: https://github.com/plotly/plotly.js/blob/5d6d45758f485ca309691bc7f33e799ef80f2cd5/src/components/grid/index.js#L224-L238
+    
+                let step = (gridDimensionEnd - gridDimensionStart) / (float length - gap)
+                let cellDomain = step * (1. - gap)
+
+                Array.init length (fun i -> 
+                    let cellStart = gridDimensionStart + (step * float i)
+                    (cellStart, cellStart + cellDomain)
+                )
+                |> fun p -> if reversed then p else Array.rev p
+
+            // calculates the positions of the subplot titles
+            // titles are placed in the middle of the top edge of each cell in a layout grid as annotations with paper copordinates.
+            let calculateSubplotTitlePositions (gridDimensionStart: float) (gridDimensionEnd: float) (xgap: float) (ygap: float) (nrows: int) (ncols: int) (reversed:bool) =
+    
+                let subPlotTitleOffset = defaultArg SubPlotTitleOffset 0.
+
+                let xDomains = getGridCellDimensions gridDimensionStart gridDimensionEnd xgap ncols true
+                let yDomains = getGridCellDimensions gridDimensionStart gridDimensionEnd ygap nrows reversed
+
+                Array.init nrows (fun r -> 
+                    Array.init ncols (fun c -> 
+                        let xStart = fst xDomains.[c]
+                        let xEnd = snd xDomains.[c]
+                        let yEnd = snd yDomains.[r]
+                        (r,c), ((xStart + xEnd) / 2., yEnd + subPlotTitleOffset)
+                    )
+                )
+                |> Array.concat
+
             let pattern =
                 defaultArg Pattern StyleParam.LayoutGridPattern.Independent
 
+            let rowOrder = defaultArg RowOrder StyleParam.LayoutGridRowOrder.TopToBottom
+
+            let xGap = defaultArg XGap (if pattern = StyleParam.LayoutGridPattern.Coupled then 0.1 else 0.2)
+            let yGap = defaultArg YGap (if pattern = StyleParam.LayoutGridPattern.Coupled then 0.1 else 0.3)
+
+
             let hasSharedAxes =
                 pattern = StyleParam.LayoutGridPattern.Coupled
+
+            let subPlotTitleAnnotations =
+                match SubPlotTitles with
+                | Some titles ->
+
+                    let reversed = rowOrder = StyleParam.LayoutGridRowOrder.BottomToTop
+
+                    let positions =
+                        calculateSubplotTitlePositions 0. 1. xGap yGap nRows nCols reversed
+
+                    titles
+                    |> Seq.zip positions[0 .. (Seq.length titles) - 1]
+                    |> Seq.map (fun (((rowIndex, colIndex), (x, y)), title) ->
+                        Annotation.init(
+                            X = x,
+                            XRef = "paper",
+                            XAnchor = StyleParam.XAnchorPosition.Center,
+                            Y = y,
+                            YRef = "paper",
+                            YAnchor = StyleParam.YAnchorPosition.Bottom,
+                            Text = title,
+                            ShowArrow = false,
+                            ?Font = SubPlotTitleFont
+                        )
+                    )
+                | None -> [||]
 
             // rows x cols coordinate grid
             let gridCoordinates =
@@ -3143,6 +3224,13 @@ type Chart =
                     let yAxis =
                         layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
 
+                    let allXAxes = Layout.getXAxes layout |> Seq.map fst
+                    let allYAxes = Layout.getYAxes layout |> Seq.map fst
+
+                    // remove all axes from layout. Only cartesian axis in each dimension is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allXAxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allYAxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+
                     let xAnchor, yAnchor =
                         if hasSharedAxes then
                             colIndex, rowIndex //set axis anchors according to grid coordinates
@@ -3153,19 +3241,18 @@ type Chart =
                     |> Chart.withAxisAnchor (xAnchor, yAnchor) // set adapted axis anchors
                     |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
                     |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
-                    |> GenericChart.mapLayout (fun l ->
-                        if i > 0 then
-                            // remove default axes from consecutive charts, otherwise they will override the first one
-                            l.Remove("xaxis") |> ignore
-                            l.Remove("yaxis") |> ignore
 
-                        l)
                 | TraceID.Cartesian3D ->
 
                     let scene =
                         layout.TryGetTypedValue<Scene> "scene"
                         |> Option.defaultValue (Scene.init ())
                         |> Scene.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
+
+                    let allScenes = Layout.getScenes layout |> Seq.map fst
+
+                    // remove all scenes from layout. Only one scene is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allScenes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
 
                     let sceneAnchor =
                         StyleParam.SubPlotId.Scene(i + 1)
@@ -3179,6 +3266,11 @@ type Chart =
                         layout.TryGetTypedValue<Polar> "polar"
                         |> Option.defaultValue (Polar.init ())
                         |> Polar.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
+
+                    let allPolars = Layout.getPolars layout |> Seq.map fst
+
+                    // remove all polar subplots from layout. Only one polar subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allPolars |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
 
                     let polarAnchor =
                         StyleParam.SubPlotId.Polar(i + 1)
@@ -3194,6 +3286,11 @@ type Chart =
                         layout.TryGetTypedValue<Smith> "smith"
                         |> Option.defaultValue (Smith.init ())
                         |> Smith.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
+                    
+                    let allSmiths = Layout.getSmiths layout |> Seq.map fst
+
+                    // remove all smith subplots from layout. Only one smith subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allSmiths |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
 
                     let polarAnchor =
                         StyleParam.SubPlotId.Smith(i + 1)
@@ -3209,12 +3306,18 @@ type Chart =
                         |> Option.defaultValue (Geo.init ())
                         |> Geo.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
+                    let allGeos = Layout.getGeos layout |> Seq.map fst
+
+                    // remove all geo subplots from layout. Only one geo subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allGeos |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+
                     let geoAnchor =
                         StyleParam.SubPlotId.Geo(i + 1)
 
                     gChart
                     |> GenericChart.mapTrace (fun t -> t :?> TraceGeo |> TraceGeoStyle.SetGeo geoAnchor :> Trace)
                     |> Chart.withGeo (geo, (i + 1))
+
                 | TraceID.Mapbox ->
                     let mapbox =
                         layout.TryGetTypedValue<Mapbox> "mapbox"
@@ -3223,6 +3326,14 @@ type Chart =
                             Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
                         )
 
+                    let allMapboxes = Layout.getMapboxes layout |> Seq.map fst
+
+                    // remove all mapbox subplots from layout. Only one mapbox subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allMapboxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+
+                    let geoAnchor =
+                        StyleParam.SubPlotId.Geo(i + 1)
+
                     let mapboxAnchor =
                         StyleParam.SubPlotId.Mapbox(i + 1)
 
@@ -3230,13 +3341,6 @@ type Chart =
                     |> GenericChart.mapTrace (fun t ->
                         t :?> TraceMapbox |> TraceMapboxStyle.SetMapbox mapboxAnchor :> Trace)
                     |> Chart.withMapbox (mapbox, (i + 1))
-                | TraceID.Domain ->
-                    let newDomain =
-                        LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
-
-                    gChart
-                    |> GenericChart.mapTrace (fun t ->
-                        t :?> TraceDomain |> TraceDomainStyle.SetDomain newDomain :> Trace)
 
                 | TraceID.Ternary ->
 
@@ -3247,23 +3351,40 @@ type Chart =
                             Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
                         )
 
+                    let allTernaries = Layout.getTernaries layout |> Seq.map fst
+
+                    // remove all ternary subplots from layout. Only one ternary subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
+                    allTernaries |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+
                     let ternaryAnchor =
                         StyleParam.SubPlotId.Ternary(i + 1)
 
                     gChart
                     |> GenericChart.mapTrace (fun t ->
                         t :?> TraceTernary |> TraceTernaryStyle.SetTernary ternaryAnchor :> Trace)
-                    |> Chart.withTernary (ternary, (i + 1)))
+                    |> Chart.withTernary (ternary, (i + 1))
+
+                | TraceID.Domain ->
+
+                    // no need to remove existing domains, as only one domain can exist on the original layout. Just replace it.
+                    let newDomain =
+                        LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
+
+                    gChart
+                    |> GenericChart.mapTrace (fun t ->
+                        t :?> TraceDomain |> TraceDomainStyle.SetDomain newDomain :> Trace)
+            )
             |> Chart.combine
+            |> Chart.withAnnotations(subPlotTitleAnnotations, Append=true)
             |> Chart.withLayoutGrid (
                 LayoutGrid.init (
                     Rows = nRows,
                     Columns = nCols,
                     Pattern = pattern,
+                    RowOrder = rowOrder,
                     ?SubPlots = SubPlots,
                     ?XAxes = XAxes,
                     ?YAxes = YAxes,
-                    ?RowOrder = RowOrder,
                     ?XGap = XGap,
                     ?YGap = YGap,
                     ?Domain = Domain,
@@ -3278,7 +3399,23 @@ type Chart =
     /// ATTENTION: when the individual rows do not have the same amount of charts, they will be filled with dummy charts TO THE RIGHT.
     ///
     /// prevent this behaviour by using Chart.Invisible at the cells that should be empty.
+    ///
+    /// For each input chart, a corresponding subplot cell is created in the grid. The following limitations apply to the individual grid cells:
+    ///
+    /// - only one pair of 2D cartesian axes is allowed per cell. If there are multiple x or y axes on an input chart, the first one is used, and the rest is discarded (meaning, it is removed from the combined layout).
+    ///   if you need multiple axes per grid cell, create a custom grid by manually creating axes with custom domains instead.
+    ///   The new id of the axes corresponds to the number of the grid cell, e.g. the third grid cell will contain xaxis3 and yaxis3
+    ///
+    /// - For other subplot layouts (Cartesian3D, Polar, Ternary, Geo, Mapbox, Smith), the same rule applies: only one subplot per grid cell, the first one is used, the rest is discarded.
+    ///   The new id of the subplot layout corresponds to the number of the grid cell, e.g. the third grid cell will contain scene3 etc.
+    ///
+    /// - The Domain of traces that calculate their position by domain only (e.g. Pie traces) are replaced by a domain pointing to the new grid position.
+    ///
+    /// - If SubPlotTitles are provided, they are used as the titles of the individual cells in ascending order. If the number of titles is less than the number of subplots, the remaining subplots are left without a title.
     /// </summary>
+    /// <param name ="SubPlotTitles">A collection of titles for the individual subplots.</param>
+    /// <param name ="SubPlotTitleFont">The font of the subplot titles</param>
+    /// <param name ="SubPlotTitleOffset">A vertical offset applied to each subplot title, moving it upwards if positive and vice versa</param>
     /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
     /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
     /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
@@ -3292,6 +3429,9 @@ type Chart =
     [<CompiledName("Grid")>]
     static member Grid
         (
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitles: #seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleOffset: float,
             [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
             [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
@@ -3340,6 +3480,9 @@ type Chart =
                 |> Chart.Grid(
                     nRows,
                     nCols,
+                    ?SubPlotTitles = SubPlotTitles,
+                    ?SubPlotTitleFont = SubPlotTitleFont,
+                    ?SubPlotTitleOffset = SubPlotTitleOffset,
                     ?SubPlots = SubPlots,
                     ?XAxes = XAxes,
                     ?YAxes = YAxes,
@@ -3357,6 +3500,9 @@ type Chart =
                 |> Chart.Grid(
                     nRows,
                     nCols,
+                    ?SubPlotTitles = SubPlotTitles,
+                    ?SubPlotTitleFont = SubPlotTitleFont,
+                    ?SubPlotTitleOffset = SubPlotTitleOffset,
                     ?SubPlots = SubPlots,
                     ?XAxes = XAxes,
                     ?YAxes = YAxes,
@@ -3370,7 +3516,23 @@ type Chart =
                 )
 
     /// Creates a chart stack (a subplot grid with one column) from the input charts.
+    ///
+    /// For each input chart, a corresponding subplot cell is created in the column. The following limitations apply to the individual grid cells:
+    ///
+    /// - only one pair of 2D cartesian axes is allowed per cell. If there are multiple x or y axes on an input chart, the first one is used, and the rest is discarded (meaning, it is removed from the combined layout).
+    ///   if you need multiple axes per grid cell, create a custom grid by manually creating axes with custom domains instead.
+    ///   The new id of the axes corresponds to the number of the grid cell, e.g. the third grid cell will contain xaxis3 and yaxis3
+    ///
+    /// - For other subplot layouts (Cartesian3D, Polar, Ternary, Geo, Mapbox, Smith), the same rule applies: only one subplot per grid cell, the first one is used, the rest is discarded.
+    ///   The new id of the subplot layout corresponds to the number of the grid cell, e.g. the third grid cell will contain scene3 etc.
+    ///
+    /// - The Domain of traces that calculate their position by domain only (e.g. Pie traces) are replaced by a domain pointing to the new grid position.
+    ///
+    /// - If SubPlotTitles are provided, they are used as the titles of the individual cells in ascending order. If the number of titles is less than the number of subplots, the remaining subplots are left without a title.
     /// </summary>
+    /// <param name ="SubPlotTitles">A collection of titles for the individual subplots.</param>
+    /// <param name ="SubPlotTitleFont">The font of the subplot titles</param>
+    /// <param name ="SubPlotTitleOffset">A vertical offset applied to each subplot title, moving it upwards if positive and vice versa</param>
     /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
     /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
     /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
@@ -3384,6 +3546,9 @@ type Chart =
     [<CompiledName("SingleStack")>]
     static member SingleStack
         (
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitles: #seq<string>,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleFont: Font,
+            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleOffset: float,
             [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
             [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
             [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
@@ -3402,6 +3567,9 @@ type Chart =
             |> Chart.Grid(
                 nRows = Seq.length gCharts,
                 nCols = 1,
+                ?SubPlotTitles = SubPlotTitles,
+                ?SubPlotTitleFont = SubPlotTitleFont,
+                ?SubPlotTitleOffset = SubPlotTitleOffset,
                 ?SubPlots = SubPlots,
                 ?XAxes = XAxes,
                 ?YAxes = YAxes,

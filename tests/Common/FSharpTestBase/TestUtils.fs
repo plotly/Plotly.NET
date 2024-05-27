@@ -217,7 +217,7 @@ module Objects =
 
     let jsonFieldIsSetWith fieldName expected (object:#DynamicObj) =
         Expect.equal
-            ((object :> DynamicObj)?($"{fieldName}") |> JsonConvert.SerializeObject) 
+            ((object :> DynamicObj)?($"{fieldName}") |> fun o -> JsonConvert.SerializeObject(o, JsonSerializerSettings(ReferenceLoopHandling = ReferenceLoopHandling.Serialize))) 
             expected
             ($"Field `{fieldName}` not set correctly in serialized dynamic object.")
 
