@@ -88,7 +88,7 @@ type PuppeteerSharpRenderer() =
         task {
             match PuppeteerSharpRendererOptions.localBrowserExecutablePath with
             | None ->
-                use browserFetcher = new BrowserFetcher()
+                let browserFetcher = new BrowserFetcher()
 
                 let! revision = browserFetcher.DownloadAsync()
 
