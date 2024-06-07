@@ -7,6 +7,13 @@
 ![](https://img.shields.io/badge/supported%20plotly.js%20version-2.27.1-blue)
 [![DOI](https://img.shields.io/badge/DOI-10.12688%2Ff1000research.123971.1-brightgreen)](https://doi.org/10.12688/f1000research.123971.1)
 
+<div align="center">
+  <a href="https://dash.plotly.com/project-maintenance">
+    <img src="https://dash.plotly.com/assets/images/maintained-by-plotly.png" width="400px" alt="Maintained by Plotly">
+  </a>
+</div>
+
+
 ### Table of contents 
 
 - [What is Plotly.NET?](#what-is-plotlynet)
