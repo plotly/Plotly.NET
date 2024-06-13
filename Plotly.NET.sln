@@ -42,14 +42,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7B09CC0A-F
 		docs\Dockerfile = docs\Dockerfile
 		docs\index.fsx = docs\index.fsx
 		docs\NuGet.config = docs\NuGet.config
-		docs\_template.html = docs\_template.html
+		docs\_head.html = docs\_head.html
 		docs\_template.ipynb = docs\_template.ipynb
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reference", "reference", "{5219BAC7-ACE6-435F-A983-BC63DD7B745E}"
-	ProjectSection(SolutionItems) = preProject
-		docs\reference\_template.html = docs\reference\_template.html
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{60FB82C0-F472-494E-BCF7-7B3C54212406}"
 	ProjectSection(SolutionItems) = preProject
@@ -153,6 +150,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_chart-layout", "01_chart
 		docs\chart-layout\axis-styling.fsx = docs\chart-layout\axis-styling.fsx
 		docs\chart-layout\errorbars.fsx = docs\chart-layout\errorbars.fsx
 		docs\chart-layout\layout_images.fsx = docs\chart-layout\layout_images.fsx
+		docs\chart-layout\legends.fsx = docs\chart-layout\legends.fsx
 		docs\chart-layout\multiple-charts.fsx = docs\chart-layout\multiple-charts.fsx
 		docs\chart-layout\shapes.fsx = docs\chart-layout\shapes.fsx
 		docs\chart-layout\sliders.fsx = docs\chart-layout\sliders.fsx
