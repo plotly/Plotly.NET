@@ -66,7 +66,7 @@ A Histogram2D chart can be created using the `Chart.Histogram2D` or `Chart.Histo
 *)
 
 let histogramContour =
-    Chart.Histogram2DContour(x = x, y = y, ContourLine = Line.init (Width = 0.))
+    Chart.Histogram2DContour(x = x, y = y, ContourLines = Line.init (Width = 0.))
 
 (*** condition: ipynb ***)
 #if IPYNB

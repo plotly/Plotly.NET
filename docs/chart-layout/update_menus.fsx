@@ -45,17 +45,26 @@ let data =
 
 let updateMenu =
     UpdateMenu.init (
-        Buttons =
-            [ UpdateMenuButton.init (
-                  Args = [ "type"; "surface" ],
-                  Label = "Surface",
-                  Method = StyleParam.UpdateMethod.Restyle
+        Buttons = [   
+            UpdateMenuButton.init (
+                Args = [
+                    let args = DynamicObj.DynamicObj()
+                    args?("type") <- "surface"
+                    args
+                ],
+                Label = "Surface",
+                Method = StyleParam.UpdateMethod.Restyle
+            )
+            UpdateMenuButton.init (
+                Args = [ 
+                    let args = DynamicObj.DynamicObj()
+                    args?("type") <- "heatmap"
+                    args
+                ],
+                Label = "Heatmap",
+                Method = StyleParam.UpdateMethod.Restyle
               )
-              UpdateMenuButton.init (
-                  Args = [ "type"; "heatmap" ],
-                  Label = "Heatmap",
-                  Method = StyleParam.UpdateMethod.Restyle
-              ) ],
+        ],
         Direction = StyleParam.UpdateMenuDirection.Down,
         Pad = Padding.init (R = 10, T = 10),
         ShowActive = true,
