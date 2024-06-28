@@ -141,10 +141,16 @@ grouped_legend_chart |> GenericChart.toChartHTML
 
 Starting with Plotly.NET 5.0.0, the multiple legends feature from plotl.js v2.22+ is supported.
 
+However, plotly.js has a [regression bug starting from 2.24.3](https://github.com/plotly/plotly.js/issues/7023), which causes multiple legends to not display correctly
+
+This means that the referenced plotly.js version has to be changed to <2.24.3 to use this feature. Note that features introduced in plotly.js/.NET after this version will not work on a chart using that reference.
+Future versions of plotly.js will hopefully fix this issue.
+
 Similarily to how multiple axes are handled, multiple legends are added by providing an additional `Id` argument when using the `Chart.withLegend` function:
 
 To select which legend a trace should belong to, use `Chart.withLegendAnchor` with the corresponding `id` argument.
 *)
+
 
 let multi_legend_chart =
     [
@@ -175,6 +181,10 @@ let multi_legend_chart =
         ),
         Id = 2
     )
+    // set lower plotly.js version to avoid regression bug
+    |> Chart.withDisplayOptionsStyle(
+        PlotlyJSReference = Plotly.NET.PlotlyJSReference.CDN "https://cdn.plot.ly/plotly-2.23.0.min.js"
+    )
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -182,5 +192,5 @@ multi_legend_chart
 #endif // IPYNB
 
 (***hide***)
-multi_legend_chart |> GenericChart.toChartHTML
+multi_legend_chart |> GenericChart.toEmbeddedHTML
 (***include-it-raw***)
