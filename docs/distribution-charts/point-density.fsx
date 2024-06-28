@@ -74,7 +74,7 @@ let pointDensityChartStyled =
         PointMarkerSize = 4,
         ColorScale = StyleParam.Colorscale.Viridis,
         ColorBar = ColorBar.init (Title = Title.init ("Density")),
-        ShowContourLabels = true
+        ShowContoursLabels = true
     )
 
 (*** condition: ipynb ***)

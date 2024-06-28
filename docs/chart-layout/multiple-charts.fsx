@@ -164,6 +164,9 @@ grid3 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (**
+
+#### Coupled axes
+
 Use `Pattern=StyleParam.LayoutGridPatter.Coupled` to use one shared x axis per column and one shared y axis per row. 
 (Try zooming in the single subplots below)
 *)
@@ -190,6 +193,37 @@ grid4
 
 (***hide***)
 grid4 |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+
+#### Individual subplot titles
+
+You can set individual subplot titles by using the `SubPlotTitles` argument of the `Chart.Grid` function:
+*)
+
+let grid5 =
+    [ Chart.Point(x = x, y = y, Name = "1,1")
+      |> Chart.withXAxisStyle "x1"
+      |> Chart.withYAxisStyle "y1"
+      Chart.Line(x = x, y = y, Name = "1,2")
+      |> Chart.withXAxisStyle "x2"
+      |> Chart.withYAxisStyle "y2"
+      Chart.Spline(x = x, y = y, Name = "2,1")
+      |> Chart.withXAxisStyle "x3"
+      |> Chart.withYAxisStyle "y3"
+      Chart.Point(x = x, y = y, Name = "2,2")
+      |> Chart.withXAxisStyle "x4"
+      |> Chart.withYAxisStyle "y4" ]
+    |> Chart.Grid(2, 2, SubPlotTitles = [ "First"; "Second"; "Third"; "Fourth" ])
+
+(*** condition: ipynb ***)
+#if IPYNB
+grid5
+#endif // IPYNB
+
+(***hide***)
+grid5 |> GenericChart.toChartHTML
 (***include-it-raw***)
 
 (** 
@@ -311,8 +345,23 @@ let multipleTraceTypesGrid =
         Chart.BoxPlot(X = "y", Y = y, Name = "Combined 1", Jitter = 0.1, BoxPoints = StyleParam.BoxPoints.All)
         Chart.BoxPlot(X = "y'", Y = y, Name = "Combined 2", Jitter = 0.1, BoxPoints = StyleParam.BoxPoints.All) ]
       |> Chart.combine ]
-    |> Chart.Grid(nRows = 4, nCols = 3)
-    |> Chart.withSize (Width = 1000, Height = 1000)
+    |> Chart.Grid(
+      nRows = 4, 
+      nCols = 3,
+      SubPlotTitles = [ 
+        "2D Cartesian"
+        "3D Cartesian"
+        "Polar"
+        "Geo"
+        "MapBox"
+        "Ternary"
+        "Carpet"
+        "Pie"
+        "BubbleSmith"
+        "Combined 1"
+      ]
+    )
+    |> Chart.withSize (Width = 1000, Height = 1500)
 
 (*** condition: ipynb ***)
 #if IPYNB
@@ -327,7 +376,7 @@ multipleTraceTypesGrid |> GenericChart.toChartHTML
 If you are not sure if trace types are compatible, look at the `TraceIDs`:
 *)
 
-let pointType = Chart.Point(xy = [ 1, 2 ]) |> GenericChart.getTraceID
+Chart.Point(xy = [ 1, 2 ]) |> GenericChart.getTraceID
 (***include-it***)
 
 [ Chart.Point(xy = [ 1, 2 ]); Chart.PointTernary(abc = [ 1, 2, 3 ]) ]

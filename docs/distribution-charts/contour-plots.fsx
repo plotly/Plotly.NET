@@ -105,8 +105,8 @@ let contour3 =
     Chart.Contour(
         zData = z,
         ContoursColoring = StyleParam.ContourColoring.Heatmap,
-        ShowContourLabels = true,
-        ContourLabelFont = Font.init (Size = 12., Color = Color.fromKeyword White)
+        ShowContoursLabels = true,
+        ContoursLabelFont = Font.init (Size = 12., Color = Color.fromKeyword White)
     )
 
 (*** condition: ipynb ***)
