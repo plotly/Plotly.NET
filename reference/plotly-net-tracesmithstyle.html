@@ -1,62 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>TraceSmithStyle (Plotly.NET)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="TraceSmithStyle (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="TraceSmithStyle (Plotly.NET)">
     
-</head> 
+    <title>TraceSmithStyle (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -64,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
   <h2>
     TraceSmithStyle Type
   </h2>
@@ -122,7 +941,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2144', 2144)" onmouseover="showTip(event, '2144', 2144)">
+              <code onmouseout="hideTip(event, '2273', 2273)" onmouseover="showTip(event, '2273', 2273)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -131,7 +950,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2144">
+              <div class="fsdocs-tip" id="2273">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>TraceSmithStyle<span>()</span></span></code>
@@ -147,23 +966,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.TraceSmithStyle.#ctor`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.TraceSmithStyle.#ctor\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/TraceSmith.fs#L17-17" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -198,19 +1000,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2145', 2145)" onmouseover="showTip(event, '2145', 2145)">
+              <code onmouseout="hideTip(event, '2274', 2274)" onmouseover="showTip(event, '2274', 2274)">
                 <p>
                   <a id="ScatterSmith">
                     <a href="#ScatterSmith">
-                      <code><span>TraceSmithStyle.ScatterSmith<span><span>(<span>?Name,&#32;?Visible,&#32;?ShowLegend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?Opacity,&#32;?Mode,&#32;?Ids,&#32;?Imag,&#32;?Real,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextTemplate,&#32;?MultiTextTemplate,&#32;?HoverText,&#32;?MultiHoverText,&#32;?HoverInfo,&#32;?HoverTemplate,&#32;?MultiHoverTemplate,&#32;?Meta,&#32;?CustomData,&#32;?Subplot,&#32;?Marker,&#32;?Line,&#32;?TextFont,&#32;?SelectedPoints,&#32;?Selected,&#32;?Unselected,&#32;?ClipOnAxis,&#32;?ConnectGaps,&#32;?Fill,&#32;?FillColor,&#32;?HoverLabel,&#32;?HoverOn,&#32;?UIRevision</span>)</span></span></span></code>
+                      <code><span>TraceSmithStyle.ScatterSmith<span><span>(<span>?Name,&#32;?Visible,&#32;?ShowLegend,&#32;?Legend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?Opacity,&#32;?Mode,&#32;?Ids,&#32;?Imag,&#32;?Real,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextTemplate,&#32;?MultiTextTemplate,&#32;?HoverText,&#32;?MultiHoverText,&#32;?HoverInfo,&#32;?HoverTemplate,&#32;?MultiHoverTemplate,&#32;?Meta,&#32;?CustomData,&#32;?Subplot,&#32;?Marker,&#32;?Line,&#32;?TextFont,&#32;?SelectedPoints,&#32;?Selected,&#32;?Unselected,&#32;?ClipOnAxis,&#32;?ConnectGaps,&#32;?Fill,&#32;?FillColor,&#32;?HoverLabel,&#32;?HoverOn,&#32;?UIRevision</span>)</span></span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2145">
+              <div class="fsdocs-tip" id="2274">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>TraceSmithStyle.ScatterSmith<span><span>(<span>?Name,&#32;?Visible,&#32;?ShowLegend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?Opacity,&#32;?Mode,&#32;?Ids,&#32;?Imag,&#32;?Real,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextTemplate,&#32;?MultiTextTemplate,&#32;?HoverText,&#32;?MultiHoverText,&#32;?HoverInfo,&#32;?HoverTemplate,&#32;?MultiHoverTemplate,&#32;?Meta,&#32;?CustomData,&#32;?Subplot,&#32;?Marker,&#32;?Line,&#32;?TextFont,&#32;?SelectedPoints,&#32;?Selected,&#32;?Unselected,&#32;?ClipOnAxis,&#32;?ConnectGaps,&#32;?Fill,&#32;?FillColor,&#32;?HoverLabel,&#32;?HoverOn,&#32;?UIRevision</span>)</span></span></span></code>
+                  <code><span>TraceSmithStyle.ScatterSmith<span><span>(<span>?Name,&#32;?Visible,&#32;?ShowLegend,&#32;?Legend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?Opacity,&#32;?Mode,&#32;?Ids,&#32;?Imag,&#32;?Real,&#32;?Text,&#32;?MultiText,&#32;?TextPosition,&#32;?MultiTextPosition,&#32;?TextTemplate,&#32;?MultiTextTemplate,&#32;?HoverText,&#32;?MultiHoverText,&#32;?HoverInfo,&#32;?HoverTemplate,&#32;?MultiHoverTemplate,&#32;?Meta,&#32;?CustomData,&#32;?Subplot,&#32;?Marker,&#32;?Line,&#32;?TextFont,&#32;?SelectedPoints,&#32;?Selected,&#32;?Unselected,&#32;?ClipOnAxis,&#32;?ConnectGaps,&#32;?Fill,&#32;?FillColor,&#32;?HoverLabel,&#32;?HoverOn,&#32;?UIRevision</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -243,6 +1045,16 @@
                       <code>bool</code>
                        - 
                       Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Legend
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                       - 
+                      Sets the reference to a legend to show this trace in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
                     </span>
                     <br/>
                     <span>
@@ -300,7 +1112,7 @@
                         ?Ids
                       </b>
                       :
-                      <code><span>seq&lt;'d&gt;</span></code>
+                      <code><span>'a&#32;seq</span></code>
                        - 
                       Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
                     </span>
@@ -310,7 +1122,7 @@
                         ?Imag
                       </b>
                       :
-                      <code><span>seq&lt;'e&gt;</span></code>
+                      <code><span>'b&#32;seq</span></code>
                        - 
                       Sets the imaginary component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.
                     </span>
@@ -320,7 +1132,7 @@
                         ?Real
                       </b>
                       :
-                      <code><span>seq&lt;'f&gt;</span></code>
+                      <code><span>'c&#32;seq</span></code>
                        - 
                       Sets the real component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.
                     </span>
@@ -330,7 +1142,7 @@
                         ?Text
                       </b>
                       :
-                      <code>'g</code>
+                      <code>'d</code>
                        - 
                       Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
                     </span>
@@ -340,7 +1152,7 @@
                         ?MultiText
                       </b>
                       :
-                      <code><span>seq&lt;'g&gt;</span></code>
+                      <code><span>'d&#32;seq</span></code>
                        - 
                       Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
                     </span>
@@ -360,7 +1172,7 @@
                         ?MultiTextPosition
                       </b>
                       :
-                      <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
+                      <code><span><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&#32;seq</span></code>
                        - 
                       Sets the positions of the `text` elements with respects to the (x,y) coordinates.
                     </span>
@@ -380,7 +1192,7 @@
                         ?MultiTextTemplate
                       </b>
                       :
-                      <code><span>seq&lt;string&gt;</span></code>
+                      <code><span>string&#32;seq</span></code>
                        - 
                       Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
                     </span>
@@ -400,7 +1212,7 @@
                         ?MultiHoverText
                       </b>
                       :
-                      <code><span>seq&lt;string&gt;</span></code>
+                      <code><span>string&#32;seq</span></code>
                        - 
                       Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.
                     </span>
@@ -430,7 +1242,7 @@
                         ?MultiHoverTemplate
                       </b>
                       :
-                      <code><span>seq&lt;string&gt;</span></code>
+                      <code><span>string&#32;seq</span></code>
                        - 
                       Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
                     </span>
@@ -450,7 +1262,7 @@
                         ?CustomData
                       </b>
                       :
-                      <code><span>seq&lt;'h&gt;</span></code>
+                      <code><span>'e&#32;seq</span></code>
                        - 
                       Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements
                     </span>
@@ -500,7 +1312,7 @@
                         ?SelectedPoints
                       </b>
                       :
-                      <code><span>seq&lt;'i&gt;</span></code>
+                      <code><span>'f&#32;seq</span></code>
                        - 
                       Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
                     </span>
@@ -607,498 +1419,511 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.TraceSmithStyle.ScatterSmith``7```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.TraceSmithStyle.ScatterSmith``7\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/TraceSmith.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.TraceSmithStyle.ScatterSmith``7```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.TraceSmithStyle.ScatterSmith``7\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/TraceSmith.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Create a function that applies the styles of a scatter smith plot to a Trace object
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the trace name. The trace name appear as the legend item and on hover.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Visible
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-visible.html">Visible</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShowLegend
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not an item corresponding to this trace is shown in the legend.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LegendRank
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LegendGroup
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?LegendGroupTitle
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the legend group title for this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Opacity
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the opacity of the trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Mode
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-mode.html">Mode</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Ids
-                </span>
-                :
-                <code><span>seq&lt;'d&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Imag
-                </span>
-                :
-                <code><span>seq&lt;'e&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the imaginary component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Real
-                </span>
-                :
-                <code><span>seq&lt;'f&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the real component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Text
-                </span>
-                :
-                <code>'g</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiText
-                </span>
-                :
-                <code><span>seq&lt;'g&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextPosition
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiTextPosition
-                </span>
-                :
-                <code><span>seq&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextTemplate
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiTextTemplate
-                </span>
-                :
-                <code><span>seq&lt;string&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?HoverText
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiHoverText
-                </span>
-                :
-                <code><span>seq&lt;string&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?HoverInfo
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-hoverinfo.html">HoverInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?HoverTemplate
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?MultiHoverTemplate
-                </span>
-                :
-                <code><span>seq&lt;string&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Meta
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?CustomData
-                </span>
-                :
-                <code><span>seq&lt;'h&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Subplot
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets a reference between this trace's data coordinates and a smith subplot. If "smith" (the default value), the data refer to `layout.smith`. If "smith2", the data refer to `layout.smith2`, and so on.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Marker
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the marker of this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the line of this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TextFont
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the text font of this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?SelectedPoints
-                </span>
-                :
-                <code><span>seq&lt;'i&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Selected
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-traceselection.html">TraceSelection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the style of selected points of this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Unselected
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-traceselection.html">TraceSelection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the style of unselected points of this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ClipOnAxis
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not markers and text nodes are clipped about the subplot axes. To show markers and text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to "below traces".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ConnectGaps
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Fill
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-fill.html">Fill</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FillColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?HoverLabel
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-hoverlabel.html">Hoverlabel</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the style of the hoverlabels of this trace.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?HoverOn
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-hoveron.html">HoverOn</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is "toself" or "tonext" and there are no markers or text, then the default is "fills", otherwise it is "points".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?UIRevision
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'T&#32;->&#32;'T</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Visible
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-visible.html">Visible</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not this trace is visible. If "legendonly", the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Legend
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the reference to a legend to show this trace in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendRank
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend rank for this trace. Items and groups with smaller ranks are presented on top/left side while with `"reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendGroup
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendGroupTitle
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend group title for this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the opacity of the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Mode
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-mode.html">Mode</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Ids
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Imag
+                  </span>
+                  :
+                  <code><span>'b&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the imaginary component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Real
+                  </span>
+                  :
+                  <code><span>'c&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the real component of the data, in units of normalized impedance such that real=1, imag=0 is the center of the chart.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'d</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'d&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TextPosition
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiTextPosition
+                  </span>
+                  :
+                  <code><span><a href="https://plotly.net/reference/plotly-net-styleparam-textposition.html">TextPosition</a>&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TextTemplate
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiTextTemplate
+                  </span>
+                  :
+                  <code><span>string&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?HoverText
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiHoverText
+                  </span>
+                  :
+                  <code><span>string&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a "text" flag.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?HoverInfo
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-hoverinfo.html">HoverInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?HoverTemplate
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiHoverTemplate
+                  </span>
+                  :
+                  <code><span>string&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, "xother" will be added to those with different x positions from the first point. An underscore before or after "(x|y)other" will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Meta
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?CustomData
+                  </span>
+                  :
+                  <code><span>'e&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Subplot
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a reference between this trace's data coordinates and a smith subplot. If "smith" (the default value), the data refer to `layout.smith`. If "smith2", the data refer to `layout.smith2`, and so on.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Marker
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the marker of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TextFont
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-font.html">Font</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the text font of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?SelectedPoints
+                  </span>
+                  :
+                  <code><span>'f&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Selected
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-traceselection.html">TraceSelection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style of selected points of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Unselected
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-traceselection.html">TraceSelection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style of unselected points of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ClipOnAxis
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not markers and text nodes are clipped about the subplot axes. To show markers and text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and `yaxis.layer` to "below traces".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ConnectGaps
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Fill
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-fill.html">Fill</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `fillcolor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FillColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?HoverLabel
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-hoverlabel.html">Hoverlabel</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style of the hoverlabels of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?HoverOn
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-hoveron.html">HoverOn</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is "toself" or "tonext" and there are no markers or text, then the default is "fills", otherwise it is "points".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UIRevision
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;->&#32;'T</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2146', 2146)" onmouseover="showTip(event, '2146', 2146)">
+              <code onmouseout="hideTip(event, '2275', 2275)" onmouseover="showTip(event, '2275', 2275)">
                 <p>
                   <a id="SetSmith">
                     <a href="#SetSmith">
@@ -1107,7 +1932,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2146">
+              <div class="fsdocs-tip" id="2275">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>TraceSmithStyle.SetSmith<span><span>(<span>?SmithId</span>)</span></span></span></code>
@@ -1135,23 +1960,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.TraceSmithStyle.SetSmith`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.TraceSmithStyle.SetSmith\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/TraceSmith.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
@@ -1177,19 +1985,24 @@
     </table>
   </div>
 </div>
-                </div>
-            </div>
-        </div>
         
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>

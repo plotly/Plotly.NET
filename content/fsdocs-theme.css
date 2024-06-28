@@ -1,0 +1,18 @@
+:root {
+    /* fslab colors */
+    --fslab-magenta: #A00975;
+    --fslab-magenta-light: #F99BDE;
+    --fslab-magenta-dark: #3D1244;
+    --fslab-magenta-darkest: #200117;;
+    --fslab-blue: #438AFE;
+    --fslab-yellow: #FABC2A;
+
+    /* theme customization */
+    --heading-color: var(--fslab-magenta-dark);
+    --link-color: var(--fslab-blue);
+    --link-hover: var(--fslab-magenta);
+    /* dark theme */
+}
+[data-theme=dark] {
+    --heading-color: var(--fslab-magenta-light);
+}

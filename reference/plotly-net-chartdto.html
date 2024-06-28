@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://plotly.net/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="ChartDTO (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="ChartDTO (Plotly.NET)">
+    
+    <title>ChartDTO (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    ChartDTO Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://plotly.net/reference/plotly-net.html">
+        Plotly.NET
+      </a>
+    </dt>
+    <dt>
+      Assembly: Plotly.NET.dll
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://plotly.net/reference/plotly-net-chartdto.html">ChartDTO</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+         ChartDTO is a domain transfer object that can be used to serialize a Chart to JSON. It is used internally and for most use cases should not be used directly.
+
+ Use `GenericChart.toJson` to create a JSON string of a Chart containing the data, layout and config of the GenericChart, or `GenericChart.toFigureJson` for json objects with the data, layout, and an empty frame array.
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Record fields
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Record Field
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1801', 1801)" onmouseover="showTip(event, '1801', 1801)">
+                <p>
+                  <a id="Config">
+                    <a href="#Config">
+                      <code>Config</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1801">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Config</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><a href="https://plotly.net/reference/plotly-net-config.html">Config</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-config.html">Config</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1802', 1802)" onmouseover="showTip(event, '1802', 1802)">
+                <p>
+                  <a id="Data">
+                    <a href="#Data">
+                      <code>Data</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1802">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Data</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://plotly.net/reference/plotly-net-trace.html">Trace</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace.html">Trace</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1803', 1803)" onmouseover="showTip(event, '1803', 1803)">
+                <p>
+                  <a id="Layout">
+                    <a href="#Layout">
+                      <code>Layout</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1803">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Layout</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><a href="https://plotly.net/reference/plotly-net-layout.html">Layout</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-layout.html">Layout</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Static members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Static member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1804', 1804)" onmouseover="showTip(event, '1804', 1804)">
+                <p>
+                  <a id="create">
+                    <a href="#create">
+                      <code><span>ChartDTO.create&#32;<span>data&#32;layout&#32;config</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1804">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ChartDTO.create&#32;<span>data&#32;layout&#32;config</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        data
+                      </b>
+                      :
+                      <code><span><a href="https://plotly.net/reference/plotly-net-trace.html">Trace</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        layout
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-layout.html">Layout</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        config
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-config.html">Config</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-chartdto.html">ChartDTO</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  data
+                </span>
+                :
+                <code><span><a href="https://plotly.net/reference/plotly-net-trace.html">Trace</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  layout
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-layout.html">Layout</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  config
+                </span>
+                :
+                <code><a href="https://plotly.net/reference/plotly-net-config.html">Config</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://plotly.net/reference/plotly-net-chartdto.html">ChartDTO</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
+
+</body>
+</html>

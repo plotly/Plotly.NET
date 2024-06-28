@@ -1,460 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>Histograms</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
-    <meta name="description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Histograms">
-
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
     <!-- Opengraph properties (https://ogp.me/) -->
-    <meta property="og:title" content="Plotly.NET documentation for: Histograms" />
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Histograms" />
     <meta property="og:url" content="https://plotly.net/distribution-charts/histograms.html">
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Plotly.NET" />
-    <meta property="og:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Histograms">
-    <meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
-
-    <!-- Twitter cards -->
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="https://plotly.net/distribution-charts/histograms.html">
-    <meta property="twitter:url" content="https://plotly.net">
-    <meta name="twitter:title" content="Plotly.NET documentation for: Histograms">
-    <meta name="twitter:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Histograms">
-    <meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
-
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.21.0.min.js"></script>
-    <script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Histograms">
     
-</head> 
+    <title>Histograms | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
   General
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/basics.html">
     Basics
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/image-export.html">
     Static image export
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/display-options.html">
     Display Options
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/chart-config.html">
     Chart config
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/templates.html">
     Chart Templates
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/defaults.html">
     Global default values
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
     Single and multi arguments
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
     Working with colors
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
     Styling Markers
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Chart Layout
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
     Axis styling
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
     Error bars
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
     Multicharts and subplots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
     Shapes
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
     Annotations
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
     Layout images
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
     Sliders
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
     Update menus
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
   Simple Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
     Line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
     Bar and column charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
     Area charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
     Range plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
     Bubble charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
     Pie and doughnut Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
     Tables
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
     Heatmaps
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
     Images
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
     Plotting multicategory data
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   3D Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
     3D point and line charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
     3D surface plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
     3D Mesh plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
     3D Cone plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
     3D streamtube plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
     3D Volume plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
     3D IsoSurface plots
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header active">
   Distribution Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item active">
   <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
     Histograms
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
     BoxPlots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
     Violin plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
     2D Histograms
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
     Contour plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
     Scatterplot matrix
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
     PointDensity
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
   Geo map charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
     Geo vs. Mapbox
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
     Scatter and line plots on Geo maps
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
     Choropleth maps
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Mapbox map charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
     Geo vs. Mapbox
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
     Scatter and line plots on Mapbox maps
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
     ChoroplethMapbox
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
     DensityMapbox charts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Finance Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
     OHLC Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
     Candlestick Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
     Funnel Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
     FunnelArea Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
     Indicator Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
     Waterfall Charts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Polar Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
     Polar line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
     Polar bar charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
     Styling polar layouts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Categorical Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
     Parallel categories
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
     Parallel coordinates
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
     Sankey Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
     Icicle Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
     Treemap Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
     Sunburst Charts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Ternary Plots
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
     Ternary line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
     Styling ternary layouts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Carpet Plots
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
     Carpet line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
     Contour carpet plots
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Smith Plots
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
     Smith line and scatter plots
   </a>
 </li>
-                        <li class="nav-header">
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -462,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header active">
+  Distribution Charts
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
 <h1><a name="Histograms" class="anchor" href="#Histograms">Histograms</a></h1>
 <p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/distribution-charts/histograms.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
 <a href="https://plotly.net/distribution-charts/histograms.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
@@ -487,18 +908,15 @@
 The histogram chart represents the distribution of numerical data and can be created using the <code>Chart.Histogram</code> function:.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="id">histo1</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="id">Histogram</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="fn">X</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs12', 27)" onmouseover="showTip(event, 'fs12', 27)" class="id">x</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 28)" onmouseover="showTip(event, 'fs16', 28)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="id">withSize</span> <span class="pn">(</span><span class="n">500.</span><span class="pn">,</span> <span class="n">500.</span><span class="pn">)</span>
 </code></pre>
-<div><div id="7459db2b-f370-43cf-a5d6-023c3c418d71"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_7459db2bf37043cfa5d6023c3c418d71 = function() {
-    var data = [{"type":"histogram","x":[0.8423052004125654,0.06087577785217135,0.8881152045918856,0.03215511205197452,0.08732740773045267,0.27610810762183513,0.6223827133293383,0.9512270582604676,0.44194015027639333,0.8772125786970798,0.936956119443516,0.01996316396261122,0.3618662878503468,0.8661775755418244,0.6164496863438192,0.750361396361209,0.2066545507901162,0.7649858136455536,0.06162898727430832,0.8373858131396561,0.03566490011601875,0.6158144539080234,0.722458112468295,0.3848783678074016,0.23131893266845982,0.13389524741525838,0.6038374996571831,0.8935123222438829,0.6535617093521489,0.5262601805374529,0.252642559665856,0.7263335605809912,0.3267768532071478,0.3708427179439908,0.7158832385834369,0.05099831429681534,0.2334372015932097,0.20513282607568573,0.015890202872588355,0.19518504037723894,0.08777690230754132,0.3466481988802522,0.9360556934750729,0.6261187223745384,0.8730589586803013,0.034355038072771404,0.9963547687269514,0.9168984675418782,0.6830498530186248,0.053880426075418986,0.958887659400613,0.3957411168475973,0.1568415160116292,0.7413419517696126,0.8343964371307578,0.30467756553710246,0.38916818377848417,0.9638071790719129,0.38002997710052266,0.890793707744668,0.13419259704295694,0.34462556003495015,0.5217241273052581,0.6071862879557001,0.2590145701547967,0.3945930533001636,0.6260025911187964,0.3601869154775945,0.31745024897076946,0.12410429923463329,0.24240016664199304,0.33102288053673856,0.027344255120804517,0.9195262490315631,0.6939495998124223,0.8927613632564165,0.2742103183638469,0.646066921613518,0.8927603482976701,0.8466904883456697,0.09444262110606416,0.3391852937764218,0.5146475005953064,0.23636255271102147,0.38165834571408974,0.06290061520540446,0.2563953800267915,0.17668278353914912,0.3280879219334004,0.066705565236587,0.8715582708801289,0.4757972454648194,0.3928502259366441,0.784493429304325,0.31570363244873223,0.011540746813807012,0.09856010289871286,0.1120067295418391,0.6987201067814718,0.9406181934525387,0.6750240859218677,0.506931922349268,0.2795989008150682,0.04592391613253821,0.13437231882082767,0.9513562698442207,0.04705317461088465,0.2837019467689117,0.6534118419511135,0.6075373948927226,0.22179234790752145,0.23001511008889663,0.9604736698268734,0.42197772662748634,0.3570490398065197,0.39035558693653616,0.47172206266750405,0.12197131570263209,0.7330991242978828,0.43978706869709483,0.2514419983138747,0.2494356734417571,0.5655903036136893,0.5717795834379557,0.9189530271332333,0.23470572470661955,0.808020037427488,0.8230260293699588,0.7954082632113312,0.2643135257802284,0.0012829190540633029,0.6036250838518235,0.7912639545023371,0.6796730283914729,0.23866723051744754,0.6848611997252306,0.4530961543898373,0.22351728288520367,0.4546549974007078,0.4594528181568688,0.11801792525253463,0.596727511380845,0.20402759118141434,0.6400779380595908,0.021563577729784567,0.3746455346712023,0.8309495140592973,0.4198409015164608,0.36017135919358445,0.047299329273928103,0.24571411439151936,0.9080903127157943,0.006079522690123351,0.7962197861040545,0.3470729760838438,0.7049097969188897,0.7942627059648301,0.0034593854361453236,0.8947573443606287,0.6638244403130688,0.28748125956839055,0.8059755734958215,0.14375466884120036,0.8400999035795984,0.1831339803953005,0.33339785623445584,0.8113674143441701,0.6570219924589057,0.9525983841343215,0.25854032966725204,0.33243789838736515,0.9820667530147826,0.6597997034184824,0.22421078973016406,0.3726009741035039,0.6661877099912172,0.7014499856883873,0.11267281749882874,0.3842103669764704,0.1447730681362538,0.9581078439223344,0.4784205303785637,0.08175085035015806,0.9847271028096749,0.05019086920310134,0.9412498999972803,0.3319169950503207,0.04019308760786622,0.38144965411183274,0.7148743344430898,0.03550228151750179,0.0790248275410762,0.3943493205757106,0.9084144872154708,0.6588475088489304,0.10957971282276768,0.2514258824519816,0.3999655303362316,0.3372737108233771,0.8117547140063831,0.7062723450868338,0.48458870814962396,0.19601900371613867,0.4727466275023944,0.7068697502072061,0.16588375324033455,0.2873631633737741,0.6856291651110403,0.09471435975355902,0.5829069181533905,0.1374888163624528,0.04904145486649858,0.12602824479954688,0.5065768904218833,0.2467066454808131,0.12090491221949473,0.6414064190982474,0.7682768186334171,0.8073651900190804,0.2829718472234861,0.02731799783746569,0.41938899222202697,0.2933960756676919,0.580554415711275,0.7833046885632436,0.846425654418924,0.5599838888087703,0.026786063530803483,0.2793064963671341,0.08439950817817865,0.30929035871660215,0.9942744272747412,0.3576324889413115,0.09880743545050408,0.4995848065133024,0.7044648917230494,0.49009860629941626,0.7882245356946029,0.5706444000164845,0.7679335983671102,0.851273823084784,0.6504482992334878,0.9038882140302226,0.215748298233298,0.10105814731354656,0.7801466183011649,0.9147068728777562,0.2631189568682696,0.8369729222427765,0.9770907334766366,0.41352423748888023,0.7482786549785163,0.9368846415265635,0.6457545363545435,0.8610939131826942,0.9717381485141621,0.4366840764515407,0.789791620106867,0.9039311218217767,0.36660670551582486,0.36602449127972236,0.16393259447416153,0.1493549027942941,0.10769106314575716,0.6593559309653942,0.4864368229388153,0.27013251901323754,0.5285551346372367,0.6609527811250786,0.8400736843269696,0.27416684025824023,0.4669849273192346,0.7376478906793432,0.1213124522891782,0.9659466867542095,0.01722989875587222,0.9774149967530625,0.03476194985207426,0.3247349823194231,0.7233663443992682,0.363934995050473,0.6316176325427839,0.104196595850233,0.34594077680781266,0.3242084594807454,0.9602463426354697,0.26852060694605606,0.02426009303578136,0.501665619442418,0.23836885679325415,0.920183508940489,0.6160227915972539,0.12499146766684521,0.730835364105239,0.6212245610006113,0.03835367561588099,0.03362851159493785,0.6178702631184686,0.457007797341497,0.20290097418422348,0.8113715490017678,0.4260790800394726,0.5602561731182987,0.4028057410404706,0.3434202519018291,0.9306647085138325,0.5926415452602728,0.6376344221136667,0.7761752850939383,0.17381520038610387,0.9720917631865095,0.44066487868393756,0.6074366010263628,0.40190874508617536,0.5189935000204777,0.8823513963537868,0.02552294908106778,0.7222996373778291,0.8096620944567929,0.7043062196613515,0.0044152642202659464,0.5623493755324868,0.1233489638726133,0.4791725447544517,0.4183457971448937,0.5086966003864233,0.478298471287671,0.0498639361302996,0.41110625756348074,0.47635536351554886,0.12983922084161137,0.9636088434331163,0.8316625440159295,0.8158618958856616,0.4272366133204223,0.5902468889177247,0.9786458622839078,0.576495262651421,0.6825801983925485,0.3857787022716176,0.5739766606275191,0.10083574107270843,0.9022092047382125,0.6887565186763116,0.4602807663992743,0.8644075066291728,0.43348471857136195,0.5849786559142407,0.6393376361930395,0.5865677972495468,0.43477638680581887,0.7350505606332457,0.030632306884650684,0.6826181358520976,0.77143375851291,0.8460044409656751,0.6136081624399379,0.018273405029789025,0.7453724340881431,0.0455795686863093,0.4328183295294614,0.24714779181793212,0.6717552524075118,0.6238080137098119,0.05913197544365356,0.6786983925580535,0.0017283093532044491,0.5402039073873972,0.1494096789349898,0.15954033072157248,0.4654223355005874,0.5476951994812407,0.11752277701692371,0.19711326594605372,0.6218399530561846,0.11908907529100565,0.12967426428136886,0.4373289121362749,0.11029830672049923,0.07360106692561597,0.579461797892795,0.8511004990610993,0.8295439958556953,0.5435299267877876,0.7487391390379925,0.5851818266916191,0.3847836203690552,0.12456461260706697,0.15876896588478184,0.04859987330325244,0.9168201800897062,0.8962640045186991,0.7376200095378244,0.271844953346591,0.19843740152526268,0.08467335990287628,0.2298237532187084,0.7105123985637284,0.7488639477261791,0.8154256743099717,0.10622353923623495,0.1151179714704832,0.0037430644847821215,0.6927899228008048,0.7077465378402008,0.9308069696609276,0.18697322456555132,0.1368594784814149,0.9849695285898517,0.1447401282552524,0.6098645825062058,0.9504833298637345,0.8748607310495503,0.45979020541110494,0.8437019040609421,0.7724826523333238,0.2939481750465114,0.3255577092941948,0.33491955753113467,0.014080836933217267,0.7995970922222291,0.08178161029752085,0.6756325395233321,0.7598609035899198,0.9125305304010324,0.490384549354662,0.5057161342860866,0.7135216009436135,0.38030239108056696,0.8742195539099467,0.35293929254027445,0.3403736727831632,0.5518128341807171,0.0806775517441346,0.5921643245136206,0.28936676017620366,0.2665488296508258,0.5587458584613428,0.6053785830705899,0.7297118411567269,0.8824797597734533,0.5401955513351603,0.9439338327442826,0.5078209588188454,0.017915907070880754,0.5156791126598028,0.20341970887345007,0.8440684928617949,0.024122345329464112,0.06629073787837081,0.6979243175162538,0.9363854810927423,0.41518882737875973,0.280678927854087,0.5012267614277229,0.4747829629687649,0.4545582856440058,0.32244673435537574,0.7587212136802652,0.9043279898953385,0.22763447861497244,0.0902190941696196,0.43213184626972,0.19631408708789333,0.006345290094457501,0.5074443426345855,0.936573479204777,0.5017778260948852,0.823001757125211,0.9054178083069837,0.03564056755017875,0.5011175334747777,0.06568922262241539,0.1655484943707085,0.7887578218010124,0.9295782310489117,0.19208297017095866,0.49884086594281973,0.07705063854050964,0.43361731916765334,0.6588577615254702,0.1931436434616296,0.38753612340077237,0.010144921221776015,0.3548819603098431,0.060221416106254644,0.1373918378750727,0.10815956732231125,0.5075097959846856,0.1861179482627935,0.9531137904119474,0.20756735084361344,0.9106037929840759,0.8081808700526906,0.041831630788887963,0.5026731992524631,0.7108502524813327,0.014642178941988493,0.21224207762792957,0.4075149549440228,0.7280368411388085],"marker":{"pattern":{}}}];
+<div><div id="86f3bcba-ae08-4f95-9bec-f47b7c5bd668"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_86f3bcbaae084f959becf47b7c5bd668 = function() {
+    var data = [{"type":"histogram","x":[0.6422432359359399,0.18555933579739714,0.319392837570334,0.5547859920684749,0.8651483835410194,0.18283698778785662,0.36269825220856655,0.44703747398133753,0.05946426077634337,0.8640469986249163,0.016956876852699865,0.979173782509253,0.8023734611137805,0.6920695224572179,0.5807339169840047,0.7656287276230365,0.8744295326590974,0.37167169313123904,0.28267822055634184,0.43365754609199236,0.22242606924675346,0.8861042035237393,0.3316074340184384,0.25247987588595455,0.23221857066814622,0.4754616328892515,0.8379797096992543,0.3715672043662279,0.6133199679859332,0.31387437993825074,0.48120740836453846,0.04838249941540074,0.647679023655937,0.05503371990700345,0.5894185178946197,0.16726087182558658,0.5118025511443614,0.15854980006164265,0.8258537084426563,0.2484352468460318,0.7539141318974886,0.3871400543302367,0.13272308883195472,0.4831190931773165,0.4362976257042843,0.4004238694227713,0.1446811518569232,0.7078961404867659,0.6875267537035837,0.15729916820275236,0.8507750818539075,0.7595415400512421,0.4228416821751644,0.295639657717225,0.237868913904543,0.5720655926939493,0.7875255595053678,0.5828640425674764,0.999421404363111,0.5038573839291306,0.4835637440173536,0.20937930438288,0.415866075948225,0.918863912157789,0.4452566709287401,0.5912866287040726,0.5072106376445528,0.8507713863932873,0.5203784001095714,0.23244690179464012,0.8162840167742255,0.21943884778640577,0.1570362025349602,0.4795221717577024,0.40275376073822633,0.7080423271913823,0.7488546019741966,0.224772115522749,0.7729889254394177,0.38460494914627985,0.20468317299487604,0.26155859152858363,0.18214856250552347,0.4148227709825453,0.8140280249482135,0.5252277046159795,0.07326373705615963,0.9973578758920942,0.17047927741817226,0.9710914384222531,0.5987160602777607,0.5343042354754276,0.29991445135913997,0.05253141294105945,0.23167453322888443,0.6976579745303192,0.5412234664115482,0.761336703779632,0.9707691018341493,0.9129105629531278,0.9589818173157393,0.29890450462013385,0.23347022479448665,0.5531269596125651,0.235934557160684,0.09248721498012857,0.026956405444656495,0.6878071321612149,0.31771318460914433,0.4566043070258641,0.08484913702053265,0.7005349725097774,0.08978710209386342,0.35745609282846524,0.824757640755891,0.1625071538264229,0.14656568654764668,0.5920444251143867,0.06599078281963577,0.9242170382670444,0.5580962747862332,0.3109808740649084,0.8238227449694877,0.11111245092578093,0.36891618565730677,0.7103165312825526,0.6915891076525804,0.6049447678096879,0.4033551390050284,0.4788646929759319,0.5437641648307736,0.2175146684496384,0.8054333252606504,0.7517858273054122,0.0029287445089623,0.20376564692427668,0.12204468263977652,0.885742284103451,0.24100922739462227,0.3897679044464841,0.18275344961100348,0.4417699513487625,0.6559106480111081,0.7632854210161041,0.9605212796444007,0.5585065741910915,0.11037030870969877,0.7244792526049102,0.48237635971874493,0.4847065496466235,0.3322743537489914,0.3834552910800444,0.05501373523225861,0.5962981747113674,0.8666283651256146,0.866776276396095,0.3258632625040363,0.2529383570038214,0.22507521622402238,0.9627799577363073,0.172909934764223,0.8012305771367717,0.5443134662841685,0.6136630990191607,0.1397349334591681,0.9440888348917031,0.47201011874342247,0.8897958735505623,0.9204486325017296,0.5144886600235911,0.9054579291910823,0.9825858444178424,0.819026429293687,0.23392551359617741,0.13045663242096317,0.09771051906879136,0.8015026211884136,0.05042076777068183,0.596809093883209,0.24117002288021117,0.10496034400448773,0.3423685823357414,0.865635824663384,0.5136870718243668,0.15338940193001016,0.3539146295206269,0.2805841449435982,0.5054613967064279,0.33909300041945856,0.9987263410018528,0.7451047281467086,0.43331504275763943,0.40898554378011875,0.7840838284685694,0.8884632196960524,0.46796620972131153,0.0797790062806506,0.38827775235361484,0.6756241133934051,0.30799269944476126,0.7660773125020448,0.5355803555298306,0.10400823639942525,0.5431680445663895,0.3272044937142128,0.5180617339928778,0.9570987914279642,0.9214850117418572,0.915965104105292,0.688110380863291,0.9696863188048489,0.3660919933572473,0.7536495567310412,0.36967906187077704,0.5590592520429194,0.6477553236007039,0.5009505781279973,0.5185684748166824,0.36838966939520024,0.27979146706913405,0.8891631592418759,0.7505516343917926,0.5456797057468794,0.9856002691169513,0.9908081743513607,0.42544236065066665,0.6536024371650843,0.7945689188950761,0.35746463767817316,0.5947954812849684,0.7544453138240734,0.8764365540453367,0.16818618911197647,0.3570726673602683,0.919305277424443,0.335528037284061,0.5592257123839823,0.6689000850967715,0.516880795448014,0.05037846224490117,0.9658182546157539,0.8516966541269309,0.13272946480903614,0.3705094732336658,0.20985126054643288,0.6748253201553073,0.8528803782153357,0.512987039038355,0.7714165650539723,0.5730812541688048,0.13876753581532442,0.7503602513887921,0.9706619447082816,0.6611896113679387,0.7591796855952864,0.6101886262411358,0.08160628579791185,0.40767262779162183,0.3171902333682841,0.9733688249983958,0.5128865406033349,0.3855318118230052,0.2388953502200719,0.14125915688748747,0.7481229892945771,0.8358912799672913,0.3913305381344915,0.30793752570043664,0.9684500903905954,0.20658618665578088,0.47373338758454453,0.18725064360987376,0.29703167503682315,0.7610814314492713,0.9973349941635716,0.09762935238886117,0.7254213991118834,0.9085907427803316,0.6373367186206627,0.8761449466725578,0.16146957619044822,0.9271845188203932,0.6532476267987231,0.378372533242897,0.08893745974769296,0.8603087219585226,0.8943913186748692,0.8183977399904191,0.5727272270781376,0.9737814971309804,0.46571655239061394,0.1120778189503745,0.9246319560421712,0.1439093340834089,0.20598975810476805,0.9281206935977903,0.46603062246475657,0.1127744136213179,0.08626995628165313,0.6281037091709472,0.5542128057948088,0.3129533262029729,0.22142070056802376,0.4124445235903227,0.298330704746929,0.9695555680266602,0.6052614638516255,0.11612384011946986,0.7374839029822344,0.5810346490060955,0.6551610589004881,0.2388431295581308,0.24237085833209004,0.7889331907389455,0.6783383580292631,0.507124637079283,0.9081930516792138,0.16362132372284355,0.5086428626320421,0.41220980404674057,0.1982184343902219,0.7764613146768098,0.3489520413543987,0.9356367428515682,0.7962889445286911,0.6904540561969464,0.45734158871921804,0.6388528661144722,0.309551122861099,0.9982734300019133,0.4426953592050582,0.6820751707964424,0.062253151665908724,0.7064497342470326,0.15118817978243193,0.5614925476961854,0.9156831794054183,0.8261216262036866,0.25905204014866856,0.9586661645932686,0.7758096910761629,0.24256426402166265,0.8092954967541338,0.5945051658704701,0.9357057086611559,0.1799595283832348,0.7144175448110495,0.7911788843256844,0.5054211031354434,0.6866111020035431,0.7224021472516221,0.7534977583882201,0.4112920288912446,0.7476683256331278,0.3321951950671024,0.5925443674432591,0.2410234728215448,0.05288425467279412,0.28190568223492884,0.9439589793408523,0.6300560512626484,0.4909894142643131,0.4501360570521348,0.9399842246836713,0.14246586248838178,0.6731296165090882,0.8470607512685744,0.5921180856026119,0.9402592139820363,0.969835564855439,0.4499994317069923,0.6160436691351604,0.7756940624340589,0.8310718307394728,0.6942371253782528,0.6731052352915834,0.786868513099541,0.9800451808370683,0.8079854228431217,0.5648830189577024,0.27416459350027245,0.5080904998756226,0.23748307814310443,0.9509289938179837,0.7497455192199435,0.6614658952728316,0.18221432406993499,0.5409355414868741,0.4480176775575654,0.14769001172128737,0.5268022018714879,0.8956240493136164,0.887363139577702,0.5850153851466786,0.312937918701233,0.7759464749873545,0.18051240959729553,0.012101836485940431,0.8577825698906225,0.20654820337423796,0.7152273997125128,0.5745527232188928,0.6109237918740742,0.544708694609017,0.737277389874358,0.12947085297224314,0.10429842042290383,0.7942010069944262,0.6688387497553246,0.3395495848890532,0.29736054341929785,0.17081738184017825,0.17885397735597475,0.15596490248577033,0.7117831189935356,0.9188308094946742,0.1702927940908524,0.08599137436937276,0.05683443415418232,0.5057437238219012,0.9387543606462058,0.07108999411323536,0.6969717101461044,0.6022880120013852,0.400726806245155,0.33782016460933817,0.3081857255327264,0.15585183243497558,0.14862531902110165,0.4477817786165964,0.4579215983565643,0.8525240728938479,0.9225219038007055,0.6703717840168237,0.08258283266374311,0.25865927399986277,0.7075771012149056,0.5214114248693582,0.8604069587236162,0.6313346362999074,0.12141522429154483,0.7896746714618301,0.8632214663442841,0.8117942105889276,0.06268532088960399,0.5349111385028313,0.18101034005801042,0.10872154762562192,0.07433888349683515,0.1772222037694685,0.5057703135632476,0.9903277815238969,0.3155237798350541,0.10352913863901081,0.7497623604536269,0.527111737067091,0.8225450191286803,0.6853802277681269,0.9924156700135837,0.7451601703060688,0.06931098853850459,0.5590530282043634,0.42600197367301784,0.9325156349552226,0.39423554659311544,0.7387532342555534,0.29817943698859606,0.2710578603352152,0.5950558955196827,0.8412209552615801,0.609764755382387,0.43624233978939964,0.17411751737235914,0.21689129020983777,0.5225582315982423,0.40096623195580783,0.8674806383040439,0.33142567781490506,0.7354663799624123,0.3667649695883387,0.2108390539396937,0.32004940336837473,0.2914353297515684,0.8909486988724669,0.7549465133553027,0.9276642569683566,0.6212665842837571,0.44394495351001906,0.7807502238258194,0.9607578798947881,0.47593849903558927,0.7649795336658715,0.6584141834162663,0.6183808318562662,0.8268875307802842,0.050679396641745256,0.3893656122840685,0.71361544836637,0.53760390617274,0.6596349661832812,0.10090761553868255],"marker":{"pattern":{}}}];
     var layout = {"width":500,"height":500,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}}};
     var config = {"responsive":true};
-    Plotly.newPlot('7459db2b-f370-43cf-a5d6-023c3c418d71', data, layout, config);
+    Plotly.newPlot('86f3bcba-ae08-4f95-9bec-f47b7c5bd668', data, layout, config);
 };
-renderPlotly_7459db2bf37043cfa5d6023c3c418d71();
+renderPlotly_86f3bcbaae084f959becf47b7c5bd668();
 </script></div>
 
-                </div>
-            </div>
-        </div>
         <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
 <div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
 <div class="fsdocs-tip" id="fs3">module Defaults
@@ -513,15 +931,15 @@ from Plotly.NET<br /><em>&lt;summary&gt;
   inherit DynamicObj
   new: unit -&gt; DisplayOptions
   static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
-  static member addDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addChartDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
   static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
   static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
-  static member getDescription: displayOpts: DisplayOptions -&gt; XmlNode list
-  static member getPlotlyReference: displayOpts: DisplayOptions -&gt; PlotlyJSReference
-  static member init: ?AdditionalHeadTags: XmlNode list * ?Description: XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions
-  static member initCDNOnly: unit -&gt; DisplayOptions
+  static member getChartDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDocumentCharset: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentDescription: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentFavicon: displayOpts: DisplayOptions -&gt; XmlNode
   ...<br /><br />--------------------<br />new: unit -&gt; DisplayOptions</div>
-<div class="fsdocs-tip" id="fs6">static member DisplayOptions.init: ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?Description: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
+<div class="fsdocs-tip" id="fs6">static member DisplayOptions.init: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentTitle: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentCharset: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentDescription: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentFavicon: Giraffe.ViewEngine.HtmlElements.XmlNode * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?ChartDescription: Giraffe.ViewEngine.HtmlElements.XmlNode list * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
 <div class="fsdocs-tip" id="fs7">type PlotlyJSReference =
   | CDN of string
   | Full
@@ -534,30 +952,32 @@ Sets how plotly is referenced in the head of html docs.
 <div class="fsdocs-tip" id="fs10">namespace System</div>
 <div class="fsdocs-tip" id="fs11">Multiple items<br />type Random =
   new: unit -&gt; unit + 1 overload
+  member GetItems&lt;&#39;T&gt; : choices: ReadOnlySpan&lt;&#39;T&gt; * length: int -&gt; &#39;T array + 2 overloads
   member Next: unit -&gt; int + 2 overloads
-  member NextBytes: buffer: byte[] -&gt; unit + 1 overload
+  member NextBytes: buffer: byte array -&gt; unit + 1 overload
   member NextDouble: unit -&gt; float
   member NextInt64: unit -&gt; int64 + 2 overloads
   member NextSingle: unit -&gt; float32
+  member Shuffle&lt;&#39;T&gt; : values: Span&lt;&#39;T&gt; -&gt; unit + 1 overload
   static member Shared: Random<br /><em>&lt;summary&gt;Represents a pseudo-random number generator, which is an algorithm that produces a sequence of numbers that meet certain statistical requirements for randomness.&lt;/summary&gt;</em><br /><br />--------------------<br />System.Random() : System.Random<br />System.Random(Seed: int) : System.Random</div>
 <div class="fsdocs-tip" id="fs12">val x: float list</div>
 <div class="fsdocs-tip" id="fs13">val i: int</div>
 <div class="fsdocs-tip" id="fs14">System.Random.NextDouble() : float</div>
-<div class="fsdocs-tip" id="fs15">val histo1: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs15">val histo1: GenericChart</div>
 <div class="fsdocs-tip" id="fs16">type Chart =
-  static member AnnotatedHeatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * annotationText: seq&lt;#seq&lt;string&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a3&gt; * ?MultiX: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?XGap: int * ?Y: seq&lt;&#39;a4&gt; * ?MultiY: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?YGap: int * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 1 overload
-  static member Area: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?FillColor: Color * ?FillPatternShape: PatternShape * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
-  static member Bar: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot: ?X: seq&lt;&#39;a0&gt; * ?MultiX: seq&lt;seq&lt;&#39;a0&gt;&gt; * ?Y: seq&lt;&#39;a1&gt; * ?MultiY: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?FillColor: Color * ?MarkerColor: Color * ?Marker: Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: BoxPoints * ?BoxMean: BoxMean * ?Jitter: float * ?PointPos: float * ?Orientation: Orientation * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: QuartileMethod * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a0 :&gt; IConvertible and &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible) + 2 overloads
-  static member Bubble: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * sizes: seq&lt;int&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
-  static member Candlestick: ``open`` : seq&lt;#IConvertible&gt; * high: seq&lt;#IConvertible&gt; * low: seq&lt;#IConvertible&gt; * close: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;a4&gt; * ?MultiX: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?Line: Line * ?IncreasingColor: Color * ?Increasing: FinanceMarker * ?DecreasingColor: Color * ?Decreasing: FinanceMarker * ?WhiskerWidth: float * ?ShowXAxisRangeSlider: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 2 overloads
-  static member Column: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member Contour: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?Transpose: bool * ?ContourLineColor: Color * ?ContourLineDash: DrawingStyle * ?ContourLineSmoothing: float * ?ContourLine: Line * ?ContoursColoring: ContourColoring * ?ContoursOperation: ConstraintOperation * ?ContoursType: ContourType * ?ShowContourLabels: bool * ?ContourLabelFont: Font * ?Contours: Contours * ?FillColor: Color * ?NContours: int * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible)
-  static member Funnel: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Width: float * ?Offset: float * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?MarkerColor: Color * ?MarkerOutline: Line * ?Marker: Marker * ?TextInfo: TextInfo * ?ConnectorLineColor: Color * ?ConnectorLineStyle: DrawingStyle * ?ConnectorFillColor: Color * ?ConnectorLine: Line * ?Connector: FunnelConnector * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible)
-  static member Heatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member AnnotatedHeatmap: zData: #(&#39;b seq) seq * annotationText: #(string seq) seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;d seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;d seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;e seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;f * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;f seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorBar: ColorBar * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ReverseScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ZSmooth: SmoothAlg * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Transpose: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?ReverseYAxis: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;f :&gt; IConvertible) + 1 overload
+  static member Area: x: #IConvertible seq * y: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowMarkers: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerSymbol: MarkerSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerSymbol: MarkerSymbol seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineDash: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?StackGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?GroupNorm: GroupNorm * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillPatternShape: PatternShape * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillPattern: Pattern * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 1 overload
+  static member Bar: values: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Keys: &#39;b seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiKeys: &#39;b seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPatternShape: PatternShape * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerPatternShape: PatternShape seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPattern: Pattern * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Base: #IConvertible * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiWidth: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible) + 1 overload
+  static member BoxPlot: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;a seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;a seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;b seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;b seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?WhiskerWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?BoxPoints: BoxPoints * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?BoxMean: BoxMean * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Jitter: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?PointPos: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OutlineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OutlineWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Outline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Notched: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?NotchWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?QuartileMethod: QuartileMethod * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?SizeMode: BoxSizeMode * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; IConvertible and &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible) + 2 overloads
+  static member Bubble: x: #IConvertible seq * y: #IConvertible seq * sizes: int seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerSymbol: MarkerSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerSymbol: MarkerSymbol seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineDash: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?StackGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?GroupNorm: GroupNorm * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 1 overload
+  static member Candlestick: ``open`` : #IConvertible seq * high: #IConvertible seq * low: #IConvertible seq * close: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;e seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;f * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;f seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?IncreasingColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Increasing: FinanceMarker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?DecreasingColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Decreasing: FinanceMarker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?WhiskerWidth: float * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?ShowXAxisRangeSlider: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;e :&gt; IConvertible and &#39;f :&gt; IConvertible) + 2 overloads
+  static member Column: values: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Keys: &#39;b seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiKeys: &#39;b seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPatternShape: PatternShape * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerPatternShape: PatternShape seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPattern: Pattern * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Base: #IConvertible * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiWidth: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible) + 1 overload
+  static member Contour: zData: #(&#39;b seq) seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;c seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;d seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;d seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorBar: ColorBar * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ReverseScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Transpose: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesDash: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesSmoothing: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLines: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowContourLines: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursColoring: ContourColoring * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursOperation: ConstraintOperation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursType: ContourType * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowContoursLabels: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursLabelFont: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursStart: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursEnd: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Contours: Contours * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?NContours: int * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;e :&gt; IConvertible)
+  static member Funnel: x: #IConvertible seq * y: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Offset: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextInfo: TextInfo * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorLineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorLineStyle: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorFillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorLine: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Connector: FunnelConnector * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?InsideTextFont: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OutsideTextFont: Font * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible)
+  static member Heatmap: zData: #(&#39;b seq) seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;c seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;d seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;d seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorBar: ColorBar * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ReverseScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ZSmooth: SmoothAlg * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Transpose: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?ReverseYAxis: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;e :&gt; IConvertible) + 1 overload
   ...</div>
-<div class="fsdocs-tip" id="fs17">static member Chart.Histogram: data: seq&lt;#System.IConvertible&gt; * orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;a1 * ?MultiText: seq&lt;&#39;a1&gt; * ?HistFunc: StyleParam.HistFunc * ?HistNorm: StyleParam.HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?BinGroup: string * ?XBins: TraceObjects.Bins * ?YBins: TraceObjects.Bins * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Line: Line * ?XError: TraceObjects.Error * ?YError: TraceObjects.Error * ?Cumulative: TraceObjects.Cumulative * ?HoverLabel: LayoutObjects.Hoverlabel * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;a1 :&gt; System.IConvertible)<br />static member Chart.Histogram: ?X: seq&lt;&#39;a&gt; * ?MultiX: seq&lt;seq&lt;&#39;a&gt;&gt; * ?Y: seq&lt;&#39;b&gt; * ?MultiY: seq&lt;seq&lt;&#39;b&gt;&gt; * ?Orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;c * ?MultiText: seq&lt;&#39;c&gt; * ?TextPosition: StyleParam.TextPosition * ?HistFunc: StyleParam.HistFunc * ?HistNorm: StyleParam.HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?BinGroup: string * ?XBins: TraceObjects.Bins * ?YBins: TraceObjects.Bins * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: StyleParam.PatternShape * ?MultiMarkerPatternShape: seq&lt;StyleParam.PatternShape&gt; * ?MarkerPattern: TraceObjects.Pattern * ?Marker: TraceObjects.Marker * ?Line: Line * ?XError: TraceObjects.Error * ?YError: TraceObjects.Error * ?Cumulative: TraceObjects.Cumulative * ?HoverLabel: LayoutObjects.Hoverlabel * ?UseDefaults: bool -&gt; GenericChart.GenericChart (requires &#39;a :&gt; System.IConvertible and &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible)</div>
-<div class="fsdocs-tip" id="fs18">argument X: seq&lt;float&gt; option<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs17">static member Chart.Histogram: data: #System.IConvertible seq * orientation: StyleParam.Orientation * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;b * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;b seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?HistFunc: StyleParam.HistFunc * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?HistNorm: StyleParam.HistNorm * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?NBinsX: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?NBinsY: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?BinGroup: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XBins: TraceObjects.Bins * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YBins: TraceObjects.Bins * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: TraceObjects.Marker * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XError: TraceObjects.Error * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YError: TraceObjects.Error * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Cumulative: TraceObjects.Cumulative * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?HoverLabel: LayoutObjects.Hoverlabel * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; System.IConvertible)<br />static member Chart.Histogram: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;a seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;a seq seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;b seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;b seq seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: StyleParam.Orientation * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: StyleParam.TextPosition * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?HistFunc: StyleParam.HistFunc * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?HistNorm: StyleParam.HistNorm * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?NBinsX: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?NBinsY: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?BinGroup: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XBins: TraceObjects.Bins * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YBins: TraceObjects.Bins * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: StyleParam.Colorscale * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPatternShape: StyleParam.PatternShape * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerPatternShape: StyleParam.PatternShape seq * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPattern: TraceObjects.Pattern * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: TraceObjects.Marker * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XError: TraceObjects.Error * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YError: TraceObjects.Error * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Cumulative: TraceObjects.Cumulative * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?HoverLabel: LayoutObjects.Hoverlabel * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible and &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible)</div>
+<div class="fsdocs-tip" id="fs18">argument X: float seq option<br /><em>&lt;summary&gt;
  Visualizes the distribution of the input data as a histogram.
 
  A histogram is an approximate representation of the distribution of numerical data. To construct a histogram, the first step is to &quot;bin&quot;  the range of values - that is, divide the entire range of values into a series of intervals - and then count how many values fall into each interval.
@@ -565,23 +985,58 @@ Sets how plotly is referenced in the head of html docs.
 
  The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
  &lt;/summary&gt;<br />&lt;param name=&quot;X&quot;&gt;Sets the sample data to be binned on the x axis.&lt;/param&gt;<br />&lt;param name=&quot;MultiX&quot;&gt;Sets the sample data to be binned on the x axis. Use two inner arrays here to plot multicategorial data&lt;/param&gt;<br />&lt;param name=&quot;Y&quot;&gt;Sets the sample data to be binned on the y axis.&lt;/param&gt;<br />&lt;param name=&quot;MultiY&quot;&gt;Sets the sample data to be binned on the y axis. Use two inner arrays here to plot multicategorial data&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Sets the orientation of the bars. With &quot;v&quot; (&quot;h&quot;), the value of the each bar spans along the vertical (horizontal).&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Opacity&quot;&gt;Sets the Opacity of the trace.&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;TextPosition&quot;&gt;Sets the position of text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;HistFunc&quot;&gt;Specifies the binning function used for this histogram trace. If &quot;count&quot;, the histogram values are computed by counting the number of values lying inside each bin. If &quot;sum&quot;, &quot;avg&quot;, &quot;min&quot;, &quot;max&quot;, the histogram values are computed using the sum, the average, the minimum or the maximum of the values lying inside each bin respectively.&lt;/param&gt;<br />&lt;param name=&quot;HistNorm&quot;&gt;Specifies the type of normalization used for this histogram trace. If &quot;&quot;, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If &quot;percent&quot; / &quot;probability&quot;, the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If &quot;density&quot;, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If &quot;probability density&quot;, the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;NBinsX&quot;&gt;Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.&lt;/param&gt;<br />&lt;param name=&quot;NBinsY&quot;&gt;Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.&lt;/param&gt;<br />&lt;param name=&quot;BinGroup&quot;&gt;Set a group of histogram traces which will have compatible bin settings. Note that traces on the same subplot and with the same &quot;orientation&quot; under `barmode` &quot;stack&quot;, &quot;relative&quot; and &quot;group&quot; are forced into the same bingroup, Using `bingroup`, traces under `barmode` &quot;overlay&quot; and on different axes (of the same axis type) can have compatible bin settings. Note that histogram and histogram2d&quot; trace can share the same `bingroup`&lt;/param&gt;<br />&lt;param name=&quot;XBins&quot;&gt;Sets the binning across the x dimension&lt;/param&gt;<br />&lt;param name=&quot;YBins&quot;&gt;Sets the binning across the y dimension&lt;/param&gt;<br />&lt;param name=&quot;MarkerColor&quot;&gt;Sets the color of the bars&lt;/param&gt;<br />&lt;param name=&quot;MarkerColorScale&quot;&gt;Sets the colorscale for the bars. To have an effect, `MarkerColor` must map to color scale values.&lt;/param&gt;<br />&lt;param name=&quot;MarkerOutline&quot;&gt;Sets the color of the bar outlines&lt;/param&gt;<br />&lt;param name=&quot;MarkerPatternShape&quot;&gt;Sets a pattern shape for all bars&lt;/param&gt;<br />&lt;param name=&quot;MultiMarkerPatternShape&quot;&gt;Sets an individual pattern shape for each bar&lt;/param&gt;<br />&lt;param name=&quot;MarkerPattern&quot;&gt;Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker of this trace.&lt;/param&gt;<br />&lt;param name=&quot;Line&quot;&gt;Sets the outline of the histogram&#39;s bars.&lt;/param&gt;<br />&lt;param name=&quot;XError&quot;&gt;Sets the x error of this trace.&lt;/param&gt;<br />&lt;param name=&quot;YError&quot;&gt;Sets the y error of this trace.&lt;/param&gt;<br />&lt;param name=&quot;Cumulative&quot;&gt;Sets whether and how the cumulative distribution is displayed&lt;/param&gt;<br />&lt;param name=&quot;HoverLabel&quot;&gt;Sets the style of the hoverlabels of this trace.&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
-<div class="fsdocs-tip" id="fs19">static member Chart.withSize: width: float * height: float -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)<br />static member Chart.withSize: ?Width: int * ?Height: int -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs20">module GenericChart
+<div class="fsdocs-tip" id="fs19">static member Chart.withSize: width: float * height: float -&gt; (GenericChart -&gt; GenericChart)<br />static member Chart.withSize: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Height: int -&gt; (GenericChart -&gt; GenericChart)</div>
+<div class="fsdocs-tip" id="fs20">type GenericChart =
+  | Chart of data: Trace * layout: Layout * config: Config * displayOpts: DisplayOptions
+  | MultiChart of data: Trace list * layout: Layout * config: Config * displayOpts: DisplayOptions
+  static member addConfig: config: Config -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addDisplayOptions: displayOpts: DisplayOptions -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addLayout: layout: Layout -&gt; gChart: GenericChart -&gt; GenericChart
+  static member combine: gCharts: GenericChart seq -&gt; GenericChart
+  static member countTrace: gChart: GenericChart -&gt; int
+  static member existsTrace: predicate: (Trace -&gt; bool) -&gt; gChart: GenericChart -&gt; bool
+  static member fromChartDTO: dto: ChartDTO -&gt; GenericChart
+  static member fromFigure: fig: Figure -&gt; GenericChart
+  static member getConfig: gChart: GenericChart -&gt; Config
+  static member getDisplayOptions: gChart: GenericChart -&gt; DisplayOptions
+  ...<br /><em>&lt;summary&gt;
+ The central type that gets created by all Chart constructors is GenericChart, which itself represents either a single chart or a multi chart (as a Discriminate Union type).
+ 
+ A GenericChart consists of four top level objects: Trace (multiple of those in the case of a MultiChart), Layout, Config, and DisplayOptions.
+ 
+ - `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
 
-from Plotly.NET<br /><em>&lt;summary&gt;
- Module to represent a GenericChart
+ - `Layout` is everything of the chart that is not dataset specific - e.g. the shape and style of axes, the chart title, etc.
+
+ - `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
+
+ - `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
 &lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs21">val toChartHTML: gChart: GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs21">static member GenericChart.toChartHTML: gChart: GenericChart -&gt; string</div>
 
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Histograms">
+      Histograms
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>

@@ -1,62 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>Shape (Plotly.NET)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Shape (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Shape (Plotly.NET)">
     
-</head> 
+    <title>Shape (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -64,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
   <h2>
     Shape Type
   </h2>
@@ -87,19 +906,17 @@
     </dt>
     <dt>
       Base Type: 
-      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
     </dt>
     <dt>
       All Interfaces: 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Shapes are layers that can be drawn onto a chart layout.
-
+         Shapes are layers that can be drawn onto a chart layout.
       </p>
     </div>
   </div>
@@ -128,7 +945,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2325', 2325)" onmouseover="showTip(event, '2325', 2325)">
+              <code onmouseout="hideTip(event, '2454', 2454)" onmouseover="showTip(event, '2454', 2454)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -137,7 +954,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2325">
+              <div class="fsdocs-tip" id="2454">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Shape<span>()</span></span></code>
@@ -153,23 +970,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Shape.#ctor`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.#ctor\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L9-9" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -204,19 +1004,108 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2326', 2326)" onmouseover="showTip(event, '2326', 2326)">
+              <code onmouseout="hideTip(event, '2455', 2455)" onmouseover="showTip(event, '2455', 2455)">
                 <p>
-                  <a id="init">
-                    <a href="#init">
-                      <code><span>Shape.init&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
+                  <a id="getLegendAnchor">
+                    <a href="#getLegendAnchor">
+                      <code><span>Shape.getLegendAnchor&#32;<span>shape</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2326">
+              <div class="fsdocs-tip" id="2455">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Shape.init&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
+                  <code><span>Shape.getLegendAnchor&#32;<span>shape</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        shape
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></code>
+                       - 
+                      The shape to get the Legend anchor from
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Shape.getLegendAnchor`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.getLegendAnchor\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the Legend anchor of the given shape.
+
+ If there is no Legend set, returns "legend".
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    shape
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The shape to get the Legend anchor from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '2456', 2456)" onmouseover="showTip(event, '2456', 2456)">
+                <p>
+                  <a id="init">
+                    <a href="#init">
+                      <code><span>Shape.init&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?ShowLegend,&#32;?Legend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?LegendWidth,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="2456">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Shape.init&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?ShowLegend,&#32;?Legend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?LegendWidth,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -259,6 +1148,66 @@
                       <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shapelabel.html">ShapeLabel</a></code>
                        - 
                       The text label of this shape.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this shape is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Legend
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                       - 
+                      Sets the reference to a legend to show this shape in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendRank
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while with "reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e. according to their order in data and layout.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendGroup
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time when toggling legend items.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendGroupTitle
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                       - 
+                      Sets the legend group title for this shape.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width (in px or fraction) of the legend for this shape.
                     </span>
                     <br/>
                     <span>
@@ -453,318 +1402,478 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.Shape.init``4```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.init``4\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.Shape.init``4```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.init``4\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L77-77" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a new Shape object with the given styling.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Editable
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FillColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color filling the shape's interior. Only applies to closed shapes.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FillRule
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-fillrule.html">FillRule</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Label
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shapelabel.html">ShapeLabel</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The text label of this shape.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Layer
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Specifies whether shapes are drawn below or above traces.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the Shape outline
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Opacity
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the opacity of the shape.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  For `type` "path" - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being "scaled" and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of "pixel" size mode. There are a few restrictions / quirks only absolute instructions, not relative. So the allowed segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry are relative. In the future we could consider supporting relative commands, but we would have to decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are smooth on linear axes may not be smooth on log, and vice versa. no chained "polybezier" commands - specify the segment type for each one. On category axes, values are numbers scaled to the serial numbers of categories because using the categories themselves there would be no way to describe fractional positions On data axes: because space and T are both normal components of path strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose: 2015-02-21_13:45:56.789
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TemplateItemName
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShapeType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapetype.html">ShapeType</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing mode. If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the axes' sizing mode. If "path", draw a custom SVG path using `path`. with respect to the axes' sizing mode.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Visible
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not this shape is visible.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?X0
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's starting x position. See `type` and `xsizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?X1
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's end x position. See `type` and `xsizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?XAnchor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Only relevant in conjunction with `xsizemode` set to "pixel". Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to "pixel".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Xref
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's x coordinate axis. If set to a x axis id (e.g. "x" or "x2"), the `x` position refers to a x coordinate. If set to "paper", the `x` position refers to the distance from the left of the plotting area in normalized coordinates where "0" ("1") corresponds to the left (right). If set to a x axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., "x2 domain" refers to the domain of the second x axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?XSizeMode
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shapes's sizing mode along the x axis. If set to "scaled", `x0`, `x1` and x coordinates within `path` refer to data values on the x axis or a fraction of the plot area's width (`xref` set to "paper"). If set to "pixel", `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a position relative to data or plot fraction.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Y0
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's starting y position. See `type` and `ysizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Y1
-                </span>
-                :
-                <code>'d</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's end y position. See `type` and `ysizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?YAnchor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Only relevant in conjunction with `ysizemode` set to "pixel". Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to "pixel".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Yref
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's y coordinate axis. If set to a y axis id (e.g. "y" or "y2"), the `y` position refers to a y coordinate. If set to "paper", the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where "0" ("1") corresponds to the bottom (top). If set to a y axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., "y2 domain" refers to the domain of the second y axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?YSizeMode
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shapes's sizing mode along the y axis. If set to "scaled", `y0`, `y1` and y coordinates within `path` refer to data values on the y axis or a fraction of the plot area's height (`yref` set to "paper"). If set to "pixel", `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a position relative to data or plot fraction.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Editable
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FillColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color filling the shape's interior. Only applies to closed shapes.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FillRule
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-fillrule.html">FillRule</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Label
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shapelabel.html">ShapeLabel</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The text label of this shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this shape is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Legend
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the reference to a legend to show this shape in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendRank
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while with "reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e. according to their order in data and layout.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendGroup
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time when toggling legend items.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendGroupTitle
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend group title for this shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width (in px or fraction) of the legend for this shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Layer
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Specifies whether shapes are drawn below or above traces.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Shape outline
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the opacity of the shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    For `type` "path" - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being "scaled" and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of "pixel" size mode. There are a few restrictions / quirks only absolute instructions, not relative. So the allowed segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry are relative. In the future we could consider supporting relative commands, but we would have to decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are smooth on linear axes may not be smooth on log, and vice versa. no chained "polybezier" commands - specify the segment type for each one. On category axes, values are numbers scaled to the serial numbers of categories because using the categories themselves there would be no way to describe fractional positions On data axes: because space and T are both normal components of path strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose: 2015-02-21_13:45:56.789
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TemplateItemName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShapeType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapetype.html">ShapeType</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing mode. If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the axes' sizing mode. If "path", draw a custom SVG path using `path`. with respect to the axes' sizing mode.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Visible
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not this shape is visible.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?X0
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?X1
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's end x position. See `type` and `xsizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?XAnchor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Only relevant in conjunction with `xsizemode` set to "pixel". Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to "pixel".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Xref
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's x coordinate axis. If set to a x axis id (e.g. "x" or "x2"), the `x` position refers to a x coordinate. If set to "paper", the `x` position refers to the distance from the left of the plotting area in normalized coordinates where "0" ("1") corresponds to the left (right). If set to a x axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., "x2 domain" refers to the domain of the second x axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?XSizeMode
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shapes's sizing mode along the x axis. If set to "scaled", `x0`, `x1` and x coordinates within `path` refer to data values on the x axis or a fraction of the plot area's width (`xref` set to "paper"). If set to "pixel", `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a position relative to data or plot fraction.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Y0
+                  </span>
+                  :
+                  <code>'c</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Y1
+                  </span>
+                  :
+                  <code>'d</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's end y position. See `type` and `ysizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?YAnchor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Only relevant in conjunction with `ysizemode` set to "pixel". Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to "pixel".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Yref
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's y coordinate axis. If set to a y axis id (e.g. "y" or "y2"), the `y` position refers to a y coordinate. If set to "paper", the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where "0" ("1") corresponds to the bottom (top). If set to a y axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., "y2 domain" refers to the domain of the second y axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?YSizeMode
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shapes's sizing mode along the y axis. If set to "scaled", `y0`, `y1` and y coordinates within `path` refer to data values on the y axis or a fraction of the plot area's height (`yref` set to "paper"). If set to "pixel", `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a position relative to data or plot fraction.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2327', 2327)" onmouseover="showTip(event, '2327', 2327)">
+              <code onmouseout="hideTip(event, '2457', 2457)" onmouseover="showTip(event, '2457', 2457)">
                 <p>
-                  <a id="style">
-                    <a href="#style">
-                      <code><span>Shape.style&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
+                  <a id="setLegendAnchor">
+                    <a href="#setLegendAnchor">
+                      <code><span>Shape.setLegendAnchor&#32;<span>legendId</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2327">
+              <div class="fsdocs-tip" id="2457">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Shape.style&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
+                  <code><span>Shape.setLegendAnchor&#32;<span>legendId</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        legendId
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The new Legend anchor
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.LayoutObjects.Shape.setLegendAnchor`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.setLegendAnchor\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns a function that sets the Legend anchor of the given shape.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    legendId
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new Legend anchor
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '2458', 2458)" onmouseover="showTip(event, '2458', 2458)">
+                <p>
+                  <a id="style">
+                    <a href="#style">
+                      <code><span>Shape.style&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?ShowLegend,&#32;?Legend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?LegendWidth,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="2458">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Shape.style&#32;<span><span>(<span>?Editable,&#32;?FillColor,&#32;?FillRule,&#32;?Label,&#32;?ShowLegend,&#32;?Legend,&#32;?LegendRank,&#32;?LegendGroup,&#32;?LegendGroupTitle,&#32;?LegendWidth,&#32;?Layer,&#32;?Line,&#32;?Name,&#32;?Opacity,&#32;?Path,&#32;?TemplateItemName,&#32;?ShapeType,&#32;?Visible,&#32;?X0,&#32;?X1,&#32;?XAnchor,&#32;?Xref,&#32;?XSizeMode,&#32;?Y0,&#32;?Y1,&#32;?YAnchor,&#32;?Yref,&#32;?YSizeMode</span>)</span></span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -807,6 +1916,66 @@
                       <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shapelabel.html">ShapeLabel</a></code>
                        - 
                       The text label of this shape.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this shape is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Legend
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                       - 
+                      Sets the reference to a legend to show this shape in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendRank
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while with "reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e. according to their order in data and layout.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendGroup
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time when toggling legend items.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendGroupTitle
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                       - 
+                      Sets the legend group title for this shape.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?LegendWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width (in px or fraction) of the legend for this shape.
                     </span>
                     <br/>
                     <span>
@@ -1001,319 +2170,506 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.Shape.style``4```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.style``4\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.Shape.style``4```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.style``4\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L171-171" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that applies the given styles to a Shape object
  
-              </p>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Editable
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FillColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color filling the shape's interior. Only applies to closed shapes.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?FillRule
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-fillrule.html">FillRule</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Label
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shapelabel.html">ShapeLabel</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The text label of this shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this shape is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Legend
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the reference to a legend to show this shape in. References to these legends are "legend", "legend2", "legend3", etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendRank
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while with "reversed" `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e. according to their order in data and layout.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendGroup
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time when toggling legend items.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendGroupTitle
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-title.html">Title</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the legend group title for this shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?LegendWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width (in px or fraction) of the legend for this shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Layer
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Specifies whether shapes are drawn below or above traces.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Shape outline
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the opacity of the shape.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    For `type` "path" - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being "scaled" and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of "pixel" size mode. There are a few restrictions / quirks only absolute instructions, not relative. So the allowed segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry are relative. In the future we could consider supporting relative commands, but we would have to decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are smooth on linear axes may not be smooth on log, and vice versa. no chained "polybezier" commands - specify the segment type for each one. On category axes, values are numbers scaled to the serial numbers of categories because using the categories themselves there would be no way to describe fractional positions On data axes: because space and T are both normal components of path strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose: 2015-02-21_13:45:56.789
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TemplateItemName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShapeType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapetype.html">ShapeType</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing mode. If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the axes' sizing mode. If "path", draw a custom SVG path using `path`. with respect to the axes' sizing mode.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Visible
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not this shape is visible.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?X0
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?X1
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's end x position. See `type` and `xsizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?XAnchor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Only relevant in conjunction with `xsizemode` set to "pixel". Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to "pixel".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Xref
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's x coordinate axis. If set to a x axis id (e.g. "x" or "x2"), the `x` position refers to a x coordinate. If set to "paper", the `x` position refers to the distance from the left of the plotting area in normalized coordinates where "0" ("1") corresponds to the left (right). If set to a x axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., "x2 domain" refers to the domain of the second x axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?XSizeMode
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shapes's sizing mode along the x axis. If set to "scaled", `x0`, `x1` and x coordinates within `path` refer to data values on the x axis or a fraction of the plot area's width (`xref` set to "paper"). If set to "pixel", `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a position relative to data or plot fraction.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Y0
+                  </span>
+                  :
+                  <code>'c</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Y1
+                  </span>
+                  :
+                  <code>'d</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's end y position. See `type` and `ysizemode` for more info.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?YAnchor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Only relevant in conjunction with `ysizemode` set to "pixel". Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to "pixel".
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Yref
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shape's y coordinate axis. If set to a y axis id (e.g. "y" or "y2"), the `y` position refers to a y coordinate. If set to "paper", the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where "0" ("1") corresponds to the bottom (top). If set to a y axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., "y2 domain" refers to the domain of the second y axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?YSizeMode
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the shapes's sizing mode along the y axis. If set to "scaled", `y0`, `y1` and y coordinates within `path` refer to data values on the y axis or a fraction of the plot area's height (`yref` set to "paper"). If set to "pixel", `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a position relative to data or plot fraction.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '2459', 2459)" onmouseover="showTip(event, '2459', 2459)">
+                <p>
+                  <a id="tryGetTypedMember">
+                    <a href="#tryGetTypedMember">
+                      <code><span>Shape.tryGetTypedMember&#32;<span>propName&#32;shape</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="2459">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Shape.tryGetTypedMember&#32;<span>propName&#32;shape</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        propName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      The name of the dynamic member to get the value of
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        shape
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></code>
+                       - 
+                      The shape to get the dynamic member value from
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
             </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Editable
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FillColor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the color filling the shape's interior. Only applies to closed shapes.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?FillRule
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-fillrule.html">FillRule</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Label
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shapelabel.html">ShapeLabel</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The text label of this shape.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Layer
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-layer.html">Layer</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Specifies whether shapes are drawn below or above traces.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the Shape outline
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Opacity
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the opacity of the shape.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  For `type` "path" - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being "scaled" and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of "pixel" size mode. There are a few restrictions / quirks only absolute instructions, not relative. So the allowed segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry are relative. In the future we could consider supporting relative commands, but we would have to decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are smooth on linear axes may not be smooth on log, and vice versa. no chained "polybezier" commands - specify the segment type for each one. On category axes, values are numbers scaled to the serial numbers of categories because using the categories themselves there would be no way to describe fractional positions On data axes: because space and T are both normal components of path strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose: 2015-02-21_13:45:56.789
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?TemplateItemName
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?ShapeType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapetype.html">ShapeType</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Specifies the shape type to be drawn. If "line", a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing mode. If "circle", a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If "rect", a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the axes' sizing mode. If "path", draw a custom SVG path using `path`. with respect to the axes' sizing mode.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Visible
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Determines whether or not this shape is visible.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?X0
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's starting x position. See `type` and `xsizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?X1
-                </span>
-                :
-                <code>'b</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's end x position. See `type` and `xsizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?XAnchor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Only relevant in conjunction with `xsizemode` set to "pixel". Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to "pixel".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Xref
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's x coordinate axis. If set to a x axis id (e.g. "x" or "x2"), the `x` position refers to a x coordinate. If set to "paper", the `x` position refers to the distance from the left of the plotting area in normalized coordinates where "0" ("1") corresponds to the left (right). If set to a x axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., "x2 domain" refers to the domain of the second x axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?XSizeMode
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shapes's sizing mode along the x axis. If set to "scaled", `x0`, `x1` and x coordinates within `path` refer to data values on the x axis or a fraction of the plot area's width (`xref` set to "paper"). If set to "pixel", `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a position relative to data or plot fraction.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Y0
-                </span>
-                :
-                <code>'c</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's starting y position. See `type` and `ysizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Y1
-                </span>
-                :
-                <code>'d</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's end y position. See `type` and `ysizemode` for more info.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?YAnchor
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-linearaxisid.html">LinearAxisId</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Only relevant in conjunction with `ysizemode` set to "pixel". Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to "pixel".
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Yref
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shape's y coordinate axis. If set to a y axis id (e.g. "y" or "y2"), the `y` position refers to a y coordinate. If set to "paper", the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where "0" ("1") corresponds to the bottom (top). If set to a y axis ID followed by "domain" (separated by a space), the position behaves like for "paper", but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., "y2 domain" refers to the domain of the second y axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?YSizeMode
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-shapesizemode.html">ShapeSizeMode</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Sets the shapes's sizing mode along the y axis. If set to "scaled", `y0`, `y1` and y coordinates within `path` refer to data values on the y axis or a fraction of the plot area's height (`yref` set to "paper"). If set to "pixel", `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a position relative to data or plot fraction.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a>&#32;->&#32;<a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.LayoutObjects.Shape.tryGetTypedMember``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.LayoutObjects.Shape.tryGetTypedMember``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Layout/ObjectAbstractions/Common/Shape.fs#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns Some(dynamic member value) of the shape object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    propName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the dynamic member to get the value of
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    shape
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-shape.html">Shape</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The shape to get the dynamic member value from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-                </div>
-            </div>
-        </div>
         
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>

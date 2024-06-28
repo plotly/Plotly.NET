@@ -1,62 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>Trace (Plotly.NET)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Trace (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Trace (Plotly.NET)">
     
-</head> 
+    <title>Trace (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -64,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
   <h2>
     Trace Type
   </h2>
@@ -87,23 +906,21 @@
     </dt>
     <dt>
       Base Type: 
-      <code><a href="https://docs.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/dynamicobj.dynamicobj">DynamicObj</a></code>
     </dt>
     <dt>
       All Interfaces: 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.dynamic.idynamicmetaobjectprovider">IDynamicMetaObjectProvider</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- A Trace object in the context of plotly charts contains the data to visualize and additional styling parameters.
+         A Trace object in the context of plotly charts contains the data to visualize and additional styling parameters.
 
  This is the base object that contains visualization-unspecific getters and setters for the underlying DynamicObj.
 
  Visualization-specific equivalents are suffixed with the respective trace subtype, e.g. `Trace2D`
-
       </p>
     </div>
   </div>
@@ -132,7 +949,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1993', 1993)" onmouseover="showTip(event, '1993', 1993)">
+              <code onmouseout="hideTip(event, '2120', 2120)" onmouseover="showTip(event, '2120', 2120)">
                 <p>
                   <a id="``.ctor``">
                     <a href="#``.ctor``">
@@ -141,7 +958,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1993">
+              <div class="fsdocs-tip" id="2120">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace<span><span>(<span>traceTypeName</span>)</span></span></span></code>
@@ -169,23 +986,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.Trace.#ctor`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.#ctor\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
@@ -229,7 +1029,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1994', 1994)" onmouseover="showTip(event, '1994', 1994)">
+              <code onmouseout="hideTip(event, '2121', 2121)" onmouseover="showTip(event, '2121', 2121)">
                 <p>
                   <a id="type">
                     <a href="#type">
@@ -238,7 +1038,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1994">
+              <div class="fsdocs-tip" id="2121">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.type&#32;</span></code>
@@ -251,16 +1051,13 @@
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
               <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Plotly.NET.Trace.type`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
               </div>
               <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Plotly.NET.Trace.type\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
               </div>
               <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -290,7 +1087,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1995', 1995)" onmouseover="showTip(event, '1995', 1995)">
+              <code onmouseout="hideTip(event, '2122', 2122)" onmouseover="showTip(event, '2122', 2122)">
                 <p>
                   <a id="getColorAxisAnchor">
                     <a href="#getColorAxisAnchor">
@@ -299,7 +1096,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1995">
+              <div class="fsdocs-tip" id="2122">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getColorAxisAnchor&#32;<span>trace</span></span></code>
@@ -329,56 +1126,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getColorAxisAnchor``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getColorAxisAnchor``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L178-178" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getColorAxisAnchor``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getColorAxisAnchor``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L178-178" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the color axis anchor of the given trace.
 
  If there is no color axis set, returns "coloraxis".
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the color axis anchor from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the color axis anchor from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1996', 1996)" onmouseover="showTip(event, '1996', 1996)">
+              <code onmouseout="hideTip(event, '2123', 2123)" onmouseover="showTip(event, '2123', 2123)">
                 <p>
                   <a id="getColorBar">
                     <a href="#getColorBar">
@@ -387,7 +1185,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1996">
+              <div class="fsdocs-tip" id="2123">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getColorBar&#32;<span>trace</span></span></code>
@@ -417,56 +1215,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getColorBar``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getColorBar``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L252-252" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getColorBar``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getColorBar``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L279-279" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the colorbar of the given trace.
 
  If there is no colorbar set, returns an empty ColorBar object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the cdomain from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-colorbar.html">ColorBar</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the cdomain from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-colorbar.html">ColorBar</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1997', 1997)" onmouseover="showTip(event, '1997', 1997)">
+              <code onmouseout="hideTip(event, '2124', 2124)" onmouseover="showTip(event, '2124', 2124)">
                 <p>
                   <a id="getDomain">
                     <a href="#getDomain">
@@ -475,7 +1274,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1997">
+              <div class="fsdocs-tip" id="2124">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getDomain&#32;<span>trace</span></span></code>
@@ -505,56 +1304,146 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getDomain``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getDomain``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L205-205" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getDomain``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getDomain``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L232-232" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the domain of the given trace.
 
  If there is no domain set, returns an empty Domain object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the cdomain from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the cdomain from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1998', 1998)" onmouseover="showTip(event, '1998', 1998)">
+              <code onmouseout="hideTip(event, '2125', 2125)" onmouseover="showTip(event, '2125', 2125)">
+                <p>
+                  <a id="getLegendAnchor">
+                    <a href="#getLegendAnchor">
+                      <code><span>Trace.getLegendAnchor&#32;<span>trace</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="2125">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace.getLegendAnchor&#32;<span>trace</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        trace
+                      </b>
+                      :
+                      <code>'a</code>
+                       - 
+                      The trace to get the Legend anchor from
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getLegendAnchor``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getLegendAnchor``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L205-205" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns the Legend anchor of the given trace.
+
+ If there is no Legend set, returns "legend".
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the Legend anchor from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-styleparam-subplotid.html">SubPlotId</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '2126', 2126)" onmouseover="showTip(event, '2126', 2126)">
                 <p>
                   <a id="getLine">
                     <a href="#getLine">
@@ -563,7 +1452,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1998">
+              <div class="fsdocs-tip" id="2126">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getLine&#32;<span>trace</span></span></code>
@@ -593,56 +1482,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getLine``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getLine``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getLine``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getLine``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the Line object of the given trace.
 
  If there is no line set, returns an empty line object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the line from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the line from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1999', 1999)" onmouseover="showTip(event, '1999', 1999)">
+              <code onmouseout="hideTip(event, '2127', 2127)" onmouseover="showTip(event, '2127', 2127)">
                 <p>
                   <a id="getMarker">
                     <a href="#getMarker">
@@ -651,7 +1541,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1999">
+              <div class="fsdocs-tip" id="2127">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getMarker&#32;<span>trace</span></span></code>
@@ -681,56 +1571,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getMarker``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getMarker``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getMarker``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getMarker``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the Marker object of the given trace.
 
  If there is no marker set, returns an empty marker object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the marker from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the marker from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2000', 2000)" onmouseover="showTip(event, '2000', 2000)">
+              <code onmouseout="hideTip(event, '2128', 2128)" onmouseover="showTip(event, '2128', 2128)">
                 <p>
                   <a id="getStackGroup">
                     <a href="#getStackGroup">
@@ -739,7 +1630,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2000">
+              <div class="fsdocs-tip" id="2128">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getStackGroup&#32;<span>trace</span></span></code>
@@ -769,56 +1660,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getStackGroup``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getStackGroup``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L234-234" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getStackGroup``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getStackGroup``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L261-261" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the stackgroup of the given trace.
 
  If there is no stackgroup set, returns "stackgroup".
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the stackgroup from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the stackgroup from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2001', 2001)" onmouseover="showTip(event, '2001', 2001)">
+              <code onmouseout="hideTip(event, '2129', 2129)" onmouseover="showTip(event, '2129', 2129)">
                 <p>
                   <a id="getXError">
                     <a href="#getXError">
@@ -827,7 +1719,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2001">
+              <div class="fsdocs-tip" id="2129">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getXError&#32;<span>trace</span></span></code>
@@ -857,56 +1749,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getXError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getXError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L91-91" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getXError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getXError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L91-91" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the Error object for the x dimension of the given trace.
 
  If there is no error set, returns an empty error object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the x error from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the x error from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2002', 2002)" onmouseover="showTip(event, '2002', 2002)">
+              <code onmouseout="hideTip(event, '2130', 2130)" onmouseover="showTip(event, '2130', 2130)">
                 <p>
                   <a id="getYError">
                     <a href="#getYError">
@@ -915,7 +1808,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2002">
+              <div class="fsdocs-tip" id="2130">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getYError&#32;<span>trace</span></span></code>
@@ -945,56 +1838,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getYError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getYError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getYError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getYError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the Error object for the y dimension of the given trace.
 
  If there is no error set, returns an empty error object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the y error from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the y error from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2003', 2003)" onmouseover="showTip(event, '2003', 2003)">
+              <code onmouseout="hideTip(event, '2131', 2131)" onmouseover="showTip(event, '2131', 2131)">
                 <p>
                   <a id="getZError">
                     <a href="#getZError">
@@ -1003,7 +1897,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2003">
+              <div class="fsdocs-tip" id="2131">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.getZError&#32;<span>trace</span></span></code>
@@ -1033,56 +1927,57 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getZError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getZError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.getZError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.getZError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns the Error object for the z dimension of the given trace.
 
  If there is no error set, returns an empty error object.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code>'a</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the z error from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the z error from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2004', 2004)" onmouseover="showTip(event, '2004', 2004)">
+              <code onmouseout="hideTip(event, '2132', 2132)" onmouseover="showTip(event, '2132', 2132)">
                 <p>
                   <a id="setColorAxisAnchor">
                     <a href="#setColorAxisAnchor">
@@ -1091,7 +1986,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2004">
+              <div class="fsdocs-tip" id="2132">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setColorAxisAnchor&#32;<span>colorAxisId</span></span></code>
@@ -1113,7 +2008,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1121,54 +2016,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setColorAxisAnchor``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setColorAxisAnchor``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L191-191" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setColorAxisAnchor``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setColorAxisAnchor``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L191-191" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the color axis anchor of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  colorAxisId
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new color axis anchor
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    colorAxisId
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new color axis anchor
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2005', 2005)" onmouseover="showTip(event, '2005', 2005)">
+              <code onmouseout="hideTip(event, '2133', 2133)" onmouseover="showTip(event, '2133', 2133)">
                 <p>
                   <a id="setColorBar">
                     <a href="#setColorBar">
@@ -1177,7 +2073,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2005">
+              <div class="fsdocs-tip" id="2133">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setColorBar&#32;<span>colorBar</span></span></code>
@@ -1207,54 +2103,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setColorBar``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setColorBar``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L259-259" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setColorBar``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setColorBar``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L286-286" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the ColorBar of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  colorBar
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-colorbar.html">ColorBar</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new ColorBar
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'T&#32;->&#32;'T</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    colorBar
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-colorbar.html">ColorBar</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new ColorBar
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;->&#32;'T</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2006', 2006)" onmouseover="showTip(event, '2006', 2006)">
+              <code onmouseout="hideTip(event, '2134', 2134)" onmouseover="showTip(event, '2134', 2134)">
                 <p>
                   <a id="setDomain">
                     <a href="#setDomain">
@@ -1263,7 +2160,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2006">
+              <div class="fsdocs-tip" id="2134">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setDomain&#32;<span>domain</span></span></code>
@@ -1293,54 +2190,142 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setDomain``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setDomain``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L212-212" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setDomain``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setDomain``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L239-239" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the domain of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  domain
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new domain
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'T&#32;->&#32;'T</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    domain
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new domain
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;->&#32;'T</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2007', 2007)" onmouseover="showTip(event, '2007', 2007)">
+              <code onmouseout="hideTip(event, '2135', 2135)" onmouseover="showTip(event, '2135', 2135)">
+                <p>
+                  <a id="setLegendAnchor">
+                    <a href="#setLegendAnchor">
+                      <code><span>Trace.setLegendAnchor&#32;<span>legendId</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="2135">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Trace.setLegendAnchor&#32;<span>legendId</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        legendId
+                      </b>
+                      :
+                      <code>int</code>
+                       - 
+                      The new Legend anchor
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;'a</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setLegendAnchor``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setLegendAnchor``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L218-218" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Returns a function that sets the Legend anchor of the given trace.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    legendId
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new Legend anchor
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '2136', 2136)" onmouseover="showTip(event, '2136', 2136)">
                 <p>
                   <a id="setLine">
                     <a href="#setLine">
@@ -1349,7 +2334,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2007">
+              <div class="fsdocs-tip" id="2136">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setLine&#32;<span>line</span></span></code>
@@ -1371,7 +2356,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1379,54 +2364,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setLine``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setLine``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setLine``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setLine``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the Line object of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new line object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new line object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2008', 2008)" onmouseover="showTip(event, '2008', 2008)">
+              <code onmouseout="hideTip(event, '2137', 2137)" onmouseover="showTip(event, '2137', 2137)">
                 <p>
                   <a id="setMarker">
                     <a href="#setMarker">
@@ -1435,7 +2421,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2008">
+              <div class="fsdocs-tip" id="2137">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setMarker&#32;<span>marker</span></span></code>
@@ -1465,54 +2451,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setMarker``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setMarker``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setMarker``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setMarker``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the Marker object of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  marker
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new marker object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'T&#32;->&#32;'T</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    marker
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new marker object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;->&#32;'T</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2009', 2009)" onmouseover="showTip(event, '2009', 2009)">
+              <code onmouseout="hideTip(event, '2138', 2138)" onmouseover="showTip(event, '2138', 2138)">
                 <p>
                   <a id="setStackGroup">
                     <a href="#setStackGroup">
@@ -1521,7 +2508,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2009">
+              <div class="fsdocs-tip" id="2138">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setStackGroup&#32;<span>stackgroup</span></span></code>
@@ -1551,54 +2538,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setStackGroup``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setStackGroup``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L241-241" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setStackGroup``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setStackGroup``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L268-268" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the stackgroup of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  stackgroup
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new stackgroup
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'T&#32;->&#32;'T</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    stackgroup
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new stackgroup
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;->&#32;'T</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2010', 2010)" onmouseover="showTip(event, '2010', 2010)">
+              <code onmouseout="hideTip(event, '2139', 2139)" onmouseover="showTip(event, '2139', 2139)">
                 <p>
                   <a id="setXError">
                     <a href="#setXError">
@@ -1607,7 +2595,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2010">
+              <div class="fsdocs-tip" id="2139">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setXError&#32;<span>error</span></span></code>
@@ -1629,7 +2617,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1637,54 +2625,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setXError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setXError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setXError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setXError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the Error object for the x dimension of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  error
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new error object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    error
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new error object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2011', 2011)" onmouseover="showTip(event, '2011', 2011)">
+              <code onmouseout="hideTip(event, '2140', 2140)" onmouseover="showTip(event, '2140', 2140)">
                 <p>
                   <a id="setYError">
                     <a href="#setYError">
@@ -1693,7 +2682,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2011">
+              <div class="fsdocs-tip" id="2140">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setYError&#32;<span>error</span></span></code>
@@ -1715,7 +2704,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1723,54 +2712,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setYError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setYError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L127-127" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setYError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setYError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L127-127" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the Error object for the x dimension of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  error
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new error object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    error
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new error object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2012', 2012)" onmouseover="showTip(event, '2012', 2012)">
+              <code onmouseout="hideTip(event, '2141', 2141)" onmouseover="showTip(event, '2141', 2141)">
                 <p>
                   <a id="setZError">
                     <a href="#setZError">
@@ -1779,7 +2769,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2012">
+              <div class="fsdocs-tip" id="2141">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.setZError&#32;<span>error</span></span></code>
@@ -1801,7 +2791,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1809,54 +2799,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setZError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setZError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L156-156" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.setZError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.setZError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L156-156" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns a function that sets the Error object for the x dimension of the given trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  error
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The new error object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    error
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The new error object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2013', 2013)" onmouseover="showTip(event, '2013', 2013)">
+              <code onmouseout="hideTip(event, '2142', 2142)" onmouseover="showTip(event, '2142', 2142)">
                 <p>
                   <a id="tryGetTypedMember">
                     <a href="#tryGetTypedMember">
@@ -1865,7 +2856,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2013">
+              <div class="fsdocs-tip" id="2142">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.tryGetTypedMember&#32;<span>propName&#32;trace</span></span></code>
@@ -1905,66 +2896,67 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.tryGetTypedMember``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.tryGetTypedMember``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.tryGetTypedMember``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.tryGetTypedMember``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Returns Some(dynamic member value) of the trace object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  propName
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The name of the dynamic member to get the value of
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  trace
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-trace.html">Trace</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The trace to get the dynamic member value from
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'T&#32;option</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    propName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the dynamic member to get the value of
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trace
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-trace.html">Trace</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The trace to get the dynamic member value from
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'T&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2014', 2014)" onmouseover="showTip(event, '2014', 2014)">
+              <code onmouseout="hideTip(event, '2143', 2143)" onmouseover="showTip(event, '2143', 2143)">
                 <p>
                   <a id="updateColorBar">
                     <a href="#updateColorBar">
@@ -1973,7 +2965,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2014">
+              <div class="fsdocs-tip" id="2143">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateColorBar&#32;<span>colorBar</span></span></code>
@@ -1995,7 +2987,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -2003,54 +2995,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateColorBar``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateColorBar``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L269-269" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateColorBar``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateColorBar``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L296-296" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given ColorBar object with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  colorBar
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-colorbar.html">ColorBar</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated ColorBar object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    colorBar
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-colorbar.html">ColorBar</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated ColorBar object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2015', 2015)" onmouseover="showTip(event, '2015', 2015)">
+              <code onmouseout="hideTip(event, '2144', 2144)" onmouseover="showTip(event, '2144', 2144)">
                 <p>
                   <a id="updateDomain">
                     <a href="#updateDomain">
@@ -2059,7 +3052,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2015">
+              <div class="fsdocs-tip" id="2144">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateDomain&#32;<span>domain</span></span></code>
@@ -2089,54 +3082,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateDomain``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateDomain``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L221-221" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateDomain``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateDomain``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L248-248" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given Domain object with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  domain
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated Domain object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a&#32;->&#32;'a</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    domain
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-layoutobjects-domain.html">Domain</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated Domain object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2016', 2016)" onmouseover="showTip(event, '2016', 2016)">
+              <code onmouseout="hideTip(event, '2145', 2145)" onmouseover="showTip(event, '2145', 2145)">
                 <p>
                   <a id="updateLine">
                     <a href="#updateLine">
@@ -2145,7 +3139,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2016">
+              <div class="fsdocs-tip" id="2145">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateLine&#32;<span>line</span></span></code>
@@ -2167,7 +3161,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -2175,54 +3169,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateLine``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateLine``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateLine``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateLine``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given Line object with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  line
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated Line object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated Line object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2017', 2017)" onmouseover="showTip(event, '2017', 2017)">
+              <code onmouseout="hideTip(event, '2146', 2146)" onmouseover="showTip(event, '2146', 2146)">
                 <p>
                   <a id="updateMarker">
                     <a href="#updateMarker">
@@ -2231,7 +3226,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2017">
+              <div class="fsdocs-tip" id="2146">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateMarker&#32;<span>marker</span></span></code>
@@ -2253,7 +3248,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -2261,54 +3256,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateMarker``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateMarker``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateMarker``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateMarker``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given marker object with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  marker
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated Trace object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    marker
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-marker.html">Marker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated Trace object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2018', 2018)" onmouseover="showTip(event, '2018', 2018)">
+              <code onmouseout="hideTip(event, '2147', 2147)" onmouseover="showTip(event, '2147', 2147)">
                 <p>
                   <a id="updateXError">
                     <a href="#updateXError">
@@ -2317,7 +3313,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2018">
+              <div class="fsdocs-tip" id="2147">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateXError&#32;<span>error</span></span></code>
@@ -2339,7 +3335,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -2347,54 +3343,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateXError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateXError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateXError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateXError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given Error object for the x dimension with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  error
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated Error object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    error
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated Error object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2019', 2019)" onmouseover="showTip(event, '2019', 2019)">
+              <code onmouseout="hideTip(event, '2148', 2148)" onmouseover="showTip(event, '2148', 2148)">
                 <p>
                   <a id="updateYError">
                     <a href="#updateYError">
@@ -2403,7 +3400,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2019">
+              <div class="fsdocs-tip" id="2148">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateYError&#32;<span>error</span></span></code>
@@ -2425,7 +3422,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -2433,54 +3430,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateYError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateYError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L136-136" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateYError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateYError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L136-136" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given Error object for the y dimension with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  error
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated Error object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    error
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated Error object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '2020', 2020)" onmouseover="showTip(event, '2020', 2020)">
+              <code onmouseout="hideTip(event, '2149', 2149)" onmouseover="showTip(event, '2149', 2149)">
                 <p>
                   <a id="updateZError">
                     <a href="#updateZError">
@@ -2489,7 +3487,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="2020">
+              <div class="fsdocs-tip" id="2149">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Trace.updateZError&#32;<span>error</span></span></code>
@@ -2511,7 +3509,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a8&#32;->&#32;'a8</span></code>
+                    <code><span>'a&#32;->&#32;'a</span></code>
                   </span>
                   <br/>
                 </div>
@@ -2519,67 +3517,73 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateZError``1```')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateZError``1\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L165-165" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Trace.updateZError``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Trace.updateZError``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/Traces/Trace.fs#L165-165" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Combines the given Error object for the z dimension with the one already present on the trace.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  error
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The updated Error object
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>'a8&#32;->&#32;'a8</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    error
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-error.html">Error</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The updated Error object
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'a&#32;->&#32;'a</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-                </div>
-            </div>
-        </div>
         
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>

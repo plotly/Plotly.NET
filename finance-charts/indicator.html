@@ -1,460 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>Indicator Charts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
-    <meta name="description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Indicator Charts">
-
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
     <!-- Opengraph properties (https://ogp.me/) -->
-    <meta property="og:title" content="Plotly.NET documentation for: Indicator Charts" />
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Indicator Charts" />
     <meta property="og:url" content="https://plotly.net/finance-charts/indicator.html">
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Plotly.NET" />
-    <meta property="og:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Indicator Charts">
-    <meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
-
-    <!-- Twitter cards -->
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="https://plotly.net/finance-charts/indicator.html">
-    <meta property="twitter:url" content="https://plotly.net">
-    <meta name="twitter:title" content="Plotly.NET documentation for: Indicator Charts">
-    <meta name="twitter:description" content="Plotly.NET is an Interactive charting library for .NET programming languages. This page contains the documentation for: Indicator Charts">
-    <meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
-
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.21.0.min.js"></script>
-    <script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Indicator Charts">
     
-</head> 
+    <title>Indicator Charts | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
   General
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/basics.html">
     Basics
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/image-export.html">
     Static image export
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/display-options.html">
     Display Options
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/chart-config.html">
     Chart config
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/templates.html">
     Chart Templates
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/defaults.html">
     Global default values
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
     Single and multi arguments
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
     Working with colors
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
     Styling Markers
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Chart Layout
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
     Axis styling
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
     Error bars
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
     Multicharts and subplots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
     Shapes
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
     Annotations
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
     Layout images
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
     Sliders
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
     Update menus
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
   Simple Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
     Line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
     Bar and column charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
     Area charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
     Range plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
     Bubble charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
     Pie and doughnut Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
     Tables
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
     Heatmaps
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
     Images
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
     Plotting multicategory data
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   3D Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
     3D point and line charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
     3D surface plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
     3D Mesh plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
     3D Cone plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
     3D streamtube plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
     3D Volume plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
     3D IsoSurface plots
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Distribution Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
     Histograms
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
     BoxPlots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
     Violin plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
     2D Histograms
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
     Contour plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
     Scatterplot matrix
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
     PointDensity
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
   Geo map charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
     Geo vs. Mapbox
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
     Scatter and line plots on Geo maps
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
     Choropleth maps
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Mapbox map charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
     Geo vs. Mapbox
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
     Scatter and line plots on Mapbox maps
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
     ChoroplethMapbox
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
     DensityMapbox charts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header active">
   Finance Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
     OHLC Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
     Candlestick Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
     Funnel Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
     FunnelArea Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item active">
   <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
     Indicator Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
     Waterfall Charts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Polar Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
     Polar line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
     Polar bar charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
     Styling polar layouts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Categorical Charts
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
     Parallel categories
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
     Parallel coordinates
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
     Sankey Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
     Icicle Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
     Treemap Charts
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
     Sunburst Charts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Ternary Plots
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
     Ternary line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
     Styling ternary layouts
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Carpet Plots
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
     Carpet line and scatter plots
   </a>
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
     Contour carpet plots
   </a>
 </li>             
-<li class="nav-header">
+<li class="nav-header ">
   Smith Plots
 </li>             
-<li class="nav-item">
+<li class="nav-item ">
   <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
     Smith line and scatter plots
   </a>
 </li>
-                        <li class="nav-header">
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -462,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header active">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
 <h1><a name="Indicator-Charts" class="anchor" href="#Indicator-Charts">Indicator Charts</a></h1>
 <p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/finance-charts/indicator.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
 <a href="https://plotly.net/finance-charts/indicator.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
@@ -521,18 +942,15 @@
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs12', 72)" onmouseover="showTip(event, 'fs12', 72)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 73)" onmouseover="showTip(event, 'fs29', 73)" class="id">withLayoutGridStyle</span> <span class="pn">(</span><span class="fn">Rows</span> <span class="o">=</span> <span class="n">2</span><span class="pn">,</span> <span class="fn">Columns</span> <span class="o">=</span> <span class="n">2</span><span class="pn">)</span>
     <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs12', 74)" onmouseover="showTip(event, 'fs12', 74)" class="rt">Chart</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 75)" onmouseover="showTip(event, 'fs30', 75)" class="id">withMarginSize</span> <span class="pn">(</span><span class="fn">Left</span> <span class="o">=</span> <span class="n">200</span><span class="pn">)</span>
 </code></pre>
-<div><div id="785449ba-cc1b-4ea7-8e21-3f2cac79d2fd"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_785449bacc1b4ea78e213f2cac79d2fd = function() {
+<div><div id="069dfc01-ada2-4f70-8990-398b081a3ada"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_069dfc01ada24f708990398b081a3ada = function() {
     var data = [{"type":"indicator","title":"Bullet gauge","mode":"number+delta+gauge","value":120.0,"domain":{"row":0,"column":0},"delta":{"reference":90.0},"gauge":{"axis":{"visible":false,"range":[-200.0,200.0]},"shape":"bullet"}},{"type":"indicator","title":"Angular gauge","mode":"number+delta+gauge","value":200.0,"domain":{"row":0,"column":1},"delta":{"reference":160},"gauge":{"axis":{"range":[0.0,250.0]}}},{"type":"indicator","title":"number and delta","mode":"number+delta","value":300.0,"domain":{"row":1,"column":0},"delta":{"reference":90.0},"gauge":{"axis":{}}},{"type":"indicator","title":"delta","mode":"delta","value":40.0,"domain":{"row":1,"column":1},"delta":{"reference":90.0},"gauge":{"axis":{}}}];
     var layout = {"width":600,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"automargin":true}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"grid":{"rows":2,"columns":2},"margin":{"l":200}};
     var config = {"responsive":true};
-    Plotly.newPlot('785449ba-cc1b-4ea7-8e21-3f2cac79d2fd', data, layout, config);
+    Plotly.newPlot('069dfc01-ada2-4f70-8990-398b081a3ada', data, layout, config);
 };
-renderPlotly_785449bacc1b4ea78e213f2cac79d2fd();
+renderPlotly_069dfc01ada24f708990398b081a3ada();
 </script></div>
 
-                </div>
-            </div>
-        </div>
         <div class="fsdocs-tip" id="fs1">namespace Plotly</div>
 <div class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
 <div class="fsdocs-tip" id="fs3">module Defaults
@@ -547,15 +965,15 @@ from Plotly.NET<br /><em>&lt;summary&gt;
   inherit DynamicObj
   new: unit -&gt; DisplayOptions
   static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
-  static member addDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addChartDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
   static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
   static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
-  static member getDescription: displayOpts: DisplayOptions -&gt; XmlNode list
-  static member getPlotlyReference: displayOpts: DisplayOptions -&gt; PlotlyJSReference
-  static member init: ?AdditionalHeadTags: XmlNode list * ?Description: XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions
-  static member initCDNOnly: unit -&gt; DisplayOptions
+  static member getChartDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDocumentCharset: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentDescription: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentFavicon: displayOpts: DisplayOptions -&gt; XmlNode
   ...<br /><br />--------------------<br />new: unit -&gt; DisplayOptions</div>
-<div class="fsdocs-tip" id="fs6">static member DisplayOptions.init: ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?Description: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
+<div class="fsdocs-tip" id="fs6">static member DisplayOptions.init: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentTitle: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentCharset: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentDescription: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DocumentFavicon: Giraffe.ViewEngine.HtmlElements.XmlNode * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?ChartDescription: Giraffe.ViewEngine.HtmlElements.XmlNode list * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
 <div class="fsdocs-tip" id="fs7">type PlotlyJSReference =
   | CDN of string
   | Full
@@ -566,20 +984,20 @@ Sets how plotly is referenced in the head of html docs.
 <div class="fsdocs-tip" id="fs8">union case PlotlyJSReference.NoReference: PlotlyJSReference</div>
 <div class="fsdocs-tip" id="fs9">namespace Plotly.NET.TraceObjects</div>
 <div class="fsdocs-tip" id="fs10">namespace Plotly.NET.LayoutObjects</div>
-<div class="fsdocs-tip" id="fs11">val allIndicatorTypes: GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs11">val allIndicatorTypes: GenericChart</div>
 <div class="fsdocs-tip" id="fs12">type Chart =
-  static member AnnotatedHeatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * annotationText: seq&lt;#seq&lt;string&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a3&gt; * ?MultiX: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?XGap: int * ?Y: seq&lt;&#39;a4&gt; * ?MultiY: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?YGap: int * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 1 overload
-  static member Area: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?FillColor: Color * ?FillPatternShape: PatternShape * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
-  static member Bar: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member BoxPlot: ?X: seq&lt;&#39;a0&gt; * ?MultiX: seq&lt;seq&lt;&#39;a0&gt;&gt; * ?Y: seq&lt;&#39;a1&gt; * ?MultiY: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?FillColor: Color * ?MarkerColor: Color * ?Marker: Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: BoxPoints * ?BoxMean: BoxMean * ?Jitter: float * ?PointPos: float * ?Orientation: Orientation * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: QuartileMethod * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a0 :&gt; IConvertible and &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible) + 2 overloads
-  static member Bubble: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * sizes: seq&lt;int&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: seq&lt;MarkerSymbol&gt; * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible) + 1 overload
-  static member Candlestick: ``open`` : seq&lt;#IConvertible&gt; * high: seq&lt;#IConvertible&gt; * low: seq&lt;#IConvertible&gt; * close: seq&lt;#IConvertible&gt; * ?X: seq&lt;&#39;a4&gt; * ?MultiX: seq&lt;seq&lt;&#39;a4&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;a5 * ?MultiText: seq&lt;&#39;a5&gt; * ?Line: Line * ?IncreasingColor: Color * ?Increasing: FinanceMarker * ?DecreasingColor: Color * ?Decreasing: FinanceMarker * ?WhiskerWidth: float * ?ShowXAxisRangeSlider: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a4 :&gt; IConvertible and &#39;a5 :&gt; IConvertible) + 2 overloads
-  static member Column: values: seq&lt;#IConvertible&gt; * ?Keys: seq&lt;&#39;a1&gt; * ?MultiKeys: seq&lt;seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: seq&lt;float&gt; * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: PatternShape * ?MultiMarkerPatternShape: seq&lt;PatternShape&gt; * ?MarkerPattern: Pattern * ?Marker: Marker * ?Base: #IConvertible * ?Width: &#39;a4 * ?MultiWidth: seq&lt;&#39;a4&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
-  static member Contour: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?Transpose: bool * ?ContourLineColor: Color * ?ContourLineDash: DrawingStyle * ?ContourLineSmoothing: float * ?ContourLine: Line * ?ContoursColoring: ContourColoring * ?ContoursOperation: ConstraintOperation * ?ContoursType: ContourType * ?ShowContourLabels: bool * ?ContourLabelFont: Font * ?Contours: Contours * ?FillColor: Color * ?NContours: int * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible)
-  static member Funnel: x: seq&lt;#IConvertible&gt; * y: seq&lt;#IConvertible&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Width: float * ?Offset: float * ?Text: &#39;a2 * ?MultiText: seq&lt;&#39;a2&gt; * ?TextPosition: TextPosition * ?MultiTextPosition: seq&lt;TextPosition&gt; * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?MarkerColor: Color * ?MarkerOutline: Line * ?Marker: Marker * ?TextInfo: TextInfo * ?ConnectorLineColor: Color * ?ConnectorLineStyle: DrawingStyle * ?ConnectorFillColor: Color * ?ConnectorLine: Line * ?Connector: FunnelConnector * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a2 :&gt; IConvertible)
-  static member Heatmap: zData: seq&lt;#seq&lt;&#39;a1&gt;&gt; * ?X: seq&lt;&#39;a2&gt; * ?MultiX: seq&lt;seq&lt;&#39;a2&gt;&gt; * ?Y: seq&lt;&#39;a3&gt; * ?MultiY: seq&lt;seq&lt;&#39;a3&gt;&gt; * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;a4 * ?MultiText: seq&lt;&#39;a4&gt; * ?ColorBar: ColorBar * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a1 :&gt; IConvertible and &#39;a2 :&gt; IConvertible and &#39;a3 :&gt; IConvertible and &#39;a4 :&gt; IConvertible) + 1 overload
+  static member AnnotatedHeatmap: zData: #(&#39;b seq) seq * annotationText: #(string seq) seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;d seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;d seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;e seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;f * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;f seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorBar: ColorBar * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ReverseScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ZSmooth: SmoothAlg * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Transpose: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?ReverseYAxis: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;f :&gt; IConvertible) + 1 overload
+  static member Area: x: #IConvertible seq * y: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowMarkers: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerSymbol: MarkerSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerSymbol: MarkerSymbol seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineDash: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?StackGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?GroupNorm: GroupNorm * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillPatternShape: PatternShape * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillPattern: Pattern * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 1 overload
+  static member Bar: values: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Keys: &#39;b seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiKeys: &#39;b seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPatternShape: PatternShape * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerPatternShape: PatternShape seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPattern: Pattern * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Base: #IConvertible * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiWidth: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible) + 1 overload
+  static member BoxPlot: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;a seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;a seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;b seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;b seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?WhiskerWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?BoxPoints: BoxPoints * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?BoxMean: BoxMean * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Jitter: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?PointPos: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OutlineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OutlineWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Outline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Notched: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?NotchWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?QuartileMethod: QuartileMethod * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?SizeMode: BoxSizeMode * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; IConvertible and &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible) + 2 overloads
+  static member Bubble: x: #IConvertible seq * y: #IConvertible seq * sizes: int seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerSymbol: MarkerSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerSymbol: MarkerSymbol seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?LineDash: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?StackGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?GroupNorm: GroupNorm * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 1 overload
+  static member Candlestick: ``open`` : #IConvertible seq * high: #IConvertible seq * low: #IConvertible seq * close: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;e seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;f * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;f seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Line: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?IncreasingColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Increasing: FinanceMarker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?DecreasingColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Decreasing: FinanceMarker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?WhiskerWidth: float * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?ShowXAxisRangeSlider: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;e :&gt; IConvertible and &#39;f :&gt; IConvertible) + 2 overloads
+  static member Column: values: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Keys: &#39;b seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiKeys: &#39;b seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiOpacity: float seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPatternShape: PatternShape * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiMarkerPatternShape: PatternShape seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerPattern: Pattern * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Base: #IConvertible * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiWidth: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible) + 1 overload
+  static member Contour: zData: #(&#39;b seq) seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;c seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;d seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;d seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorBar: ColorBar * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ReverseScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Transpose: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesDash: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesSmoothing: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLinesWidth: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContourLines: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowContourLines: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursColoring: ContourColoring * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursOperation: ConstraintOperation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursType: ContourType * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowContoursLabels: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursLabelFont: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursStart: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ContoursEnd: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Contours: Contours * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?FillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?NContours: int * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;e :&gt; IConvertible)
+  static member Funnel: x: #IConvertible seq * y: #IConvertible seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Width: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Offset: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;c * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextPosition: TextPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiTextPosition: TextPosition seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Orientation: Orientation * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AlignmentGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OffsetGroup: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MarkerOutline: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Marker: Marker * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?TextInfo: TextInfo * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorLineColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorLineStyle: DrawingStyle * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorFillColor: Color * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ConnectorLine: Line * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Connector: FunnelConnector * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?InsideTextFont: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?OutsideTextFont: Font * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible)
+  static member Heatmap: zData: #(&#39;b seq) seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: &#39;c seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiX: &#39;c seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: &#39;d seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiY: &#39;d seq seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowLegend: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Opacity: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YGap: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: &#39;e * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?MultiText: &#39;e seq * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorBar: ColorBar * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ColorScale: Colorscale * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ReverseScale: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ZSmooth: SmoothAlg * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Transpose: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?UseWebGL: bool * [&lt;Optional; DefaultParameterValue ((false :&gt; obj))&gt;] ?ReverseYAxis: bool * [&lt;Optional; DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;e :&gt; IConvertible) + 1 overload
   ...</div>
-<div class="fsdocs-tip" id="fs13">static member Chart.Indicator: value: System.IConvertible * mode: StyleParam.IndicatorMode * ?Range: StyleParam.Range * ?Name: string * ?Title: string * ?Domain: Domain * ?Align: StyleParam.IndicatorAlignment * ?DeltaReference: #System.IConvertible * ?Delta: IndicatorDelta * ?Number: IndicatorNumber * ?GaugeShape: StyleParam.IndicatorGaugeShape * ?Gauge: IndicatorGauge * ?ShowGaugeAxis: bool * ?GaugeAxis: LinearAxis * ?UseDefaults: bool -&gt; GenericChart.GenericChart</div>
+<div class="fsdocs-tip" id="fs13">static member Chart.Indicator: value: System.IConvertible * mode: StyleParam.IndicatorMode * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Range: StyleParam.Range * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Name: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Title: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Domain: Domain * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Align: StyleParam.IndicatorAlignment * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?DeltaReference: #System.IConvertible * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Delta: IndicatorDelta * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Number: IndicatorNumber * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?GaugeShape: StyleParam.IndicatorGaugeShape * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Gauge: IndicatorGauge * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?ShowGaugeAxis: bool * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?GaugeAxis: LinearAxis * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((true :&gt; obj))&gt;] ?UseDefaults: bool -&gt; GenericChart</div>
 <div class="fsdocs-tip" id="fs14">module StyleParam
 
 from Plotly.NET</div>
@@ -599,14 +1017,14 @@ from Plotly.NET</div>
 <div class="fsdocs-tip" id="fs17">Multiple items<br />type Title =
   inherit DynamicObj
   new: unit -&gt; Title
-  static member init: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?XAnchor: XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: YAnchorPosition * ?YRef: string -&gt; Title
-  static member style: ?Text: string * ?AutoMargin: bool * ?Font: Font * ?Standoff: int * ?Side: Side * ?X: float * ?XAnchor: XAnchorPosition * ?XRef: string * ?Y: float * ?YAnchor: YAnchorPosition * ?YRef: string -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new: unit -&gt; Title</div>
+  static member init: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Font: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AutoMargin: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Pad: Padding * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XAnchor: XAnchorPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XRef: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YAnchor: YAnchorPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YRef: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Standoff: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Side: Side -&gt; Title
+  static member style: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Text: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Font: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?AutoMargin: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Pad: Padding * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XAnchor: XAnchorPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?XRef: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: float * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YAnchor: YAnchorPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?YRef: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Standoff: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Side: Side -&gt; (Title -&gt; Title)<br /><br />--------------------<br />new: unit -&gt; Title</div>
 <div class="fsdocs-tip" id="fs18">type Range =
   | MinMax of IConvertible * IConvertible
   | Values of IConvertible array
   member Convert: unit -&gt; obj
   static member ofMinMax: min: #IConvertible * max: #IConvertible -&gt; Range
-  static member ofValues: values: seq&lt;#IConvertible&gt; -&gt; Range
+  static member ofValues: values: #IConvertible seq -&gt; Range
   static member convert: (Range -&gt; obj)<br /><em>&lt;summary&gt;
  Defines a Range between min and max value
 &lt;/summary&gt;</em></div>
@@ -622,38 +1040,73 @@ from Plotly.NET</div>
 <div class="fsdocs-tip" id="fs22">Multiple items<br />type Domain =
   inherit DynamicObj
   new: unit -&gt; Domain
-  static member init: ?X: Range * ?Y: Range * ?Row: int * ?Column: int -&gt; Domain
-  static member style: ?X: Range * ?Y: Range * ?Row: int * ?Column: int -&gt; (Domain -&gt; Domain)<br /><em>&lt;summary&gt;
+  static member init: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: Range * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: Range * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Row: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Column: int -&gt; Domain
+  static member style: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?X: Range * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: Range * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Row: int * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Column: int -&gt; (Domain -&gt; Domain)<br /><em>&lt;summary&gt;
  Dimensions type inherits from dynamic object
 &lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; Domain</div>
-<div class="fsdocs-tip" id="fs23">static member Domain.init: ?X: StyleParam.Range * ?Y: StyleParam.Range * ?Row: int * ?Column: int -&gt; Domain</div>
+<div class="fsdocs-tip" id="fs23">static member Domain.init: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?X: StyleParam.Range * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Y: StyleParam.Range * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Row: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Column: int -&gt; Domain</div>
 <div class="fsdocs-tip" id="fs24">Multiple items<br />type IndicatorDelta =
   inherit DynamicObj
   new: unit -&gt; IndicatorDelta
-  static member init: ?Decreasing: IndicatorSymbol * ?Font: Font * ?Increasing: IndicatorSymbol * ?Position: IndicatorDeltaPosition * ?Prefix: string * ?Reference: #IConvertible * ?Relative: bool * ?Suffix: string * ?ValueFormat: string -&gt; IndicatorDelta
-  static member style: ?Decreasing: IndicatorSymbol * ?Font: Font * ?Increasing: IndicatorSymbol * ?Position: IndicatorDeltaPosition * ?Prefix: string * ?Reference: #IConvertible * ?Relative: bool * ?Suffix: string * ?ValueFormat: string -&gt; (IndicatorDelta -&gt; IndicatorDelta)<br /><br />--------------------<br />new: unit -&gt; IndicatorDelta</div>
-<div class="fsdocs-tip" id="fs25">static member IndicatorDelta.init: ?Decreasing: IndicatorSymbol * ?Font: Font * ?Increasing: IndicatorSymbol * ?Position: StyleParam.IndicatorDeltaPosition * ?Prefix: string * ?Reference: #System.IConvertible * ?Relative: bool * ?Suffix: string * ?ValueFormat: string -&gt; IndicatorDelta</div>
+  static member init: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Decreasing: IndicatorSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Font: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Increasing: IndicatorSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Position: IndicatorDeltaPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Prefix: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Reference: #IConvertible * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Relative: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Suffix: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ValueFormat: string -&gt; IndicatorDelta
+  static member style: [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Decreasing: IndicatorSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Font: Font * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Increasing: IndicatorSymbol * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Position: IndicatorDeltaPosition * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Prefix: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Reference: #IConvertible * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Relative: bool * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?Suffix: string * [&lt;Optional; DefaultParameterValue ((null :&gt; obj))&gt;] ?ValueFormat: string -&gt; (IndicatorDelta -&gt; IndicatorDelta)<br /><br />--------------------<br />new: unit -&gt; IndicatorDelta</div>
+<div class="fsdocs-tip" id="fs25">static member IndicatorDelta.init: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Decreasing: IndicatorSymbol * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Font: Font * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Increasing: IndicatorSymbol * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Position: StyleParam.IndicatorDeltaPosition * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Prefix: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Reference: #System.IConvertible * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Relative: bool * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Suffix: string * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?ValueFormat: string -&gt; IndicatorDelta</div>
 <div class="fsdocs-tip" id="fs26">union case StyleParam.IndicatorMode.NumberDelta: StyleParam.IndicatorMode</div>
 <div class="fsdocs-tip" id="fs27">union case StyleParam.IndicatorMode.Delta: StyleParam.IndicatorMode</div>
-<div class="fsdocs-tip" id="fs28">static member Chart.combine: gCharts: seq&lt;GenericChart.GenericChart&gt; -&gt; GenericChart.GenericChart</div>
-<div class="fsdocs-tip" id="fs29">static member Chart.withLayoutGridStyle: ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][] * ?XAxes: StyleParam.LinearAxisId[] * ?YAxes: StyleParam.LinearAxisId[] * ?Rows: int * ?Columns: int * ?RowOrder: StyleParam.LayoutGridRowOrder * ?Pattern: StyleParam.LayoutGridPattern * ?XGap: float * ?YGap: float * ?Domain: Domain * ?XSide: StyleParam.LayoutGridXSide * ?YSide: StyleParam.LayoutGridYSide -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs30">static member Chart.withMarginSize: ?Left: &#39;a * ?Right: &#39;b * ?Top: &#39;c * ?Bottom: &#39;d * ?Pad: &#39;e * ?Autoexpand: &#39;f -&gt; (GenericChart.GenericChart -&gt; GenericChart.GenericChart)</div>
-<div class="fsdocs-tip" id="fs31">module GenericChart
+<div class="fsdocs-tip" id="fs28">static member Chart.combine: gCharts: GenericChart seq -&gt; GenericChart</div>
+<div class="fsdocs-tip" id="fs29">static member Chart.withLayoutGridStyle: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId) array array * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XAxes: StyleParam.LinearAxisId array * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YAxes: StyleParam.LinearAxisId array * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Rows: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Columns: int * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?RowOrder: StyleParam.LayoutGridRowOrder * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Pattern: StyleParam.LayoutGridPattern * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XGap: float * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YGap: float * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Domain: Domain * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?XSide: StyleParam.LayoutGridXSide * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?YSide: StyleParam.LayoutGridYSide -&gt; (GenericChart -&gt; GenericChart)</div>
+<div class="fsdocs-tip" id="fs30">static member Chart.withMarginSize: [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Left: &#39;a * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Right: &#39;b * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Top: &#39;c * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Bottom: &#39;d * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Pad: &#39;e * [&lt;System.Runtime.InteropServices.Optional; System.Runtime.InteropServices.DefaultParameterValue ((null :&gt; obj))&gt;] ?Autoexpand: &#39;f -&gt; (GenericChart -&gt; GenericChart)</div>
+<div class="fsdocs-tip" id="fs31">type GenericChart =
+  | Chart of data: Trace * layout: Layout * config: Config * displayOpts: DisplayOptions
+  | MultiChart of data: Trace list * layout: Layout * config: Config * displayOpts: DisplayOptions
+  static member addConfig: config: Config -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addDisplayOptions: displayOpts: DisplayOptions -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addLayout: layout: Layout -&gt; gChart: GenericChart -&gt; GenericChart
+  static member combine: gCharts: GenericChart seq -&gt; GenericChart
+  static member countTrace: gChart: GenericChart -&gt; int
+  static member existsTrace: predicate: (Trace -&gt; bool) -&gt; gChart: GenericChart -&gt; bool
+  static member fromChartDTO: dto: ChartDTO -&gt; GenericChart
+  static member fromFigure: fig: Figure -&gt; GenericChart
+  static member getConfig: gChart: GenericChart -&gt; Config
+  static member getDisplayOptions: gChart: GenericChart -&gt; DisplayOptions
+  ...<br /><em>&lt;summary&gt;
+ The central type that gets created by all Chart constructors is GenericChart, which itself represents either a single chart or a multi chart (as a Discriminate Union type).
+ 
+ A GenericChart consists of four top level objects: Trace (multiple of those in the case of a MultiChart), Layout, Config, and DisplayOptions.
+ 
+ - `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
 
-from Plotly.NET<br /><em>&lt;summary&gt;
- Module to represent a GenericChart
+ - `Layout` is everything of the chart that is not dataset specific - e.g. the shape and style of axes, the chart title, etc.
+
+ - `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
+
+ - `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
 &lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs32">val toChartHTML: gChart: GenericChart.GenericChart -&gt; string</div>
+<div class="fsdocs-tip" id="fs32">static member GenericChart.toChartHTML: gChart: GenericChart -&gt; string</div>
 
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Indicator-Charts">
+      Indicator Charts
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>

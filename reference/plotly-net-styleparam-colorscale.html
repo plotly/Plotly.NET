@@ -1,62 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>Colorscale (Plotly.NET)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Timo Mühlhaus, Kevin Schneider, F# open source contributors">
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Colorscale (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Colorscale (Plotly.NET)">
     
-</head> 
+    <title>Colorscale (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -64,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
   <h2>
     Colorscale Type
   </h2>
@@ -97,17 +916,15 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a>&gt;</span></code>
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://plotly.net/reference/plotly-net-styleparam-colorscale.html">Colorscale</a>&gt;</span></code>
       , 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required.
-
+         The colorscale must be a collection containing a mapping of a normalized value (between 0.0 and 1.0) to it's color. At minimum, a mapping for the lowest (0.0) and highest (1.0) values are required.
       </p>
     </div>
   </div>
@@ -133,7 +950,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '526', 526)" onmouseover="showTip(event, '526', 526)">
+              <code onmouseout="hideTip(event, '498', 498)" onmouseover="showTip(event, '498', 498)">
                 <p>
                   <a id="Blackbody">
                     <a href="#Blackbody">
@@ -142,7 +959,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="526">
+              <div class="fsdocs-tip" id="498">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Blackbody</span></code>
@@ -154,9 +971,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L755-755" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L804-804" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -167,7 +983,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '527', 527)" onmouseover="showTip(event, '527', 527)">
+              <code onmouseout="hideTip(event, '499', 499)" onmouseover="showTip(event, '499', 499)">
                 <p>
                   <a id="Bluered">
                     <a href="#Bluered">
@@ -176,7 +992,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="527">
+              <div class="fsdocs-tip" id="499">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Bluered</span></code>
@@ -188,9 +1004,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L758-758" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L807-807" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -201,7 +1016,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '528', 528)" onmouseover="showTip(event, '528', 528)">
+              <code onmouseout="hideTip(event, '500', 500)" onmouseover="showTip(event, '500', 500)">
                 <p>
                   <a id="Cividis">
                     <a href="#Cividis">
@@ -210,7 +1025,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="528">
+              <div class="fsdocs-tip" id="500">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Cividis</span></code>
@@ -222,9 +1037,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L768-768" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L817-817" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -235,19 +1049,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '529', 529)" onmouseover="showTip(event, '529', 529)">
+              <code onmouseout="hideTip(event, '501', 501)" onmouseover="showTip(event, '501', 501)">
                 <p>
                   <a id="Custom">
                     <a href="#Custom">
-                      <code><span>Custom&#32;<span>seq&lt;<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>&gt;</span></span></code>
+                      <code><span>Custom&#32;<span><span>(<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>)</span>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="529">
+              <div class="fsdocs-tip" id="501">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>Custom&#32;<span>seq&lt;<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>&gt;</span></span></code>
+                  <code><span>Custom&#32;<span><span>(<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>)</span>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -257,7 +1071,7 @@
                         Item
                       </b>
                       :
-                      <code><span>seq&lt;<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>&gt;</span></code>
+                      <code><span><span>(<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>)</span>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -267,22 +1081,13 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L752-752" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
                   Item
                 </span>
                 :
-                <code><span>seq&lt;<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>&gt;</span></code>
+                <code><span><span>(<span>float&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-color.html">Color</a></span>)</span>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -291,7 +1096,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '530', 530)" onmouseover="showTip(event, '530', 530)">
+              <code onmouseout="hideTip(event, '502', 502)" onmouseover="showTip(event, '502', 502)">
                 <p>
                   <a id="Earth">
                     <a href="#Earth">
@@ -300,7 +1105,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="530">
+              <div class="fsdocs-tip" id="502">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Earth</span></code>
@@ -312,9 +1117,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L754-754" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L803-803" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -325,7 +1129,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '531', 531)" onmouseover="showTip(event, '531', 531)">
+              <code onmouseout="hideTip(event, '503', 503)" onmouseover="showTip(event, '503', 503)">
                 <p>
                   <a id="Electric">
                     <a href="#Electric">
@@ -334,7 +1138,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="531">
+              <div class="fsdocs-tip" id="503">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Electric</span></code>
@@ -346,9 +1150,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L760-760" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L809-809" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -359,7 +1162,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '532', 532)" onmouseover="showTip(event, '532', 532)">
+              <code onmouseout="hideTip(event, '504', 504)" onmouseover="showTip(event, '504', 504)">
                 <p>
                   <a id="Greens">
                     <a href="#Greens">
@@ -368,7 +1171,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="532">
+              <div class="fsdocs-tip" id="504">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Greens</span></code>
@@ -380,9 +1183,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L764-764" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L813-813" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -393,7 +1195,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '533', 533)" onmouseover="showTip(event, '533', 533)">
+              <code onmouseout="hideTip(event, '505', 505)" onmouseover="showTip(event, '505', 505)">
                 <p>
                   <a id="Greys">
                     <a href="#Greys">
@@ -402,7 +1204,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="533">
+              <div class="fsdocs-tip" id="505">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Greys</span></code>
@@ -414,9 +1216,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L763-763" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L812-812" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -427,7 +1228,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '534', 534)" onmouseover="showTip(event, '534', 534)">
+              <code onmouseout="hideTip(event, '506', 506)" onmouseover="showTip(event, '506', 506)">
                 <p>
                   <a id="Hot">
                     <a href="#Hot">
@@ -436,7 +1237,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="534">
+              <div class="fsdocs-tip" id="506">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Hot</span></code>
@@ -448,9 +1249,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L762-762" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L811-811" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -461,7 +1261,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '535', 535)" onmouseover="showTip(event, '535', 535)">
+              <code onmouseout="hideTip(event, '507', 507)" onmouseover="showTip(event, '507', 507)">
                 <p>
                   <a id="Jet">
                     <a href="#Jet">
@@ -470,7 +1270,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="535">
+              <div class="fsdocs-tip" id="507">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Jet</span></code>
@@ -482,9 +1282,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L761-761" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L810-810" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -495,7 +1294,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '536', 536)" onmouseover="showTip(event, '536', 536)">
+              <code onmouseout="hideTip(event, '508', 508)" onmouseover="showTip(event, '508', 508)">
                 <p>
                   <a id="Picnic">
                     <a href="#Picnic">
@@ -504,7 +1303,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="536">
+              <div class="fsdocs-tip" id="508">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Picnic</span></code>
@@ -516,9 +1315,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L765-765" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L814-814" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -529,7 +1327,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '537', 537)" onmouseover="showTip(event, '537', 537)">
+              <code onmouseout="hideTip(event, '509', 509)" onmouseover="showTip(event, '509', 509)">
                 <p>
                   <a id="Portland">
                     <a href="#Portland">
@@ -538,7 +1336,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="537">
+              <div class="fsdocs-tip" id="509">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Portland</span></code>
@@ -550,9 +1348,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L759-759" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L808-808" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -563,7 +1360,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '538', 538)" onmouseover="showTip(event, '538', 538)">
+              <code onmouseout="hideTip(event, '510', 510)" onmouseover="showTip(event, '510', 510)">
                 <p>
                   <a id="Rainbow">
                     <a href="#Rainbow">
@@ -572,7 +1369,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="538">
+              <div class="fsdocs-tip" id="510">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Rainbow</span></code>
@@ -584,9 +1381,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L766-766" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L815-815" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -597,7 +1393,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '539', 539)" onmouseover="showTip(event, '539', 539)">
+              <code onmouseout="hideTip(event, '511', 511)" onmouseover="showTip(event, '511', 511)">
                 <p>
                   <a id="RdBu">
                     <a href="#RdBu">
@@ -606,7 +1402,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="539">
+              <div class="fsdocs-tip" id="511">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>RdBu</span></code>
@@ -618,9 +1414,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L753-753" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L802-802" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -631,7 +1426,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
+              <code onmouseout="hideTip(event, '512', 512)" onmouseover="showTip(event, '512', 512)">
                 <p>
                   <a id="Viridis">
                     <a href="#Viridis">
@@ -640,7 +1435,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="540">
+              <div class="fsdocs-tip" id="512">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Viridis</span></code>
@@ -652,9 +1447,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L767-767" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L816-816" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -665,7 +1459,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+              <code onmouseout="hideTip(event, '513', 513)" onmouseover="showTip(event, '513', 513)">
                 <p>
                   <a id="YIGnBu">
                     <a href="#YIGnBu">
@@ -674,7 +1468,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="541">
+              <div class="fsdocs-tip" id="513">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>YIGnBu</span></code>
@@ -686,9 +1480,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L757-757" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L806-806" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -699,7 +1492,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
+              <code onmouseout="hideTip(event, '514', 514)" onmouseover="showTip(event, '514', 514)">
                 <p>
                   <a id="YIOrRd">
                     <a href="#YIOrRd">
@@ -708,7 +1501,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="542">
+              <div class="fsdocs-tip" id="514">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>YIOrRd</span></code>
@@ -720,9 +1513,8 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L756-756" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
+              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L805-805" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
                 
@@ -755,7 +1547,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
+              <code onmouseout="hideTip(event, '515', 515)" onmouseover="showTip(event, '515', 515)">
                 <p>
                   <a id="Convert">
                     <a href="#Convert">
@@ -764,7 +1556,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="543">
+              <div class="fsdocs-tip" id="515">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.Convert</span></code>
@@ -780,23 +1572,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.StyleParam.Colorscale.Convert`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.StyleParam.Colorscale.Convert\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L795-795" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -830,7 +1605,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
+              <code onmouseout="hideTip(event, '516', 516)" onmouseover="showTip(event, '516', 516)">
                 <p>
                   <a id="convert">
                     <a href="#convert">
@@ -839,7 +1614,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="544">
+              <div class="fsdocs-tip" id="516">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Colorscale.convert&#32;</span></code>
@@ -855,23 +1630,6 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Plotly.NET.StyleParam.Colorscale.convert`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Plotly.NET.StyleParam.Colorscale.convert\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/CommonAbstractions/StyleParams.fs#L770-770" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
@@ -887,19 +1645,24 @@
     </table>
   </div>
 </div>
-                </div>
-            </div>
-        </div>
         
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>

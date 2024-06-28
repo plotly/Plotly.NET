@@ -1,62 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-root="https://plotly.net/">
 <head>
-    <meta charset="utf-8">
-    <title>GenericChartExtensions (Plotly.NET)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Kevin Schneider, F# open source contributors">
-    <link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="https://plotly.net/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-tips.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <!-- END SEARCH BOX: this adds support for the search box -->
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="GenericChartExtensions (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="GenericChartExtensions (Plotly.NET)">
     
-</head> 
+    <title>GenericChartExtensions (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
 
-<body>
-    <div class="columns is-fullheight m-0">
-        <div id="fsdocs-menu" class="column is-2 is-paddingless">
-            <aside class="menu">
-                <div class="container is-paddingless is-marginless has-background-dark">
-                    <a href="https://plotly.net/">
-                        <figure class="image is-128x128 container">
-                            <img src="https://plotly.net/img/logo.png">
-                        </figure>
-                    </a>
-                    <h2 class="title has-text-centered has-text-white">Plotly.NET</h2>
-                    <h5 class="has-text-centered has-text-white pb-4">Documentation for 4.2.0</h5>
-                </div>
-                <div class="content">
-                    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-                    <div id="header">
-                        <div class="searchbox" id="fsdocs-searchbox">
-                            <label for="search-by">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input data-search-input="" id="search-by" type="search" placeholder="Search..." class="input"/>
-                            <span data-search-clear="">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END SEARCH BOX: this adds support for the search box -->
-                    <ul class="navbar-nav">
-                        <li class="nav-header">Links</li>
-                        <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License (MIT)</a></li>
-                        <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release Notes</a></li>
-                        <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source Repository</a></li>
-                        <li class="nav-header">
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+                <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
@@ -64,14 +464,433 @@
     All Namespaces
   </a>
 </li>
-                    </ul>
-                </div>
-            </aside>
+            </ul>
         </div>
-        <div class="column is-10 is-paddingless">
-            <div class="section pt-4">
-                <div class="container" id="fsdocs-content">
-                    <div>
+        <a href="https://plotly.net/">
+            <img alt="Header menu logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
   <h2>
     GenericChartExtensions Module
   </h2>
@@ -113,7 +932,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '124', 124)" onmouseover="showTip(event, '124', 124)">
+              <code onmouseout="hideTip(event, '94', 94)" onmouseover="showTip(event, '94', 94)">
                 <p>
                   <a id="SaveJPG">
                     <a href="#SaveJPG">
@@ -122,7 +941,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="124">
+              <div class="fsdocs-tip" id="94">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.SaveJPG</span></code>
@@ -177,85 +996,86 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPG`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPG\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L76-76" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPG`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPG\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L75-75" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Saves the GenericChart as JPG image
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The path (without extension) where the image will be saved
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Render engine to use
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  width of the resulting image
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  height of the resulting image
-                </p>
-              </dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The path (without extension) where the image will be saved
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Render engine to use
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    width of the resulting image
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    height of the resulting image
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '125', 125)" onmouseover="showTip(event, '125', 125)">
+              <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
                 <p>
                   <a id="SaveJPGAsync">
                     <a href="#SaveJPGAsync">
@@ -264,7 +1084,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="125">
+              <div class="fsdocs-tip" id="95">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.SaveJPGAsync</span></code>
@@ -316,7 +1136,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -324,94 +1144,95 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPGAsync`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPGAsync\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPGAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveJPGAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Saves the GenericChart as JPG image (async)
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The path (without extension) where the image will be saved
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Render engine to use
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  width of the resulting image
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  height of the resulting image
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The path (without extension) where the image will be saved
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Render engine to use
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    width of the resulting image
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    height of the resulting image
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '126', 126)" onmouseover="showTip(event, '126', 126)">
+              <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
                 <p>
                   <a id="SavePNG">
                     <a href="#SavePNG">
@@ -420,7 +1241,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="126">
+              <div class="fsdocs-tip" id="96">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.SavePNG</span></code>
@@ -475,85 +1296,86 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNG`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNG\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNG`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNG\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L145-145" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Saves the GenericChart as PNG image
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The path (without extension) where the image will be saved
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Render engine to use
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  width of the resulting image
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  height of the resulting image
-                </p>
-              </dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The path (without extension) where the image will be saved
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Render engine to use
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    width of the resulting image
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    height of the resulting image
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '127', 127)" onmouseover="showTip(event, '127', 127)">
+              <code onmouseout="hideTip(event, '97', 97)" onmouseover="showTip(event, '97', 97)">
                 <p>
                   <a id="SavePNGAsync">
                     <a href="#SavePNGAsync">
@@ -562,7 +1384,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="127">
+              <div class="fsdocs-tip" id="97">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.SavePNGAsync</span></code>
@@ -614,7 +1436,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -622,94 +1444,95 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNGAsync`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNGAsync\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L128-128" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNGAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SavePNGAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L127-127" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Saves the GenericChart as PNG image (async)
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The path (without extension) where the image will be saved
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Render engine to use
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  width of the resulting image
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  height of the resulting image
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The path (without extension) where the image will be saved
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Render engine to use
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    width of the resulting image
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    height of the resulting image
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
+              <code onmouseout="hideTip(event, '98', 98)" onmouseover="showTip(event, '98', 98)">
                 <p>
                   <a id="SaveSVG">
                     <a href="#SaveSVG">
@@ -718,7 +1541,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="128">
+              <div class="fsdocs-tip" id="98">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.SaveSVG</span></code>
@@ -773,85 +1596,86 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVG`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVG\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L216-216" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVG`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVG\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L215-215" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Saves the GenericChart as SVG image
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The path (without extension) where the image will be saved
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Render engine to use
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  width of the resulting image
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  height of the resulting image
-                </p>
-              </dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The path (without extension) where the image will be saved
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Render engine to use
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    width of the resulting image
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    height of the resulting image
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '129', 129)" onmouseover="showTip(event, '129', 129)">
+              <code onmouseout="hideTip(event, '99', 99)" onmouseover="showTip(event, '99', 99)">
                 <p>
                   <a id="SaveSVGAsync">
                     <a href="#SaveSVGAsync">
@@ -860,7 +1684,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="129">
+              <div class="fsdocs-tip" id="99">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.SaveSVGAsync</span></code>
@@ -912,7 +1736,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -920,94 +1744,95 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVGAsync`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVGAsync\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L198-198" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVGAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.SaveSVGAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L197-197" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Saves the GenericChart as SVG image (async)
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  path
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The path (without extension) where the image will be saved
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Render engine to use
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  width of the resulting image
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  height of the resulting image
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    path
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The path (without extension) where the image will be saved
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Render engine to use
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    width of the resulting image
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    height of the resulting image
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;unit&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '130', 130)" onmouseover="showTip(event, '130', 130)">
+              <code onmouseout="hideTip(event, '100', 100)" onmouseover="showTip(event, '100', 100)">
                 <p>
                   <a id="ToBase64JPGString">
                     <a href="#ToBase64JPGString">
@@ -1016,7 +1841,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="130">
+              <div class="fsdocs-tip" id="100">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.ToBase64JPGString</span></code>
@@ -1066,82 +1891,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGString`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGString\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGString`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGString\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Converts the GenericChart to a base64 encoded JPG string
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
+              <code onmouseout="hideTip(event, '101', 101)" onmouseover="showTip(event, '101', 101)">
                 <p>
                   <a id="ToBase64JPGStringAsync">
                     <a href="#ToBase64JPGStringAsync">
@@ -1150,7 +1976,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="131">
+              <div class="fsdocs-tip" id="101">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.ToBase64JPGStringAsync</span></code>
@@ -1192,7 +2018,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1200,82 +2026,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGStringAsync`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGStringAsync\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGStringAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64JPGStringAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Converts the GenericChart to a base64 encoded JPG string (async)
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
+              <code onmouseout="hideTip(event, '102', 102)" onmouseover="showTip(event, '102', 102)">
                 <p>
                   <a id="ToBase64PNGString">
                     <a href="#ToBase64PNGString">
@@ -1284,7 +2111,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="132">
+              <div class="fsdocs-tip" id="102">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.ToBase64PNGString</span></code>
@@ -1334,82 +2161,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGString`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGString\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L110-110" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGString`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGString\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L109-109" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Converts the GenericChart to a base64 encoded PNG string
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
+              <code onmouseout="hideTip(event, '103', 103)" onmouseover="showTip(event, '103', 103)">
                 <p>
                   <a id="ToBase64PNGStringAsync">
                     <a href="#ToBase64PNGStringAsync">
@@ -1418,7 +2246,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="133">
+              <div class="fsdocs-tip" id="103">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.ToBase64PNGStringAsync</span></code>
@@ -1460,7 +2288,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1468,82 +2296,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGStringAsync`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGStringAsync\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L93-93" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGStringAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToBase64PNGStringAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L92-92" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Converts the GenericChart to a base64 encoded PNG string (async)
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '134', 134)" onmouseover="showTip(event, '134', 134)">
+              <code onmouseout="hideTip(event, '104', 104)" onmouseover="showTip(event, '104', 104)">
                 <p>
                   <a id="ToSVGString">
                     <a href="#ToSVGString">
@@ -1552,7 +2381,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="134">
+              <div class="fsdocs-tip" id="104">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.ToSVGString</span></code>
@@ -1602,82 +2431,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGString`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGString\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L180-180" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGString`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGString\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L179-179" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Converts the GenericChart to a SVG string
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '135', 135)" onmouseover="showTip(event, '135', 135)">
+              <code onmouseout="hideTip(event, '105', 105)" onmouseover="showTip(event, '105', 105)">
                 <p>
                   <a id="ToSVGStringAsync">
                     <a href="#ToSVGStringAsync">
@@ -1686,7 +2516,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="135">
+              <div class="fsdocs-tip" id="105">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.ToSVGStringAsync</span></code>
@@ -1728,7 +2558,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1736,76 +2566,77 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGStringAsync`')">
-                <img src="https://plotly.net/content/img/copy-md.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGStringAsync\'/>')">
-                <img src="https://plotly.net/content/img/copy-xml.png" class="normal"/>
-                <img src="https://plotly.net/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L163-163" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://plotly.net/content/img/github.png" class="normal"/>
-                <img src="https://plotly.net/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGStringAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.ImageExport.GenericChartExtensions.ToSVGStringAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET.ImageExport/GenericChartExtensions.fs#L162-162" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Converts the GenericChart to a SVG string (async)
  
+                  </p>
+                </div>
+              </summary>
+              <p>
+                Extended Type: 
+                <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
               </p>
-            </div>
-            <p>
-              Extended Type: 
-              <code><a href="https://plotly.net/reference/plotly-net-genericchart-genericchart.html">GenericChart</a></code>
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?EngineType
-                </span>
-                :
-                <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Width
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?Height
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?EngineType
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-imageexport-exportengine.html">ExportEngine</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Width
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Height
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;string&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
@@ -1819,19 +2650,24 @@
   <div></div>
   <div></div>
 </div>
-                </div>
-            </div>
-        </div>
         
     </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
 
-    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-    <script type="text/javascript">var fsdocs_search_baseurl = 'https://plotly.net/'</script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-    <script type="text/javascript" src="https://plotly.net/content/fsdocs-search.js"></script>
-    <!-- END SEARCH BOX: this adds support for the search box -->
 </body>
-
 </html>
