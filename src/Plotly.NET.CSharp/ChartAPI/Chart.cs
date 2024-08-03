@@ -71,5 +71,54 @@ namespace Plotly.NET.CSharp
                 XSide: XSide.ToOption(),
                 YSide: YSide.ToOption()
             ).Invoke(gCharts);
+        
+        ///<summary>
+        /// Creates a chart stack (a subplot grid with one column) from the input charts.
+        /// </summary>
+        /// <param name ="gCharts">The charts to display.</param>
+        /// <param name ="SubPlotTitles">A collection of titles for the individual subplots.</param>
+        /// <param name ="SubPlotTitleFont">The font of the subplot titles</param>
+        /// <param name ="SubPlotTitleOffset">A vertical offset applied to each subplot title, moving it upwards if positive and vice versa</param>
+        /// <param name ="SubPlots">Used for freeform grids, where some axes may be shared across subplots but others are not. Each entry should be a cartesian subplot id, like "xy" or "x3y2", or "" to leave that cell empty. You may reuse x axes within the same column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place themselves in this grid separately using the `gridcell` attribute.</param>
+        /// <param name ="XAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an y axis id like "y", "y2", etc., or "" to not put a y axis in that row. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="YAxes">Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id like "x", "x2", etc., or "" to not put an x axis in that column. Entries other than "" must be unique. Ignored if `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.</param>
+        /// <param name ="RowOrder">Is the first row the top or the bottom? Note that columns are always enumerated from left to right.</param>
+        /// <param name ="Pattern">If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: "coupled" gives one x axis per column and one y axis per row. "independent" uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.</param>
+        /// <param name ="XGap">Horizontal space between grid cells, expressed as a fraction of the total width available to one cell. Defaults to 0.1 for coupled-axes grids and 0.2 for independent grids.</param>
+        /// <param name ="YGap">Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.</param>
+        /// <param name ="Domain">Sets the domains of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.</param>
+        /// <param name ="XSide">Sets where the x axis labels and titles go. "bottom" means the very bottom of the grid. "bottom plot" is the lowest plot that each x axis is used in. "top" and "top plot" are similar.</param>
+        /// <param name ="YSide">Sets where the y axis labels and titles go. "left" means the very left edge of the grid. "left plot" is the leftmost plot that each y axis is used in. "right" and "right plot" are similar.</param>
+        public static GenericChart SingleStack(
+            IEnumerable<GenericChart> gCharts,
+            Optional<IEnumerable<string>> SubPlotTitles = default,
+            Optional<Font> SubPlotTitleFont = default,
+            Optional<double> SubPlotTitleOffset = default,
+            Optional<Tuple<StyleParam.LinearAxisId, StyleParam.LinearAxisId>[][]> SubPlots = default,
+            Optional<StyleParam.LinearAxisId[]> XAxes = default,
+            Optional<StyleParam.LinearAxisId[]> YAxes = default,
+            Optional<StyleParam.LayoutGridRowOrder> RowOrder = default,
+            Optional<StyleParam.LayoutGridPattern> Pattern = default,
+            Optional<double> XGap = default,
+            Optional<double> YGap = default,
+            Optional<Domain> Domain = default,
+            Optional<StyleParam.LayoutGridXSide> XSide = default,
+            Optional<StyleParam.LayoutGridYSide> YSide = default
+        ) =>
+            Plotly.NET.Chart.SingleStack<IEnumerable<string>, IEnumerable<GenericChart>>(
+                SubPlotTitles: SubPlotTitles.ToOption(),
+                SubPlotTitleFont: SubPlotTitleFont.ToOption(),
+                SubPlotTitleOffset: SubPlotTitleOffset.ToOption(),
+                SubPlots: SubPlots.ToOption(),
+                XAxes: XAxes.ToOption(),
+                YAxes: YAxes.ToOption(),
+                RowOrder: RowOrder.ToOption(),
+                Pattern: Pattern.ToOption(),
+                XGap: XGap.ToOption(),
+                YGap: YGap.ToOption(),
+                Domain: Domain.ToOption(),
+                XSide: XSide.ToOption(),
+                YSide: YSide.ToOption()
+            ).Invoke(gCharts);
     }
 }
