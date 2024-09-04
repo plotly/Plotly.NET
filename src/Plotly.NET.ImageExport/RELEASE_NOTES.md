@@ -1,3 +1,7 @@
+### 6.1.0 - September 04 2024
+
+Remove explicit DynamicObj dependency (use transitive dependency from Plotly.NET)
+
 ### 6.0.0 - May 27 2024
 
 - BREAKING: [Add Scale option to all image export extensions](https://github.com/plotly/Plotly.NET/commit/5090570cb0fd8281a4c197421994cec719b82ac9)

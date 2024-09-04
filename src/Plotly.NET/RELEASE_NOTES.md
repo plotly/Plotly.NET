@@ -1,3 +1,5 @@
+### 5.1.0 - September 04 2024
+
 ### 5.0.0 - May 27 2024
 
 Major release with lots of bug fixes, improvements, and upstream feature additions from plotly.js. Many changes are backwards-incompatible with previous versions.
