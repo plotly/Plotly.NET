@@ -24,8 +24,8 @@ type Transition() =
         ) =
         (fun (transition: Transition) ->
 
-            Duration |> DynObj.setValueOpt transition "duration"
-            Easing |> DynObj.setValueOptBy transition "easing" StyleParam.TransitionEasing.convert
-            Ordering |> DynObj.setValueOptBy transition "ordering" StyleParam.TransitionOrdering.convert
+            Duration |> DynObj.setOptionalProperty transition "duration"
+            Easing |> DynObj.setOptionalPropertyBy transition "easing" StyleParam.TransitionEasing.convert
+            Ordering |> DynObj.setOptionalPropertyBy transition "ordering" StyleParam.TransitionOrdering.convert
 
             transition)

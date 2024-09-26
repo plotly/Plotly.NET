@@ -52,10 +52,10 @@ type AutoRangeOptions() =
         ) =
         (fun (autoRangeOptions: AutoRangeOptions) ->
 
-            ClipMax |> DynObj.setValueOpt autoRangeOptions "clipmax"
-            ClipMin |> DynObj.setValueOpt autoRangeOptions "clipmin"
-            Include |> DynObj.setValueOpt autoRangeOptions "include"
-            MaxAllowed |> DynObj.setValueOpt autoRangeOptions "maxallowed"
-            MinAllowed |> DynObj.setValueOpt autoRangeOptions "minallowed"
-
-            autoRangeOptions)
+            autoRangeOptions
+            |> DynObj.withOptionalProperty "clipmax" ClipMax
+            |> DynObj.withOptionalProperty "clipmin" ClipMin
+            |> DynObj.withOptionalProperty "include" Include
+            |> DynObj.withOptionalProperty "maxallowed" MaxAllowed
+            |> DynObj.withOptionalProperty "minallowed" MinAllowed
+        )

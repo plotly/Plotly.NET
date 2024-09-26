@@ -92,19 +92,19 @@ type Error() =
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
         (fun (error: Error) ->
-            Visible |> DynObj.setValueOpt error "visible"
-            Type |> DynObj.setValueOptBy error "type" StyleParam.ErrorType.convert
-            Symmetric |> DynObj.setValueOpt error "symmetric"
-            Array |> DynObj.setValueOpt error "array"
-            Arrayminus |> DynObj.setValueOpt error "arrayminus"
-            Value |> DynObj.setValueOpt error "value"
-            Valueminus |> DynObj.setValueOpt error "valueminus"
-            Traceref |> DynObj.setValueOpt error "traceref"
-            Tracerefminus |> DynObj.setValueOpt error "tracerefminus"
-            Copy_ystyle |> DynObj.setValueOpt error "copy_ystyle"
-            Color |> DynObj.setValueOpt error "color"
-            Thickness |> DynObj.setValueOpt error "thickness"
-            Width |> DynObj.setValueOpt error "width"
+            Visible |> DynObj.setOptionalProperty error "visible"
+            Type |> DynObj.setOptionalPropertyBy error "type" StyleParam.ErrorType.convert
+            Symmetric |> DynObj.setOptionalProperty error "symmetric"
+            Array |> DynObj.setOptionalProperty error "array"
+            Arrayminus |> DynObj.setOptionalProperty error "arrayminus"
+            Value |> DynObj.setOptionalProperty error "value"
+            Valueminus |> DynObj.setOptionalProperty error "valueminus"
+            Traceref |> DynObj.setOptionalProperty error "traceref"
+            Tracerefminus |> DynObj.setOptionalProperty error "tracerefminus"
+            Copy_ystyle |> DynObj.setOptionalProperty error "copy_ystyle"
+            Color |> DynObj.setOptionalProperty error "color"
+            Thickness |> DynObj.setOptionalProperty error "thickness"
+            Width |> DynObj.setOptionalProperty error "width"
 
             // out ->
             error)

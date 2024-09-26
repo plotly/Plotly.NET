@@ -27,9 +27,9 @@ type CameraCenter() =
 
         fun (cameraCenter: CameraCenter) ->
 
-            X |> DynObj.setValueOpt cameraCenter "x"
-            Y |> DynObj.setValueOpt cameraCenter "y"
-            Z |> DynObj.setValueOpt cameraCenter "z"
+            X |> DynObj.setOptionalProperty cameraCenter "x"
+            Y |> DynObj.setOptionalProperty cameraCenter "y"
+            Z |> DynObj.setOptionalProperty cameraCenter "z"
 
             cameraCenter
 
@@ -53,9 +53,9 @@ type CameraEye() =
 
         fun (cameraEye: CameraEye) ->
 
-            X |> DynObj.setValueOpt cameraEye "x"
-            Y |> DynObj.setValueOpt cameraEye "y"
-            Z |> DynObj.setValueOpt cameraEye "z"
+            X |> DynObj.setOptionalProperty cameraEye "x"
+            Y |> DynObj.setOptionalProperty cameraEye "y"
+            Z |> DynObj.setOptionalProperty cameraEye "z"
 
             cameraEye
 
@@ -79,9 +79,9 @@ type CameraUp() =
 
         fun (cameraUp: CameraUp) ->
 
-            X |> DynObj.setValueOpt cameraUp "x"
-            Y |> DynObj.setValueOpt cameraUp "y"
-            Z |> DynObj.setValueOpt cameraUp "z"
+            X |> DynObj.setOptionalProperty cameraUp "x"
+            Y |> DynObj.setOptionalProperty cameraUp "y"
+            Z |> DynObj.setOptionalProperty cameraUp "z"
 
             cameraUp
 
@@ -95,7 +95,7 @@ type CameraProjection() =
 
         fun (cameraProjection: CameraProjection) ->
 
-            ProjectionType |> DynObj.setValueOptBy cameraProjection "type" StyleParam.CameraProjectionType.convert
+            ProjectionType |> DynObj.setOptionalPropertyBy cameraProjection "type" StyleParam.CameraProjectionType.convert
 
             cameraProjection
 
@@ -121,9 +121,9 @@ type Camera() =
 
         fun (camera: Camera) ->
 
-            Center |> DynObj.setValueOpt camera "center"
-            Eye |> DynObj.setValueOpt camera "eye"
-            Projection |> DynObj.setValueOpt camera "projection"
-            Up |> DynObj.setValueOpt camera "up"
+            Center |> DynObj.setOptionalProperty camera "center"
+            Eye |> DynObj.setOptionalProperty camera "eye"
+            Projection |> DynObj.setOptionalProperty camera "projection"
+            Up |> DynObj.setOptionalProperty camera "up"
 
             camera

@@ -66,20 +66,20 @@ type LayoutImage() =
         ) =
         (fun (layoutImage: LayoutImage) ->
 
-            Layer |> DynObj.setValueOptBy layoutImage "layer" StyleParam.Layer.convert
-            Name |> DynObj.setValueOpt layoutImage "name"
-            Opacity |> DynObj.setValueOpt layoutImage "opacity"
-            SizeX |> DynObj.setValueOpt layoutImage "sizex"
-            SizeY |> DynObj.setValueOpt layoutImage "sizey"
-            Sizing |> DynObj.setValueOptBy layoutImage "sizing" StyleParam.LayoutImageSizing.convert
-            Source |> DynObj.setValueOpt layoutImage "source"
-            TemplateItemname |> DynObj.setValueOpt layoutImage "templateitemname"
-            Visible |> DynObj.setValueOpt layoutImage "visible"
-            X |> DynObj.setValueOpt layoutImage "x"
-            XAnchor |> DynObj.setValueOptBy layoutImage "xanchor" StyleParam.XAnchorPosition.convert
-            XRef |> DynObj.setValueOpt layoutImage "xref"
-            Y |> DynObj.setValueOpt layoutImage "y"
-            YAnchor |> DynObj.setValueOptBy layoutImage "yanchor" StyleParam.YAnchorPosition.convert
-            YRef |> DynObj.setValueOpt layoutImage "yref"
+            Layer |> DynObj.setOptionalPropertyBy layoutImage "layer" StyleParam.Layer.convert
+            Name |> DynObj.setOptionalProperty layoutImage "name"
+            Opacity |> DynObj.setOptionalProperty layoutImage "opacity"
+            SizeX |> DynObj.setOptionalProperty layoutImage "sizex"
+            SizeY |> DynObj.setOptionalProperty layoutImage "sizey"
+            Sizing |> DynObj.setOptionalPropertyBy layoutImage "sizing" StyleParam.LayoutImageSizing.convert
+            Source |> DynObj.setOptionalProperty layoutImage "source"
+            TemplateItemname |> DynObj.setOptionalProperty layoutImage "templateitemname"
+            Visible |> DynObj.setOptionalProperty layoutImage "visible"
+            X |> DynObj.setOptionalProperty layoutImage "x"
+            XAnchor |> DynObj.setOptionalPropertyBy layoutImage "xanchor" StyleParam.XAnchorPosition.convert
+            XRef |> DynObj.setOptionalProperty layoutImage "xref"
+            Y |> DynObj.setOptionalProperty layoutImage "y"
+            YAnchor |> DynObj.setOptionalPropertyBy layoutImage "yanchor" StyleParam.YAnchorPosition.convert
+            YRef |> DynObj.setOptionalProperty layoutImage "yref"
 
             layoutImage)

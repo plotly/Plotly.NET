@@ -158,31 +158,31 @@ type RealAxis() =
         ) =
         fun (realAxis: RealAxis) ->
 
-            Color |> DynObj.setValueOpt realAxis "color"
-            GridColor |> DynObj.setValueOpt realAxis "gridcolor"
-            GridDash |> DynObj.setValueOptBy realAxis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setValueOpt realAxis "gridwidth"
-            HoverFormat |> DynObj.setValueOpt realAxis "hoverformat"
-            LabelAlias |> DynObj.setValueOpt realAxis "labelalias"
-            Layer |> DynObj.setValueOptBy realAxis "layer" StyleParam.Layer.convert
-            LineColor |> DynObj.setValueOpt realAxis "linecolor"
-            LineWidth |> DynObj.setValueOpt realAxis "linewidth"
-            ShowGrid |> DynObj.setValueOpt realAxis "showgrid"
-            ShowLine |> DynObj.setValueOpt realAxis "showline"
-            ShowTickLabels |> DynObj.setValueOpt realAxis "showticklabels"
-            ShowTickSuffix |> DynObj.setValueOptBy realAxis "showticksuffix" StyleParam.ShowTickOption.convert
-            ShowTickPrefix |> DynObj.setValueOptBy realAxis "showtickprefix" StyleParam.ShowTickOption.convert
-            Side |> DynObj.setValueOptBy realAxis "side" StyleParam.Side.convert
-            TickAngle |> DynObj.setValueOpt realAxis "tickangle"
-            TickColor |> DynObj.setValueOpt realAxis "tickcolor"
-            TickFont |> DynObj.setValueOpt realAxis "tickfont"
-            TickFormat |> DynObj.setValueOpt realAxis "tickformat"
-            TickLen |> DynObj.setValueOpt realAxis "ticklen"
-            TickPrefix |> DynObj.setValueOpt realAxis "tickprefix"
-            Ticks |> DynObj.setValueOptBy realAxis "ticks" StyleParam.TickLabelPosition.convert
-            TickSuffix |> DynObj.setValueOpt realAxis "ticksuffix"
-            TickVals |> DynObj.setValueOpt realAxis "tickvals"
-            TickWidth |> DynObj.setValueOpt realAxis "tickwidth"
-            Visible |> DynObj.setValueOpt realAxis "visible"
+            Color |> DynObj.setOptionalProperty realAxis "color"
+            GridColor |> DynObj.setOptionalProperty realAxis "gridcolor"
+            GridDash |> DynObj.setOptionalPropertyBy realAxis "griddash" StyleParam.DrawingStyle.convert
+            GridWidth |> DynObj.setOptionalProperty realAxis "gridwidth"
+            HoverFormat |> DynObj.setOptionalProperty realAxis "hoverformat"
+            LabelAlias |> DynObj.setOptionalProperty realAxis "labelalias"
+            Layer |> DynObj.setOptionalPropertyBy realAxis "layer" StyleParam.Layer.convert
+            LineColor |> DynObj.setOptionalProperty realAxis "linecolor"
+            LineWidth |> DynObj.setOptionalProperty realAxis "linewidth"
+            ShowGrid |> DynObj.setOptionalProperty realAxis "showgrid"
+            ShowLine |> DynObj.setOptionalProperty realAxis "showline"
+            ShowTickLabels |> DynObj.setOptionalProperty realAxis "showticklabels"
+            ShowTickSuffix |> DynObj.setOptionalPropertyBy realAxis "showticksuffix" StyleParam.ShowTickOption.convert
+            ShowTickPrefix |> DynObj.setOptionalPropertyBy realAxis "showtickprefix" StyleParam.ShowTickOption.convert
+            Side |> DynObj.setOptionalPropertyBy realAxis "side" StyleParam.Side.convert
+            TickAngle |> DynObj.setOptionalProperty realAxis "tickangle"
+            TickColor |> DynObj.setOptionalProperty realAxis "tickcolor"
+            TickFont |> DynObj.setOptionalProperty realAxis "tickfont"
+            TickFormat |> DynObj.setOptionalProperty realAxis "tickformat"
+            TickLen |> DynObj.setOptionalProperty realAxis "ticklen"
+            TickPrefix |> DynObj.setOptionalProperty realAxis "tickprefix"
+            Ticks |> DynObj.setOptionalPropertyBy realAxis "ticks" StyleParam.TickLabelPosition.convert
+            TickSuffix |> DynObj.setOptionalProperty realAxis "ticksuffix"
+            TickVals |> DynObj.setOptionalProperty realAxis "tickvals"
+            TickWidth |> DynObj.setOptionalProperty realAxis "tickwidth"
+            Visible |> DynObj.setOptionalProperty realAxis "visible"
 
             realAxis

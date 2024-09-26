@@ -33,41 +33,67 @@ let getFullPlotlyJS () =
 [<AutoOpen>]
 module DynObj =
 
-    let setSingleOrMultiOpt (dyn: #DynamicObj) (propName: string) (single: 'A option, multi: seq<'A> option) =
+    let setOptionalSingleOrMultiProperty (propName: string) (single: 'A option, multi: seq<'A> option) (dyn: #DynamicObj) =
         if multi.IsSome then
-            multi |> DynObj.setValueOpt dyn propName
+            dyn |> DynObj.setOptionalProperty propName multi
         else
-            single |> DynObj.setValueOpt dyn propName
+            dyn |> DynObj.setOptionalProperty propName single
 
-    let setSingleOrMultiOptBy
-        (dyn: #DynamicObj)
+    let withOptionalSingleOrMultiProperty (propName: string) (single: 'A option, multi: seq<'A> option) (dyn: #DynamicObj) =
+        dyn |> setOptionalSingleOrMultiProperty propName (single,multi)
+        dyn
+
+    let setOptionalSingleOrMultiPropertyBy
         (propName: string)
-        (f: 'A -> 'B)
         (single: 'A option, multi: seq<'A> option)
+        (f: 'A -> 'B)
+        (dyn: #DynamicObj)
         =
         if multi.IsSome then
-            multi |> DynObj.setValueOptBy dyn propName (Seq.map f)
+            dyn |> DynObj.setOptionalPropertyBy propName multi (Seq.map f)
         else
-            single |> DynObj.setValueOptBy dyn propName f
+            dyn |> DynObj.setOptionalPropertyBy propName single f
 
-    let setSingleOrAnyOpt (dyn: #DynamicObj) (propName: string) (single: 'A option, any: 'B option) =
-        if any.IsSome then
-            any |> DynObj.setValueOpt dyn propName
-        else
-            single |> DynObj.setValueOpt dyn propName
-
-    let setSingleOrAnyOptBy
-        (dyn: #DynamicObj)
+    let withOptionalSingleOrMultiPropertyBy
         (propName: string)
+        (single: 'A option, multi: seq<'A> option)
+        (f: 'A -> 'B)
+        (dyn: #DynamicObj)
+        =
+        dyn |> setOptionalSingleOrMultiPropertyBy propName (single,multi) f
+        dyn
+
+    let setOptionalSingleOrAnyProperty (propName: string) (single: 'A option, any: 'B option) (dyn: #DynamicObj)  =
+        if any.IsSome then
+            dyn |> DynObj.setOptionalProperty propName any
+        else
+            dyn |> DynObj.setOptionalProperty propName single
+
+    let withOptionalSingleOrAnyProperty (propName: string) (single: 'A option, any: 'B option) (dyn: #DynamicObj) =
+        dyn |> setOptionalSingleOrAnyProperty propName (single, any)
+        dyn
+
+    let setOptionalSingleOrAnyPropertyBy
+        (propName: string)
+        (single: 'A option, any: 'B option)
         (singleF: 'A -> 'C)
         (anyF: 'B -> 'D)
-        (single: 'A option, any: 'B option)
+        (dyn: #DynamicObj)
         =
         if any.IsSome then
-            any |> DynObj.setValueOptBy dyn propName anyF
+            dyn |> DynObj.setOptionalPropertyBy propName any (Seq.map anyF)
         else
-            single |> DynObj.setValueOptBy dyn propName singleF
+            dyn |> DynObj.setOptionalPropertyBy propName single singleF
 
+    let withOptionalSingleOrAnyPropertyBy
+        (propName: string)
+        (single: 'A option, any: 'B option)
+        (singleF: 'A -> 'C)
+        (anyF: 'B -> 'D)
+        (dyn: #DynamicObj)
+        =
+        dyn |> setOptionalSingleOrAnyPropertyBy propName (single, any) singleF anyF
+        dyn
 
 // Copied from FSharp.Care.Collections to remove dependencies
 [<AutoOpen>]

@@ -69,11 +69,11 @@ type MapboxCluster() =
         ) =
         (fun (mapboxCluster: MapboxCluster) ->
 
-            Color |> DynObj.setValueOpt mapboxCluster "color"
-            Enabled |> DynObj.setValueOpt mapboxCluster "enabled"
-            MaxZoom |> DynObj.setValueOpt mapboxCluster "maxzoom"
-            Opacity |> DynObj.setValueOpt mapboxCluster "opacity"
-            (Size, MultiSize) |> DynObj.setSingleOrMultiOpt mapboxCluster "size"
-            (Step, MultiStep) |> DynObj.setSingleOrMultiOpt mapboxCluster "step"
+            Color |> DynObj.setOptionalProperty mapboxCluster "color"
+            Enabled |> DynObj.setOptionalProperty mapboxCluster "enabled"
+            MaxZoom |> DynObj.setOptionalProperty mapboxCluster "maxzoom"
+            Opacity |> DynObj.setOptionalProperty mapboxCluster "opacity"
+            (Size, MultiSize) |> DynObj.setOptionalSingleOrMultiProperty mapboxCluster "size"
+            (Step, MultiStep) |> DynObj.setOptionalSingleOrMultiProperty mapboxCluster "step"
 
             mapboxCluster)

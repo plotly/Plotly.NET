@@ -88,19 +88,19 @@ type Dimension() =
             let axis =
                 LinearAxis.init (?AxisType = AxisType)
 
-            AxisMatches |> DynObj.setValueOpt axis "matches"
+            AxisMatches |> DynObj.setOptionalProperty axis "matches"
 
-            Label |> DynObj.setValueOpt dims "label"
-            Name |> DynObj.setValueOpt dims "name"
-            TemplateItemName |> DynObj.setValueOpt dims "templateitemname"
-            Values |> DynObj.setValueOpt dims "values"
-            Visible |> DynObj.setValueOpt dims "visible"
-            ConstraintRange |> DynObj.setValueOptBy dims "constraintrange" StyleParam.Range.convert
-            MultiSelect |> DynObj.setValueOpt dims "multiselect"
-            Range |> DynObj.setValueOptBy dims "range" StyleParam.Range.convert
-            TickFormat |> DynObj.setValueOptBy dims "tickformat" StyleParam.TickMode.convert
-            TickText |> DynObj.setValueOpt dims "ticktext"
-            Tickvals |> DynObj.setValueOpt dims "tickvals"
-            axis |> DynObj.setValue dims "axis"
+            Label |> DynObj.setOptionalProperty dims "label"
+            Name |> DynObj.setOptionalProperty dims "name"
+            TemplateItemName |> DynObj.setOptionalProperty dims "templateitemname"
+            Values |> DynObj.setOptionalProperty dims "values"
+            Visible |> DynObj.setOptionalProperty dims "visible"
+            ConstraintRange |> DynObj.setOptionalPropertyBy dims "constraintrange" StyleParam.Range.convert
+            MultiSelect |> DynObj.setOptionalProperty dims "multiselect"
+            Range |> DynObj.setOptionalPropertyBy dims "range" StyleParam.Range.convert
+            TickFormat |> DynObj.setOptionalPropertyBy dims "tickformat" StyleParam.TickMode.convert
+            TickText |> DynObj.setOptionalProperty dims "ticktext"
+            Tickvals |> DynObj.setOptionalProperty dims "tickvals"
+            axis |> DynObj.withProperty dims "axis"
 
             dims)

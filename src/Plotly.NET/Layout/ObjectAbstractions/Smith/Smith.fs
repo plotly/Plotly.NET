@@ -48,10 +48,10 @@ type Smith() =
         ) =
         fun (smith: Smith) ->
 
-            BGColor |> DynObj.setValueOpt smith "bgcolor"
-            Domain |> DynObj.setValueOpt smith "domain"
-            ImaginaryAxis |> DynObj.setValueOpt smith "imaginaryaxis"
-            RealAxis |> DynObj.setValueOpt smith "realaxis"
+            BGColor |> DynObj.setOptionalProperty smith "bgcolor"
+            Domain |> DynObj.setOptionalProperty smith "domain"
+            ImaginaryAxis |> DynObj.setOptionalProperty smith "imaginaryaxis"
+            RealAxis |> DynObj.setOptionalProperty smith "realaxis"
 
             smith
 
@@ -60,7 +60,7 @@ type Smith() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="smith">The object to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (smith: Smith) = smith.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (smith: Smith) = smith.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the ImaginaryAxis object of the given smith object.

@@ -24,7 +24,7 @@ type Spaceframe() =
 
         fun (spaceframe: Spaceframe) ->
 
-            Fill |> DynObj.setValueOpt spaceframe "fill"
-            Show |> DynObj.setValueOpt spaceframe "show"
+            Fill |> DynObj.setOptionalProperty spaceframe "fill"
+            Show |> DynObj.setOptionalProperty spaceframe "show"
 
             spaceframe

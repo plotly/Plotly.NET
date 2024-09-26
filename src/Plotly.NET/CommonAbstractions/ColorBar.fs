@@ -254,52 +254,52 @@ type ColorBar() =
         ) =
 
         (fun (colorBar: ColorBar) ->
+            colorBar
+            |> DynObj.withOptionalProperty   "bgcolor"            BGColor          
+            |> DynObj.withOptionalProperty   "bordercolor"        BorderColor      
+            |> DynObj.withOptionalProperty   "borderwidth"        BorderWidth      
+            |> DynObj.withOptionalProperty   "dtick"              DTick            
+            |> DynObj.withOptionalPropertyBy "exponentformat"     ExponentFormat     StyleParam.ExponentFormat.convert
+            |> DynObj.withOptionalProperty   "labelalias"         LabelAlias       
+            |> DynObj.withOptionalProperty   "len"                Len              
+            |> DynObj.withOptionalPropertyBy "lenmode"            LenMode            StyleParam.UnitMode.convert
+            |> DynObj.withOptionalProperty   "min3xponent"        MinExponent      
+            |> DynObj.withOptionalProperty   "nticks"             NTicks           
+            |> DynObj.withOptionalPropertyBy "orientation"        Orientation        StyleParam.Orientation.convert
+            |> DynObj.withOptionalProperty   "outlinecolor"       OutlineColor     
+            |> DynObj.withOptionalProperty   "outlinewidth"       OutlineWidth     
+            |> DynObj.withOptionalProperty   "separatethousands"  SeparateThousands
+            |> DynObj.withOptionalPropertyBy "showexponent"       ShowExponent       StyleParam.ShowExponent.convert
+            |> DynObj.withOptionalProperty   "showticklabels"     ShowTickLabels   
+            |> DynObj.withOptionalPropertyBy "showtickprefix"     ShowTickPrefix     StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalPropertyBy "showticksuffix"     ShowTickSuffix     StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty   "thickness"          Thickness        
+            |> DynObj.withOptionalPropertyBy "thicknessmode"      ThicknessMode      StyleParam.UnitMode.convert
+            |> DynObj.withOptionalProperty   "tick0"              Tick0            
+            |> DynObj.withOptionalProperty   "tickangle"          TickAngle        
+            |> DynObj.withOptionalProperty   "tickcolor"          TickColor        
+            |> DynObj.withOptionalProperty   "tickfont"           TickFont         
+            |> DynObj.withOptionalProperty   "tickformat"         TickFormat       
+            |> DynObj.withOptionalProperty   "tickformatstops"    TickFormatStops  
+            |> DynObj.withOptionalPropertyBy "ticklabeloverflow"  TickLabelOverflow  StyleParam.TickLabelOverflow.convert
+            |> DynObj.withOptionalPropertyBy "ticklabelposition"  TickLabelPosition  StyleParam.TickLabelPosition.convert
+            |> DynObj.withOptionalProperty   "ticklabelstep"      TickLabelStep    
+            |> DynObj.withOptionalProperty   "ticklen"            TickLen          
+            |> DynObj.withOptionalPropertyBy "tickmode"           TickMode           StyleParam.TickMode.convert
+            |> DynObj.withOptionalProperty   "tickprefix"         TickPrefix       
+            |> DynObj.withOptionalPropertyBy "ticks"              Ticks              StyleParam.TickOptions.convert
+            |> DynObj.withOptionalProperty   "ticksuffix"         TickSuffix       
+            |> DynObj.withOptionalProperty   "ticktext"           TickText         
+            |> DynObj.withOptionalProperty   "tickvals"           TickVals         
+            |> DynObj.withOptionalProperty   "tickwidth"          TickWidth        
+            |> DynObj.withOptionalProperty   "title"              Title            
+            |> DynObj.withOptionalProperty   "x"                  X                
+            |> DynObj.withOptionalPropertyBy "xanchor"            XAnchor            StyleParam.HorizontalAlign.convert
+            |> DynObj.withOptionalProperty   "xpad"               XPad             
+            |> DynObj.withOptionalProperty   "xref"               XRef             
+            |> DynObj.withOptionalProperty   "y"                  Y                
+            |> DynObj.withOptionalPropertyBy "yanchor"            YAnchor            StyleParam.VerticalAlign.convert
+            |> DynObj.withOptionalProperty   "ypad"               YPad             
+            |> DynObj.withOptionalProperty   "yref"               YRef             
 
-            BGColor |> DynObj.setValueOpt colorBar "bgcolor"
-            BorderColor |> DynObj.setValueOpt colorBar "bordercolor"
-            BorderWidth |> DynObj.setValueOpt colorBar "borderwidth"
-            DTick |> DynObj.setValueOpt colorBar "dtick"
-            ExponentFormat |> DynObj.setValueOptBy colorBar "exponentformat" StyleParam.ExponentFormat.convert
-            LabelAlias |> DynObj.setValueOpt colorBar "labelalias"
-            Len |> DynObj.setValueOpt colorBar "len"
-            LenMode |> DynObj.setValueOptBy colorBar "lenmode" StyleParam.UnitMode.convert
-            MinExponent |> DynObj.setValueOpt colorBar "min3xponent"
-            NTicks |> DynObj.setValueOpt colorBar "nticks"
-            Orientation |> DynObj.setValueOptBy colorBar "orientation" StyleParam.Orientation.convert
-            OutlineColor |> DynObj.setValueOpt colorBar "outlinecolor"
-            OutlineWidth |> DynObj.setValueOpt colorBar "outlinewidth"
-            SeparateThousands |> DynObj.setValueOpt colorBar "separatethousands"
-            ShowExponent |> DynObj.setValueOptBy colorBar "showexponent" StyleParam.ShowExponent.convert
-            ShowTickLabels |> DynObj.setValueOpt colorBar "showticklabels"
-            ShowTickPrefix |> DynObj.setValueOptBy colorBar "showtickprefix" StyleParam.ShowTickOption.convert
-            ShowTickSuffix |> DynObj.setValueOptBy colorBar "showticksuffix" StyleParam.ShowTickOption.convert
-            Thickness |> DynObj.setValueOpt colorBar "thickness"
-            ThicknessMode |> DynObj.setValueOptBy colorBar "thicknessmode" StyleParam.UnitMode.convert
-            Tick0 |> DynObj.setValueOpt colorBar "tick0"
-            TickAngle |> DynObj.setValueOpt colorBar "tickangle"
-            TickColor |> DynObj.setValueOpt colorBar "tickcolor"
-            TickFont |> DynObj.setValueOpt colorBar "tickfont"
-            TickFormat |> DynObj.setValueOpt colorBar "tickformat"
-            TickFormatStops |> DynObj.setValueOpt colorBar "tickformatstops"
-            TickLabelOverflow |> DynObj.setValueOptBy colorBar "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
-            TickLabelPosition |> DynObj.setValueOptBy colorBar "ticklabelposition" StyleParam.TickLabelPosition.convert
-            TickLabelStep |> DynObj.setValueOpt colorBar "ticklabelstep"
-            TickLen |> DynObj.setValueOpt colorBar "ticklen"
-            TickMode |> DynObj.setValueOptBy colorBar "tickmode" StyleParam.TickMode.convert
-            TickPrefix |> DynObj.setValueOpt colorBar "tickprefix"
-            Ticks |> DynObj.setValueOptBy colorBar "ticks" StyleParam.TickOptions.convert
-            TickSuffix |> DynObj.setValueOpt colorBar "ticksuffix"
-            TickText |> DynObj.setValueOpt colorBar "ticktext"
-            TickVals |> DynObj.setValueOpt colorBar "tickvals"
-            TickWidth |> DynObj.setValueOpt colorBar "tickwidth"
-            Title |> DynObj.setValueOpt colorBar "title"
-            X |> DynObj.setValueOpt colorBar "x"
-            XAnchor |> DynObj.setValueOptBy colorBar "xanchor" StyleParam.HorizontalAlign.convert
-            XPad |> DynObj.setValueOpt colorBar "xpad"
-            XRef |> DynObj.setValueOpt colorBar "xref"
-            Y |> DynObj.setValueOpt colorBar "y"
-            YAnchor |> DynObj.setValueOptBy colorBar "yanchor" StyleParam.VerticalAlign.convert
-            YPad |> DynObj.setValueOpt colorBar "ypad"
-            YRef |> DynObj.setValueOpt colorBar "yref"
-
-            colorBar)
+        )

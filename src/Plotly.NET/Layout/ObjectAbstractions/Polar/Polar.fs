@@ -71,16 +71,16 @@ type Polar() =
         ) =
         (fun (polar: Polar) ->
 
-            Domain |> DynObj.setValueOpt polar "domain"
-            Sector |> DynObj.setValueOptBy polar "sector" (fun (a, b) -> [| a; b |])
-            Hole |> DynObj.setValueOpt polar "hole"
-            BGColor |> DynObj.setValueOpt polar "bgcolor"
-            RadialAxis |> DynObj.setValueOpt polar "radialaxis"
-            AngularAxis |> DynObj.setValueOpt polar "angularaxis"
-            GridShape |> DynObj.setValueOptBy polar "gridshape" StyleParam.PolarGridShape.convert
-            UIRevision |> DynObj.setValueOpt polar "uirevision"
-            BarMode |> DynObj.setValueOptBy polar "barmode" StyleParam.BarMode.convert
-            BarGap |> DynObj.setValueOpt polar "bargap"
+            Domain |> DynObj.setOptionalProperty polar "domain"
+            Sector |> DynObj.setOptionalPropertyBy polar "sector" (fun (a, b) -> [| a; b |])
+            Hole |> DynObj.setOptionalProperty polar "hole"
+            BGColor |> DynObj.setOptionalProperty polar "bgcolor"
+            RadialAxis |> DynObj.setOptionalProperty polar "radialaxis"
+            AngularAxis |> DynObj.setOptionalProperty polar "angularaxis"
+            GridShape |> DynObj.setOptionalPropertyBy polar "gridshape" StyleParam.PolarGridShape.convert
+            UIRevision |> DynObj.setOptionalProperty polar "uirevision"
+            BarMode |> DynObj.setOptionalPropertyBy polar "barmode" StyleParam.BarMode.convert
+            BarGap |> DynObj.setOptionalProperty polar "bargap"
 
             polar)
 
@@ -89,7 +89,7 @@ type Polar() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="polar">The object to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (polar: Polar) = polar.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (polar: Polar) = polar.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the AngularAxis object of the given polar object.

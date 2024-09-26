@@ -55,16 +55,16 @@ type RangeSelector() =
         ) =
         (fun (rangeSelector: RangeSelector) ->
 
-            Visible |> DynObj.setValueOpt rangeSelector "visible"
-            Buttons |> DynObj.setValueOpt rangeSelector "buttons"
-            X |> DynObj.setValueOpt rangeSelector "x"
-            XAnchor |> DynObj.setValueOptBy rangeSelector "xanchor" StyleParam.XAnchorPosition.convert
-            Y |> DynObj.setValueOpt rangeSelector "y"
-            YAnchor |> DynObj.setValueOptBy rangeSelector "yanchor" StyleParam.YAnchorPosition.convert
-            Font |> DynObj.setValueOpt rangeSelector "font"
-            BGColor |> DynObj.setValueOpt rangeSelector "bgcolor"
-            ActiveColor |> DynObj.setValueOpt rangeSelector "activecolor"
-            BorderColor |> DynObj.setValueOpt rangeSelector "bordercolor"
-            BorderWidth |> DynObj.setValueOpt rangeSelector "borderwidth"
+            Visible |> DynObj.setOptionalProperty rangeSelector "visible"
+            Buttons |> DynObj.setOptionalProperty rangeSelector "buttons"
+            X |> DynObj.setOptionalProperty rangeSelector "x"
+            XAnchor |> DynObj.setOptionalPropertyBy rangeSelector "xanchor" StyleParam.XAnchorPosition.convert
+            Y |> DynObj.setOptionalProperty rangeSelector "y"
+            YAnchor |> DynObj.setOptionalPropertyBy rangeSelector "yanchor" StyleParam.YAnchorPosition.convert
+            Font |> DynObj.setOptionalProperty rangeSelector "font"
+            BGColor |> DynObj.setOptionalProperty rangeSelector "bgcolor"
+            ActiveColor |> DynObj.setOptionalProperty rangeSelector "activecolor"
+            BorderColor |> DynObj.setOptionalProperty rangeSelector "bordercolor"
+            BorderWidth |> DynObj.setOptionalProperty rangeSelector "borderwidth"
 
             rangeSelector)

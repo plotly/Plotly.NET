@@ -46,10 +46,10 @@ type Box() =
                 else
                     None
 
-            Visible |> DynObj.setValueOpt box "visible"
-            Width |> DynObj.setValueOpt box "width"
-            FillColor |> DynObj.setValueOpt box "fillcolor"
-            line |> DynObj.setValueOpt box "line"
+            Visible |> DynObj.setOptionalProperty box "visible"
+            Width |> DynObj.setOptionalProperty box "width"
+            FillColor |> DynObj.setOptionalProperty box "fillcolor"
+            line |> DynObj.setOptionalProperty box "line"
 
             // out ->
             box)

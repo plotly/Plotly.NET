@@ -36,7 +36,7 @@ type TracePolarStyle() =
     static member SetPolar([<Optional; DefaultParameterValue(null)>] ?PolarId: StyleParam.SubPlotId) =
         (fun (trace: TracePolar) ->
 
-            PolarId |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.toString
+            PolarId |> DynObj.setOptionalPropertyBy trace "subplot" StyleParam.SubPlotId.toString
 
             trace)
 
@@ -136,48 +136,48 @@ type TracePolarStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
 
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            Legend |> DynObj.setValueOptBy trace "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
-            Opacity |> DynObj.setValueOpt trace "opacity"
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
-            Ids |> DynObj.setValueOpt trace "ids"
-            R |> DynObj.setValueOpt trace "r"
-            R0 |> DynObj.setValueOpt trace "r0"
-            DR |> DynObj.setValueOpt trace "dr"
-            Theta |> DynObj.setValueOpt trace "theta"
-            Theta0 |> DynObj.setValueOpt trace "theta0"
-            DTheta |> DynObj.setValueOpt trace "dtheta"
-            ThetaUnit |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+            Name |> DynObj.setOptionalProperty trace "name"
+            Visible |> DynObj.setOptionalPropertyBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setOptionalProperty trace "showlegend"
+            Legend |> DynObj.setOptionalPropertyBy trace "legend" StyleParam.SubPlotId.convert
+            LegendRank |> DynObj.setOptionalProperty trace "legendrank"
+            LegendGroup |> DynObj.setOptionalProperty trace "legendgroup"
+            LegendGroupTitle |> DynObj.setOptionalProperty trace "legendgrouptitle"
+            Opacity |> DynObj.setOptionalProperty trace "opacity"
+            Mode |> DynObj.setOptionalPropertyBy trace "mode" StyleParam.Mode.convert
+            Ids |> DynObj.setOptionalProperty trace "ids"
+            R |> DynObj.setOptionalProperty trace "r"
+            R0 |> DynObj.setOptionalProperty trace "r0"
+            DR |> DynObj.setOptionalProperty trace "dr"
+            Theta |> DynObj.setOptionalProperty trace "theta"
+            Theta0 |> DynObj.setOptionalProperty trace "theta0"
+            DTheta |> DynObj.setOptionalProperty trace "dtheta"
+            ThetaUnit |> DynObj.setOptionalPropertyBy trace "thetaunit" StyleParam.AngularUnit.convert
+            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty trace "text"
 
             (TextPosition, MultiTextPosition)
             |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
 
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-            Meta |> DynObj.setValueOpt trace "meta"
-            CustomData |> DynObj.setValueOpt trace "customdata"
-            Subplot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
-            Marker |> DynObj.setValueOpt trace "marker"
-            Line |> DynObj.setValueOpt trace "line"
-            TextFont |> DynObj.setValueOpt trace "textfont"
-            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
-            Selected |> DynObj.setValueOpt trace "selected"
-            Unselected |> DynObj.setValueOpt trace "unselected"
-            ClipOnAxis |> DynObj.setValueOpt trace "cliponaxis"
-            ConnectGaps |> DynObj.setValueOpt trace "connectgaps"
-            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
-            FillColor |> DynObj.setValueOpt trace "fillcolor"
-            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
-            HoverOn |> DynObj.setValueOpt trace "hoveron"
-            UIRevision |> DynObj.setValueOpt trace "uirevision"
+            (TextTemplate, MultiTextTemplate) |> DynObj.setOptionalSingleOrMultiProperty trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertext"
+            HoverInfo |> DynObj.setOptionalPropertyBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertemplate"
+            Meta |> DynObj.setOptionalProperty trace "meta"
+            CustomData |> DynObj.setOptionalProperty trace "customdata"
+            Subplot |> DynObj.setOptionalPropertyBy trace "subplot" StyleParam.SubPlotId.convert
+            Marker |> DynObj.setOptionalProperty trace "marker"
+            Line |> DynObj.setOptionalProperty trace "line"
+            TextFont |> DynObj.setOptionalProperty trace "textfont"
+            SelectedPoints |> DynObj.setOptionalProperty trace "selectedpoints"
+            Selected |> DynObj.setOptionalProperty trace "selected"
+            Unselected |> DynObj.setOptionalProperty trace "unselected"
+            ClipOnAxis |> DynObj.setOptionalProperty trace "cliponaxis"
+            ConnectGaps |> DynObj.setOptionalProperty trace "connectgaps"
+            Fill |> DynObj.setOptionalPropertyBy trace "fill" StyleParam.Fill.convert
+            FillColor |> DynObj.setOptionalProperty trace "fillcolor"
+            HoverLabel |> DynObj.setOptionalProperty trace "hoverlabel"
+            HoverOn |> DynObj.setOptionalProperty trace "hoveron"
+            UIRevision |> DynObj.setOptionalProperty trace "uirevision"
 
             trace)
 
@@ -263,37 +263,37 @@ type TracePolarStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
 
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            Legend |> DynObj.setValueOptBy trace "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
-            Opacity |> DynObj.setValueOpt trace "opacity"
-            Ids |> DynObj.setValueOpt trace "ids"
-            Base |> DynObj.setValueOpt trace "base"
-            R |> DynObj.setValueOpt trace "r"
-            R0 |> DynObj.setValueOpt trace "r0"
-            DR |> DynObj.setValueOpt trace "dr"
-            Theta |> DynObj.setValueOpt trace "theta"
-            Theta0 |> DynObj.setValueOpt trace "theta0"
-            DTheta |> DynObj.setValueOpt trace "dtheta"
-            ThetaUnit |> DynObj.setValueOptBy trace "thetaunit" StyleParam.AngularUnit.convert
-            (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt trace "width"
-            (Offset, MultiOffset) |> DynObj.setSingleOrMultiOpt trace "offset"
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-            Meta |> DynObj.setValueOpt trace "meta"
-            CustomData |> DynObj.setValueOpt trace "customdata"
-            Subplot |> DynObj.setValueOptBy trace "subplot" StyleParam.SubPlotId.convert
-            Marker |> DynObj.setValueOpt trace "marker"
-            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
-            Selected |> DynObj.setValueOpt trace "selected"
-            Unselected |> DynObj.setValueOpt trace "unselected"
-            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
-            UIRevision |> DynObj.setValueOpt trace "uirevision"
+            Name |> DynObj.setOptionalProperty trace "name"
+            Visible |> DynObj.setOptionalPropertyBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setOptionalProperty trace "showlegend"
+            Legend |> DynObj.setOptionalPropertyBy trace "legend" StyleParam.SubPlotId.convert
+            LegendRank |> DynObj.setOptionalProperty trace "legendrank"
+            LegendGroup |> DynObj.setOptionalProperty trace "legendgroup"
+            LegendGroupTitle |> DynObj.setOptionalProperty trace "legendgrouptitle"
+            Opacity |> DynObj.setOptionalProperty trace "opacity"
+            Ids |> DynObj.setOptionalProperty trace "ids"
+            Base |> DynObj.setOptionalProperty trace "base"
+            R |> DynObj.setOptionalProperty trace "r"
+            R0 |> DynObj.setOptionalProperty trace "r0"
+            DR |> DynObj.setOptionalProperty trace "dr"
+            Theta |> DynObj.setOptionalProperty trace "theta"
+            Theta0 |> DynObj.setOptionalProperty trace "theta0"
+            DTheta |> DynObj.setOptionalProperty trace "dtheta"
+            ThetaUnit |> DynObj.setOptionalPropertyBy trace "thetaunit" StyleParam.AngularUnit.convert
+            (Width, MultiWidth) |> DynObj.setOptionalSingleOrMultiProperty trace "width"
+            (Offset, MultiOffset) |> DynObj.setOptionalSingleOrMultiProperty trace "offset"
+            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty trace "text"
+            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertext"
+            HoverInfo |> DynObj.setOptionalPropertyBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertemplate"
+            Meta |> DynObj.setOptionalProperty trace "meta"
+            CustomData |> DynObj.setOptionalProperty trace "customdata"
+            Subplot |> DynObj.setOptionalPropertyBy trace "subplot" StyleParam.SubPlotId.convert
+            Marker |> DynObj.setOptionalProperty trace "marker"
+            SelectedPoints |> DynObj.setOptionalProperty trace "selectedpoints"
+            Selected |> DynObj.setOptionalProperty trace "selected"
+            Unselected |> DynObj.setOptionalProperty trace "unselected"
+            HoverLabel |> DynObj.setOptionalProperty trace "hoverlabel"
+            UIRevision |> DynObj.setOptionalProperty trace "uirevision"
 
             trace)

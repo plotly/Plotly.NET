@@ -71,10 +71,10 @@ type Mapbox() =
         ) =
         (fun (mapBox: Mapbox) ->
 
-            Domain |> DynObj.setValueOpt mapBox "domain"
-            AccessToken |> DynObj.setValueOpt mapBox "accesstoken"
-            Style |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
-            Bounds |> DynObj.setValueOpt mapBox "bounds"
+            Domain |> DynObj.setOptionalProperty mapBox "domain"
+            AccessToken |> DynObj.setOptionalProperty mapBox "accesstoken"
+            Style |> DynObj.setOptionalPropertyBy mapBox "style" StyleParam.MapboxStyle.convert
+            Bounds |> DynObj.setOptionalProperty mapBox "bounds"
 
             Center
             |> Option.map (fun (lon, lat) ->
@@ -82,11 +82,11 @@ type Mapbox() =
                 t?lon <- lon
                 t?lat <- lat
                 t)
-            |> DynObj.setValueOpt mapBox "center"
+            |> DynObj.setOptionalProperty mapBox "center"
 
-            Zoom |> DynObj.setValueOpt mapBox "zoom"
-            Bearing |> DynObj.setValueOpt mapBox "bearing"
-            Pitch |> DynObj.setValueOpt mapBox "pitch"
-            Layers |> DynObj.setValueOpt mapBox "layers"
+            Zoom |> DynObj.setOptionalProperty mapBox "zoom"
+            Bearing |> DynObj.setOptionalProperty mapBox "bearing"
+            Pitch |> DynObj.setOptionalProperty mapBox "pitch"
+            Layers |> DynObj.setOptionalProperty mapBox "layers"
 
             mapBox)

@@ -37,8 +37,9 @@ type Padding() =
             [<Optional; DefaultParameterValue(null)>] ?T: int
         ) =
         (fun (padding: Padding) ->
-            B |> DynObj.setValueOpt padding "b"
-            L |> DynObj.setValueOpt padding "l"
-            R |> DynObj.setValueOpt padding "r"
-            T |> DynObj.setValueOpt padding "t"
-            padding)
+            padding
+            |> DynObj.withOptionalProperty "b" B 
+            |> DynObj.withOptionalProperty "l" L 
+            |> DynObj.withOptionalProperty "r" R 
+            |> DynObj.withOptionalProperty "t" T 
+        )

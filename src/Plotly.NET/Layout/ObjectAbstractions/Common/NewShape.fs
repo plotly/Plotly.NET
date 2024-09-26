@@ -13,7 +13,7 @@ type NewShape() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="newShape">The NewShape to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (newShape:NewShape) = newShape.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (newShape:NewShape) = newShape.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the Legend anchor of the given NewShape.
@@ -130,19 +130,19 @@ type NewShape() =
         ) =
         (fun (newShape: NewShape) ->
 
-            DrawDirection |> DynObj.setValueOptBy newShape "drawdirection" StyleParam.DrawDirection.convert
-            FillColor |> DynObj.setValueOpt newShape "fillcolor"
-            FillRule |> DynObj.setValueOptBy newShape "fillrule" StyleParam.FillRule.convert
-            Layer |> DynObj.setValueOptBy newShape "layer" StyleParam.Layer.convert
-            ShowLegend |> DynObj.setValueOpt newShape "showlegend"
-            Legend |> DynObj.setValueOptBy newShape "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setValueOpt newShape "legendrank"
-            LegendGroup |> DynObj.setValueOpt newShape "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt newShape "legendgrouptitle"
-            LegendWidth |> DynObj.setValueOpt newShape "legendwidth"
-            Line |> DynObj.setValueOpt newShape "line"
-            Name |> DynObj.setValueOpt newShape "name"
-            Opacity |> DynObj.setValueOpt newShape "opacity"
-            Visible |> DynObj.setValueOptBy newShape "visible" StyleParam.Visible.convert
+            DrawDirection |> DynObj.setOptionalPropertyBy newShape "drawdirection" StyleParam.DrawDirection.convert
+            FillColor |> DynObj.setOptionalProperty newShape "fillcolor"
+            FillRule |> DynObj.setOptionalPropertyBy newShape "fillrule" StyleParam.FillRule.convert
+            Layer |> DynObj.setOptionalPropertyBy newShape "layer" StyleParam.Layer.convert
+            ShowLegend |> DynObj.setOptionalProperty newShape "showlegend"
+            Legend |> DynObj.setOptionalPropertyBy newShape "legend" StyleParam.SubPlotId.convert
+            LegendRank |> DynObj.setOptionalProperty newShape "legendrank"
+            LegendGroup |> DynObj.setOptionalProperty newShape "legendgroup"
+            LegendGroupTitle |> DynObj.setOptionalProperty newShape "legendgrouptitle"
+            LegendWidth |> DynObj.setOptionalProperty newShape "legendwidth"
+            Line |> DynObj.setOptionalProperty newShape "line"
+            Name |> DynObj.setOptionalProperty newShape "name"
+            Opacity |> DynObj.setOptionalProperty newShape "opacity"
+            Visible |> DynObj.setOptionalPropertyBy newShape "visible" StyleParam.Visible.convert
 
             newShape)

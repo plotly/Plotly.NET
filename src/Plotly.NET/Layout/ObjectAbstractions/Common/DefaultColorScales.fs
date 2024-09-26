@@ -29,8 +29,8 @@ type DefaultColorScales() =
         ) =
         (fun (defaultColorScales: DefaultColorScales) ->
 
-            Diverging |> DynObj.setValueOptBy defaultColorScales "diverging" StyleParam.Colorscale.convert
-            Sequential |> DynObj.setValueOptBy defaultColorScales "sequential" StyleParam.Colorscale.convert
-            SequentialMinus |> DynObj.setValueOptBy defaultColorScales "sequentialminus" StyleParam.Colorscale.convert
+            Diverging |> DynObj.setOptionalPropertyBy defaultColorScales "diverging" StyleParam.Colorscale.convert
+            Sequential |> DynObj.setOptionalPropertyBy defaultColorScales "sequential" StyleParam.Colorscale.convert
+            SequentialMinus |> DynObj.setOptionalPropertyBy defaultColorScales "sequentialminus" StyleParam.Colorscale.convert
 
             defaultColorScales)

@@ -88,18 +88,18 @@ type Scene() =
         ) =
         (fun (scene: Scene) ->
 
-            Annotations |> DynObj.setValueOpt scene "annotations"
-            AspectMode |> DynObj.setValueOptBy scene "aspectmode" StyleParam.AspectMode.convert
-            AspectRatio |> DynObj.setValueOpt scene "aspectratio"
-            BGColor |> DynObj.setValueOpt scene "bgcolor"
-            Camera |> DynObj.setValueOpt scene "camera"
-            Domain |> DynObj.setValueOpt scene "domain"
-            DragMode |> DynObj.setValueOptBy scene "dragmode" StyleParam.DragMode.convert
-            HoverMode |> DynObj.setValueOptBy scene "hovermode" StyleParam.HoverMode.convert
-            UIRevision |> DynObj.setValueOpt scene "uirevision"
-            XAxis |> DynObj.setValueOpt scene "xaxis"
-            YAxis |> DynObj.setValueOpt scene "yaxis"
-            ZAxis |> DynObj.setValueOpt scene "zaxis"
+            Annotations |> DynObj.setOptionalProperty scene "annotations"
+            AspectMode |> DynObj.setOptionalPropertyBy scene "aspectmode" StyleParam.AspectMode.convert
+            AspectRatio |> DynObj.setOptionalProperty scene "aspectratio"
+            BGColor |> DynObj.setOptionalProperty scene "bgcolor"
+            Camera |> DynObj.setOptionalProperty scene "camera"
+            Domain |> DynObj.setOptionalProperty scene "domain"
+            DragMode |> DynObj.setOptionalPropertyBy scene "dragmode" StyleParam.DragMode.convert
+            HoverMode |> DynObj.setOptionalPropertyBy scene "hovermode" StyleParam.HoverMode.convert
+            UIRevision |> DynObj.setOptionalProperty scene "uirevision"
+            XAxis |> DynObj.setOptionalProperty scene "xaxis"
+            YAxis |> DynObj.setOptionalProperty scene "yaxis"
+            ZAxis |> DynObj.setOptionalProperty scene "zaxis"
 
             scene)
 
@@ -108,7 +108,7 @@ type Scene() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="scene">The scene to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (scene: Scene) = scene.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (scene: Scene) = scene.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the x axis object of the given scene.

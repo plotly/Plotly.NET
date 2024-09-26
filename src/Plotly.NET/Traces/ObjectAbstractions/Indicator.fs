@@ -24,8 +24,8 @@ type IndicatorSymbol() =
         ) =
         (fun (indicatorDirection: IndicatorSymbol) ->
 
-            Color |> DynObj.setValueOpt indicatorDirection "color"
-            Symbol |> DynObj.setValueOpt indicatorDirection "symbol"
+            Color |> DynObj.setOptionalProperty indicatorDirection "color"
+            Symbol |> DynObj.setOptionalProperty indicatorDirection "symbol"
 
             indicatorDirection)
 
@@ -95,15 +95,15 @@ type IndicatorDelta() =
         ) =
         (fun (indicatorDelta: IndicatorDelta) ->
 
-            Decreasing |> DynObj.setValueOpt indicatorDelta "decreasing"
-            Font |> DynObj.setValueOpt indicatorDelta "font"
-            Increasing |> DynObj.setValueOpt indicatorDelta "increasing"
-            Position |> DynObj.setValueOptBy indicatorDelta "position" StyleParam.IndicatorDeltaPosition.convert
-            Prefix |> DynObj.setValueOpt indicatorDelta "prefix"
-            Reference |> DynObj.setValueOpt indicatorDelta "reference"
-            Relative |> DynObj.setValueOpt indicatorDelta "relative"
-            Suffix |> DynObj.setValueOpt indicatorDelta "suffix"
-            ValueFormat |> DynObj.setValueOpt indicatorDelta "valueformat"
+            Decreasing |> DynObj.setOptionalProperty indicatorDelta "decreasing"
+            Font |> DynObj.setOptionalProperty indicatorDelta "font"
+            Increasing |> DynObj.setOptionalProperty indicatorDelta "increasing"
+            Position |> DynObj.setOptionalPropertyBy indicatorDelta "position" StyleParam.IndicatorDeltaPosition.convert
+            Prefix |> DynObj.setOptionalProperty indicatorDelta "prefix"
+            Reference |> DynObj.setOptionalProperty indicatorDelta "reference"
+            Relative |> DynObj.setOptionalProperty indicatorDelta "relative"
+            Suffix |> DynObj.setOptionalProperty indicatorDelta "suffix"
+            ValueFormat |> DynObj.setOptionalProperty indicatorDelta "valueformat"
 
             indicatorDelta)
 
@@ -129,10 +129,10 @@ type IndicatorNumber() =
         ) =
         (fun (indicatorNumber: IndicatorNumber) ->
 
-            Font |> DynObj.setValueOpt indicatorNumber "font"
-            Prefix |> DynObj.setValueOpt indicatorNumber "prefix"
-            Suffix |> DynObj.setValueOpt indicatorNumber "suffix"
-            ValueFormat |> DynObj.setValueOpt indicatorNumber "valueformat"
+            Font |> DynObj.setOptionalProperty indicatorNumber "font"
+            Prefix |> DynObj.setOptionalProperty indicatorNumber "prefix"
+            Suffix |> DynObj.setOptionalProperty indicatorNumber "suffix"
+            ValueFormat |> DynObj.setOptionalProperty indicatorNumber "valueformat"
 
             indicatorNumber)
 
@@ -156,9 +156,9 @@ type IndicatorBar() =
         ) =
         (fun (indicatorBar: IndicatorBar) ->
 
-            Color |> DynObj.setValueOpt indicatorBar "color"
-            Line |> DynObj.setValueOpt indicatorBar "line"
-            Thickness |> DynObj.setValueOpt indicatorBar "thickness"
+            Color |> DynObj.setOptionalProperty indicatorBar "color"
+            Line |> DynObj.setOptionalProperty indicatorBar "line"
+            Thickness |> DynObj.setOptionalProperty indicatorBar "thickness"
 
             indicatorBar)
 
@@ -195,12 +195,12 @@ type IndicatorStep() =
         ) =
         (fun (indicatorSteps: IndicatorStep) ->
 
-            Color |> DynObj.setValueOpt indicatorSteps "color"
-            Line |> DynObj.setValueOpt indicatorSteps "line"
-            Name |> DynObj.setValueOpt indicatorSteps "name"
-            Range |> DynObj.setValueOptBy indicatorSteps "range" StyleParam.Range.convert
-            TemplateItemName |> DynObj.setValueOpt indicatorSteps "templateitemname"
-            Thickness |> DynObj.setValueOpt indicatorSteps "thickness"
+            Color |> DynObj.setOptionalProperty indicatorSteps "color"
+            Line |> DynObj.setOptionalProperty indicatorSteps "line"
+            Name |> DynObj.setOptionalProperty indicatorSteps "name"
+            Range |> DynObj.setOptionalPropertyBy indicatorSteps "range" StyleParam.Range.convert
+            TemplateItemName |> DynObj.setOptionalProperty indicatorSteps "templateitemname"
+            Thickness |> DynObj.setOptionalProperty indicatorSteps "thickness"
 
             indicatorSteps)
 
@@ -224,9 +224,9 @@ type IndicatorThreshold() =
         ) =
         (fun (indicatorThreshold: IndicatorThreshold) ->
 
-            Line |> DynObj.setValueOpt indicatorThreshold "line"
-            Thickness |> DynObj.setValueOpt indicatorThreshold "thickness"
-            Value |> DynObj.setValueOpt indicatorThreshold "value"
+            Line |> DynObj.setOptionalProperty indicatorThreshold "line"
+            Thickness |> DynObj.setOptionalProperty indicatorThreshold "thickness"
+            Value |> DynObj.setOptionalProperty indicatorThreshold "value"
 
             indicatorThreshold)
 
@@ -270,13 +270,13 @@ type IndicatorGauge() =
         ) =
         (fun (indicatorGauge: IndicatorGauge) ->
 
-            Axis |> DynObj.setValueOpt indicatorGauge "axis"
-            Bar |> DynObj.setValueOpt indicatorGauge "bar"
-            BGColor |> DynObj.setValueOpt indicatorGauge "bgcolor"
-            BorderColor |> DynObj.setValueOpt indicatorGauge "bordercolor"
-            BorderWidth |> DynObj.setValueOpt indicatorGauge "borderwidth"
-            Shape |> DynObj.setValueOptBy indicatorGauge "shape" StyleParam.IndicatorGaugeShape.convert
-            Steps |> DynObj.setValueOpt indicatorGauge "steps"
-            Threshold |> DynObj.setValueOpt indicatorGauge "threshold"
+            Axis |> DynObj.setOptionalProperty indicatorGauge "axis"
+            Bar |> DynObj.setOptionalProperty indicatorGauge "bar"
+            BGColor |> DynObj.setOptionalProperty indicatorGauge "bgcolor"
+            BorderColor |> DynObj.setOptionalProperty indicatorGauge "bordercolor"
+            BorderWidth |> DynObj.setOptionalProperty indicatorGauge "borderwidth"
+            Shape |> DynObj.setOptionalPropertyBy indicatorGauge "shape" StyleParam.IndicatorGaugeShape.convert
+            Steps |> DynObj.setOptionalProperty indicatorGauge "steps"
+            Threshold |> DynObj.setOptionalProperty indicatorGauge "threshold"
 
             indicatorGauge)

@@ -262,55 +262,55 @@ type Config() =
         ) =
         fun (config: Config) ->
 
-            StaticPlot |> DynObj.setValueOpt config "staticPlot"
-            TypesetMath |> DynObj.setValueOpt config "typesetMath"
-            PlotlyServerUrl |> DynObj.setValueOpt config "plotlyServerUrl"
-            Editable |> DynObj.setValueOpt config "editable"
-            Edits |> DynObj.setValueOpt config "edits"
-            EditSelection |> DynObj.setValueOpt config "editSelection"
-            Autosizable |> DynObj.setValueOpt config "autosizable"
-            Responsive |> DynObj.setValueOpt config "responsive"
-            FillFrame |> DynObj.setValueOpt config "fillFrame"
-            FrameMargins |> DynObj.setValueOpt config "frameMargins"
-            ScrollZoom |> DynObj.setValueOptBy config "scrollZoom" StyleParam.ScrollZoom.convert
-            DoubleClick |> DynObj.setValueOptBy config "doubleClick" StyleParam.DoubleClick.convert
-            DoubleClickDelay |> DynObj.setValueOpt config "doubleClickDelay"
-            ShowAxisDragHandles |> DynObj.setValueOpt config "showAxisDragHandles"
-            ShowAxisRangeEntryBoxes |> DynObj.setValueOpt config "showAxisRangeEntryBoxes"
-            ShowTips |> DynObj.setValueOpt config "showTips"
-            ShowLink |> DynObj.setValueOpt config "showLink"
-            LinkText |> DynObj.setValueOpt config "linkText"
-            SendData |> DynObj.setValueOpt config "sendData"
-            ShowSources |> DynObj.setValueOpt config "showSources"
-            DisplayModeBar |> DynObj.setValueOpt config "displayModeBar"
-            ShowSendToCloud |> DynObj.setValueOpt config "showSendToCloud"
-            ShowEditInChartStudio |> DynObj.setValueOpt config "showEditInChartStudio"
+            StaticPlot |> DynObj.setOptionalProperty config "staticPlot"
+            TypesetMath |> DynObj.setOptionalProperty config "typesetMath"
+            PlotlyServerUrl |> DynObj.setOptionalProperty config "plotlyServerUrl"
+            Editable |> DynObj.setOptionalProperty config "editable"
+            Edits |> DynObj.setOptionalProperty config "edits"
+            EditSelection |> DynObj.setOptionalProperty config "editSelection"
+            Autosizable |> DynObj.setOptionalProperty config "autosizable"
+            Responsive |> DynObj.setOptionalProperty config "responsive"
+            FillFrame |> DynObj.setOptionalProperty config "fillFrame"
+            FrameMargins |> DynObj.setOptionalProperty config "frameMargins"
+            ScrollZoom |> DynObj.setOptionalPropertyBy config "scrollZoom" StyleParam.ScrollZoom.convert
+            DoubleClick |> DynObj.setOptionalPropertyBy config "doubleClick" StyleParam.DoubleClick.convert
+            DoubleClickDelay |> DynObj.setOptionalProperty config "doubleClickDelay"
+            ShowAxisDragHandles |> DynObj.setOptionalProperty config "showAxisDragHandles"
+            ShowAxisRangeEntryBoxes |> DynObj.setOptionalProperty config "showAxisRangeEntryBoxes"
+            ShowTips |> DynObj.setOptionalProperty config "showTips"
+            ShowLink |> DynObj.setOptionalProperty config "showLink"
+            LinkText |> DynObj.setOptionalProperty config "linkText"
+            SendData |> DynObj.setOptionalProperty config "sendData"
+            ShowSources |> DynObj.setOptionalProperty config "showSources"
+            DisplayModeBar |> DynObj.setOptionalProperty config "displayModeBar"
+            ShowSendToCloud |> DynObj.setOptionalProperty config "showSendToCloud"
+            ShowEditInChartStudio |> DynObj.setOptionalProperty config "showEditInChartStudio"
 
             ModeBarButtonsToRemove
-            |> DynObj.setValueOptBy config "modeBarButtonsToRemove" (fun x ->
+            |> DynObj.setOptionalPropertyBy config "modeBarButtonsToRemove" (fun x ->
                 x |> Seq.map StyleParam.ModeBarButton.toString)
 
             ModeBarButtonsToAdd
-            |> DynObj.setValueOptBy config "modeBarButtonsToAdd" (fun x ->
+            |> DynObj.setOptionalPropertyBy config "modeBarButtonsToAdd" (fun x ->
                 x |> Seq.map StyleParam.ModeBarButton.toString)
 
             ModeBarButtons
-            |> DynObj.setValueOptBy config "modeBarButtons" (fun x ->
+            |> DynObj.setOptionalPropertyBy config "modeBarButtons" (fun x ->
                 x |> Seq.map (Seq.map StyleParam.ModeBarButton.toString))
 
-            ToImageButtonOptions |> DynObj.setValueOpt config "toImageButtonOptions"
-            Displaylogo |> DynObj.setValueOpt config "displaylogo"
-            Watermark |> DynObj.setValueOpt config "watermark"
-            plotGlPixelRatio |> DynObj.setValueOpt config "plotGlPixelRatio"
-            SetBackground |> DynObj.setValueOpt config "setBackground"
-            TopojsonURL |> DynObj.setValueOpt config "topojsonURL"
-            MapboxAccessToken |> DynObj.setValueOpt config "mapboxAccessToken"
-            Logging |> DynObj.setValueOpt config "logging"
-            NotifyOnLogging |> DynObj.setValueOpt config "notifyOnLogging"
-            QueueLength |> DynObj.setValueOpt config "queueLength"
-            GlobalTransforms |> DynObj.setValueOpt config "globalTransforms"
-            Locale |> DynObj.setValueOpt config "locale"
-            Locales |> DynObj.setValueOpt config "locales"
+            ToImageButtonOptions |> DynObj.setOptionalProperty config "toImageButtonOptions"
+            Displaylogo |> DynObj.setOptionalProperty config "displaylogo"
+            Watermark |> DynObj.setOptionalProperty config "watermark"
+            plotGlPixelRatio |> DynObj.setOptionalProperty config "plotGlPixelRatio"
+            SetBackground |> DynObj.setOptionalProperty config "setBackground"
+            TopojsonURL |> DynObj.setOptionalProperty config "topojsonURL"
+            MapboxAccessToken |> DynObj.setOptionalProperty config "mapboxAccessToken"
+            Logging |> DynObj.setOptionalProperty config "logging"
+            NotifyOnLogging |> DynObj.setOptionalProperty config "notifyOnLogging"
+            QueueLength |> DynObj.setOptionalProperty config "queueLength"
+            GlobalTransforms |> DynObj.setOptionalProperty config "globalTransforms"
+            Locale |> DynObj.setOptionalProperty config "locale"
+            Locales |> DynObj.setOptionalProperty config "locales"
 
             config
 
@@ -331,18 +331,18 @@ type Config() =
 
         let modeBarButtonsToRemove =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<string>>("modeBarButtonsToRemove"))
-                (second.TryGetTypedValue<seq<string>>("modeBarButtonsToRemove"))
+                (first.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToRemove"))
+                (second.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToRemove"))
 
         let modeBarButtonsToAdd =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
-                (second.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd"))
+                (first.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToAdd"))
+                (second.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToAdd"))
 
         let modeBarButtons =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<seq<string>>>("modeBarButtons"))
-                (second.TryGetTypedValue<seq<seq<string>>>("modeBarButtons"))
+                (first.TryGetTypedPropertyValue<seq<seq<string>>>("modeBarButtons"))
+                (second.TryGetTypedPropertyValue<seq<seq<string>>>("modeBarButtons"))
 
         DynObj.combine first second
         |> unbox

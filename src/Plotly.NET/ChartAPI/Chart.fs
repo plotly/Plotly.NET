@@ -2746,7 +2746,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Annotation>>("annotations")
+                    layout.TryGetTypedPropertyValue<seq<Annotation>>("annotations")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append annotations
 
@@ -2857,7 +2857,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Shape>>("shapes") |> Option.defaultValue Seq.empty |> Seq.append shapes
+                    layout.TryGetTypedPropertyValue<seq<Shape>>("shapes") |> Option.defaultValue Seq.empty |> Seq.append shapes
 
                 else
                     shapes
@@ -2885,7 +2885,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Selection>>("selections")
+                    layout.TryGetTypedPropertyValue<seq<Selection>>("selections")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append selections
 
@@ -3219,10 +3219,10 @@ type Chart =
                 | TraceID.Carpet ->
 
                     let xAxis =
-                        layout.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
+                        layout.TryGetTypedPropertyValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
 
                     let yAxis =
-                        layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
+                        layout.TryGetTypedPropertyValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
 
                     let allXAxes = Layout.getXAxes layout |> Seq.map fst
                     let allYAxes = Layout.getYAxes layout |> Seq.map fst
@@ -3245,7 +3245,7 @@ type Chart =
                 | TraceID.Cartesian3D ->
 
                     let scene =
-                        layout.TryGetTypedValue<Scene> "scene"
+                        layout.TryGetTypedPropertyValue<Scene> "scene"
                         |> Option.defaultValue (Scene.init ())
                         |> Scene.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
@@ -3263,7 +3263,7 @@ type Chart =
                 | TraceID.Polar ->
 
                     let polar =
-                        layout.TryGetTypedValue<Polar> "polar"
+                        layout.TryGetTypedPropertyValue<Polar> "polar"
                         |> Option.defaultValue (Polar.init ())
                         |> Polar.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
@@ -3283,7 +3283,7 @@ type Chart =
                 | TraceID.Smith ->
 
                     let smith =
-                        layout.TryGetTypedValue<Smith> "smith"
+                        layout.TryGetTypedPropertyValue<Smith> "smith"
                         |> Option.defaultValue (Smith.init ())
                         |> Smith.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
                     
@@ -3302,7 +3302,7 @@ type Chart =
 
                 | TraceID.Geo ->
                     let geo =
-                        layout.TryGetTypedValue<Geo> "geo"
+                        layout.TryGetTypedPropertyValue<Geo> "geo"
                         |> Option.defaultValue (Geo.init ())
                         |> Geo.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
@@ -3320,7 +3320,7 @@ type Chart =
 
                 | TraceID.Mapbox ->
                     let mapbox =
-                        layout.TryGetTypedValue<Mapbox> "mapbox"
+                        layout.TryGetTypedPropertyValue<Mapbox> "mapbox"
                         |> Option.defaultValue (Mapbox.init ())
                         |> Mapbox.style (
                             Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
@@ -3345,7 +3345,7 @@ type Chart =
                 | TraceID.Ternary ->
 
                     let ternary =
-                        layout.TryGetTypedValue<Ternary> "ternary"
+                        layout.TryGetTypedPropertyValue<Ternary> "ternary"
                         |> Option.defaultValue (Ternary.init ())
                         |> Ternary.style (
                             Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
@@ -3612,7 +3612,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<LayoutImage>>("images")
+                    layout.TryGetTypedPropertyValue<seq<LayoutImage>>("images")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append images
 
@@ -3647,7 +3647,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<UpdateMenu>>("updatemenus")
+                    layout.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append updateMenus
 

@@ -97,13 +97,13 @@ module ChartTemplates =
     let darkMirrored =
         dark
         |> Template.mapLayoutTemplate (fun l ->
-            l.TryGetTypedValue<LinearAxis>("xaxis")
+            l.TryGetTypedPropertyValue<LinearAxis>("xaxis")
             |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-            |> DynObj.setValueOpt l "xaxis"
+            |> DynObj.setOptionalProperty l "xaxis"
 
-            l.TryGetTypedValue<LinearAxis>("yaxis")
+            l.TryGetTypedPropertyValue<LinearAxis>("yaxis")
             |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-            |> DynObj.setValueOpt l "yaxis"
+            |> DynObj.setOptionalProperty l "yaxis"
 
             l)
 

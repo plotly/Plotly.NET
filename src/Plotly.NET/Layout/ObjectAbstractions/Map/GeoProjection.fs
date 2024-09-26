@@ -33,9 +33,9 @@ type GeoProjectionRotation() =
             [<Optional; DefaultParameterValue(null)>] ?Roll: int
         ) =
         (fun (rotation: GeoProjectionRotation) ->
-            Longitude |> DynObj.setValueOpt rotation "lon"
-            Latitude |> DynObj.setValueOpt rotation "lat"
-            Roll |> DynObj.setValueOpt rotation "roll"
+            Longitude |> DynObj.setOptionalProperty rotation "lon"
+            Latitude |> DynObj.setOptionalProperty rotation "lat"
+            Roll |> DynObj.setOptionalProperty rotation "roll"
 
             rotation)
 
@@ -77,11 +77,11 @@ type GeoProjection() =
         ) =
         (fun (projection: GeoProjection) ->
 
-            projectionType |> StyleParam.GeoProjectionType.convert |> DynObj.setValue projection "type"
+            projectionType |> StyleParam.GeoProjectionType.convert |> DynObj.withProperty projection "type"
 
-            Parallels |> Option.map (fun (a, b) -> sprintf "[%f,%f]" a b) |> DynObj.setValueOpt projection "parallels"
+            Parallels |> Option.map (fun (a, b) -> sprintf "[%f,%f]" a b) |> DynObj.setOptionalProperty projection "parallels"
 
-            Rotation |> DynObj.setValueOpt projection "rotation"
-            Scale |> DynObj.setValueOpt projection "scale"
+            Rotation |> DynObj.setOptionalProperty projection "rotation"
+            Scale |> DynObj.setOptionalProperty projection "scale"
 
             projection)

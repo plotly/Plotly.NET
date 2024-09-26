@@ -50,21 +50,21 @@ type RangeSlider() =
             [<Optional; DefaultParameterValue(null)>] ?YAxisRange: StyleParam.Range
         ) =
         fun (rangeslider: RangeSlider) ->
-            BgColor |> DynObj.setValueOpt rangeslider "bgcolor"
-            BorderColor |> DynObj.setValueOpt rangeslider "bordercolor"
-            BorderWidth |> DynObj.setValueOpt rangeslider "borderwidth"
-            AutoRange |> DynObj.setValueOpt rangeslider "autorange"
-            Range |> DynObj.setValueOptBy rangeslider "range" StyleParam.Range.convert
-            Thickness |> DynObj.setValueOpt rangeslider "thickness"
-            Visible |> DynObj.setValueOpt rangeslider "visible"
+            BgColor |> DynObj.setOptionalProperty rangeslider "bgcolor"
+            BorderColor |> DynObj.setOptionalProperty rangeslider "bordercolor"
+            BorderWidth |> DynObj.setOptionalProperty rangeslider "borderwidth"
+            AutoRange |> DynObj.setOptionalProperty rangeslider "autorange"
+            Range |> DynObj.setOptionalPropertyBy rangeslider "range" StyleParam.Range.convert
+            Thickness |> DynObj.setOptionalProperty rangeslider "thickness"
+            Visible |> DynObj.setOptionalProperty rangeslider "visible"
 
             let yAxis =
                 let tmp = DynamicObj()
-                YAxisRangeMode |> DynObj.setValueOptBy tmp "rangemode" StyleParam.RangesliderRangeMode.convert
-                YAxisRange |> DynObj.setValueOptBy tmp "range" StyleParam.Range.convert
+                YAxisRangeMode |> DynObj.setOptionalPropertyBy tmp "rangemode" StyleParam.RangesliderRangeMode.convert
+                YAxisRange |> DynObj.setOptionalPropertyBy tmp "range" StyleParam.Range.convert
                 tmp
 
-            yAxis |> DynObj.setValue rangeslider "yaxis"
+            yAxis |> DynObj.withProperty rangeslider "yaxis"
 
 
             rangeslider

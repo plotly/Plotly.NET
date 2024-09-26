@@ -73,12 +73,12 @@ type Pattern() =
 
         fun (pattern: Pattern) ->
 
-            BGColor |> DynObj.setValueOpt pattern "bgcolor"
-            FGColor |> DynObj.setValueOpt pattern "fgcolor"
-            FGOpacity |> DynObj.setValueOpt pattern "fgopacity"
-            FillMode |> DynObj.setValueOptBy pattern "fillmode" StyleParam.PatternFillMode.convert
+            BGColor |> DynObj.setOptionalProperty pattern "bgcolor"
+            FGColor |> DynObj.setOptionalProperty pattern "fgcolor"
+            FGOpacity |> DynObj.setOptionalProperty pattern "fgopacity"
+            FillMode |> DynObj.setOptionalPropertyBy pattern "fillmode" StyleParam.PatternFillMode.convert
             (Shape, MultiShape) |> DynObj.setSingleOrMultiOptBy pattern "shape" StyleParam.PatternShape.convert
-            (Size, MultiSize) |> DynObj.setSingleOrMultiOpt pattern "size"
-            Solidity |> DynObj.setValueOpt pattern "solidity"
+            (Size, MultiSize) |> DynObj.setOptionalSingleOrMultiProperty pattern "size"
+            Solidity |> DynObj.setOptionalProperty pattern "solidity"
 
             pattern

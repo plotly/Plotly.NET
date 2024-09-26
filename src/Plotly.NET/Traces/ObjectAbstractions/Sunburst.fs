@@ -17,7 +17,7 @@ type SunburstRoot() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (root: SunburstRoot) ->
 
-            Color |> DynObj.setValueOpt root "color"
+            Color |> DynObj.setOptionalProperty root "color"
 
             root)
 
@@ -31,6 +31,6 @@ type SunburstLeaf() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (leaf: SunburstLeaf) ->
 
-            Opacity |> DynObj.setValueOpt leaf "opacity"
+            Opacity |> DynObj.setOptionalProperty leaf "opacity"
 
             leaf)

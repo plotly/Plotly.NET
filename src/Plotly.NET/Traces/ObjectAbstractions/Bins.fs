@@ -29,8 +29,8 @@ type Bins() =
         ) =
 
         (fun (bins: Bins) ->
-            Start |> DynObj.setValueOpt bins "start"
-            End |> DynObj.setValueOpt bins "end"
-            Size |> DynObj.setValueOpt bins "size"
+            Start |> DynObj.setOptionalProperty bins "start"
+            End |> DynObj.setOptionalProperty bins "end"
+            Size |> DynObj.setOptionalProperty bins "size"
 
             bins)

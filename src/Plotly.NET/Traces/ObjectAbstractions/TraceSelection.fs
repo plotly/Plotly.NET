@@ -38,9 +38,9 @@ type MarkerSelectionStyle() =
         ) =
         (fun (markerSelectionStyle: MarkerSelectionStyle) ->
 
-            Opacity |> DynObj.setValueOpt markerSelectionStyle "opacity"
-            Color |> DynObj.setValueOpt markerSelectionStyle "color"
-            Size |> DynObj.setValueOpt markerSelectionStyle "size"
+            Opacity |> DynObj.setOptionalProperty markerSelectionStyle "opacity"
+            Color |> DynObj.setOptionalProperty markerSelectionStyle "color"
+            Size |> DynObj.setOptionalProperty markerSelectionStyle "size"
 
             markerSelectionStyle)
 
@@ -72,8 +72,8 @@ type LineSelectionStyle() =
         ) =
         (fun (lineSelectionStyle: LineSelectionStyle) ->
 
-            Opacity |> DynObj.setValueOpt lineSelectionStyle "opacity"
-            Color |> DynObj.setValueOpt lineSelectionStyle "color"
+            Opacity |> DynObj.setOptionalProperty lineSelectionStyle "opacity"
+            Color |> DynObj.setOptionalProperty lineSelectionStyle "color"
 
             lineSelectionStyle)
 
@@ -95,7 +95,7 @@ type FontSelectionStyle() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (fontSelectionStyle: FontSelectionStyle) ->
 
-            Color |> DynObj.setValueOpt fontSelectionStyle "color"
+            Color |> DynObj.setOptionalProperty fontSelectionStyle "color"
 
             fontSelectionStyle)
 
@@ -138,8 +138,8 @@ type TraceSelection() =
         ) =
         (fun (traceSelection: TraceSelection) ->
 
-            MarkerSelectionStyle |> DynObj.setValueOpt traceSelection "marker"
-            LineSelectionStyle |> DynObj.setValueOpt traceSelection "line"
-            FontSelectionStyle |> DynObj.setValueOpt traceSelection "font"
+            MarkerSelectionStyle |> DynObj.setOptionalProperty traceSelection "marker"
+            LineSelectionStyle |> DynObj.setOptionalProperty traceSelection "line"
+            FontSelectionStyle |> DynObj.setOptionalProperty traceSelection "font"
 
             traceSelection)

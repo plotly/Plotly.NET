@@ -22,7 +22,7 @@ type Trace(traceTypeName: string) =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="trace">The trace to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (trace: Trace) = trace.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (trace: Trace) = trace.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the Marker object of the given trace.
@@ -329,12 +329,12 @@ type TraceStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
 
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
+            Name |> DynObj.setOptionalProperty trace "name"
+            Visible |> DynObj.setOptionalPropertyBy trace "visible" StyleParam.Visible.convert
+            ShowLegend |> DynObj.setOptionalProperty trace "showlegend"
+            LegendRank |> DynObj.setOptionalProperty trace "legendrank"
+            LegendGroup |> DynObj.setOptionalProperty trace "legendgroup"
+            LegendGroupTitle |> DynObj.setOptionalProperty trace "legendgrouptitle"
 
             trace)
 
@@ -706,9 +706,9 @@ type TraceStyle() =
         ) =
         (fun (trace: ('T :> Trace)) ->
 
-            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
-            Selected |> DynObj.setValueOpt trace "selected"
-            Unselected |> DynObj.setValueOpt trace "unselected"
+            SelectedPoints |> DynObj.setOptionalProperty trace "selectedpoints"
+            Selected |> DynObj.setOptionalProperty trace "selected"
+            Unselected |> DynObj.setOptionalProperty trace "unselected"
 
             trace)
 
@@ -743,17 +743,17 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?TextFont: Font
         ) =
         (fun (trace: ('T :> Trace)) ->
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty trace "text"
 
             (TextPosition, MultiTextPosition)
             |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
 
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
+            (TextTemplate, MultiTextTemplate) |> DynObj.setOptionalSingleOrMultiProperty trace "texttemplate"
+            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertext"
+            HoverInfo |> DynObj.setOptionalPropertyBy trace "hoverinfo" StyleParam.HoverInfo.convert
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertemplate"
 
-            TextFont |> DynObj.setValueOpt trace "textfont"
+            TextFont |> DynObj.setOptionalProperty trace "textfont"
 
             trace)
 

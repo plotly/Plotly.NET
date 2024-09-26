@@ -42,9 +42,9 @@ type MapboxBounds() =
         ) =
         (fun (mapboxBounds: MapboxBounds) ->
 
-            East |> DynObj.setValueOpt mapboxBounds "east"
-            North |> DynObj.setValueOpt mapboxBounds "north"
-            South |> DynObj.setValueOpt mapboxBounds "south"
-            West |> DynObj.setValueOpt mapboxBounds "west"
+            East |> DynObj.setOptionalProperty mapboxBounds "east"
+            North |> DynObj.setOptionalProperty mapboxBounds "north"
+            South |> DynObj.setOptionalProperty mapboxBounds "south"
+            West |> DynObj.setOptionalProperty mapboxBounds "west"
 
             mapboxBounds)

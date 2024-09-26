@@ -141,28 +141,28 @@ type Slider() =
             ?YAnchor: StyleParam.YAnchorPosition
         ) =
         (fun (slider: Slider) ->
-            Active |> DynObj.setValueOpt slider "active"
-            ActiveBgColor |> DynObj.setValueOpt slider "activebgcolor"
-            BgColor |> DynObj.setValueOpt slider "bgcolor"
-            BorderColor |> DynObj.setValueOpt slider "bordercolor"
-            BorderWidth |> DynObj.setValueOpt slider "borderwidth"
-            CurrentValue |> DynObj.setValueOpt slider "currentvalue"
-            Font |> DynObj.setValueOpt slider "font"
-            Len |> DynObj.setValueOpt slider "len"
-            LenMode |> DynObj.setValueOptBy slider "lenmode" StyleParam.UnitMode.convert
-            MinorTickLen |> DynObj.setValueOpt slider "minorticklen"
-            Name |> DynObj.setValueOpt slider "name"
-            Padding |> DynObj.setValueOpt slider "pad"
-            Steps |> DynObj.setValueOpt slider "steps"
-            TemplateItemName |> DynObj.setValueOpt slider "templateitemname"
-            TickColor |> DynObj.setValueOpt slider "tickcolor"
-            TickLen |> DynObj.setValueOpt slider "ticklen"
-            TickWidth |> DynObj.setValueOpt slider "tickwidth"
-            Transition |> DynObj.setValueOpt slider "transition"
-            Visible |> DynObj.setValueOpt slider "visible"
-            X |> DynObj.setValueOpt slider "x"
-            XAnchor |> DynObj.setValueOptBy slider "xanchor" StyleParam.XAnchorPosition.convert
-            Y |> DynObj.setValueOpt slider "y"
-            YAnchor |> DynObj.setValueOptBy slider "yanchor" StyleParam.YAnchorPosition.convert
+            Active |> DynObj.setOptionalProperty slider "active"
+            ActiveBgColor |> DynObj.setOptionalProperty slider "activebgcolor"
+            BgColor |> DynObj.setOptionalProperty slider "bgcolor"
+            BorderColor |> DynObj.setOptionalProperty slider "bordercolor"
+            BorderWidth |> DynObj.setOptionalProperty slider "borderwidth"
+            CurrentValue |> DynObj.setOptionalProperty slider "currentvalue"
+            Font |> DynObj.setOptionalProperty slider "font"
+            Len |> DynObj.setOptionalProperty slider "len"
+            LenMode |> DynObj.setOptionalPropertyBy slider "lenmode" StyleParam.UnitMode.convert
+            MinorTickLen |> DynObj.setOptionalProperty slider "minorticklen"
+            Name |> DynObj.setOptionalProperty slider "name"
+            Padding |> DynObj.setOptionalProperty slider "pad"
+            Steps |> DynObj.setOptionalProperty slider "steps"
+            TemplateItemName |> DynObj.setOptionalProperty slider "templateitemname"
+            TickColor |> DynObj.setOptionalProperty slider "tickcolor"
+            TickLen |> DynObj.setOptionalProperty slider "ticklen"
+            TickWidth |> DynObj.setOptionalProperty slider "tickwidth"
+            Transition |> DynObj.setOptionalProperty slider "transition"
+            Visible |> DynObj.setOptionalProperty slider "visible"
+            X |> DynObj.setOptionalProperty slider "x"
+            XAnchor |> DynObj.setOptionalPropertyBy slider "xanchor" StyleParam.XAnchorPosition.convert
+            Y |> DynObj.setOptionalProperty slider "y"
+            YAnchor |> DynObj.setOptionalPropertyBy slider "yanchor" StyleParam.YAnchorPosition.convert
 
             slider)

@@ -41,12 +41,12 @@ type ModeBar() =
         ) =
         (fun (modeBar: ModeBar) ->
 
-            ActiveColor |> DynObj.setValueOpt modeBar "activecolor"
-            Add |> DynObj.setValueOpt modeBar "add"
-            BGColor |> DynObj.setValueOpt modeBar "bgcolor"
-            Color |> DynObj.setValueOpt modeBar "color"
-            Orientation |> DynObj.setValueOptBy modeBar "orientation" StyleParam.Orientation.convert
-            Remove |> DynObj.setValueOpt modeBar "remove"
-            UIRevision |> DynObj.setValueOpt modeBar "uirevision "
+            ActiveColor |> DynObj.setOptionalProperty modeBar "activecolor"
+            Add |> DynObj.setOptionalProperty modeBar "add"
+            BGColor |> DynObj.setOptionalProperty modeBar "bgcolor"
+            Color |> DynObj.setOptionalProperty modeBar "color"
+            Orientation |> DynObj.setOptionalPropertyBy modeBar "orientation" StyleParam.Orientation.convert
+            Remove |> DynObj.setOptionalProperty modeBar "remove"
+            UIRevision |> DynObj.setOptionalProperty modeBar "uirevision "
 
             modeBar)

@@ -56,12 +56,12 @@ type Ternary() =
         ) =
         (fun (ternary: Ternary) ->
 
-            AAxis |> DynObj.setValueOpt ternary "aaxis"
-            BAxis |> DynObj.setValueOpt ternary "baxis"
-            CAxis |> DynObj.setValueOpt ternary "caxis"
-            Domain |> DynObj.setValueOpt ternary "domain"
-            Sum |> DynObj.setValueOpt ternary "sum"
-            BGColor |> DynObj.setValueOpt ternary "bgcolor"
+            AAxis |> DynObj.setOptionalProperty ternary "aaxis"
+            BAxis |> DynObj.setOptionalProperty ternary "baxis"
+            CAxis |> DynObj.setOptionalProperty ternary "caxis"
+            Domain |> DynObj.setOptionalProperty ternary "domain"
+            Sum |> DynObj.setOptionalProperty ternary "sum"
+            BGColor |> DynObj.setOptionalProperty ternary "bgcolor"
 
             ternary)
 
@@ -71,7 +71,7 @@ type Ternary() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="ternary">The object to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (ternary: Ternary) = ternary.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (ternary: Ternary) = ternary.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the a axis of the given ternary object.

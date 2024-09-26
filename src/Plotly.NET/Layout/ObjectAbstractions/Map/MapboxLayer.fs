@@ -77,36 +77,36 @@ type MapboxLayer() =
         ) =
         (fun (mapBoxLayer: MapboxLayer) ->
 
-            Visible |> DynObj.setValueOpt mapBoxLayer "visible"
-            SourceType |> DynObj.setValueOptBy mapBoxLayer "sourcetype" StyleParam.MapboxLayerSourceType.convert
-            Source |> DynObj.setValueOpt mapBoxLayer "source"
-            SourceLayer |> DynObj.setValueOpt mapBoxLayer "sourcelayer"
-            SourceAttribution |> DynObj.setValueOpt mapBoxLayer "sourceattribution"
-            Type |> DynObj.setValueOptBy mapBoxLayer "type" StyleParam.MapboxLayerType.convert
-            Coordinates |> DynObj.setValueOpt mapBoxLayer "coordinates"
-            Below |> DynObj.setValueOpt mapBoxLayer "below"
-            Color |> DynObj.setValueOpt mapBoxLayer "color"
-            Opacity |> DynObj.setValueOpt mapBoxLayer "opacity"
-            MinZoom |> DynObj.setValueOpt mapBoxLayer "minzoom"
-            MaxZoom |> DynObj.setValueOpt mapBoxLayer "maxzoom"
+            Visible |> DynObj.setOptionalProperty mapBoxLayer "visible"
+            SourceType |> DynObj.setOptionalPropertyBy mapBoxLayer "sourcetype" StyleParam.MapboxLayerSourceType.convert
+            Source |> DynObj.setOptionalProperty mapBoxLayer "source"
+            SourceLayer |> DynObj.setOptionalProperty mapBoxLayer "sourcelayer"
+            SourceAttribution |> DynObj.setOptionalProperty mapBoxLayer "sourceattribution"
+            Type |> DynObj.setOptionalPropertyBy mapBoxLayer "type" StyleParam.MapboxLayerType.convert
+            Coordinates |> DynObj.setOptionalProperty mapBoxLayer "coordinates"
+            Below |> DynObj.setOptionalProperty mapBoxLayer "below"
+            Color |> DynObj.setOptionalProperty mapBoxLayer "color"
+            Opacity |> DynObj.setOptionalProperty mapBoxLayer "opacity"
+            MinZoom |> DynObj.setOptionalProperty mapBoxLayer "minzoom"
+            MaxZoom |> DynObj.setOptionalProperty mapBoxLayer "maxzoom"
 
             CircleRadius
             |> Option.map (fun r ->
                 let circle = DynamicObj()
                 circle?radius <- r
                 circle)
-            |> DynObj.setValueOpt mapBoxLayer "circle"
+            |> DynObj.setOptionalProperty mapBoxLayer "circle"
 
-            Line |> DynObj.setValueOpt mapBoxLayer "line"
+            Line |> DynObj.setOptionalProperty mapBoxLayer "line"
 
             FillOutlineColor
             |> Option.map (fun c ->
                 let fill = DynamicObj()
                 fill?outlinecolor <- c
                 fill)
-            |> DynObj.setValueOpt mapBoxLayer "fill"
+            |> DynObj.setOptionalProperty mapBoxLayer "fill"
 
-            Symbol |> DynObj.setValueOpt mapBoxLayer "symbol"
-            Name |> DynObj.setValueOpt mapBoxLayer "name"
+            Symbol |> DynObj.setOptionalProperty mapBoxLayer "symbol"
+            Name |> DynObj.setOptionalProperty mapBoxLayer "name"
 
             mapBoxLayer)

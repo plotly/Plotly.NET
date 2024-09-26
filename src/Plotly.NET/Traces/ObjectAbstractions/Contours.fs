@@ -27,9 +27,9 @@ type ContourProject() =
 
         fun (contourProject: ContourProject) ->
 
-            X |> DynObj.setValueOpt contourProject "x"
-            Y |> DynObj.setValueOpt contourProject "y"
-            Z |> DynObj.setValueOpt contourProject "z"
+            X |> DynObj.setOptionalProperty contourProject "x"
+            Y |> DynObj.setOptionalProperty contourProject "y"
+            Z |> DynObj.setOptionalProperty contourProject "z"
 
             contourProject
 
@@ -87,17 +87,17 @@ type Contour() =
         ) =
 
         (fun (contour: Contour) ->
-            Color |> DynObj.setValueOpt contour "color"
-            End |> DynObj.setValueOpt contour "end"
-            Highlight |> DynObj.setValueOpt contour "highlight"
-            HighlightColor |> DynObj.setValueOpt contour "highlightcolor"
-            HighlightWidth |> DynObj.setValueOpt contour "highlightwidth"
-            Project |> DynObj.setValueOpt contour "project"
-            Show |> DynObj.setValueOpt contour "show"
-            Size |> DynObj.setValueOpt contour "size"
-            Start |> DynObj.setValueOpt contour "start"
-            UseColorMap |> DynObj.setValueOpt contour "usecolormap"
-            Width |> DynObj.setValueOpt contour "width"
+            Color |> DynObj.setOptionalProperty contour "color"
+            End |> DynObj.setOptionalProperty contour "end"
+            Highlight |> DynObj.setOptionalProperty contour "highlight"
+            HighlightColor |> DynObj.setOptionalProperty contour "highlightcolor"
+            HighlightWidth |> DynObj.setOptionalProperty contour "highlightwidth"
+            Project |> DynObj.setOptionalProperty contour "project"
+            Show |> DynObj.setOptionalProperty contour "show"
+            Size |> DynObj.setOptionalProperty contour "size"
+            Start |> DynObj.setOptionalProperty contour "start"
+            UseColorMap |> DynObj.setOptionalProperty contour "usecolormap"
+            Width |> DynObj.setOptionalProperty contour "width"
 
 
             contour)
@@ -168,20 +168,20 @@ type Contours() =
         ) =
 
         (fun (contours: Contours) ->
-            X |> DynObj.setValueOpt contours "x"
-            Y |> DynObj.setValueOpt contours "y"
-            Z |> DynObj.setValueOpt contours "z"
-            Coloring |> DynObj.setValueOptBy contours "coloring" StyleParam.ContourColoring.convert
-            End |> DynObj.setValueOpt contours "end"
-            LabelFont |> DynObj.setValueOpt contours "labelfont"
-            LabelFormat |> DynObj.setValueOpt contours "labelformat"
-            Operation |> DynObj.setValueOptBy contours "operation" StyleParam.ConstraintOperation.convert
-            ShowLabels |> DynObj.setValueOpt contours "showlabels"
-            ShowLines |> DynObj.setValueOpt contours "showlines"
-            Size |> DynObj.setValueOpt contours "size"
-            Start |> DynObj.setValueOpt contours "start"
-            Type |> DynObj.setValueOptBy contours "type" StyleParam.ContourType.convert
-            Value |> DynObj.setValueOpt contours "value"
+            X |> DynObj.setOptionalProperty contours "x"
+            Y |> DynObj.setOptionalProperty contours "y"
+            Z |> DynObj.setOptionalProperty contours "z"
+            Coloring |> DynObj.setOptionalPropertyBy contours "coloring" StyleParam.ContourColoring.convert
+            End |> DynObj.setOptionalProperty contours "end"
+            LabelFont |> DynObj.setOptionalProperty contours "labelfont"
+            LabelFormat |> DynObj.setOptionalProperty contours "labelformat"
+            Operation |> DynObj.setOptionalPropertyBy contours "operation" StyleParam.ConstraintOperation.convert
+            ShowLabels |> DynObj.setOptionalProperty contours "showlabels"
+            ShowLines |> DynObj.setOptionalProperty contours "showlines"
+            Size |> DynObj.setOptionalProperty contours "size"
+            Start |> DynObj.setOptionalProperty contours "start"
+            Type |> DynObj.setOptionalPropertyBy contours "type" StyleParam.ContourType.convert
+            Value |> DynObj.setOptionalProperty contours "value"
 
 
             contours)

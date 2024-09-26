@@ -15,7 +15,7 @@ type TableFill() =
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (fill: TableFill) ->
-            Color |> DynObj.setValueOpt fill "color"
+            Color |> DynObj.setOptionalProperty fill "color"
             fill)
 
 
@@ -74,14 +74,14 @@ type TableCells() =
         (fun (cells: TableCells) ->
 
             (Align, MultiAlign) |> DynObj.setSingleOrMultiOptBy cells "align" StyleParam.HorizontalAlign.convert
-            Fill |> DynObj.setValueOpt cells "fill"
-            Font |> DynObj.setValueOpt cells "font"
-            Format |> DynObj.setValueOpt cells "format"
-            Height |> DynObj.setValueOpt cells "height"
-            Line |> DynObj.setValueOpt cells "line"
-            (Prefix, MultiPrefix) |> DynObj.setSingleOrMultiOpt cells "prefix"
-            (Suffix, MultiSuffix) |> DynObj.setSingleOrMultiOpt cells "suffix"
-            Values |> DynObj.setValueOpt cells "values"
+            Fill |> DynObj.setOptionalProperty cells "fill"
+            Font |> DynObj.setOptionalProperty cells "font"
+            Format |> DynObj.setOptionalProperty cells "format"
+            Height |> DynObj.setOptionalProperty cells "height"
+            Line |> DynObj.setOptionalProperty cells "line"
+            (Prefix, MultiPrefix) |> DynObj.setOptionalSingleOrMultiProperty cells "prefix"
+            (Suffix, MultiSuffix) |> DynObj.setOptionalSingleOrMultiProperty cells "suffix"
+            Values |> DynObj.setOptionalProperty cells "values"
 
 
             cells)

@@ -62,18 +62,18 @@ type SankeyNodes() =
         ) =
         (fun (sankeyNodes: SankeyNodes) ->
 
-            Color |> DynObj.setValueOpt sankeyNodes "color"
-            CustomData |> DynObj.setValueOpt sankeyNodes "customdata"
-            Groups |> DynObj.setValueOpt sankeyNodes "hoverinfo"
-            HoverInfo |> DynObj.setValueOptBy sankeyNodes "color" StyleParam.HoverInfo.convert
-            HoverLabel |> DynObj.setValueOpt sankeyNodes "hoverlabel"
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt sankeyNodes "hovertemplate"
-            Label |> DynObj.setValueOpt sankeyNodes "label"
-            Line |> DynObj.setValueOpt sankeyNodes "line"
-            Pad |> DynObj.setValueOpt sankeyNodes "pad"
-            Thickness |> DynObj.setValueOpt sankeyNodes "thickness"
-            X |> DynObj.setValueOpt sankeyNodes "x"
-            Y |> DynObj.setValueOpt sankeyNodes "y"
+            Color |> DynObj.setOptionalProperty sankeyNodes "color"
+            CustomData |> DynObj.setOptionalProperty sankeyNodes "customdata"
+            Groups |> DynObj.setOptionalProperty sankeyNodes "hoverinfo"
+            HoverInfo |> DynObj.setOptionalPropertyBy sankeyNodes "color" StyleParam.HoverInfo.convert
+            HoverLabel |> DynObj.setOptionalProperty sankeyNodes "hoverlabel"
+            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty sankeyNodes "hovertemplate"
+            Label |> DynObj.setOptionalProperty sankeyNodes "label"
+            Line |> DynObj.setOptionalProperty sankeyNodes "line"
+            Pad |> DynObj.setOptionalProperty sankeyNodes "pad"
+            Thickness |> DynObj.setOptionalProperty sankeyNodes "thickness"
+            X |> DynObj.setOptionalProperty sankeyNodes "x"
+            Y |> DynObj.setOptionalProperty sankeyNodes "y"
 
             sankeyNodes)
 
@@ -112,12 +112,12 @@ type SankeyLinkColorscale() =
         ) =
         (fun (sankeyLinkColorscale: SankeyLinkColorscale) ->
 
-            CMax |> DynObj.setValueOpt sankeyLinkColorscale "cmax"
-            CMin |> DynObj.setValueOpt sankeyLinkColorscale "cmin"
-            ColorScale |> DynObj.setValueOptBy sankeyLinkColorscale "colorscale" StyleParam.Colorscale.convert
-            Label |> DynObj.setValueOpt sankeyLinkColorscale "label"
-            Name |> DynObj.setValueOpt sankeyLinkColorscale "name"
-            TemplateItemName |> DynObj.setValueOpt sankeyLinkColorscale "templateitemname"
+            CMax |> DynObj.setOptionalProperty sankeyLinkColorscale "cmax"
+            CMin |> DynObj.setOptionalProperty sankeyLinkColorscale "cmin"
+            ColorScale |> DynObj.setOptionalPropertyBy sankeyLinkColorscale "colorscale" StyleParam.Colorscale.convert
+            Label |> DynObj.setOptionalProperty sankeyLinkColorscale "label"
+            Name |> DynObj.setOptionalProperty sankeyLinkColorscale "name"
+            TemplateItemName |> DynObj.setOptionalProperty sankeyLinkColorscale "templateitemname"
 
 
             sankeyLinkColorscale)
@@ -178,19 +178,19 @@ type SankeyLinks() =
         ) =
         (fun (sankeyLinks: SankeyLinks) ->
 
-            ArrowLen |> DynObj.setValueOpt sankeyLinks "arrowlen"
-            Color |> DynObj.setValueOpt sankeyLinks "color"
-            ColorScales |> DynObj.setValueOpt sankeyLinks "colorscales"
-            CustomData |> DynObj.setValueOpt sankeyLinks "customdata"
-            HoverInfo |> DynObj.setValueOptBy sankeyLinks "hoverinfo" StyleParam.HoverInfo.convert
-            HoverLabel |> DynObj.setValueOpt sankeyLinks "hoverlabel"
-            HoverTemplate |> DynObj.setValueOpt sankeyLinks "hovertemplate"
-            MultiHoverTemplate |> DynObj.setValueOpt sankeyLinks "multihovertemplate"
-            Label |> DynObj.setValueOpt sankeyLinks "label"
-            Line |> DynObj.setValueOpt sankeyLinks "line"
-            Source |> DynObj.setValueOpt sankeyLinks "source"
-            Target |> DynObj.setValueOpt sankeyLinks "target"
-            Value |> DynObj.setValueOpt sankeyLinks "value"
+            ArrowLen |> DynObj.setOptionalProperty sankeyLinks "arrowlen"
+            Color |> DynObj.setOptionalProperty sankeyLinks "color"
+            ColorScales |> DynObj.setOptionalProperty sankeyLinks "colorscales"
+            CustomData |> DynObj.setOptionalProperty sankeyLinks "customdata"
+            HoverInfo |> DynObj.setOptionalPropertyBy sankeyLinks "hoverinfo" StyleParam.HoverInfo.convert
+            HoverLabel |> DynObj.setOptionalProperty sankeyLinks "hoverlabel"
+            HoverTemplate |> DynObj.setOptionalProperty sankeyLinks "hovertemplate"
+            MultiHoverTemplate |> DynObj.setOptionalProperty sankeyLinks "multihovertemplate"
+            Label |> DynObj.setOptionalProperty sankeyLinks "label"
+            Line |> DynObj.setOptionalProperty sankeyLinks "line"
+            Source |> DynObj.setOptionalProperty sankeyLinks "source"
+            Target |> DynObj.setOptionalProperty sankeyLinks "target"
+            Value |> DynObj.setOptionalProperty sankeyLinks "value"
 
 
             sankeyLinks)

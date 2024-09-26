@@ -17,7 +17,7 @@ type TreemapRoot() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
         (fun (root: TreemapRoot) ->
 
-            Color |> DynObj.setValueOpt root "color"
+            Color |> DynObj.setOptionalProperty root "color"
 
             root)
 
@@ -31,7 +31,7 @@ type TreemapLeaf() =
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
         (fun (leaf: TreemapLeaf) ->
 
-            Opacity |> DynObj.setValueOpt leaf "opacity"
+            Opacity |> DynObj.setOptionalProperty leaf "opacity"
 
             leaf)
 
@@ -58,9 +58,9 @@ type TreemapTiling() =
             [<Optional; DefaultParameterValue(null)>] ?Pad: float
         ) =
         (fun (tiling: TreemapTiling) ->
-            Packing |> DynObj.setValueOptBy tiling "packing" StyleParam.TreemapTilingPacking.convert
-            SquarifyRatio |> DynObj.setValueOpt tiling "squarifyRatio"
-            Flip |> DynObj.setValueOptBy tiling "flip" StyleParam.TilingFlip.convert
-            Pad |> DynObj.setValueOpt tiling "pad"
+            Packing |> DynObj.setOptionalPropertyBy tiling "packing" StyleParam.TreemapTilingPacking.convert
+            SquarifyRatio |> DynObj.setOptionalProperty tiling "squarifyRatio"
+            Flip |> DynObj.setOptionalPropertyBy tiling "flip" StyleParam.TilingFlip.convert
+            Pad |> DynObj.setOptionalProperty tiling "pad"
 
             tiling)

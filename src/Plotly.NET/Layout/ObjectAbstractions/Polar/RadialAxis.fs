@@ -282,56 +282,56 @@ type RadialAxis() =
         ) =
         fun (radialAxis: RadialAxis) ->
 
-            Visible |> DynObj.setValueOpt radialAxis "visible"
-            AxisType |> DynObj.setValueOptBy radialAxis "type" StyleParam.AxisType.convert
-            AutoTypeNumbers |> DynObj.setValueOptBy radialAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            AutoRange |> DynObj.setValueOptBy radialAxis "autorange" StyleParam.AutoRange.convert
-            AutoRangeOptions |> DynObj.setValueOpt radialAxis "autorangeoptions"
-            RangeMode |> DynObj.setValueOptBy radialAxis "rangemode" StyleParam.RangeMode.convert
-            Range |> DynObj.setValueOptBy radialAxis "range" StyleParam.Range.convert
-            CategoryOrder |> DynObj.setValueOptBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
-            CategoryArray |> DynObj.setValueOpt radialAxis "categoryarray"
-            Angle |> DynObj.setValueOpt radialAxis "angle"
-            Side |> DynObj.setValueOptBy radialAxis "side" StyleParam.Direction.convert
-            Title |> DynObj.setValueOpt radialAxis "title"
-            HoverFormat |> DynObj.setValueOpt radialAxis "hoverformat"
-            UIRevision |> DynObj.setValueOpt radialAxis "uirevision"
-            Color |> DynObj.setValueOpt radialAxis "color"
-            ShowLine |> DynObj.setValueOpt radialAxis "showline"
-            LineColor |> DynObj.setValueOpt radialAxis "linecolor"
-            LineWidth |> DynObj.setValueOpt radialAxis "linewidth"
-            MaxAllowed |> DynObj.setValueOpt radialAxis "maxallowed"
-            MinAllowed |> DynObj.setValueOpt radialAxis "minallowed"
-            ShowGrid |> DynObj.setValueOpt radialAxis "showgrid"
-            GridColor |> DynObj.setValueOpt radialAxis "gridcolor"
-            GridDash |> DynObj.setValueOptBy radialAxis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setValueOpt radialAxis "gridwidth"
-            TickMode |> DynObj.setValueOptBy radialAxis "tickmode" StyleParam.TickMode.convert
-            NTicks |> DynObj.setValueOpt radialAxis "nticks"
-            Tick0 |> DynObj.setValueOpt radialAxis "tick0"
-            DTick |> DynObj.setValueOpt radialAxis "dtick"
-            TickVals |> DynObj.setValueOpt radialAxis "tickvals"
-            TickText |> DynObj.setValueOpt radialAxis "ticktext"
-            Ticks |> DynObj.setValueOptBy radialAxis "ticks" StyleParam.TickOptions.convert
-            TickLen |> DynObj.setValueOpt radialAxis "ticklen"
-            TickWidth |> DynObj.setValueOpt radialAxis "tickwidth"
-            TickColor |> DynObj.setValueOpt radialAxis "tickcolor"
-            ShowTickLabels |> DynObj.setValueOpt radialAxis "showticklabels"
-            ShowTickPrefix |> DynObj.setValueOptBy radialAxis "showtickprefix" StyleParam.ShowTickOption.convert
-            TickPrefix |> DynObj.setValueOpt radialAxis "tickprefix"
-            ShowTickSuffix |> DynObj.setValueOptBy radialAxis "showticksuffix" StyleParam.ShowTickOption.convert
-            TickSuffix |> DynObj.setValueOpt radialAxis "ticksuffix"
-            ShowExponent |> DynObj.setValueOptBy radialAxis "showexponent" StyleParam.ShowExponent.convert
-            ExponentFormat |> DynObj.setValueOptBy radialAxis "exponentformat" StyleParam.ExponentFormat.convert
-            MinExponent |> DynObj.setValueOpt radialAxis "minexponent"
-            SeparateThousands |> DynObj.setValueOpt radialAxis "separatethousands"
-            TickFont |> DynObj.setValueOpt radialAxis "tickfont"
-            TickAngle |> DynObj.setValueOpt radialAxis "tickangle"
-            TickFormat |> DynObj.setValueOpt radialAxis "tickformat"
-            TickFormatStops |> DynObj.setValueOpt radialAxis "tickformatstops"
-            LabelAlias |> DynObj.setValueOpt radialAxis "labelalias"
-            Layer |> DynObj.setValueOptBy radialAxis "layer" StyleParam.Layer.convert
-            TickLabelStep |> DynObj.setValueOpt radialAxis "ticklabelstep"
-            Calendar |> DynObj.setValueOptBy radialAxis "calendar" StyleParam.Calendar.convert
+            Visible |> DynObj.setOptionalProperty radialAxis "visible"
+            AxisType |> DynObj.setOptionalPropertyBy radialAxis "type" StyleParam.AxisType.convert
+            AutoTypeNumbers |> DynObj.setOptionalPropertyBy radialAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
+            AutoRange |> DynObj.setOptionalPropertyBy radialAxis "autorange" StyleParam.AutoRange.convert
+            AutoRangeOptions |> DynObj.setOptionalProperty radialAxis "autorangeoptions"
+            RangeMode |> DynObj.setOptionalPropertyBy radialAxis "rangemode" StyleParam.RangeMode.convert
+            Range |> DynObj.setOptionalPropertyBy radialAxis "range" StyleParam.Range.convert
+            CategoryOrder |> DynObj.setOptionalPropertyBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
+            CategoryArray |> DynObj.setOptionalProperty radialAxis "categoryarray"
+            Angle |> DynObj.setOptionalProperty radialAxis "angle"
+            Side |> DynObj.setOptionalPropertyBy radialAxis "side" StyleParam.Direction.convert
+            Title |> DynObj.setOptionalProperty radialAxis "title"
+            HoverFormat |> DynObj.setOptionalProperty radialAxis "hoverformat"
+            UIRevision |> DynObj.setOptionalProperty radialAxis "uirevision"
+            Color |> DynObj.setOptionalProperty radialAxis "color"
+            ShowLine |> DynObj.setOptionalProperty radialAxis "showline"
+            LineColor |> DynObj.setOptionalProperty radialAxis "linecolor"
+            LineWidth |> DynObj.setOptionalProperty radialAxis "linewidth"
+            MaxAllowed |> DynObj.setOptionalProperty radialAxis "maxallowed"
+            MinAllowed |> DynObj.setOptionalProperty radialAxis "minallowed"
+            ShowGrid |> DynObj.setOptionalProperty radialAxis "showgrid"
+            GridColor |> DynObj.setOptionalProperty radialAxis "gridcolor"
+            GridDash |> DynObj.setOptionalPropertyBy radialAxis "griddash" StyleParam.DrawingStyle.convert
+            GridWidth |> DynObj.setOptionalProperty radialAxis "gridwidth"
+            TickMode |> DynObj.setOptionalPropertyBy radialAxis "tickmode" StyleParam.TickMode.convert
+            NTicks |> DynObj.setOptionalProperty radialAxis "nticks"
+            Tick0 |> DynObj.setOptionalProperty radialAxis "tick0"
+            DTick |> DynObj.setOptionalProperty radialAxis "dtick"
+            TickVals |> DynObj.setOptionalProperty radialAxis "tickvals"
+            TickText |> DynObj.setOptionalProperty radialAxis "ticktext"
+            Ticks |> DynObj.setOptionalPropertyBy radialAxis "ticks" StyleParam.TickOptions.convert
+            TickLen |> DynObj.setOptionalProperty radialAxis "ticklen"
+            TickWidth |> DynObj.setOptionalProperty radialAxis "tickwidth"
+            TickColor |> DynObj.setOptionalProperty radialAxis "tickcolor"
+            ShowTickLabels |> DynObj.setOptionalProperty radialAxis "showticklabels"
+            ShowTickPrefix |> DynObj.setOptionalPropertyBy radialAxis "showtickprefix" StyleParam.ShowTickOption.convert
+            TickPrefix |> DynObj.setOptionalProperty radialAxis "tickprefix"
+            ShowTickSuffix |> DynObj.setOptionalPropertyBy radialAxis "showticksuffix" StyleParam.ShowTickOption.convert
+            TickSuffix |> DynObj.setOptionalProperty radialAxis "ticksuffix"
+            ShowExponent |> DynObj.setOptionalPropertyBy radialAxis "showexponent" StyleParam.ShowExponent.convert
+            ExponentFormat |> DynObj.setOptionalPropertyBy radialAxis "exponentformat" StyleParam.ExponentFormat.convert
+            MinExponent |> DynObj.setOptionalProperty radialAxis "minexponent"
+            SeparateThousands |> DynObj.setOptionalProperty radialAxis "separatethousands"
+            TickFont |> DynObj.setOptionalProperty radialAxis "tickfont"
+            TickAngle |> DynObj.setOptionalProperty radialAxis "tickangle"
+            TickFormat |> DynObj.setOptionalProperty radialAxis "tickformat"
+            TickFormatStops |> DynObj.setOptionalProperty radialAxis "tickformatstops"
+            LabelAlias |> DynObj.setOptionalProperty radialAxis "labelalias"
+            Layer |> DynObj.setOptionalPropertyBy radialAxis "layer" StyleParam.Layer.convert
+            TickLabelStep |> DynObj.setOptionalProperty radialAxis "ticklabelstep"
+            Calendar |> DynObj.setOptionalPropertyBy radialAxis "calendar" StyleParam.Calendar.convert
 
             radialAxis

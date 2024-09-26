@@ -87,19 +87,18 @@ type Title() =
             // For colorbar titles
             [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side
         ) =
-        (fun (title: Title) ->
-
-            Text |> DynObj.setValueOpt title "text"
-            Font |> DynObj.setValueOpt title "font"
-            AutoMargin |> DynObj.setValueOpt title "automargin"
-            Pad |> DynObj.setValueOpt title "pad"
-            X |> DynObj.setValueOpt title "x"
-            XAnchor |> DynObj.setValueOptBy title "xanchor" StyleParam.XAnchorPosition.convert
-            XRef |> DynObj.setValueOpt title "xref"
-            Y |> DynObj.setValueOpt title "y"
-            YAnchor |> DynObj.setValueOptBy title "yanchor" StyleParam.YAnchorPosition.convert
-            YRef |> DynObj.setValueOpt title "yref"
-            Standoff |> DynObj.setValueOpt title "standoff"
-            Side |> DynObj.setValueOptBy title "side" StyleParam.Side.convert
-
-            title)
+        (fun (title: Title) ->  
+            title
+            |> DynObj.withOptionalProperty "text" Text
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "automargin" AutoMargin
+            |> DynObj.withOptionalProperty "pad" Pad
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.XAnchorPosition.convert
+            |> DynObj.withOptionalProperty "xref" XRef
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.YAnchorPosition.convert
+            |> DynObj.withOptionalProperty "yref" YRef
+            |> DynObj.withOptionalProperty "standoff" Standoff
+            |> DynObj.withOptionalPropertyBy "side" Side StyleParam.Side.convert
+        )
