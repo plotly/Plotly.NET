@@ -92,18 +92,18 @@ type Minor() =
         ) =
         (fun (minor: Minor) ->
 
-            DTick |> DynObj.setOptionalProperty minor "dtick"
-            GridColor |> DynObj.setOptionalProperty minor "gridcolor"
-            GridDash |> DynObj.setOptionalPropertyBy minor "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setOptionalProperty minor "gridwidth"
-            NTicks |> DynObj.setOptionalProperty minor "nticks"
-            ShowGrid |> DynObj.setOptionalProperty minor "showgrid"
-            Tick0 |> DynObj.setOptionalProperty minor "tick0"
-            TickColor |> DynObj.setOptionalProperty minor "tickcolor"
-            TickLen |> DynObj.setOptionalProperty minor "ticklen"
-            TickMode |> DynObj.setOptionalPropertyBy minor "tickmode" StyleParam.TickMode.convert
-            Ticks |> DynObj.setOptionalPropertyBy minor "ticks" StyleParam.TickOptions.convert
-            TickVals |> DynObj.setOptionalProperty minor "tickvals"
-            TickWidth |> DynObj.setOptionalProperty minor "tickwidth"
-
-            minor)
+            minor
+            |> DynObj.withOptionalProperty "dtick" DTick
+            |> DynObj.withOptionalProperty "gridcolor" GridColor
+            |> DynObj.withOptionalPropertyBy "griddash" GridDash StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty "gridwidth" GridWidth
+            |> DynObj.withOptionalProperty "nticks" NTicks
+            |> DynObj.withOptionalProperty "showgrid" ShowGrid
+            |> DynObj.withOptionalProperty "tick0" Tick0
+            |> DynObj.withOptionalProperty "tickcolor" TickColor
+            |> DynObj.withOptionalProperty "ticklen" TickLen
+            |> DynObj.withOptionalPropertyBy "tickmode" TickMode StyleParam.TickMode.convert
+            |> DynObj.withOptionalPropertyBy "ticks" Ticks StyleParam.TickOptions.convert
+            |> DynObj.withOptionalProperty "tickvals" TickVals
+            |> DynObj.withOptionalProperty "tickwidth" TickWidth
+        )

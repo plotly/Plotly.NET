@@ -57,11 +57,12 @@ type Hoverlabel() =
             [<Optional; DefaultParameterValue(null)>] ?Namelength: int
         ) =
         (fun (label: Hoverlabel) ->
-            BgColor |> DynObj.setOptionalProperty label "bgcolor"
-            BorderColor |> DynObj.setOptionalProperty label "bordercolor"
-            Font |> DynObj.setOptionalProperty label "font"
-            GroupTitleFont |> DynObj.setOptionalProperty label "grouptitlefont"
-            Align |> DynObj.setOptionalPropertyBy label "align" StyleParam.Align.convert
-            Namelength |> DynObj.setOptionalProperty label "namelength"
 
-            label)
+            label
+            |> DynObj.withOptionalProperty "bgcolor" BgColor
+            |> DynObj.withOptionalProperty "bordercolor" BorderColor
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "grouptitlefont" GroupTitleFont
+            |> DynObj.withOptionalPropertyBy "align" Align StyleParam.Align.convert
+            |> DynObj.withOptionalProperty "namelength" Namelength
+        )

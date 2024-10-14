@@ -86,17 +86,17 @@ type Selection() =
         ) =
         (fun (selection: Selection) ->
 
-            Line |> DynObj.setOptionalProperty selection "line"
-            Name |> DynObj.setOptionalProperty selection "name"
-            Opacity |> DynObj.setOptionalProperty selection "opacity"
-            Path |> DynObj.setOptionalProperty selection "path"
-            TemplateItemName |> DynObj.setOptionalProperty selection "templateitemname"
-            SelectionType |> DynObj.setOptionalPropertyBy selection "type" StyleParam.SelectionType.convert
-            X0 |> DynObj.setOptionalProperty selection "x0"
-            X1 |> DynObj.setOptionalProperty selection "x1"
-            Xref |> DynObj.setOptionalProperty selection "xref"
-            Y0 |> DynObj.setOptionalProperty selection "y0"
-            Y1 |> DynObj.setOptionalProperty selection "y1"
-            Yref |> DynObj.setOptionalProperty selection "yref"
-
-            selection)
+            selection
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "opacity" Opacity
+            |> DynObj.withOptionalProperty "path" Path
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalPropertyBy "type" SelectionType StyleParam.SelectionType.convert
+            |> DynObj.withOptionalProperty "x0" X0
+            |> DynObj.withOptionalProperty "x1" X1
+            |> DynObj.withOptionalProperty "xref" Xref
+            |> DynObj.withOptionalProperty "y0" Y0
+            |> DynObj.withOptionalProperty "y1" Y1
+            |> DynObj.withOptionalProperty "yref" Yref
+        )

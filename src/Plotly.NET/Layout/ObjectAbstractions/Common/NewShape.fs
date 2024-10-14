@@ -38,9 +38,7 @@ type NewShape() =
         let id =
             StyleParam.SubPlotId.Legend legendId
 
-        (fun (newShape: NewShape) ->
-            newShape.SetValue("legend", StyleParam.SubPlotId.convert id)
-            newShape)
+        (fun (newShape: NewShape) -> newShape |> DynObj.withProperty "legend" (StyleParam.SubPlotId.convert id))
 
     /// <summary>
     /// Returns a new NewShape object with the given styling.
@@ -130,19 +128,19 @@ type NewShape() =
         ) =
         (fun (newShape: NewShape) ->
 
-            DrawDirection |> DynObj.setOptionalPropertyBy newShape "drawdirection" StyleParam.DrawDirection.convert
-            FillColor |> DynObj.setOptionalProperty newShape "fillcolor"
-            FillRule |> DynObj.setOptionalPropertyBy newShape "fillrule" StyleParam.FillRule.convert
-            Layer |> DynObj.setOptionalPropertyBy newShape "layer" StyleParam.Layer.convert
-            ShowLegend |> DynObj.setOptionalProperty newShape "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy newShape "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty newShape "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty newShape "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty newShape "legendgrouptitle"
-            LegendWidth |> DynObj.setOptionalProperty newShape "legendwidth"
-            Line |> DynObj.setOptionalProperty newShape "line"
-            Name |> DynObj.setOptionalProperty newShape "name"
-            Opacity |> DynObj.setOptionalProperty newShape "opacity"
-            Visible |> DynObj.setOptionalPropertyBy newShape "visible" StyleParam.Visible.convert
-
-            newShape)
+            newShape
+            |> DynObj.withOptionalPropertyBy "drawdirection" DrawDirection StyleParam.DrawDirection.convert
+            |> DynObj.withOptionalProperty "fillcolor" FillColor
+            |> DynObj.withOptionalPropertyBy "fillrule" FillRule StyleParam.FillRule.convert
+            |> DynObj.withOptionalPropertyBy "layer" Layer StyleParam.Layer.convert
+            |> DynObj.withOptionalProperty "showlegend" ShowLegend
+            |> DynObj.withOptionalPropertyBy "legend" Legend StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty "legendrank" LegendRank
+            |> DynObj.withOptionalProperty "legendgroup" LegendGroup
+            |> DynObj.withOptionalProperty "legendgrouptitle" LegendGroupTitle
+            |> DynObj.withOptionalProperty "legendwidth" LegendWidth
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "opacity" Opacity
+            |> DynObj.withOptionalPropertyBy "visible" Visible StyleParam.Visible.convert
+        )

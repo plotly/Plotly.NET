@@ -72,14 +72,13 @@ type ShapeLabel() =
 
         (fun (shapeLabel: ShapeLabel) ->
         
-            Font |> DynObj.setOptionalProperty shapeLabel "font" 
-            Padding |> DynObj.setOptionalProperty shapeLabel "padding"
-            Text |> DynObj.setOptionalProperty shapeLabel "text"
-            TextAngle |> DynObj.setOptionalPropertyBy shapeLabel "textangle" StyleParam.TextAngle.convert
-            TextPosition |> DynObj.setOptionalPropertyBy shapeLabel "textposition" StyleParam.TextPosition.convert
-            TextTemplate |> DynObj.setOptionalProperty shapeLabel "texttemplate"
-            XAnchor |> DynObj.setOptionalPropertyBy shapeLabel "xanchor" StyleParam.XAnchorPosition.convert
-            YAnchor |> DynObj.setOptionalPropertyBy shapeLabel "yanchor" StyleParam.YAnchorPosition.convert
-
             shapeLabel
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "padding" Padding
+            |> DynObj.withOptionalProperty "text" Text
+            |> DynObj.withOptionalPropertyBy "textangle" TextAngle StyleParam.TextAngle.convert
+            |> DynObj.withOptionalPropertyBy "textposition" TextPosition StyleParam.TextPosition.convert
+            |> DynObj.withOptionalProperty "texttemplate" TextTemplate
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.XAnchorPosition.convert
+            |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.YAnchorPosition.convert
         )

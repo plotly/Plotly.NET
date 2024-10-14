@@ -22,7 +22,7 @@ type ActiveShape() =
         ) =
         (fun (activeShape: ActiveShape) ->
 
-            FillColor |> DynObj.setOptionalProperty activeShape "fillcolor"
-            Opacity |> DynObj.setOptionalProperty activeShape "opacity"
-
-            activeShape)
+            activeShape
+            |> DynObj.withOptionalProperty "fillcolor" FillColor
+            |> DynObj.withOptionalProperty "opacity" Opacity
+        )

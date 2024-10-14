@@ -50,10 +50,12 @@ type SliderCurrentValue() =
             if autoValueIsProvided then
                 printf "The value '%s' is not supported by CurrentValue" (StyleParam.XAnchorPosition.Auto |> string)
 
-            Font |> DynObj.setOptionalProperty currentValue "font"
-            Offset |> DynObj.setOptionalProperty currentValue "offset"
-            Prefix |> DynObj.setOptionalProperty currentValue "prefix"
-            Suffix |> DynObj.setOptionalProperty currentValue "suffix"
-            Visible |> DynObj.setOptionalProperty currentValue "visible"
-            XAnchor |> DynObj.setOptionalPropertyBy currentValue "xanchor" StyleParam.XAnchorPosition.convert
-            currentValue)
+            currentValue
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "offset" Offset
+            |> DynObj.withOptionalProperty "prefix" Prefix
+            |> DynObj.withOptionalProperty "suffix" Suffix
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.XAnchorPosition.convert
+        )
+

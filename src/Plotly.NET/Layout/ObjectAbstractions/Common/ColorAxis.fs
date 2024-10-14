@@ -72,14 +72,14 @@ type ColorAxis() =
         ) =
         fun (ca: ColorAxis) ->
 
-            AutoColorScale |> DynObj.setOptionalProperty ca "autocolorscale"
-            CAuto |> DynObj.setOptionalProperty ca "cauto"
-            CMin |> DynObj.setOptionalProperty ca "cmin"
-            CMid |> DynObj.setOptionalProperty ca "cmid"
-            CMax |> DynObj.setOptionalProperty ca "cmax"
-            ColorBar |> DynObj.setOptionalProperty ca "colorbar"
-            ColorScale |> DynObj.setOptionalPropertyBy ca "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty ca "showscale"
-            ReverseScale |> DynObj.setOptionalProperty ca "reversescale"
-
             ca
+            |> DynObj.withOptionalProperty "autocolorscale" AutoColorScale
+            |> DynObj.withOptionalProperty "cauto" CAuto
+            |> DynObj.withOptionalProperty "cmin" CMin
+            |> DynObj.withOptionalProperty "cmid" CMid
+            |> DynObj.withOptionalProperty "cmax" CMax
+            |> DynObj.withOptionalProperty "colorbar" ColorBar
+            |> DynObj.withOptionalPropertyBy "colorscale" ColorScale StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty "showscale" ShowScale
+            |> DynObj.withOptionalProperty "reversescale" ReverseScale
+

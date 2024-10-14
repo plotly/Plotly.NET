@@ -22,7 +22,7 @@ type ActiveSelection() =
         ) =
         (fun (activeSelection: ActiveSelection) ->
 
-            FillColor |> DynObj.setOptionalProperty activeSelection "fillcolor"
-            Opacity |> DynObj.setOptionalProperty activeSelection "opacity"
-
-            activeSelection)
+            activeSelection
+            |> DynObj.withOptionalProperty "fillcolor" FillColor
+            |> DynObj.withOptionalProperty "opacity" Opacity
+        )

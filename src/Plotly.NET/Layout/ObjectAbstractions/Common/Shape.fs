@@ -39,9 +39,7 @@ type Shape() =
         let id =
             StyleParam.SubPlotId.Legend legendId
 
-        (fun (shape: Shape) ->
-            shape.SetValue("legend", StyleParam.SubPlotId.convert id)
-            shape)
+        (fun (shape: Shape) -> shape |> DynObj.withProperty "legend" (StyleParam.SubPlotId.convert id))
 
     /// <summary>
     /// Returns a new Shape object with the given styling.
@@ -201,33 +199,33 @@ type Shape() =
         ) =
         (fun (shape: Shape) ->
 
-            Editable |> DynObj.setOptionalProperty shape "editable"
-            FillColor |> DynObj.setOptionalProperty shape "fillcolor"
-            FillRule |> DynObj.setOptionalPropertyBy shape "fillrule" StyleParam.FillRule.convert
-            Label |> DynObj.setOptionalProperty shape "label"
-            ShowLegend |> DynObj.setOptionalProperty shape "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy shape "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty shape "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty shape "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty shape "legendgrouptitle"
-            LegendWidth |> DynObj.setOptionalProperty shape "legendwidth"
-            Layer |> DynObj.setOptionalPropertyBy shape "layer" StyleParam.Layer.convert
-            Line |> DynObj.setOptionalProperty shape "line"
-            Name |> DynObj.setOptionalProperty shape "name"
-            Opacity |> DynObj.setOptionalProperty shape "opacity"
-            Path |> DynObj.setOptionalProperty shape "path"
-            TemplateItemName |> DynObj.setOptionalProperty shape "templateitemname"
-            ShapeType |> DynObj.setOptionalPropertyBy shape "type" StyleParam.ShapeType.convert
-            Visible |> DynObj.setOptionalProperty shape "visible"
-            X0 |> DynObj.setOptionalProperty shape "x0"
-            X1 |> DynObj.setOptionalProperty shape "x1"
-            XAnchor |> DynObj.setOptionalPropertyBy shape "xanchor" StyleParam.LinearAxisId.convert
-            Xref |> DynObj.setOptionalProperty shape "xref"
-            XSizeMode |> DynObj.setOptionalPropertyBy shape "xsizemode" StyleParam.ShapeSizeMode.convert
-            Y0 |> DynObj.setOptionalProperty shape "y0"
-            Y1 |> DynObj.setOptionalProperty shape "y1"
-            YAnchor |> DynObj.setOptionalPropertyBy shape "yanchor" StyleParam.LinearAxisId.convert
-            Yref |> DynObj.setOptionalProperty shape "yref"
-            YSizeMode |> DynObj.setOptionalPropertyBy shape "ysizemode" StyleParam.ShapeSizeMode.convert
-
-            shape)
+            shape
+            |> DynObj.withProperty "editable" Editable
+            |> DynObj.withProperty "fillcolor" FillColor
+            |> DynObj.withOptionalPropertyBy "fillrule" FillRule StyleParam.FillRule.convert
+            |> DynObj.withProperty "label" Label
+            |> DynObj.withProperty "showlegend" ShowLegend
+            |> DynObj.withOptionalPropertyBy "legend" Legend StyleParam.SubPlotId.convert
+            |> DynObj.withProperty "legendrank" LegendRank
+            |> DynObj.withProperty "legendgroup" LegendGroup
+            |> DynObj.withProperty "legendgrouptitle" LegendGroupTitle
+            |> DynObj.withProperty "legendwidth" LegendWidth
+            |> DynObj.withOptionalPropertyBy "layer" Layer StyleParam.Layer.convert
+            |> DynObj.withProperty "line" Line
+            |> DynObj.withProperty "name" Name
+            |> DynObj.withProperty "opacity" Opacity
+            |> DynObj.withProperty "path" Path
+            |> DynObj.withProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalPropertyBy "type" ShapeType StyleParam.ShapeType.convert
+            |> DynObj.withProperty "visible" Visible
+            |> DynObj.withProperty "x0" X0
+            |> DynObj.withProperty "x1" X1
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.LinearAxisId.convert
+            |> DynObj.withProperty "xref" Xref
+            |> DynObj.withOptionalPropertyBy "xsizemode" XSizeMode StyleParam.ShapeSizeMode.convert
+            |> DynObj.withProperty "y0" Y0
+            |> DynObj.withProperty "y1" Y1
+            |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.LinearAxisId.convert
+            |> DynObj.withProperty "yref" Yref
+            |> DynObj.withOptionalPropertyBy "ysizemode" YSizeMode StyleParam.ShapeSizeMode.convert)
+        )

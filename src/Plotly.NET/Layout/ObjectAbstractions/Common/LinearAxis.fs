@@ -1007,110 +1007,109 @@ type LinearAxis() =
         ) =
         (fun (axis: LinearAxis) ->
 
-            Visible |> DynObj.setOptionalProperty axis "visible"
-            Color |> DynObj.setOptionalProperty axis "color"
-            Title |> DynObj.setOptionalProperty axis "title"
-            AxisType |> DynObj.setOptionalPropertyBy axis "type" StyleParam.AxisType.convert
-            AutoTypeNumbers |> DynObj.setOptionalPropertyBy axis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            AutoRange |> DynObj.setOptionalPropertyBy axis "autorange" StyleParam.AutoRange.convert
-            AutoRangeOptions |> DynObj.setOptionalProperty axis "autorangeoptions"
-            AutoShift |> DynObj.setOptionalProperty axis "autoshift"
-            RangeMode |> DynObj.setOptionalPropertyBy axis "rangemode" StyleParam.RangeMode.convert
-            Range |> DynObj.setOptionalPropertyBy axis "range" StyleParam.Range.convert
-            FixedRange |> DynObj.setOptionalProperty axis "fixedrange"
-            ScaleAnchor |> DynObj.setOptionalPropertyBy axis "scaleanchor" StyleParam.ScaleAnchor.convert
-            ScaleRatio |> DynObj.setOptionalProperty axis "scaleratio"
-            Constrain |> DynObj.setOptionalPropertyBy axis "constrain" StyleParam.AxisConstraint.convert
-            ConstrainToward |> DynObj.setOptionalPropertyBy axis "constraintoward" StyleParam.AxisConstraintDirection.convert
-            Matches |> DynObj.setOptionalPropertyBy axis "matches" StyleParam.LinearAxisId.convert
-            MaxAllowed |> DynObj.setOptionalProperty axis "maxallowed"
-            MinAllowed |> DynObj.setOptionalProperty axis "minallowed"
-            Rangebreaks |> DynObj.setOptionalProperty axis "rangebreaks"
-            TickMode |> DynObj.setOptionalPropertyBy axis "tickmode" StyleParam.TickMode.convert
-            NTicks |> DynObj.setOptionalProperty axis "nticks"
-            Tick0 |> DynObj.setOptionalProperty axis "tick0"
-            DTick |> DynObj.setOptionalProperty axis "dtick"
-            TickVals |> DynObj.setOptionalProperty axis "tickvals"
-            TickText |> DynObj.setOptionalProperty axis "ticktext"
-            Ticks |> DynObj.setOptionalPropertyBy axis "ticks" StyleParam.TickOptions.convert
-            TicksOn |> DynObj.setOptionalPropertyBy axis "tickson" StyleParam.CategoryTickAnchor.convert
-            TickLabelMode |> DynObj.setOptionalPropertyBy axis "ticklabelmode" StyleParam.TickLabelMode.convert
-            TickLabelPosition |> DynObj.setOptionalPropertyBy axis "ticklabelposition" StyleParam.TickLabelPosition.convert
-            TickLabelStep |> DynObj.setOptionalProperty axis "ticklabelstep"
-            TickLabelOverflow |> DynObj.setOptionalPropertyBy axis "ticklabeloverflow" StyleParam.TickLabelOverflow.convert
-            Mirror |> DynObj.setOptionalPropertyBy axis "mirror" StyleParam.Mirror.convert
-            TickLen |> DynObj.setOptionalProperty axis "ticklen"
-            TickWidth |> DynObj.setOptionalProperty axis "tickwidth"
-            TickColor |> DynObj.setOptionalProperty axis "tickcolor"
-            ShowTickLabels |> DynObj.setOptionalProperty axis "showticklabels"
-            AutoMargin |> DynObj.setOptionalPropertyBy axis "automargin" StyleParam.TickAutoMargin.convert
-            ShowSpikes |> DynObj.setOptionalProperty axis "showspikes"
-            SpikeColor |> DynObj.setOptionalProperty axis "spikecolor"
-            SpikeThickness |> DynObj.setOptionalProperty axis "spikethickness"
-            SpikeDash |> DynObj.setOptionalPropertyBy axis "spikedash" StyleParam.DrawingStyle.convert
-            SpikeMode |> DynObj.setOptionalPropertyBy axis "spikemode" StyleParam.SpikeMode.convert
-            SpikeSnap |> DynObj.setOptionalPropertyBy axis "spikesnap" StyleParam.SpikeSnap.convert
-            TickFont |> DynObj.setOptionalProperty axis "tickfont"
-            TickAngle |> DynObj.setOptionalProperty axis "tickangle"
-            ShowTickPrefix |> DynObj.setOptionalPropertyBy axis "showtickprefix" StyleParam.ShowTickOption.convert
-            TickPrefix |> DynObj.setOptionalProperty axis "tickprefix"
-            ShowTickSuffix |> DynObj.setOptionalPropertyBy axis "showticksuffix" StyleParam.ShowTickOption.convert
-            TickSuffix |> DynObj.setOptionalProperty axis "ticksuffix"
-            ShowExponent |> DynObj.setOptionalPropertyBy axis "showexponent" StyleParam.ShowExponent.convert
-            ExponentFormat |> DynObj.setOptionalPropertyBy axis "exponentformat" StyleParam.ExponentFormat.convert
-            MinExponent |> DynObj.setOptionalProperty axis "minexponent"
-            Minor |> DynObj.setOptionalProperty axis "minor"
-            SeparateThousands |> DynObj.setOptionalProperty axis "separatethousands"
-            TickFormat |> DynObj.setOptionalProperty axis "tickformat"
-            TickFormatStops |> DynObj.setOptionalProperty axis "tickformatstops"
-            HoverFormat |> DynObj.setOptionalProperty axis "hoverformat"
-            InsideRange |> DynObj.setOptionalPropertyBy axis "insiderange" StyleParam.Range.convert
-            ShowLine |> DynObj.setOptionalProperty axis "showline"
-            LineColor |> DynObj.setOptionalProperty axis "linecolor"
-            LineWidth |> DynObj.setOptionalProperty axis "linewidth"
-            ShowGrid |> DynObj.setOptionalProperty axis "showgrid"
-            GridColor |> DynObj.setOptionalProperty axis "gridcolor"
-            GridDash |> DynObj.setOptionalPropertyBy axis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setOptionalProperty axis "gridwidth"
-            ZeroLine |> DynObj.setOptionalProperty axis "zeroline"
-            ZeroLineColor |> DynObj.setOptionalProperty axis "zerolinecolor"
-            ZeroLineWidth |> DynObj.setOptionalProperty axis "zerolinewidth"
-            Shift |> DynObj.setOptionalProperty axis "shift"
-            ShowDividers |> DynObj.setOptionalProperty axis "showdividers"
-            DividerColor |> DynObj.setOptionalProperty axis "dividercolor"
-            DividerWidth |> DynObj.setOptionalProperty axis "dividerwidth"
-            Anchor |> DynObj.setOptionalPropertyBy axis "anchor" StyleParam.LinearAxisId.convert
-            Side |> DynObj.setOptionalPropertyBy axis "side" StyleParam.Side.convert
-            Overlaying |> DynObj.setOptionalPropertyBy axis "overlaying" StyleParam.LinearAxisId.convert
-            LabelAlias |> DynObj.setOptionalProperty axis "labelalias"
-            Layer |> DynObj.setOptionalPropertyBy axis "layer" StyleParam.Layer.convert
-            Domain |> DynObj.setOptionalPropertyBy axis "domain" StyleParam.Range.convert
-            Position |> DynObj.setOptionalProperty axis "position"
-            CategoryOrder |> DynObj.setOptionalPropertyBy axis "categoryorder" StyleParam.CategoryOrder.convert
-            CategoryArray |> DynObj.setOptionalProperty axis "categoryarray"
-            UIRevision |> DynObj.setOptionalProperty axis "uirevision"
-            RangeSlider |> DynObj.setOptionalProperty axis "rangeslider"
-            RangeSelector |> DynObj.setOptionalProperty axis "rangeselector"
-            Calendar |> DynObj.setOptionalPropertyBy axis "calendar" StyleParam.Calendar.convert
-            ArrayDTick |> DynObj.setOptionalProperty axis "arraydtick"
-            ArrayTick0 |> DynObj.setOptionalProperty axis "arraytick0"
-            CheaterType |> DynObj.setOptionalPropertyBy axis "cheatertype" StyleParam.CheaterType.convert
-            EndLine |> DynObj.setOptionalProperty axis "endline"
-            EndLineColor |> DynObj.setOptionalProperty axis "endlinecolor"
-            EndLineWidth |> DynObj.setOptionalProperty axis "endlinewidth"
-            LabelPadding |> DynObj.setOptionalProperty axis "labelpadding"
-            LabelPrefix |> DynObj.setOptionalProperty axis "labelprefix"
-            LabelSuffix |> DynObj.setOptionalProperty axis "labelsuffix"
-            MinorGridColor |> DynObj.setOptionalProperty axis "minorgridcolor"
-            MinorGridDash |> DynObj.setOptionalPropertyBy axis "minorgriddash" StyleParam.DrawingStyle.convert
-            MinorGridCount |> DynObj.setOptionalProperty axis "minorgridcount"
-            MinorGridWidth |> DynObj.setOptionalProperty axis "minorgridwidth"
-            Smoothing |> DynObj.setOptionalProperty axis "smoothing"
-            StartLine |> DynObj.setOptionalProperty axis "startline"
-            StartLineColor |> DynObj.setOptionalProperty axis "startlinecolor"
-            StartLineWidth |> DynObj.setOptionalProperty axis "startlinewidth"
-            BackgroundColor |> DynObj.setOptionalProperty axis "backgroundcolor"
-            ShowBackground |> DynObj.setOptionalProperty axis "showbackground"
-
-
-            axis)
+            axis
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "title" Title
+            |> DynObj.withOptionalPropertyBy "type" AxisType StyleParam.AxisType.convert
+            |> DynObj.withOptionalPropertyBy "autotypenumbers" AutoTypeNumbers StyleParam.AutoTypeNumbers.convert
+            |> DynObj.withOptionalPropertyBy "autorange" AutoRange StyleParam.AutoRange.convert
+            |> DynObj.withOptionalProperty "autorangeoptions" AutoRangeOptions
+            |> DynObj.withOptionalProperty "autoshift" AutoShift
+            |> DynObj.withOptionalPropertyBy "rangemode" RangeMode StyleParam.RangeMode.convert
+            |> DynObj.withOptionalPropertyBy "range" Range StyleParam.Range.convert
+            |> DynObj.withOptionalProperty "fixedrange" FixedRange
+            |> DynObj.withOptionalPropertyBy "scaleanchor" ScaleAnchor StyleParam.ScaleAnchor.convert
+            |> DynObj.withOptionalProperty "scaleratio" ScaleRatio
+            |> DynObj.withOptionalPropertyBy "constrain" Constrain StyleParam.AxisConstraint.convert
+            |> DynObj.withOptionalPropertyBy "constraintoward" ConstrainToward StyleParam.AxisConstraintDirection.convert
+            |> DynObj.withOptionalPropertyBy "matches" Matches StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalProperty "maxallowed" MaxAllowed
+            |> DynObj.withOptionalProperty "minallowed" MinAllowed
+            |> DynObj.withOptionalProperty "rangebreaks" Rangebreaks
+            |> DynObj.withOptionalPropertyBy "tickmode" TickMode StyleParam.TickMode.convert
+            |> DynObj.withOptionalProperty "nticks" NTicks
+            |> DynObj.withOptionalProperty "tick0" Tick0
+            |> DynObj.withOptionalProperty "dtick" DTick
+            |> DynObj.withOptionalProperty "tickvals" TickVals
+            |> DynObj.withOptionalProperty "ticktext" TickText
+            |> DynObj.withOptionalPropertyBy "ticks" Ticks StyleParam.TickOptions.convert
+            |> DynObj.withOptionalPropertyBy "tickson" TicksOn StyleParam.CategoryTickAnchor.convert
+            |> DynObj.withOptionalPropertyBy "ticklabelmode" TickLabelMode StyleParam.TickLabelMode.convert
+            |> DynObj.withOptionalPropertyBy "ticklabelposition" TickLabelPosition StyleParam.TickLabelPosition.convert
+            |> DynObj.withOptionalProperty "ticklabelstep" TickLabelStep
+            |> DynObj.withOptionalPropertyBy "ticklabeloverflow" TickLabelOverflow StyleParam.TickLabelOverflow.convert
+            |> DynObj.withOptionalPropertyBy "mirror" Mirror StyleParam.Mirror.convert
+            |> DynObj.withOptionalProperty "ticklen" TickLen
+            |> DynObj.withOptionalProperty "tickwidth" TickWidth
+            |> DynObj.withOptionalProperty "tickcolor" TickColor
+            |> DynObj.withOptionalProperty "showticklabels" ShowTickLabels
+            |> DynObj.withOptionalPropertyBy "automargin" AutoMargin StyleParam.TickAutoMargin.convert
+            |> DynObj.withOptionalProperty "showspikes" ShowSpikes
+            |> DynObj.withOptionalProperty "spikecolor" SpikeColor
+            |> DynObj.withOptionalProperty "spikethickness" SpikeThickness
+            |> DynObj.withOptionalPropertyBy "spikedash" SpikeDash StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalPropertyBy "spikemode" SpikeMode StyleParam.SpikeMode.convert
+            |> DynObj.withOptionalPropertyBy "spikesnap" SpikeSnap StyleParam.SpikeSnap.convert
+            |> DynObj.withOptionalProperty "tickfont" TickFont
+            |> DynObj.withOptionalProperty "tickangle" TickAngle
+            |> DynObj.withOptionalPropertyBy "showtickprefix" ShowTickPrefix StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty "tickprefix" TickPrefix
+            |> DynObj.withOptionalPropertyBy "showticksuffix" ShowTickSuffix StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty "ticksuffix" TickSuffix
+            |> DynObj.withOptionalPropertyBy "showexponent" ShowExponent StyleParam.ShowExponent.convert
+            |> DynObj.withOptionalPropertyBy "exponentformat" ExponentFormat StyleParam.ExponentFormat.convert
+            |> DynObj.withOptionalProperty "minexponent" MinExponent
+            |> DynObj.withOptionalProperty "minor" Minor
+            |> DynObj.withOptionalProperty "separatethousands" SeparateThousands
+            |> DynObj.withOptionalProperty "tickformat" TickFormat
+            |> DynObj.withOptionalProperty "tickformatstops" TickFormatStops
+            |> DynObj.withOptionalProperty "hoverformat" HoverFormat
+            |> DynObj.withOptionalPropertyBy "insiderange" InsideRange StyleParam.Range.convert
+            |> DynObj.withOptionalProperty "showline" ShowLine
+            |> DynObj.withOptionalProperty "linecolor" LineColor
+            |> DynObj.withOptionalProperty "linewidth" LineWidth
+            |> DynObj.withOptionalProperty "showgrid" ShowGrid
+            |> DynObj.withOptionalProperty "gridcolor" GridColor
+            |> DynObj.withOptionalPropertyBy "griddash" GridDash StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty "gridwidth" GridWidth
+            |> DynObj.withOptionalProperty "zeroline" ZeroLine
+            |> DynObj.withOptionalProperty "zerolinecolor" ZeroLineColor
+            |> DynObj.withOptionalProperty "zerolinewidth" ZeroLineWidth
+            |> DynObj.withOptionalProperty "shift" Shift
+            |> DynObj.withOptionalProperty "showdividers" ShowDividers
+            |> DynObj.withOptionalProperty "dividercolor" DividerColor
+            |> DynObj.withOptionalProperty "dividerwidth" DividerWidth
+            |> DynObj.withOptionalPropertyBy "anchor" Anchor StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalPropertyBy "side" Side StyleParam.Side.convert
+            |> DynObj.withOptionalPropertyBy "overlaying" Overlaying StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalProperty "labelalias" LabelAlias
+            |> DynObj.withOptionalPropertyBy "layer" Layer StyleParam.Layer.convert
+            |> DynObj.withOptionalPropertyBy "domain" Domain StyleParam.Range.convert
+            |> DynObj.withOptionalProperty "position" Position
+            |> DynObj.withOptionalPropertyBy "categoryorder" CategoryOrder StyleParam.CategoryOrder.convert
+            |> DynObj.withOptionalProperty "categoryarray" CategoryArray
+            |> DynObj.withOptionalProperty "uirevision" UIRevision
+            |> DynObj.withOptionalProperty "rangeslider" RangeSlider
+            |> DynObj.withOptionalProperty "rangeselector" RangeSelector
+            |> DynObj.withOptionalPropertyBy "calendar" Calendar StyleParam.Calendar.convert
+            |> DynObj.withOptionalProperty "arraydtick" ArrayDTick
+            |> DynObj.withOptionalProperty "arraytick0" ArrayTick0
+            |> DynObj.withOptionalPropertyBy "cheatertype" CheaterType StyleParam.CheaterType.convert
+            |> DynObj.withOptionalProperty "endline" EndLine
+            |> DynObj.withOptionalProperty "endlinecolor" EndLineColor
+            |> DynObj.withOptionalProperty "endlinewidth" EndLineWidth
+            |> DynObj.withOptionalProperty "labelpadding" LabelPadding
+            |> DynObj.withOptionalProperty "labelprefix" LabelPrefix
+            |> DynObj.withOptionalProperty "labelsuffix" LabelSuffix
+            |> DynObj.withOptionalProperty "minorgridcolor" MinorGridColor
+            |> DynObj.withOptionalPropertyBy "minorgriddash" MinorGridDash StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty "minorgridcount" MinorGridCount
+            |> DynObj.withOptionalProperty "minorgridwidth" MinorGridWidth
+            |> DynObj.withOptionalProperty "smoothing" Smoothing
+            |> DynObj.withOptionalProperty "startline" StartLine
+            |> DynObj.withOptionalProperty "startlinecolor" StartLineColor
+            |> DynObj.withOptionalProperty "startlinewidth" StartLineWidth
+            |> DynObj.withOptionalProperty "backgroundcolor" BackgroundColor
+            |> DynObj.withOptionalProperty "showbackground" ShowBackground
+        )

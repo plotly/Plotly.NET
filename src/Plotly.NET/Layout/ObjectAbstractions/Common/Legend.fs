@@ -151,32 +151,31 @@ type Legend() =
             [<Optional; DefaultParameterValue(null)>] ?YRef: string
         ) =
         (fun (legend: Legend) ->
-            BGColor |> DynObj.setOptionalProperty legend "bgcolor"
-            BorderColor |> DynObj.setOptionalProperty legend "bordercolor"
-            BorderWidth |> DynObj.setOptionalProperty legend "borderwidth"
-            EntryWidth |> DynObj.setOptionalProperty legend "entrywidth"
-            EntryWidthMode |> DynObj.setOptionalPropertyBy legend "entrywidthmode" StyleParam.EntryWidthMode.convert
-            Font |> DynObj.setOptionalProperty legend "font"
-            GroupClick |> DynObj.setOptionalPropertyBy legend "groupclick" StyleParam.TraceGroupClickOptions.convert
-            GroupTitleFont |> DynObj.setOptionalProperty legend "grouptitlefont"
-            ItemClick |> DynObj.setOptionalPropertyBy legend "itemclick" StyleParam.TraceItemClickOptions.convert
-            ItemDoubleClick |> DynObj.setOptionalPropertyBy legend "itemdoubleclick" StyleParam.TraceItemClickOptions.convert
-            ItemSizing |> DynObj.setOptionalPropertyBy legend "itemsizing" StyleParam.TraceItemSizing.convert
-            ItemWidth |> DynObj.setOptionalProperty legend "itemwidth"
-            Orientation |> DynObj.setOptionalPropertyBy legend "orientation" StyleParam.Orientation.convert
-            Title |> DynObj.setOptionalProperty legend "title"
-            TraceGroupGap |> DynObj.setOptionalProperty legend "tracegroupgap"
-            TraceOrder |> DynObj.setOptionalPropertyBy legend "traceorder" StyleParam.TraceOrder.convert
-            UIRevision |> DynObj.setOptionalProperty legend "uirevision"
-            VerticalAlign |> DynObj.setOptionalPropertyBy legend "valign" StyleParam.VerticalAlign.convert
-            Visible |> DynObj.setOptionalProperty legend "visible"
-            X |> DynObj.setOptionalProperty legend "x"
-            XAnchor |> DynObj.setOptionalPropertyBy legend "xanchor" StyleParam.XAnchorPosition.convert
-            XRef |> DynObj.setOptionalProperty legend "xref"
-            Y |> DynObj.setOptionalProperty legend "y"
-            YAnchor |> DynObj.setOptionalPropertyBy legend "yanchor" StyleParam.YAnchorPosition.convert
-            YRef |> DynObj.setOptionalProperty legend "yref"
-
-
-
-            legend)
+            
+            legend
+            |> DynObj.withOptionalProperty "bgcolor" BGColor
+            |> DynObj.withOptionalProperty "bordercolor" BorderColor
+            |> DynObj.withOptionalProperty "borderwidth" BorderWidth
+            |> DynObj.withOptionalProperty "entrywidth" EntryWidth
+            |> DynObj.withOptionalPropertyBy "entrywidthmode" EntryWidthMode StyleParam.EntryWidthMode.convert
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalPropertyBy "groupclick" GroupClick StyleParam.TraceGroupClickOptions.convert
+            |> DynObj.withOptionalProperty "grouptitlefont" GroupTitleFont
+            |> DynObj.withOptionalPropertyBy "itemclick" ItemClick StyleParam.TraceItemClickOptions.convert
+            |> DynObj.withOptionalPropertyBy "itemdoubleclick" ItemDoubleClick StyleParam.TraceItemClickOptions.convert
+            |> DynObj.withOptionalPropertyBy "itemsizing" ItemSizing StyleParam.TraceItemSizing.convert
+            |> DynObj.withOptionalProperty "itemwidth" ItemWidth
+            |> DynObj.withOptionalPropertyBy "orientation" Orientation StyleParam.Orientation.convert
+            |> DynObj.withOptionalProperty "title" Title
+            |> DynObj.withOptionalProperty "tracegroupgap" TraceGroupGap
+            |> DynObj.withOptionalPropertyBy "traceorder" TraceOrder StyleParam.TraceOrder.convert
+            |> DynObj.withOptionalProperty "uirevision" UIRevision
+            |> DynObj.withOptionalPropertyBy "valign" VerticalAlign StyleParam.VerticalAlign.convert
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.XAnchorPosition.convert
+            |> DynObj.withOptionalProperty "xref" XRef
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.YAnchorPosition.convert
+            |> DynObj.withOptionalProperty "yref" YRef
+        )

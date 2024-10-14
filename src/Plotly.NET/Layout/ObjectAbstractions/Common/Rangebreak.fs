@@ -60,12 +60,13 @@ type Rangebreak() =
             [<Optional; DefaultParameterValue(null)>] ?TemplateItemName: string
         ) =
         (fun (rangebreak: Rangebreak) ->
-            Enabled |> DynObj.setOptionalProperty rangebreak "enabled"
-            Bounds |> DynObj.setOptionalPropertyBy rangebreak "bounds" (fun (a, b) -> [| a; b |])
-            Pattern |> DynObj.setOptionalPropertyBy rangebreak "pattern" StyleParam.RangebreakPattern.convert
-            Values |> DynObj.setOptionalProperty rangebreak "values"
-            DValue |> DynObj.setOptionalProperty rangebreak "dvalue"
-            Name |> DynObj.setOptionalProperty rangebreak "name"
-            TemplateItemName |> DynObj.setOptionalProperty rangebreak "templateitemname"
 
-            rangebreak)
+            rangebreak
+            |> DynObj.withOptionalProperty "enabled" Enabled
+            |> DynObj.withOptionalPropertyBy "bounds" Bounds (fun (a, b) -> [| a; b |])
+            |> DynObj.withOptionalPropertyBy "pattern" Pattern StyleParam.RangebreakPattern.convert
+            |> DynObj.withOptionalProperty "values" Values
+            |> DynObj.withOptionalProperty "dvalue" DValue
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+        )
