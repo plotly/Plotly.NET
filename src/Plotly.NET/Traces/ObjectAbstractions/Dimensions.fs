@@ -83,24 +83,22 @@ type Dimension() =
             [<Optional; DefaultParameterValue(null)>] ?AxisMatches: bool,
             [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType
         ) =
-        (fun (dims: Dimension) ->
+        fun (dims: Dimension) ->
 
             let axis =
                 LinearAxis.init (?AxisType = AxisType)
+                |> DynObj.setOptionalProperty "matches" AxisMatches
 
-            AxisMatches |> DynObj.setOptionalProperty axis "matches"
-
-            Label |> DynObj.setOptionalProperty dims "label"
-            Name |> DynObj.setOptionalProperty dims "name"
-            TemplateItemName |> DynObj.setOptionalProperty dims "templateitemname"
-            Values |> DynObj.setOptionalProperty dims "values"
-            Visible |> DynObj.setOptionalProperty dims "visible"
-            ConstraintRange |> DynObj.setOptionalPropertyBy dims "constraintrange" StyleParam.Range.convert
-            MultiSelect |> DynObj.setOptionalProperty dims "multiselect"
-            Range |> DynObj.setOptionalPropertyBy dims "range" StyleParam.Range.convert
-            TickFormat |> DynObj.setOptionalPropertyBy dims "tickformat" StyleParam.TickMode.convert
-            TickText |> DynObj.setOptionalProperty dims "ticktext"
-            Tickvals |> DynObj.setOptionalProperty dims "tickvals"
-            axis |> DynObj.withProperty dims "axis"
-
-            dims)
+            dims
+            |> DynObj.withOptionalProperty "label" Label
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalProperty "values" Values
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalPropertyBy "constraintrange" ConstraintRange StyleParam.Range.convert
+            |> DynObj.withOptionalProperty "multiselect" MultiSelect
+            |> DynObj.withOptionalPropertyBy "range" Range StyleParam.Range.convert
+            |> DynObj.withOptionalPropertyBy "tickformat" TickFormat StyleParam.TickMode.convert
+            |> DynObj.withOptionalProperty "ticktext" TickText
+            |> DynObj.withOptionalProperty "tickvals" Tickvals
+            |> DynObj.withProperty "axis" axis

@@ -38,7 +38,7 @@ type Box() =
             [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float
         ) =
-        (fun (box: Box) ->
+        fun (box: Box) ->
 
             let line =
                 if LineColor.IsSome || LineWidth.IsSome then
@@ -46,10 +46,8 @@ type Box() =
                 else
                     None
 
-            Visible |> DynObj.setOptionalProperty box "visible"
-            Width |> DynObj.setOptionalProperty box "width"
-            FillColor |> DynObj.setOptionalProperty box "fillcolor"
-            line |> DynObj.setOptionalProperty box "line"
-
-            // out ->
-            box)
+            box
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalProperty "width" Width
+            |> DynObj.withOptionalProperty "fillcolor" FillColor
+            |> DynObj.withOptionalProperty "line" line

@@ -22,12 +22,11 @@ type IndicatorSymbol() =
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?Symbol: string
         ) =
-        (fun (indicatorDirection: IndicatorSymbol) ->
+        fun (indicatorDirection: IndicatorSymbol) ->
 
-            Color |> DynObj.setOptionalProperty indicatorDirection "color"
-            Symbol |> DynObj.setOptionalProperty indicatorDirection "symbol"
-
-            indicatorDirection)
+            indicatorDirection
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "symbol" Symbol
 
 type IndicatorDelta() =
     inherit DynamicObj()
@@ -93,19 +92,18 @@ type IndicatorDelta() =
             [<Optional; DefaultParameterValue(null)>] ?Suffix: string,
             [<Optional; DefaultParameterValue(null)>] ?ValueFormat: string
         ) =
-        (fun (indicatorDelta: IndicatorDelta) ->
+        fun (indicatorDelta: IndicatorDelta) ->
 
-            Decreasing |> DynObj.setOptionalProperty indicatorDelta "decreasing"
-            Font |> DynObj.setOptionalProperty indicatorDelta "font"
-            Increasing |> DynObj.setOptionalProperty indicatorDelta "increasing"
-            Position |> DynObj.setOptionalPropertyBy indicatorDelta "position" StyleParam.IndicatorDeltaPosition.convert
-            Prefix |> DynObj.setOptionalProperty indicatorDelta "prefix"
-            Reference |> DynObj.setOptionalProperty indicatorDelta "reference"
-            Relative |> DynObj.setOptionalProperty indicatorDelta "relative"
-            Suffix |> DynObj.setOptionalProperty indicatorDelta "suffix"
-            ValueFormat |> DynObj.setOptionalProperty indicatorDelta "valueformat"
-
-            indicatorDelta)
+            indicatorDelta
+            |> DynObj.withOptionalProperty "decreasing" Decreasing
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "increasing" Increasing
+            |> DynObj.withOptionalPropertyBy "position" Position StyleParam.IndicatorDeltaPosition.convert
+            |> DynObj.withOptionalProperty "prefix" Prefix
+            |> DynObj.withOptionalProperty "reference" Reference
+            |> DynObj.withOptionalProperty "relative" Relative
+            |> DynObj.withOptionalProperty "suffix" Suffix
+            |> DynObj.withOptionalProperty "valueformat" ValueFormat
 
 type IndicatorNumber() =
     inherit DynamicObj()
@@ -127,14 +125,13 @@ type IndicatorNumber() =
             [<Optional; DefaultParameterValue(null)>] ?Suffix: string,
             [<Optional; DefaultParameterValue(null)>] ?ValueFormat: string
         ) =
-        (fun (indicatorNumber: IndicatorNumber) ->
+        fun (indicatorNumber: IndicatorNumber) ->
 
-            Font |> DynObj.setOptionalProperty indicatorNumber "font"
-            Prefix |> DynObj.setOptionalProperty indicatorNumber "prefix"
-            Suffix |> DynObj.setOptionalProperty indicatorNumber "suffix"
-            ValueFormat |> DynObj.setOptionalProperty indicatorNumber "valueformat"
-
-            indicatorNumber)
+            indicatorNumber
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "prefix" Prefix
+            |> DynObj.withOptionalProperty "suffix" Suffix
+            |> DynObj.withOptionalProperty "valueformat" ValueFormat
 
 
 type IndicatorBar() =

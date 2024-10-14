@@ -91,20 +91,19 @@ type Error() =
             [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
-        (fun (error: Error) ->
-            Visible |> DynObj.setOptionalProperty error "visible"
-            Type |> DynObj.setOptionalPropertyBy error "type" StyleParam.ErrorType.convert
-            Symmetric |> DynObj.setOptionalProperty error "symmetric"
-            Array |> DynObj.setOptionalProperty error "array"
-            Arrayminus |> DynObj.setOptionalProperty error "arrayminus"
-            Value |> DynObj.setOptionalProperty error "value"
-            Valueminus |> DynObj.setOptionalProperty error "valueminus"
-            Traceref |> DynObj.setOptionalProperty error "traceref"
-            Tracerefminus |> DynObj.setOptionalProperty error "tracerefminus"
-            Copy_ystyle |> DynObj.setOptionalProperty error "copy_ystyle"
-            Color |> DynObj.setOptionalProperty error "color"
-            Thickness |> DynObj.setOptionalProperty error "thickness"
-            Width |> DynObj.setOptionalProperty error "width"
+        fun (error: Error) ->
 
-            // out ->
-            error)
+            error
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalPropertyBy "type" Type StyleParam.ErrorType.convert
+            |> DynObj.withOptionalProperty "symmetric" Symmetric
+            |> DynObj.withOptionalProperty "array" Array
+            |> DynObj.withOptionalProperty "arrayminus" Arrayminus
+            |> DynObj.withOptionalProperty "value" Value
+            |> DynObj.withOptionalProperty "valueminus" Valueminus
+            |> DynObj.withOptionalProperty "traceref" Traceref
+            |> DynObj.withOptionalProperty "tracerefminus" Tracerefminus
+            |> DynObj.withOptionalProperty "copy_ystyle" Copy_ystyle
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "thickness" Thickness
+            |> DynObj.withOptionalProperty "width" Width

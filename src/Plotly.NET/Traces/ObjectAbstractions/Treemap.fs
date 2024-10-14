@@ -15,11 +15,9 @@ type TreemapRoot() =
         TreemapRoot() |> TreemapRoot.style (?Color = Color)
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        (fun (root: TreemapRoot) ->
-
-            Color |> DynObj.setOptionalProperty root "color"
-
-            root)
+        fun (root: TreemapRoot) ->
+            root
+            |> DynObj.withProperty "color" Color
 
 type TreemapLeaf() =
     inherit DynamicObj()
@@ -29,11 +27,10 @@ type TreemapLeaf() =
         TreemapLeaf() |> TreemapLeaf.style (?Opacity = Opacity)
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
-        (fun (leaf: TreemapLeaf) ->
+        fun (leaf: TreemapLeaf) ->
 
-            Opacity |> DynObj.setOptionalProperty leaf "opacity"
-
-            leaf)
+            leaf
+            |> DynObj.withOptionalProperty "opacity" Opacity
 
 
 type TreemapTiling() =
@@ -57,10 +54,10 @@ type TreemapTiling() =
             [<Optional; DefaultParameterValue(null)>] ?Flip: StyleParam.TilingFlip,
             [<Optional; DefaultParameterValue(null)>] ?Pad: float
         ) =
-        (fun (tiling: TreemapTiling) ->
-            Packing |> DynObj.setOptionalPropertyBy tiling "packing" StyleParam.TreemapTilingPacking.convert
-            SquarifyRatio |> DynObj.setOptionalProperty tiling "squarifyRatio"
-            Flip |> DynObj.setOptionalPropertyBy tiling "flip" StyleParam.TilingFlip.convert
-            Pad |> DynObj.setOptionalProperty tiling "pad"
+        fun (tiling: TreemapTiling) ->
 
-            tiling)
+            tiling
+            |> DynObj.withOptionalPropertyBy "packing" Packing StyleParam.TreemapTilingPacking.convert
+            |> DynObj.withOptionalProperty "squarifyRatio" SquarifyRatio
+            |> DynObj.withOptionalPropertyBy "flip" Flip StyleParam.TilingFlip.convert
+            |> DynObj.withOptionalProperty "pad" Pad

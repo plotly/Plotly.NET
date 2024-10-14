@@ -27,11 +27,10 @@ type ProjectionDimension() =
 
         fun (projectionDimension: ProjectionDimension) ->
 
-            Opacity |> DynObj.setOptionalProperty projectionDimension "opacity"
-            Scale |> DynObj.setOptionalProperty projectionDimension "scale"
-            Show |> DynObj.setOptionalProperty projectionDimension "show"
-
             projectionDimension
+            |> DynObj.withOptionalProperty "opacity" Opacity
+            |> DynObj.withOptionalProperty "scale" Scale
+            |> DynObj.withOptionalProperty "show" Show
 
 type Projection() =
     inherit DynamicObj()
@@ -53,8 +52,7 @@ type Projection() =
 
         fun (projection: Projection) ->
 
-            X |> DynObj.setOptionalProperty projection "x"
-            Y |> DynObj.setOptionalProperty projection "y"
-            Z |> DynObj.setOptionalProperty projection "z"
-
             projection
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalProperty "z" Z

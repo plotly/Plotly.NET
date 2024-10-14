@@ -28,9 +28,9 @@ type Bins() =
             [<Optional; DefaultParameterValue(null)>] ?Size: float
         ) =
 
-        (fun (bins: Bins) ->
-            Start |> DynObj.setOptionalProperty bins "start"
-            End |> DynObj.setOptionalProperty bins "end"
-            Size |> DynObj.setOptionalProperty bins "size"
+        fun (bins: Bins) ->
 
-            bins)
+            bins
+            |> DynObj.withOptionalProperty "start" Start
+            |> DynObj.withOptionalProperty "end" End
+            |> DynObj.withOptionalProperty "size" Size

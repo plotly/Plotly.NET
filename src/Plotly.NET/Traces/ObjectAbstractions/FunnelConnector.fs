@@ -33,10 +33,9 @@ type FunnelConnector() =
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?Visible: bool
         ) =
-        (fun (connector: FunnelConnector) ->
+        fun (connector: FunnelConnector) ->
 
-            FillColor |> DynObj.setOptionalProperty connector "fillcolor"
-            Line |> DynObj.setOptionalProperty connector "line"
-            Visible |> DynObj.setOptionalProperty connector "visible"
-
-            connector)
+            connector
+            |> DynObj.withOptionalProperty "fillcolor" FillColor
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "visible" Visible
