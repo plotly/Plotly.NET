@@ -49,11 +49,9 @@ type Trace3DStyle() =
     // ######################## 3d-Charts
 
     static member SetScene([<Optional; DefaultParameterValue(null)>] ?SceneId: StyleParam.SubPlotId) =
-        (fun (trace: Trace3D) ->
-
-            SceneId |> DynObj.setOptionalPropertyBy trace "scene" StyleParam.SubPlotId.toString
-
-            trace)
+        fun (trace: Trace3D) ->
+            trace
+            |> DynObj.withOptionalPropertyBy "scene" SceneId StyleParam.SubPlotId.toString
 
     /// <summary>
     /// Create a function that applies the styles of a 3D scatter plot to a Trace object
@@ -152,55 +150,49 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
 
-        (fun (scatter: #Trace) ->
+        fun (scatter: #Trace) ->
 
-            Name |> DynObj.setOptionalProperty scatter "name"
-            Visible |> DynObj.setOptionalPropertyBy scatter "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty scatter "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy scatter "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty scatter "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty scatter "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty scatter "legendgrouptitle"
-            Mode |> DynObj.setOptionalPropertyBy scatter "mode" StyleParam.Mode.convert
-            Opacity |> DynObj.setOptionalProperty scatter "opacity"
-            Ids |> DynObj.setOptionalProperty scatter "ids"
-            X |> DynObj.setOptionalProperty scatter "x"
-            Y |> DynObj.setOptionalProperty scatter "y"
-            Z |> DynObj.setOptionalProperty scatter "z"
-            SurfaceColor |> DynObj.setOptionalProperty scatter "surfacecolor"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty scatter "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setOptionalSingleOrMultiPropertyBy scatter "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setOptionalSingleOrMultiProperty scatter "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty scatter "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy scatter "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty scatter "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty scatter "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty scatter "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty scatter "zhoverformat"
-            Meta |> DynObj.setOptionalProperty scatter "meta"
-            CustomData |> DynObj.setOptionalProperty scatter "customdata"
-            Scene |> DynObj.setOptionalPropertyBy scatter "scene" StyleParam.SubPlotId.convert
-            Marker |> DynObj.setOptionalProperty scatter "marker"
-            Line |> DynObj.setOptionalProperty scatter "line"
-            TextFont |> DynObj.setOptionalProperty scatter "textfont"
-            XError |> DynObj.setOptionalProperty scatter "error_x"
-            YError |> DynObj.setOptionalProperty scatter "error_y"
-            ZError |> DynObj.setOptionalProperty scatter "error_z"
-            ConnectGaps |> DynObj.setOptionalProperty scatter "connectgaps"
-            Hoverlabel |> DynObj.setOptionalProperty scatter "hoverlabel"
-            Projection |> DynObj.setOptionalProperty scatter "projection"
-            Surfaceaxis |> DynObj.setOptionalPropertyBy scatter "surfaceaxis" StyleParam.SurfaceAxis.convert
-            XCalendar |> DynObj.setOptionalPropertyBy scatter "xcalendar" StyleParam.Calendar.convert
-            YCalendar |> DynObj.setOptionalPropertyBy scatter "ycalendar" StyleParam.Calendar.convert
-            ZCalendar |> DynObj.setOptionalPropertyBy scatter "zcalendar" StyleParam.Calendar.convert
-            UIRevision |> DynObj.setOptionalProperty scatter "uirevision"
-
-            scatter)
-
-
+            scatter
+            |> DynObj.withOptionalProperty                   "name"              Name                                
+            |> DynObj.withOptionalPropertyBy                 "visible"           Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty                   "showlegend"        ShowLegend                          
+            |> DynObj.withOptionalPropertyBy                 "legend"            Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty                   "legendrank"        LegendRank                          
+            |> DynObj.withOptionalProperty                   "legendgroup"       LegendGroup                         
+            |> DynObj.withOptionalProperty                   "legendgrouptitle"  LegendGroupTitle                    
+            |> DynObj.withOptionalPropertyBy                 "mode"              Mode                                StyleParam.Mode.convert
+            |> DynObj.withOptionalProperty                   "opacity"           Opacity                             
+            |> DynObj.withOptionalProperty                   "ids"               Ids                                 
+            |> DynObj.withOptionalProperty                   "x"                 X                                   
+            |> DynObj.withOptionalProperty                   "y"                 Y                                   
+            |> DynObj.withOptionalProperty                   "z"                 Z                                   
+            |> DynObj.withOptionalProperty                   "surfacecolor"      SurfaceColor                        
+            |> DynObj.withOptionalSingleOrMultiProperty      "text"              (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"      (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
+            |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"      (TextTemplate, MultiTextTemplate)   
+            |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"         (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy                 "hoverinfo"         HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"     (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty                   "xhoverformat"      XHoverFormat                        
+            |> DynObj.withOptionalProperty                   "yhoverformat"      YHoverFormat                        
+            |> DynObj.withOptionalProperty                   "zhoverformat"      ZHoverFormat                        
+            |> DynObj.withOptionalProperty                   "meta"              Meta                                
+            |> DynObj.withOptionalProperty                   "customdata"        CustomData                          
+            |> DynObj.withOptionalPropertyBy                 "scene"             Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty                   "marker"            Marker                              
+            |> DynObj.withOptionalProperty                   "line"              Line                                
+            |> DynObj.withOptionalProperty                   "textfont"          TextFont                            
+            |> DynObj.withOptionalProperty                   "error_x"           XError                              
+            |> DynObj.withOptionalProperty                   "error_y"           YError                              
+            |> DynObj.withOptionalProperty                   "error_z"           ZError                              
+            |> DynObj.withOptionalProperty                   "connectgaps"       ConnectGaps                         
+            |> DynObj.withOptionalProperty                   "hoverlabel"        Hoverlabel                          
+            |> DynObj.withOptionalProperty                   "projection"        Projection                          
+            |> DynObj.withOptionalPropertyBy                 "surfaceaxis"       Surfaceaxis                         StyleParam.SurfaceAxis.convert
+            |> DynObj.withOptionalPropertyBy                 "xcalendar"         XCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalPropertyBy                 "ycalendar"         YCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalPropertyBy                 "zcalendar"         ZCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalProperty                   "uirevision"        UIRevision                          
 
     /// <summary>
     /// Create a function that applies the styles of a surface chart to the given trace
@@ -302,55 +294,53 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?ZCalendar: StyleParam.Calendar,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
-        (fun (surface: #Trace) ->
+        fun (surface: #Trace) ->
 
-            Name |> DynObj.setOptionalProperty surface "name"
-            Visible |> DynObj.setOptionalPropertyBy surface "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty surface "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy surface "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty surface "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty surface "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty surface "legendgrouptitle"
-            Opacity |> DynObj.setOptionalProperty surface "opacity"
-            Ids |> DynObj.setOptionalProperty surface "ids"
-            X |> DynObj.setOptionalProperty surface "x"
-            Y |> DynObj.setOptionalProperty surface "y"
-            Z |> DynObj.setOptionalProperty surface "z"
-            SurfaceColor |> DynObj.setOptionalProperty surface "surfacecolor"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty surface "text"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty surface "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy surface "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty surface "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty surface "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty surface "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty surface "zhoverformat"
-            Meta |> DynObj.setOptionalProperty surface "meta"
-            CustomData |> DynObj.setOptionalProperty surface "customdata"
-            Scene |> DynObj.setOptionalPropertyBy surface "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setOptionalPropertyBy surface "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setOptionalProperty surface "colorbar"
-            AutoColorScale |> DynObj.setOptionalProperty surface "autocolorscale"
-            ColorScale |> DynObj.setOptionalPropertyBy surface "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty surface "showscale"
-            ReverseScale |> DynObj.setOptionalProperty surface "reversescale"
-            CAuto |> DynObj.setOptionalProperty surface "cauto"
-            CMin |> DynObj.setOptionalProperty surface "cmin"
-            CMid |> DynObj.setOptionalProperty surface "cmid"
-            CMax |> DynObj.setOptionalProperty surface "cmax"
-            ConnectGaps |> DynObj.setOptionalProperty surface "connectgaps"
-            Contours |> DynObj.setOptionalProperty surface "contours"
-            HideSurface |> DynObj.setOptionalProperty surface "hidesurface"
-            Hoverlabel |> DynObj.setOptionalProperty surface "hoverlabel"
-            Lighting |> DynObj.setOptionalProperty surface "lighting"
-            LightPosition |> DynObj.setOptionalProperty surface "lightposition"
-            OpacityScale |> DynObj.setOptionalProperty surface "opacityscale"
-            XCalendar |> DynObj.setOptionalPropertyBy surface "xcalendar" StyleParam.Calendar.convert
-            YCalendar |> DynObj.setOptionalPropertyBy surface "ycalendar" StyleParam.Calendar.convert
-            ZCalendar |> DynObj.setOptionalPropertyBy surface "zcalendar" StyleParam.Calendar.convert
-            UIRevision |> DynObj.setOptionalProperty surface "uirevision"
-
-            surface)
-
+            surface
+            |> DynObj.withOptionalProperty               "name"              Name                                
+            |> DynObj.withOptionalPropertyBy             "visible"           Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"        ShowLegend                          
+            |> DynObj.withOptionalPropertyBy             "legend"            Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"        LegendRank                          
+            |> DynObj.withOptionalProperty               "legendgroup"       LegendGroup                         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"  LegendGroupTitle                    
+            |> DynObj.withOptionalProperty               "opacity"           Opacity                             
+            |> DynObj.withOptionalProperty               "ids"               Ids                                 
+            |> DynObj.withOptionalProperty               "x"                 X                                   
+            |> DynObj.withOptionalProperty               "y"                 Y                                   
+            |> DynObj.withOptionalProperty               "z"                 Z                                   
+            |> DynObj.withOptionalProperty               "surfacecolor"      SurfaceColor                        
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"              (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"         (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy             "hoverinfo"         HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"     (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty               "xhoverformat"      XHoverFormat                        
+            |> DynObj.withOptionalProperty               "yhoverformat"      YHoverFormat                        
+            |> DynObj.withOptionalProperty               "zhoverformat"      ZHoverFormat                        
+            |> DynObj.withOptionalProperty               "meta"              Meta                                
+            |> DynObj.withOptionalProperty               "customdata"        CustomData                          
+            |> DynObj.withOptionalPropertyBy             "scene"             Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalPropertyBy             "coloraxis"         ColorAxis                           StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "colorbar"          ColorBar                            
+            |> DynObj.withOptionalProperty               "autocolorscale"    AutoColorScale                      
+            |> DynObj.withOptionalPropertyBy             "colorscale"        ColorScale                          StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"         ShowScale                           
+            |> DynObj.withOptionalProperty               "reversescale"      ReverseScale                        
+            |> DynObj.withOptionalProperty               "cauto"             CAuto                               
+            |> DynObj.withOptionalProperty               "cmin"              CMin                                
+            |> DynObj.withOptionalProperty               "cmid"              CMid                                
+            |> DynObj.withOptionalProperty               "cmax"              CMax                                
+            |> DynObj.withOptionalProperty               "connectgaps"       ConnectGaps                         
+            |> DynObj.withOptionalProperty               "contours"          Contours                            
+            |> DynObj.withOptionalProperty               "hidesurface"       HideSurface                         
+            |> DynObj.withOptionalProperty               "hoverlabel"        Hoverlabel                          
+            |> DynObj.withOptionalProperty               "lighting"          Lighting                            
+            |> DynObj.withOptionalProperty               "lightposition"     LightPosition                       
+            |> DynObj.withOptionalProperty               "opacityscale"      OpacityScale                        
+            |> DynObj.withOptionalPropertyBy             "xcalendar"         XCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalPropertyBy             "ycalendar"         YCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalPropertyBy             "zcalendar"         ZCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalProperty               "uirevision"        UIRevision                          
 
     /// <summary>
     /// Create a function that applies the styles of a mesh3d chart to the given trace
@@ -469,59 +459,58 @@ type Trace3DStyle() =
 
         fun (mesh3d: #Trace) ->
 
-            Name |> DynObj.setOptionalProperty mesh3d "name"
-            Visible |> DynObj.setOptionalPropertyBy mesh3d "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty mesh3d "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy mesh3d "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty mesh3d "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty mesh3d "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty mesh3d "legendgrouptitle"
-            Opacity |> DynObj.setOptionalProperty mesh3d "opacity"
-            Ids |> DynObj.setOptionalProperty mesh3d "ids"
-            X |> DynObj.setOptionalProperty mesh3d "x"
-            Y |> DynObj.setOptionalProperty mesh3d "y"
-            Z |> DynObj.setOptionalProperty mesh3d "z"
-            I |> DynObj.setOptionalProperty mesh3d "i"
-            J |> DynObj.setOptionalProperty mesh3d "j"
-            K |> DynObj.setOptionalProperty mesh3d "k"
-            FaceColor |> DynObj.setOptionalProperty mesh3d "facecolor"
-            Intensity |> DynObj.setOptionalProperty mesh3d "intensity"
-            IntensityMode |> DynObj.setOptionalPropertyBy mesh3d "intensitymode" StyleParam.IntensityMode.convert
-            VertexColor |> DynObj.setOptionalProperty mesh3d "vertexcolor"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty mesh3d "text"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty mesh3d "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy mesh3d "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty mesh3d "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty mesh3d "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty mesh3d "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty mesh3d "zhoverformat"
-            Meta |> DynObj.setOptionalProperty mesh3d "meta"
-            CustomData |> DynObj.setOptionalProperty mesh3d "customdata"
-            Scene |> DynObj.setOptionalPropertyBy mesh3d "scene" StyleParam.SubPlotId.convert
-            Color |> DynObj.setOptionalProperty mesh3d "color"
-            ColorAxis |> DynObj.setOptionalPropertyBy mesh3d "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setOptionalProperty mesh3d "colorbar"
-            AutoColorScale |> DynObj.setOptionalProperty mesh3d "autocolorscale"
-            ColorScale |> DynObj.setOptionalPropertyBy mesh3d "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty mesh3d "showscale"
-            ReverseScale |> DynObj.setOptionalProperty mesh3d "reversescale"
-            CAuto |> DynObj.setOptionalProperty mesh3d "cauto"
-            CMin |> DynObj.setOptionalProperty mesh3d "cmin"
-            CMid |> DynObj.setOptionalProperty mesh3d "cmid"
-            CMax |> DynObj.setOptionalProperty mesh3d "cmax"
-            AlphaHull |> DynObj.setOptionalPropertyBy mesh3d "alphahull" StyleParam.TriangulationAlgorithm.convert
-            Delaunayaxis |> DynObj.setOptionalPropertyBy mesh3d "delaunayaxis" StyleParam.Delaunayaxis.convert
-            Contour |> DynObj.setOptionalProperty mesh3d "contour"
-            FlatShading |> DynObj.setOptionalProperty mesh3d "flatshading"
-            Hoverlabel |> DynObj.setOptionalProperty mesh3d "hoverlabel"
-            Lighting |> DynObj.setOptionalProperty mesh3d "lighting"
-            LightPosition |> DynObj.setOptionalProperty mesh3d "lightposition"
-            XCalendar |> DynObj.setOptionalPropertyBy mesh3d "xcalendar" StyleParam.Calendar.convert
-            YCalendar |> DynObj.setOptionalPropertyBy mesh3d "ycalendar" StyleParam.Calendar.convert
-            ZCalendar |> DynObj.setOptionalPropertyBy mesh3d "zcalendar" StyleParam.Calendar.convert
-            UIRevision |> DynObj.setOptionalProperty mesh3d "uirevision"
-
             mesh3d
+            |> DynObj.withOptionalProperty               "name"               Name                                
+            |> DynObj.withOptionalPropertyBy             "visible"            Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"         ShowLegend                          
+            |> DynObj.withOptionalPropertyBy             "legend"             Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"         LegendRank                          
+            |> DynObj.withOptionalProperty               "legendgroup"        LegendGroup                         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
+            |> DynObj.withOptionalProperty               "opacity"            Opacity                             
+            |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "x"                  X                                   
+            |> DynObj.withOptionalProperty               "y"                  Y                                   
+            |> DynObj.withOptionalProperty               "z"                  Z                                   
+            |> DynObj.withOptionalProperty               "i"                  I                                   
+            |> DynObj.withOptionalProperty               "j"                  J                                   
+            |> DynObj.withOptionalProperty               "k"                  K                                   
+            |> DynObj.withOptionalProperty               "facecolor"          FaceColor                           
+            |> DynObj.withOptionalProperty               "intensity"          Intensity                           
+            |> DynObj.withOptionalPropertyBy             "intensitymode"      IntensityMode                       StyleParam.IntensityMode.convert
+            |> DynObj.withOptionalProperty               "vertexcolor"        VertexColor                         
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty               "xhoverformat"       XHoverFormat                        
+            |> DynObj.withOptionalProperty               "yhoverformat"       YHoverFormat                        
+            |> DynObj.withOptionalProperty               "zhoverformat"       ZHoverFormat                        
+            |> DynObj.withOptionalProperty               "meta"               Meta                                
+            |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalPropertyBy             "scene"              Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "color"              Color                               
+            |> DynObj.withOptionalPropertyBy             "coloraxis"          ColorAxis                           StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "colorbar"           ColorBar                            
+            |> DynObj.withOptionalProperty               "autocolorscale"     AutoColorScale                      
+            |> DynObj.withOptionalPropertyBy             "colorscale"         ColorScale                          StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"          ShowScale                           
+            |> DynObj.withOptionalProperty               "reversescale"       ReverseScale                        
+            |> DynObj.withOptionalProperty               "cauto"              CAuto                               
+            |> DynObj.withOptionalProperty               "cmin"               CMin                                
+            |> DynObj.withOptionalProperty               "cmid"               CMid                                
+            |> DynObj.withOptionalProperty               "cmax"               CMax                                
+            |> DynObj.withOptionalPropertyBy             "alphahull"          AlphaHull                           StyleParam.TriangulationAlgorithm.convert
+            |> DynObj.withOptionalPropertyBy             "delaunayaxis"       Delaunayaxis                        StyleParam.Delaunayaxis.convert
+            |> DynObj.withOptionalProperty               "contour"            Contour                             
+            |> DynObj.withOptionalProperty               "flatshading"        FlatShading                         
+            |> DynObj.withOptionalProperty               "hoverlabel"         Hoverlabel                          
+            |> DynObj.withOptionalProperty               "lighting"           Lighting                            
+            |> DynObj.withOptionalProperty               "lightposition"      LightPosition                       
+            |> DynObj.withOptionalPropertyBy             "xcalendar"          XCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalPropertyBy             "ycalendar"          YCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalPropertyBy             "zcalendar"          ZCalendar                           StyleParam.Calendar.convert
+            |> DynObj.withOptionalProperty               "uirevision"         UIRevision                          
 
 
     /// <summary>
@@ -626,54 +615,53 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?SizeRef: float,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =
-        (fun (cone: #Trace) ->
-            Name |> DynObj.setOptionalProperty cone "name"
-            Visible |> DynObj.setOptionalPropertyBy cone "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty cone "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy cone "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty cone "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty cone "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty cone "legendgrouptitle"
-            Opacity |> DynObj.setOptionalProperty cone "opacity"
-            Ids |> DynObj.setOptionalProperty cone "ids"
-            X |> DynObj.setOptionalProperty cone "x"
-            Y |> DynObj.setOptionalProperty cone "y"
-            Z |> DynObj.setOptionalProperty cone "z"
-            U |> DynObj.setOptionalProperty cone "u"
-            V |> DynObj.setOptionalProperty cone "v"
-            W |> DynObj.setOptionalProperty cone "w"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty cone "text"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty cone "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy cone "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty cone "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty cone "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty cone "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty cone "zhoverformat"
-            UHoverFormat |> DynObj.setOptionalProperty cone "uhoverformat"
-            VHoverFormat |> DynObj.setOptionalProperty cone "vhoverformat"
-            WHoverFormat |> DynObj.setOptionalProperty cone "whoverformat"
-            Meta |> DynObj.setOptionalProperty cone "meta"
-            CustomData |> DynObj.setOptionalProperty cone "customdata"
-            Scene |> DynObj.setOptionalPropertyBy cone "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setOptionalPropertyBy cone "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setOptionalProperty cone "colorbar"
-            AutoColorScale |> DynObj.setOptionalProperty cone "autocolorscale"
-            ColorScale |> DynObj.setOptionalPropertyBy cone "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty cone "showscale"
-            ReverseScale |> DynObj.setOptionalProperty cone "reversescale"
-            CAuto |> DynObj.setOptionalProperty cone "cauto"
-            CMin |> DynObj.setOptionalProperty cone "cmin"
-            CMid |> DynObj.setOptionalProperty cone "cmid"
-            CMax |> DynObj.setOptionalProperty cone "cmax"
-            Anchor |> DynObj.setOptionalPropertyBy cone "anchor" StyleParam.ConeAnchor.convert
-            HoverLabel |> DynObj.setOptionalProperty cone "hoverlabel"
-            Lighting |> DynObj.setOptionalProperty cone "lighting"
-            LightPosition |> DynObj.setOptionalProperty cone "lightposition"
-            SizeMode |> DynObj.setOptionalPropertyBy cone "sizemode" StyleParam.ConeSizeMode.convert
-            SizeRef |> DynObj.setOptionalProperty cone "sizeref"
-            UIRevision |> DynObj.setOptionalProperty cone "uirevision"
-
-            cone)
+        fun (cone: #Trace) ->
+            cone
+            |> DynObj.withOptionalProperty               "name"                Name                                
+            |> DynObj.withOptionalPropertyBy             "visible"             Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"          ShowLegend                          
+            |> DynObj.withOptionalPropertyBy             "legend"              Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"          LegendRank                          
+            |> DynObj.withOptionalProperty               "legendgroup"         LegendGroup                         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"    LegendGroupTitle                    
+            |> DynObj.withOptionalProperty               "opacity"             Opacity                             
+            |> DynObj.withOptionalProperty               "ids"                 Ids                                 
+            |> DynObj.withOptionalProperty               "x"                   X                                   
+            |> DynObj.withOptionalProperty               "y"                   Y                                   
+            |> DynObj.withOptionalProperty               "z"                   Z                                   
+            |> DynObj.withOptionalProperty               "u"                   U                                   
+            |> DynObj.withOptionalProperty               "v"                   V                                   
+            |> DynObj.withOptionalProperty               "w"                   W                                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"                (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"           (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy             "hoverinfo"           HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"       (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty               "xhoverformat"        XHoverFormat                        
+            |> DynObj.withOptionalProperty               "yhoverformat"        YHoverFormat                        
+            |> DynObj.withOptionalProperty               "zhoverformat"        ZHoverFormat                        
+            |> DynObj.withOptionalProperty               "uhoverformat"        UHoverFormat                        
+            |> DynObj.withOptionalProperty               "vhoverformat"        VHoverFormat                        
+            |> DynObj.withOptionalProperty               "whoverformat"        WHoverFormat                        
+            |> DynObj.withOptionalProperty               "meta"                Meta                                
+            |> DynObj.withOptionalProperty               "customdata"          CustomData                          
+            |> DynObj.withOptionalPropertyBy             "scene"               Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalPropertyBy             "coloraxis"           ColorAxis                           StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "colorbar"            ColorBar                            
+            |> DynObj.withOptionalProperty               "autocolorscale"      AutoColorScale                      
+            |> DynObj.withOptionalPropertyBy             "colorscale"          ColorScale                          StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"           ShowScale                           
+            |> DynObj.withOptionalProperty               "reversescale"        ReverseScale                        
+            |> DynObj.withOptionalProperty               "cauto"               CAuto                               
+            |> DynObj.withOptionalProperty               "cmin"                CMin                                
+            |> DynObj.withOptionalProperty               "cmid"                CMid                                
+            |> DynObj.withOptionalProperty               "cmax"                CMax                                
+            |> DynObj.withOptionalPropertyBy             "anchor"              Anchor                              StyleParam.ConeAnchor.convert
+            |> DynObj.withOptionalProperty               "hoverlabel"          HoverLabel                          
+            |> DynObj.withOptionalProperty               "lighting"            Lighting                            
+            |> DynObj.withOptionalProperty               "lightposition"       LightPosition                       
+            |> DynObj.withOptionalPropertyBy             "sizemode"            SizeMode                            StyleParam.ConeSizeMode.convert
+            |> DynObj.withOptionalProperty               "sizeref"             SizeRef                             
+            |> DynObj.withOptionalProperty               "uirevision"          UIRevision                          
 
     /// <summary>
     /// Create a function that applies the styles of a streamtube chart to the given trace
@@ -777,54 +765,53 @@ type Trace3DStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Starts: StreamTubeStarts,
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: seq<#IConvertible>
         ) =
-        (fun (streamTube: #Trace) ->
-            Name |> DynObj.setOptionalProperty streamTube "name"
-            Visible |> DynObj.setOptionalPropertyBy streamTube "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty streamTube "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy streamTube "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty streamTube "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty streamTube "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty streamTube "legendgrouptitle"
-            Opacity |> DynObj.setOptionalProperty streamTube "opacity"
-            Ids |> DynObj.setOptionalProperty streamTube "ids"
-            X |> DynObj.setOptionalProperty streamTube "x"
-            Y |> DynObj.setOptionalProperty streamTube "y"
-            Z |> DynObj.setOptionalProperty streamTube "z"
-            U |> DynObj.setOptionalProperty streamTube "u"
-            V |> DynObj.setOptionalProperty streamTube "v"
-            W |> DynObj.setOptionalProperty streamTube "w"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty streamTube "text"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty streamTube "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy streamTube "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty streamTube "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty streamTube "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty streamTube "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty streamTube "zhoverformat"
-            UHoverFormat |> DynObj.setOptionalProperty streamTube "uhoverformat"
-            VHoverFormat |> DynObj.setOptionalProperty streamTube "vhoverformat"
-            WHoverFormat |> DynObj.setOptionalProperty streamTube "whoverformat"
-            Meta |> DynObj.setOptionalProperty streamTube "meta"
-            CustomData |> DynObj.setOptionalProperty streamTube "customdata"
-            Scene |> DynObj.setOptionalPropertyBy streamTube "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setOptionalPropertyBy streamTube "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setOptionalProperty streamTube "colorbar"
-            AutoColorScale |> DynObj.setOptionalProperty streamTube "autocolorscale"
-            ColorScale |> DynObj.setOptionalPropertyBy streamTube "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty streamTube "showscale"
-            ReverseScale |> DynObj.setOptionalProperty streamTube "reversescale"
-            CAuto |> DynObj.setOptionalProperty streamTube "cauto"
-            CMin |> DynObj.setOptionalProperty streamTube "cmin"
-            CMid |> DynObj.setOptionalProperty streamTube "cmid"
-            CMax |> DynObj.setOptionalProperty streamTube "cmax"
-            HoverLabel |> DynObj.setOptionalProperty streamTube "hoverlabel"
-            Lighting |> DynObj.setOptionalProperty streamTube "lighting"
-            LightPosition |> DynObj.setOptionalProperty streamTube "lightposition"
-            MaxDisplayed |> DynObj.setOptionalProperty streamTube "maxdisplayed"
-            SizeRef |> DynObj.setOptionalProperty streamTube "sizeref"
-            Starts |> DynObj.setOptionalProperty streamTube "starts"
-            UIRevision |> DynObj.setOptionalProperty streamTube "uirevision"
-
-            streamTube)
+        fun (streamTube: #Trace) ->
+            streamTube
+            |> DynObj.withOptionalProperty               "name"              Name                                
+            |> DynObj.withOptionalPropertyBy             "visible"           Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"        ShowLegend                          
+            |> DynObj.withOptionalPropertyBy             "legend"            Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"        LegendRank                          
+            |> DynObj.withOptionalProperty               "legendgroup"       LegendGroup                         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"  LegendGroupTitle                    
+            |> DynObj.withOptionalProperty               "opacity"           Opacity                             
+            |> DynObj.withOptionalProperty               "ids"               Ids                                 
+            |> DynObj.withOptionalProperty               "x"                 X                                   
+            |> DynObj.withOptionalProperty               "y"                 Y                                   
+            |> DynObj.withOptionalProperty               "z"                 Z                                   
+            |> DynObj.withOptionalProperty               "u"                 U                                   
+            |> DynObj.withOptionalProperty               "v"                 V                                   
+            |> DynObj.withOptionalProperty               "w"                 W                                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"              (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"         (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy             "hoverinfo"         HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"     (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty               "xhoverformat"      XHoverFormat                        
+            |> DynObj.withOptionalProperty               "yhoverformat"      YHoverFormat                        
+            |> DynObj.withOptionalProperty               "zhoverformat"      ZHoverFormat                        
+            |> DynObj.withOptionalProperty               "uhoverformat"      UHoverFormat                        
+            |> DynObj.withOptionalProperty               "vhoverformat"      VHoverFormat                        
+            |> DynObj.withOptionalProperty               "whoverformat"      WHoverFormat                        
+            |> DynObj.withOptionalProperty               "meta"              Meta                                
+            |> DynObj.withOptionalProperty               "customdata"        CustomData                          
+            |> DynObj.withOptionalPropertyBy             "scene"             Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalPropertyBy             "coloraxis"         ColorAxis                           StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "colorbar"          ColorBar                            
+            |> DynObj.withOptionalProperty               "autocolorscale"    AutoColorScale                      
+            |> DynObj.withOptionalPropertyBy             "colorscale"        ColorScale                          StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"         ShowScale                           
+            |> DynObj.withOptionalProperty               "reversescale"      ReverseScale                        
+            |> DynObj.withOptionalProperty               "cauto"             CAuto                               
+            |> DynObj.withOptionalProperty               "cmin"              CMin                                
+            |> DynObj.withOptionalProperty               "cmid"              CMid                                
+            |> DynObj.withOptionalProperty               "cmax"              CMax                                
+            |> DynObj.withOptionalProperty               "hoverlabel"        HoverLabel                          
+            |> DynObj.withOptionalProperty               "lighting"          Lighting                            
+            |> DynObj.withOptionalProperty               "lightposition"     LightPosition                       
+            |> DynObj.withOptionalProperty               "maxdisplayed"      MaxDisplayed                        
+            |> DynObj.withOptionalProperty               "sizeref"           SizeRef                             
+            |> DynObj.withOptionalProperty               "starts"            Starts                              
+            |> DynObj.withOptionalProperty               "uirevision"        UIRevision                          
 
     /// <summary>
     /// Create a function that applies the styles of a volume chart to the given trace
@@ -934,55 +921,54 @@ type Trace3DStyle() =
         ) =
         fun (volume: #Trace) ->
 
-            Name |> DynObj.setOptionalProperty volume "name"
-            Visible |> DynObj.setOptionalPropertyBy volume "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty volume "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy volume "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty volume "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty volume "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty volume "legendgrouptitle"
-            Opacity |> DynObj.setOptionalProperty volume "opacity"
-            Ids |> DynObj.setOptionalProperty volume "ids"
-            X |> DynObj.setOptionalProperty volume "x"
-            Y |> DynObj.setOptionalProperty volume "y"
-            Z |> DynObj.setOptionalProperty volume "z"
-            Value |> DynObj.setOptionalProperty volume "value"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty volume "text"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty volume "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy volume "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty volume "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty volume "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty volume "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty volume "zhoverformat"
-            ValueHoverFormat |> DynObj.setOptionalProperty volume "valuehoverformat"
-            Meta |> DynObj.setOptionalProperty volume "meta"
-            CustomData |> DynObj.setOptionalProperty volume "customdata"
-            Scene |> DynObj.setOptionalPropertyBy volume "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setOptionalPropertyBy volume "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setOptionalProperty volume "colorbar"
-            AutoColorScale |> DynObj.setOptionalProperty volume "autocolorscale"
-            ColorScale |> DynObj.setOptionalPropertyBy volume "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty volume "showscale"
-            ReverseScale |> DynObj.setOptionalProperty volume "reversescale"
-            CAuto |> DynObj.setOptionalProperty volume "cauto"
-            CMin |> DynObj.setOptionalProperty volume "cmin"
-            CMid |> DynObj.setOptionalProperty volume "cmid"
-            CMax |> DynObj.setOptionalProperty volume "cmax"
-            Caps |> DynObj.setOptionalProperty volume "caps"
-            Contour |> DynObj.setOptionalProperty volume "contour"
-            FlatShading |> DynObj.setOptionalProperty volume "flatshading"
-            HoverLabel |> DynObj.setOptionalProperty volume "hoverlabel"
-            IsoMax |> DynObj.setOptionalProperty volume "isomax"
-            IsoMin |> DynObj.setOptionalProperty volume "isomin"
-            Lighting |> DynObj.setOptionalProperty volume "lighting"
-            LightPosition |> DynObj.setOptionalProperty volume "lightposition"
-            OpacityScale |> DynObj.setOptionalProperty volume "opacityscale"
-            Slices |> DynObj.setOptionalProperty volume "slices"
-            SpaceFrame |> DynObj.setOptionalProperty volume "spaceframe"
-            Surface |> DynObj.setOptionalProperty volume "surface"
-            UIRevision |> DynObj.setOptionalProperty volume "uirevision"
-
             volume
+            |> DynObj.withOptionalProperty               "name"               Name                                
+            |> DynObj.withOptionalPropertyBy             "visible"            Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"         ShowLegend                          
+            |> DynObj.withOptionalPropertyBy             "legend"             Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"         LegendRank                          
+            |> DynObj.withOptionalProperty               "legendgroup"        LegendGroup                         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
+            |> DynObj.withOptionalProperty               "opacity"            Opacity                             
+            |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "x"                  X                                   
+            |> DynObj.withOptionalProperty               "y"                  Y                                   
+            |> DynObj.withOptionalProperty               "z"                  Z                                   
+            |> DynObj.withOptionalProperty               "value"              Value                               
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty               "xhoverformat"       XHoverFormat                        
+            |> DynObj.withOptionalProperty               "yhoverformat"       YHoverFormat                        
+            |> DynObj.withOptionalProperty               "zhoverformat"       ZHoverFormat                        
+            |> DynObj.withOptionalProperty               "valuehoverformat"   ValueHoverFormat                    
+            |> DynObj.withOptionalProperty               "meta"               Meta                                
+            |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalPropertyBy             "scene"              Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalPropertyBy             "coloraxis"          ColorAxis                           StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "colorbar"           ColorBar                            
+            |> DynObj.withOptionalProperty               "autocolorscale"     AutoColorScale                      
+            |> DynObj.withOptionalPropertyBy             "colorscale"         ColorScale                          StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"          ShowScale                           
+            |> DynObj.withOptionalProperty               "reversescale"       ReverseScale                        
+            |> DynObj.withOptionalProperty               "cauto"              CAuto                               
+            |> DynObj.withOptionalProperty               "cmin"               CMin                                
+            |> DynObj.withOptionalProperty               "cmid"               CMid                                
+            |> DynObj.withOptionalProperty               "cmax"               CMax                                
+            |> DynObj.withOptionalProperty               "caps"               Caps                                
+            |> DynObj.withOptionalProperty               "contour"            Contour                             
+            |> DynObj.withOptionalProperty               "flatshading"        FlatShading                         
+            |> DynObj.withOptionalProperty               "hoverlabel"         HoverLabel                          
+            |> DynObj.withOptionalProperty               "isomax"             IsoMax                              
+            |> DynObj.withOptionalProperty               "isomin"             IsoMin                              
+            |> DynObj.withOptionalProperty               "lighting"           Lighting                            
+            |> DynObj.withOptionalProperty               "lightposition"      LightPosition                       
+            |> DynObj.withOptionalProperty               "opacityscale"       OpacityScale                        
+            |> DynObj.withOptionalProperty               "slices"             Slices                              
+            |> DynObj.withOptionalProperty               "spaceframe"         SpaceFrame                          
+            |> DynObj.withOptionalProperty               "surface"            Surface                             
+            |> DynObj.withOptionalProperty               "uirevision"         UIRevision                          
 
     /// <summary>
     /// Create a function that applies the styles of a isosurface chart to the given trace
@@ -1092,52 +1078,51 @@ type Trace3DStyle() =
         ) =
         fun (isoSurface: #Trace) ->
 
-            Name |> DynObj.setOptionalProperty isoSurface "name"
-            Visible |> DynObj.setOptionalPropertyBy isoSurface "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setOptionalProperty isoSurface "showlegend"
-            Legend |> DynObj.setOptionalPropertyBy isoSurface "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setOptionalProperty isoSurface "legendrank"
-            LegendGroup |> DynObj.setOptionalProperty isoSurface "legendgroup"
-            LegendGroupTitle |> DynObj.setOptionalProperty isoSurface "legendgrouptitle"
-            Opacity |> DynObj.setOptionalProperty isoSurface "opacity"
-            Ids |> DynObj.setOptionalProperty isoSurface "ids"
-            X |> DynObj.setOptionalProperty isoSurface "x"
-            Y |> DynObj.setOptionalProperty isoSurface "y"
-            Z |> DynObj.setOptionalProperty isoSurface "z"
-            Value |> DynObj.setOptionalProperty isoSurface "value"
-            (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty isoSurface "text"
-            (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty isoSurface "hovertext"
-            HoverInfo |> DynObj.setOptionalPropertyBy isoSurface "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setOptionalSingleOrMultiProperty isoSurface "hovertemplate"
-            XHoverFormat |> DynObj.setOptionalProperty isoSurface "xhoverformat"
-            YHoverFormat |> DynObj.setOptionalProperty isoSurface "yhoverformat"
-            ZHoverFormat |> DynObj.setOptionalProperty isoSurface "zhoverformat"
-            ValueHoverFormat |> DynObj.setOptionalProperty isoSurface "valuehoverformat"
-            Meta |> DynObj.setOptionalProperty isoSurface "meta"
-            CustomData |> DynObj.setOptionalProperty isoSurface "customdata"
-            Scene |> DynObj.setOptionalPropertyBy isoSurface "scene" StyleParam.SubPlotId.convert
-            ColorAxis |> DynObj.setOptionalPropertyBy isoSurface "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setOptionalProperty isoSurface "colorbar"
-            AutoColorScale |> DynObj.setOptionalProperty isoSurface "autocolorscale"
-            ColorScale |> DynObj.setOptionalPropertyBy isoSurface "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setOptionalProperty isoSurface "showscale"
-            ReverseScale |> DynObj.setOptionalProperty isoSurface "reversescale"
-            CAuto |> DynObj.setOptionalProperty isoSurface "cauto"
-            CMin |> DynObj.setOptionalProperty isoSurface "cmin"
-            CMid |> DynObj.setOptionalProperty isoSurface "cmid"
-            CMax |> DynObj.setOptionalProperty isoSurface "cmax"
-            Caps |> DynObj.setOptionalProperty isoSurface "caps"
-            Contour |> DynObj.setOptionalProperty isoSurface "contour"
-            FlatShading |> DynObj.setOptionalProperty isoSurface "flatshading"
-            HoverLabel |> DynObj.setOptionalProperty isoSurface "hoverlabel"
-            IsoMax |> DynObj.setOptionalProperty isoSurface "isomax"
-            IsoMin |> DynObj.setOptionalProperty isoSurface "isomin"
-            Lighting |> DynObj.setOptionalProperty isoSurface "lighting"
-            LightPosition |> DynObj.setOptionalProperty isoSurface "lightposition"
-            OpacityScale |> DynObj.setOptionalProperty isoSurface "opacityscale"
-            Slices |> DynObj.setOptionalProperty isoSurface "slices"
-            SpaceFrame |> DynObj.setOptionalProperty isoSurface "spaceframe"
-            Surface |> DynObj.setOptionalProperty isoSurface "surface"
-            UIRevision |> DynObj.setOptionalProperty isoSurface "uirevision"
-
             isoSurface
+            |> DynObj.withOptionalProperty               "name"               Name                                
+            |> DynObj.withOptionalPropertyBy             "visible"            Visible                             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"         ShowLegend                          
+            |> DynObj.withOptionalPropertyBy             "legend"             Legend                              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"         LegendRank                          
+            |> DynObj.withOptionalProperty               "legendgroup"        LegendGroup                         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
+            |> DynObj.withOptionalProperty               "opacity"            Opacity                             
+            |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "x"                  X                                   
+            |> DynObj.withOptionalProperty               "y"                  Y                                   
+            |> DynObj.withOptionalProperty               "z"                  Z                                   
+            |> DynObj.withOptionalProperty               "value"              Value                               
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
+            |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
+            |> DynObj.withOptionalProperty               "xhoverformat"       XHoverFormat                        
+            |> DynObj.withOptionalProperty               "yhoverformat"       YHoverFormat                        
+            |> DynObj.withOptionalProperty               "zhoverformat"       ZHoverFormat                        
+            |> DynObj.withOptionalProperty               "valuehoverformat"   ValueHoverFormat                    
+            |> DynObj.withOptionalProperty               "meta"               Meta                                
+            |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalPropertyBy             "scene"              Scene                               StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalPropertyBy             "coloraxis"          ColorAxis                           StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "colorbar"           ColorBar                            
+            |> DynObj.withOptionalProperty               "autocolorscale"     AutoColorScale                      
+            |> DynObj.withOptionalPropertyBy             "colorscale"         ColorScale                          StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"          ShowScale                           
+            |> DynObj.withOptionalProperty               "reversescale"       ReverseScale                        
+            |> DynObj.withOptionalProperty               "cauto"              CAuto                               
+            |> DynObj.withOptionalProperty               "cmin"               CMin                                
+            |> DynObj.withOptionalProperty               "cmid"               CMid                                
+            |> DynObj.withOptionalProperty               "cmax"               CMax                                
+            |> DynObj.withOptionalProperty               "caps"               Caps                                
+            |> DynObj.withOptionalProperty               "contour"            Contour                             
+            |> DynObj.withOptionalProperty               "flatshading"        FlatShading                         
+            |> DynObj.withOptionalProperty               "hoverlabel"         HoverLabel                          
+            |> DynObj.withOptionalProperty               "isomax"             IsoMax                              
+            |> DynObj.withOptionalProperty               "isomin"             IsoMin                              
+            |> DynObj.withOptionalProperty               "lighting"           Lighting                            
+            |> DynObj.withOptionalProperty               "lightposition"      LightPosition                       
+            |> DynObj.withOptionalProperty               "opacityscale"       OpacityScale                        
+            |> DynObj.withOptionalProperty               "slices"             Slices                              
+            |> DynObj.withOptionalProperty               "spaceframe"         SpaceFrame                          
+            |> DynObj.withOptionalProperty               "surface"            Surface                             
+            |> DynObj.withOptionalProperty               "uirevision"         UIRevision                          
