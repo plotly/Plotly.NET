@@ -262,57 +262,46 @@ type Config() =
         ) =
         fun (config: Config) ->
 
-            StaticPlot |> DynObj.setOptionalProperty config "staticPlot"
-            TypesetMath |> DynObj.setOptionalProperty config "typesetMath"
-            PlotlyServerUrl |> DynObj.setOptionalProperty config "plotlyServerUrl"
-            Editable |> DynObj.setOptionalProperty config "editable"
-            Edits |> DynObj.setOptionalProperty config "edits"
-            EditSelection |> DynObj.setOptionalProperty config "editSelection"
-            Autosizable |> DynObj.setOptionalProperty config "autosizable"
-            Responsive |> DynObj.setOptionalProperty config "responsive"
-            FillFrame |> DynObj.setOptionalProperty config "fillFrame"
-            FrameMargins |> DynObj.setOptionalProperty config "frameMargins"
-            ScrollZoom |> DynObj.setOptionalPropertyBy config "scrollZoom" StyleParam.ScrollZoom.convert
-            DoubleClick |> DynObj.setOptionalPropertyBy config "doubleClick" StyleParam.DoubleClick.convert
-            DoubleClickDelay |> DynObj.setOptionalProperty config "doubleClickDelay"
-            ShowAxisDragHandles |> DynObj.setOptionalProperty config "showAxisDragHandles"
-            ShowAxisRangeEntryBoxes |> DynObj.setOptionalProperty config "showAxisRangeEntryBoxes"
-            ShowTips |> DynObj.setOptionalProperty config "showTips"
-            ShowLink |> DynObj.setOptionalProperty config "showLink"
-            LinkText |> DynObj.setOptionalProperty config "linkText"
-            SendData |> DynObj.setOptionalProperty config "sendData"
-            ShowSources |> DynObj.setOptionalProperty config "showSources"
-            DisplayModeBar |> DynObj.setOptionalProperty config "displayModeBar"
-            ShowSendToCloud |> DynObj.setOptionalProperty config "showSendToCloud"
-            ShowEditInChartStudio |> DynObj.setOptionalProperty config "showEditInChartStudio"
-
-            ModeBarButtonsToRemove
-            |> DynObj.setOptionalPropertyBy config "modeBarButtonsToRemove" (fun x ->
-                x |> Seq.map StyleParam.ModeBarButton.toString)
-
-            ModeBarButtonsToAdd
-            |> DynObj.setOptionalPropertyBy config "modeBarButtonsToAdd" (fun x ->
-                x |> Seq.map StyleParam.ModeBarButton.toString)
-
-            ModeBarButtons
-            |> DynObj.setOptionalPropertyBy config "modeBarButtons" (fun x ->
-                x |> Seq.map (Seq.map StyleParam.ModeBarButton.toString))
-
-            ToImageButtonOptions |> DynObj.setOptionalProperty config "toImageButtonOptions"
-            Displaylogo |> DynObj.setOptionalProperty config "displaylogo"
-            Watermark |> DynObj.setOptionalProperty config "watermark"
-            plotGlPixelRatio |> DynObj.setOptionalProperty config "plotGlPixelRatio"
-            SetBackground |> DynObj.setOptionalProperty config "setBackground"
-            TopojsonURL |> DynObj.setOptionalProperty config "topojsonURL"
-            MapboxAccessToken |> DynObj.setOptionalProperty config "mapboxAccessToken"
-            Logging |> DynObj.setOptionalProperty config "logging"
-            NotifyOnLogging |> DynObj.setOptionalProperty config "notifyOnLogging"
-            QueueLength |> DynObj.setOptionalProperty config "queueLength"
-            GlobalTransforms |> DynObj.setOptionalProperty config "globalTransforms"
-            Locale |> DynObj.setOptionalProperty config "locale"
-            Locales |> DynObj.setOptionalProperty config "locales"
-
             config
+            |> DynObj.withOptionalProperty   "staticPlot"             StaticPlot              
+            |> DynObj.withOptionalProperty   "typesetMath"            TypesetMath             
+            |> DynObj.withOptionalProperty   "plotlyServerUrl"        PlotlyServerUrl         
+            |> DynObj.withOptionalProperty   "editable"               Editable                
+            |> DynObj.withOptionalProperty   "edits"                  Edits                   
+            |> DynObj.withOptionalProperty   "editSelection"          EditSelection           
+            |> DynObj.withOptionalProperty   "autosizable"            Autosizable             
+            |> DynObj.withOptionalProperty   "responsive"             Responsive              
+            |> DynObj.withOptionalProperty   "fillFrame"              FillFrame               
+            |> DynObj.withOptionalProperty   "frameMargins"           FrameMargins            
+            |> DynObj.withOptionalPropertyBy "scrollZoom"             ScrollZoom              StyleParam.ScrollZoom.convert
+            |> DynObj.withOptionalPropertyBy "doubleClick"            DoubleClick             StyleParam.DoubleClick.convert
+            |> DynObj.withOptionalProperty   "doubleClickDelay"       DoubleClickDelay        
+            |> DynObj.withOptionalProperty   "showAxisDragHandles"    ShowAxisDragHandles     
+            |> DynObj.withOptionalProperty   "showAxisRangeEntryBoxes"ShowAxisRangeEntryBoxes 
+            |> DynObj.withOptionalProperty   "showTips"               ShowTips                
+            |> DynObj.withOptionalProperty   "showLink"               ShowLink                
+            |> DynObj.withOptionalProperty   "linkText"               LinkText                
+            |> DynObj.withOptionalProperty   "sendData"               SendData                
+            |> DynObj.withOptionalProperty   "showSources"            ShowSources             
+            |> DynObj.withOptionalProperty   "displayModeBar"         DisplayModeBar          
+            |> DynObj.withOptionalProperty   "showSendToCloud"        ShowSendToCloud         
+            |> DynObj.withOptionalProperty   "showEditInChartStudio"  ShowEditInChartStudio   
+            |> DynObj.withOptionalPropertyBy "modeBarButtonsToRemove" ModeBarButtonsToRemove  (fun x -> x |> Seq.map StyleParam.ModeBarButton.toString)
+            |> DynObj.withOptionalPropertyBy "modeBarButtonsToAdd"    ModeBarButtonsToAdd     (fun x -> x |> Seq.map StyleParam.ModeBarButton.toString)
+            |> DynObj.withOptionalPropertyBy "modeBarButtons"         ModeBarButtons          (fun x -> x |> Seq.map (Seq.map StyleParam.ModeBarButton.toString))
+            |> DynObj.withOptionalProperty   "toImageButtonOptions"   ToImageButtonOptions    
+            |> DynObj.withOptionalProperty   "displaylogo"            Displaylogo             
+            |> DynObj.withOptionalProperty   "watermark"              Watermark               
+            |> DynObj.withOptionalProperty   "plotGlPixelRatio"       plotGlPixelRatio        
+            |> DynObj.withOptionalProperty   "setBackground"          SetBackground           
+            |> DynObj.withOptionalProperty   "topojsonURL"            TopojsonURL             
+            |> DynObj.withOptionalProperty   "mapboxAccessToken"      MapboxAccessToken       
+            |> DynObj.withOptionalProperty   "logging"                Logging                 
+            |> DynObj.withOptionalProperty   "notifyOnLogging"        NotifyOnLogging         
+            |> DynObj.withOptionalProperty   "queueLength"            QueueLength             
+            |> DynObj.withOptionalProperty   "globalTransforms"       GlobalTransforms        
+            |> DynObj.withOptionalProperty   "locale"                 Locale                  
+            |> DynObj.withOptionalProperty   "locales"                Locales                 
 
     /// <summary>
     /// Combines two Config objects.

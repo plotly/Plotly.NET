@@ -68,7 +68,7 @@ type Chart =
             LinearAxis.init (ShowGrid = false, ShowLine = false, ShowTickLabels = false, ZeroLine = false)
 
         let trace = Trace2D.initScatter (id)
-        trace.Remove("type") |> ignore
+        trace.RemoveProperty("type") |> ignore
 
         GenericChart.ofTraceObject false trace
         |> GenericChart.mapLayout (fun l ->
@@ -3228,8 +3228,8 @@ type Chart =
                     let allYAxes = Layout.getYAxes layout |> Seq.map fst
 
                     // remove all axes from layout. Only cartesian axis in each dimension is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allXAxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
-                    allYAxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allXAxes |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
+                    allYAxes |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let xAnchor, yAnchor =
                         if hasSharedAxes then
@@ -3252,7 +3252,7 @@ type Chart =
                     let allScenes = Layout.getScenes layout |> Seq.map fst
 
                     // remove all scenes from layout. Only one scene is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allScenes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allScenes |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let sceneAnchor =
                         StyleParam.SubPlotId.Scene(i + 1)
@@ -3270,7 +3270,7 @@ type Chart =
                     let allPolars = Layout.getPolars layout |> Seq.map fst
 
                     // remove all polar subplots from layout. Only one polar subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allPolars |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allPolars |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let polarAnchor =
                         StyleParam.SubPlotId.Polar(i + 1)
@@ -3290,7 +3290,7 @@ type Chart =
                     let allSmiths = Layout.getSmiths layout |> Seq.map fst
 
                     // remove all smith subplots from layout. Only one smith subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allSmiths |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allSmiths |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let polarAnchor =
                         StyleParam.SubPlotId.Smith(i + 1)
@@ -3309,7 +3309,7 @@ type Chart =
                     let allGeos = Layout.getGeos layout |> Seq.map fst
 
                     // remove all geo subplots from layout. Only one geo subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allGeos |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allGeos |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let geoAnchor =
                         StyleParam.SubPlotId.Geo(i + 1)
@@ -3329,7 +3329,7 @@ type Chart =
                     let allMapboxes = Layout.getMapboxes layout |> Seq.map fst
 
                     // remove all mapbox subplots from layout. Only one mapbox subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allMapboxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allMapboxes |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let geoAnchor =
                         StyleParam.SubPlotId.Geo(i + 1)
@@ -3354,7 +3354,7 @@ type Chart =
                     let allTernaries = Layout.getTernaries layout |> Seq.map fst
 
                     // remove all ternary subplots from layout. Only one ternary subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allTernaries |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allTernaries |> Seq.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let ternaryAnchor =
                         StyleParam.SubPlotId.Ternary(i + 1)

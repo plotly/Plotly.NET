@@ -4,7 +4,6 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 
 open DynamicObj
-open DynamicObj.Operators
 open System.Runtime.InteropServices
 
 module ChartTemplates =
@@ -70,7 +69,7 @@ module ChartTemplates =
 
         Template.init (defaultLayout)
 
-    let dark =
+    let dark : Template =
 
         let initDarkAxisTemplate () =
             LinearAxis.init (
@@ -94,20 +93,18 @@ module ChartTemplates =
 
         Template.init (darkLayoutTemplate)
 
-    let darkMirrored =
+    let darkMirrored : Template =
         dark
         |> Template.mapLayoutTemplate (fun l ->
-            l.TryGetTypedPropertyValue<LinearAxis>("xaxis")
-            |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-            |> DynObj.setOptionalProperty l "xaxis"
+            let x = l.TryGetTypedPropertyValue<LinearAxis>("xaxis")
+            let y =l.TryGetTypedPropertyValue<LinearAxis>("yaxis")
 
-            l.TryGetTypedPropertyValue<LinearAxis>("yaxis")
-            |> Option.map (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
-            |> DynObj.setOptionalProperty l "yaxis"
+            l 
+            |> DynObj.withOptionalPropertyBy "xaxis" x (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
+            |> DynObj.withOptionalPropertyBy "yaxis" y (LinearAxis.style (Mirror = StyleParam.Mirror.AllTicks))
+        )
 
-            l)
-
-    let fslab =
+    let fslab : Template =
 
         let initFslabAxisTemplate () =
             LinearAxis.init (
@@ -132,7 +129,7 @@ module ChartTemplates =
         Template.init (fslabLayoutTemplate) |> Template.withColorWay ColorWays.fslab
 
 
-    let transparent =
+    let transparent : Template  =
         let initTransparentAxisTemplate () =
             LinearAxis.init (ShowLine = true, ZeroLine = true)
 
@@ -146,7 +143,7 @@ module ChartTemplates =
 
         Template.init (defaultLayout)
 
-    let transparentMirrored =
+    let transparentMirrored : Template =
         let initTransparentAxisTemplate () =
             LinearAxis.init (
                 ShowLine = true,
@@ -166,7 +163,7 @@ module ChartTemplates =
         Template.init (defaultLayout)
 
     /// the default template, as used in the python lib by default.
-    let plotly =
+    let plotly : Template =
 
         // non-standard props, may change in the future
         let annotationdefaults =

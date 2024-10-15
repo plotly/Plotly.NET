@@ -62,17 +62,15 @@ type DisplayOptions() =
             [<Optional; DefaultParameterValue(null)>] ?ChartDescription: XmlNode list,
             [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
         ) =
-        (fun (displayOpts: DisplayOptions) ->
-
-            DocumentTitle |> DynObj.setOptionalProperty displayOpts "DocumentTitle"
-            DocumentCharset |> DynObj.setOptionalProperty displayOpts "DocumentCharset"
-            DocumentDescription |> DynObj.setOptionalProperty displayOpts "DocumentDescription"
-            DocumentFavicon |> DynObj.setOptionalProperty displayOpts "DocumentFavicon"
-            AdditionalHeadTags |> DynObj.setOptionalProperty displayOpts "AdditionalHeadTags"
-            ChartDescription |> DynObj.setOptionalProperty displayOpts "ChartDescription"
-            PlotlyJSReference |> DynObj.setOptionalProperty displayOpts "PlotlyJSReference"
-
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts
+            |> DynObj.withOptionalProperty "DocumentTitle"       DocumentTitle       
+            |> DynObj.withOptionalProperty "DocumentCharset"     DocumentCharset     
+            |> DynObj.withOptionalProperty "DocumentDescription" DocumentDescription 
+            |> DynObj.withOptionalProperty "DocumentFavicon"     DocumentFavicon     
+            |> DynObj.withOptionalProperty "AdditionalHeadTags"  AdditionalHeadTags  
+            |> DynObj.withOptionalProperty "ChartDescription"    ChartDescription    
+            |> DynObj.withOptionalProperty "PlotlyJSReference"   PlotlyJSReference   
 
     /// <summary>
     /// Returns a DisplayOptions Object with the plotly cdn set to Globals.PLOTLYJS_VERSION
@@ -117,9 +115,8 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentTitle">The document title to set on the given DisplayOptions object</param>
     static member setDocumentTitle(documentTitle: string) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentTitle |> DynObj.withProperty displayOpts "DocumentTitle"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts  |> DynObj.withProperty "DocumentTitle" documentTitle
 
     /// <summary>
     /// Returns Some document title from the given DisplayOptions object if it exists, None otherwise
@@ -140,9 +137,9 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentCharset">The document charset to set on the given DisplayOptions object</param>
     static member setDocumentCharset(documentCharset: string) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentCharset |> DynObj.withProperty displayOpts "DocumentCharset"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty  "DocumentCharset" documentCharset
+            
 
     /// <summary>
     /// Returns Some document charset from the given DisplayOptions object if it exists, None otherwise
@@ -163,9 +160,9 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentDescription">The document description to set on the given DisplayOptions object</param>
     static member setDocumentDescription(documentDescription: string) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentDescription |> DynObj.withProperty displayOpts "DocumentDescription"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "DocumentDescription" documentDescription
+            
 
     /// <summary>
     /// Returns Some document description from the given DisplayOptions object if it exists, None otherwise
@@ -186,9 +183,8 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentFavicon">The document favicon to set on the given DisplayOptions object</param>
     static member setDocumentFavicon(documentFavicon: XmlNode) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentFavicon |> DynObj.withProperty displayOpts "DocumentFavicon"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "DocumentFavicon" documentFavicon
 
     /// <summary>
     /// Returns Some document favicon from the given DisplayOptions object if it exists, None otherwise
@@ -209,9 +205,9 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="additionalHeadTags">The additional head tags to set on the given DisplayOptions object</param>
     static member setAdditionalHeadTags(additionalHeadTags: XmlNode list) =
-        (fun (displayOpts: DisplayOptions) ->
-            additionalHeadTags |> DynObj.withProperty displayOpts "AdditionalHeadTags"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "AdditionalHeadTags" additionalHeadTags
+            
 
     /// <summary>
     /// Returns Some additional head tags from the given DisplayOptions object if they exist, None otherwise
@@ -243,9 +239,9 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="chartDescription">The chart chart description to set on the given DisplayOptions object</param>
     static member setChartDescription(chartDescription: XmlNode list) =
-        (fun (displayOpts: DisplayOptions) ->
-            chartDescription |> DynObj.withProperty displayOpts "ChartDescription"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "ChartDescription" chartDescription
+            
 
     /// <summary>
     /// Returns Some chart description from the given DisplayOptions object if it exists, None otherwise
@@ -275,9 +271,8 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="plotlyReference">The reference to a plotly.js source to set on the given DisplayOptions object</param>
     static member setPlotlyReference(plotlyReference: PlotlyJSReference) =
-        (fun (displayOpts: DisplayOptions) ->
-            plotlyReference |> DynObj.withProperty displayOpts "PlotlyJSReference"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "PlotlyJSReference"  plotlyReference
 
     /// <summary>
     /// Returns Some reference to a plotly.js source from the given DisplayOptions object if it exists, None otherwise

@@ -18,7 +18,7 @@ type TraceSmithStyle() =
 
     static member SetSmith([<Optional; DefaultParameterValue(null)>] ?SmithId: StyleParam.SubPlotId) =
         fun (trace: TraceSmith) ->
-             trace |> DynObj.setOptionalPropertyBy "subplot" SmithId StyleParam.SubPlotId.toString
+             trace |> DynObj.withOptionalPropertyBy "subplot" SmithId StyleParam.SubPlotId.toString
 
 
     /// <summary>

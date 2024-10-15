@@ -46,7 +46,7 @@ type TraceMapboxStyle() =
 
     static member SetMapbox([<Optional; DefaultParameterValue(null)>] ?MapboxId: StyleParam.SubPlotId) =
         fun (trace: TraceMapbox) ->
-            trace |> DynObj.setOptionalPropertyBy "subplot" MapboxId StyleParam.SubPlotId.toString
+            trace |> DynObj.withOptionalPropertyBy "subplot" MapboxId StyleParam.SubPlotId.toString
 
 
     /// <summary>
