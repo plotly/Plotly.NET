@@ -171,7 +171,7 @@ type Trace3DStyle() =
             (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty scatter "text"
 
             (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy scatter "textposition" StyleParam.TextPosition.convert
+            |> DynObj.setOptionalSingleOrMultiPropertyBy scatter "textposition" StyleParam.TextPosition.convert
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setOptionalSingleOrMultiProperty scatter "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty scatter "hovertext"

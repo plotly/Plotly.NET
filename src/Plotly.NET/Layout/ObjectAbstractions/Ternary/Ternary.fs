@@ -88,7 +88,7 @@ type Ternary() =
     /// <param name="aAxis">The new a axis object</param>
     static member setAAxis(aAxis: LinearAxis) =
         (fun (ternary: Ternary) ->
-            ternary.SetValue("aaxis", aAxis)
+            ternary.SetProperty("aaxis", aAxis)
             ternary)
 
     /// <summary>
@@ -106,7 +106,7 @@ type Ternary() =
     /// <param name="bAxis">The new b axis object</param>
     static member setBAxis(bAxis: LinearAxis) =
         (fun (ternary: Ternary) ->
-            ternary.SetValue("baxis", bAxis)
+            ternary.SetProperty("baxis", bAxis)
             ternary)
 
     /// <summary>
@@ -124,5 +124,5 @@ type Ternary() =
     /// <param name="cAxis">The new c axis object</param>
     static member setCAxis(cAxis: LinearAxis) =
         (fun (ternary: Ternary) ->
-            ternary.SetValue("caxis", cAxis)
+            ternary.SetProperty("caxis", cAxis)
             ternary)

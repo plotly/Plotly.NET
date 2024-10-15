@@ -77,7 +77,7 @@ type Smith() =
     /// <param name="imaginaryAxis">The new ImaginaryAxis object</param>
     static member setImaginaryAxis(imaginaryAxis: ImaginaryAxis) =
         (fun (smith: Smith) ->
-            smith.SetValue("imaginaryaxis", imaginaryAxis)
+            smith.SetProperty("imaginaryaxis", imaginaryAxis)
             smith)
 
     /// <summary>
@@ -95,5 +95,5 @@ type Smith() =
     /// <param name="realAxis">The new RealAxis object</param>
     static member setRealAxis(realAxis: RealAxis) =
         (fun (smith: Smith) ->
-            smith.SetValue("realaxis", realAxis)
+            smith.SetProperty("realaxis", realAxis)
             smith)

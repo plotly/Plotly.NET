@@ -152,7 +152,7 @@ type TraceMapboxStyle() =
             (Text, MultiText) |> DynObj.setOptionalSingleOrMultiProperty trace "text"
 
             (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
+            |> DynObj.setOptionalSingleOrMultiPropertyBy trace "textposition" StyleParam.TextPosition.convert
 
             (TextTemplate, MultiTextTemplate) |> DynObj.setOptionalSingleOrMultiProperty trace "texttemplate"
             (HoverText, MultiHoverText) |> DynObj.setOptionalSingleOrMultiProperty trace "hovertext"

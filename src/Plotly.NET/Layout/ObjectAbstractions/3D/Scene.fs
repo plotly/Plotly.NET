@@ -125,7 +125,7 @@ type Scene() =
     /// <param name="xAxis">The new x axis object</param>
     static member setXAxis(xAxis: LinearAxis) =
         (fun (scene: Scene) ->
-            scene.SetValue("xaxis", xAxis)
+            scene.SetProperty("xaxis", xAxis)
             scene)
 
     /// <summary>
@@ -143,7 +143,7 @@ type Scene() =
     /// <param name="yAxis">The new y axis object</param>
     static member setYAxis(yAxis: LinearAxis) =
         (fun (scene: Scene) ->
-            scene.SetValue("yaxis", yAxis)
+            scene.SetProperty("yaxis", yAxis)
             scene)
 
     /// <summary>
@@ -161,5 +161,5 @@ type Scene() =
     /// <param name="zAxis">The new z axis object</param>
     static member setZAxis(zAxis: LinearAxis) =
         (fun (scene: Scene) ->
-            scene.SetValue("zaxis", zAxis)
+            scene.SetProperty("zaxis", zAxis)
             scene)

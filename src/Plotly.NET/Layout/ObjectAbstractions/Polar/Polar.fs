@@ -106,7 +106,7 @@ type Polar() =
     /// <param name="angularAxis">The new AngularAxis object</param>
     static member setAngularAxis(angularAxis: AngularAxis) =
         (fun (polar: Polar) ->
-            polar.SetValue("angularaxis", angularAxis)
+            polar.SetProperty("angularaxis", angularAxis)
             polar)
 
     /// <summary>
@@ -124,5 +124,5 @@ type Polar() =
     /// <param name="radialAxis">The new RadialAxis object</param>
     static member setRadialAxis(radialAxis: RadialAxis) =
         (fun (polar: Polar) ->
-            polar.SetValue("radialaxis", radialAxis)
+            polar.SetProperty("radialaxis", radialAxis)
             polar)
