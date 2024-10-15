@@ -204,44 +204,44 @@ let ``Layout combine API tests`` =
     testList "LayoutObjects.Layout API" [
         testCase "combine Annotations" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<Annotation>>("annotations")).Value
-                (expectedCombined.TryGetTypedValue<seq<Annotation>>("annotations")).Value
+                (combined.TryGetTypedPropertyValue<seq<Annotation>>("annotations")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<Annotation>>("annotations")).Value
                 "Layout.combine did not return the correct object"
         )         
         testCase "combine Shapes" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<Shape>>("shapes")).Value
-                (expectedCombined.TryGetTypedValue<seq<Shape>>("shapes")).Value
+                (combined.TryGetTypedPropertyValue<seq<Shape>>("shapes")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<Shape>>("shapes")).Value
                 "Layout.combine did not return the correct object"
         )        
         testCase "combine Selections" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<Selection>>("selections")).Value
-                (expectedCombined.TryGetTypedValue<seq<Selection>>("selections")).Value
+                (combined.TryGetTypedPropertyValue<seq<Selection>>("selections")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<Selection>>("selections")).Value
                 "Layout.combine did not return the correct object"
         )         
         testCase "combine Images" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<LayoutImage>>("images")).Value
-                (expectedCombined.TryGetTypedValue<seq<LayoutImage>>("images")).Value
+                (combined.TryGetTypedPropertyValue<seq<LayoutImage>>("images")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<LayoutImage>>("images")).Value
                 "Layout.combine did not return the correct object"
         )
         testCase "combine Sliders" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<Slider>>("sliders")).Value
-                (expectedCombined.TryGetTypedValue<seq<Slider>>("sliders")).Value
+                (combined.TryGetTypedPropertyValue<seq<Slider>>("sliders")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<Slider>>("sliders")).Value
                 "Layout.combine did not return the correct object"
         )         
         testCase "combine HiddenLabels" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<string>>("hiddenlabels")).Value
-                (expectedCombined.TryGetTypedValue<seq<string>>("hiddenlabels")).Value
+                (combined.TryGetTypedPropertyValue<seq<string>>("hiddenlabels")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<string>>("hiddenlabels")).Value
                 "Layout.combine did not return the correct object"
         )         
         testCase "combine UpdateMenus" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<UpdateMenu>>("updatemenus")).Value
-                (expectedCombined.TryGetTypedValue<seq<UpdateMenu>>("updatemenus")).Value
+                (combined.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus")).Value
                 "Layout.combine did not return the correct object"
         )
     ]

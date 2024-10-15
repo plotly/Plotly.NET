@@ -18,7 +18,7 @@ namespace Plotly.NET.CSharp.Tests
                 .GetTraces()
                 [0];
 
-            Assert.Equal("Trace Name", DynamicObj.DynamicObj.GetValue(actual,"name"));
+            Assert.Equal("Trace Name", actual.GetPropertyValue("name"));
         }
 
         [Fact]

@@ -261,7 +261,7 @@ type Config() =
             [<Optional; DefaultParameterValue(null)>] ?Locales: obj
         ) =
         fun (config: Config) ->
-
+            
             config
             |> DynObj.withOptionalProperty   "staticPlot"             StaticPlot              
             |> DynObj.withOptionalProperty   "typesetMath"            TypesetMath             

@@ -1131,8 +1131,7 @@ type Chart =
                             | StyleParam.SubPlotId.ZAxis   -> scene |> Scene.getZAxis
                             | _ -> failwith "invalid scene axis id"
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis axis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis axis
 
                         let updatedScene =
                             scene
@@ -1752,8 +1751,7 @@ type Chart =
                         let currentAxis =
                             polar |> Polar.getAngularAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis angularAxis) :?> AngularAxis
+                        let updatedAxis = DynObj.combine currentAxis angularAxis
 
                         let updatedPolar =
                             polar |> Polar.setAngularAxis updatedAxis
@@ -1812,7 +1810,7 @@ type Chart =
                             polar |> Polar.getRadialAxis
 
                         let updatedAxis =
-                            (DynObj.combine currentAxis radialAxis) :?> RadialAxis
+                            DynObj.combine currentAxis radialAxis
 
                         let updatedPolar =
                             polar |> Polar.setRadialAxis updatedAxis
@@ -1927,8 +1925,7 @@ type Chart =
                         let currentAxis =
                             smith |> Smith.getImaginaryAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis imaginaryAxis) :?> ImaginaryAxis
+                        let updatedAxis = DynObj.combine currentAxis imaginaryAxis
 
                         let updatedSmith =
                             smith |> Smith.setImaginaryAxis updatedAxis
@@ -1985,8 +1982,7 @@ type Chart =
                     if combine then
                         let currentAxis = smith |> Smith.getRealAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis realAxis) :?> RealAxis
+                        let updatedAxis = DynObj.combine currentAxis realAxis
 
                         let updatedSmith =
                             smith |> Smith.setRealAxis updatedAxis
@@ -2368,8 +2364,7 @@ type Chart =
                         let currentAxis =
                             ternary |> Ternary.getAAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis aAxis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis aAxis
 
                         let updatedTernary =
                             ternary |> Ternary.setAAxis updatedAxis
@@ -2428,8 +2423,7 @@ type Chart =
                         let currentAxis =
                             ternary |> Ternary.getBAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis bAxis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis bAxis
 
                         let updatedTernary =
                             ternary |> Ternary.setBAxis updatedAxis
@@ -2488,8 +2482,7 @@ type Chart =
                         let currentAxis =
                             ternary |> Ternary.getCAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis cAxis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis cAxis
 
                         let updatedTernary =
                             ternary |> Ternary.setCAxis updatedAxis

@@ -748,6 +748,7 @@ type TraceStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty "hovertemplate" (HoverTemplate, MultiHoverTemplate)
             |> DynObj.withOptionalProperty "textfont" TextFont
 
+
     // <summary>
     /// Returns a function that applies the given styles to the trace's domain object.
     /// </summary>
