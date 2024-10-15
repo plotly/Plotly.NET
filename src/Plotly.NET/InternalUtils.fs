@@ -39,7 +39,7 @@ module DynObj =
         else
             dyn |> DynObj.setOptionalProperty propName single
 
-    let withOptionalSingleOrMultiProperty (propName: string) (single: 'A option, multi: seq<'A> option) (dyn: #DynamicObj) =
+    let inline withOptionalSingleOrMultiProperty (propName: string) (single: 'A option, multi: seq<'A> option) (dyn: #DynamicObj) =
         dyn |> setOptionalSingleOrMultiProperty propName (single,multi)
         dyn
 
@@ -54,7 +54,7 @@ module DynObj =
         else
             dyn |> DynObj.setOptionalPropertyBy propName single f
 
-    let withOptionalSingleOrMultiPropertyBy
+    let inline withOptionalSingleOrMultiPropertyBy
         (propName: string)
         (single: 'A option, multi: seq<'A> option)
         (f: 'A -> 'B)
@@ -69,7 +69,7 @@ module DynObj =
         else
             dyn |> DynObj.setOptionalProperty propName single
 
-    let withOptionalSingleOrAnyProperty (propName: string) (single: 'A option, any: 'B option) (dyn: #DynamicObj) =
+    let inline withOptionalSingleOrAnyProperty (propName: string) (single: 'A option, any: 'B option) (dyn: #DynamicObj) =
         dyn |> setOptionalSingleOrAnyProperty propName (single, any)
         dyn
 
@@ -85,7 +85,7 @@ module DynObj =
         else
             dyn |> DynObj.setOptionalPropertyBy propName single singleF
 
-    let withOptionalSingleOrAnyPropertyBy
+    let inline withOptionalSingleOrAnyPropertyBy
         (propName: string)
         (single: 'A option, any: 'B option)
         (singleF: 'A -> 'C)

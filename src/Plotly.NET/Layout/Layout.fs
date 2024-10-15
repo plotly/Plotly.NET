@@ -562,7 +562,7 @@ type Layout() =
             | StyleParam.SubPlotId.YAxis _ ->
                 let axis' =
                     match Layout.tryGetLinearAxisById id layout with
-                    | Some a -> (DynObj.combine a axis) :?> LinearAxis
+                    | Some a -> DynObj.combine a axis
                     | None -> axis
                 layout
                 |> DynObj.withProperty (StyleParam.SubPlotId.toString id) axis'
@@ -639,7 +639,7 @@ type Layout() =
         (fun (layout: Layout) ->
             let scene' =
                 match Layout.tryGetSceneById id layout with
-                | Some a -> (DynObj.combine a scene) :?> Scene
+                | Some a -> DynObj.combine a scene
                 | None -> scene
             layout
             |> DynObj.withProperty (StyleParam.SubPlotId.toString id) scene'
@@ -695,7 +695,7 @@ type Layout() =
         (fun (layout: Layout) ->
             let geo' =
                 match Layout.tryGetGeoById id layout with
-                | Some a -> (DynObj.combine a geo) :?> Geo
+                | Some a -> DynObj.combine a geo
                 | None -> geo
 
             layout|> DynObj.withProperty (StyleParam.SubPlotId.toString id) geo'
@@ -750,7 +750,7 @@ type Layout() =
         (fun (layout: Layout) ->
             let mapbox' =
                 match Layout.tryGetMapboxById id layout with
-                | Some a -> (DynObj.combine a mapbox) :?> Mapbox
+                | Some a -> DynObj.combine a mapbox
                 | None -> mapbox
 
             layout |> DynObj.withProperty  (StyleParam.SubPlotId.toString id) mapbox' 
@@ -806,7 +806,7 @@ type Layout() =
 
             let polar' =
                 match layout |> Layout.tryGetPolarById (id) with
-                | Some a -> (DynObj.combine a polar) :?> Polar
+                | Some a -> DynObj.combine a polar
                 | None -> polar
 
             layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) polar'
@@ -861,8 +861,8 @@ type Layout() =
         (fun (layout: Layout) ->
 
             let smith' =
-                match layout |> Layout.tryGetPolarById (id) with
-                | Some a -> (DynObj.combine a smith) :?> Smith
+                match layout |> Layout.tryGetSmithById (id) with
+                | Some a -> DynObj.combine a smith
                 | None -> smith
 
             layout  |> DynObj.withProperty (StyleParam.SubPlotId.toString id) smith'
@@ -918,7 +918,7 @@ type Layout() =
 
             let colorAxis' =
                 match layout |> Layout.tryGetColorAxisById (id) with
-                | Some a -> (DynObj.combine a colorAxis) :?> ColorAxis
+                | Some a -> DynObj.combine a colorAxis
                 | None -> colorAxis
 
             layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) colorAxis'
@@ -974,7 +974,7 @@ type Layout() =
 
             let ternary' =
                 match layout |> Layout.tryGetTernaryById (id) with
-                | Some a -> (DynObj.combine a ternary) :?> Ternary
+                | Some a -> DynObj.combine a ternary
                 | None -> ternary
 
             layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) ternary'
@@ -1038,7 +1038,7 @@ type Layout() =
     static member updateLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (layout: Layout) ->
             let combined =
-                (DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid) :?> LayoutGrid
+                DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid
 
             layout |> Layout.setLayoutGrid combined)
 
@@ -1076,7 +1076,7 @@ type Layout() =
 
                 let legend' =
                     match Layout.tryGetLegendById id layout with
-                    | Some l -> (DynObj.combine l legend) :?> Legend
+                    | Some l -> DynObj.combine l legend
                     | None -> legend
 
                 layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) legend'
