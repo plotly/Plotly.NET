@@ -281,57 +281,55 @@ type RadialAxis() =
             [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar
         ) =
         fun (radialAxis: RadialAxis) ->
-
-            Visible |> DynObj.setOptionalProperty radialAxis "visible"
-            AxisType |> DynObj.setOptionalPropertyBy radialAxis "type" StyleParam.AxisType.convert
-            AutoTypeNumbers |> DynObj.setOptionalPropertyBy radialAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            AutoRange |> DynObj.setOptionalPropertyBy radialAxis "autorange" StyleParam.AutoRange.convert
-            AutoRangeOptions |> DynObj.setOptionalProperty radialAxis "autorangeoptions"
-            RangeMode |> DynObj.setOptionalPropertyBy radialAxis "rangemode" StyleParam.RangeMode.convert
-            Range |> DynObj.setOptionalPropertyBy radialAxis "range" StyleParam.Range.convert
-            CategoryOrder |> DynObj.setOptionalPropertyBy radialAxis "categoryorder" StyleParam.CategoryOrder.convert
-            CategoryArray |> DynObj.setOptionalProperty radialAxis "categoryarray"
-            Angle |> DynObj.setOptionalProperty radialAxis "angle"
-            Side |> DynObj.setOptionalPropertyBy radialAxis "side" StyleParam.Direction.convert
-            Title |> DynObj.setOptionalProperty radialAxis "title"
-            HoverFormat |> DynObj.setOptionalProperty radialAxis "hoverformat"
-            UIRevision |> DynObj.setOptionalProperty radialAxis "uirevision"
-            Color |> DynObj.setOptionalProperty radialAxis "color"
-            ShowLine |> DynObj.setOptionalProperty radialAxis "showline"
-            LineColor |> DynObj.setOptionalProperty radialAxis "linecolor"
-            LineWidth |> DynObj.setOptionalProperty radialAxis "linewidth"
-            MaxAllowed |> DynObj.setOptionalProperty radialAxis "maxallowed"
-            MinAllowed |> DynObj.setOptionalProperty radialAxis "minallowed"
-            ShowGrid |> DynObj.setOptionalProperty radialAxis "showgrid"
-            GridColor |> DynObj.setOptionalProperty radialAxis "gridcolor"
-            GridDash |> DynObj.setOptionalPropertyBy radialAxis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setOptionalProperty radialAxis "gridwidth"
-            TickMode |> DynObj.setOptionalPropertyBy radialAxis "tickmode" StyleParam.TickMode.convert
-            NTicks |> DynObj.setOptionalProperty radialAxis "nticks"
-            Tick0 |> DynObj.setOptionalProperty radialAxis "tick0"
-            DTick |> DynObj.setOptionalProperty radialAxis "dtick"
-            TickVals |> DynObj.setOptionalProperty radialAxis "tickvals"
-            TickText |> DynObj.setOptionalProperty radialAxis "ticktext"
-            Ticks |> DynObj.setOptionalPropertyBy radialAxis "ticks" StyleParam.TickOptions.convert
-            TickLen |> DynObj.setOptionalProperty radialAxis "ticklen"
-            TickWidth |> DynObj.setOptionalProperty radialAxis "tickwidth"
-            TickColor |> DynObj.setOptionalProperty radialAxis "tickcolor"
-            ShowTickLabels |> DynObj.setOptionalProperty radialAxis "showticklabels"
-            ShowTickPrefix |> DynObj.setOptionalPropertyBy radialAxis "showtickprefix" StyleParam.ShowTickOption.convert
-            TickPrefix |> DynObj.setOptionalProperty radialAxis "tickprefix"
-            ShowTickSuffix |> DynObj.setOptionalPropertyBy radialAxis "showticksuffix" StyleParam.ShowTickOption.convert
-            TickSuffix |> DynObj.setOptionalProperty radialAxis "ticksuffix"
-            ShowExponent |> DynObj.setOptionalPropertyBy radialAxis "showexponent" StyleParam.ShowExponent.convert
-            ExponentFormat |> DynObj.setOptionalPropertyBy radialAxis "exponentformat" StyleParam.ExponentFormat.convert
-            MinExponent |> DynObj.setOptionalProperty radialAxis "minexponent"
-            SeparateThousands |> DynObj.setOptionalProperty radialAxis "separatethousands"
-            TickFont |> DynObj.setOptionalProperty radialAxis "tickfont"
-            TickAngle |> DynObj.setOptionalProperty radialAxis "tickangle"
-            TickFormat |> DynObj.setOptionalProperty radialAxis "tickformat"
-            TickFormatStops |> DynObj.setOptionalProperty radialAxis "tickformatstops"
-            LabelAlias |> DynObj.setOptionalProperty radialAxis "labelalias"
-            Layer |> DynObj.setOptionalPropertyBy radialAxis "layer" StyleParam.Layer.convert
-            TickLabelStep |> DynObj.setOptionalProperty radialAxis "ticklabelstep"
-            Calendar |> DynObj.setOptionalPropertyBy radialAxis "calendar" StyleParam.Calendar.convert
-
             radialAxis
+            |> DynObj.withOptionalProperty   "visible"            Visible             
+            |> DynObj.withOptionalPropertyBy "type"               AxisType            StyleParam.AxisType.convert
+            |> DynObj.withOptionalPropertyBy "autotypenumbers"    AutoTypeNumbers     StyleParam.AutoTypeNumbers.convert
+            |> DynObj.withOptionalPropertyBy "autorange"          AutoRange           StyleParam.AutoRange.convert
+            |> DynObj.withOptionalProperty   "autorangeoptions"   AutoRangeOptions    
+            |> DynObj.withOptionalPropertyBy "rangemode"          RangeMode           StyleParam.RangeMode.convert
+            |> DynObj.withOptionalPropertyBy "range"              Range               StyleParam.Range.convert
+            |> DynObj.withOptionalPropertyBy "categoryorder"      CategoryOrder       StyleParam.CategoryOrder.convert
+            |> DynObj.withOptionalProperty   "categoryarray"      CategoryArray       
+            |> DynObj.withOptionalProperty   "angle"              Angle               
+            |> DynObj.withOptionalPropertyBy "side"               Side                StyleParam.Direction.convert
+            |> DynObj.withOptionalProperty   "title"              Title               
+            |> DynObj.withOptionalProperty   "hoverformat"        HoverFormat         
+            |> DynObj.withOptionalProperty   "uirevision"         UIRevision          
+            |> DynObj.withOptionalProperty   "color"              Color               
+            |> DynObj.withOptionalProperty   "showline"           ShowLine            
+            |> DynObj.withOptionalProperty   "linecolor"          LineColor           
+            |> DynObj.withOptionalProperty   "linewidth"          LineWidth           
+            |> DynObj.withOptionalProperty   "maxallowed"         MaxAllowed          
+            |> DynObj.withOptionalProperty   "minallowed"         MinAllowed          
+            |> DynObj.withOptionalProperty   "showgrid"           ShowGrid            
+            |> DynObj.withOptionalProperty   "gridcolor"          GridColor           
+            |> DynObj.withOptionalPropertyBy "griddash"           GridDash            StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty   "gridwidth"          GridWidth           
+            |> DynObj.withOptionalPropertyBy "tickmode"           TickMode            StyleParam.TickMode.convert
+            |> DynObj.withOptionalProperty   "nticks"             NTicks              
+            |> DynObj.withOptionalProperty   "tick0"              Tick0               
+            |> DynObj.withOptionalProperty   "dtick"              DTick               
+            |> DynObj.withOptionalProperty   "tickvals"           TickVals            
+            |> DynObj.withOptionalProperty   "ticktext"           TickText            
+            |> DynObj.withOptionalPropertyBy "ticks"              Ticks               StyleParam.TickOptions.convert
+            |> DynObj.withOptionalProperty   "ticklen"            TickLen             
+            |> DynObj.withOptionalProperty   "tickwidth"          TickWidth           
+            |> DynObj.withOptionalProperty   "tickcolor"          TickColor           
+            |> DynObj.withOptionalProperty   "showticklabels"     ShowTickLabels      
+            |> DynObj.withOptionalPropertyBy "showtickprefix"     ShowTickPrefix      StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty   "tickprefix"         TickPrefix          
+            |> DynObj.withOptionalPropertyBy "showticksuffix"     ShowTickSuffix      StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty   "ticksuffix"         TickSuffix          
+            |> DynObj.withOptionalPropertyBy "showexponent"       ShowExponent        StyleParam.ShowExponent.convert
+            |> DynObj.withOptionalPropertyBy "exponentformat"     ExponentFormat      StyleParam.ExponentFormat.convert
+            |> DynObj.withOptionalProperty   "minexponent"        MinExponent         
+            |> DynObj.withOptionalProperty   "separatethousands"  SeparateThousands   
+            |> DynObj.withOptionalProperty   "tickfont"           TickFont            
+            |> DynObj.withOptionalProperty   "tickangle"          TickAngle           
+            |> DynObj.withOptionalProperty   "tickformat"         TickFormat          
+            |> DynObj.withOptionalProperty   "tickformatstops"    TickFormatStops     
+            |> DynObj.withOptionalProperty   "labelalias"         LabelAlias          
+            |> DynObj.withOptionalPropertyBy "layer"              Layer               StyleParam.Layer.convert
+            |> DynObj.withOptionalProperty   "ticklabelstep"      TickLabelStep       
+            |> DynObj.withOptionalPropertyBy "calendar"           Calendar            StyleParam.Calendar.convert

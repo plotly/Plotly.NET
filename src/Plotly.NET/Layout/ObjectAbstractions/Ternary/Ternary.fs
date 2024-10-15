@@ -54,16 +54,14 @@ type Ternary() =
             [<Optional; DefaultParameterValue(null)>] ?Sum: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color
         ) =
-        (fun (ternary: Ternary) ->
-
-            AAxis |> DynObj.setOptionalProperty ternary "aaxis"
-            BAxis |> DynObj.setOptionalProperty ternary "baxis"
-            CAxis |> DynObj.setOptionalProperty ternary "caxis"
-            Domain |> DynObj.setOptionalProperty ternary "domain"
-            Sum |> DynObj.setOptionalProperty ternary "sum"
-            BGColor |> DynObj.setOptionalProperty ternary "bgcolor"
-
-            ternary)
+        fun (ternary: Ternary) ->
+            ternary
+            |> DynObj.withOptionalProperty "aaxis"   AAxis   
+            |> DynObj.withOptionalProperty "baxis"   BAxis   
+            |> DynObj.withOptionalProperty "caxis"   CAxis   
+            |> DynObj.withOptionalProperty "domain"  Domain  
+            |> DynObj.withOptionalProperty "sum"     Sum     
+            |> DynObj.withOptionalProperty "bgcolor" BGColor 
 
 
     /// <summary>

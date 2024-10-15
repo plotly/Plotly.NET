@@ -86,22 +86,21 @@ type Scene() =
             [<Optional; DefaultParameterValue(null)>] ?YAxis: LinearAxis,
             [<Optional; DefaultParameterValue(null)>] ?ZAxis: LinearAxis
         ) =
-        (fun (scene: Scene) ->
+        fun (scene: Scene) ->
 
-            Annotations |> DynObj.setOptionalProperty scene "annotations"
-            AspectMode |> DynObj.setOptionalPropertyBy scene "aspectmode" StyleParam.AspectMode.convert
-            AspectRatio |> DynObj.setOptionalProperty scene "aspectratio"
-            BGColor |> DynObj.setOptionalProperty scene "bgcolor"
-            Camera |> DynObj.setOptionalProperty scene "camera"
-            Domain |> DynObj.setOptionalProperty scene "domain"
-            DragMode |> DynObj.setOptionalPropertyBy scene "dragmode" StyleParam.DragMode.convert
-            HoverMode |> DynObj.setOptionalPropertyBy scene "hovermode" StyleParam.HoverMode.convert
-            UIRevision |> DynObj.setOptionalProperty scene "uirevision"
-            XAxis |> DynObj.setOptionalProperty scene "xaxis"
-            YAxis |> DynObj.setOptionalProperty scene "yaxis"
-            ZAxis |> DynObj.setOptionalProperty scene "zaxis"
-
-            scene)
+            scene
+            |> DynObj.withOptionalProperty   "annotations" Annotations 
+            |> DynObj.withOptionalPropertyBy "aspectmode"  AspectMode  StyleParam.AspectMode.convert
+            |> DynObj.withOptionalProperty   "aspectratio" AspectRatio 
+            |> DynObj.withOptionalProperty   "bgcolor"     BGColor     
+            |> DynObj.withOptionalProperty   "camera"      Camera      
+            |> DynObj.withOptionalProperty   "domain"      Domain      
+            |> DynObj.withOptionalPropertyBy "dragmode"    DragMode    StyleParam.DragMode.convert
+            |> DynObj.withOptionalPropertyBy "hovermode"   HoverMode   StyleParam.HoverMode.convert
+            |> DynObj.withOptionalProperty   "uirevision"  UIRevision  
+            |> DynObj.withOptionalProperty   "xaxis"       XAxis       
+            |> DynObj.withOptionalProperty   "yaxis"       YAxis       
+            |> DynObj.withOptionalProperty   "zaxis"       ZAxis       
 
     /// <summary>
     /// Returns Some(dynamic member value) of the scene object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.

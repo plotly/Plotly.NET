@@ -197,7 +197,7 @@ type Shape() =
             [<Optional; DefaultParameterValue(null)>] ?Yref: string,
             [<Optional; DefaultParameterValue(null)>] ?YSizeMode: StyleParam.ShapeSizeMode
         ) =
-        (fun (shape: Shape) ->
+        fun (shape: Shape) ->
 
             shape
             |> DynObj.withProperty "editable" Editable
@@ -227,5 +227,4 @@ type Shape() =
             |> DynObj.withProperty "y1" Y1
             |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.LinearAxisId.convert
             |> DynObj.withProperty "yref" Yref
-            |> DynObj.withOptionalPropertyBy "ysizemode" YSizeMode StyleParam.ShapeSizeMode.convert)
-        )
+            |> DynObj.withOptionalPropertyBy "ysizemode" YSizeMode StyleParam.ShapeSizeMode.convert

@@ -47,13 +47,11 @@ type Smith() =
             [<Optional; DefaultParameterValue(null)>] ?RealAxis: RealAxis
         ) =
         fun (smith: Smith) ->
-
-            BGColor |> DynObj.setOptionalProperty smith "bgcolor"
-            Domain |> DynObj.setOptionalProperty smith "domain"
-            ImaginaryAxis |> DynObj.setOptionalProperty smith "imaginaryaxis"
-            RealAxis |> DynObj.setOptionalProperty smith "realaxis"
-
             smith
+            |> DynObj.withOptionalProperty "bgcolor"       BGColor         
+            |> DynObj.withOptionalProperty "domain"        Domain          
+            |> DynObj.withOptionalProperty "imaginaryaxis" ImaginaryAxis   
+            |> DynObj.withOptionalProperty "realaxis"      RealAxis        
 
     /// <summary>
     /// Returns Some(dynamic member value) of the object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.

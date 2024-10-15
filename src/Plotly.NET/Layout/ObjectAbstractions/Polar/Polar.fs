@@ -69,20 +69,18 @@ type Polar() =
             [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
             [<Optional; DefaultParameterValue(null)>] ?BarGap: float
         ) =
-        (fun (polar: Polar) ->
-
-            Domain |> DynObj.setOptionalProperty polar "domain"
-            Sector |> DynObj.setOptionalPropertyBy polar "sector" (fun (a, b) -> [| a; b |])
-            Hole |> DynObj.setOptionalProperty polar "hole"
-            BGColor |> DynObj.setOptionalProperty polar "bgcolor"
-            RadialAxis |> DynObj.setOptionalProperty polar "radialaxis"
-            AngularAxis |> DynObj.setOptionalProperty polar "angularaxis"
-            GridShape |> DynObj.setOptionalPropertyBy polar "gridshape" StyleParam.PolarGridShape.convert
-            UIRevision |> DynObj.setOptionalProperty polar "uirevision"
-            BarMode |> DynObj.setOptionalPropertyBy polar "barmode" StyleParam.BarMode.convert
-            BarGap |> DynObj.setOptionalProperty polar "bargap"
-
-            polar)
+        fun (polar: Polar) ->
+            polar
+            |> DynObj.withOptionalProperty   "domain"      Domain      
+            |> DynObj.withOptionalPropertyBy "sector"      Sector      (fun (a, b) -> [| a; b |])
+            |> DynObj.withOptionalProperty   "hole"        Hole        
+            |> DynObj.withOptionalProperty   "bgcolor"     BGColor     
+            |> DynObj.withOptionalProperty   "radialaxis"  RadialAxis  
+            |> DynObj.withOptionalProperty   "angularaxis" AngularAxis 
+            |> DynObj.withOptionalPropertyBy "gridshape"   GridShape   StyleParam.PolarGridShape.convert
+            |> DynObj.withOptionalProperty   "uirevision"  UIRevision  
+            |> DynObj.withOptionalPropertyBy "barmode"     BarMode     StyleParam.BarMode.convert
+            |> DynObj.withOptionalProperty   "bargap"      BarGap      
 
     /// <summary>
     /// Returns Some(dynamic member value) of the object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.

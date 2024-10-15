@@ -177,46 +177,45 @@ type Geo() =
             [<Optional; DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
             [<Optional; DefaultParameterValue(null)>] ?LonAxis: LinearAxis
         ) =
-        (fun (geo: Geo) ->
+        fun (geo: Geo) ->
 
-            Domain |> DynObj.setOptionalProperty geo "domain"
-            FitBounds |> DynObj.setOptionalPropertyBy geo "fitbounds" StyleParam.GeoFitBounds.convert
-            Resolution |> DynObj.setOptionalPropertyBy geo "resolution" StyleParam.GeoResolution.convert
-            Scope |> DynObj.setOptionalPropertyBy geo "scope" StyleParam.GeoScope.convert
-            Projection |> DynObj.setOptionalProperty geo "projection"
+            let center =
+                Center
+                |> Option.map (fun (lon, lat) ->
+                    DynamicObj()
+                    |> DynObj.withProperty "lon" lon
+                    |> DynObj.withProperty "lat" lat
+                )
 
-            Center
-            |> Option.map (fun (lon, lat) ->
-                let t = DynamicObj()
-                t?lon <- lon
-                t?lat <- lat
-                t)
-            |> DynObj.setOptionalProperty geo "center"
-
-            Visible |> DynObj.setOptionalProperty geo "visible"
-            ShowCoastLines |> DynObj.setOptionalProperty geo "showcoastline"
-            CoastLineColor |> DynObj.setOptionalProperty geo "coastlinecolor"
-            CoastLineWidth |> DynObj.setOptionalProperty geo "coastlinewidth"
-            ShowLand |> DynObj.setOptionalProperty geo "showland"
-            LandColor |> DynObj.setOptionalProperty geo "landcolor"
-            ShowOcean |> DynObj.setOptionalProperty geo "showocean"
-            OceanColor |> DynObj.setOptionalProperty geo "oceancolor"
-            ShowLakes |> DynObj.setOptionalProperty geo "showlakes"
-            LakeColor |> DynObj.setOptionalProperty geo "lakecolor"
-            ShowRivers |> DynObj.setOptionalProperty geo "showrivers"
-            RiverColor |> DynObj.setOptionalProperty geo "rivercolor"
-            RiverWidth |> DynObj.setOptionalProperty geo "riverwidth"
-            ShowCountries |> DynObj.setOptionalProperty geo "showcountries"
-            CountryColor |> DynObj.setOptionalProperty geo "countrycolor"
-            CountryWidth |> DynObj.setOptionalProperty geo "countrywidth"
-            ShowSubunits |> DynObj.setOptionalProperty geo "showsubunits"
-            SubunitColor |> DynObj.setOptionalProperty geo "subunitcolor"
-            SubunitWidth |> DynObj.setOptionalProperty geo "subunitwidth"
-            ShowFrame |> DynObj.setOptionalProperty geo "showframe"
-            FrameColor |> DynObj.setOptionalProperty geo "framecolor"
-            FrameWidth |> DynObj.setOptionalProperty geo "framewidth"
-            BgColor |> DynObj.setOptionalProperty geo "bgcolor"
-            LatAxis |> DynObj.setOptionalProperty geo "lataxis"
-            LonAxis |> DynObj.setOptionalProperty geo "lonaxis"
-
-            geo)
+            geo
+            |> DynObj.withOptionalProperty   "domain"         Domain          
+            |> DynObj.withOptionalPropertyBy "fitbounds"      FitBounds       StyleParam.GeoFitBounds.convert
+            |> DynObj.withOptionalPropertyBy "resolution"     Resolution      StyleParam.GeoResolution.convert
+            |> DynObj.withOptionalPropertyBy "scope"          Scope           StyleParam.GeoScope.convert
+            |> DynObj.withOptionalProperty   "projection"     Projection      
+            |> DynObj.withOptionalProperty   "center"         center          
+            |> DynObj.withOptionalProperty   "visible"        Visible         
+            |> DynObj.withOptionalProperty   "showcoastline"  ShowCoastLines  
+            |> DynObj.withOptionalProperty   "coastlinecolor" CoastLineColor  
+            |> DynObj.withOptionalProperty   "coastlinewidth" CoastLineWidth  
+            |> DynObj.withOptionalProperty   "showland"       ShowLand        
+            |> DynObj.withOptionalProperty   "landcolor"      LandColor       
+            |> DynObj.withOptionalProperty   "showocean"      ShowOcean       
+            |> DynObj.withOptionalProperty   "oceancolor"     OceanColor      
+            |> DynObj.withOptionalProperty   "showlakes"      ShowLakes       
+            |> DynObj.withOptionalProperty   "lakecolor"      LakeColor       
+            |> DynObj.withOptionalProperty   "showrivers"     ShowRivers      
+            |> DynObj.withOptionalProperty   "rivercolor"     RiverColor      
+            |> DynObj.withOptionalProperty   "riverwidth"     RiverWidth      
+            |> DynObj.withOptionalProperty   "showcountries"  ShowCountries   
+            |> DynObj.withOptionalProperty   "countrycolor"   CountryColor    
+            |> DynObj.withOptionalProperty   "countrywidth"   CountryWidth    
+            |> DynObj.withOptionalProperty   "showsubunits"   ShowSubunits    
+            |> DynObj.withOptionalProperty   "subunitcolor"   SubunitColor    
+            |> DynObj.withOptionalProperty   "subunitwidth"   SubunitWidth    
+            |> DynObj.withOptionalProperty   "showframe"      ShowFrame       
+            |> DynObj.withOptionalProperty   "framecolor"     FrameColor      
+            |> DynObj.withOptionalProperty   "framewidth"     FrameWidth      
+            |> DynObj.withOptionalProperty   "bgcolor"        BgColor         
+            |> DynObj.withOptionalProperty   "lataxis"        LatAxis         
+            |> DynObj.withOptionalProperty   "lonaxis"        LonAxis         

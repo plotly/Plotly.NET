@@ -69,24 +69,23 @@ type Mapbox() =
             [<Optional; DefaultParameterValue(null)>] ?Pitch: float,
             [<Optional; DefaultParameterValue(null)>] ?Layers: seq<MapboxLayer>
         ) =
-        (fun (mapBox: Mapbox) ->
+        fun (mapBox: Mapbox) ->
 
-            Domain |> DynObj.setOptionalProperty mapBox "domain"
-            AccessToken |> DynObj.setOptionalProperty mapBox "accesstoken"
-            Style |> DynObj.setOptionalPropertyBy mapBox "style" StyleParam.MapboxStyle.convert
-            Bounds |> DynObj.setOptionalProperty mapBox "bounds"
+            let center =
+                Center
+                |> Option.map (fun (lon, lat) ->
+                    DynamicObj()
+                    |> DynObj.withProperty "lon" lon
+                    |> DynObj.withProperty "lat" lat
+                )
 
-            Center
-            |> Option.map (fun (lon, lat) ->
-                let t = DynamicObj()
-                t?lon <- lon
-                t?lat <- lat
-                t)
-            |> DynObj.setOptionalProperty mapBox "center"
-
-            Zoom |> DynObj.setOptionalProperty mapBox "zoom"
-            Bearing |> DynObj.setOptionalProperty mapBox "bearing"
-            Pitch |> DynObj.setOptionalProperty mapBox "pitch"
-            Layers |> DynObj.setOptionalProperty mapBox "layers"
-
-            mapBox)
+            mapBox
+            |> DynObj.withOptionalProperty   "domain"      Domain      
+            |> DynObj.withOptionalProperty   "accesstoken" AccessToken 
+            |> DynObj.withOptionalPropertyBy "style"       Style       StyleParam.MapboxStyle.convert
+            |> DynObj.withOptionalProperty   "bounds"      Bounds      
+            |> DynObj.withOptionalProperty   "center"      center      
+            |> DynObj.withOptionalProperty   "zoom"        Zoom        
+            |> DynObj.withOptionalProperty   "bearing"     Bearing     
+            |> DynObj.withOptionalProperty   "pitch"       Pitch       
+            |> DynObj.withOptionalProperty   "layers"      Layers      
