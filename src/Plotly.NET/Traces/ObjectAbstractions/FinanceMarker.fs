@@ -32,14 +32,13 @@ type FinanceMarker() =
             [<Optional; DefaultParameterValue(null)>] ?LineWidth: float,
             [<Optional; DefaultParameterValue(null)>] ?LineDash: StyleParam.DrawingStyle
         ) =
-        (fun (financeMarker: FinanceMarker) ->
+        fun (financeMarker: FinanceMarker) ->
 
             let line =
                 financeMarker.TryGetTypedPropertyValue<Line>("line")
                 |> Option.defaultValue(Plotly.NET.Line.init())
                 |> Line.style (?Color = LineColor, ?Width = LineWidth, ?Dash = LineDash)
 
-            FillColor |> DynObj.setOptionalProperty financeMarker "fillcolor"
-            line |> DynObj.withProperty financeMarker "line"
-
-            financeMarker)
+            financeMarker
+            |> DynObj.withOptionalProperty "fillcolor" FillColor
+            |> DynObj.withProperty "line" line

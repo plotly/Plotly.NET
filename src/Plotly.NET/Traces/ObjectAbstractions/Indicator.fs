@@ -151,13 +151,12 @@ type IndicatorBar() =
             [<Optional; DefaultParameterValue(null)>] ?Line: Line,
             [<Optional; DefaultParameterValue(null)>] ?Thickness: float
         ) =
-        (fun (indicatorBar: IndicatorBar) ->
-
-            Color |> DynObj.setOptionalProperty indicatorBar "color"
-            Line |> DynObj.setOptionalProperty indicatorBar "line"
-            Thickness |> DynObj.setOptionalProperty indicatorBar "thickness"
-
-            indicatorBar)
+        fun (indicatorBar: IndicatorBar) ->
+            indicatorBar
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "thickness" Thickness
+            
 
 type IndicatorStep() =
     inherit DynamicObj()
@@ -190,16 +189,15 @@ type IndicatorStep() =
             [<Optional; DefaultParameterValue(null)>] ?TemplateItemName: string,
             [<Optional; DefaultParameterValue(null)>] ?Thickness: float
         ) =
-        (fun (indicatorSteps: IndicatorStep) ->
+        fun (indicatorSteps: IndicatorStep) ->
 
-            Color |> DynObj.setOptionalProperty indicatorSteps "color"
-            Line |> DynObj.setOptionalProperty indicatorSteps "line"
-            Name |> DynObj.setOptionalProperty indicatorSteps "name"
-            Range |> DynObj.setOptionalPropertyBy indicatorSteps "range" StyleParam.Range.convert
-            TemplateItemName |> DynObj.setOptionalProperty indicatorSteps "templateitemname"
-            Thickness |> DynObj.setOptionalProperty indicatorSteps "thickness"
-
-            indicatorSteps)
+            indicatorSteps
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalPropertyBy "range" Range StyleParam.Range.convert
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalProperty "thickness" Thickness
 
 
 type IndicatorThreshold() =
@@ -219,13 +217,12 @@ type IndicatorThreshold() =
             [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
             [<Optional; DefaultParameterValue(null)>] ?Value: #IConvertible
         ) =
-        (fun (indicatorThreshold: IndicatorThreshold) ->
+        fun (indicatorThreshold: IndicatorThreshold) ->
 
-            Line |> DynObj.setOptionalProperty indicatorThreshold "line"
-            Thickness |> DynObj.setOptionalProperty indicatorThreshold "thickness"
-            Value |> DynObj.setOptionalProperty indicatorThreshold "value"
-
-            indicatorThreshold)
+            indicatorThreshold
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "thickness" Thickness
+            |> DynObj.withOptionalProperty "value" Value
 
 
 type IndicatorGauge() =
@@ -265,15 +262,14 @@ type IndicatorGauge() =
             [<Optional; DefaultParameterValue(null)>] ?Steps: seq<IndicatorStep>,
             [<Optional; DefaultParameterValue(null)>] ?Threshold: IndicatorThreshold
         ) =
-        (fun (indicatorGauge: IndicatorGauge) ->
+        fun (indicatorGauge: IndicatorGauge) ->
 
-            Axis |> DynObj.setOptionalProperty indicatorGauge "axis"
-            Bar |> DynObj.setOptionalProperty indicatorGauge "bar"
-            BGColor |> DynObj.setOptionalProperty indicatorGauge "bgcolor"
-            BorderColor |> DynObj.setOptionalProperty indicatorGauge "bordercolor"
-            BorderWidth |> DynObj.setOptionalProperty indicatorGauge "borderwidth"
-            Shape |> DynObj.setOptionalPropertyBy indicatorGauge "shape" StyleParam.IndicatorGaugeShape.convert
-            Steps |> DynObj.setOptionalProperty indicatorGauge "steps"
-            Threshold |> DynObj.setOptionalProperty indicatorGauge "threshold"
-
-            indicatorGauge)
+            indicatorGauge
+            |> DynObj.withOptionalProperty "axis" Axis
+            |> DynObj.withOptionalProperty "bar" Bar
+            |> DynObj.withOptionalProperty "bgcolor" BGColor
+            |> DynObj.withOptionalProperty "bordercolor" BorderColor
+            |> DynObj.withOptionalProperty "borderwidth" BorderWidth
+            |> DynObj.withOptionalPropertyBy "shape" Shape StyleParam.IndicatorGaugeShape.convert
+            |> DynObj.withOptionalProperty "steps" Steps
+            |> DynObj.withOptionalProperty "threshold" Threshold

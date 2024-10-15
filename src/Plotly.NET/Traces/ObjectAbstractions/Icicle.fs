@@ -13,11 +13,9 @@ type IcicleRoot() =
         IcicleRoot() |> IcicleRoot.style (?Color = Color)
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        (fun (icicleRoot: IcicleRoot) ->
-
-            Color |> DynObj.setOptionalProperty icicleRoot "color"
-
-            icicleRoot)
+        fun (icicleRoot: IcicleRoot) ->
+            icicleRoot
+            |> DynObj.withOptionalProperty "color" Color
 
 type IcicleLeaf() =
     inherit DynamicObj()
@@ -26,11 +24,9 @@ type IcicleLeaf() =
         IcicleLeaf() |> IcicleLeaf.style (?Opacity = Opacity)
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Opacity: float) =
-        (fun (icicleLeaf: IcicleLeaf) ->
-
-            Opacity |> DynObj.setOptionalProperty icicleLeaf "opacity"
-
-            icicleLeaf)
+        fun (icicleLeaf: IcicleLeaf) ->
+            icicleLeaf
+            |> DynObj.withOptionalProperty "opacity" Opacity
 
 type IcicleTiling() =
     inherit DynamicObj()
@@ -49,10 +45,9 @@ type IcicleTiling() =
             [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
             [<Optional; DefaultParameterValue(null)>] ?Pad: int
         ) =
-        (fun (icicleTiling: IcicleTiling) ->
+        fun (icicleTiling: IcicleTiling) ->
 
-            Flip |> DynObj.setOptionalPropertyBy icicleTiling "flip" StyleParam.TilingFlip.convert
-            Orientation |> DynObj.setOptionalPropertyBy icicleTiling "orientation" StyleParam.Orientation.convert
-            Pad |> DynObj.setOptionalProperty icicleTiling "pad"
-
-            icicleTiling)
+            icicleTiling
+            |> DynObj.withOptionalPropertyBy "flip" Flip StyleParam.TilingFlip.convert
+            |> DynObj.withOptionalPropertyBy "orientation" Orientation StyleParam.Orientation.convert
+            |> DynObj.withOptionalProperty "pad" Pad
