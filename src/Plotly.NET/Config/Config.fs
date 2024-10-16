@@ -334,7 +334,7 @@ type Config() =
                 (second.TryGetTypedPropertyValue<seq<seq<string>>>("modeBarButtons"))
 
         DynObj.combine first second
-        |> unbox
+        |> unbox<Config>
         |> Config.style (
             ?ModeBarButtonsToRemove = (modeBarButtonsToRemove |> Option.map (Seq.map StyleParam.ModeBarButton.ofString)),
             ?ModeBarButtonsToAdd = (modeBarButtonsToAdd |> Option.map (Seq.map StyleParam.ModeBarButton.ofString)),

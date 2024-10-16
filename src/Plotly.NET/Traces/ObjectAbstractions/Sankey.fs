@@ -186,4 +186,5 @@ type SankeyLinks() =
             |> DynObj.withOptionalProperty "line" Line
             |> DynObj.withOptionalProperty "source" Source
             |> DynObj.withOptionalProperty "target" Target
+            |> DynObj.withOptionalProperty "value" Value
 

@@ -5,6 +5,7 @@ open Plotly.NET
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 
+open TestUtils
 open TestUtils.HtmlCodegen
 open Grid_SubPlotTitles_TestCharts
 
@@ -14,8 +15,8 @@ module ``Add logic for positioning subplot titles in LayoutGrid #388`` =
     let ``Add subplot titles`` =
         testList "FeatureAddition.Add subplot titles in LayoutGrid" [
             test "cartesian 2x2 grid data" {
-                """var data = [{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x4","yaxis":"y4"}];"""
-                |> chartGeneratedContains ``Add logic for positioning subplot titles in LayoutGrid #388``.``cartesian 2x2 grid with subplot titles``
+                ``Add logic for positioning subplot titles in LayoutGrid #388``.``cartesian 2x2 grid with subplot titles``
+                |> JsonGen.tracesJsonIs """[{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x","yaxis":"y"},{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x2","yaxis":"y2"},{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[1],"y":[2],"marker":{},"line":{},"xaxis":"x4","yaxis":"y4"}]""" 
             }
             test "cartesian 2x2 grid  layout" {
                 """var layout = {"xaxis":{},"yaxis":{},"xaxis2":{},"yaxis2":{},"xaxis3":{},"yaxis3":{},"xaxis4":{},"yaxis4":{},"annotations":[{"x":0.22222222222222224,"y":1.0,"showarrow":false,"text":"1,1","xanchor":"center","xref":"paper","yanchor":"bottom","yref":"paper"},{"x":0.7777777777777778,"y":1.0,"showarrow":false,"text":"1,2","xanchor":"center","xref":"paper","yanchor":"bottom","yref":"paper"},{"x":0.22222222222222224,"y":0.4117647058823529,"showarrow":false,"text":"2,1","xanchor":"center","xref":"paper","yanchor":"bottom","yref":"paper"},{"x":0.7777777777777778,"y":0.4117647058823529,"showarrow":false,"text":"2,2","xanchor":"center","xref":"paper","yanchor":"bottom","yref":"paper"}],"grid":{"rows":2,"columns":2,"roworder":"top to bottom","pattern":"independent"}};"""

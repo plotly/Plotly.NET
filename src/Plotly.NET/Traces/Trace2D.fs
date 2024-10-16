@@ -105,8 +105,8 @@ type Trace2DStyle() =
         ) =
         fun (trace: Trace2D) ->
             trace
-            |> DynObj.withOptionalProperty "xaxis" X
-            |> DynObj.withOptionalProperty "yaxis" Y
+            |> DynObj.withOptionalPropertyBy "xaxis" X StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalPropertyBy "yaxis" Y StyleParam.LinearAxisId.convert
 
     /// <summary>
     /// Create a function that applies the styles of a scatter plot to a Trace object

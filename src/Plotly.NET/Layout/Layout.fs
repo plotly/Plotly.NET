@@ -525,7 +525,7 @@ type Layout() =
                 (second.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus"))
 
         DynObj.combine first second
-        |> unbox
+        |> unbox<Layout>
         |> Layout.style (
             ?Annotations = annotations,
             ?Shapes = shapes,
@@ -562,7 +562,7 @@ type Layout() =
             | StyleParam.SubPlotId.YAxis _ ->
                 let axis' =
                     match Layout.tryGetLinearAxisById id layout with
-                    | Some a -> DynObj.combine a axis
+                    | Some a -> DynObj.combine a axis |> unbox<LinearAxis>
                     | None -> axis
                 layout
                 |> DynObj.withProperty (StyleParam.SubPlotId.toString id) axis'
@@ -585,7 +585,8 @@ type Layout() =
     /// <param name="layout">The layout to get the x axes from</param>
     static member getXAxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidXAxisId kv.Key then
                 match layout.TryGetTypedPropertyValue<LinearAxis>(kv.Key) with
                 | Some axis -> Some (kv.Key, axis)
@@ -599,7 +600,8 @@ type Layout() =
     /// <param name="layout">The layout to get the y axes from</param>
     static member getYAxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidYAxisId kv.Key then
                 match layout.TryGetTypedPropertyValue<LinearAxis>(kv.Key) with
                 | Some axis -> Some (kv.Key, axis)
@@ -661,7 +663,8 @@ type Layout() =
     /// <param name="layout">The layout to get the scenes from</param>
     static member getScenes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidSceneId kv.Key then
                 match layout.TryGetTypedPropertyValue<Scene>(kv.Key) with
                 | Some scene -> Some (kv.Key, scene)
@@ -716,7 +719,8 @@ type Layout() =
     /// <param name="layout">The layout to get the geos from</param>
     static member getGeos (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidGeoId kv.Key then
                 match layout.TryGetTypedPropertyValue<Geo>(kv.Key) with
                 | Some geo -> Some (kv.Key, geo)
@@ -771,7 +775,8 @@ type Layout() =
     /// <param name="layout">The layout to get the mapboxes from</param>
     static member getMapboxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidMapboxId kv.Key then
                 match layout.TryGetTypedPropertyValue<Mapbox>(kv.Key) with
                 | Some mapbox -> Some (kv.Key, mapbox)
@@ -827,7 +832,8 @@ type Layout() =
     /// <param name="layout">The layout to get the polars from</param>
     static member getPolars (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidPolarId kv.Key then
                 match layout.TryGetTypedPropertyValue<Polar>(kv.Key) with
                 | Some polar -> Some (kv.Key, polar)
@@ -883,7 +889,8 @@ type Layout() =
     /// <param name="layout">The layout to get the smiths from</param>
     static member getSmiths (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidSmithId kv.Key then
                 match layout.TryGetTypedPropertyValue<Smith>(kv.Key) with
                 | Some smith -> Some (kv.Key, smith)
@@ -939,7 +946,8 @@ type Layout() =
     /// <param name="layout">The layout to get the color axes from</param>
     static member getColorAxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidColorAxisId kv.Key then
                 match layout.TryGetTypedPropertyValue<ColorAxis>(kv.Key) with
                 | Some colorAxis -> Some (kv.Key, colorAxis)
@@ -995,7 +1003,8 @@ type Layout() =
     /// <param name="layout">The layout to get the ternaries from</param>
     static member getTernaries (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidTernaryId kv.Key then
                 match layout.TryGetTypedPropertyValue<Ternary>(kv.Key) with
                 | Some ternary -> Some (kv.Key, ternary)
@@ -1038,7 +1047,7 @@ type Layout() =
     static member updateLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (layout: Layout) ->
             let combined =
-                DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid
+                DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid |> unbox<LayoutGrid>
 
             layout |> Layout.setLayoutGrid combined)
 
@@ -1055,7 +1064,8 @@ type Layout() =
     /// <param name="layout">The layout to get the color axes from</param>
     static member getLegends (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidLegendId kv.Key then
                 match layout.TryGetTypedPropertyValue<Legend>(kv.Key) with
                 | Some legend -> Some (kv.Key, legend)

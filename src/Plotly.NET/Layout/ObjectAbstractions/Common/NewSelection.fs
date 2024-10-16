@@ -46,5 +46,5 @@ type NewSelection() =
 
             newSelection
             |> DynObj.withProperty "line" line
-            |> DynObj.setOptionalPropertyBy "mode" Mode StyleParam.NewSelectionMode.convert
+            |> DynObj.withOptionalPropertyBy "mode" Mode StyleParam.NewSelectionMode.convert
         )

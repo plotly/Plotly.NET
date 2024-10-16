@@ -87,7 +87,7 @@ let ``TraceStyle tests`` =
         )
         
         let colorAxisAnchor = StyleParam.SubPlotId.ColorAxis 69
-        let colorAxisAnchorTrace = Trace2D.initScatter(Trace2DStyle.Heatmap(ColorAxis = colorAxisAnchor))
+        let colorAxisAnchorTrace = Trace2D.initHeatmap(Trace2DStyle.Heatmap(ColorAxis = colorAxisAnchor))
 
         testCase "getColorAxisAnchor" (fun _ ->
             Expect.equal

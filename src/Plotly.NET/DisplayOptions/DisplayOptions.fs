@@ -107,7 +107,7 @@ type DisplayOptions() =
                 (second.TryGetTypedPropertyValue<XmlNode list>("ChartDescription"))
 
         DynObj.combine first second
-        |> unbox
+        |> unbox<DisplayOptions>
         |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags, ?ChartDescription = description)
 
     /// <summary>

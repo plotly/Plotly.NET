@@ -49,7 +49,7 @@ type Trace(traceTypeName: string) =
     static member updateMarker(marker: Marker) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getMarker) marker)
+                (DynObj.combine (trace |> Trace.getMarker) marker) |> unbox<Marker>
 
             trace |> Trace.setMarker combined)
 
@@ -78,7 +78,7 @@ type Trace(traceTypeName: string) =
     static member updateLine(line: Line) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getLine) line)
+                (DynObj.combine (trace |> Trace.getLine) line) |> unbox<Line>
 
             trace |> Trace.setLine combined)
 
@@ -107,7 +107,7 @@ type Trace(traceTypeName: string) =
     static member updateXError(error: Error) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getXError) error)
+                (DynObj.combine (trace |> Trace.getXError) error) |> unbox<Error>
 
             trace |> Trace.setXError combined)
 
@@ -136,7 +136,7 @@ type Trace(traceTypeName: string) =
     static member updateYError(error: Error) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getYError) error)
+                (DynObj.combine (trace |> Trace.getYError) error) |> unbox<Error>
 
             trace |> Trace.setYError combined)
 
@@ -165,7 +165,7 @@ type Trace(traceTypeName: string) =
     static member updateZError(error: Error) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getZError) error)
+                (DynObj.combine (trace |> Trace.getZError) error) |> unbox<Error>
 
             trace |> Trace.setZError combined)
 
@@ -248,7 +248,7 @@ type Trace(traceTypeName: string) =
     static member updateDomain(domain: Domain) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getDomain) domain)
+                (DynObj.combine (trace |> Trace.getDomain) domain) |> unbox<Domain>
 
             trace |> Trace.setDomain combined)
 
@@ -296,7 +296,7 @@ type Trace(traceTypeName: string) =
     static member updateColorBar(colorBar: ColorBar) =
         (fun (trace: #Trace) ->
             let combined =
-                DynObj.combine (trace |> Trace.getColorBar) colorBar
+                DynObj.combine (trace |> Trace.getColorBar) colorBar |> unbox<ColorBar>
 
             trace |> Trace.setColorBar combined)
 
