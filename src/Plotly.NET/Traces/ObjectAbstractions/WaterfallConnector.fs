@@ -34,10 +34,9 @@ type WaterfallConnector() =
             [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
             [<Optional; DefaultParameterValue(null)>] ?ConnectorMode: StyleParam.ConnectorMode
         ) =
-        (fun (connector: WaterfallConnector) ->
+        fun (connector: WaterfallConnector) ->
 
-            Line |> DynObj.setValueOpt connector "line"
-            Visible |> DynObj.setValueOpt connector "visible"
-            ConnectorMode |> DynObj.setValueOptBy connector "mode" StyleParam.ConnectorMode.convert
-
-            connector)
+            connector
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalPropertyBy "mode" ConnectorMode StyleParam.ConnectorMode.convert

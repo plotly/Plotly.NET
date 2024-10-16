@@ -162,7 +162,7 @@ type GenericChart =
     /// <param name="gChart">the input GenericChart to get the layout size from</param>
     static member tryGetLayoutSize gChart =
         let layout = GenericChart.getLayout gChart
-        layout.TryGetTypedValue<int> "width", layout.TryGetTypedValue<int> "height"
+        layout.TryGetTypedPropertyValue<int> "width", layout.TryGetTypedPropertyValue<int> "height"
 
     /// <summary>
     /// Returns the config of a given GenericChart.

@@ -35,9 +35,9 @@ type ToImageButtonOptions() =
             [<Optional; DefaultParameterValue(null)>] ?Scale
         ) =
         fun (btnConf: ToImageButtonOptions) ->
-            Format |> Option.map StyleParam.ImageFormat.toString |> DynObj.setValueOpt btnConf "format"
-            Filename |> DynObj.setValueOpt btnConf "filename"
-            Width |> DynObj.setValueOpt btnConf "width"
-            Height |> DynObj.setValueOpt btnConf "height"
-            Scale |> DynObj.setValueOpt btnConf "scale"
             btnConf
+            |> DynObj.withOptionalPropertyBy "format"    Format      StyleParam.ImageFormat.toString
+            |> DynObj.withOptionalProperty   "filename"  Filename    
+            |> DynObj.withOptionalProperty   "width"     Width       
+            |> DynObj.withOptionalProperty   "height"    Height      
+            |> DynObj.withOptionalProperty   "scale"     Scale       

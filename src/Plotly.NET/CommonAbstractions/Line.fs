@@ -125,25 +125,26 @@ type Line() =
             [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: float
         ) =
         (fun (line: Line) ->
-            BackOff |> DynObj.setValueOptBy line "backoff" StyleParam.BackOff.convert
-            Color |> DynObj.setValueOpt line "color"
-            (Width, MultiWidth) |> DynObj.setSingleOrMultiOpt line "width"
-            Shape |> DynObj.setValueOptBy line "shape" StyleParam.Shape.convert
-            Smoothing |> DynObj.setValueOpt line "smoothing"
-            Dash |> DynObj.setValueOptBy line "dash" StyleParam.DrawingStyle.convert
-            OutlierColor |> DynObj.setValueOpt line "outliercolor"
-            OutlierWidth |> DynObj.setValueOpt line "outlierwidth"
-            AutoColorScale |> DynObj.setValueOpt line "autocolorscale"
-            CAuto |> DynObj.setValueOpt line "cauto"
-            CMax |> DynObj.setValueOpt line "cmax"
-            CMid |> DynObj.setValueOpt line "cmid"
-            CMin |> DynObj.setValueOpt line "cmin"
-            Color |> DynObj.setValueOpt line "color"
-            ColorAxis |> DynObj.setValueOptBy line "coloraxis" StyleParam.SubPlotId.convert
-            Colorscale |> DynObj.setValueOptBy line "colorscale" StyleParam.Colorscale.convert
-            ReverseScale |> DynObj.setValueOpt line "reversescale"
-            ShowScale |> DynObj.setValueOpt line "showscale"
-            ColorBar |> DynObj.setValueOpt line "colorbar"
-            Simplify |> DynObj.setValueOpt line "simplify"
+            line
+            |> DynObj.withOptionalPropertyBy            "backoff"        BackOff              StyleParam.BackOff.convert
+            |> DynObj.withOptionalProperty              "color"          Color              
+            |> DynObj.withOptionalSingleOrMultiProperty "width"          (Width, MultiWidth)
+            |> DynObj.withOptionalPropertyBy            "shape"          Shape                StyleParam.Shape.convert
+            |> DynObj.withOptionalProperty              "smoothing"      Smoothing          
+            |> DynObj.withOptionalPropertyBy            "dash"           Dash                 StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty              "outliercolor"   OutlierColor       
+            |> DynObj.withOptionalProperty              "outlierwidth"   OutlierWidth       
+            |> DynObj.withOptionalProperty              "autocolorscale" AutoColorScale     
+            |> DynObj.withOptionalProperty              "cauto"          CAuto              
+            |> DynObj.withOptionalProperty              "cmax"           CMax               
+            |> DynObj.withOptionalProperty              "cmid"           CMid               
+            |> DynObj.withOptionalProperty              "cmin"           CMin               
+            |> DynObj.withOptionalProperty              "color"          Color              
+            |> DynObj.withOptionalPropertyBy            "coloraxis"      ColorAxis            StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalPropertyBy            "colorscale"     Colorscale           StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty              "reversescale"   ReverseScale       
+            |> DynObj.withOptionalProperty              "showscale"      ShowScale          
+            |> DynObj.withOptionalProperty              "colorbar"       ColorBar           
+            |> DynObj.withOptionalProperty              "simplify"       Simplify           
 
-            line)
+        )

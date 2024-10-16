@@ -253,50 +253,49 @@ type AngularAxis() =
         ) =
         fun (angularAxis: AngularAxis) ->
 
-            Visible |> DynObj.setValueOpt angularAxis "visible"
-            AxisType |> DynObj.setValueOptBy angularAxis "type" StyleParam.AxisType.convert
-            AutoTypeNumbers |> DynObj.setValueOptBy angularAxis "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            CategoryOrder |> DynObj.setValueOptBy angularAxis "categoryorder" StyleParam.CategoryOrder.convert
-            CategoryArray |> DynObj.setValueOpt angularAxis "categoryarray"
-            ThetaUnit |> DynObj.setValueOpt angularAxis "thetaunit"
-            Period |> DynObj.setValueOpt angularAxis "period"
-            Direction |> DynObj.setValueOptBy angularAxis "direction" StyleParam.Direction.convert
-            Rotation |> DynObj.setValueOpt angularAxis "rotation"
-            HoverFormat |> DynObj.setValueOpt angularAxis "hoverformat"
-            UIRevision |> DynObj.setValueOpt angularAxis "uirevision"
-            Color |> DynObj.setValueOpt angularAxis "color"
-            ShowLine |> DynObj.setValueOpt angularAxis "showline"
-            LineColor |> DynObj.setValueOpt angularAxis "linecolor"
-            LineWidth |> DynObj.setValueOpt angularAxis "linewidth"
-            ShowGrid |> DynObj.setValueOpt angularAxis "showgrid"
-            GridColor |> DynObj.setValueOpt angularAxis "gridcolor"
-            GridDash |> DynObj.setValueOptBy angularAxis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setValueOpt angularAxis "gridwidth"
-            TickMode |> DynObj.setValueOptBy angularAxis "tickmode" StyleParam.TickMode.convert
-            NTicks |> DynObj.setValueOpt angularAxis "nticks"
-            Tick0 |> DynObj.setValueOpt angularAxis "tick0"
-            DTick |> DynObj.setValueOpt angularAxis "dtick"
-            TickVals |> DynObj.setValueOpt angularAxis "tickvals"
-            TickText |> DynObj.setValueOpt angularAxis "ticktext"
-            Ticks |> DynObj.setValueOptBy angularAxis "ticks" StyleParam.TickOptions.convert
-            TickLen |> DynObj.setValueOpt angularAxis "ticklen"
-            TickWidth |> DynObj.setValueOpt angularAxis "tickwidth"
-            TickColor |> DynObj.setValueOpt angularAxis "tickcolor"
-            ShowTickLabels |> DynObj.setValueOpt angularAxis "showticklabels"
-            ShowTickPrefix |> DynObj.setValueOptBy angularAxis "showtickprefix" StyleParam.ShowTickOption.convert
-            TickPrefix |> DynObj.setValueOpt angularAxis "tickprefix"
-            ShowTickSuffix |> DynObj.setValueOptBy angularAxis "showticksuffix" StyleParam.ShowTickOption.convert
-            TickSuffix |> DynObj.setValueOpt angularAxis "ticksuffix"
-            ShowExponent |> DynObj.setValueOptBy angularAxis "showexponent" StyleParam.ShowExponent.convert
-            ExponentFormat |> DynObj.setValueOptBy angularAxis "exponentformat" StyleParam.ExponentFormat.convert
-            MinExponent |> DynObj.setValueOpt angularAxis "minexponent"
-            SeparateThousands |> DynObj.setValueOpt angularAxis "separatethousands"
-            TickFont |> DynObj.setValueOpt angularAxis "tickfont"
-            TickAngle |> DynObj.setValueOpt angularAxis "tickangle"
-            TickFormat |> DynObj.setValueOpt angularAxis "tickformat"
-            TickFormatStops |> DynObj.setValueOpt angularAxis "tickformatstops"
-            TickLabelStep |> DynObj.setValueOpt angularAxis "ticklabelstep"
-            LabelAlias |> DynObj.setValueOpt angularAxis "labelalias"
-            Layer |> DynObj.setValueOptBy angularAxis "layer" StyleParam.Layer.convert
-
             angularAxis
+            |> DynObj.withOptionalProperty   "visible"           Visible             
+            |> DynObj.withOptionalPropertyBy "type"              AxisType            StyleParam.AxisType.convert
+            |> DynObj.withOptionalPropertyBy "autotypenumbers"   AutoTypeNumbers     StyleParam.AutoTypeNumbers.convert
+            |> DynObj.withOptionalPropertyBy "categoryorder"     CategoryOrder       StyleParam.CategoryOrder.convert
+            |> DynObj.withOptionalProperty   "categoryarray"     CategoryArray       
+            |> DynObj.withOptionalProperty   "thetaunit"         ThetaUnit           
+            |> DynObj.withOptionalProperty   "period"            Period              
+            |> DynObj.withOptionalPropertyBy "direction"         Direction           StyleParam.Direction.convert
+            |> DynObj.withOptionalProperty   "rotation"          Rotation            
+            |> DynObj.withOptionalProperty   "hoverformat"       HoverFormat         
+            |> DynObj.withOptionalProperty   "uirevision"        UIRevision          
+            |> DynObj.withOptionalProperty   "color"             Color               
+            |> DynObj.withOptionalProperty   "showline"          ShowLine            
+            |> DynObj.withOptionalProperty   "linecolor"         LineColor           
+            |> DynObj.withOptionalProperty   "linewidth"         LineWidth           
+            |> DynObj.withOptionalProperty   "showgrid"          ShowGrid            
+            |> DynObj.withOptionalProperty   "gridcolor"         GridColor           
+            |> DynObj.withOptionalPropertyBy "griddash"          GridDash            StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty   "gridwidth"         GridWidth           
+            |> DynObj.withOptionalPropertyBy "tickmode"          TickMode            StyleParam.TickMode.convert
+            |> DynObj.withOptionalProperty   "nticks"            NTicks              
+            |> DynObj.withOptionalProperty   "tick0"             Tick0               
+            |> DynObj.withOptionalProperty   "dtick"             DTick               
+            |> DynObj.withOptionalProperty   "tickvals"          TickVals            
+            |> DynObj.withOptionalProperty   "ticktext"          TickText            
+            |> DynObj.withOptionalPropertyBy "ticks"             Ticks               StyleParam.TickOptions.convert
+            |> DynObj.withOptionalProperty   "ticklen"           TickLen             
+            |> DynObj.withOptionalProperty   "tickwidth"         TickWidth           
+            |> DynObj.withOptionalProperty   "tickcolor"         TickColor           
+            |> DynObj.withOptionalProperty   "showticklabels"    ShowTickLabels      
+            |> DynObj.withOptionalPropertyBy "showtickprefix"    ShowTickPrefix      StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty   "tickprefix"        TickPrefix          
+            |> DynObj.withOptionalPropertyBy "showticksuffix"    ShowTickSuffix      StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty   "ticksuffix"        TickSuffix          
+            |> DynObj.withOptionalPropertyBy "showexponent"      ShowExponent        StyleParam.ShowExponent.convert
+            |> DynObj.withOptionalPropertyBy "exponentformat"    ExponentFormat      StyleParam.ExponentFormat.convert
+            |> DynObj.withOptionalProperty   "minexponent"       MinExponent         
+            |> DynObj.withOptionalProperty   "separatethousands" SeparateThousands   
+            |> DynObj.withOptionalProperty   "tickfont"          TickFont            
+            |> DynObj.withOptionalProperty   "tickangle"         TickAngle           
+            |> DynObj.withOptionalProperty   "tickformat"        TickFormat          
+            |> DynObj.withOptionalProperty   "tickformatstops"   TickFormatStops     
+            |> DynObj.withOptionalProperty   "ticklabelstep"     TickLabelStep       
+            |> DynObj.withOptionalProperty   "labelalias"        LabelAlias          
+            |> DynObj.withOptionalPropertyBy "layer"             Layer               StyleParam.Layer.convert

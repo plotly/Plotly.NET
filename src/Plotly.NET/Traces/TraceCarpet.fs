@@ -29,20 +29,15 @@ type TraceCarpetStyle() =
             [<Optional; DefaultParameterValue(null)>] ?X: StyleParam.LinearAxisId,
             [<Optional; DefaultParameterValue(null)>] ?Y: StyleParam.LinearAxisId
         ) =
-        (fun (trace: TraceCarpet) ->
+        fun (trace: TraceCarpet) ->
 
-            X |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.toString
-            Y |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.toString
-
-            trace)
+            trace
+            |> DynObj.withOptionalPropertyBy "xaxis" X StyleParam.LinearAxisId.toString
+            |> DynObj.withOptionalPropertyBy "yaxis" Y StyleParam.LinearAxisId.toString
 
     static member SetCarpet([<Optional; DefaultParameterValue(null)>] ?CarpetId: StyleParam.SubPlotId) =
-        (fun (trace: TraceCarpet) ->
-
-            CarpetId |> DynObj.setValueOptBy trace "carpet" StyleParam.SubPlotId.toString
-
-            trace)
-
+        fun (trace: TraceCarpet) ->
+            trace  |> DynObj.withOptionalPropertyBy "carpet" CarpetId  StyleParam.SubPlotId.toString
 
     /// <summary>
     /// Create a function that applies the styles of a carpet to a Trace object
@@ -112,36 +107,35 @@ type TraceCarpetStyle() =
         ) =
         fun (trace: #Trace) ->
 
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            Legend |> DynObj.setValueOptBy trace "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "opacity"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
-            Opacity |> DynObj.setValueOpt trace "opacity"
-            Ids |> DynObj.setValueOpt trace "ids"
-            (X, MultiX) |> DynObj.setSingleOrAnyOpt trace "x"
-            (Y, MultiY) |> DynObj.setSingleOrAnyOpt trace "y"
-            A |> DynObj.setValueOpt trace "a"
-            A0 |> DynObj.setValueOpt trace "a0"
-            DA |> DynObj.setValueOpt trace "da"
-            B |> DynObj.setValueOpt trace "b"
-            B0 |> DynObj.setValueOpt trace "b0"
-            DB |> DynObj.setValueOpt trace "db"
-            Meta |> DynObj.setValueOpt trace "meta"
-            CustomData |> DynObj.setValueOpt trace "customdata"
-            AAxis |> DynObj.setValueOpt trace "aaxis"
-            BAxis |> DynObj.setValueOpt trace "baxis"
-            XAxis |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.convert
-            YAxis |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.convert
-            Color |> DynObj.setValueOpt trace "color"
-            Carpet |> DynObj.setValueOptBy trace "carpet" StyleParam.SubPlotId.convert
-            CheaterSlope |> DynObj.setValueOpt trace "cheaterslope"
-            Font |> DynObj.setValueOpt trace "font"
-            UIRevision |> DynObj.setValueOpt trace "uirevision"
-
             trace
+            |> DynObj.withOptionalProperty               "name"            Name                
+            |> DynObj.withOptionalPropertyBy             "visible"         Visible             StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"      ShowLegend          
+            |> DynObj.withOptionalPropertyBy             "legend"          Legend              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"      LegendRank          
+            |> DynObj.withOptionalProperty               "opacity"         LegendGroup         
+            |> DynObj.withOptionalProperty               "legendgrouptitle"LegendGroupTitle    
+            |> DynObj.withOptionalProperty               "opacity"         Opacity             
+            |> DynObj.withOptionalProperty               "ids"             Ids                 
+            |> DynObj.withOptionalSingleOrAnyProperty    "x"               (X, MultiX)         
+            |> DynObj.withOptionalSingleOrAnyProperty    "y"               (Y, MultiY)         
+            |> DynObj.withOptionalProperty               "a"               A                   
+            |> DynObj.withOptionalProperty               "a0"              A0                  
+            |> DynObj.withOptionalProperty               "da"              DA                  
+            |> DynObj.withOptionalProperty               "b"               B                   
+            |> DynObj.withOptionalProperty               "b0"              B0                  
+            |> DynObj.withOptionalProperty               "db"              DB                  
+            |> DynObj.withOptionalProperty               "meta"            Meta                
+            |> DynObj.withOptionalProperty               "customdata"      CustomData          
+            |> DynObj.withOptionalProperty               "aaxis"           AAxis               
+            |> DynObj.withOptionalProperty               "baxis"           BAxis               
+            |> DynObj.withOptionalPropertyBy             "xaxis"           XAxis               StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalPropertyBy             "yaxis"           YAxis               StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalProperty               "color"           Color               
+            |> DynObj.withOptionalPropertyBy             "carpet"          Carpet              StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "cheaterslope"    CheaterSlope        
+            |> DynObj.withOptionalProperty               "font"            Font                
+            |> DynObj.withOptionalProperty               "uirevision"      UIRevision          
 
     /// <summary>
     /// Create a function that applies the styles of a scatter carpet plot to a Trace object
@@ -230,47 +224,43 @@ type TraceCarpetStyle() =
             [<Optional; DefaultParameterValue(null)>] ?UIRevision: string
         ) =
         fun (trace: #Trace) ->
-
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            Legend |> DynObj.setValueOptBy trace "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
-            Opacity |> DynObj.setValueOpt trace "opacity"
-            Mode |> DynObj.setValueOptBy trace "mode" StyleParam.Mode.convert
-            Ids |> DynObj.setValueOpt trace "ids"
-            A |> DynObj.setValueOpt trace "a"
-            B |> DynObj.setValueOpt trace "b"
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-            Meta |> DynObj.setValueOpt trace "meta"
-            CustomData |> DynObj.setValueOpt trace "customdata"
-            XAxis |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.convert
-            YAxis |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.convert
-            Marker |> DynObj.setValueOpt trace "marker"
-            Line |> DynObj.setValueOpt trace "line"
-            TextFont |> DynObj.setValueOpt trace "textfont"
-            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
-            Selected |> DynObj.setValueOpt trace "selected"
-            Unselected |> DynObj.setValueOpt trace "unselected"
-            Carpet |> DynObj.setValueOptBy trace "carpet" StyleParam.SubPlotId.convert
-            ConnectGaps |> DynObj.setValueOpt trace "connectgaps"
-            Fill |> DynObj.setValueOptBy trace "fill" StyleParam.Fill.convert
-            FillColor |> DynObj.setValueOpt trace "fillcolor"
-            HoverLabel |> DynObj.setValueOpt trace "hoverlabel"
-            HoverOn |> DynObj.setValueOptBy trace "hoveron" StyleParam.HoverOn.convert
-            UIRevision |> DynObj.setValueOpt trace "uirevision"
-
+            
             trace
+            |> DynObj.withOptionalProperty                   "name"            Name                                   
+            |> DynObj.withOptionalPropertyBy                 "visible"         Visible                                StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty                   "showlegend"      ShowLegend                             
+            |> DynObj.withOptionalPropertyBy                 "legend"          Legend                                 StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty                   "legendrank"      LegendRank                             
+            |> DynObj.withOptionalProperty                   "legendgroup"     LegendGroup                            
+            |> DynObj.withOptionalProperty                   "legendgrouptitle"LegendGroupTitle                       
+            |> DynObj.withOptionalProperty                   "opacity"         Opacity                                
+            |> DynObj.withOptionalPropertyBy                 "mode"            Mode                                   StyleParam.Mode.convert
+            |> DynObj.withOptionalProperty                   "ids"             Ids                                    
+            |> DynObj.withOptionalProperty                   "a"               A                                      
+            |> DynObj.withOptionalProperty                   "b"               B                                      
+            |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                      
+            |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)      StyleParam.TextPosition.convert
+            |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)      
+            |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)            
+            |> DynObj.withOptionalPropertyBy                 "hoverinfo"       HoverInfo                              StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate)    
+            |> DynObj.withOptionalProperty                   "meta"            Meta                                   
+            |> DynObj.withOptionalProperty                   "customdata"      CustomData                             
+            |> DynObj.withOptionalPropertyBy                 "xaxis"           XAxis                                  StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalPropertyBy                 "yaxis"           YAxis                                  StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalProperty                   "marker"          Marker                                 
+            |> DynObj.withOptionalProperty                   "line"            Line                                   
+            |> DynObj.withOptionalProperty                   "textfont"        TextFont                               
+            |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPoints                         
+            |> DynObj.withOptionalProperty                   "selected"        Selected                               
+            |> DynObj.withOptionalProperty                   "unselected"      Unselected                             
+            |> DynObj.withOptionalPropertyBy                 "carpet"          Carpet                                 StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty                   "connectgaps"     ConnectGaps                            
+            |> DynObj.withOptionalPropertyBy                 "fill"            Fill                                   StyleParam.Fill.convert
+            |> DynObj.withOptionalProperty                   "fillcolor"       FillColor                              
+            |> DynObj.withOptionalProperty                   "hoverlabel"      HoverLabel                             
+            |> DynObj.withOptionalPropertyBy                 "hoveron"         HoverOn                                StyleParam.HoverOn.convert
+            |> DynObj.withOptionalProperty                   "uirevision"      UIRevision                             
 
     /// <summary>
     /// Create a function that applies the styles of a carpet contour scatter plot to a Trace object
@@ -368,47 +358,46 @@ type TraceCarpetStyle() =
         ) =
         fun (trace: #Trace) ->
 
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            Legend |> DynObj.setValueOptBy trace "legend" StyleParam.SubPlotId.convert
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
-            Opacity |> DynObj.setValueOpt trace "opacity"
-            Ids |> DynObj.setValueOpt trace "ids"
-            Z |> DynObj.setValueOpt trace "z"
-            A |> DynObj.setValueOpt trace "a"
-            AType |> DynObj.setValueOptBy trace "atype" StyleParam.CoordinateType.convert
-            A0 |> DynObj.setValueOpt trace "a0"
-            DA |> DynObj.setValueOpt trace "da"
-            B |> DynObj.setValueOpt trace "b"
-            BType |> DynObj.setValueOptBy trace "btype" StyleParam.CoordinateType.convert
-            B0 |> DynObj.setValueOpt trace "b0"
-            DB |> DynObj.setValueOpt trace "db"
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            Meta |> DynObj.setValueOpt trace "meta"
-            CustomData |> DynObj.setValueOpt trace "customdata"
-            XAxis |> DynObj.setValueOptBy trace "xaxis" StyleParam.LinearAxisId.convert
-            YAxis |> DynObj.setValueOptBy trace "yaxis" StyleParam.LinearAxisId.convert
-            ColorAxis |> DynObj.setValueOptBy trace "coloraxis" StyleParam.SubPlotId.convert
-            Line |> DynObj.setValueOpt trace "line"
-            ColorBar |> DynObj.setValueOpt trace "colorbar"
-            AutoColorScale |> DynObj.setValueOpt trace "autocolorscale"
-            ColorScale |> DynObj.setValueOptBy trace "colorscale" StyleParam.Colorscale.convert
-            ShowScale |> DynObj.setValueOpt trace "showscale"
-            ReverseScale |> DynObj.setValueOpt trace "reversescale"
-            ZAuto |> DynObj.setValueOpt trace "zauto"
-            ZMax |> DynObj.setValueOpt trace "zmax"
-            ZMid |> DynObj.setValueOpt trace "zmid"
-            ZMin |> DynObj.setValueOpt trace "zmin"
-            AutoContour |> DynObj.setValueOpt trace "autocontour"
-            Carpet |> DynObj.setValueOptBy trace "carpet" StyleParam.SubPlotId.convert
-            Contours |> DynObj.setValueOpt trace "contours"
-            FillColor |> DynObj.setValueOpt trace "fillcolor"
-            NContours |> DynObj.setValueOpt trace "ncontours"
-            Transpose |> DynObj.setValueOpt trace "transpose"
-            UIRevision |> DynObj.setValueOpt trace "uirevision"
-
             trace
+            |> DynObj.withOptionalProperty               "name"            Name                        
+            |> DynObj.withOptionalPropertyBy             "visible"         Visible                     StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty               "showlegend"      ShowLegend                  
+            |> DynObj.withOptionalPropertyBy             "legend"          Legend                      StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "legendrank"      LegendRank                  
+            |> DynObj.withOptionalProperty               "legendgroup"     LegendGroup                 
+            |> DynObj.withOptionalProperty               "legendgrouptitle"LegendGroupTitle            
+            |> DynObj.withOptionalProperty               "opacity"         Opacity                     
+            |> DynObj.withOptionalProperty               "ids"             Ids                         
+            |> DynObj.withOptionalProperty               "z"               Z                           
+            |> DynObj.withOptionalProperty               "a"               A                           
+            |> DynObj.withOptionalPropertyBy             "atype"           AType                       StyleParam.CoordinateType.convert
+            |> DynObj.withOptionalProperty               "a0"              A0                          
+            |> DynObj.withOptionalProperty               "da"              DA                          
+            |> DynObj.withOptionalProperty               "b"               B                           
+            |> DynObj.withOptionalPropertyBy             "btype"           BType                       StyleParam.CoordinateType.convert
+            |> DynObj.withOptionalProperty               "b0"              B0                          
+            |> DynObj.withOptionalProperty               "db"              DB                          
+            |> DynObj.withOptionalSingleOrMultiProperty  "text"            (Text, MultiText)           
+            |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"       (HoverText, MultiHoverText) 
+            |> DynObj.withOptionalProperty               "meta"            Meta                        
+            |> DynObj.withOptionalProperty               "customdata"      CustomData                  
+            |> DynObj.withOptionalPropertyBy             "xaxis"           XAxis                       StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalPropertyBy             "yaxis"           YAxis                       StyleParam.LinearAxisId.convert
+            |> DynObj.withOptionalPropertyBy             "coloraxis"       ColorAxis                   StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "line"            Line                        
+            |> DynObj.withOptionalProperty               "colorbar"        ColorBar                    
+            |> DynObj.withOptionalProperty               "autocolorscale"  AutoColorScale              
+            |> DynObj.withOptionalPropertyBy             "colorscale"      ColorScale                  StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty               "showscale"       ShowScale                   
+            |> DynObj.withOptionalProperty               "reversescale"    ReverseScale                
+            |> DynObj.withOptionalProperty               "zauto"           ZAuto                       
+            |> DynObj.withOptionalProperty               "zmax"            ZMax                        
+            |> DynObj.withOptionalProperty               "zmid"            ZMid                        
+            |> DynObj.withOptionalProperty               "zmin"            ZMin                        
+            |> DynObj.withOptionalProperty               "autocontour"     AutoContour                 
+            |> DynObj.withOptionalPropertyBy             "carpet"          Carpet                      StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty               "contours"        Contours                    
+            |> DynObj.withOptionalProperty               "fillcolor"       FillColor                   
+            |> DynObj.withOptionalProperty               "ncontours"       NContours                   
+            |> DynObj.withOptionalProperty               "transpose"       Transpose                   
+            |> DynObj.withOptionalProperty               "uirevision"      UIRevision                  

@@ -68,7 +68,7 @@ type Chart =
             LinearAxis.init (ShowGrid = false, ShowLine = false, ShowTickLabels = false, ZeroLine = false)
 
         let trace = Trace2D.initScatter (id)
-        trace.Remove("type") |> ignore
+        trace.RemoveProperty("type") |> ignore
 
         GenericChart.ofTraceObject false trace
         |> GenericChart.mapLayout (fun l ->
@@ -1131,8 +1131,7 @@ type Chart =
                             | StyleParam.SubPlotId.ZAxis   -> scene |> Scene.getZAxis
                             | _ -> failwith "invalid scene axis id"
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis axis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis axis
 
                         let updatedScene =
                             scene
@@ -1752,8 +1751,7 @@ type Chart =
                         let currentAxis =
                             polar |> Polar.getAngularAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis angularAxis) :?> AngularAxis
+                        let updatedAxis = DynObj.combine currentAxis angularAxis |> unbox<AngularAxis>
 
                         let updatedPolar =
                             polar |> Polar.setAngularAxis updatedAxis
@@ -1812,7 +1810,7 @@ type Chart =
                             polar |> Polar.getRadialAxis
 
                         let updatedAxis =
-                            (DynObj.combine currentAxis radialAxis) :?> RadialAxis
+                            DynObj.combine currentAxis radialAxis |> unbox<RadialAxis>
 
                         let updatedPolar =
                             polar |> Polar.setRadialAxis updatedAxis
@@ -1927,11 +1925,10 @@ type Chart =
                         let currentAxis =
                             smith |> Smith.getImaginaryAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis imaginaryAxis) :?> ImaginaryAxis
+                        let updatedAxis = DynObj.combine currentAxis imaginaryAxis |> unbox<ImaginaryAxis>
 
                         let updatedSmith =
-                            smith |> Smith.setImaginaryAxis updatedAxis
+                            smith |> Smith.setImaginaryAxis updatedAxis 
 
                         layout |> Layout.updateSmithById (id, updatedSmith)
 
@@ -1985,11 +1982,10 @@ type Chart =
                     if combine then
                         let currentAxis = smith |> Smith.getRealAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis realAxis) :?> RealAxis
+                        let updatedAxis = DynObj.combine currentAxis realAxis |> unbox<RealAxis>
 
                         let updatedSmith =
-                            smith |> Smith.setRealAxis updatedAxis
+                            smith |> Smith.setRealAxis updatedAxis 
 
                         layout |> Layout.updateSmithById (id, updatedSmith)
 
@@ -2368,11 +2364,10 @@ type Chart =
                         let currentAxis =
                             ternary |> Ternary.getAAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis aAxis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis aAxis |> unbox<LinearAxis>
 
                         let updatedTernary =
-                            ternary |> Ternary.setAAxis updatedAxis
+                            ternary |> Ternary.setAAxis updatedAxis 
 
                         layout |> Layout.updateTernaryById (id, updatedTernary)
 
@@ -2428,8 +2423,7 @@ type Chart =
                         let currentAxis =
                             ternary |> Ternary.getBAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis bAxis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis bAxis |> unbox<LinearAxis>
 
                         let updatedTernary =
                             ternary |> Ternary.setBAxis updatedAxis
@@ -2488,8 +2482,7 @@ type Chart =
                         let currentAxis =
                             ternary |> Ternary.getCAxis
 
-                        let updatedAxis =
-                            (DynObj.combine currentAxis cAxis) :?> LinearAxis
+                        let updatedAxis = DynObj.combine currentAxis cAxis |> unbox<LinearAxis>
 
                         let updatedTernary =
                             ternary |> Ternary.setCAxis updatedAxis
@@ -2746,7 +2739,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Annotation>>("annotations")
+                    layout.TryGetTypedPropertyValue<seq<Annotation>>("annotations")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append annotations
 
@@ -2857,7 +2850,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Shape>>("shapes") |> Option.defaultValue Seq.empty |> Seq.append shapes
+                    layout.TryGetTypedPropertyValue<seq<Shape>>("shapes") |> Option.defaultValue Seq.empty |> Seq.append shapes
 
                 else
                     shapes
@@ -2885,7 +2878,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<Selection>>("selections")
+                    layout.TryGetTypedPropertyValue<seq<Selection>>("selections")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append selections
 
@@ -3183,8 +3176,9 @@ type Chart =
                         calculateSubplotTitlePositions 0. 1. xGap yGap nRows nCols reversed
 
                     titles
-                    |> Seq.zip positions[0 .. (Seq.length titles) - 1]
-                    |> Seq.map (fun (((rowIndex, colIndex), (x, y)), title) ->
+                    |> Array.ofSeq
+                    |> Array.zip positions[0 .. (Seq.length titles) - 1]
+                    |> Array.map (fun (((rowIndex, colIndex), (x, y)), title) ->
                         Annotation.init(
                             X = x,
                             XRef = "paper",
@@ -3206,7 +3200,8 @@ type Chart =
 
             gCharts
             |> Seq.zip gridCoordinates
-            |> Seq.mapi (fun i ((rowIndex, colIndex), gChart) ->
+            |> Array.ofSeq
+            |> Array.mapi (fun i ((rowIndex, colIndex), gChart) ->
 
                 let layout =
                     gChart |> GenericChart.getLayout
@@ -3219,17 +3214,17 @@ type Chart =
                 | TraceID.Carpet ->
 
                     let xAxis =
-                        layout.TryGetTypedValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
+                        layout.TryGetTypedPropertyValue<LinearAxis> "xaxis" |> Option.defaultValue (LinearAxis.init ())
 
                     let yAxis =
-                        layout.TryGetTypedValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
+                        layout.TryGetTypedPropertyValue<LinearAxis> "yaxis" |> Option.defaultValue (LinearAxis.init ())
 
-                    let allXAxes = Layout.getXAxes layout |> Seq.map fst
-                    let allYAxes = Layout.getYAxes layout |> Seq.map fst
+                    let allXAxes = Layout.getXAxes layout |> Array.map fst
+                    let allYAxes = Layout.getYAxes layout |> Array.map fst
 
                     // remove all axes from layout. Only cartesian axis in each dimension is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allXAxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
-                    allYAxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allXAxes |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
+                    allYAxes |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let xAnchor, yAnchor =
                         if hasSharedAxes then
@@ -3237,22 +3232,23 @@ type Chart =
                         else
                             i + 1, i + 1
 
-                    gChart
-                    |> Chart.withAxisAnchor (xAnchor, yAnchor) // set adapted axis anchors
-                    |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
-                    |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
-
+                    let lol = 
+                        gChart
+                        |> Chart.withAxisAnchor (xAnchor, yAnchor) // set adapted axis anchors
+                        |> Chart.withXAxis (xAxis, (StyleParam.SubPlotId.XAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
+                        |> Chart.withYAxis (yAxis, (StyleParam.SubPlotId.YAxis(i + 1))) // set previous axis with adapted id (one individual axis for each subplot, whether or not they will be used later)
+                    lol
                 | TraceID.Cartesian3D ->
 
                     let scene =
-                        layout.TryGetTypedValue<Scene> "scene"
+                        layout.TryGetTypedPropertyValue<Scene> "scene"
                         |> Option.defaultValue (Scene.init ())
                         |> Scene.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                    let allScenes = Layout.getScenes layout |> Seq.map fst
+                    let allScenes = Layout.getScenes layout |> Array.map fst
 
                     // remove all scenes from layout. Only one scene is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allScenes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allScenes |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let sceneAnchor =
                         StyleParam.SubPlotId.Scene(i + 1)
@@ -3263,14 +3259,14 @@ type Chart =
                 | TraceID.Polar ->
 
                     let polar =
-                        layout.TryGetTypedValue<Polar> "polar"
+                        layout.TryGetTypedPropertyValue<Polar> "polar"
                         |> Option.defaultValue (Polar.init ())
                         |> Polar.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                    let allPolars = Layout.getPolars layout |> Seq.map fst
+                    let allPolars = Layout.getPolars layout |> Array.map fst
 
                     // remove all polar subplots from layout. Only one polar subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allPolars |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allPolars |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let polarAnchor =
                         StyleParam.SubPlotId.Polar(i + 1)
@@ -3283,14 +3279,14 @@ type Chart =
                 | TraceID.Smith ->
 
                     let smith =
-                        layout.TryGetTypedValue<Smith> "smith"
+                        layout.TryGetTypedPropertyValue<Smith> "smith"
                         |> Option.defaultValue (Smith.init ())
                         |> Smith.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
                     
-                    let allSmiths = Layout.getSmiths layout |> Seq.map fst
+                    let allSmiths = Layout.getSmiths layout |> Array.map fst
 
                     // remove all smith subplots from layout. Only one smith subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allSmiths |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allSmiths |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let polarAnchor =
                         StyleParam.SubPlotId.Smith(i + 1)
@@ -3302,14 +3298,14 @@ type Chart =
 
                 | TraceID.Geo ->
                     let geo =
-                        layout.TryGetTypedValue<Geo> "geo"
+                        layout.TryGetTypedPropertyValue<Geo> "geo"
                         |> Option.defaultValue (Geo.init ())
                         |> Geo.style (Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1))
 
-                    let allGeos = Layout.getGeos layout |> Seq.map fst
+                    let allGeos = Layout.getGeos layout |> Array.map fst
 
                     // remove all geo subplots from layout. Only one geo subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allGeos |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allGeos |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let geoAnchor =
                         StyleParam.SubPlotId.Geo(i + 1)
@@ -3320,16 +3316,16 @@ type Chart =
 
                 | TraceID.Mapbox ->
                     let mapbox =
-                        layout.TryGetTypedValue<Mapbox> "mapbox"
+                        layout.TryGetTypedPropertyValue<Mapbox> "mapbox"
                         |> Option.defaultValue (Mapbox.init ())
                         |> Mapbox.style (
                             Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
                         )
 
-                    let allMapboxes = Layout.getMapboxes layout |> Seq.map fst
+                    let allMapboxes = Layout.getMapboxes layout |> Array.map fst
 
                     // remove all mapbox subplots from layout. Only one mapbox subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allMapboxes |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allMapboxes |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let geoAnchor =
                         StyleParam.SubPlotId.Geo(i + 1)
@@ -3345,16 +3341,16 @@ type Chart =
                 | TraceID.Ternary ->
 
                     let ternary =
-                        layout.TryGetTypedValue<Ternary> "ternary"
+                        layout.TryGetTypedPropertyValue<Ternary> "ternary"
                         |> Option.defaultValue (Ternary.init ())
                         |> Ternary.style (
                             Domain = LayoutObjects.Domain.init (Row = rowIndex - 1, Column = colIndex - 1)
                         )
 
-                    let allTernaries = Layout.getTernaries layout |> Seq.map fst
+                    let allTernaries = Layout.getTernaries layout |> Array.map fst
 
                     // remove all ternary subplots from layout. Only one ternary subplot is supported per grid cell, and leaving anything else on this layout may lead to property name clashes on combine.
-                    allTernaries |> Seq.iter (fun propName -> layout.Remove(propName) |> ignore)
+                    allTernaries |> Array.iter (fun propName -> layout.RemoveProperty(propName) |> ignore)
 
                     let ternaryAnchor =
                         StyleParam.SubPlotId.Ternary(i + 1)
@@ -3612,7 +3608,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<LayoutImage>>("images")
+                    layout.TryGetTypedPropertyValue<seq<LayoutImage>>("images")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append images
 
@@ -3647,7 +3643,7 @@ type Chart =
 
                     let layout = GenericChart.getLayout ch
 
-                    layout.TryGetTypedValue<seq<UpdateMenu>>("updatemenus")
+                    layout.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus")
                     |> Option.defaultValue Seq.empty
                     |> Seq.append updateMenus
 

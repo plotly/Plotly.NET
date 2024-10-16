@@ -69,24 +69,23 @@ type Mapbox() =
             [<Optional; DefaultParameterValue(null)>] ?Pitch: float,
             [<Optional; DefaultParameterValue(null)>] ?Layers: seq<MapboxLayer>
         ) =
-        (fun (mapBox: Mapbox) ->
+        fun (mapBox: Mapbox) ->
 
-            Domain |> DynObj.setValueOpt mapBox "domain"
-            AccessToken |> DynObj.setValueOpt mapBox "accesstoken"
-            Style |> DynObj.setValueOptBy mapBox "style" StyleParam.MapboxStyle.convert
-            Bounds |> DynObj.setValueOpt mapBox "bounds"
+            let center =
+                Center
+                |> Option.map (fun (lon, lat) ->
+                    DynamicObj()
+                    |> DynObj.withProperty "lon" lon
+                    |> DynObj.withProperty "lat" lat
+                )
 
-            Center
-            |> Option.map (fun (lon, lat) ->
-                let t = DynamicObj()
-                t?lon <- lon
-                t?lat <- lat
-                t)
-            |> DynObj.setValueOpt mapBox "center"
-
-            Zoom |> DynObj.setValueOpt mapBox "zoom"
-            Bearing |> DynObj.setValueOpt mapBox "bearing"
-            Pitch |> DynObj.setValueOpt mapBox "pitch"
-            Layers |> DynObj.setValueOpt mapBox "layers"
-
-            mapBox)
+            mapBox
+            |> DynObj.withOptionalProperty   "domain"      Domain      
+            |> DynObj.withOptionalProperty   "accesstoken" AccessToken 
+            |> DynObj.withOptionalPropertyBy "style"       Style       StyleParam.MapboxStyle.convert
+            |> DynObj.withOptionalProperty   "bounds"      Bounds      
+            |> DynObj.withOptionalProperty   "center"      center      
+            |> DynObj.withOptionalProperty   "zoom"        Zoom        
+            |> DynObj.withOptionalProperty   "bearing"     Bearing     
+            |> DynObj.withOptionalProperty   "pitch"       Pitch       
+            |> DynObj.withOptionalProperty   "layers"      Layers      

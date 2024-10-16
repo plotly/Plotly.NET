@@ -45,17 +45,16 @@ type UpdateMenuButton() =
         ) =
         (fun (updateMenuButton: UpdateMenuButton) ->
 
-            Args |> DynObj.setValueOpt updateMenuButton "args"
-            Args2 |> DynObj.setValueOpt updateMenuButton "args2"
-            Execute |> DynObj.setValueOpt updateMenuButton "execute"
-            Label |> DynObj.setValueOpt updateMenuButton "label"
-            Method |> DynObj.setValueOptBy updateMenuButton "method" StyleParam.UpdateMethod.convert
-            Name |> DynObj.setValueOpt updateMenuButton "name"
-            TemplateItemName |> DynObj.setValueOpt updateMenuButton "templateitemname"
-            Visible |> DynObj.setValueOpt updateMenuButton "visible"
-
-
-            updateMenuButton)
+            updateMenuButton
+            |> DynObj.withOptionalProperty "args" Args
+            |> DynObj.withOptionalProperty "args2" Args2
+            |> DynObj.withOptionalProperty "execute" Execute
+            |> DynObj.withOptionalProperty "label" Label
+            |> DynObj.withOptionalPropertyBy "method" Method StyleParam.UpdateMethod.convert
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalProperty "visible" Visible
+        )
 
 type UpdateMenu() =
     inherit DynamicObj()
@@ -121,21 +120,21 @@ type UpdateMenu() =
         ) =
         (fun (updateMenu: UpdateMenu) ->
 
-            Active |> DynObj.setValueOpt updateMenu "active"
-            BGColor |> DynObj.setValueOpt updateMenu "bgcolor"
-            BorderColor |> DynObj.setValueOpt updateMenu "bordercolor"
-            Buttons |> DynObj.setValueOpt updateMenu "buttons"
-            Direction |> DynObj.setValueOptBy updateMenu "direction" StyleParam.UpdateMenuDirection.convert
-            Font |> DynObj.setValueOpt updateMenu "font"
-            Name |> DynObj.setValueOpt updateMenu "name"
-            Pad |> DynObj.setValueOpt updateMenu "pad"
-            ShowActive |> DynObj.setValueOpt updateMenu "showactive"
-            TemplateItemName |> DynObj.setValueOpt updateMenu "templateitemname"
-            Type |> DynObj.setValueOptBy updateMenu "type" StyleParam.UpdateMenuType.convert
-            Visible |> DynObj.setValueOpt updateMenu "visible"
-            X |> DynObj.setValueOpt updateMenu "x"
-            XAnchor |> DynObj.setValueOptBy updateMenu "xanchor" StyleParam.XAnchorPosition.convert
-            Y |> DynObj.setValueOpt updateMenu "y"
-            YAnchor |> DynObj.setValueOptBy updateMenu "yanchor" StyleParam.YAnchorPosition.convert
-
-            updateMenu)
+            updateMenu
+            |> DynObj.withOptionalProperty "active" Active
+            |> DynObj.withOptionalProperty "bgcolor" BGColor
+            |> DynObj.withOptionalProperty "bordercolor" BorderColor
+            |> DynObj.withOptionalProperty "buttons" Buttons
+            |> DynObj.withOptionalPropertyBy "direction" Direction StyleParam.UpdateMenuDirection.convert
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "pad" Pad
+            |> DynObj.withOptionalProperty "showactive" ShowActive
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalPropertyBy "type" Type StyleParam.UpdateMenuType.convert
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.XAnchorPosition.convert
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.YAnchorPosition.convert
+        )

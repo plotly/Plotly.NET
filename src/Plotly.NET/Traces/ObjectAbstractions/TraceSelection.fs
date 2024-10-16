@@ -36,13 +36,12 @@ type MarkerSelectionStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Color: Color,
             [<Optional; DefaultParameterValue(null)>] ?Size: int
         ) =
-        (fun (markerSelectionStyle: MarkerSelectionStyle) ->
+        fun (markerSelectionStyle: MarkerSelectionStyle) ->
 
-            Opacity |> DynObj.setValueOpt markerSelectionStyle "opacity"
-            Color |> DynObj.setValueOpt markerSelectionStyle "color"
-            Size |> DynObj.setValueOpt markerSelectionStyle "size"
-
-            markerSelectionStyle)
+            markerSelectionStyle
+            |> DynObj.withOptionalProperty "opacity" Opacity
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "size" Size
 
 /// <summary>Controls the style of selected lines in supported traces</summary>
 type LineSelectionStyle() =
@@ -70,12 +69,11 @@ type LineSelectionStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
             [<Optional; DefaultParameterValue(null)>] ?Color: Color
         ) =
-        (fun (lineSelectionStyle: LineSelectionStyle) ->
+        fun (lineSelectionStyle: LineSelectionStyle) ->
 
-            Opacity |> DynObj.setValueOpt lineSelectionStyle "opacity"
-            Color |> DynObj.setValueOpt lineSelectionStyle "color"
-
-            lineSelectionStyle)
+            lineSelectionStyle
+            |> DynObj.withOptionalProperty "opacity" Opacity
+            |> DynObj.withOptionalProperty "color" Color
 
 /// <summary>Controls the style of selected text in supported traces</summary>
 type FontSelectionStyle() =
@@ -93,11 +91,10 @@ type FontSelectionStyle() =
     /// </summary>
     /// <param name="Color">Sets the color of the selected/unselected text</param>
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        (fun (fontSelectionStyle: FontSelectionStyle) ->
+        fun (fontSelectionStyle: FontSelectionStyle) ->
 
-            Color |> DynObj.setValueOpt fontSelectionStyle "color"
-
-            fontSelectionStyle)
+            fontSelectionStyle
+            |> DynObj.withOptionalProperty "color" Color
 
 /// <summary>
 /// Used to control selected/unselected trace item styles in supported traces.
@@ -136,10 +133,9 @@ type TraceSelection() =
             [<Optional; DefaultParameterValue(null)>] ?LineSelectionStyle: LineSelectionStyle,
             [<Optional; DefaultParameterValue(null)>] ?FontSelectionStyle: FontSelectionStyle
         ) =
-        (fun (traceSelection: TraceSelection) ->
+        fun (traceSelection: TraceSelection) ->
 
-            MarkerSelectionStyle |> DynObj.setValueOpt traceSelection "marker"
-            LineSelectionStyle |> DynObj.setValueOpt traceSelection "line"
-            FontSelectionStyle |> DynObj.setValueOpt traceSelection "font"
-
-            traceSelection)
+            traceSelection
+            |> DynObj.withOptionalProperty "marker" MarkerSelectionStyle
+            |> DynObj.withOptionalProperty "line" LineSelectionStyle
+            |> DynObj.withOptionalProperty "font" FontSelectionStyle

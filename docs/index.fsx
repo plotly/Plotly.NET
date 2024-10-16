@@ -290,25 +290,25 @@ double[] x = new double[] { 1, 2 };
 double[] y = new double[] { 5, 10 };
 
 LinearAxis xAxis = new LinearAxis();
-xAxis.SetValue("title", "xAxis");
-xAxis.SetValue("showgrid", false);
-xAxis.SetValue("showline", true);
+xAxis.SetProperty("title", "xAxis");
+xAxis.SetProperty("showgrid", false);
+xAxis.SetProperty("showline", true);
 
 LinearAxis yAxis = new LinearAxis();
-yAxis.SetValue("title", "yAxis");
-yAxis.SetValue("showgrid", false);
-yAxis.SetValue("showline", true);
+yAxis.SetProperty("title", "yAxis");
+yAxis.SetProperty("showgrid", false);
+yAxis.SetProperty("showline", true);
 
 Layout layout = new Layout();
-layout.SetValue("xaxis", xAxis);
-layout.SetValue("yaxis", yAxis);
-layout.SetValue("showlegend", true);
+layout.SetProperty("xaxis", xAxis);
+layout.SetProperty("yaxis", yAxis);
+layout.SetProperty("showlegend", true);
 
 Trace trace = new Trace("scatter");
-trace.SetValue("x", x);
-trace.SetValue("y", y);
-trace.SetValue("mode", "markers");
-trace.SetValue("name", "Hello from C#");
+trace.SetProperty("x", x);
+trace.SetProperty("y", y);
+trace.SetProperty("mode", "markers");
+trace.SetProperty("name", "Hello from C#");
 
 GenericChart
     .ofTraceObject(true, trace)

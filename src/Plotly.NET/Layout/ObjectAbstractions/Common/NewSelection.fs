@@ -44,7 +44,7 @@ type NewSelection() =
             let line =
                 Line.init (?Color = LineColor, ?Dash = LineDash, ?Width = LineWidth)
 
-            line |> DynObj.setValue newSelection "line"
-            Mode |> DynObj.setValueOptBy newSelection "mode" StyleParam.NewSelectionMode.convert
-
-            newSelection)
+            newSelection
+            |> DynObj.withProperty "line" line
+            |> DynObj.withOptionalPropertyBy "mode" Mode StyleParam.NewSelectionMode.convert
+        )

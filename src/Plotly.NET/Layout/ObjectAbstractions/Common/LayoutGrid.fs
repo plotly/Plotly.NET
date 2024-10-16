@@ -85,25 +85,22 @@ type LayoutGrid() =
             [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
         ) =
         (fun (layoutGrid: LayoutGrid) ->
-            SubPlots
-            |> DynObj.setValueOptBy
-                layoutGrid
-                "subplots"
-                (Array.map (
+            layoutGrid
+            |> DynObj.withOptionalPropertyBy "subplots" SubPlots (
+                Array.map (
                     Array.map (fun (x, y) ->
                         $"{StyleParam.LinearAxisId.toString x}{StyleParam.LinearAxisId.toString y}")
-                ))
-
-            XAxes |> DynObj.setValueOptBy layoutGrid "xaxes" (Array.map StyleParam.LinearAxisId.toString)
-            YAxes |> DynObj.setValueOptBy layoutGrid "yaxes" (Array.map StyleParam.LinearAxisId.toString)
-            Rows |> DynObj.setValueOpt layoutGrid "rows"
-            Columns |> DynObj.setValueOpt layoutGrid "columns"
-            RowOrder |> DynObj.setValueOptBy layoutGrid "roworder" StyleParam.LayoutGridRowOrder.toString
-            Pattern |> DynObj.setValueOptBy layoutGrid "pattern" StyleParam.LayoutGridPattern.toString
-            XGap |> DynObj.setValueOpt layoutGrid "xgap"
-            YGap |> DynObj.setValueOpt layoutGrid "ygap"
-            Domain |> DynObj.setValueOpt layoutGrid "domain"
-            XSide |> DynObj.setValueOptBy layoutGrid "xside" StyleParam.LayoutGridXSide.toString
-            YSide |> DynObj.setValueOptBy layoutGrid "yside" StyleParam.LayoutGridYSide.toString
-
-            layoutGrid)
+                )
+            )
+            |> DynObj.withOptionalPropertyBy "xaxes" XAxes (Array.map StyleParam.LinearAxisId.toString)
+            |> DynObj.withOptionalPropertyBy "yaxes" YAxes (Array.map StyleParam.LinearAxisId.toString)
+            |> DynObj.withOptionalProperty "rows" Rows
+            |> DynObj.withOptionalProperty "columns" Columns
+            |> DynObj.withOptionalPropertyBy "roworder" RowOrder StyleParam.LayoutGridRowOrder.toString
+            |> DynObj.withOptionalPropertyBy "pattern" Pattern StyleParam.LayoutGridPattern.toString
+            |> DynObj.withOptionalProperty "xgap" XGap
+            |> DynObj.withOptionalProperty "ygap" YGap
+            |> DynObj.withOptionalProperty "domain" Domain
+            |> DynObj.withOptionalPropertyBy "xside" XSide StyleParam.LayoutGridXSide.toString
+            |> DynObj.withOptionalPropertyBy "yside" YSide StyleParam.LayoutGridYSide.toString
+        )

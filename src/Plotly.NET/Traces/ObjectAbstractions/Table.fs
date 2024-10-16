@@ -14,10 +14,9 @@ type TableFill() =
         TableFill() |> TableFill.style (?Color = Color)
 
     static member style([<Optional; DefaultParameterValue(null)>] ?Color: Color) =
-        (fun (fill: TableFill) ->
-            Color |> DynObj.setValueOpt fill "color"
-            fill)
-
+        fun (fill: TableFill) ->
+            fill
+            |> DynObj.withOptionalProperty "color" Color
 
 /// Cells type inherits from dynamic object
 type TableCells() =
@@ -71,19 +70,17 @@ type TableCells() =
             [<Optional; DefaultParameterValue(null)>] ?MultiSuffix: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?Values: seq<#seq<#IConvertible>>
         ) =
-        (fun (cells: TableCells) ->
+        fun (cells: TableCells) ->
 
-            (Align, MultiAlign) |> DynObj.setSingleOrMultiOptBy cells "align" StyleParam.HorizontalAlign.convert
-            Fill |> DynObj.setValueOpt cells "fill"
-            Font |> DynObj.setValueOpt cells "font"
-            Format |> DynObj.setValueOpt cells "format"
-            Height |> DynObj.setValueOpt cells "height"
-            Line |> DynObj.setValueOpt cells "line"
-            (Prefix, MultiPrefix) |> DynObj.setSingleOrMultiOpt cells "prefix"
-            (Suffix, MultiSuffix) |> DynObj.setSingleOrMultiOpt cells "suffix"
-            Values |> DynObj.setValueOpt cells "values"
-
-
-            cells)
+            cells
+            |> DynObj.withOptionalSingleOrMultiPropertyBy "align" (Align, MultiAlign) StyleParam.HorizontalAlign.convert
+            |> DynObj.withOptionalProperty "fill" Fill
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "format" Format
+            |> DynObj.withOptionalProperty "height" Height
+            |> DynObj.withOptionalProperty "line" Line
+            |> DynObj.withOptionalSingleOrMultiProperty "prefix" (Prefix, MultiPrefix)
+            |> DynObj.withOptionalSingleOrMultiProperty "suffix" (Suffix, MultiSuffix)
+            |> DynObj.withOptionalProperty "values" Values
 
 type TableHeader = TableCells

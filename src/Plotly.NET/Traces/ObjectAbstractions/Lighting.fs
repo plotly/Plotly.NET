@@ -63,15 +63,14 @@ type Lighting() =
         ) =
         fun (l: Lighting) ->
 
-            Ambient |> DynObj.setValueOpt l "ambient"
-            Diffuse |> DynObj.setValueOpt l "diffuse"
-            FaceNormalEpsilon |> DynObj.setValueOpt l "facenormalepsilon"
-            Fresnel |> DynObj.setValueOpt l "fresnel"
-            Roughness |> DynObj.setValueOpt l "roughness"
-            Specular |> DynObj.setValueOpt l "specular"
-            VertexNormalEpsilon |> DynObj.setValueOpt l "vertexnormalepsilon"
-
             l
+            |> DynObj.withOptionalProperty "ambient" Ambient
+            |> DynObj.withOptionalProperty "diffuse" Diffuse
+            |> DynObj.withOptionalProperty "facenormalepsilon" FaceNormalEpsilon
+            |> DynObj.withOptionalProperty "fresnel" Fresnel
+            |> DynObj.withOptionalProperty "roughness" Roughness
+            |> DynObj.withOptionalProperty "specular" Specular
+            |> DynObj.withOptionalProperty "vertexnormalepsilon" VertexNormalEpsilon
 
 type LightPosition() =
     inherit DynamicObj()
@@ -104,8 +103,7 @@ type LightPosition() =
         ) =
         fun (lp: LightPosition) ->
 
-            X |> DynObj.setValueOpt lp "x"
-            Y |> DynObj.setValueOpt lp "y"
-            Z |> DynObj.setValueOpt lp "z"
-
             lp
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalProperty "z" Z

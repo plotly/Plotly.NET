@@ -39,12 +39,12 @@ type Margin() =
             [<Optional; DefaultParameterValue(null)>] ?Autoexpand
         ) =
         (fun (margin: Margin) ->
-            Left |> DynObj.setValueOpt margin "l"
-            Right |> DynObj.setValueOpt margin "r"
-            Top |> DynObj.setValueOpt margin "t"
-            Bottom |> DynObj.setValueOpt margin "b"
 
-            Pad |> DynObj.setValueOpt margin "pad"
-            Autoexpand |> DynObj.setValueOpt margin "autoexpand"
-
-            margin)
+            margin
+            |> DynObj.withOptionalProperty "l" Left
+            |> DynObj.withOptionalProperty "r" Right
+            |> DynObj.withOptionalProperty "t" Top
+            |> DynObj.withOptionalProperty "b" Bottom
+            |> DynObj.withOptionalProperty "pad" Pad
+            |> DynObj.withOptionalProperty "autoexpand" Autoexpand
+        )

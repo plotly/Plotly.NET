@@ -17,7 +17,7 @@ type Template() =
             layoutTemplate: Layout,
             [<Optional; DefaultParameterValue(null)>] ?TraceTemplates: seq<#Trace>
         ) =
-        (fun (template: Template) ->
+        fun (template: Template) ->
 
             let traceTemplates =
                 TraceTemplates
@@ -39,26 +39,26 @@ type Template() =
                     let tmp = DynamicObj()
 
                     traceTemplates
-                    |> Option.iter (Seq.iter (fun (id, traceTemplate) -> traceTemplate |> DynObj.setValue tmp id))
+                    |> Option.iter (Seq.iter (fun (id, traceTemplate) ->  tmp |> DynObj.setProperty id traceTemplate))
 
                     tmp
 
-
-            layoutTemplate |> DynObj.setValue template "layout"
-            traceTemplates |> DynObj.setValue template "data"
-
-            template)
+            template
+            |> DynObj.withProperty "layout" layoutTemplate 
+            |> DynObj.withProperty "data"   traceTemplates 
 
     static member mapLayoutTemplate (styleF: Layout -> Layout) (template: Template) =
-        template.TryGetTypedValue<Layout>("layout") |> Option.map (styleF) |> DynObj.setValueOpt template "layout"
+        let l = template.TryGetTypedPropertyValue<Layout>("layout") 
         template
+        |> DynObj.withOptionalPropertyBy "layout" l (styleF)
 
     static member mapTraceTemplates (styleF: #Trace[] -> #Trace[]) (template: Template) =
-        template.TryGetTypedValue<#Trace[]>("data") |> Option.map (styleF) |> DynObj.setValueOpt template "data"
+        let l = template.TryGetTypedPropertyValue<#Trace[]>("data") 
         template
+        |> DynObj.withOptionalPropertyBy "data" l (styleF)
 
     static member withColorWay (colorway: Color) (template: Template) =
         template
         |> Template.mapLayoutTemplate (fun l ->
-            colorway |> DynObj.setValue l "colorway"
-            l)
+            l |> DynObj.withProperty "colorway" colorway
+        )

@@ -148,47 +148,47 @@ type Annotation() =
         ) =
         (fun (ann: Annotation) ->
 
-            X |> DynObj.setValueOpt ann "x"
-            Y |> DynObj.setValueOpt ann "y"
-            Align |> DynObj.setValueOptBy ann "align" StyleParam.AnnotationAlignment.convert
-            ArrowColor |> DynObj.setValueOpt ann "arrowcolor"
-            ArrowHead |> DynObj.setValueOptBy ann "arrowhead" StyleParam.ArrowHead.convert
-            ArrowSide |> DynObj.setValueOptBy ann "arrowside" StyleParam.ArrowSide.convert
-            ArrowSize |> DynObj.setValueOpt ann "arrowsize"
-            AX |> DynObj.setValueOpt ann "ax"
-            AXRef |> DynObj.setValueOpt ann "axref"
-            AY |> DynObj.setValueOpt ann "ay"
-            AYRef |> DynObj.setValueOpt ann "ayref"
-            BGColor |> DynObj.setValueOpt ann "bgcolor"
-            BorderColor |> DynObj.setValueOpt ann "bordercolor"
-            BorderPad |> DynObj.setValueOpt ann "borderpad"
-            BorderWidth |> DynObj.setValueOpt ann "borderwidth"
-            CaptureEvents |> DynObj.setValueOpt ann "captureevents"
-            ClickToShow |> DynObj.setValueOptBy ann "clicktoshow" StyleParam.ClickToShow.convert
-            Font |> DynObj.setValueOpt ann "font"
-            Height |> DynObj.setValueOpt ann "height"
-            HoverLabel |> DynObj.setValueOpt ann "hoverlabel"
-            HoverText |> DynObj.setValueOpt ann "hovertext"
-            Name |> DynObj.setValueOpt ann "name"
-            Opacity |> DynObj.setValueOpt ann "opacity"
-            ShowArrow |> DynObj.setValueOpt ann "showarrow"
-            StandOff |> DynObj.setValueOpt ann "standoff"
-            StartArrowHead |> DynObj.setValueOpt ann "startarrowhead"
-            StartArrowSize |> DynObj.setValueOpt ann "startarrowsize"
-            StartStandOff |> DynObj.setValueOpt ann "startstandoff"
-            TemplateItemName |> DynObj.setValueOpt ann "templateitemname"
-            Text |> DynObj.setValueOpt ann "text"
-            TextAngle |> DynObj.setValueOpt ann "textangle"
-            VAlign |> DynObj.setValueOptBy ann "valign" StyleParam.VerticalAlign.convert
-            Visible |> DynObj.setValueOpt ann "visible"
-            Width |> DynObj.setValueOpt ann "width"
-            XAnchor |> DynObj.setValueOptBy ann "xanchor" StyleParam.XAnchorPosition.convert
-            XClick |> DynObj.setValueOpt ann "xclick"
-            XRef |> DynObj.setValueOpt ann "xref"
-            XShift |> DynObj.setValueOpt ann "xshift"
-            YAnchor |> DynObj.setValueOptBy ann "yanchor" StyleParam.YAnchorPosition.convert
-            YClick |> DynObj.setValueOpt ann "yclick"
-            YRef |> DynObj.setValueOpt ann "yref"
-            YShift |> DynObj.setValueOpt ann "yshift"
-
-            ann)
+            ann
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalPropertyBy "align" Align StyleParam.AnnotationAlignment.convert
+            |> DynObj.withOptionalProperty "arrowcolor" ArrowColor
+            |> DynObj.withOptionalPropertyBy "arrowhead" ArrowHead StyleParam.ArrowHead.convert
+            |> DynObj.withOptionalPropertyBy "arrowside" ArrowSide StyleParam.ArrowSide.convert
+            |> DynObj.withOptionalProperty "arrowsize" ArrowSize
+            |> DynObj.withOptionalProperty "ax" AX
+            |> DynObj.withOptionalProperty "axref" AXRef
+            |> DynObj.withOptionalProperty "ay" AY
+            |> DynObj.withOptionalProperty "ayref" AYRef
+            |> DynObj.withOptionalProperty "bgcolor" BGColor
+            |> DynObj.withOptionalProperty "bordercolor" BorderColor
+            |> DynObj.withOptionalProperty "borderpad" BorderPad
+            |> DynObj.withOptionalProperty "borderwidth" BorderWidth
+            |> DynObj.withOptionalProperty "captureevents" CaptureEvents
+            |> DynObj.withOptionalPropertyBy "clicktoshow" ClickToShow StyleParam.ClickToShow.convert
+            |> DynObj.withOptionalProperty "font" Font
+            |> DynObj.withOptionalProperty "height" Height
+            |> DynObj.withOptionalProperty "hoverlabel" HoverLabel
+            |> DynObj.withOptionalProperty "hovertext" HoverText
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "opacity" Opacity
+            |> DynObj.withOptionalProperty "showarrow" ShowArrow
+            |> DynObj.withOptionalProperty "standoff" StandOff
+            |> DynObj.withOptionalProperty "startarrowhead" StartArrowHead
+            |> DynObj.withOptionalProperty "startarrowsize" StartArrowSize
+            |> DynObj.withOptionalProperty "startstandoff" StartStandOff
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalProperty "text" Text
+            |> DynObj.withOptionalProperty "textangle" TextAngle
+            |> DynObj.withOptionalPropertyBy "valign" VAlign StyleParam.VerticalAlign.convert
+            |> DynObj.withOptionalProperty "visible" Visible
+            |> DynObj.withOptionalProperty "width" Width
+            |> DynObj.withOptionalPropertyBy "xanchor" XAnchor StyleParam.XAnchorPosition.convert
+            |> DynObj.withOptionalProperty "xclick" XClick
+            |> DynObj.withOptionalProperty "xref" XRef
+            |> DynObj.withOptionalProperty "xshift" XShift
+            |> DynObj.withOptionalPropertyBy "yanchor" YAnchor StyleParam.YAnchorPosition.convert
+            |> DynObj.withOptionalProperty "yclick" YClick
+            |> DynObj.withOptionalProperty "yref" YRef
+            |> DynObj.withOptionalProperty "yshift" YShift
+        )

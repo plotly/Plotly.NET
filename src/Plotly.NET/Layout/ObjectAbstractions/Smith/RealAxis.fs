@@ -158,31 +158,30 @@ type RealAxis() =
         ) =
         fun (realAxis: RealAxis) ->
 
-            Color |> DynObj.setValueOpt realAxis "color"
-            GridColor |> DynObj.setValueOpt realAxis "gridcolor"
-            GridDash |> DynObj.setValueOptBy realAxis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setValueOpt realAxis "gridwidth"
-            HoverFormat |> DynObj.setValueOpt realAxis "hoverformat"
-            LabelAlias |> DynObj.setValueOpt realAxis "labelalias"
-            Layer |> DynObj.setValueOptBy realAxis "layer" StyleParam.Layer.convert
-            LineColor |> DynObj.setValueOpt realAxis "linecolor"
-            LineWidth |> DynObj.setValueOpt realAxis "linewidth"
-            ShowGrid |> DynObj.setValueOpt realAxis "showgrid"
-            ShowLine |> DynObj.setValueOpt realAxis "showline"
-            ShowTickLabels |> DynObj.setValueOpt realAxis "showticklabels"
-            ShowTickSuffix |> DynObj.setValueOptBy realAxis "showticksuffix" StyleParam.ShowTickOption.convert
-            ShowTickPrefix |> DynObj.setValueOptBy realAxis "showtickprefix" StyleParam.ShowTickOption.convert
-            Side |> DynObj.setValueOptBy realAxis "side" StyleParam.Side.convert
-            TickAngle |> DynObj.setValueOpt realAxis "tickangle"
-            TickColor |> DynObj.setValueOpt realAxis "tickcolor"
-            TickFont |> DynObj.setValueOpt realAxis "tickfont"
-            TickFormat |> DynObj.setValueOpt realAxis "tickformat"
-            TickLen |> DynObj.setValueOpt realAxis "ticklen"
-            TickPrefix |> DynObj.setValueOpt realAxis "tickprefix"
-            Ticks |> DynObj.setValueOptBy realAxis "ticks" StyleParam.TickLabelPosition.convert
-            TickSuffix |> DynObj.setValueOpt realAxis "ticksuffix"
-            TickVals |> DynObj.setValueOpt realAxis "tickvals"
-            TickWidth |> DynObj.setValueOpt realAxis "tickwidth"
-            Visible |> DynObj.setValueOpt realAxis "visible"
-
             realAxis
+            |> DynObj.withOptionalProperty   "color"            Color           
+            |> DynObj.withOptionalProperty   "gridcolor"        GridColor       
+            |> DynObj.withOptionalPropertyBy "griddash"         GridDash        StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty   "gridwidth"        GridWidth       
+            |> DynObj.withOptionalProperty   "hoverformat"      HoverFormat     
+            |> DynObj.withOptionalProperty   "labelalias"       LabelAlias      
+            |> DynObj.withOptionalPropertyBy "layer"            Layer           StyleParam.Layer.convert
+            |> DynObj.withOptionalProperty   "linecolor"        LineColor       
+            |> DynObj.withOptionalProperty   "linewidth"        LineWidth       
+            |> DynObj.withOptionalProperty   "showgrid"         ShowGrid        
+            |> DynObj.withOptionalProperty   "showline"         ShowLine        
+            |> DynObj.withOptionalProperty   "showticklabels"   ShowTickLabels  
+            |> DynObj.withOptionalPropertyBy "showticksuffix"   ShowTickSuffix  StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalPropertyBy "showtickprefix"   ShowTickPrefix  StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalPropertyBy "side"             Side            StyleParam.Side.convert
+            |> DynObj.withOptionalProperty   "tickangle"        TickAngle       
+            |> DynObj.withOptionalProperty   "tickcolor"        TickColor       
+            |> DynObj.withOptionalProperty   "tickfont"         TickFont        
+            |> DynObj.withOptionalProperty   "tickformat"       TickFormat      
+            |> DynObj.withOptionalProperty   "ticklen"          TickLen         
+            |> DynObj.withOptionalProperty   "tickprefix"       TickPrefix      
+            |> DynObj.withOptionalPropertyBy "ticks"            Ticks           StyleParam.TickLabelPosition.convert
+            |> DynObj.withOptionalProperty   "ticksuffix"       TickSuffix      
+            |> DynObj.withOptionalProperty   "tickvals"         TickVals        
+            |> DynObj.withOptionalProperty   "tickwidth"        TickWidth       
+            |> DynObj.withOptionalProperty   "visible"          Visible         

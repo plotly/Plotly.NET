@@ -80,12 +80,13 @@ type SliderStep() =
             let argsAsDictionaries =
                 Args |> Option.map (fun args -> args |> Seq.map (fun arg -> [ arg ] |> dict))
 
-            argsAsDictionaries |> DynObj.setValueOpt step "args"
-            Execute |> DynObj.setValueOpt step "execute"
-            Label |> DynObj.setValueOpt step "label"
-            Method |> DynObj.setValueOptBy step "method" StyleParam.Method.convert
-            Name |> DynObj.setValueOpt step "name"
-            TemplateItemName |> DynObj.setValueOpt step "templateitemname"
-            Value |> DynObj.setValueOpt step "value"
-            Visible |> DynObj.setValueOpt step "visible"
-            step)
+            step
+            |> DynObj.withOptionalProperty "args" argsAsDictionaries
+            |> DynObj.withOptionalProperty "execute" Execute
+            |> DynObj.withOptionalProperty "label" Label
+            |> DynObj.withOptionalPropertyBy "method" Method StyleParam.Method.convert
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
+            |> DynObj.withOptionalProperty "value" Value
+            |> DynObj.withOptionalProperty "visible" Visible
+        )

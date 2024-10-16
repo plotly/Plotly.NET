@@ -14,8 +14,8 @@ namespace Plotly.NET.Tests.CSharp
             var actual = LinearAxis.init<IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible, IConvertible>(Color: Color.fromString("red"), AxisType: StyleParam.AxisType.Linear);
 
             var expected = new LinearAxis();
-            expected.SetValue("color", Color.fromString("red"));
-            expected.SetValue("type", StyleParam.AxisType.Linear.Convert());
+            expected.SetProperty("color", Color.fromString("red"));
+            expected.SetProperty("type", StyleParam.AxisType.Linear.Convert());
 
             Assert.Equal(expected.GetProperties(true), actual.GetProperties(true));
         }

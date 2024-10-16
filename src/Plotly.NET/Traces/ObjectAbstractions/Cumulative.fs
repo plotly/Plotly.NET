@@ -38,9 +38,9 @@ type Cumulative() =
             [<Optional; DefaultParameterValue(null)>] ?Currentbin: StyleParam.Currentbin
         ) =
 
-        (fun (cumulative: Cumulative) ->
-            Enabled |> DynObj.setValueOpt cumulative "enabled"
-            Direction |> DynObj.setValueOptBy cumulative "direction" StyleParam.CumulativeDirection.convert
-            Currentbin |> DynObj.setValueOptBy cumulative "currentbin" StyleParam.Currentbin.convert
+        fun (cumulative: Cumulative) ->
 
-            cumulative)
+            cumulative
+            |> DynObj.withOptionalProperty "enabled" Enabled
+            |> DynObj.withOptionalPropertyBy "direction" Direction StyleParam.CumulativeDirection.convert
+            |> DynObj.withOptionalPropertyBy "currentbin" Currentbin StyleParam.Currentbin.convert

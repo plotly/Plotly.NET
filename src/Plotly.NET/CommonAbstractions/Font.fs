@@ -26,9 +26,8 @@ type Font() =
             [<Optional; DefaultParameterValue(null)>] ?Color: Color
         ) =
         (fun (font: Font) ->
-
-            Family |> DynObj.setValueOptBy font "family" StyleParam.FontFamily.toString
-            Size |> DynObj.setValueOpt font "size"
-            Color |> DynObj.setValueOpt font "color"
-
-            font)
+            font
+            |> DynObj.withOptionalPropertyBy "family" Family StyleParam.FontFamily.toString
+            |> DynObj.withOptionalProperty "size" Size
+            |> DynObj.withOptionalProperty "color" Color
+        )

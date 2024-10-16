@@ -397,83 +397,82 @@ type Layout() =
             [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
         ) =
         (fun (layout: Layout) ->
-
-            Title |> DynObj.setValueOpt layout "title"
-            ShowLegend |> DynObj.setValueOpt layout "showlegend"
-            Margin |> DynObj.setValueOpt layout "margin"
-            AutoSize |> DynObj.setValueOpt layout "autosize"
-            Width |> DynObj.setValueOpt layout "width"
-            Height |> DynObj.setValueOpt layout "height"
-            Font |> DynObj.setValueOpt layout "font"
-            UniformText |> DynObj.setValueOpt layout "uniformtext"
-            Separators |> DynObj.setValueOpt layout "separators"
-            PaperBGColor |> DynObj.setValueOpt layout "paper_bgcolor"
-            PlotBGColor |> DynObj.setValueOpt layout "plot_bgcolor"
-            AutoTypeNumbers |> DynObj.setValueOptBy layout "autotypenumbers" StyleParam.AutoTypeNumbers.convert
-            Colorscale |> DynObj.setValueOpt layout "colorscale"
-            Colorway |> DynObj.setValueOpt layout "colorway"
-            ModeBar |> DynObj.setValueOpt layout "modebar"
-            HoverMode |> DynObj.setValueOptBy layout "hovermode" StyleParam.HoverMode.convert
-            ClickMode |> DynObj.setValueOptBy layout "clickmode" StyleParam.ClickMode.convert
-            DragMode |> DynObj.setValueOptBy layout "dragmode" StyleParam.DragMode.convert
-            SelectDirection |> DynObj.setValueOptBy layout "selectdirection" StyleParam.SelectDirection.convert
-            ActiveSelection |> DynObj.setValueOpt layout "activeselection"
-            NewSelection |> DynObj.setValueOpt layout "newselection"
-            HoverDistance |> DynObj.setValueOpt layout "hoverdistance"
-            SpikeDistance |> DynObj.setValueOpt layout "spikedistance"
-            Hoverlabel |> DynObj.setValueOpt layout "hoverlabel"
-            Transition |> DynObj.setValueOpt layout "transition"
-            DataRevision |> DynObj.setValueOpt layout "datarevision"
-            UIRevision |> DynObj.setValueOpt layout "uirevision"
-            EditRevision |> DynObj.setValueOpt layout "editrevision"
-            SelectRevision |> DynObj.setValueOpt layout "selectrevision"
-            Template |> DynObj.setValueOpt layout "template"
-            Meta |> DynObj.setValueOpt layout "meta"
-            Computed |> DynObj.setValueOpt layout "computed"
-            Grid |> DynObj.setValueOpt layout "grid"
-            Calendar |> DynObj.setValueOptBy layout "calendar" StyleParam.Calendar.convert
-            MinReducedHeight |> DynObj.setValueOpt layout "minreducedheight"
-            MinReducedWidth |> DynObj.setValueOpt layout "minreducedwidth"
-            NewShape |> DynObj.setValueOpt layout "newshape"
-            ActiveShape |> DynObj.setValueOpt layout "activeshape"
-            HideSources |> DynObj.setValueOpt layout "hidesources"
-            ScatterGap |> DynObj.setValueOpt layout "scattergap"
-            ScatterMode |> DynObj.setValueOptBy layout "scattermode" StyleParam.ScatterMode.convert
-            BarGap |> DynObj.setValueOpt layout "bargap"
-            BarGroupGap |> DynObj.setValueOpt layout "bargroupgap"
-            BarMode |> DynObj.setValueOptBy layout "barmode" StyleParam.BarMode.convert
-            BarNorm |> DynObj.setValueOptBy layout "barnorm" StyleParam.BarNorm.convert
-            ExtendPieColors |> DynObj.setValueOpt layout "extendpiecolors"
-            HiddenLabels |> DynObj.setValueOpt layout "hiddenlabels"
-            PieColorWay |> DynObj.setValueOpt layout "piecolorway"
-            BoxGap |> DynObj.setValueOpt layout "boxgap"
-            BoxGroupGap |> DynObj.setValueOpt layout "boxgroupgap"
-            BoxMode |> DynObj.setValueOptBy layout "boxmode" StyleParam.BoxMode.convert
-            ViolinGap |> DynObj.setValueOpt layout "violingap"
-            ViolinGroupGap |> DynObj.setValueOpt layout "violingroupgap"
-            ViolinMode |> DynObj.setValueOptBy layout "violinmode" StyleParam.ViolinMode.convert
-            WaterfallGap |> DynObj.setValueOpt layout "waterfallgap"
-            WaterfallGroupGap |> DynObj.setValueOpt layout "waterfallgroupgap"
-            WaterfallMode |> DynObj.setValueOptBy layout "waterfallmode" StyleParam.WaterfallMode.convert
-            FunnelGap |> DynObj.setValueOpt layout "funnelgap"
-            FunnelGroupGap |> DynObj.setValueOpt layout "funnelgroupgap"
-            FunnelMode |> DynObj.setValueOptBy layout "funnelmode" StyleParam.FunnelMode.convert
-            ExtendFunnelAreaColors |> DynObj.setValueOpt layout "extendfunnelareacolors"
-            FunnelAreaColorWay |> DynObj.setValueOpt layout "funnelareacolorway"
-            ExtendSunBurstColors |> DynObj.setValueOpt layout "extendsunburstcolors"
-            SunBurstColorWay |> DynObj.setValueOpt layout "sunburstcolorway"
-            ExtendTreeMapColors |> DynObj.setValueOpt layout "extendtreemapcolors"
-            TreeMapColorWay |> DynObj.setValueOpt layout "treemapcolorway"
-            ExtendIcicleColors |> DynObj.setValueOpt layout "extendiciclecolors"
-            IcicleColorWay |> DynObj.setValueOpt layout "iciclecolorway"
-            Annotations |> DynObj.setValueOpt layout "annotations"
-            Shapes |> DynObj.setValueOpt layout "shapes"
-            Selections |> DynObj.setValueOpt layout "selections"
-            Images |> DynObj.setValueOpt layout "images"
-            Sliders |> DynObj.setValueOpt layout "sliders"
-            UpdateMenus |> DynObj.setValueOpt layout "updatemenus"
-
-            layout)
+            layout
+            |> DynObj.withOptionalProperty   "title"                  Title                  
+            |> DynObj.withOptionalProperty   "showlegend"             ShowLegend             
+            |> DynObj.withOptionalProperty   "margin"                 Margin                 
+            |> DynObj.withOptionalProperty   "autosize"               AutoSize               
+            |> DynObj.withOptionalProperty   "width"                  Width                  
+            |> DynObj.withOptionalProperty   "height"                 Height                 
+            |> DynObj.withOptionalProperty   "font"                   Font                   
+            |> DynObj.withOptionalProperty   "uniformtext"            UniformText            
+            |> DynObj.withOptionalProperty   "separators"             Separators             
+            |> DynObj.withOptionalProperty   "paper_bgcolor"          PaperBGColor           
+            |> DynObj.withOptionalProperty   "plot_bgcolor"           PlotBGColor            
+            |> DynObj.withOptionalPropertyBy "autotypenumbers"        AutoTypeNumbers        StyleParam.AutoTypeNumbers.convert
+            |> DynObj.withOptionalProperty   "colorscale"             Colorscale             
+            |> DynObj.withOptionalProperty   "colorway"               Colorway               
+            |> DynObj.withOptionalProperty   "modebar"                ModeBar                
+            |> DynObj.withOptionalPropertyBy "hovermode"              HoverMode              StyleParam.HoverMode.convert
+            |> DynObj.withOptionalPropertyBy "clickmode"              ClickMode              StyleParam.ClickMode.convert
+            |> DynObj.withOptionalPropertyBy "dragmode"               DragMode               StyleParam.DragMode.convert
+            |> DynObj.withOptionalPropertyBy "selectdirection"        SelectDirection        StyleParam.SelectDirection.convert
+            |> DynObj.withOptionalProperty   "activeselection"        ActiveSelection        
+            |> DynObj.withOptionalProperty   "newselection"           NewSelection           
+            |> DynObj.withOptionalProperty   "hoverdistance"          HoverDistance          
+            |> DynObj.withOptionalProperty   "spikedistance"          SpikeDistance          
+            |> DynObj.withOptionalProperty   "hoverlabel"             Hoverlabel             
+            |> DynObj.withOptionalProperty   "transition"             Transition             
+            |> DynObj.withOptionalProperty   "datarevision"           DataRevision           
+            |> DynObj.withOptionalProperty   "uirevision"             UIRevision             
+            |> DynObj.withOptionalProperty   "editrevision"           EditRevision           
+            |> DynObj.withOptionalProperty   "selectrevision"         SelectRevision         
+            |> DynObj.withOptionalProperty   "template"               Template               
+            |> DynObj.withOptionalProperty   "meta"                   Meta                   
+            |> DynObj.withOptionalProperty   "computed"               Computed               
+            |> DynObj.withOptionalProperty   "grid"                   Grid                   
+            |> DynObj.withOptionalPropertyBy "calendar"               Calendar               StyleParam.Calendar.convert
+            |> DynObj.withOptionalProperty   "minreducedheight"       MinReducedHeight       
+            |> DynObj.withOptionalProperty   "minreducedwidth"        MinReducedWidth        
+            |> DynObj.withOptionalProperty   "newshape"               NewShape               
+            |> DynObj.withOptionalProperty   "activeshape"            ActiveShape            
+            |> DynObj.withOptionalProperty   "hidesources"            HideSources            
+            |> DynObj.withOptionalProperty   "scattergap"             ScatterGap             
+            |> DynObj.withOptionalPropertyBy "scattermode"            ScatterMode            StyleParam.ScatterMode.convert
+            |> DynObj.withOptionalProperty   "bargap"                 BarGap                 
+            |> DynObj.withOptionalProperty   "bargroupgap"            BarGroupGap            
+            |> DynObj.withOptionalPropertyBy "barmode"                BarMode                StyleParam.BarMode.convert
+            |> DynObj.withOptionalPropertyBy "barnorm"                BarNorm                StyleParam.BarNorm.convert
+            |> DynObj.withOptionalProperty   "extendpiecolors"        ExtendPieColors        
+            |> DynObj.withOptionalProperty   "hiddenlabels"           HiddenLabels           
+            |> DynObj.withOptionalProperty   "piecolorway"            PieColorWay            
+            |> DynObj.withOptionalProperty   "boxgap"                 BoxGap                 
+            |> DynObj.withOptionalProperty   "boxgroupgap"            BoxGroupGap            
+            |> DynObj.withOptionalPropertyBy "boxmode"                BoxMode                StyleParam.BoxMode.convert
+            |> DynObj.withOptionalProperty   "violingap"              ViolinGap              
+            |> DynObj.withOptionalProperty   "violingroupgap"         ViolinGroupGap         
+            |> DynObj.withOptionalPropertyBy "violinmode"             ViolinMode             StyleParam.ViolinMode.convert
+            |> DynObj.withOptionalProperty   "waterfallgap"           WaterfallGap           
+            |> DynObj.withOptionalProperty   "waterfallgroupgap"      WaterfallGroupGap      
+            |> DynObj.withOptionalPropertyBy "waterfallmode"          WaterfallMode          StyleParam.WaterfallMode.convert
+            |> DynObj.withOptionalProperty   "funnelgap"              FunnelGap              
+            |> DynObj.withOptionalProperty   "funnelgroupgap"         FunnelGroupGap         
+            |> DynObj.withOptionalPropertyBy "funnelmode"             FunnelMode             StyleParam.FunnelMode.convert
+            |> DynObj.withOptionalProperty   "extendfunnelareacolors" ExtendFunnelAreaColors 
+            |> DynObj.withOptionalProperty   "funnelareacolorway"     FunnelAreaColorWay     
+            |> DynObj.withOptionalProperty   "extendsunburstcolors"   ExtendSunBurstColors   
+            |> DynObj.withOptionalProperty   "sunburstcolorway"       SunBurstColorWay       
+            |> DynObj.withOptionalProperty   "extendtreemapcolors"    ExtendTreeMapColors    
+            |> DynObj.withOptionalProperty   "treemapcolorway"        TreeMapColorWay        
+            |> DynObj.withOptionalProperty   "extendiciclecolors"     ExtendIcicleColors     
+            |> DynObj.withOptionalProperty   "iciclecolorway"         IcicleColorWay         
+            |> DynObj.withOptionalProperty   "annotations"            Annotations            
+            |> DynObj.withOptionalProperty   "shapes"                 Shapes                 
+            |> DynObj.withOptionalProperty   "selections"             Selections             
+            |> DynObj.withOptionalProperty   "images"                 Images                 
+            |> DynObj.withOptionalProperty   "sliders"                Sliders                
+            |> DynObj.withOptionalProperty   "updatemenus"            UpdateMenus            
+        )
 
     /// <summary>
     /// Combines two Layout objects.
@@ -492,41 +491,41 @@ type Layout() =
 
         let annotations =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<Annotation>>("annotations"))
-                (second.TryGetTypedValue<seq<Annotation>>("annotations"))
+                (first.TryGetTypedPropertyValue<seq<Annotation>>("annotations"))
+                (second.TryGetTypedPropertyValue<seq<Annotation>>("annotations"))
 
         let shapes =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<Shape>>("shapes"))
-                (second.TryGetTypedValue<seq<Shape>>("shapes"))
+                (first.TryGetTypedPropertyValue<seq<Shape>>("shapes"))
+                (second.TryGetTypedPropertyValue<seq<Shape>>("shapes"))
 
         let selections =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<Selection>>("selections"))
-                (second.TryGetTypedValue<seq<Selection>>("selections"))
+                (first.TryGetTypedPropertyValue<seq<Selection>>("selections"))
+                (second.TryGetTypedPropertyValue<seq<Selection>>("selections"))
 
         let images =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<LayoutImage>>("images"))
-                (second.TryGetTypedValue<seq<LayoutImage>>("images"))
+                (first.TryGetTypedPropertyValue<seq<LayoutImage>>("images"))
+                (second.TryGetTypedPropertyValue<seq<LayoutImage>>("images"))
 
         let sliders =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<Slider>>("sliders"))
-                (second.TryGetTypedValue<seq<Slider>>("sliders"))
+                (first.TryGetTypedPropertyValue<seq<Slider>>("sliders"))
+                (second.TryGetTypedPropertyValue<seq<Slider>>("sliders"))
 
         let hiddenLabels =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<string>>("hiddenlabels"))
-                (second.TryGetTypedValue<seq<string>>("hiddenlabels"))
+                (first.TryGetTypedPropertyValue<seq<string>>("hiddenlabels"))
+                (second.TryGetTypedPropertyValue<seq<string>>("hiddenlabels"))
 
         let updateMenus =
             InternalUtils.combineOptSeqs
-                (first.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
-                (second.TryGetTypedValue<seq<UpdateMenu>>("updatemenus"))
+                (first.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus"))
+                (second.TryGetTypedPropertyValue<seq<UpdateMenu>>("updatemenus"))
 
         DynObj.combine first second
-        |> unbox
+        |> unbox<Layout>
         |> Layout.style (
             ?Annotations = annotations,
             ?Shapes = shapes,
@@ -542,14 +541,14 @@ type Layout() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="layout">The layout to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (layout: Layout) = layout.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (layout: Layout) = layout.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns Some(LinearAxis) if there is an axis object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">The target axis id</param>
     static member tryGetLinearAxisById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<LinearAxis>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<LinearAxis>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given axis object with the one already present on the layout.
@@ -558,19 +557,15 @@ type Layout() =
     /// <param name="axis">The updated axis object.</param>
     static member updateLinearAxisById(id: StyleParam.SubPlotId, axis: LinearAxis) =
         (fun (layout: Layout) ->
-
             match id with
             | StyleParam.SubPlotId.XAxis _
             | StyleParam.SubPlotId.YAxis _ ->
-
                 let axis' =
                     match Layout.tryGetLinearAxisById id layout with
-                    | Some a -> (DynObj.combine a axis) :?> LinearAxis
+                    | Some a -> DynObj.combine a axis |> unbox<LinearAxis>
                     | None -> axis
-
-                axis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
                 layout
+                |> DynObj.withProperty (StyleParam.SubPlotId.toString id) axis'
             | _ ->
                 failwith
                     $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout")
@@ -590,9 +585,10 @@ type Layout() =
     /// <param name="layout">The layout to get the x axes from</param>
     static member getXAxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidXAxisId kv.Key then
-                match layout.TryGetTypedValue<LinearAxis>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<LinearAxis>(kv.Key) with
                 | Some axis -> Some (kv.Key, axis)
                 | None -> None
             else None
@@ -604,9 +600,10 @@ type Layout() =
     /// <param name="layout">The layout to get the y axes from</param>
     static member getYAxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidYAxisId kv.Key then
-                match layout.TryGetTypedValue<LinearAxis>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<LinearAxis>(kv.Key) with
                 | Some axis -> Some (kv.Key, axis)
                 | None -> None
             else None
@@ -623,9 +620,7 @@ type Layout() =
             match id with
             | StyleParam.SubPlotId.XAxis _
             | StyleParam.SubPlotId.YAxis _ ->
-                axis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-                layout
-
+                layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) axis
             | _ ->
                 failwith
                     $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a linear axis on layout")
@@ -635,7 +630,7 @@ type Layout() =
     /// </summary>
     /// <param name="id">The target scene id</param>
     static member tryGetSceneById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Scene>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Scene>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given scene object with the one already present on the layout.
@@ -646,11 +641,11 @@ type Layout() =
         (fun (layout: Layout) ->
             let scene' =
                 match Layout.tryGetSceneById id layout with
-                | Some a -> (DynObj.combine a scene) :?> Scene
+                | Some a -> DynObj.combine a scene
                 | None -> scene
-
-            scene' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-            layout)
+            layout
+            |> DynObj.withProperty (StyleParam.SubPlotId.toString id) scene'
+        )
 
     /// <summary>
     /// Returns the Scene object of the layout with the given id.
@@ -668,9 +663,10 @@ type Layout() =
     /// <param name="layout">The layout to get the scenes from</param>
     static member getScenes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidSceneId kv.Key then
-                match layout.TryGetTypedValue<Scene>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Scene>(kv.Key) with
                 | Some scene -> Some (kv.Key, scene)
                 | None -> None
             else None
@@ -683,15 +679,15 @@ type Layout() =
     /// <param name="scene">The scene to add to the layout.</param>
     static member setScene(id: StyleParam.SubPlotId, scene: Scene) =
         (fun (layout: Layout) ->
-            scene |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) scene
+        )
 
     /// <summary>
     /// Returns Some(Geo) if there is a geo object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">The target geo id</param>
     static member tryGetGeoById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Geo>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Geo>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given geo object with the one already present on the layout.
@@ -702,11 +698,11 @@ type Layout() =
         (fun (layout: Layout) ->
             let geo' =
                 match Layout.tryGetGeoById id layout with
-                | Some a -> (DynObj.combine a geo) :?> Geo
+                | Some a -> DynObj.combine a geo
                 | None -> geo
 
-            geo' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-            layout)
+            layout|> DynObj.withProperty (StyleParam.SubPlotId.toString id) geo'
+        )
 
     /// <summary>
     /// Returns the Geo object of the layout with the given id.
@@ -723,9 +719,10 @@ type Layout() =
     /// <param name="layout">The layout to get the geos from</param>
     static member getGeos (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidGeoId kv.Key then
-                match layout.TryGetTypedValue<Geo>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Geo>(kv.Key) with
                 | Some geo -> Some (kv.Key, geo)
                 | None -> None
             else None
@@ -738,17 +735,15 @@ type Layout() =
     /// <param name="geo">The geo to add to the layout.</param>
     static member setGeo(id: StyleParam.SubPlotId, geo: Geo) =
         (fun (layout: Layout) ->
-
-            geo |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) geo
+        )
 
     /// <summary>
     /// Returns Some(Mapbox) if there is amapbox object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">The target mapbox id</param>
     static member tryGetMapboxById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Mapbox>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Mapbox>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given mapbox object with the one already present on the layout.
@@ -759,11 +754,11 @@ type Layout() =
         (fun (layout: Layout) ->
             let mapbox' =
                 match Layout.tryGetMapboxById id layout with
-                | Some a -> (DynObj.combine a mapbox) :?> Mapbox
+                | Some a -> DynObj.combine a mapbox
                 | None -> mapbox
 
-            mapbox' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-            layout)
+            layout |> DynObj.withProperty  (StyleParam.SubPlotId.toString id) mapbox' 
+        )
 
     /// <summary>
     /// Returns the Mapbox object of the layout with the given id.
@@ -780,9 +775,10 @@ type Layout() =
     /// <param name="layout">The layout to get the mapboxes from</param>
     static member getMapboxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidMapboxId kv.Key then
-                match layout.TryGetTypedValue<Mapbox>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Mapbox>(kv.Key) with
                 | Some mapbox -> Some (kv.Key, mapbox)
                 | None -> None
             else None
@@ -795,17 +791,15 @@ type Layout() =
     /// <param name="mapbox">The mapbox to add to the layout.</param>
     static member setMapbox(id: StyleParam.SubPlotId, mapbox: Mapbox) =
         (fun (layout: Layout) ->
-
-            mapbox |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+             layout |> DynObj.withProperty  (StyleParam.SubPlotId.toString id) mapbox
+        )
 
     /// <summary>
     /// Returns Some(Polar) if there is a polar object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">he target polar id</param>
     static member tryGetPolarById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Polar>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Polar>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given polar object with the one already present on the layout.
@@ -817,12 +811,11 @@ type Layout() =
 
             let polar' =
                 match layout |> Layout.tryGetPolarById (id) with
-                | Some a -> (DynObj.combine a polar) :?> Polar
+                | Some a -> DynObj.combine a polar
                 | None -> polar
 
-            polar' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) polar'
+        )
 
     /// <summary>
     /// Returns the Polar object of the layout with the given id.
@@ -839,9 +832,10 @@ type Layout() =
     /// <param name="layout">The layout to get the polars from</param>
     static member getPolars (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidPolarId kv.Key then
-                match layout.TryGetTypedValue<Polar>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Polar>(kv.Key) with
                 | Some polar -> Some (kv.Key, polar)
                 | None -> None
             else None
@@ -854,17 +848,15 @@ type Layout() =
     /// <param name="polar">The polar to add to the layout.</param>
     static member setPolar(id: StyleParam.SubPlotId, polar: Polar) =
         (fun (layout: Layout) ->
-
-            polar |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty  (StyleParam.SubPlotId.toString id) polar 
+        )
 
     /// <summary>
     /// Returns Some(smith) if there is a smith object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">the target Smith id</param>
     static member tryGetSmithById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Smith>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Smith>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given Smith object with the one already present on the layout.
@@ -875,13 +867,12 @@ type Layout() =
         (fun (layout: Layout) ->
 
             let smith' =
-                match layout |> Layout.tryGetPolarById (id) with
-                | Some a -> (DynObj.combine a smith) :?> Smith
+                match layout |> Layout.tryGetSmithById (id) with
+                | Some a -> DynObj.combine a smith
                 | None -> smith
 
-            smith' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout  |> DynObj.withProperty (StyleParam.SubPlotId.toString id) smith'
+        )
 
     /// <summary>
     /// Returns the Smith object of the layout with the given id.
@@ -898,9 +889,10 @@ type Layout() =
     /// <param name="layout">The layout to get the smiths from</param>
     static member getSmiths (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidSmithId kv.Key then
-                match layout.TryGetTypedValue<Smith>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Smith>(kv.Key) with
                 | Some smith -> Some (kv.Key, smith)
                 | None -> None
             else None
@@ -913,17 +905,15 @@ type Layout() =
     /// <param name="smith">The smith to add to the layout.</param>
     static member setSmith(id: StyleParam.SubPlotId, smith: Smith) =
         (fun (layout: Layout) ->
-
-            smith |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) smith
+        )
 
     /// <summary>
     /// Returns Some(ColorAxis) if there is a ColorAxis object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">The target ColorAxis id</param>
     static member tryGetColorAxisById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<ColorAxis>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<ColorAxis>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given colorAxis object with the one already present on the layout.
@@ -935,12 +925,11 @@ type Layout() =
 
             let colorAxis' =
                 match layout |> Layout.tryGetColorAxisById (id) with
-                | Some a -> (DynObj.combine a colorAxis) :?> ColorAxis
+                | Some a -> DynObj.combine a colorAxis
                 | None -> colorAxis
 
-            colorAxis' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) colorAxis'
+        )
 
     /// <summary>
     /// Returns the ColorAxis object of the layout with the given id.
@@ -957,9 +946,10 @@ type Layout() =
     /// <param name="layout">The layout to get the color axes from</param>
     static member getColorAxes (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidColorAxisId kv.Key then
-                match layout.TryGetTypedValue<ColorAxis>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<ColorAxis>(kv.Key) with
                 | Some colorAxis -> Some (kv.Key, colorAxis)
                 | None -> None
             else None
@@ -972,17 +962,15 @@ type Layout() =
     /// <param name="colorAxis">The ColorAxis to add to the layout.</param>
     static member setColorAxis(id: StyleParam.SubPlotId, colorAxis: ColorAxis) =
         (fun (layout: Layout) ->
-
-            colorAxis |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+             layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) colorAxis
+        )
 
     /// <summary>
     /// Returns Some(Ternary) if there is a ColorAxis object set on the layout with the given id, and None otherwise.
     /// </summary>
     /// <param name="id">The target Ternary id</param>
     static member tryGetTernaryById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Ternary>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Ternary>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Combines the given ternary object with the one already present on the layout.
@@ -994,12 +982,11 @@ type Layout() =
 
             let ternary' =
                 match layout |> Layout.tryGetTernaryById (id) with
-                | Some a -> (DynObj.combine a ternary) :?> Ternary
+                | Some a -> DynObj.combine a ternary
                 | None -> ternary
 
-            ternary' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) ternary'
+        )
 
     /// <summary>
     /// Returns the Ternary object of the layout with the given id.
@@ -1016,9 +1003,10 @@ type Layout() =
     /// <param name="layout">The layout to get the ternaries from</param>
     static member getTernaries (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidTernaryId kv.Key then
-                match layout.TryGetTypedValue<Ternary>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Ternary>(kv.Key) with
                 | Some ternary -> Some (kv.Key, ternary)
                 | None -> None
             else None
@@ -1031,10 +1019,8 @@ type Layout() =
     /// <param name="ternary">The Ternary to add to the layout.</param>
     static member setTernary(id: StyleParam.SubPlotId, ternary: Ternary) =
         (fun (layout: Layout) ->
-
-            ternary |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-            layout)
+            layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) ternary
+        )
 
     /// <summary>
     /// Returns the LayoutGrid object of the given layout.
@@ -1051,8 +1037,8 @@ type Layout() =
     /// <param name="layoutGrid">The new LayoutGrid object</param>
     static member setLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (layout: Layout) ->
-            layout.SetValue("grid", layoutGrid)
-            layout)
+            layout |> DynObj.withProperty "grid" layoutGrid
+        )
 
     /// <summary>
     /// Combines the given layoutGrid object with the one already present on the layout.
@@ -1061,7 +1047,7 @@ type Layout() =
     static member updateLayoutGrid(layoutGrid: LayoutGrid) =
         (fun (layout: Layout) ->
             let combined =
-                (DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid) :?> LayoutGrid
+                DynObj.combine (layout |> Layout.getLayoutGrid) layoutGrid |> unbox<LayoutGrid>
 
             layout |> Layout.setLayoutGrid combined)
 
@@ -1070,7 +1056,7 @@ type Layout() =
     /// </summary>
     /// <param name="id">The target Legend id</param>
     static member tryGetLegendById(id: StyleParam.SubPlotId) =
-        (fun (layout: Layout) -> layout.TryGetTypedValue<Legend>(StyleParam.SubPlotId.toString id))
+        (fun (layout: Layout) -> layout.TryGetTypedPropertyValue<Legend>(StyleParam.SubPlotId.toString id))
 
     /// <summary>
     /// Returns a sequence of key-value pairs of the layout's dynamic members that are valid legends (if the key matches and object can be cast to the correct type).
@@ -1078,9 +1064,10 @@ type Layout() =
     /// <param name="layout">The layout to get the color axes from</param>
     static member getLegends (layout: Layout) =
         layout.GetProperties(includeInstanceProperties = false)
-        |> Seq.choose (fun kv -> 
+        |> Array.ofSeq
+        |> Array.choose (fun kv -> 
             if StyleParam.SubPlotId.isValidLegendId kv.Key then
-                match layout.TryGetTypedValue<Legend>(kv.Key) with
+                match layout.TryGetTypedPropertyValue<Legend>(kv.Key) with
                 | Some legend -> Some (kv.Key, legend)
                 | None -> None
             else None
@@ -1099,12 +1086,11 @@ type Layout() =
 
                 let legend' =
                     match Layout.tryGetLegendById id layout with
-                    | Some l -> (DynObj.combine l legend) :?> Legend
+                    | Some l -> DynObj.combine l legend
                     | None -> legend
 
-                legend' |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-
-                layout
+                layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) legend'
+                
             | _ ->
                 failwith
                     $"{StyleParam.SubPlotId.toString id} is an invalid subplot id for setting a legend on layout")
@@ -1128,8 +1114,7 @@ type Layout() =
 
             match id with
             | StyleParam.SubPlotId.Legend _ ->
-                legend |> DynObj.setValue layout (StyleParam.SubPlotId.toString id)
-                layout
+                layout |> DynObj.withProperty (StyleParam.SubPlotId.toString id) legend
 
             | _ ->
                 failwith

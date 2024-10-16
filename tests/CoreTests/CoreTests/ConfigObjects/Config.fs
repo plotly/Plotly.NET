@@ -122,20 +122,20 @@ let ``Config API tests`` =
     testList "ConfigObjects.Config API" [
         testCase "combine ModeBarButtonsToRemove" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<string>>("modeBarButtonsToRemove")).Value
-                (expectedCombined.TryGetTypedValue<seq<string>>("modeBarButtonsToRemove")).Value
+                (combined.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToRemove")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToRemove")).Value
                 "Config.combine did not return the correct object"
         )         
         testCase "combine ModeBarButtonsToAdd" (fun _ -> 
             Expect.sequenceEqual 
-                (combined.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd")).Value
-                (expectedCombined.TryGetTypedValue<seq<string>>("modeBarButtonsToAdd")).Value
+                (combined.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToAdd")).Value
+                (expectedCombined.TryGetTypedPropertyValue<seq<string>>("modeBarButtonsToAdd")).Value
                 "Config.combine did not return the correct object"
         )         
         testCase "combine ModeBarButtons" (fun _ -> 
             Expect.sequenceEqual 
-                (Seq.concat (combined.TryGetTypedValue<seq<seq<string>>>("modeBarButtons")).Value)
-                (Seq.concat (expectedCombined.TryGetTypedValue<seq<seq<string>>>("modeBarButtons")).Value)
+                (Seq.concat (combined.TryGetTypedPropertyValue<seq<seq<string>>>("modeBarButtons")).Value)
+                (Seq.concat (expectedCombined.TryGetTypedPropertyValue<seq<seq<string>>>("modeBarButtons")).Value)
                 "Config.combine did not return the correct object"
         ) 
     ]

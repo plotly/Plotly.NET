@@ -32,12 +32,12 @@ type GeoProjectionRotation() =
             [<Optional; DefaultParameterValue(null)>] ?Latitude: float,
             [<Optional; DefaultParameterValue(null)>] ?Roll: int
         ) =
-        (fun (rotation: GeoProjectionRotation) ->
-            Longitude |> DynObj.setValueOpt rotation "lon"
-            Latitude |> DynObj.setValueOpt rotation "lat"
-            Roll |> DynObj.setValueOpt rotation "roll"
+        fun (rotation: GeoProjectionRotation) ->
 
-            rotation)
+            rotation
+            |> DynObj.withOptionalProperty "lon" Longitude
+            |> DynObj.withOptionalProperty "lat" Latitude
+            |> DynObj.withOptionalProperty "roll" Roll
 
 /// <summary>Determines the map projection in geo traces.</summary>
 type GeoProjection() =
@@ -75,13 +75,10 @@ type GeoProjection() =
             [<Optional; DefaultParameterValue(null)>] ?Parallels: (float * float),
             [<Optional; DefaultParameterValue(null)>] ?Scale: float
         ) =
-        (fun (projection: GeoProjection) ->
+        fun (projection: GeoProjection) ->
 
-            projectionType |> StyleParam.GeoProjectionType.convert |> DynObj.setValue projection "type"
-
-            Parallels |> Option.map (fun (a, b) -> sprintf "[%f,%f]" a b) |> DynObj.setValueOpt projection "parallels"
-
-            Rotation |> DynObj.setValueOpt projection "rotation"
-            Scale |> DynObj.setValueOpt projection "scale"
-
-            projection)
+            projection
+            |> DynObj.withProperty "type" (StyleParam.GeoProjectionType.convert projectionType)
+            |> DynObj.withOptionalProperty "rotation" Rotation
+            |> DynObj.withOptionalPropertyBy "parallels" Parallels (fun (a, b) -> sprintf "[%f,%f]" a b)
+            |> DynObj.withOptionalProperty "scale" Scale

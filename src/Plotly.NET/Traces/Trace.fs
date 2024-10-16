@@ -22,7 +22,7 @@ type Trace(traceTypeName: string) =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="trace">The trace to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (trace: Trace) = trace.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (trace: Trace) = trace.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the Marker object of the given trace.
@@ -39,7 +39,7 @@ type Trace(traceTypeName: string) =
     /// <param name="marker">The new marker object</param>
     static member setMarker(marker: Marker) =
         (fun (trace: ('T :> Trace)) ->
-            trace.SetValue("marker", marker)
+            trace.SetProperty("marker", marker)
             trace)
 
     /// <summary>
@@ -49,7 +49,7 @@ type Trace(traceTypeName: string) =
     static member updateMarker(marker: Marker) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getMarker) marker) :?> Marker
+                (DynObj.combine (trace |> Trace.getMarker) marker) |> unbox<Marker>
 
             trace |> Trace.setMarker combined)
 
@@ -68,7 +68,7 @@ type Trace(traceTypeName: string) =
     /// <param name="line">The new line object</param>
     static member setLine(line: Line) =
         (fun (trace: #Trace) ->
-            trace.SetValue("line", line)
+            trace.SetProperty("line", line)
             trace)
 
     /// <summary>
@@ -78,7 +78,7 @@ type Trace(traceTypeName: string) =
     static member updateLine(line: Line) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getLine) line) :?> Line
+                (DynObj.combine (trace |> Trace.getLine) line) |> unbox<Line>
 
             trace |> Trace.setLine combined)
 
@@ -97,7 +97,7 @@ type Trace(traceTypeName: string) =
     /// <param name="error">The new error object</param>
     static member setXError(error: Error) =
         (fun (trace: #Trace) ->
-            trace.SetValue("error_x", error)
+            trace.SetProperty("error_x", error)
             trace)
 
     /// <summary>
@@ -107,7 +107,7 @@ type Trace(traceTypeName: string) =
     static member updateXError(error: Error) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getXError) error) :?> Error
+                (DynObj.combine (trace |> Trace.getXError) error) |> unbox<Error>
 
             trace |> Trace.setXError combined)
 
@@ -126,7 +126,7 @@ type Trace(traceTypeName: string) =
     /// <param name="error">The new error object</param>
     static member setYError(error: Error) =
         (fun (trace: #Trace) ->
-            trace.SetValue("error_y", error)
+            trace.SetProperty("error_y", error)
             trace)
 
     /// <summary>
@@ -136,7 +136,7 @@ type Trace(traceTypeName: string) =
     static member updateYError(error: Error) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getYError) error) :?> Error
+                (DynObj.combine (trace |> Trace.getYError) error) |> unbox<Error>
 
             trace |> Trace.setYError combined)
 
@@ -155,7 +155,7 @@ type Trace(traceTypeName: string) =
     /// <param name="error">The new error object</param>
     static member setZError(error: Error) =
         (fun (trace: #Trace) ->
-            trace.SetValue("error_z", error)
+            trace.SetProperty("error_z", error)
             trace)
 
     /// <summary>
@@ -165,7 +165,7 @@ type Trace(traceTypeName: string) =
     static member updateZError(error: Error) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getZError) error) :?> Error
+                (DynObj.combine (trace |> Trace.getZError) error) |> unbox<Error>
 
             trace |> Trace.setZError combined)
 
@@ -193,7 +193,7 @@ type Trace(traceTypeName: string) =
             StyleParam.SubPlotId.ColorAxis colorAxisId
 
         (fun (trace: #Trace) ->
-            trace.SetValue("coloraxis", StyleParam.SubPlotId.convert id)
+            trace.SetProperty("coloraxis", StyleParam.SubPlotId.convert id)
             trace)
 
      /// <summary>
@@ -220,7 +220,7 @@ type Trace(traceTypeName: string) =
             StyleParam.SubPlotId.Legend legendId
 
         (fun (trace: #Trace) ->
-            trace.SetValue("legend", StyleParam.SubPlotId.convert id)
+            trace.SetProperty("legend", StyleParam.SubPlotId.convert id)
             trace)
 
     /// <summary>
@@ -238,7 +238,7 @@ type Trace(traceTypeName: string) =
     /// <param name="domain">The new domain</param>
     static member setDomain(domain: Domain) =
         (fun (trace: ('T :> Trace)) ->
-            trace.SetValue("domain", domain)
+            trace.SetProperty("domain", domain)
             trace)
 
     /// <summary>
@@ -248,7 +248,7 @@ type Trace(traceTypeName: string) =
     static member updateDomain(domain: Domain) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getDomain) domain) :?> Domain
+                (DynObj.combine (trace |> Trace.getDomain) domain) |> unbox<Domain>
 
             trace |> Trace.setDomain combined)
 
@@ -267,7 +267,7 @@ type Trace(traceTypeName: string) =
     /// <param name="stackgroup">The new stackgroup</param>
     static member setStackGroup(stackgroup: string) =
         (fun (trace: ('T :> Trace)) ->
-            trace.SetValue("stackgroup", stackgroup)
+            trace.SetProperty("stackgroup", stackgroup)
             trace)
 
     /// <summary>
@@ -286,7 +286,7 @@ type Trace(traceTypeName: string) =
     static member setColorBar(colorBar: ColorBar) =
         (fun (trace: ('T :> Trace)) ->
 
-            trace.SetValue("colorbar", colorBar)
+            trace.SetProperty("colorbar", colorBar)
             trace)
 
     /// <summary>
@@ -296,7 +296,7 @@ type Trace(traceTypeName: string) =
     static member updateColorBar(colorBar: ColorBar) =
         (fun (trace: #Trace) ->
             let combined =
-                (DynObj.combine (trace |> Trace.getColorBar) colorBar) :?> ColorBar
+                DynObj.combine (trace |> Trace.getColorBar) colorBar |> unbox<ColorBar>
 
             trace |> Trace.setColorBar combined)
 
@@ -327,16 +327,14 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
             [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title
         ) =
-        (fun (trace: ('T :> Trace)) ->
-
-            Name |> DynObj.setValueOpt trace "name"
-            Visible |> DynObj.setValueOptBy trace "visible" StyleParam.Visible.convert
-            ShowLegend |> DynObj.setValueOpt trace "showlegend"
-            LegendRank |> DynObj.setValueOpt trace "legendrank"
-            LegendGroup |> DynObj.setValueOpt trace "legendgroup"
-            LegendGroupTitle |> DynObj.setValueOpt trace "legendgrouptitle"
-
-            trace)
+        fun (trace: #Trace) ->
+            trace
+            |> DynObj.withOptionalProperty "name" Name
+            |> DynObj.withOptionalPropertyBy "visible" Visible StyleParam.Visible.convert
+            |> DynObj.withOptionalProperty "showlegend" ShowLegend
+            |> DynObj.withOptionalProperty "legendrank" LegendRank
+            |> DynObj.withOptionalProperty "legendgroup" LegendGroup
+            |> DynObj.withOptionalProperty "legendgrouptitle" LegendGroupTitle
 
     /// <summary>
     /// Returns a function that applies the given styles to the trace's marker object. Overwrites attributes with the same name that are already set.
@@ -704,13 +702,11 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?Selected: TraceSelection,
             [<Optional; DefaultParameterValue(null)>] ?Unselected: TraceSelection
         ) =
-        (fun (trace: ('T :> Trace)) ->
-
-            SelectedPoints |> DynObj.setValueOpt trace "selectedpoints"
-            Selected |> DynObj.setValueOpt trace "selected"
-            Unselected |> DynObj.setValueOpt trace "unselected"
-
-            trace)
+        fun (trace: #Trace) ->
+            trace
+            |> DynObj.withOptionalProperty "selectedpoints" SelectedPoints
+            |> DynObj.withOptionalProperty "selected" Selected
+            |> DynObj.withOptionalProperty "unselected" Unselected
 
     /// <summary>
     /// Returns a function that applies the given styles to the trace's text items.
@@ -742,20 +738,16 @@ type TraceStyle() =
             [<Optional; DefaultParameterValue(null)>] ?MultiHoverTemplate: seq<string>,
             [<Optional; DefaultParameterValue(null)>] ?TextFont: Font
         ) =
-        (fun (trace: ('T :> Trace)) ->
-            (Text, MultiText) |> DynObj.setSingleOrMultiOpt trace "text"
+        fun (trace: #Trace) ->
+            trace
+            |> DynObj.withOptionalSingleOrMultiProperty "text" (Text, MultiText)
+            |> DynObj.withOptionalSingleOrMultiPropertyBy "textposition" (TextPosition, MultiTextPosition) StyleParam.TextPosition.convert
+            |> DynObj.withOptionalSingleOrMultiProperty "texttemplate" (TextTemplate, MultiTextTemplate)
+            |> DynObj.withOptionalSingleOrMultiProperty "hovertext" (HoverText, MultiHoverText)
+            |> DynObj.withOptionalPropertyBy "hoverinfo" HoverInfo StyleParam.HoverInfo.convert
+            |> DynObj.withOptionalSingleOrMultiProperty "hovertemplate" (HoverTemplate, MultiHoverTemplate)
+            |> DynObj.withOptionalProperty "textfont" TextFont
 
-            (TextPosition, MultiTextPosition)
-            |> DynObj.setSingleOrMultiOptBy trace "textposition" StyleParam.TextPosition.convert
-
-            (TextTemplate, MultiTextTemplate) |> DynObj.setSingleOrMultiOpt trace "texttemplate"
-            (HoverText, MultiHoverText) |> DynObj.setSingleOrMultiOpt trace "hovertext"
-            HoverInfo |> DynObj.setValueOptBy trace "hoverinfo" StyleParam.HoverInfo.convert
-            (HoverTemplate, MultiHoverTemplate) |> DynObj.setSingleOrMultiOpt trace "hovertemplate"
-
-            TextFont |> DynObj.setValueOpt trace "textfont"
-
-            trace)
 
     // <summary>
     /// Returns a function that applies the given styles to the trace's domain object.

@@ -31,12 +31,13 @@ type PuppeteerSharpRenderer() =
 
         gChart
         |> GenericChart.mapConfig (fun c ->
-            DynObj.setValue c "responsive" true
-            c)
+            c |> DynObj.withProperty "responsive" true
+        )
         |> GenericChart.mapLayout (fun l ->
-            DynObj.setValue l "width" "100%"
-            DynObj.setValue l "height" "100%"
-            l)
+            l
+            |> DynObj.withProperty "width" "100%"
+            |> DynObj.withProperty "height" "100%"
+        )
         |> GenericChart.toEmbeddedHTML
         // this should be done via regex, as this only captures the default width and height.
         |> fun html -> html.Replace("width: 600px; height: 600px;", "width: 100%; height: 100%;")

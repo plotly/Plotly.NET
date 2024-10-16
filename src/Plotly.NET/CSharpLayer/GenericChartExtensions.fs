@@ -426,8 +426,8 @@ module GenericChartExtensions =
         member this.withColorBar(colorbar: ColorBar) =
             this
             |> GenericChart.mapTrace (fun t ->
-                colorbar |> DynObj.setValue t "colorbar"
-                t)
+                t |> DynObj.withProperty "colorbar" colorbar
+            )
 
         [<CompiledName("WithColorbar")>]
         [<Extension>]
@@ -805,7 +805,7 @@ module GenericChartExtensions =
 
             let updatedGrid =
                 let currentGrid =
-                    match layout.TryGetTypedValue<LayoutGrid> "grid" with
+                    match layout.TryGetTypedPropertyValue<LayoutGrid> "grid" with
                     | Some grid -> grid
                     | None -> LayoutGrid()
 
@@ -913,8 +913,8 @@ module GenericChartExtensions =
         member this.WithTemplate(template: Template) =
             this
             |> GenericChart.mapLayout (fun l ->
-                template |> DynObj.setValue l "template"
-                l)
+                l |> DynObj.withProperty "template" template
+            )
 
         // TODO: Include withLegend & withLegendStyle
 

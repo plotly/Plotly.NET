@@ -69,27 +69,25 @@ type Polar() =
             [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
             [<Optional; DefaultParameterValue(null)>] ?BarGap: float
         ) =
-        (fun (polar: Polar) ->
-
-            Domain |> DynObj.setValueOpt polar "domain"
-            Sector |> DynObj.setValueOptBy polar "sector" (fun (a, b) -> [| a; b |])
-            Hole |> DynObj.setValueOpt polar "hole"
-            BGColor |> DynObj.setValueOpt polar "bgcolor"
-            RadialAxis |> DynObj.setValueOpt polar "radialaxis"
-            AngularAxis |> DynObj.setValueOpt polar "angularaxis"
-            GridShape |> DynObj.setValueOptBy polar "gridshape" StyleParam.PolarGridShape.convert
-            UIRevision |> DynObj.setValueOpt polar "uirevision"
-            BarMode |> DynObj.setValueOptBy polar "barmode" StyleParam.BarMode.convert
-            BarGap |> DynObj.setValueOpt polar "bargap"
-
-            polar)
+        fun (polar: Polar) ->
+            polar
+            |> DynObj.withOptionalProperty   "domain"      Domain      
+            |> DynObj.withOptionalPropertyBy "sector"      Sector      (fun (a, b) -> [| a; b |])
+            |> DynObj.withOptionalProperty   "hole"        Hole        
+            |> DynObj.withOptionalProperty   "bgcolor"     BGColor     
+            |> DynObj.withOptionalProperty   "radialaxis"  RadialAxis  
+            |> DynObj.withOptionalProperty   "angularaxis" AngularAxis 
+            |> DynObj.withOptionalPropertyBy "gridshape"   GridShape   StyleParam.PolarGridShape.convert
+            |> DynObj.withOptionalProperty   "uirevision"  UIRevision  
+            |> DynObj.withOptionalPropertyBy "barmode"     BarMode     StyleParam.BarMode.convert
+            |> DynObj.withOptionalProperty   "bargap"      BarGap      
 
     /// <summary>
     /// Returns Some(dynamic member value) of the object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="polar">The object to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (polar: Polar) = polar.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (polar: Polar) = polar.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the AngularAxis object of the given polar object.
@@ -106,7 +104,7 @@ type Polar() =
     /// <param name="angularAxis">The new AngularAxis object</param>
     static member setAngularAxis(angularAxis: AngularAxis) =
         (fun (polar: Polar) ->
-            polar.SetValue("angularaxis", angularAxis)
+            polar.SetProperty("angularaxis", angularAxis)
             polar)
 
     /// <summary>
@@ -124,5 +122,5 @@ type Polar() =
     /// <param name="radialAxis">The new RadialAxis object</param>
     static member setRadialAxis(radialAxis: RadialAxis) =
         (fun (polar: Polar) ->
-            polar.SetValue("radialaxis", radialAxis)
+            polar.SetProperty("radialaxis", radialAxis)
             polar)

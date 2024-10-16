@@ -40,11 +40,10 @@ type MapboxBounds() =
             [<Optional; DefaultParameterValue(null)>] ?South: float,
             [<Optional; DefaultParameterValue(null)>] ?West: float
         ) =
-        (fun (mapboxBounds: MapboxBounds) ->
+        fun (mapboxBounds: MapboxBounds) ->
 
-            East |> DynObj.setValueOpt mapboxBounds "east"
-            North |> DynObj.setValueOpt mapboxBounds "north"
-            South |> DynObj.setValueOpt mapboxBounds "south"
-            West |> DynObj.setValueOpt mapboxBounds "west"
-
-            mapboxBounds)
+            mapboxBounds
+            |> DynObj.withOptionalProperty "east"  East    
+            |> DynObj.withOptionalProperty "north" North   
+            |> DynObj.withOptionalProperty "south" South   
+            |> DynObj.withOptionalProperty "west"  West    

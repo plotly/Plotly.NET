@@ -78,15 +78,14 @@ type Edits() =
             [<Optional; DefaultParameterValue(null)>] ?TitleText: bool
         ) =
         fun (edits: Edits) ->
-            AnnotationPosition |> DynObj.setValueOpt edits "annotationPosition"
-            AnnotationTail |> DynObj.setValueOpt edits "annotationTail"
-            AnnotationText |> DynObj.setValueOpt edits "annotationText"
-            AxisTitleText |> DynObj.setValueOpt edits "axisTitleText"
-            ColorbarPosition |> DynObj.setValueOpt edits "colorbarPosition"
-            ColorbarTitleText |> DynObj.setValueOpt edits "colorbarTitleText"
-            LegendPosition |> DynObj.setValueOpt edits "legendPosition"
-            LegendText |> DynObj.setValueOpt edits "legendText"
-            ShapePosition |> DynObj.setValueOpt edits "shapePosition"
-            TitleText |> DynObj.setValueOpt edits "titleText"
-
             edits
+            |> DynObj.withOptionalProperty "annotationPosition" AnnotationPosition  
+            |> DynObj.withOptionalProperty "annotationTail"     AnnotationTail      
+            |> DynObj.withOptionalProperty "annotationText"     AnnotationText      
+            |> DynObj.withOptionalProperty "axisTitleText"      AxisTitleText       
+            |> DynObj.withOptionalProperty "colorbarPosition"   ColorbarPosition    
+            |> DynObj.withOptionalProperty "colorbarTitleText"  ColorbarTitleText   
+            |> DynObj.withOptionalProperty "legendPosition"     LegendPosition      
+            |> DynObj.withOptionalProperty "legendText"         LegendText          
+            |> DynObj.withOptionalProperty "shapePosition"      ShapePosition       
+            |> DynObj.withOptionalProperty "titleText"          TitleText           

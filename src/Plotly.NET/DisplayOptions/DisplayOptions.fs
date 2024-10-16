@@ -62,17 +62,15 @@ type DisplayOptions() =
             [<Optional; DefaultParameterValue(null)>] ?ChartDescription: XmlNode list,
             [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
         ) =
-        (fun (displayOpts: DisplayOptions) ->
-
-            DocumentTitle |> DynObj.setValueOpt displayOpts "DocumentTitle"
-            DocumentCharset |> DynObj.setValueOpt displayOpts "DocumentCharset"
-            DocumentDescription |> DynObj.setValueOpt displayOpts "DocumentDescription"
-            DocumentFavicon |> DynObj.setValueOpt displayOpts "DocumentFavicon"
-            AdditionalHeadTags |> DynObj.setValueOpt displayOpts "AdditionalHeadTags"
-            ChartDescription |> DynObj.setValueOpt displayOpts "ChartDescription"
-            PlotlyJSReference |> DynObj.setValueOpt displayOpts "PlotlyJSReference"
-
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts
+            |> DynObj.withOptionalProperty "DocumentTitle"       DocumentTitle       
+            |> DynObj.withOptionalProperty "DocumentCharset"     DocumentCharset     
+            |> DynObj.withOptionalProperty "DocumentDescription" DocumentDescription 
+            |> DynObj.withOptionalProperty "DocumentFavicon"     DocumentFavicon     
+            |> DynObj.withOptionalProperty "AdditionalHeadTags"  AdditionalHeadTags  
+            |> DynObj.withOptionalProperty "ChartDescription"    ChartDescription    
+            |> DynObj.withOptionalProperty "PlotlyJSReference"   PlotlyJSReference   
 
     /// <summary>
     /// Returns a DisplayOptions Object with the plotly cdn set to Globals.PLOTLYJS_VERSION
@@ -100,16 +98,16 @@ type DisplayOptions() =
 
         let additionalHeadTags =
             InternalUtils.combineOptLists
-                (first.TryGetTypedValue<XmlNode list>("AdditionalHeadTags"))
-                (second.TryGetTypedValue<XmlNode list>("AdditionalHeadTags"))
+                (first.TryGetTypedPropertyValue<XmlNode list>("AdditionalHeadTags"))
+                (second.TryGetTypedPropertyValue<XmlNode list>("AdditionalHeadTags"))
 
         let description =
             InternalUtils.combineOptLists
-                (first.TryGetTypedValue<XmlNode list>("ChartDescription"))
-                (second.TryGetTypedValue<XmlNode list>("ChartDescription"))
+                (first.TryGetTypedPropertyValue<XmlNode list>("ChartDescription"))
+                (second.TryGetTypedPropertyValue<XmlNode list>("ChartDescription"))
 
         DynObj.combine first second
-        |> unbox
+        |> unbox<DisplayOptions>
         |> DisplayOptions.style (?AdditionalHeadTags = additionalHeadTags, ?ChartDescription = description)
 
     /// <summary>
@@ -117,16 +115,15 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentTitle">The document title to set on the given DisplayOptions object</param>
     static member setDocumentTitle(documentTitle: string) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentTitle |> DynObj.setValue displayOpts "DocumentTitle"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts  |> DynObj.withProperty "DocumentTitle" documentTitle
 
     /// <summary>
     /// Returns Some document title from the given DisplayOptions object if it exists, None otherwise
     /// </summary>
     /// <param name="displayOpts">The DisplayOptions object to get the document title from</param>
     static member tryGetDocumentTitle(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<string>("DocumentTitle")
+        displayOpts.TryGetTypedPropertyValue<string>("DocumentTitle")
 
     /// <summary>
     /// Returns the document title from the given DisplayOptions object if it exists, an empty string otherwise
@@ -140,16 +137,16 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentCharset">The document charset to set on the given DisplayOptions object</param>
     static member setDocumentCharset(documentCharset: string) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentCharset |> DynObj.setValue displayOpts "DocumentCharset"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty  "DocumentCharset" documentCharset
+            
 
     /// <summary>
     /// Returns Some document charset from the given DisplayOptions object if it exists, None otherwise
     /// </summary>
     /// <param name="displayOpts">The DisplayOptions object to get the document charset from</param>
     static member tryGetDocumentCharset(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<string>("DocumentCharset")
+        displayOpts.TryGetTypedPropertyValue<string>("DocumentCharset")
 
     /// <summary>
     /// Returns the document charset from the given DisplayOptions object if it exists, an empty string otherwise
@@ -163,16 +160,16 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentDescription">The document description to set on the given DisplayOptions object</param>
     static member setDocumentDescription(documentDescription: string) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentDescription |> DynObj.setValue displayOpts "DocumentDescription"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "DocumentDescription" documentDescription
+            
 
     /// <summary>
     /// Returns Some document description from the given DisplayOptions object if it exists, None otherwise
     /// </summary>
     /// <param name="displayOpts">The DisplayOptions object to get the document description from</param>
     static member tryGetDocumentDescription(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<string>("DocumentDescription")
+        displayOpts.TryGetTypedPropertyValue<string>("DocumentDescription")
 
     /// <summary>
     /// Returns the document description from the given DisplayOptions object if it exists, an empty string otherwise
@@ -186,16 +183,15 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="documentFavicon">The document favicon to set on the given DisplayOptions object</param>
     static member setDocumentFavicon(documentFavicon: XmlNode) =
-        (fun (displayOpts: DisplayOptions) ->
-            documentFavicon |> DynObj.setValue displayOpts "DocumentFavicon"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "DocumentFavicon" documentFavicon
 
     /// <summary>
     /// Returns Some document favicon from the given DisplayOptions object if it exists, None otherwise
     /// </summary>
     /// <param name="displayOpts"></param>
     static member tryGetDocumentFavicon(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<XmlNode>("DocumentFavicon")
+        displayOpts.TryGetTypedPropertyValue<XmlNode>("DocumentFavicon")
 
     /// <summary>
     /// Returns the document favicon from the given DisplayOptions object if it exists, an empty XML Node otherwise
@@ -209,16 +205,16 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="additionalHeadTags">The additional head tags to set on the given DisplayOptions object</param>
     static member setAdditionalHeadTags(additionalHeadTags: XmlNode list) =
-        (fun (displayOpts: DisplayOptions) ->
-            additionalHeadTags |> DynObj.setValue displayOpts "AdditionalHeadTags"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "AdditionalHeadTags" additionalHeadTags
+            
 
     /// <summary>
     /// Returns Some additional head tags from the given DisplayOptions object if they exist, None otherwise
     /// </summary>
     /// <param name="displayOpts">The DisplayOptions object to get the additional head tags from</param>
     static member tryGetAdditionalHeadTags(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<XmlNode list>("AdditionalHeadTags")
+        displayOpts.TryGetTypedPropertyValue<XmlNode list>("AdditionalHeadTags")
 
     /// <summary>
     /// Returns the additional head tags from the given DisplayOptions object if they exist, an empty list otherwise
@@ -243,16 +239,16 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="chartDescription">The chart chart description to set on the given DisplayOptions object</param>
     static member setChartDescription(chartDescription: XmlNode list) =
-        (fun (displayOpts: DisplayOptions) ->
-            chartDescription |> DynObj.setValue displayOpts "ChartDescription"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "ChartDescription" chartDescription
+            
 
     /// <summary>
     /// Returns Some chart description from the given DisplayOptions object if it exists, None otherwise
     /// </summary>
     /// <param name="displayOpts">The DisplayOptions object to get the chart description from</param>
     static member tryGetChartDescription(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<XmlNode list>("ChartDescription")
+        displayOpts.TryGetTypedPropertyValue<XmlNode list>("ChartDescription")
 
     /// <summary>
     /// Returns the chart description from the given DisplayOptions object if it exists, an empty list otherwise
@@ -275,16 +271,15 @@ type DisplayOptions() =
     /// </summary>
     /// <param name="plotlyReference">The reference to a plotly.js source to set on the given DisplayOptions object</param>
     static member setPlotlyReference(plotlyReference: PlotlyJSReference) =
-        (fun (displayOpts: DisplayOptions) ->
-            plotlyReference |> DynObj.setValue displayOpts "PlotlyJSReference"
-            displayOpts)
+        fun (displayOpts: DisplayOptions) ->
+            displayOpts |> DynObj.withProperty "PlotlyJSReference"  plotlyReference
 
     /// <summary>
     /// Returns Some reference to a plotly.js source from the given DisplayOptions object if it exists, None otherwise
     /// </summary>
     /// <param name="displayOpts">The DisplayOptions object to get the reference to a plotly.js source from</param>
     static member tryGetPlotlyReference(displayOpts: DisplayOptions) =
-        displayOpts.TryGetTypedValue<PlotlyJSReference>("PlotlyJSReference")
+        displayOpts.TryGetTypedPropertyValue<PlotlyJSReference>("PlotlyJSReference")
 
     /// <summary>
     /// Returns the reference to a plotly.js source from the given DisplayOptions object if it exists, NoReference otherwise

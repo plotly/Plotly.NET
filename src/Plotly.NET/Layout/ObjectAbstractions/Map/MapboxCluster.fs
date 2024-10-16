@@ -67,13 +67,11 @@ type MapboxCluster() =
             [<Optional; DefaultParameterValue(null)>] ?MultiStep: seq<int>
 
         ) =
-        (fun (mapboxCluster: MapboxCluster) ->
-
-            Color |> DynObj.setValueOpt mapboxCluster "color"
-            Enabled |> DynObj.setValueOpt mapboxCluster "enabled"
-            MaxZoom |> DynObj.setValueOpt mapboxCluster "maxzoom"
-            Opacity |> DynObj.setValueOpt mapboxCluster "opacity"
-            (Size, MultiSize) |> DynObj.setSingleOrMultiOpt mapboxCluster "size"
-            (Step, MultiStep) |> DynObj.setSingleOrMultiOpt mapboxCluster "step"
-
-            mapboxCluster)
+        fun (mapboxCluster: MapboxCluster) ->
+            mapboxCluster
+            |> DynObj.withOptionalProperty             "color"   Color               
+            |> DynObj.withOptionalProperty             "enabled" Enabled             
+            |> DynObj.withOptionalProperty             "maxzoom" MaxZoom             
+            |> DynObj.withOptionalProperty             "opacity" Opacity             
+            |> DynObj.withOptionalSingleOrMultiProperty"size"    (Size, MultiSize)   
+            |> DynObj.withOptionalSingleOrMultiProperty"step"    (Step, MultiStep)   

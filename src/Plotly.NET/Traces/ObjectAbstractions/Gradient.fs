@@ -26,8 +26,6 @@ type Gradient() =
 
         fun (gradient: Gradient) ->
 
-            (Type, MultiTypes) |> DynObj.setSingleOrMultiOpt gradient "type"
-
-            Color |> DynObj.setValueOpt gradient "color"
-
             gradient
+            |> DynObj.withOptionalSingleOrMultiProperty "type" (Type, MultiTypes)
+            |> DynObj.setOptionalProperty "color" Color

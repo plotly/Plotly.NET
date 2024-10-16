@@ -16,6 +16,5 @@ type SplomDiagonal() =
 
         fun (splomDiagonal: SplomDiagonal) ->
 
-            Visible |> DynObj.setValueOpt splomDiagonal "visible"
-
             splomDiagonal
+            |> DynObj.withOptionalProperty "visible" Visible

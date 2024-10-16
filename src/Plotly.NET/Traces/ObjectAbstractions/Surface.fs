@@ -28,9 +28,8 @@ type Surface() =
 
         fun (surface: Surface) ->
 
-            Count |> DynObj.setValueOpt surface "count"
-            Fill |> DynObj.setValueOpt surface "fill"
-            Pattern |> DynObj.setValueOptBy surface "pattern" StyleParam.SurfacePattern.convert
-            Show |> DynObj.setValueOpt surface "show"
-
             surface
+            |> DynObj.withOptionalProperty "count" Count
+            |> DynObj.withOptionalProperty "fill" Fill
+            |> DynObj.withOptionalPropertyBy "pattern" Pattern StyleParam.SurfacePattern.convert
+            |> DynObj.withOptionalProperty "show" Show

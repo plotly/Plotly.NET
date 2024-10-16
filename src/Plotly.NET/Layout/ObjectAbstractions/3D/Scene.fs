@@ -86,29 +86,28 @@ type Scene() =
             [<Optional; DefaultParameterValue(null)>] ?YAxis: LinearAxis,
             [<Optional; DefaultParameterValue(null)>] ?ZAxis: LinearAxis
         ) =
-        (fun (scene: Scene) ->
+        fun (scene: Scene) ->
 
-            Annotations |> DynObj.setValueOpt scene "annotations"
-            AspectMode |> DynObj.setValueOptBy scene "aspectmode" StyleParam.AspectMode.convert
-            AspectRatio |> DynObj.setValueOpt scene "aspectratio"
-            BGColor |> DynObj.setValueOpt scene "bgcolor"
-            Camera |> DynObj.setValueOpt scene "camera"
-            Domain |> DynObj.setValueOpt scene "domain"
-            DragMode |> DynObj.setValueOptBy scene "dragmode" StyleParam.DragMode.convert
-            HoverMode |> DynObj.setValueOptBy scene "hovermode" StyleParam.HoverMode.convert
-            UIRevision |> DynObj.setValueOpt scene "uirevision"
-            XAxis |> DynObj.setValueOpt scene "xaxis"
-            YAxis |> DynObj.setValueOpt scene "yaxis"
-            ZAxis |> DynObj.setValueOpt scene "zaxis"
-
-            scene)
+            scene
+            |> DynObj.withOptionalProperty   "annotations" Annotations 
+            |> DynObj.withOptionalPropertyBy "aspectmode"  AspectMode  StyleParam.AspectMode.convert
+            |> DynObj.withOptionalProperty   "aspectratio" AspectRatio 
+            |> DynObj.withOptionalProperty   "bgcolor"     BGColor     
+            |> DynObj.withOptionalProperty   "camera"      Camera      
+            |> DynObj.withOptionalProperty   "domain"      Domain      
+            |> DynObj.withOptionalPropertyBy "dragmode"    DragMode    StyleParam.DragMode.convert
+            |> DynObj.withOptionalPropertyBy "hovermode"   HoverMode   StyleParam.HoverMode.convert
+            |> DynObj.withOptionalProperty   "uirevision"  UIRevision  
+            |> DynObj.withOptionalProperty   "xaxis"       XAxis       
+            |> DynObj.withOptionalProperty   "yaxis"       YAxis       
+            |> DynObj.withOptionalProperty   "zaxis"       ZAxis       
 
     /// <summary>
     /// Returns Some(dynamic member value) of the scene object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="scene">The scene to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (scene: Scene) = scene.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (scene: Scene) = scene.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the x axis object of the given scene.
@@ -125,7 +124,7 @@ type Scene() =
     /// <param name="xAxis">The new x axis object</param>
     static member setXAxis(xAxis: LinearAxis) =
         (fun (scene: Scene) ->
-            scene.SetValue("xaxis", xAxis)
+            scene.SetProperty("xaxis", xAxis)
             scene)
 
     /// <summary>
@@ -143,7 +142,7 @@ type Scene() =
     /// <param name="yAxis">The new y axis object</param>
     static member setYAxis(yAxis: LinearAxis) =
         (fun (scene: Scene) ->
-            scene.SetValue("yaxis", yAxis)
+            scene.SetProperty("yaxis", yAxis)
             scene)
 
     /// <summary>
@@ -161,5 +160,5 @@ type Scene() =
     /// <param name="zAxis">The new z axis object</param>
     static member setZAxis(zAxis: LinearAxis) =
         (fun (scene: Scene) ->
-            scene.SetValue("zaxis", zAxis)
+            scene.SetProperty("zaxis", zAxis)
             scene)

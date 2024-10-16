@@ -27,11 +27,10 @@ type ContourProject() =
 
         fun (contourProject: ContourProject) ->
 
-            X |> DynObj.setValueOpt contourProject "x"
-            Y |> DynObj.setValueOpt contourProject "y"
-            Z |> DynObj.setValueOpt contourProject "z"
-
             contourProject
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalProperty "z" Z
 
 /// Contour object inherits from dynamic object
 type Contour() =
@@ -86,21 +85,19 @@ type Contour() =
             [<Optional; DefaultParameterValue(null)>] ?Width: float
         ) =
 
-        (fun (contour: Contour) ->
-            Color |> DynObj.setValueOpt contour "color"
-            End |> DynObj.setValueOpt contour "end"
-            Highlight |> DynObj.setValueOpt contour "highlight"
-            HighlightColor |> DynObj.setValueOpt contour "highlightcolor"
-            HighlightWidth |> DynObj.setValueOpt contour "highlightwidth"
-            Project |> DynObj.setValueOpt contour "project"
-            Show |> DynObj.setValueOpt contour "show"
-            Size |> DynObj.setValueOpt contour "size"
-            Start |> DynObj.setValueOpt contour "start"
-            UseColorMap |> DynObj.setValueOpt contour "usecolormap"
-            Width |> DynObj.setValueOpt contour "width"
-
-
-            contour)
+        fun (contour: Contour) ->
+            contour
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "end" End
+            |> DynObj.withOptionalProperty "highlight" Highlight
+            |> DynObj.withOptionalProperty "highlightcolor" HighlightColor
+            |> DynObj.withOptionalProperty "highlightwidth" HighlightWidth
+            |> DynObj.withOptionalProperty "project" Project
+            |> DynObj.withOptionalProperty "show" Show
+            |> DynObj.withOptionalProperty "size" Size
+            |> DynObj.withOptionalProperty "start" Start
+            |> DynObj.withOptionalProperty "usecolormap" UseColorMap
+            |> DynObj.withOptionalProperty "width" Width
 
 /// Contours type inherits from dynamic object
 type Contours() =
@@ -167,24 +164,24 @@ type Contours() =
             [<Optional; DefaultParameterValue(null)>] ?Value: #IConvertible
         ) =
 
-        (fun (contours: Contours) ->
-            X |> DynObj.setValueOpt contours "x"
-            Y |> DynObj.setValueOpt contours "y"
-            Z |> DynObj.setValueOpt contours "z"
-            Coloring |> DynObj.setValueOptBy contours "coloring" StyleParam.ContourColoring.convert
-            End |> DynObj.setValueOpt contours "end"
-            LabelFont |> DynObj.setValueOpt contours "labelfont"
-            LabelFormat |> DynObj.setValueOpt contours "labelformat"
-            Operation |> DynObj.setValueOptBy contours "operation" StyleParam.ConstraintOperation.convert
-            ShowLabels |> DynObj.setValueOpt contours "showlabels"
-            ShowLines |> DynObj.setValueOpt contours "showlines"
-            Size |> DynObj.setValueOpt contours "size"
-            Start |> DynObj.setValueOpt contours "start"
-            Type |> DynObj.setValueOptBy contours "type" StyleParam.ContourType.convert
-            Value |> DynObj.setValueOpt contours "value"
+        fun (contours: Contours) ->
 
+            contours
+            |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalProperty "z" Z
+            |> DynObj.withOptionalPropertyBy "coloring" Coloring StyleParam.ContourColoring.convert
+            |> DynObj.withOptionalProperty "end" End
+            |> DynObj.withOptionalProperty "labelfont" LabelFont
+            |> DynObj.withOptionalProperty "labelformat" LabelFormat
+            |> DynObj.withOptionalPropertyBy "operation" Operation StyleParam.ConstraintOperation.convert
+            |> DynObj.withOptionalProperty "showlabels" ShowLabels
+            |> DynObj.withOptionalProperty "showlines" ShowLines
+            |> DynObj.withOptionalProperty "size" Size
+            |> DynObj.withOptionalProperty "start" Start
+            |> DynObj.withOptionalPropertyBy "type" Type StyleParam.ContourType.convert
+            |> DynObj.withOptionalProperty "value" Value
 
-            contours)
 
 
     // Initialized x-y-z-Contours with the same properties

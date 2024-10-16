@@ -167,8 +167,8 @@
     <None Include="Playground.fsx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="DynamicObj" Version="[2.0.0, 3.0.0)" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="DynamicObj" Version="[4.0.3, 5.0.0)" />
     <PackageReference Include="Giraffe.ViewEngine.StrongName" Version="2.0.0-alpha1" />
   </ItemGroup>
 </Project>

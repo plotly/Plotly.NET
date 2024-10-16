@@ -6,6 +6,7 @@ open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
 
 
+open TestUtils
 open TestUtils.HtmlCodegen
 open ChartDomainTestCharts
 
@@ -155,8 +156,8 @@ module Sankey =
         testList "HTMLCodegen.ChartDomain" [
             testList "Sankey" [
                 testCase "Sankey data" ( fun () ->
-                    """var data = [{"type":"sankey","node":{"label":["A1","A2","B1","B2","C1","C2","D1"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0}},"link":{"color":["rgba(130, 139, 251, 1.0)","rgba(130, 139, 251, 1.0)","rgba(242, 119, 98, 1.0)","rgba(51, 214, 171, 1.0)","rgba(188, 130, 251, 1.0)","rgba(188, 130, 251, 1.0)","rgba(255, 180, 123, 1.0)","rgba(71, 220, 245, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0},"source":[0,0,1,2,3,3,4,5],"target":[2,3,3,4,4,5,6,6],"value":[8,4,2,7,3,2,5,2]}}];"""
-                    |> chartGeneratedContains Sankey.``Styled sankey chart``
+                    Sankey.``Styled sankey chart``
+                    |> JsonGen.tracesJsonIs """[{"type":"sankey","node":{"label":["A1","A2","B1","B2","C1","C2","D1"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0}},"link":{"color":["rgba(130, 139, 251, 1.0)","rgba(130, 139, 251, 1.0)","rgba(242, 119, 98, 1.0)","rgba(51, 214, 171, 1.0)","rgba(188, 130, 251, 1.0)","rgba(188, 130, 251, 1.0)","rgba(255, 180, 123, 1.0)","rgba(71, 220, 245, 1.0)"],"line":{"color":"rgba(0, 0, 0, 1.0)","width":1.0},"source":[0,0,1,2,3,3,4,5],"target":[2,3,3,4,4,5,6,6],"value":[8,4,2,7,3,2,5,2]}}]"""
                 )
                 testCase "Sankey layout" ( fun () ->
                     emptyLayout Sankey.``Styled sankey chart``

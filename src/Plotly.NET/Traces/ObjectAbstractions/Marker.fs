@@ -198,34 +198,34 @@ type Marker() =
         ) =
         (fun (marker: Marker) ->
 
-            Angle |> DynObj.setValueOpt marker "angle"
-            AngleRef |> DynObj.setValueOptBy marker "angleref" StyleParam.AngleRef.convert
-            AutoColorScale |> DynObj.setValueOpt marker "autocolorscale"
-            CAuto |> DynObj.setValueOpt marker "cauto"
-            CMax |> DynObj.setValueOpt marker "cmax"
-            CMid |> DynObj.setValueOpt marker "cmid"
-            CMin |> DynObj.setValueOpt marker "cmin"
-            Color |> DynObj.setValueOpt marker "color"
-            Colors |> DynObj.setValueOpt marker "colors"
-            ColorAxis |> DynObj.setValueOptBy marker "coloraxis" StyleParam.SubPlotId.convert
-            ColorBar |> DynObj.setValueOpt marker "colorbar"
-            Colorscale |> DynObj.setValueOptBy marker "colorscale" StyleParam.Colorscale.convert
-            CornerRadius |> DynObj.setValueOpt marker "cornerradius"
-            Gradient |> DynObj.setValueOpt marker "gradient"
-            Outline |> DynObj.setValueOpt marker "line"
-            (Size, MultiSize) |> DynObj.setSingleOrMultiOpt marker "size"
-            (Opacity, MultiOpacity) |> DynObj.setSingleOrMultiOpt marker "opacity"
-            Pattern |> DynObj.setValueOpt marker "pattern"
-            (Symbol, MultiSymbol) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol.convert
-            (Symbol3D, MultiSymbol3D) |> DynObj.setSingleOrMultiOptBy marker "symbol" StyleParam.MarkerSymbol3D.convert
-            OutlierColor |> DynObj.setValueOpt marker "outliercolor"
-            OutlierWidth |> DynObj.setValueOpt marker "outlierwidth"
-            MaxDisplayed |> DynObj.setValueOpt marker "maxdisplayed"
-            ReverseScale |> DynObj.setValueOpt marker "reversescale"
-            ShowScale |> DynObj.setValueOpt marker "showscale"
-            SizeMin |> DynObj.setValueOpt marker "sizemin"
-            SizeMode |> DynObj.setValueOpt marker "sizemode"
-            SizeRef |> DynObj.setValueOpt marker "sizeref"
-            (StandOff, MultiStandOff) |> DynObj.setSingleOrMultiOpt marker "standoff"
-
-            marker)
+            marker
+            |> DynObj.withOptionalProperty "angle" Angle 
+            |> DynObj.withOptionalPropertyBy "angleref" AngleRef StyleParam.AngleRef.convert
+            |> DynObj.withOptionalProperty "autocolorscale" AutoColorScale
+            |> DynObj.withOptionalProperty "cauto" CAuto
+            |> DynObj.withOptionalProperty "cmax" CMax
+            |> DynObj.withOptionalProperty "cmid" CMid
+            |> DynObj.withOptionalProperty "cmin" CMin
+            |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "colors" Colors
+            |> DynObj.withOptionalPropertyBy "coloraxis" ColorAxis StyleParam.SubPlotId.convert
+            |> DynObj.withOptionalProperty "colorbar" ColorBar
+            |> DynObj.withOptionalPropertyBy "colorscale" Colorscale StyleParam.Colorscale.convert
+            |> DynObj.withOptionalProperty "cornerradius" CornerRadius  
+            |> DynObj.withOptionalProperty "gradient" Gradient
+            |> DynObj.withOptionalProperty "line" Outline
+            |> DynObj.withOptionalSingleOrMultiProperty "size" (Size, MultiSize)
+            |> DynObj.withOptionalSingleOrMultiProperty "opacity" (Opacity, MultiOpacity)
+            |> DynObj.withOptionalProperty "pattern" Pattern
+            |> DynObj.withOptionalSingleOrMultiPropertyBy "symbol" (Symbol, MultiSymbol) StyleParam.MarkerSymbol.convert
+            |> DynObj.withOptionalSingleOrMultiPropertyBy "symbol" (Symbol3D, MultiSymbol3D) StyleParam.MarkerSymbol3D.convert
+            |> DynObj.withOptionalProperty "outliercolor" OutlierColor
+            |> DynObj.withOptionalProperty "outlierwidth" OutlierWidth
+            |> DynObj.withOptionalProperty "maxdisplayed" MaxDisplayed
+            |> DynObj.withOptionalProperty "reversescale" ReverseScale
+            |> DynObj.withOptionalProperty "showscale" ShowScale
+            |> DynObj.withOptionalProperty "sizemin" SizeMin
+            |> DynObj.withOptionalProperty "sizemode" SizeMode
+            |> DynObj.withOptionalProperty "sizeref" SizeRef
+            |> DynObj.withOptionalSingleOrMultiProperty "standoff" (StandOff, MultiStandOff)
+        )

@@ -213,6 +213,18 @@ module JsonGen =
         let json = chart |> GenericChart.toFigureJson
         Expect.equal json expected $"JSON not equal to expected value."
 
+    let layoutJsonIs chart expected =
+        let json = 
+            let layout = GenericChart.getLayout chart
+            JsonConvert.SerializeObject(layout, Globals.JSON_CONFIG)
+        Expect.equal json expected $"Layout JSON not equal to expected value."
+
+    let tracesJsonIs (expectedJson: string) (chart: GenericChart) =
+        let json = 
+            let traces = GenericChart.getTraces chart
+            JsonConvert.SerializeObject(traces, Globals.JSON_CONFIG)
+        Expect.equal json expectedJson $"Traces JSON not equal to expected value"
+
 module Objects =
 
     let jsonFieldIsSetWith fieldName expected (object:#DynamicObj) =

@@ -54,16 +54,14 @@ type Ternary() =
             [<Optional; DefaultParameterValue(null)>] ?Sum: #IConvertible,
             [<Optional; DefaultParameterValue(null)>] ?BGColor: Color
         ) =
-        (fun (ternary: Ternary) ->
-
-            AAxis |> DynObj.setValueOpt ternary "aaxis"
-            BAxis |> DynObj.setValueOpt ternary "baxis"
-            CAxis |> DynObj.setValueOpt ternary "caxis"
-            Domain |> DynObj.setValueOpt ternary "domain"
-            Sum |> DynObj.setValueOpt ternary "sum"
-            BGColor |> DynObj.setValueOpt ternary "bgcolor"
-
-            ternary)
+        fun (ternary: Ternary) ->
+            ternary
+            |> DynObj.withOptionalProperty "aaxis"   AAxis   
+            |> DynObj.withOptionalProperty "baxis"   BAxis   
+            |> DynObj.withOptionalProperty "caxis"   CAxis   
+            |> DynObj.withOptionalProperty "domain"  Domain  
+            |> DynObj.withOptionalProperty "sum"     Sum     
+            |> DynObj.withOptionalProperty "bgcolor" BGColor 
 
 
     /// <summary>
@@ -71,7 +69,7 @@ type Ternary() =
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="ternary">The object to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (ternary: Ternary) = ternary.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (ternary: Ternary) = ternary.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the a axis of the given ternary object.
@@ -88,7 +86,7 @@ type Ternary() =
     /// <param name="aAxis">The new a axis object</param>
     static member setAAxis(aAxis: LinearAxis) =
         (fun (ternary: Ternary) ->
-            ternary.SetValue("aaxis", aAxis)
+            ternary.SetProperty("aaxis", aAxis)
             ternary)
 
     /// <summary>
@@ -106,7 +104,7 @@ type Ternary() =
     /// <param name="bAxis">The new b axis object</param>
     static member setBAxis(bAxis: LinearAxis) =
         (fun (ternary: Ternary) ->
-            ternary.SetValue("baxis", bAxis)
+            ternary.SetProperty("baxis", bAxis)
             ternary)
 
     /// <summary>
@@ -124,5 +122,5 @@ type Ternary() =
     /// <param name="cAxis">The new c axis object</param>
     static member setCAxis(cAxis: LinearAxis) =
         (fun (ternary: Ternary) ->
-            ternary.SetValue("caxis", cAxis)
+            ternary.SetProperty("caxis", cAxis)
             ternary)

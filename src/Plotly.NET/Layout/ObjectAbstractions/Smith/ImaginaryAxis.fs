@@ -149,29 +149,28 @@ type ImaginaryAxis() =
         ) =
         fun (imaginaryAxis: ImaginaryAxis) ->
 
-            Color |> DynObj.setValueOpt imaginaryAxis "color"
-            GridColor |> DynObj.setValueOpt imaginaryAxis "gridcolor"
-            GridDash |> DynObj.setValueOptBy imaginaryAxis "griddash" StyleParam.DrawingStyle.convert
-            GridWidth |> DynObj.setValueOpt imaginaryAxis "gridwidth"
-            HoverFormat |> DynObj.setValueOpt imaginaryAxis "hoverformat"
-            LabelAlias |> DynObj.setValueOpt imaginaryAxis "labelalias"
-            Layer |> DynObj.setValueOptBy imaginaryAxis "layer" StyleParam.Layer.convert
-            LineColor |> DynObj.setValueOpt imaginaryAxis "linecolor"
-            LineWidth |> DynObj.setValueOpt imaginaryAxis "linewidth"
-            ShowGrid |> DynObj.setValueOpt imaginaryAxis "showgrid"
-            ShowLine |> DynObj.setValueOpt imaginaryAxis "showline"
-            ShowTickLabels |> DynObj.setValueOpt imaginaryAxis "showticklabels"
-            ShowTickSuffix |> DynObj.setValueOptBy imaginaryAxis "showticksuffix" StyleParam.ShowTickOption.convert
-            ShowTickPrefix |> DynObj.setValueOptBy imaginaryAxis "showtickprefix" StyleParam.ShowTickOption.convert
-            TickColor |> DynObj.setValueOpt imaginaryAxis "tickcolor"
-            TickFont |> DynObj.setValueOpt imaginaryAxis "tickfont"
-            TickFormat |> DynObj.setValueOpt imaginaryAxis "tickformat"
-            TickLen |> DynObj.setValueOpt imaginaryAxis "ticklen"
-            TickPrefix |> DynObj.setValueOpt imaginaryAxis "tickprefix"
-            Ticks |> DynObj.setValueOptBy imaginaryAxis "ticks" StyleParam.TickLabelPosition.convert
-            TickSuffix |> DynObj.setValueOpt imaginaryAxis "ticksuffix"
-            TickVals |> DynObj.setValueOpt imaginaryAxis "tickvals"
-            TickWidth |> DynObj.setValueOpt imaginaryAxis "tickwidth"
-            Visible |> DynObj.setValueOpt imaginaryAxis "visible"
-
             imaginaryAxis
+            |> DynObj.withOptionalProperty   "color"           Color           
+            |> DynObj.withOptionalProperty   "gridcolor"       GridColor       
+            |> DynObj.withOptionalPropertyBy "griddash"        GridDash        StyleParam.DrawingStyle.convert
+            |> DynObj.withOptionalProperty   "gridwidth"       GridWidth       
+            |> DynObj.withOptionalProperty   "hoverformat"     HoverFormat     
+            |> DynObj.withOptionalProperty   "labelalias"      LabelAlias      
+            |> DynObj.withOptionalPropertyBy "layer"           Layer           StyleParam.Layer.convert
+            |> DynObj.withOptionalProperty   "linecolor"       LineColor       
+            |> DynObj.withOptionalProperty   "linewidth"       LineWidth       
+            |> DynObj.withOptionalProperty   "showgrid"        ShowGrid        
+            |> DynObj.withOptionalProperty   "showline"        ShowLine        
+            |> DynObj.withOptionalProperty   "showticklabels"  ShowTickLabels  
+            |> DynObj.withOptionalPropertyBy "showticksuffix"  ShowTickSuffix  StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalPropertyBy "showtickprefix"  ShowTickPrefix  StyleParam.ShowTickOption.convert
+            |> DynObj.withOptionalProperty   "tickcolor"       TickColor       
+            |> DynObj.withOptionalProperty   "tickfont"        TickFont        
+            |> DynObj.withOptionalProperty   "tickformat"      TickFormat      
+            |> DynObj.withOptionalProperty   "ticklen"         TickLen         
+            |> DynObj.withOptionalProperty   "tickprefix"      TickPrefix      
+            |> DynObj.withOptionalPropertyBy "ticks"           Ticks           StyleParam.TickLabelPosition.convert
+            |> DynObj.withOptionalProperty   "ticksuffix"      TickSuffix      
+            |> DynObj.withOptionalProperty   "tickvals"        TickVals        
+            |> DynObj.withOptionalProperty   "tickwidth"       TickWidth       
+            |> DynObj.withOptionalProperty   "visible"         Visible         

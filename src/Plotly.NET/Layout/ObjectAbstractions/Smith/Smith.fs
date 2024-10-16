@@ -47,20 +47,18 @@ type Smith() =
             [<Optional; DefaultParameterValue(null)>] ?RealAxis: RealAxis
         ) =
         fun (smith: Smith) ->
-
-            BGColor |> DynObj.setValueOpt smith "bgcolor"
-            Domain |> DynObj.setValueOpt smith "domain"
-            ImaginaryAxis |> DynObj.setValueOpt smith "imaginaryaxis"
-            RealAxis |> DynObj.setValueOpt smith "realaxis"
-
             smith
+            |> DynObj.withOptionalProperty "bgcolor"       BGColor         
+            |> DynObj.withOptionalProperty "domain"        Domain          
+            |> DynObj.withOptionalProperty "imaginaryaxis" ImaginaryAxis   
+            |> DynObj.withOptionalProperty "realaxis"      RealAxis        
 
     /// <summary>
     /// Returns Some(dynamic member value) of the object's underlying DynamicObj when a dynamic member with the given name exists, and None otherwise.
     /// </summary>
     /// <param name="propName">The name of the dynamic member to get the value of</param>
     /// <param name="smith">The object to get the dynamic member value from</param>
-    static member tryGetTypedMember<'T> (propName: string) (smith: Smith) = smith.TryGetTypedValue<'T>(propName)
+    static member tryGetTypedMember<'T> (propName: string) (smith: Smith) = smith.TryGetTypedPropertyValue<'T>(propName)
 
     /// <summary>
     /// Returns the ImaginaryAxis object of the given smith object.
@@ -77,7 +75,7 @@ type Smith() =
     /// <param name="imaginaryAxis">The new ImaginaryAxis object</param>
     static member setImaginaryAxis(imaginaryAxis: ImaginaryAxis) =
         (fun (smith: Smith) ->
-            smith.SetValue("imaginaryaxis", imaginaryAxis)
+            smith.SetProperty("imaginaryaxis", imaginaryAxis)
             smith)
 
     /// <summary>
@@ -95,5 +93,5 @@ type Smith() =
     /// <param name="realAxis">The new RealAxis object</param>
     static member setRealAxis(realAxis: RealAxis) =
         (fun (smith: Smith) ->
-            smith.SetValue("realaxis", realAxis)
+            smith.SetProperty("realaxis", realAxis)
             smith)
