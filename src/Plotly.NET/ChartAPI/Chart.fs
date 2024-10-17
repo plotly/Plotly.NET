@@ -664,6 +664,10 @@ type Chart =
     /// <summary>
     /// Applies the given styles to the ColorBar object(s) of the chart's trace(s). Overwrites attributes with the same name that are already set.
     /// </summary>
+    /// <param name="TitleText">Sets the colorbar's title</param>
+    /// <param name="TitleFont">Sets the title font.</param>
+    /// <param name="TitleStandoff">Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.</param>
+    /// <param name="Title">Sets the Title object (use this for more finegrained control than the other title-associated arguments)</param>
     /// <param name="BGColor">Sets the color of padded area.</param>
     /// <param name="BorderColor">Sets the axis line color.</param>
     /// <param name="BorderWidth">Sets the width (in px) or the border enclosing this color bar.</param>
@@ -700,7 +704,6 @@ type Chart =
     /// <param name="TickText">Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to "array". Used with `tickvals`.</param>
     /// <param name="TickVals">Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to "array". Used with `ticktext`.</param>
     /// <param name="TickWidth">Sets the tick width (in px).</param>
-    /// <param name="Title">Sets the ColorBar title.</param>
     /// <param name="X">Sets the x position of the color bar (in plot fraction).</param>
     /// <param name="XAnchor">Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the "left", "center" or "right" of the color bar.</param>
     /// <param name="XPad">Sets the amount of padding (in px) along the x direction.</param>
@@ -3690,12 +3693,20 @@ type Chart =
     /// <summary>
     /// Applies the given styles to the chart's DisplayOptions object. Overwrites attributes with the same name that are already set.
     /// </summary>
+    /// <param name="DocumentTitle">The title metadata for the document</param>
+    /// <param name="DocumentCharset">The document charset</param>
+    /// <param name="DocumentDescription">The description metadata for the document</param>
+    /// <param name="DocumentFavicon">base64 encoded favicon image</param>
     /// <param name="AdditionalHeadTags">Additional tags that will be included in the document's head </param>
-    /// <param name="Description">HTML tags that appear below the chart in HTML docs</param>
+    /// <param name="ChartDescription">HTML tags that appear below the chart in HTML docs</param>
     /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
     [<CompiledName("WithDisplayOptionsStyle")>]
     static member withDisplayOptionsStyle
         (
+            ?DocumentTitle: string,
+            ?DocumentCharset: string,
+            ?DocumentDescription: string,
+            ?DocumentFavicon: XmlNode,
             ?AdditionalHeadTags: XmlNode list,
             ?ChartDescription: XmlNode list,
             ?PlotlyJSReference: PlotlyJSReference
@@ -3704,6 +3715,10 @@ type Chart =
 
             let displayOpts' =
                 DisplayOptions.init (
+                    ?DocumentTitle = DocumentTitle,
+                    ?DocumentCharset = DocumentCharset,
+                    ?DocumentDescription = DocumentDescription,
+                    ?DocumentFavicon = DocumentFavicon,
                     ?AdditionalHeadTags = AdditionalHeadTags,
                     ?ChartDescription = ChartDescription,
                     ?PlotlyJSReference = PlotlyJSReference

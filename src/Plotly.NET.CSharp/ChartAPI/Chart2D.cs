@@ -18,11 +18,9 @@ namespace Plotly.NET.CSharp
         ///
         /// Scatter charts are the basis of Point, Line, and Bubble Charts, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
         /// </summary>
-        /// <param name="X">Sets the x coordinates of the plotted data.</param>
-        /// <param name="MultiX">Sets the x coordinates of the plotted data. Use two inner arrays here to plot multicategorial data</param>
-        /// <param name="Y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="MultiY">Sets the x coordinates of the plotted data. Use two inner arrays here to plot multicategorial data</param>
-        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>

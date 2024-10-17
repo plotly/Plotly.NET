@@ -200,9 +200,11 @@ type ColorBar() =
     /// <param name="X">Sets the x position of the color bar (in plot fraction). Defaults to 1.02 when `orientation` is *v* and 0.5 when `orientation` is *h*.</param>
     /// <param name="XAnchor">'Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center*, or *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.</param>
     /// <param name="XPad">Sets the amount of padding (in px) along the x direction.</param>
+    /// <param name="XRef">Sets the container `x` refers to. "container" spans the entire `width` of the plot. "paper" refers to the width of the plotting area only.</param>
     /// <param name="Y">Sets the y position of the color bar (in plot fraction).Defaults to 0.5 when `orientation` is *v* and 1.02 when `orientation` is *h*.'</param>
     /// <param name="YAnchor">'Sets this color bar\'s vertical position anchor. This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.'</param>
     /// <param name="YPad">Sets the amount of padding (in px) along the y direction.</param>
+    /// <param name="YRef">Sets the container `y` refers to. "container" spans the entire `height` of the plot. "paper" refers to the height of the plotting area only.</param>
     static member style
         (
             ?BGColor: Color,
