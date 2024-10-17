@@ -24,7 +24,7 @@ type Chart =
     /// <param name="path">The path to save the chart html at.</param>
     /// <param name="OpenInBrowser">Whether or not to open the generated file in the browser (default: false)</param>
     [<CompiledName("SaveHtml")>]
-    static member saveHtml(path: string, [<Optional; DefaultParameterValue(null)>] ?OpenInBrowser: bool) =
+    static member saveHtml(path: string, ?OpenInBrowser: bool) =
         fun (ch: GenericChart) ->
             let show = defaultArg OpenInBrowser false
 
@@ -92,12 +92,12 @@ type Chart =
     [<CompiledName("WithTraceInfo")>]
     static member withTraceInfo
         (
-            [<Optional; DefaultParameterValue(null)>] ?Name: string,
-            [<Optional; DefaultParameterValue(null)>] ?Visible: StyleParam.Visible,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LegendRank: int,
-            [<Optional; DefaultParameterValue(null)>] ?LegendGroup: string,
-            [<Optional; DefaultParameterValue(null)>] ?LegendGroupTitle: Title
+            ?Name: string,
+            ?Visible: StyleParam.Visible,
+            ?ShowLegend: bool,
+            ?LegendRank: int,
+            ?LegendGroup: string,
+            ?LegendGroupTitle: Title
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -126,8 +126,8 @@ type Chart =
     [<CompiledName("WithAxisAnchor")>]
     static member withAxisAnchor
         (
-            [<Optional; DefaultParameterValue(null)>] ?X,
-            [<Optional; DefaultParameterValue(null)>] ?Y
+            ?X,
+            ?Y
         ) =
         let idx =
             X |> Option.map StyleParam.LinearAxisId.X
@@ -227,40 +227,40 @@ type Chart =
     [<CompiledName("WithMarkerStyle")>]
     static member withMarkerStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Angle: float,
-            [<Optional; DefaultParameterValue(null)>] ?AngleRef: StyleParam.AngleRef,
-            [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CMax: float,
-            [<Optional; DefaultParameterValue(null)>] ?CMid: float,
-            [<Optional; DefaultParameterValue(null)>] ?CMin: float,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Colors: seq<Color>,
-            [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
-            [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
-            [<Optional; DefaultParameterValue(null)>] ?CornerRadius: int,
-            [<Optional; DefaultParameterValue(null)>] ?Gradient: Gradient,
-            [<Optional; DefaultParameterValue(null)>] ?Outline: Line,
-            [<Optional; DefaultParameterValue(null)>] ?MaxDisplayed: int,
-            [<Optional; DefaultParameterValue(null)>] ?Opacity: float,
-            [<Optional; DefaultParameterValue(null)>] ?MultiOpacity: seq<float>,
-            [<Optional; DefaultParameterValue(null)>] ?Pattern: Pattern,
-            [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Size: int,
-            [<Optional; DefaultParameterValue(null)>] ?MultiSize: seq<int>,
-            [<Optional; DefaultParameterValue(null)>] ?SizeMin: int,
-            [<Optional; DefaultParameterValue(null)>] ?SizeMode: StyleParam.MarkerSizeMode,
-            [<Optional; DefaultParameterValue(null)>] ?SizeRef: int,
-            [<Optional; DefaultParameterValue(null)>] ?StandOff: float,
-            [<Optional; DefaultParameterValue(null)>] ?MultiStandOff: seq<float>,
-            [<Optional; DefaultParameterValue(null)>] ?Symbol: StyleParam.MarkerSymbol,
-            [<Optional; DefaultParameterValue(null)>] ?MultiSymbol: seq<StyleParam.MarkerSymbol>,
-            [<Optional; DefaultParameterValue(null)>] ?Symbol3D: StyleParam.MarkerSymbol3D,
-            [<Optional; DefaultParameterValue(null)>] ?MultiSymbol3D: seq<StyleParam.MarkerSymbol3D>,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: int
+            ?Angle: float,
+            ?AngleRef: StyleParam.AngleRef,
+            ?AutoColorScale: bool,
+            ?CAuto: bool,
+            ?CMax: float,
+            ?CMid: float,
+            ?CMin: float,
+            ?Color: Color,
+            ?Colors: seq<Color>,
+            ?ColorAxis: StyleParam.SubPlotId,
+            ?ColorBar: ColorBar,
+            ?Colorscale: StyleParam.Colorscale,
+            ?CornerRadius: int,
+            ?Gradient: Gradient,
+            ?Outline: Line,
+            ?MaxDisplayed: int,
+            ?Opacity: float,
+            ?MultiOpacity: seq<float>,
+            ?Pattern: Pattern,
+            ?ReverseScale: bool,
+            ?ShowScale: bool,
+            ?Size: int,
+            ?MultiSize: seq<int>,
+            ?SizeMin: int,
+            ?SizeMode: StyleParam.MarkerSizeMode,
+            ?SizeRef: int,
+            ?StandOff: float,
+            ?MultiStandOff: seq<float>,
+            ?Symbol: StyleParam.MarkerSymbol,
+            ?MultiSymbol: seq<StyleParam.MarkerSymbol>,
+            ?Symbol3D: StyleParam.MarkerSymbol3D,
+            ?MultiSymbol3D: seq<StyleParam.MarkerSymbol3D>,
+            ?OutlierColor: Color,
+            ?OutlierWidth: int
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -354,26 +354,26 @@ type Chart =
     [<CompiledName("WithLineStyle")>]
     static member withLineStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?BackOff: StyleParam.BackOff,
-            [<Optional; DefaultParameterValue(null)>] ?AutoColorScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CAuto: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CMax: float,
-            [<Optional; DefaultParameterValue(null)>] ?CMid: float,
-            [<Optional; DefaultParameterValue(null)>] ?CMin: float,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ColorAxis: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Colorscale: StyleParam.Colorscale,
-            [<Optional; DefaultParameterValue(null)>] ?ReverseScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowScale: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ColorBar: ColorBar,
-            [<Optional; DefaultParameterValue(null)>] ?Dash: StyleParam.DrawingStyle,
-            [<Optional; DefaultParameterValue(null)>] ?Shape: StyleParam.Shape,
-            [<Optional; DefaultParameterValue(null)>] ?Simplify: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Smoothing: float,
-            [<Optional; DefaultParameterValue(null)>] ?Width: float,
-            [<Optional; DefaultParameterValue(null)>] ?MultiWidth: seq<float>,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?OutlierWidth: float
+            ?BackOff: StyleParam.BackOff,
+            ?AutoColorScale: bool,
+            ?CAuto: bool,
+            ?CMax: float,
+            ?CMid: float,
+            ?CMin: float,
+            ?Color: Color,
+            ?ColorAxis: StyleParam.SubPlotId,
+            ?Colorscale: StyleParam.Colorscale,
+            ?ReverseScale: bool,
+            ?ShowScale: bool,
+            ?ColorBar: ColorBar,
+            ?Dash: StyleParam.DrawingStyle,
+            ?Shape: StyleParam.Shape,
+            ?Simplify: bool,
+            ?Smoothing: float,
+            ?Width: float,
+            ?MultiWidth: seq<float>,
+            ?OutlierColor: Color,
+            ?OutlierWidth: float
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -446,19 +446,19 @@ type Chart =
     [<CompiledName("WithXErrorStyle")>]
     static member withXErrorStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
-            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Value: float,
-            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
-            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
-            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
-            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
-            [<Optional; DefaultParameterValue(null)>] ?Width: float
+            ?Visible: bool,
+            ?Type: StyleParam.ErrorType,
+            ?Symmetric: bool,
+            ?Array: seq<#IConvertible>,
+            ?Arrayminus: seq<#IConvertible>,
+            ?Value: float,
+            ?Valueminus: float,
+            ?Traceref: int,
+            ?Tracerefminus: int,
+            ?Copy_ystyle: bool,
+            ?Color: Color,
+            ?Thickness: float,
+            ?Width: float
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -524,19 +524,19 @@ type Chart =
     [<CompiledName("WithYErrorStyle")>]
     static member withYErrorStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
-            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Value: float,
-            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
-            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
-            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
-            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
-            [<Optional; DefaultParameterValue(null)>] ?Width: float
+            ?Visible: bool,
+            ?Type: StyleParam.ErrorType,
+            ?Symmetric: bool,
+            ?Array: seq<#IConvertible>,
+            ?Arrayminus: seq<#IConvertible>,
+            ?Value: float,
+            ?Valueminus: float,
+            ?Traceref: int,
+            ?Tracerefminus: int,
+            ?Copy_ystyle: bool,
+            ?Color: Color,
+            ?Thickness: float,
+            ?Width: float
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -602,19 +602,19 @@ type Chart =
     [<CompiledName("WithZErrorStyle")>]
     static member withZErrorStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Type: StyleParam.ErrorType,
-            [<Optional; DefaultParameterValue(null)>] ?Symmetric: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Array: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Arrayminus: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?Value: float,
-            [<Optional; DefaultParameterValue(null)>] ?Valueminus: float,
-            [<Optional; DefaultParameterValue(null)>] ?Traceref: int,
-            [<Optional; DefaultParameterValue(null)>] ?Tracerefminus: int,
-            [<Optional; DefaultParameterValue(null)>] ?Copy_ystyle: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
-            [<Optional; DefaultParameterValue(null)>] ?Width: float
+            ?Visible: bool,
+            ?Type: StyleParam.ErrorType,
+            ?Symmetric: bool,
+            ?Array: seq<#IConvertible>,
+            ?Arrayminus: seq<#IConvertible>,
+            ?Value: float,
+            ?Valueminus: float,
+            ?Traceref: int,
+            ?Tracerefminus: int,
+            ?Copy_ystyle: bool,
+            ?Color: Color,
+            ?Thickness: float,
+            ?Width: float
         ) =
         fun (ch: GenericChart) ->
             ch
@@ -712,55 +712,55 @@ type Chart =
     [<CompiledName("WithColorbarStyle")>]
     static member withColorBarStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?DTick: IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?ExponentFormat: StyleParam.ExponentFormat,
-            [<Optional; DefaultParameterValue(null)>] ?LabelAlias: DynamicObj,
-            [<Optional; DefaultParameterValue(null)>] ?Len: float,
-            [<Optional; DefaultParameterValue(null)>] ?LenMode: StyleParam.UnitMode,
-            [<Optional; DefaultParameterValue(null)>] ?MinExponent: float,
-            [<Optional; DefaultParameterValue(null)>] ?NTicks: int,
-            [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
-            [<Optional; DefaultParameterValue(null)>] ?OutlineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?OutlineWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?SeparateThousands: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowExponent: StyleParam.ShowExponent,
-            [<Optional; DefaultParameterValue(null)>] ?ShowTickLabels: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowTickPrefix: StyleParam.ShowTickOption,
-            [<Optional; DefaultParameterValue(null)>] ?ShowTickSuffix: StyleParam.ShowTickOption,
-            [<Optional; DefaultParameterValue(null)>] ?Thickness: float,
-            [<Optional; DefaultParameterValue(null)>] ?ThicknessMode: StyleParam.UnitMode,
-            [<Optional; DefaultParameterValue(null)>] ?Tick0: IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?TickAngle: int,
-            [<Optional; DefaultParameterValue(null)>] ?TickColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?TickFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TickFormat: string,
-            [<Optional; DefaultParameterValue(null)>] ?TickFormatStops: seq<TickFormatStop>,
-            [<Optional; DefaultParameterValue(null)>] ?TickLabelOverflow: StyleParam.TickLabelOverflow,
-            [<Optional; DefaultParameterValue(null)>] ?TickLabelPosition: StyleParam.TickLabelPosition,
-            [<Optional; DefaultParameterValue(null)>] ?TickLabelStep: int,
-            [<Optional; DefaultParameterValue(null)>] ?TickLen: float,
-            [<Optional; DefaultParameterValue(null)>] ?TickMode: StyleParam.TickMode,
-            [<Optional; DefaultParameterValue(null)>] ?TickPrefix: string,
-            [<Optional; DefaultParameterValue(null)>] ?Ticks: StyleParam.TickOptions,
-            [<Optional; DefaultParameterValue(null)>] ?TickSuffix: string,
-            [<Optional; DefaultParameterValue(null)>] ?TickText: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?TickVals: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?TickWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?X: float,
-            [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.HorizontalAlign,
-            [<Optional; DefaultParameterValue(null)>] ?XPad: float,
-            [<Optional; DefaultParameterValue(null)>] ?XRef: string,
-            [<Optional; DefaultParameterValue(null)>] ?Y: float,
-            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.VerticalAlign,
-            [<Optional; DefaultParameterValue(null)>] ?YPad: float,
-            [<Optional; DefaultParameterValue(null)>] ?YRef: string
+            ?TitleText: string,
+            ?TitleFont: Font,
+            ?TitleStandoff: int,
+            ?Title: Title,
+            ?BGColor: Color,
+            ?BorderColor: Color,
+            ?BorderWidth: float,
+            ?DTick: IConvertible,
+            ?ExponentFormat: StyleParam.ExponentFormat,
+            ?LabelAlias: DynamicObj,
+            ?Len: float,
+            ?LenMode: StyleParam.UnitMode,
+            ?MinExponent: float,
+            ?NTicks: int,
+            ?Orientation: StyleParam.Orientation,
+            ?OutlineColor: Color,
+            ?OutlineWidth: float,
+            ?SeparateThousands: bool,
+            ?ShowExponent: StyleParam.ShowExponent,
+            ?ShowTickLabels: bool,
+            ?ShowTickPrefix: StyleParam.ShowTickOption,
+            ?ShowTickSuffix: StyleParam.ShowTickOption,
+            ?Thickness: float,
+            ?ThicknessMode: StyleParam.UnitMode,
+            ?Tick0: IConvertible,
+            ?TickAngle: int,
+            ?TickColor: Color,
+            ?TickFont: Font,
+            ?TickFormat: string,
+            ?TickFormatStops: seq<TickFormatStop>,
+            ?TickLabelOverflow: StyleParam.TickLabelOverflow,
+            ?TickLabelPosition: StyleParam.TickLabelPosition,
+            ?TickLabelStep: int,
+            ?TickLen: float,
+            ?TickMode: StyleParam.TickMode,
+            ?TickPrefix: string,
+            ?Ticks: StyleParam.TickOptions,
+            ?TickSuffix: string,
+            ?TickText: seq<#IConvertible>,
+            ?TickVals: seq<#IConvertible>,
+            ?TickWidth: float,
+            ?X: float,
+            ?XAnchor: StyleParam.HorizontalAlign,
+            ?XPad: float,
+            ?XRef: string,
+            ?Y: float,
+            ?YAnchor: StyleParam.VerticalAlign,
+            ?YPad: float,
+            ?YRef: string
         ) =
 
         let title =
@@ -922,80 +922,80 @@ type Chart =
     [<CompiledName("WithLayoutStyle")>]
     static member withLayoutStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLegend: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Margin: Margin,
-            [<Optional; DefaultParameterValue(null)>] ?AutoSize: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Width: int,
-            [<Optional; DefaultParameterValue(null)>] ?Height: int,
-            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
-            [<Optional; DefaultParameterValue(null)>] ?UniformText: UniformText,
-            [<Optional; DefaultParameterValue(null)>] ?Separators: string,
-            [<Optional; DefaultParameterValue(null)>] ?PaperBGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?PlotBGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
-            [<Optional; DefaultParameterValue(null)>] ?Colorscale: DefaultColorScales,
-            [<Optional; DefaultParameterValue(null)>] ?Colorway: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ModeBar: ModeBar,
-            [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
-            [<Optional; DefaultParameterValue(null)>] ?ClickMode: StyleParam.ClickMode,
-            [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
-            [<Optional; DefaultParameterValue(null)>] ?SelectDirection: StyleParam.SelectDirection,
-            [<Optional; DefaultParameterValue(null)>] ?ActiveSelection: ActiveSelection,
-            [<Optional; DefaultParameterValue(null)>] ?NewSelection: NewSelection,
-            [<Optional; DefaultParameterValue(null)>] ?HoverDistance: int,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeDistance: int,
-            [<Optional; DefaultParameterValue(null)>] ?Hoverlabel: Hoverlabel,
-            [<Optional; DefaultParameterValue(null)>] ?Transition: Transition,
-            [<Optional; DefaultParameterValue(null)>] ?DataRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?EditRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?SelectRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?Template: DynamicObj,
-            [<Optional; DefaultParameterValue(null)>] ?Meta: string,
-            [<Optional; DefaultParameterValue(null)>] ?Computed: string,
-            [<Optional; DefaultParameterValue(null)>] ?Grid: LayoutGrid,
-            [<Optional; DefaultParameterValue(null)>] ?Calendar: StyleParam.Calendar,
-            [<Optional; DefaultParameterValue(null)>] ?MinReducedHeight: int,
-            [<Optional; DefaultParameterValue(null)>] ?MinReducedWidth: int,
-            [<Optional; DefaultParameterValue(null)>] ?NewShape: NewShape,
-            [<Optional; DefaultParameterValue(null)>] ?ActiveShape: ActiveShape,
-            [<Optional; DefaultParameterValue(null)>] ?HideSources: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ScatterGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?ScatterMode: StyleParam.ScatterMode,
-            [<Optional; DefaultParameterValue(null)>] ?BarGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?BarGroupGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?BarMode: StyleParam.BarMode,
-            [<Optional; DefaultParameterValue(null)>] ?BarNorm: StyleParam.BarNorm,
-            [<Optional; DefaultParameterValue(null)>] ?ExtendPieColors: bool,
-            [<Optional; DefaultParameterValue(null)>] ?HiddenLabels: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?PieColorWay: Color,
-            [<Optional; DefaultParameterValue(null)>] ?BoxGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?BoxGroupGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?BoxMode: StyleParam.BoxMode,
-            [<Optional; DefaultParameterValue(null)>] ?ViolinGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?ViolinGroupGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?ViolinMode: StyleParam.ViolinMode,
-            [<Optional; DefaultParameterValue(null)>] ?WaterfallGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?WaterfallGroupGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?WaterfallMode: StyleParam.WaterfallMode,
-            [<Optional; DefaultParameterValue(null)>] ?FunnelGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?FunnelGroupGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?FunnelMode: StyleParam.FunnelMode,
-            [<Optional; DefaultParameterValue(null)>] ?ExtendFunnelAreaColors: bool,
-            [<Optional; DefaultParameterValue(null)>] ?FunnelAreaColorWay: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ExtendSunBurstColors: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SunBurstColorWay: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ExtendTreeMapColors: bool,
-            [<Optional; DefaultParameterValue(null)>] ?TreeMapColorWay: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ExtendIcicleColors: bool,
-            [<Optional; DefaultParameterValue(null)>] ?IcicleColorWay: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
-            [<Optional; DefaultParameterValue(null)>] ?Shapes: seq<Shape>,
-            [<Optional; DefaultParameterValue(null)>] ?Selections: seq<Selection>,
-            [<Optional; DefaultParameterValue(null)>] ?Images: seq<LayoutImage>,
-            [<Optional; DefaultParameterValue(null)>] ?Sliders: seq<Slider>,
-            [<Optional; DefaultParameterValue(null)>] ?UpdateMenus: seq<UpdateMenu>
+            ?Title: Title,
+            ?ShowLegend: bool,
+            ?Margin: Margin,
+            ?AutoSize: bool,
+            ?Width: int,
+            ?Height: int,
+            ?Font: Font,
+            ?UniformText: UniformText,
+            ?Separators: string,
+            ?PaperBGColor: Color,
+            ?PlotBGColor: Color,
+            ?AutoTypeNumbers: StyleParam.AutoTypeNumbers,
+            ?Colorscale: DefaultColorScales,
+            ?Colorway: Color,
+            ?ModeBar: ModeBar,
+            ?HoverMode: StyleParam.HoverMode,
+            ?ClickMode: StyleParam.ClickMode,
+            ?DragMode: StyleParam.DragMode,
+            ?SelectDirection: StyleParam.SelectDirection,
+            ?ActiveSelection: ActiveSelection,
+            ?NewSelection: NewSelection,
+            ?HoverDistance: int,
+            ?SpikeDistance: int,
+            ?Hoverlabel: Hoverlabel,
+            ?Transition: Transition,
+            ?DataRevision: string,
+            ?UIRevision: string,
+            ?EditRevision: string,
+            ?SelectRevision: string,
+            ?Template: DynamicObj,
+            ?Meta: string,
+            ?Computed: string,
+            ?Grid: LayoutGrid,
+            ?Calendar: StyleParam.Calendar,
+            ?MinReducedHeight: int,
+            ?MinReducedWidth: int,
+            ?NewShape: NewShape,
+            ?ActiveShape: ActiveShape,
+            ?HideSources: bool,
+            ?ScatterGap: float,
+            ?ScatterMode: StyleParam.ScatterMode,
+            ?BarGap: float,
+            ?BarGroupGap: float,
+            ?BarMode: StyleParam.BarMode,
+            ?BarNorm: StyleParam.BarNorm,
+            ?ExtendPieColors: bool,
+            ?HiddenLabels: seq<#IConvertible>,
+            ?PieColorWay: Color,
+            ?BoxGap: float,
+            ?BoxGroupGap: float,
+            ?BoxMode: StyleParam.BoxMode,
+            ?ViolinGap: float,
+            ?ViolinGroupGap: float,
+            ?ViolinMode: StyleParam.ViolinMode,
+            ?WaterfallGap: float,
+            ?WaterfallGroupGap: float,
+            ?WaterfallMode: StyleParam.WaterfallMode,
+            ?FunnelGap: float,
+            ?FunnelGroupGap: float,
+            ?FunnelMode: StyleParam.FunnelMode,
+            ?ExtendFunnelAreaColors: bool,
+            ?FunnelAreaColorWay: Color,
+            ?ExtendSunBurstColors: bool,
+            ?SunBurstColorWay: Color,
+            ?ExtendTreeMapColors: bool,
+            ?TreeMapColorWay: Color,
+            ?ExtendIcicleColors: bool,
+            ?IcicleColorWay: Color,
+            ?Annotations: seq<Annotation>,
+            ?Shapes: seq<Shape>,
+            ?Selections: seq<Selection>,
+            ?Images: seq<LayoutImage>,
+            ?Sliders: seq<Slider>,
+            ?UpdateMenus: seq<UpdateMenu>
         ) =
         (fun (ch: GenericChart) ->
 
@@ -1091,8 +1091,8 @@ type Chart =
         (
             axis: LinearAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?SceneAxis: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?SceneAxis: StyleParam.SubPlotId,
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -1167,7 +1167,7 @@ type Chart =
     /// <param name="xAxis">The x axis to set on the chart's layout</param>
     /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
     [<CompiledName("WithXAxis")>]
-    static member withXAxis(xAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+    static member withXAxis(xAxis: LinearAxis, ?Id: StyleParam.SubPlotId) =
         let id =
             defaultArg Id (StyleParam.SubPlotId.XAxis 1)
 
@@ -1212,36 +1212,36 @@ type Chart =
     [<CompiledName("WithXAxisStyle")>]
     static member withXAxisStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
-            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
-            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
-            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Position: float,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
-            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+            ?TitleText: string,
+            ?TitleFont: Font,
+            ?TitleStandoff: int,
+            ?Title: Title,
+            ?Color: Color,
+            ?AxisType: StyleParam.AxisType,
+            ?MinMax: #IConvertible * #IConvertible,
+            ?Mirror: StyleParam.Mirror,
+            ?ShowSpikes: bool,
+            ?SpikeColor: Color,
+            ?SpikeThickness: int,
+            ?ShowLine: bool,
+            ?LineColor: Color,
+            ?ShowGrid: bool,
+            ?GridColor: Color,
+            ?GridDash: StyleParam.DrawingStyle,
+            ?ZeroLine: bool,
+            ?ZeroLineColor: Color,
+            ?Anchor: StyleParam.LinearAxisId,
+            ?Side: StyleParam.Side,
+            ?Overlaying: StyleParam.LinearAxisId,
+            ?Domain: float * float,
+            ?Position: float,
+            ?CategoryOrder: StyleParam.CategoryOrder,
+            ?CategoryArray: seq<#IConvertible>,
+            ?RangeSlider: RangeSlider,
+            ?RangeSelector: RangeSelector,
+            ?BackgroundColor: Color,
+            ?ShowBackground: bool,
+            ?Id: StyleParam.SubPlotId
         ) =
         let range =
             MinMax |> Option.map StyleParam.Range.ofMinMax
@@ -1289,7 +1289,7 @@ type Chart =
 
     /// Sets the range slider for the xAxis
     [<CompiledName("WithXAxisRangeSlider")>]
-    static member withXAxisRangeSlider(rangeSlider: RangeSlider, [<Optional; DefaultParameterValue(null)>] ?Id) =
+    static member withXAxisRangeSlider(rangeSlider: RangeSlider, ?Id) =
         let xaxis =
             LinearAxis.init (RangeSlider = rangeSlider)
 
@@ -1303,7 +1303,7 @@ type Chart =
     /// <param name="yAxis">The y axis to set on the chart's layout</param>
     /// <param name="Id">The target axis id with which the axis should be set. Default is 1.</param>
     [<CompiledName("WithYAxis")>]
-    static member withYAxis(yAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId) =
+    static member withYAxis(yAxis: LinearAxis, ?Id: StyleParam.SubPlotId) =
         let id =
             defaultArg Id (StyleParam.SubPlotId.YAxis 1)
 
@@ -1350,38 +1350,38 @@ type Chart =
     [<CompiledName("WithYAxisStyle")>]
     static member withYAxisStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
-            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
-            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?GridDash: StyleParam.DrawingStyle,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
-            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?AutoShift: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Shift: int,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Position: float,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
-            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: StyleParam.SubPlotId
+            ?TitleText: string,
+            ?TitleFont: Font,
+            ?TitleStandoff: int,
+            ?Title: Title,
+            ?Color: Color,
+            ?AxisType: StyleParam.AxisType,
+            ?MinMax: #IConvertible * #IConvertible,
+            ?Mirror: StyleParam.Mirror,
+            ?ShowSpikes: bool,
+            ?SpikeColor: Color,
+            ?SpikeThickness: int,
+            ?ShowLine: bool,
+            ?LineColor: Color,
+            ?ShowGrid: bool,
+            ?GridColor: Color,
+            ?GridDash: StyleParam.DrawingStyle,
+            ?ZeroLine: bool,
+            ?ZeroLineColor: Color,
+            ?Anchor: StyleParam.LinearAxisId,
+            ?Side: StyleParam.Side,
+            ?Overlaying: StyleParam.LinearAxisId,
+            ?AutoShift: bool,
+            ?Shift: int,
+            ?Domain: float * float,
+            ?Position: float,
+            ?CategoryOrder: StyleParam.CategoryOrder,
+            ?CategoryArray: seq<#IConvertible>,
+            ?RangeSlider: RangeSlider,
+            ?RangeSelector: RangeSelector,
+            ?BackgroundColor: Color,
+            ?ShowBackground: bool,
+            ?Id: StyleParam.SubPlotId
         ) =
         let range =
             MinMax |> Option.map StyleParam.Range.ofMinMax
@@ -1437,7 +1437,7 @@ type Chart =
     /// <param name="zAxis">The z axis to set on the chart's layout</param>
     /// <param name="Id">The target scene id on which the axis should be set. Default is 1.</param>
     [<CompiledName("WithZAxis")>]
-    static member withZAxis(zAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withZAxis(zAxis: LinearAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Scene
 
@@ -1481,35 +1481,35 @@ type Chart =
     [<CompiledName("WithZAxisStyle")>]
     static member withZAxisStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?TitleText: string,
-            [<Optional; DefaultParameterValue(null)>] ?TitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?TitleStandoff: int,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?Color: Color,
-            [<Optional; DefaultParameterValue(null)>] ?AxisType: StyleParam.AxisType,
-            [<Optional; DefaultParameterValue(null)>] ?MinMax: #IConvertible * #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?Mirror: StyleParam.Mirror,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSpikes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SpikeThickness: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowGrid: bool,
-            [<Optional; DefaultParameterValue(null)>] ?GridColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLine: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ZeroLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Anchor: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Side: StyleParam.Side,
-            [<Optional; DefaultParameterValue(null)>] ?Overlaying: StyleParam.LinearAxisId,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Position: float,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryOrder: StyleParam.CategoryOrder,
-            [<Optional; DefaultParameterValue(null)>] ?CategoryArray: seq<#IConvertible>,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSlider: RangeSlider,
-            [<Optional; DefaultParameterValue(null)>] ?RangeSelector: RangeSelector,
-            [<Optional; DefaultParameterValue(null)>] ?BackgroundColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowBackground: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?TitleText: string,
+            ?TitleFont: Font,
+            ?TitleStandoff: int,
+            ?Title: Title,
+            ?Color: Color,
+            ?AxisType: StyleParam.AxisType,
+            ?MinMax: #IConvertible * #IConvertible,
+            ?Mirror: StyleParam.Mirror,
+            ?ShowSpikes: bool,
+            ?SpikeColor: Color,
+            ?SpikeThickness: int,
+            ?ShowLine: bool,
+            ?LineColor: Color,
+            ?ShowGrid: bool,
+            ?GridColor: Color,
+            ?ZeroLine: bool,
+            ?ZeroLineColor: Color,
+            ?Anchor: StyleParam.LinearAxisId,
+            ?Side: StyleParam.Side,
+            ?Overlaying: StyleParam.LinearAxisId,
+            ?Domain: float * float,
+            ?Position: float,
+            ?CategoryOrder: StyleParam.CategoryOrder,
+            ?CategoryArray: seq<#IConvertible>,
+            ?RangeSlider: RangeSlider,
+            ?RangeSelector: RangeSelector,
+            ?BackgroundColor: Color,
+            ?ShowBackground: bool,
+            ?Id: int
         ) =
         let range =
             MinMax |> Option.map StyleParam.Range.ofMinMax
@@ -1565,7 +1565,7 @@ type Chart =
         (
             scene: Scene,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         let combine = defaultArg Combine false
@@ -1584,7 +1584,7 @@ type Chart =
     /// <param name="scene">The Scene to set on the chart's layout</param>
     /// <param name="Id">The target scene id on which the scene should be set. Default is 1.</param>
     [<CompiledName("WithScene")>]
-    static member withScene(scene: Scene, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withScene(scene: Scene, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Scene
 
@@ -1611,19 +1611,19 @@ type Chart =
     [<CompiledName("WithSceneStyle")>]
     static member withSceneStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Annotations: seq<Annotation>,
-            [<Optional; DefaultParameterValue(null)>] ?AspectMode: StyleParam.AspectMode,
-            [<Optional; DefaultParameterValue(null)>] ?AspectRatio: AspectRatio,
-            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Camera: Camera,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?DragMode: StyleParam.DragMode,
-            [<Optional; DefaultParameterValue(null)>] ?HoverMode: StyleParam.HoverMode,
-            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?XAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?YAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?ZAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?Annotations: seq<Annotation>,
+            ?AspectMode: StyleParam.AspectMode,
+            ?AspectRatio: AspectRatio,
+            ?BGColor: Color,
+            ?Camera: Camera,
+            ?Domain: Domain,
+            ?DragMode: StyleParam.DragMode,
+            ?HoverMode: StyleParam.HoverMode,
+            ?UIRevision: string,
+            ?XAxis: LinearAxis,
+            ?YAxis: LinearAxis,
+            ?ZAxis: LinearAxis,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let scene =
@@ -1655,7 +1655,7 @@ type Chart =
         (
             polar: Polar,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         let combine = defaultArg Combine false
@@ -1674,7 +1674,7 @@ type Chart =
     /// <param name="polar">The new Polar for the chart's layout</param>
     /// <param name="Id">The target polar id on which the polar object should be set. Default is 1.</param>
     [<CompiledName("WithPolar")>]
-    static member withPolar(polar: Polar, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withPolar(polar: Polar, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Polar
 
@@ -1697,15 +1697,15 @@ type Chart =
     [<CompiledName("WithPolarStyle")>]
     static member withPolarStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?Sector: float * float,
-            [<Optional; DefaultParameterValue(null)>] ?Hole: float,
-            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?RadialAxis: RadialAxis,
-            [<Optional; DefaultParameterValue(null)>] ?AngularAxis: AngularAxis,
-            [<Optional; DefaultParameterValue(null)>] ?GridShape: StyleParam.PolarGridShape,
-            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?Domain: Domain,
+            ?Sector: float * float,
+            ?Hole: float,
+            ?BGColor: Color,
+            ?RadialAxis: RadialAxis,
+            ?AngularAxis: AngularAxis,
+            ?GridShape: StyleParam.PolarGridShape,
+            ?UIRevision: string,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let polar =
@@ -1733,7 +1733,7 @@ type Chart =
         (
             angularAxis: AngularAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -1774,7 +1774,7 @@ type Chart =
     /// <param name="angularAxis">The new AngularAxis for the chart layout's polar object</param>
     /// <param name="Id">The target polar id on which the AngularAxis should be set. Default is 1.</param>
     [<CompiledName("WithAngularAxis")>]
-    static member withAngularAxis(angularAxis: AngularAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withAngularAxis(angularAxis: AngularAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Polar
 
@@ -1791,7 +1791,7 @@ type Chart =
         (
             radialAxis: RadialAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -1833,7 +1833,7 @@ type Chart =
     /// <param name="radialAxis">The new RadialAxis for the chart layout's polar object</param>
     /// <param name="Id">The target polar id on which the RadialAxis should be set. Default is 1.</param>
     [<CompiledName("WithRadialAxis")>]
-    static member withRadialAxis(radialAxis: RadialAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withRadialAxis(radialAxis: RadialAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Polar
 
@@ -1850,7 +1850,7 @@ type Chart =
         (
             smith: Smith,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         let combine = defaultArg Combine false
@@ -1869,7 +1869,7 @@ type Chart =
     /// <param name="smith">The new Smith for the chart's layout</param>
     /// <param name="Id">The target smith id on which the smith object should be set. Default is 1.</param>
     [<CompiledName("WithSmith")>]
-    static member withSmith(smith: Smith, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withSmith(smith: Smith, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Smith
 
@@ -1884,11 +1884,11 @@ type Chart =
     [<CompiledName("WithSmithStyle")>]
     static member withSmithStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?ImaginaryAxis: ImaginaryAxis,
-            [<Optional; DefaultParameterValue(null)>] ?RealAxis: RealAxis,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?BGColor: Color,
+            ?Domain: Domain,
+            ?ImaginaryAxis: ImaginaryAxis,
+            ?RealAxis: RealAxis,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let smith =
@@ -1907,7 +1907,7 @@ type Chart =
         (
             imaginaryAxis: ImaginaryAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -1948,7 +1948,7 @@ type Chart =
     /// <param name="imaginaryAxis">The new ImaginaryAxis for the chart layout's smith object</param>
     /// <param name="Id">The target smith id on which the ImaginaryAxis should be set. Default is 1.</param>
     [<CompiledName("WithImaginaryAxis")>]
-    static member withImaginaryAxis(imaginaryAxis: ImaginaryAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withImaginaryAxis(imaginaryAxis: ImaginaryAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Smith
 
@@ -1965,7 +1965,7 @@ type Chart =
         (
             realAxis: RealAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -2005,7 +2005,7 @@ type Chart =
     /// <param name="realAxis">The new RealAxis for the chart layout's smith object</param>
     /// <param name="Id">The target smith id on which the RealAxis should be set. Default is 1.</param>
     [<CompiledName("WithRealAxis")>]
-    static member withRealAxis(realAxis: RealAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withRealAxis(realAxis: RealAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Smith
 
@@ -2018,7 +2018,7 @@ type Chart =
     /// <param name="id">The target Geo id with which the Geo object should be set.</param>
     /// <param name="Combine">Whether or not to combine the objects if there is already an Geo set (default is false)</param>
     [<CompiledName("SetGeo")>]
-    static member setGeo(geo: Geo, id: StyleParam.SubPlotId, [<Optional; DefaultParameterValue(null)>] ?Combine: bool) =
+    static member setGeo(geo: Geo, id: StyleParam.SubPlotId, ?Combine: bool) =
 
         let combine = defaultArg Combine false
 
@@ -2036,7 +2036,7 @@ type Chart =
     /// <param name="geo">The new Geo for the chart's layout</param>
     /// <param name="Id">The target geo id on which the Geo should be set. Default is 1.</param>
     [<CompiledName("WithGeo")>]
-    static member withGeo(geo: Geo, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withGeo(geo: Geo, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Geo
 
@@ -2082,38 +2082,38 @@ type Chart =
     [<CompiledName("WithGeoStyle")>]
     static member withGeoStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?FitBounds: StyleParam.GeoFitBounds,
-            [<Optional; DefaultParameterValue(null)>] ?Resolution: StyleParam.GeoResolution,
-            [<Optional; DefaultParameterValue(null)>] ?Scope: StyleParam.GeoScope,
-            [<Optional; DefaultParameterValue(null)>] ?Projection: GeoProjection,
-            [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
-            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?ShowCoastLines: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CoastLineColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?CoastLineWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLand: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LandColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowOcean: bool,
-            [<Optional; DefaultParameterValue(null)>] ?OceanColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLakes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LakeColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?ShowRivers: bool,
-            [<Optional; DefaultParameterValue(null)>] ?RiverColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?RiverWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?ShowCountries: bool,
-            [<Optional; DefaultParameterValue(null)>] ?CountryColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?CountryWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSubunits: bool,
-            [<Optional; DefaultParameterValue(null)>] ?SubunitColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?SubunitWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?ShowFrame: bool,
-            [<Optional; DefaultParameterValue(null)>] ?FrameColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?FrameWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?BgColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?LatAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?LonAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?FitBounds: StyleParam.GeoFitBounds,
+            ?Resolution: StyleParam.GeoResolution,
+            ?Scope: StyleParam.GeoScope,
+            ?Projection: GeoProjection,
+            ?Center: (float * float),
+            ?Visible: bool,
+            ?Domain: Domain,
+            ?ShowCoastLines: bool,
+            ?CoastLineColor: Color,
+            ?CoastLineWidth: float,
+            ?ShowLand: bool,
+            ?LandColor: Color,
+            ?ShowOcean: bool,
+            ?OceanColor: Color,
+            ?ShowLakes: bool,
+            ?LakeColor: Color,
+            ?ShowRivers: bool,
+            ?RiverColor: Color,
+            ?RiverWidth: float,
+            ?ShowCountries: bool,
+            ?CountryColor: Color,
+            ?CountryWidth: float,
+            ?ShowSubunits: bool,
+            ?SubunitColor: Color,
+            ?SubunitWidth: float,
+            ?ShowFrame: bool,
+            ?FrameColor: Color,
+            ?FrameWidth: float,
+            ?BgColor: Color,
+            ?LatAxis: LinearAxis,
+            ?LonAxis: LinearAxis,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let geo =
@@ -2167,10 +2167,10 @@ type Chart =
     static member withGeoProjection
         (
             projectionType: StyleParam.GeoProjectionType,
-            [<Optional; DefaultParameterValue(null)>] ?Rotation,
-            [<Optional; DefaultParameterValue(null)>] ?Parallels,
-            [<Optional; DefaultParameterValue(null)>] ?Scale,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?Rotation,
+            ?Parallels,
+            ?Scale,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
 
@@ -2197,7 +2197,7 @@ type Chart =
         (
             mapbox: Mapbox,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         let combine = defaultArg Combine false
@@ -2216,7 +2216,7 @@ type Chart =
     /// <param name="mapbox">The Mapbox to set on the chart's layout</param>
     /// <param name="Id">The target mapbox id on which the Mapbox should be set. Default is 1.</param>
     [<CompiledName("WithMapbox")>]
-    static member withMapbox(mapbox: Mapbox, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withMapbox(mapbox: Mapbox, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Mapbox
 
@@ -2238,15 +2238,15 @@ type Chart =
     /// <param name="Id">The target mapbox id</param>
     static member withMapboxStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?AccessToken: string,
-            [<Optional; DefaultParameterValue(null)>] ?Style: StyleParam.MapboxStyle,
-            [<Optional; DefaultParameterValue(null)>] ?Center: (float * float),
-            [<Optional; DefaultParameterValue(null)>] ?Zoom: float,
-            [<Optional; DefaultParameterValue(null)>] ?Bearing: float,
-            [<Optional; DefaultParameterValue(null)>] ?Pitch: float,
-            [<Optional; DefaultParameterValue(null)>] ?Layers: seq<MapboxLayer>,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?Domain: Domain,
+            ?AccessToken: string,
+            ?Style: StyleParam.MapboxStyle,
+            ?Center: (float * float),
+            ?Zoom: float,
+            ?Bearing: float,
+            ?Pitch: float,
+            ?Layers: seq<MapboxLayer>,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let mapbox =
@@ -2274,7 +2274,7 @@ type Chart =
         (
             ternary: Ternary,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         let combine = defaultArg Combine false
@@ -2293,7 +2293,7 @@ type Chart =
     /// <param name="ternary">The Ternary to set on the chart's layout</param>
     /// <param name="Id">The target ternary id on which the Ternary should be set. Default is 1.</param>
     [<CompiledName("WithTernary")>]
-    static member withTernary(ternary: Ternary, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withTernary(ternary: Ternary, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
 
@@ -2313,13 +2313,13 @@ type Chart =
     /// <param name="Id">The target Ternary id</param>
     static member withTernaryStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?AAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?BAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?CAxis: LinearAxis,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?Sum: #IConvertible,
-            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?AAxis: LinearAxis,
+            ?BAxis: LinearAxis,
+            ?CAxis: LinearAxis,
+            ?Domain: Domain,
+            ?Sum: #IConvertible,
+            ?BGColor: Color,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let ternary =
@@ -2345,7 +2345,7 @@ type Chart =
         (
             aAxis: LinearAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -2387,7 +2387,7 @@ type Chart =
     /// <param name="aAxis">The new a axis for the chart layout's ternary object</param>
     /// <param name="Id">The target ternary id on which the a axis should be set. Default is 1.</param>
     [<CompiledName("WithAAxis")>]
-    static member withAAxis(aAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withAAxis(aAxis: LinearAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
 
@@ -2404,7 +2404,7 @@ type Chart =
         (
             bAxis: LinearAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -2446,7 +2446,7 @@ type Chart =
     /// <param name="bAxis">The new b axis for the chart layout's ternary object</param>
     /// <param name="Id">The target ternary id on which the b axis should be set. Default is 1.</param>
     [<CompiledName("WithBAxis")>]
-    static member withBAxis(bAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withBAxis(bAxis: LinearAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
 
@@ -2463,7 +2463,7 @@ type Chart =
         (
             cAxis: LinearAxis,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
 
         fun (ch: GenericChart) ->
@@ -2505,7 +2505,7 @@ type Chart =
     /// <param name="cAxis">The new c axis for the chart layout's ternary object</param>
     /// <param name="Id">The target ternary id on which the c axis should be set. Default is 1.</param>
     [<CompiledName("WithCAxis")>]
-    static member withCAxis(cAxis: LinearAxis, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withCAxis(cAxis: LinearAxis, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Ternary
 
@@ -2556,18 +2556,18 @@ type Chart =
     [<CompiledName("WithLayoutGridStyle")>]
     static member withLayoutGridStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?Rows: int,
-            [<Optional; DefaultParameterValue(null)>] ?Columns: int,
-            [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
-            [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
-            [<Optional; DefaultParameterValue(null)>] ?XGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?YGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
-            [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
+            ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            ?XAxes: StyleParam.LinearAxisId[],
+            ?YAxes: StyleParam.LinearAxisId[],
+            ?Rows: int,
+            ?Columns: int,
+            ?RowOrder: StyleParam.LayoutGridRowOrder,
+            ?Pattern: StyleParam.LayoutGridPattern,
+            ?XGap: float,
+            ?YGap: float,
+            ?Domain: Domain,
+            ?XSide: StyleParam.LayoutGridXSide,
+            ?YSide: StyleParam.LayoutGridYSide
         ) =
         (fun (ch: GenericChart) ->
             let grid =
@@ -2600,7 +2600,7 @@ type Chart =
         (
             legend: Legend,
             id: StyleParam.SubPlotId,
-            [<Optional; DefaultParameterValue(null)>] ?Combine: bool
+            ?Combine: bool
         ) =
             let combine = defaultArg Combine false
 
@@ -2619,7 +2619,7 @@ type Chart =
     /// <param name="legend">The Legend to set on the chart's layout</param>
     /// <param name="Id">The target Legend id with which the Legend should be set. Default is 1.</param>
     [<CompiledName("WithLegend")>]
-    static member withLegend(legend: Legend, [<Optional; DefaultParameterValue(null)>] ?Id: int) =
+    static member withLegend(legend: Legend, ?Id: int) =
         let id =
             Id |> Option.defaultValue 1 |> StyleParam.SubPlotId.Legend
 
@@ -2659,32 +2659,32 @@ type Chart =
     [<CompiledName("WithLegendStyle")>]
     static member withLegendStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?BGColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?BorderColor: Color,
-            [<Optional; DefaultParameterValue(null)>] ?BorderWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?EntryWidth: float,
-            [<Optional; DefaultParameterValue(null)>] ?EntryWidthMode: StyleParam.EntryWidthMode,
-            [<Optional; DefaultParameterValue(null)>] ?Font: Font,
-            [<Optional; DefaultParameterValue(null)>] ?GroupClick: StyleParam.TraceGroupClickOptions,
-            [<Optional; DefaultParameterValue(null)>] ?GroupTitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?ItemClick: StyleParam.TraceItemClickOptions,
-            [<Optional; DefaultParameterValue(null)>] ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
-            [<Optional; DefaultParameterValue(null)>] ?ItemSizing: StyleParam.TraceItemSizing,
-            [<Optional; DefaultParameterValue(null)>] ?ItemWidth: int,
-            [<Optional; DefaultParameterValue(null)>] ?Orientation: StyleParam.Orientation,
-            [<Optional; DefaultParameterValue(null)>] ?Title: Title,
-            [<Optional; DefaultParameterValue(null)>] ?TraceGroupGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?TraceOrder: StyleParam.TraceOrder,
-            [<Optional; DefaultParameterValue(null)>] ?UIRevision: string,
-            [<Optional; DefaultParameterValue(null)>] ?VerticalAlign: StyleParam.VerticalAlign,
-            [<Optional; DefaultParameterValue(null)>] ?Visible: bool,
-            [<Optional; DefaultParameterValue(null)>] ?X: float,
-            [<Optional; DefaultParameterValue(null)>] ?XAnchor: StyleParam.XAnchorPosition,
-            [<Optional; DefaultParameterValue(null)>] ?XRef: string,
-            [<Optional; DefaultParameterValue(null)>] ?Y: float,
-            [<Optional; DefaultParameterValue(null)>] ?YAnchor: StyleParam.YAnchorPosition,
-            [<Optional; DefaultParameterValue(null)>] ?YRef: string,
-            [<Optional; DefaultParameterValue(null)>] ?Id: int
+            ?BGColor: Color,
+            ?BorderColor: Color,
+            ?BorderWidth: float,
+            ?EntryWidth: float,
+            ?EntryWidthMode: StyleParam.EntryWidthMode,
+            ?Font: Font,
+            ?GroupClick: StyleParam.TraceGroupClickOptions,
+            ?GroupTitleFont: Font,
+            ?ItemClick: StyleParam.TraceItemClickOptions,
+            ?ItemDoubleClick: StyleParam.TraceItemClickOptions,
+            ?ItemSizing: StyleParam.TraceItemSizing,
+            ?ItemWidth: int,
+            ?Orientation: StyleParam.Orientation,
+            ?Title: Title,
+            ?TraceGroupGap: float,
+            ?TraceOrder: StyleParam.TraceOrder,
+            ?UIRevision: string,
+            ?VerticalAlign: StyleParam.VerticalAlign,
+            ?Visible: bool,
+            ?X: float,
+            ?XAnchor: StyleParam.XAnchorPosition,
+            ?XRef: string,
+            ?Y: float,
+            ?YAnchor: StyleParam.YAnchorPosition,
+            ?YRef: string,
+            ?Id: int
         ) =
         (fun (ch: GenericChart) ->
             let legend =
@@ -2727,7 +2727,7 @@ type Chart =
     static member withAnnotations
         (
             annotations: seq<Annotation>,
-            [<Optional; DefaultParameterValue(true)>] ?Append: bool
+            ?Append: bool
         ) =
         let append = defaultArg Append true
 
@@ -2749,12 +2749,12 @@ type Chart =
             ch |> GenericChart.mapLayout (Layout.style (Annotations = annotations'))
 
     [<CompiledName("WithAnnotation")>]
-    static member withAnnotation(annotation: Annotation, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withAnnotation(annotation: Annotation, ?Append: bool) =
         Chart.withAnnotations ([ annotation ], ?Append = Append)
 
     // Set the title of a Chart
     [<CompiledName("WithTitle")>]
-    static member withTitle(title, [<Optional; DefaultParameterValue(null)>] ?TitleFont) =
+    static member withTitle(title, ?TitleFont) =
         (fun (ch: GenericChart) ->
             let layout =
                 Layout() |> Layout.style (Title = Title.init (Text = title, ?Font = TitleFont))
@@ -2774,8 +2774,8 @@ type Chart =
     [<CompiledName("WithSize")>]
     static member withSize
         (
-            [<Optional; DefaultParameterValue(null)>] ?Width: int,
-            [<Optional; DefaultParameterValue(null)>] ?Height: int
+            ?Width: int,
+            ?Height: int
         ) =
 
         fun (ch: GenericChart) ->
@@ -2804,12 +2804,12 @@ type Chart =
     [<CompiledName("WithMarginSize")>]
     static member withMarginSize
         (
-            [<Optional; DefaultParameterValue(null)>] ?Left,
-            [<Optional; DefaultParameterValue(null)>] ?Right,
-            [<Optional; DefaultParameterValue(null)>] ?Top,
-            [<Optional; DefaultParameterValue(null)>] ?Bottom,
-            [<Optional; DefaultParameterValue(null)>] ?Pad,
-            [<Optional; DefaultParameterValue(null)>] ?Autoexpand
+            ?Left,
+            ?Right,
+            ?Top,
+            ?Bottom,
+            ?Pad,
+            ?Autoexpand
         ) =
         let margin =
             Margin.init (
@@ -2839,7 +2839,7 @@ type Chart =
     /// <param name="shapes">The shapes to add to the input charts layout</param>
     /// <param name="Append">If true, the input annotations will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
     [<CompiledName("WithShapes")>]
-    static member withShapes(shapes: seq<Shape>, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withShapes(shapes: seq<Shape>, ?Append: bool) =
         let append = defaultArg Append true
 
         fun (ch: GenericChart) ->
@@ -2858,7 +2858,7 @@ type Chart =
             ch |> GenericChart.mapLayout (Layout.style (Shapes = shapes'))
 
     [<CompiledName("WithShape")>]
-    static member withShape(shape: Shape, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withShape(shape: Shape, ?Append: bool) =
         Chart.withShapes ([ shape ], ?Append = Append)
 
     /// <summary>
@@ -2867,7 +2867,7 @@ type Chart =
     /// <param name="selections">The selections to add to the input charts layout</param>
     /// <param name="Append">If true, the input selections will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
     [<CompiledName("WithSelections")>]
-    static member withSelections(selections: seq<Selection>, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withSelections(selections: seq<Selection>, ?Append: bool) =
         let append = defaultArg Append true
 
         fun (ch: GenericChart) ->
@@ -2888,7 +2888,7 @@ type Chart =
             ch |> GenericChart.mapLayout (Layout.style (Selections = selections'))
 
     [<CompiledName("WithSelection")>]
-    static member withSelection(selection: Selection, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withSelection(selection: Selection, ?Append: bool) =
         Chart.withSelections ([ selection ], ?Append = Append)
 
     //==============================================================================================================
@@ -2978,45 +2978,45 @@ type Chart =
     [<CompiledName("WithConfigStyle")>]
     static member withConfigStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?StaticPlot: bool,
-            [<Optional; DefaultParameterValue(null)>] ?TypesetMath: bool,
-            [<Optional; DefaultParameterValue(null)>] ?PlotlyServerUrl: string,
-            [<Optional; DefaultParameterValue(null)>] ?Editable: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Edits: Edits,
-            [<Optional; DefaultParameterValue(null)>] ?EditSelection: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Autosizable: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Responsive: bool,
-            [<Optional; DefaultParameterValue(null)>] ?FillFrame: bool,
-            [<Optional; DefaultParameterValue(null)>] ?FrameMargins: float,
-            [<Optional; DefaultParameterValue(null)>] ?ScrollZoom: StyleParam.ScrollZoom,
-            [<Optional; DefaultParameterValue(null)>] ?DoubleClick: StyleParam.DoubleClick,
-            [<Optional; DefaultParameterValue(null)>] ?DoubleClickDelay: int,
-            [<Optional; DefaultParameterValue(null)>] ?ShowAxisDragHandles: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowAxisRangeEntryBoxes: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowTips: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowLink: bool,
-            [<Optional; DefaultParameterValue(null)>] ?LinkText: string,
-            [<Optional; DefaultParameterValue(null)>] ?SendData: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSources: obj,
-            [<Optional; DefaultParameterValue(null)>] ?DisplayModeBar: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowSendToCloud: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ShowEditInChartStudio: bool,
-            [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToRemove: seq<StyleParam.ModeBarButton>,
-            [<Optional; DefaultParameterValue(null)>] ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>,
-            [<Optional; DefaultParameterValue(null)>] ?ModeBarButtons: seq<seq<StyleParam.ModeBarButton>>,
-            [<Optional; DefaultParameterValue(null)>] ?ToImageButtonOptions: ToImageButtonOptions,
-            [<Optional; DefaultParameterValue(null)>] ?Displaylogo: bool,
-            [<Optional; DefaultParameterValue(null)>] ?Watermark: bool,
-            [<Optional; DefaultParameterValue(null)>] ?plotGlPixelRatio: float,
-            [<Optional; DefaultParameterValue(null)>] ?SetBackground: obj,
-            [<Optional; DefaultParameterValue(null)>] ?TopojsonURL: string,
-            [<Optional; DefaultParameterValue(null)>] ?MapboxAccessToken: string,
-            [<Optional; DefaultParameterValue(null)>] ?Logging: int,
-            [<Optional; DefaultParameterValue(null)>] ?NotifyOnLogging: int,
-            [<Optional; DefaultParameterValue(null)>] ?QueueLength: int,
-            [<Optional; DefaultParameterValue(null)>] ?GlobalTransforms: obj,
-            [<Optional; DefaultParameterValue(null)>] ?Locale: string,
-            [<Optional; DefaultParameterValue(null)>] ?Locales: obj
+            ?StaticPlot: bool,
+            ?TypesetMath: bool,
+            ?PlotlyServerUrl: string,
+            ?Editable: bool,
+            ?Edits: Edits,
+            ?EditSelection: bool,
+            ?Autosizable: bool,
+            ?Responsive: bool,
+            ?FillFrame: bool,
+            ?FrameMargins: float,
+            ?ScrollZoom: StyleParam.ScrollZoom,
+            ?DoubleClick: StyleParam.DoubleClick,
+            ?DoubleClickDelay: int,
+            ?ShowAxisDragHandles: bool,
+            ?ShowAxisRangeEntryBoxes: bool,
+            ?ShowTips: bool,
+            ?ShowLink: bool,
+            ?LinkText: string,
+            ?SendData: bool,
+            ?ShowSources: obj,
+            ?DisplayModeBar: bool,
+            ?ShowSendToCloud: bool,
+            ?ShowEditInChartStudio: bool,
+            ?ModeBarButtonsToRemove: seq<StyleParam.ModeBarButton>,
+            ?ModeBarButtonsToAdd: seq<StyleParam.ModeBarButton>,
+            ?ModeBarButtons: seq<seq<StyleParam.ModeBarButton>>,
+            ?ToImageButtonOptions: ToImageButtonOptions,
+            ?Displaylogo: bool,
+            ?Watermark: bool,
+            ?plotGlPixelRatio: float,
+            ?SetBackground: obj,
+            ?TopojsonURL: string,
+            ?MapboxAccessToken: string,
+            ?Logging: int,
+            ?NotifyOnLogging: int,
+            ?QueueLength: int,
+            ?GlobalTransforms: obj,
+            ?Locale: string,
+            ?Locales: obj
         ) =
         (fun (ch: GenericChart) ->
 
@@ -3106,19 +3106,19 @@ type Chart =
         (
             nRows: int,
             nCols: int,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitles: #seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleOffset: float,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
-            [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
-            [<Optional; DefaultParameterValue(null)>] ?XGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?YGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
-            [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
+            ?SubPlotTitles: #seq<string>,
+            ?SubPlotTitleFont: Font,
+            ?SubPlotTitleOffset: float,
+            ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            ?XAxes: StyleParam.LinearAxisId[],
+            ?YAxes: StyleParam.LinearAxisId[],
+            ?RowOrder: StyleParam.LayoutGridRowOrder,
+            ?Pattern: StyleParam.LayoutGridPattern,
+            ?XGap: float,
+            ?YGap: float,
+            ?Domain: Domain,
+            ?XSide: StyleParam.LayoutGridXSide,
+            ?YSide: StyleParam.LayoutGridYSide
         ) =
         fun (gCharts: #seq<GenericChart>) ->
 
@@ -3425,19 +3425,19 @@ type Chart =
     [<CompiledName("Grid")>]
     static member Grid
         (
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitles: #seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleOffset: float,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
-            [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
-            [<Optional; DefaultParameterValue(null)>] ?XGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?YGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
-            [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
+            ?SubPlotTitles: #seq<string>,
+            ?SubPlotTitleFont: Font,
+            ?SubPlotTitleOffset: float,
+            ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            ?XAxes: StyleParam.LinearAxisId[],
+            ?YAxes: StyleParam.LinearAxisId[],
+            ?RowOrder: StyleParam.LayoutGridRowOrder,
+            ?Pattern: StyleParam.LayoutGridPattern,
+            ?XGap: float,
+            ?YGap: float,
+            ?Domain: Domain,
+            ?XSide: StyleParam.LayoutGridXSide,
+            ?YSide: StyleParam.LayoutGridYSide
         ) =
         fun (gCharts: #seq<#seq<GenericChart>>) ->
 
@@ -3542,19 +3542,19 @@ type Chart =
     [<CompiledName("SingleStack")>]
     static member SingleStack
         (
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitles: #seq<string>,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleFont: Font,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlotTitleOffset: float,
-            [<Optional; DefaultParameterValue(null)>] ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
-            [<Optional; DefaultParameterValue(null)>] ?XAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?YAxes: StyleParam.LinearAxisId[],
-            [<Optional; DefaultParameterValue(null)>] ?RowOrder: StyleParam.LayoutGridRowOrder,
-            [<Optional; DefaultParameterValue(null)>] ?Pattern: StyleParam.LayoutGridPattern,
-            [<Optional; DefaultParameterValue(null)>] ?XGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?YGap: float,
-            [<Optional; DefaultParameterValue(null)>] ?Domain: Domain,
-            [<Optional; DefaultParameterValue(null)>] ?XSide: StyleParam.LayoutGridXSide,
-            [<Optional; DefaultParameterValue(null)>] ?YSide: StyleParam.LayoutGridYSide
+            ?SubPlotTitles: #seq<string>,
+            ?SubPlotTitleFont: Font,
+            ?SubPlotTitleOffset: float,
+            ?SubPlots: (StyleParam.LinearAxisId * StyleParam.LinearAxisId)[][],
+            ?XAxes: StyleParam.LinearAxisId[],
+            ?YAxes: StyleParam.LinearAxisId[],
+            ?RowOrder: StyleParam.LayoutGridRowOrder,
+            ?Pattern: StyleParam.LayoutGridPattern,
+            ?XGap: float,
+            ?YGap: float,
+            ?Domain: Domain,
+            ?XSide: StyleParam.LayoutGridXSide,
+            ?YSide: StyleParam.LayoutGridYSide
         ) =
 
         fun (gCharts: #seq<GenericChart>) ->
@@ -3581,7 +3581,7 @@ type Chart =
 
     /// Sets the color axis with the given id on the chart layout
     [<CompiledName("WithColorAxis")>]
-    static member withColorAxis(colorAxis: ColorAxis, [<Optional; DefaultParameterValue(null)>] ?Id) =
+    static member withColorAxis(colorAxis: ColorAxis, ?Id) =
         (fun (ch: GenericChart) ->
             let layout =
                 let id =
@@ -3597,7 +3597,7 @@ type Chart =
     /// <param name="images">The images to add to the input charts layout</param>
     /// <param name="Append">If true, the input images will be appended to existing annotations, otherwise existing annotations will be removed (default: true)</param>
     [<CompiledName("WithLayoutImages")>]
-    static member withLayoutImages(images: seq<LayoutImage>, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withLayoutImages(images: seq<LayoutImage>, ?Append: bool) =
         let append = defaultArg Append true
 
         fun (ch: GenericChart) ->
@@ -3618,7 +3618,7 @@ type Chart =
             ch |> GenericChart.mapLayout (Layout.style (Images = images'))
 
     [<CompiledName("WithLayoutImage")>]
-    static member withLayoutImage(image: LayoutImage, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withLayoutImage(image: LayoutImage, ?Append: bool) =
 
         Chart.withLayoutImages ([ image ], ?Append = Append)
 
@@ -3631,7 +3631,7 @@ type Chart =
     static member withUpdateMenus
         (
             updateMenus: seq<UpdateMenu>,
-            [<Optional; DefaultParameterValue(true)>] ?Append: bool
+            ?Append: bool
         ) =
         let append = defaultArg Append true
 
@@ -3653,7 +3653,7 @@ type Chart =
             ch |> GenericChart.mapLayout (Layout.style (UpdateMenus = updateMenus'))
 
     [<CompiledName("WithUpdateMenu")>]
-    static member withUpdateMenu(updateMenu: UpdateMenu, [<Optional; DefaultParameterValue(true)>] ?Append: bool) =
+    static member withUpdateMenu(updateMenu: UpdateMenu, ?Append: bool) =
 
         Chart.withUpdateMenus ([ updateMenu ], ?Append = Append)
 
@@ -3695,9 +3695,9 @@ type Chart =
     [<CompiledName("WithDisplayOptionsStyle")>]
     static member withDisplayOptionsStyle
         (
-            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?ChartDescription: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
+            ?AdditionalHeadTags: XmlNode list,
+            ?ChartDescription: XmlNode list,
+            ?PlotlyJSReference: PlotlyJSReference
         ) =
         (fun (ch: GenericChart) ->
 
@@ -3735,8 +3735,8 @@ type Chart =
     [<CompiledName("WithMathTex")>]
     static member withMathTex
         (
-            [<Optional; DefaultParameterValue(true)>] ?AppendTags: bool,
-            [<Optional; DefaultParameterValue(3)>] ?MathJaxVersion: int
+            ?AppendTags: bool,
+            ?MathJaxVersion: int
         ) =
         let version =
             MathJaxVersion |> Option.defaultValue 3

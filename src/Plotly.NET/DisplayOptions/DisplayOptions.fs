@@ -27,13 +27,13 @@ type DisplayOptions() =
     /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
     static member init
         (
-            [<Optional; DefaultParameterValue(null)>] ?DocumentTitle: string,
-            [<Optional; DefaultParameterValue(null)>] ?DocumentCharset: string,
-            [<Optional; DefaultParameterValue(null)>] ?DocumentDescription: string,
-            [<Optional; DefaultParameterValue(null)>] ?DocumentFavicon: XmlNode,
-            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?ChartDescription: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
+            ?DocumentTitle: string,
+            ?DocumentCharset: string,
+            ?DocumentDescription: string,
+            ?DocumentFavicon: XmlNode,
+            ?AdditionalHeadTags: XmlNode list,
+            ?ChartDescription: XmlNode list,
+            ?PlotlyJSReference: PlotlyJSReference
         ) =
         DisplayOptions()
         |> DisplayOptions.style (
@@ -54,13 +54,13 @@ type DisplayOptions() =
     /// <param name="PlotlyJSReference">Sets how plotly is referenced in the head of html docs. When CDN, a script tag that references the plotly.js CDN is included in the output. When Full, a script tag containing the plotly.js source code (~3MB) is included in the output. HTML files generated with this option are fully self-contained and can be used offline</param>
     static member style
         (
-            [<Optional; DefaultParameterValue(null)>] ?DocumentTitle: string,
-            [<Optional; DefaultParameterValue(null)>] ?DocumentCharset: string,
-            [<Optional; DefaultParameterValue(null)>] ?DocumentDescription: string,
-            [<Optional; DefaultParameterValue(null)>] ?DocumentFavicon: XmlNode,
-            [<Optional; DefaultParameterValue(null)>] ?AdditionalHeadTags: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?ChartDescription: XmlNode list,
-            [<Optional; DefaultParameterValue(null)>] ?PlotlyJSReference: PlotlyJSReference
+            ?DocumentTitle: string,
+            ?DocumentCharset: string,
+            ?DocumentDescription: string,
+            ?DocumentFavicon: XmlNode,
+            ?AdditionalHeadTags: XmlNode list,
+            ?ChartDescription: XmlNode list,
+            ?PlotlyJSReference: PlotlyJSReference
         ) =
         fun (displayOpts: DisplayOptions) ->
             displayOpts

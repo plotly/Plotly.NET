@@ -163,7 +163,6 @@
     <Compile Include="ChartAPI\ChartCarpet.fs" />
     <Compile Include="ChartAPI\ChartDomain.fs" />
     <Compile Include="ChartAPI\ChartSmith.fs" />
-    <Compile Include="CSharpLayer\GenericChartExtensions.fs" />
     <None Include="Playground.fsx" />
   </ItemGroup>
   <ItemGroup>
