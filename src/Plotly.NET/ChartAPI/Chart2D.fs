@@ -4397,7 +4397,7 @@ module Chart2D =
         /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
         /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
         /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
-        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ShowContoursLabels">Determines whether to label the contour lines with their values.</param>
         /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
         /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
         /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
@@ -4544,7 +4544,7 @@ module Chart2D =
         /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
         /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
         /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
-        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ShowContoursLabels">Determines whether to label the contour lines with their values.</param>
         /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
         /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
         /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
@@ -5122,7 +5122,7 @@ module Chart2D =
         /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
         /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
         /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
-        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ShowContoursLabels">Determines whether to label the contour lines with their values.</param>
         /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
         /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
         /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
@@ -5817,7 +5817,6 @@ module Chart2D =
         /// <param name="PointMarkerColor">Sets the marker color of the point trace.</param>
         /// <param name="PointMarkerSymbol">Sets the marker symbol of the point trace.</param>
         /// <param name="PointMarkerSize">Sets the marker size of the point trace.</param>
-
         /// <param name="ContourLinesDash">Sets the contour line dash style</param>
         /// <param name="ContourLinesColor">Sets the contour line color</param>
         /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
@@ -5827,12 +5826,14 @@ module Chart2D =
         /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
         /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
         /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
-        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ShowContoursLabels">Determines whether to label the contour lines with their values.</param>
         /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
         /// <param name="ContoursStart">Sets the starting contour level value. Must be less than `contours.end`</param>
         /// <param name="ContoursEnd">Sets the end contour level value. Must be more than `contours.start`</param>
         /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
-
+        /// <param name="NContours">Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is "true" or if `contours.size` is missing.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace. If "", the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If "percent" / "probability", the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If "density", the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If "probability density", the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).</param>
+        /// <param name="ContourOpacity">Sets the opacity of the histogram2dcontour trace.</param>
         /// <param name="ColorBar">Sets the color bar.</param>
         /// <param name="ColorScale">Sets the colorscale of the histogram2dcontour trace.</param>
         /// <param name="ShowScale">whether or not to show the colorbar</param>
