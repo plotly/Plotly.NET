@@ -1,5 +1,7 @@
 ### 5.1.0 - September 04 2024
 
+Maintenance release to prevent Plotly.NET breaking for users that upgrade the DynamicObj dependency to >=3.0.0. DynamicObj is now pinned to the version range [2.0.0, 3.0.0) until we manage to make Plotly.NET work with the major changes in that lib.
+
 ### 5.0.0 - May 27 2024
 
 Major release with lots of bug fixes, improvements, and upstream feature additions from plotly.js. Many changes are backwards-incompatible with previous versions.

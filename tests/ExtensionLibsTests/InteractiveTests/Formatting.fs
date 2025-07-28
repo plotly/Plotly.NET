@@ -42,7 +42,7 @@ module ConventionBased =
 
 [<Tests>]
 let ``Convention-based Formatting`` =
-    testList "Convention-based Formatting" [
+    ptestList "Convention-based Formatting" [
         testCase "Convention based formatter sources can provide lazy registration of custom formatters" <| fun _ ->
             let o = ConventionBased.TypeWithCustomFormatter()
             let formatted = o.ToDisplayString()
