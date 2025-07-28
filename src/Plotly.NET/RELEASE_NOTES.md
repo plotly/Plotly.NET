@@ -1,3 +1,9 @@
+### 6.0.0 - TBD
+
+This version [removes C# interop from the core F# Plotly.NET library](https://github.com/plotly/Plotly.NET/issues/457), offloading those implementations directly to the native C# lib Plotly.NET.CSharp:
+
+[Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/8)
+
 ### 5.1.0 - September 04 2024
 
 Maintenance release to prevent Plotly.NET breaking for users that upgrade the DynamicObj dependency to >=3.0.0. DynamicObj is now pinned to the version range [2.0.0, 3.0.0) until we manage to make Plotly.NET work with the major changes in that lib.
