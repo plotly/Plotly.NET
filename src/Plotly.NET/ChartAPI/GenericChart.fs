@@ -493,13 +493,13 @@ type GenericChart =
         if useDefaults then
             // copy default instances so we can safely manipulate the respective objects of the created chart without changing global default objects
             let defaultConfig = Config()
-            Defaults.DefaultConfig.CopyDynamicPropertiesTo defaultConfig
+            Defaults.DefaultConfig.DeepCopyPropertiesTo defaultConfig
 
             let defaultDisplayOpts = DisplayOptions()
-            Defaults.DefaultDisplayOptions.CopyDynamicPropertiesTo defaultDisplayOpts
+            Defaults.DefaultDisplayOptions.DeepCopyPropertiesTo defaultDisplayOpts
 
             let defaultTemplate = Template()
-            Defaults.DefaultTemplate.CopyDynamicPropertiesTo defaultTemplate
+            Defaults.DefaultTemplate.DeepCopyPropertiesTo defaultTemplate
 
             let defaultLayout = 
                 Layout.init (

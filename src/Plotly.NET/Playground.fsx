@@ -2,7 +2,7 @@
 #r "nuget: Deedle"
 #r "nuget: FSharpAux"
 #r "nuget: DynamicObj"
-#r "nuget: Newtonsoft.Json, 13.0.1"
+#r "nuget: Newtonsoft.JSON, 13.0.3"
 
 #load "InternalUtils.fs"
 

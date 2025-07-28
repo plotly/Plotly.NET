@@ -3,8 +3,8 @@
 (*** condition: prepare ***)
 #r "nuget: Deedle"
 #r "nuget: FsHttp"
-#r "nuget: Newtonsoft.JSON, 13.0.1"
-#r "nuget: DynamicObj, 2.0.0"
+#r "nuget: Newtonsoft.JSON, 13.0.3"
+#r "nuget: DynamicObj, 7.0.1"
 #r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 

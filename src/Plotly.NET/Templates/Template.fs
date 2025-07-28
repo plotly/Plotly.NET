@@ -31,7 +31,7 @@ type Template() =
                             templates
                             |> Seq.map (fun t ->
                                 let tmp = DynamicObj()
-                                t.CopyDynamicPropertiesTo(tmp)
+                                t.DeepCopyPropertiesTo(tmp)
                                 tmp)
 
                         )))
