@@ -6020,7 +6020,6 @@ module Chart2D =
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data for the Y value.</param>
         /// <param name="reference">Sets the y coordinates for reference Y value.</param>
-        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
@@ -6058,7 +6057,6 @@ module Chart2D =
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
                 reference: seq<#IConvertible>,
-                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ReferenceName: string,
                 ?GroupName: string,
@@ -6150,7 +6148,7 @@ module Chart2D =
                 Chart.Scatter(
                     x = x1,
                     y = y1,
-                    mode = changeMode mode,
+                    mode = changeMode StyleParam.Mode.Lines_Markers,
                     Opacity = 1.,
                     Marker = marker,
                     ?Name = Name,
@@ -6206,7 +6204,6 @@ module Chart2D =
         /// <summary>Displays a residue Chart by displaying the y values in relation to the provided reference Values. </summary>
         /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
         /// <param name="reference">Sets the y coordinates for reference Y value.</param>
-        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
@@ -6243,7 +6240,6 @@ module Chart2D =
             (
                 xy: seq<#IConvertible*#IConvertible>,
                 reference: seq<#IConvertible>,
-                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ReferenceName: string,
                 ?GroupName: string,
@@ -6283,7 +6279,6 @@ module Chart2D =
                     x = x,
                     y = y,
                     reference = reference,
-                    mode = mode,
                     ?Name                       = Name,
                     ?ReferenceName              = ReferenceName,
                     ?GroupName                  = GroupName,
@@ -6321,7 +6316,6 @@ module Chart2D =
         /// <summary>Displays a residue Chart by displaying the y values in relation to the provided reference Values. </summary>
         /// <param name="xy">Sets the x and y coordinates of the plotted data.</param>
         /// <param name="referenceValue">Sets the y coordinate for reference Y value.</param>
-        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
@@ -6358,7 +6352,6 @@ module Chart2D =
             (
                 xy: seq<#IConvertible*#IConvertible>,
                 referenceValue: #IConvertible,
-                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ReferenceName: string,
                 ?GroupName: string,
@@ -6399,7 +6392,6 @@ module Chart2D =
                     x = x,
                     y = y,
                     reference = reference,
-                    mode = mode,
                     ?Name                       = Name,
                     ?ReferenceName              = ReferenceName,
                     ?GroupName                  = GroupName,
@@ -6441,7 +6433,6 @@ module Chart2D =
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
         /// <param name="referenceValue">Sets the y coordinate for reference Y value.</param>
-        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
@@ -6479,7 +6470,6 @@ module Chart2D =
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
                 referenceValue: #IConvertible,
-                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ReferenceName: string,
                 ?GroupName: string,
@@ -6519,7 +6509,6 @@ module Chart2D =
                     x = x,
                     y = y,
                     reference = reference,
-                    mode = mode,
                     ?Name                       = Name,
                     ?ReferenceName              = ReferenceName,
                     ?GroupName                  = GroupName,
