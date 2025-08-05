@@ -1,3 +1,7 @@
+### 0.14.0 - TBD
+
+- bump version range of Plotly.NET to [6.0.0, 7.0.0)
+
 ### 0.13.0 - September 04 2024
 
 - [Add C# wrapper for Chart.SingleStack](https://github.com/plotly/Plotly.NET/pull/467) thanks [@TheKiiiing](https://github.com/TheKiiiing)!

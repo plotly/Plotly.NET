@@ -49,9 +49,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[5.0.0, 6.0.0)" />
-    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.24229.4" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.24229.4" />
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[6.0.0, 7.0.0)" />
+    <PackageReference Include="Microsoft.DotNet.Interactive" Version="1.0.0-beta.25323.1" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Formatting" Version="1.0.0-beta.25323.1" />
   </ItemGroup>
 
   <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">

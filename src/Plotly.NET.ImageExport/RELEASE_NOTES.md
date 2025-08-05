@@ -1,3 +1,7 @@
+### 7.0.0 - TBD
+
+- bump version range of Plotly.NET to [6.0.0, 7.0.0)
+
 ### 6.1.0 - September 04 2024
 
 Remove explicit DynamicObj dependency (use transitive dependency from Plotly.NET)

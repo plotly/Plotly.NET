@@ -1,3 +1,7 @@
+## 6.0.0 - TBD
+
+- Update .NET interactive references
+
 ## 5.0.0 - May 27 2024
 
 - bump version range of Plotly.NET to [5.0.0, 6.0.0)
