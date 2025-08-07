@@ -6022,7 +6022,8 @@ module Chart2D =
         /// <param name="reference">Sets the y coordinates for reference Y value.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
-        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="LegendGroupData">Sets the name of the legendgroup for the data distribution trace of this plot.</param>
+        /// <param name="LegendGroupReference">Sets the name of the legendgroup for the reference trace of this plot.</param>
         /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Text">Sets a text associated with each datum for the Y values.</param>
@@ -6059,7 +6060,8 @@ module Chart2D =
                 reference: seq<#IConvertible>,
                 ?Name: string,
                 ?ReferenceName: string,
-                ?GroupName: string,
+                ?LegendGroupData: string,
+                ?LegendGroupReference: string,
                 ?ShowMarkers: bool,
                 ?ShowLegend: bool,
                 ?Text: #IConvertible,
@@ -6165,8 +6167,8 @@ module Chart2D =
                 )
                 |> GenericChart.mapTrace (
                     Trace2DStyle.Scatter(
-                        LegendGroup = (defaultArg GroupName "Datapoints"),
-                        LegendGroupTitle = (Title.init (Text = (defaultArg GroupName "Datapoints")))
+                        ?LegendGroup        = LegendGroupData,
+                        ?LegendGroupTitle   = if LegendGroupData.IsSome then Some (Title.init (Text = LegendGroupData.Value)) else None
                     )
                 )
 
@@ -6184,8 +6186,8 @@ module Chart2D =
                         ?TextPosition = ReferenceTextPosition,
                         ?MultiTextPosition = MultiReferenceTextPosition,
                         ?Line = ReferenceLine,
-                        LegendGroup = (defaultArg GroupName "Reference Line"),
-                        LegendGroupTitle = (Title.init (Text = (defaultArg GroupName "Reference Line")))
+                        ?LegendGroup        = LegendGroupReference,
+                        ?LegendGroupTitle   = if LegendGroupReference.IsSome then Some (Title.init (Text = LegendGroupReference.Value)) else None
                     )
                 )
                 |> TraceStyle.Marker(
@@ -6206,7 +6208,8 @@ module Chart2D =
         /// <param name="reference">Sets the y coordinates for reference Y value.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
-        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="LegendGroupData">Sets the name of the legendgroup for the data distribution trace of this plot.</param>
+        /// <param name="LegendGroupReference">Sets the name of the legendgroup for the reference trace of this plot.</param>
         /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Text">Sets a text associated with each datum for the Y values.</param>
@@ -6242,7 +6245,8 @@ module Chart2D =
                 reference: seq<#IConvertible>,
                 ?Name: string,
                 ?ReferenceName: string,
-                ?GroupName: string,
+                ?LegendGroupData: string,
+                ?LegendGroupReference: string,
                 ?ShowMarkers: bool,
                 ?ShowLegend: bool,
                 ?Text: #IConvertible,
@@ -6281,7 +6285,8 @@ module Chart2D =
                     reference = reference,
                     ?Name                       = Name,
                     ?ReferenceName              = ReferenceName,
-                    ?GroupName                  = GroupName,
+                    ?LegendGroupData            = LegendGroupData,
+                    ?LegendGroupReference       = LegendGroupReference,
                     ?ShowMarkers                = ShowMarkers,
                     ?ShowLegend                 = ShowLegend,
                     ?Text                       = Text,
@@ -6318,7 +6323,8 @@ module Chart2D =
         /// <param name="referenceValue">Sets the y coordinate for reference Y value.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
-        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="LegendGroupData">Sets the name of the legendgroup for the data distribution trace of this plot.</param>
+        /// <param name="LegendGroupReference">Sets the name of the legendgroup for the reference trace of this plot.</param>
         /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Text">Sets a text associated with each datum for the Y values.</param>
@@ -6354,7 +6360,8 @@ module Chart2D =
                 referenceValue: #IConvertible,
                 ?Name: string,
                 ?ReferenceName: string,
-                ?GroupName: string,
+                ?LegendGroupData :string,                
+                ?LegendGroupReference :string,
                 ?ShowMarkers: bool,
                 ?ShowLegend: bool,
                 ?Text: #IConvertible,
@@ -6394,7 +6401,8 @@ module Chart2D =
                     reference = reference,
                     ?Name                       = Name,
                     ?ReferenceName              = ReferenceName,
-                    ?GroupName                  = GroupName,
+                    ?LegendGroupData            = LegendGroupData,
+                    ?LegendGroupReference       = LegendGroupReference,    
                     ?ShowMarkers                = ShowMarkers,
                     ?ShowLegend                 = ShowLegend,
                     ?Text                       = Text,
@@ -6435,7 +6443,8 @@ module Chart2D =
         /// <param name="referenceValue">Sets the y coordinate for reference Y value.</param>
         /// <param name="Name">Sets the trace name of the Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="ReferenceName">Sets the trace name of the reference Y values. The trace name appear as the legend item and on hover</param>
-        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="LegendGroupData">Sets the name of the legendgroup for the data distribution trace of this plot.</param>
+        /// <param name="LegendGroupReference">Sets the name of the legendgroup for the reference trace of this plot.</param>
         /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Text">Sets a text associated with each datum for the Y values.</param>
@@ -6472,7 +6481,8 @@ module Chart2D =
                 referenceValue: #IConvertible,
                 ?Name: string,
                 ?ReferenceName: string,
-                ?GroupName: string,
+                ?LegendGroupData: string,
+                ?LegendGroupReference: string,
                 ?ShowMarkers: bool,
                 ?ShowLegend: bool,
                 ?Text: #IConvertible,
@@ -6511,7 +6521,8 @@ module Chart2D =
                     reference = reference,
                     ?Name                       = Name,
                     ?ReferenceName              = ReferenceName,
-                    ?GroupName                  = GroupName,
+                    ?LegendGroupData            = LegendGroupData,    
+                    ?LegendGroupReference       = LegendGroupReference,        
                     ?ShowMarkers                = ShowMarkers,
                     ?ShowLegend                 = ShowLegend,
                     ?Text                       = Text,
