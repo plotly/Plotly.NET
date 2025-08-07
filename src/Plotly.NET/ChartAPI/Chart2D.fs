@@ -6167,8 +6167,7 @@ module Chart2D =
                 )
                 |> GenericChart.mapTrace (
                     Trace2DStyle.Scatter(
-                        ?LegendGroup        = LegendGroupData,
-                        ?LegendGroupTitle   = if LegendGroupData.IsSome then Some (Title.init (Text = LegendGroupData.Value)) else None
+                        ?LegendGroup        = LegendGroupData
                     )
                 )
 
@@ -6186,8 +6185,7 @@ module Chart2D =
                         ?TextPosition = ReferenceTextPosition,
                         ?MultiTextPosition = MultiReferenceTextPosition,
                         ?Line = ReferenceLine,
-                        ?LegendGroup        = LegendGroupReference,
-                        ?LegendGroupTitle   = if LegendGroupReference.IsSome then Some (Title.init (Text = LegendGroupReference.Value)) else None
+                        ?LegendGroup        = LegendGroupReference
                     )
                 )
                 |> TraceStyle.Marker(
