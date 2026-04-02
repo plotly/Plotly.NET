@@ -81,17 +81,20 @@ let testProjectsCore = [
 
 let ImageExportTestProject = ProjectInfo.create("ImageExportTests", "tests/ExtensionLibsTests/ImageExportTests/ImageExportTests.fsproj")
 let CSharpTestProject = ProjectInfo.create("CSharpTests", "tests/ExtensionLibsTests/CSharpTests/CSharpTests.csproj")
+let VersoTestProject = ProjectInfo.create("VersoTests", "tests/ExtensionLibsTests/VersoTests/VersoTests.fsproj")
 
 ///
 let testProjectsExtensionsLibs = [
     ImageExportTestProject
     CSharpTestProject
+    VersoTestProject
 ]
 
 let CoreProject = ProjectInfo.create("Plotly.NET", "src/Plotly.NET/Plotly.NET.fsproj", "src/Plotly.NET/RELEASE_NOTES.md")
 let InteractiveProject = ProjectInfo.create("Plotly.NET.Interactive", "src/Plotly.NET.Interactive/Plotly.NET.Interactive.fsproj", "src/Plotly.NET.Interactive/RELEASE_NOTES.md")
 let ImageExportProject = ProjectInfo.create("Plotly.NET.ImageExport", "src/Plotly.NET.ImageExport/Plotly.NET.ImageExport.fsproj", "src/Plotly.NET.ImageExport/RELEASE_NOTES.md")
 let CSharpProject = ProjectInfo.create("Plotly.NET.CSharp", "src/Plotly.NET.CSharp/Plotly.NET.CSharp.csproj", "src/Plotly.NET.CSharp/RELEASE_NOTES.md")
+let VersoProject = ProjectInfo.create("Plotly.NET.Verso", "src/Plotly.NET.Verso/Plotly.NET.Verso.fsproj", "src/Plotly.NET.Verso/RELEASE_NOTES.md")
 
 /// contains project info about all projects
 let projects = [
@@ -99,6 +102,7 @@ let projects = [
    InteractiveProject
    ImageExportProject
    CSharpProject
+   VersoProject
 ]
 
 /// docs are always targeting the version of the core project

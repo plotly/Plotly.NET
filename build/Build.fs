@@ -33,6 +33,7 @@ let sourceFiles =
     !! "src/Plotly.NET/**/*.fs"
     ++ "src/Plotly.NET.ImageExport/**/*.fs"
     ++ "src/Plotly.NET.Interactive/**/*.fs"
+    ++ "src/Plotly.NET.Verso/**/*.fs"
     ++ "build/*.fs"
     -- "**/obj/**/*.*"
     -- "**/bin/**/*.*"
