@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Gregor Beyerle, Timo Mühlhaus, Kevin Schneider, F# open source contributors</Authors>
+    <Description>A Verso Notebook Extension for displaying Plotly.NET charts.</Description>
+    <Summary>A Verso Notebook Extension for displaying Plotly.NET charts.</Summary>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://plotly.net</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageTags>visualization charting plotly fsharp csharp verso notebook</PackageTags>
+    <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FsDocsLicenseLink>https://github.com/plotly/Plotly.NET/blob/dev/LICENSE</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="RELEASE_NOTES.md" />
+    <Compile Include="Formatters.fs" />
+    <Compile Include="Extension.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[6.0.0, 7.0.0)" />
+    <PackageReference Include="Verso.Abstractions" Version="1.0.11" />
+  </ItemGroup>
+
+  <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_ProjectReferenceWithExplicitPackageVersion Include="@(ProjectReference->'%(FullPath)')" Condition="'%(ProjectReference.PackageVersion)' != ''" />
+      <_ProjectReferenceWithExactPackageVersion Include="@(ProjectReference->'%(FullPath)')" Condition="'%(ProjectReference.ExactVersion)' == 'true'" />
+      <_ProjectReferenceWithReassignedVersion Include="@(_ProjectReferencesWithVersions)" Condition="'%(Identity)' != '' And '@(_ProjectReferenceWithExplicitPackageVersion)' == '@(_ProjectReferencesWithVersions)'">
+        <ProjectVersion>@(_ProjectReferenceWithExplicitPackageVersion->'%(PackageVersion)')</ProjectVersion>
+      </_ProjectReferenceWithReassignedVersion>
+      <_ProjectReferenceWithReassignedVersion Include="@(_ProjectReferencesWithVersions)" Condition="'%(Identity)' != '' And '@(_ProjectReferenceWithExactPackageVersion)' == '@(_ProjectReferencesWithVersions)'">
+        <ProjectVersion>[@(_ProjectReferencesWithVersions->'%(ProjectVersion)')]</ProjectVersion>
+      </_ProjectReferenceWithReassignedVersion>
+      <_ProjectReferencesWithVersions Remove="@(_ProjectReferenceWithReassignedVersion)" />
+      <_ProjectReferencesWithVersions Include="@(_ProjectReferenceWithReassignedVersion)" />
+    </ItemGroup>
+  </Target>
+
+</Project>
