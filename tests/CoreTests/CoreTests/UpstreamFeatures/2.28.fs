@@ -41,3 +41,58 @@ module ``Encoded typed arrays`` =
                 )
             ]
         ]
+
+module ``Encoded typed arrays on bar-family traces`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on bar-family traces" [
+                testCase "bar trace serializes encoded x/y/width/offset" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"width\":{\"bdata\":"
+                        "\"offset\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Bar with encoded arrays``)
+                )
+                testCase "bar trace serializes encoded ids/customdata/selectedpoints/text" (fun () ->
+                    [
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Bar with encoded arrays``)
+                )
+                testCase "funnel trace serializes encoded standard data-array fields" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Funnel with encoded arrays``)
+                )
+                testCase "waterfall trace serializes encoded x/y/offset" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"offset\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Waterfall with encoded arrays``)
+                )
+                testCase "waterfall trace serializes encoded ids/customdata/selectedpoints/text" (fun () ->
+                    [
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Waterfall with encoded arrays``)
+                )
+            ]
+        ]

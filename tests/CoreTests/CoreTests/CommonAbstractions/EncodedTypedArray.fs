@@ -325,3 +325,173 @@ let ``Error object encoded arrays`` =
             Expect.isFalse (json.Contains "\"arrayminus\":[9.0,8.0,7.0]") "plain trace error_y arrayminus must not be present"
         )
     ]
+
+[<Tests>]
+let ``Bar-family trace encoded fields`` =
+    testList "CommonAbstractions.EncodedTypedArray bar-family integration" [
+
+        testCase "Bar encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initBar (
+                    Trace2DStyle.Bar(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 101; 102; 103 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.5 |],
+                        MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.1; 0.0; 0.1 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "bar x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "bar y must be encoded"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "bar ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "bar customdata must be encoded"
+            Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "bar selectedpoints must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "bar text must be encoded"
+            Expect.stringContains json "\"width\":{\"bdata\":" "bar width must be encoded"
+            Expect.stringContains json "\"offset\":{\"bdata\":" "bar offset must be encoded"
+        )
+
+        testCase "Bar encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initBar (
+                    Trace2DStyle.Bar(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |],
+                        SelectedPoints = [ 0; 1 ],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |],
+                        MultiWidth = [ 0.1; 0.2 ],
+                        MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                        MultiOffset = [ -1.0; 1.0 ],
+                        MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.5; 0.5 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain bar x array must not be present"
+            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain bar y array must not be present"
+            Expect.isFalse (json.Contains "\"ids\":[1,2]") "plain bar ids array must not be present"
+            Expect.isFalse (json.Contains "\"customdata\":[10.0,20.0]") "plain bar customdata array must not be present"
+            Expect.isFalse (json.Contains "\"selectedpoints\":[0,1]") "plain bar selectedpoints array must not be present"
+            Expect.isFalse (json.Contains "\"text\":[100.0,200.0]") "plain bar text array must not be present"
+            Expect.isFalse (json.Contains "\"width\":[0.1,0.2]") "plain bar width array must not be present"
+            Expect.isFalse (json.Contains "\"offset\":[-1.0,1.0]") "plain bar offset array must not be present"
+        )
+
+        testCase "Funnel encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initFunnel (
+                    Trace2DStyle.Funnel(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 4.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 11; 12; 13 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "funnel x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "funnel y must be encoded"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "funnel ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "funnel customdata must be encoded"
+            Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "funnel selectedpoints must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "funnel text must be encoded"
+        )
+
+        testCase "Funnel encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initFunnel (
+                    Trace2DStyle.Funnel(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |],
+                        SelectedPoints = [ 0; 1 ],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain funnel x array must not be present"
+            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain funnel y array must not be present"
+            Expect.isFalse (json.Contains "\"ids\":[1,2]") "plain funnel ids array must not be present"
+            Expect.isFalse (json.Contains "\"customdata\":[10.0,20.0]") "plain funnel customdata array must not be present"
+            Expect.isFalse (json.Contains "\"selectedpoints\":[0,1]") "plain funnel selectedpoints array must not be present"
+            Expect.isFalse (json.Contains "\"text\":[100.0,200.0]") "plain funnel text array must not be present"
+        )
+
+        testCase "Waterfall encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initWaterfall (
+                    Trace2DStyle.Waterfall(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 101; 102; 103 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.1; 0.0; 0.1 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "waterfall x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "waterfall y must be encoded"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "waterfall ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "waterfall customdata must be encoded"
+            Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "waterfall selectedpoints must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "waterfall text must be encoded"
+            Expect.stringContains json "\"offset\":{\"bdata\":" "waterfall offset must be encoded"
+        )
+
+        testCase "Waterfall encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initWaterfall (
+                    Trace2DStyle.Waterfall(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |],
+                        SelectedPoints = [ 0; 1 ],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |],
+                        MultiOffset = [ -1.0; 1.0 ],
+                        MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.5; 0.5 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain waterfall x array must not be present"
+            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain waterfall y array must not be present"
+            Expect.isFalse (json.Contains "\"ids\":[1,2]") "plain waterfall ids array must not be present"
+            Expect.isFalse (json.Contains "\"customdata\":[10.0,20.0]") "plain waterfall customdata array must not be present"
+            Expect.isFalse (json.Contains "\"selectedpoints\":[0,1]") "plain waterfall selectedpoints array must not be present"
+            Expect.isFalse (json.Contains "\"text\":[100.0,200.0]") "plain waterfall text array must not be present"
+            Expect.isFalse (json.Contains "\"offset\":[-1.0,1.0]") "plain waterfall offset array must not be present"
+        )
+    ]
