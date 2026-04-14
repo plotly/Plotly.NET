@@ -176,6 +176,8 @@ type Trace2DStyle() =
     /// <param name="XCalendar">Sets the calendar system to use with `x` date data.</param>
     /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
     /// <param name="UIRevision">Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>X</c>/<c>MultiX</c>.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>Y</c>/<c>MultiY</c>.</param>
     static member Scatter
         (
             ?Name: string,
@@ -242,25 +244,29 @@ type Trace2DStyle() =
             ?StackGaps: StyleParam.StackGaps,
             ?XCalendar: StyleParam.Calendar,
             ?YCalendar: StyleParam.Calendar,
-            ?UIRevision: string
+            ?UIRevision: string,
+            ?XEncoded: EncodedTypedArray,
+            ?YEncoded: EncodedTypedArray
         ) =
         fun (trace: ('T :> Trace)) ->
             trace
-            |> DynObj.withOptionalProperty               "name"             Name                                 
+            |> DynObj.withOptionalProperty               "name"             Name
             |> DynObj.withOptionalPropertyBy             "visible"          Visible                                 StyleParam.Visible.convert
-            |> DynObj.withOptionalProperty               "showlegend"       ShowLegend                           
+            |> DynObj.withOptionalProperty               "showlegend"       ShowLegend
             |> DynObj.withOptionalPropertyBy             "legend"           Legend                                  StyleParam.SubPlotId.convert
-            |> DynObj.withOptionalProperty               "legendrank"       LegendRank                           
-            |> DynObj.withOptionalProperty               "legendgroup"      LegendGroup                          
-            |> DynObj.withOptionalProperty               "legendgrouptitle" LegendGroupTitle                     
-            |> DynObj.withOptionalProperty               "opacity"          Opacity                              
+            |> DynObj.withOptionalProperty               "legendrank"       LegendRank
+            |> DynObj.withOptionalProperty               "legendgroup"      LegendGroup
+            |> DynObj.withOptionalProperty               "legendgrouptitle" LegendGroupTitle
+            |> DynObj.withOptionalProperty               "opacity"          Opacity
             |> DynObj.withOptionalPropertyBy             "mode"             Mode                                    StyleParam.Mode.convert
-            |> DynObj.withOptionalProperty               "ids"              Ids                                  
-            |> DynObj.withOptionalSingleOrMultiProperty  "x"                (X, MultiX)                          
-            |> DynObj.withOptionalProperty               "x0"               X0                                   
-            |> DynObj.withOptionalProperty               "dx"               DX                                   
-            |> DynObj.withOptionalSingleOrMultiProperty  "y"                (Y, MultiY)                          
-            |> DynObj.withOptionalProperty               "y0"               Y0                                   
+            |> DynObj.withOptionalProperty               "ids"              Ids
+            |> DynObj.withOptionalSingleOrMultiProperty  "x"                (X, MultiX)
+            |> DynObj.withOptionalProperty               "x"                XEncoded
+            |> DynObj.withOptionalProperty               "x0"               X0
+            |> DynObj.withOptionalProperty               "dx"               DX
+            |> DynObj.withOptionalSingleOrMultiProperty  "y"                (Y, MultiY)
+            |> DynObj.withOptionalProperty               "y"                YEncoded
+            |> DynObj.withOptionalProperty               "y0"               Y0
             |> DynObj.withOptionalProperty               "dy"               DY                                   
             |> DynObj.withOptionalSingleOrMultiProperty  "text"             (Text, MultiText)                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy"textposition"     (TextPosition, MultiTextPosition)       StyleParam.TextPosition.convert
