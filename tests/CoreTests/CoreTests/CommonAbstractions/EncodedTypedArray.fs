@@ -495,3 +495,264 @@ let ``Bar-family trace encoded fields`` =
             Expect.isFalse (json.Contains "\"offset\":[-1.0,1.0]") "plain waterfall offset array must not be present"
         )
     ]
+
+[<Tests>]
+let ``1-D trace family encoded fields`` =
+    testList "CommonAbstractions.EncodedTypedArray 1-D trace family integration" [
+
+        testCase "Histogram encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initHistogram (
+                    Trace2DStyle.Histogram(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0; 7.0; 8.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3; 4 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0; 40.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 3 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 9.0; 8.0; 7.0; 6.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "histogram x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "histogram y must be encoded"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "histogram ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "histogram customdata must be encoded"
+            Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "histogram selectedpoints must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "histogram text must be encoded"
+        )
+
+        testCase "Histogram encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initHistogram (
+                    Trace2DStyle.Histogram(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |],
+                        SelectedPoints = [ 0; 1 ],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain histogram x array must not be present"
+            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain histogram y array must not be present"
+            Expect.isFalse (json.Contains "\"ids\":[1,2]") "plain histogram ids array must not be present"
+            Expect.isFalse (json.Contains "\"customdata\":[10.0,20.0]") "plain histogram customdata array must not be present"
+            Expect.isFalse (json.Contains "\"selectedpoints\":[0,1]") "plain histogram selectedpoints array must not be present"
+            Expect.isFalse (json.Contains "\"text\":[100.0,200.0]") "plain histogram text array must not be present"
+        )
+
+        testCase "BoxPlot encoded standard and computed-stat fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initBoxPlot (
+                    Trace2DStyle.BoxPlot(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 21; 22 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0 |],
+                        Q1Encoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        MedianEncoded = EncodedTypedArray.ofFloat64Array [| 1.5; 2.5 |],
+                        Q3Encoded = EncodedTypedArray.ofFloat64Array [| 2.0; 3.0 |],
+                        LowerFenceEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 1.5 |],
+                        UpperFenceEncoded = EncodedTypedArray.ofFloat64Array [| 2.5; 3.5 |],
+                        NotchSpanEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.3 |],
+                        MeanEncoded = EncodedTypedArray.ofFloat64Array [| 1.6; 2.6 |],
+                        SDEncoded = EncodedTypedArray.ofFloat64Array [| 0.4; 0.5 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":{\"bdata\":"
+                "\"ids\":{\"bdata\":"
+                "\"customdata\":{\"bdata\":"
+                "\"selectedpoints\":{\"bdata\":"
+                "\"text\":{\"bdata\":"
+                "\"q1\":{\"bdata\":"
+                "\"median\":{\"bdata\":"
+                "\"q3\":{\"bdata\":"
+                "\"lowerfence\":{\"bdata\":"
+                "\"upperfence\":{\"bdata\":"
+                "\"notchspan\":{\"bdata\":"
+                "\"mean\":{\"bdata\":"
+                "\"sd\":{\"bdata\":"
+            ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "boxplot must contain %s" needle))
+        )
+
+        testCase "BoxPlot encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initBoxPlot (
+                    Trace2DStyle.BoxPlot(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |],
+                        SelectedPoints = [ 0; 1 ],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |],
+                        Q1 = [ 9.0; 10.0 ],
+                        Q1Encoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Median = [ 11.0; 12.0 ],
+                        MedianEncoded = EncodedTypedArray.ofFloat64Array [| 1.5; 2.5 |],
+                        Q3 = [ 13.0; 14.0 ],
+                        Q3Encoded = EncodedTypedArray.ofFloat64Array [| 2.0; 3.0 |],
+                        LowerFence = [ 7.0; 8.0 ],
+                        LowerFenceEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 1.5 |],
+                        UpperFence = [ 15.0; 16.0 ],
+                        UpperFenceEncoded = EncodedTypedArray.ofFloat64Array [| 2.5; 3.5 |],
+                        NotchSpan = [ 0.8; 0.9 ],
+                        NotchSpanEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.3 |],
+                        Mean = [ 12.0; 13.0 ],
+                        MeanEncoded = EncodedTypedArray.ofFloat64Array [| 1.6; 2.6 |],
+                        SD = [ 1.2; 1.3 ],
+                        SDEncoded = EncodedTypedArray.ofFloat64Array [| 0.4; 0.5 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":[10.0,20.0]"
+                "\"ids\":[1,2]"
+                "\"customdata\":[10.0,20.0]"
+                "\"selectedpoints\":[0,1]"
+                "\"text\":[100.0,200.0]"
+                "\"q1\":[9.0,10.0]"
+                "\"median\":[11.0,12.0]"
+                "\"q3\":[13.0,14.0]"
+                "\"lowerfence\":[7.0,8.0]"
+                "\"upperfence\":[15.0,16.0]"
+                "\"notchspan\":[0.8,0.9]"
+                "\"mean\":[12.0,13.0]"
+                "\"sd\":[1.2,1.3]"
+            ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain boxplot array must not be present: %s" needle))
+        )
+
+        testCase "Violin encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initViolin (
+                    Trace2DStyle.Violin(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 1.0; 2.0; 2.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0; 5.0; 6.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53; 54 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0; 64.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0; 74.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "violin x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "violin y must be encoded"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "violin ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "violin customdata must be encoded"
+            Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "violin selectedpoints must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "violin text must be encoded"
+        )
+
+        testCase "OHLC encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initOHLC (
+                    Trace2DStyle.OHLC(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 81; 82; 83 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0; 103.0 |],
+                        OpenEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+                        HighEncoded = EncodedTypedArray.ofFloat64Array [| 15.0; 16.0; 17.0 |],
+                        LowEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 9.0; 10.0 |],
+                        CloseEncoded = EncodedTypedArray.ofFloat64Array [| 12.0; 13.0; 14.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":{\"bdata\":"
+                "\"ids\":{\"bdata\":"
+                "\"customdata\":{\"bdata\":"
+                "\"selectedpoints\":{\"bdata\":"
+                "\"text\":{\"bdata\":"
+                "\"open\":{\"bdata\":"
+                "\"high\":{\"bdata\":"
+                "\"low\":{\"bdata\":"
+                "\"close\":{\"bdata\":"
+            ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "ohlc must contain %s" needle))
+        )
+
+        testCase "Candlestick encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initCandlestick (
+                    Trace2DStyle.Candlestick(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |],
+                        SelectedPoints = [ 0; 1 ],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |],
+                        Open = [ 21.0; 22.0 ],
+                        OpenEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        High = [ 23.0; 24.0 ],
+                        HighEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Low = [ 19.0; 20.0 ],
+                        LowEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                        Close = [ 22.0; 23.0 ],
+                        CloseEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":[10.0,20.0]"
+                "\"ids\":[1,2]"
+                "\"customdata\":[10.0,20.0]"
+                "\"selectedpoints\":[0,1]"
+                "\"text\":[100.0,200.0]"
+                "\"open\":[21.0,22.0]"
+                "\"high\":[23.0,24.0]"
+                "\"low\":[19.0,20.0]"
+                "\"close\":[22.0,23.0]"
+            ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain candlestick array must not be present: %s" needle))
+        )
+
+        testCase "Splom encoded metadata fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initSplom (
+                    Trace2DStyle.Splom(
+                        Dimensions = [
+                            Dimension.initSplom(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
+                            Dimension.initSplom(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                        ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 141; 142; 143 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 151.0; 152.0; 153.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 161.0; 162.0; 163.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"ids\":{\"bdata\":" "splom ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "splom customdata must be encoded"
+            Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "splom selectedpoints must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "splom text must be encoded"
+        )
+    ]

@@ -96,3 +96,89 @@ module ``Encoded typed arrays on bar-family traces`` =
                 )
             ]
         ]
+
+module ``Encoded typed arrays on 1-D trace families`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on 1-D trace families" [
+                testCase "histogram trace serializes encoded standard data-array fields" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on 1-D trace families``.``Histogram with encoded arrays``)
+                )
+                testCase "boxplot trace serializes encoded sample and computed-stat fields" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                        "\"q1\":{\"bdata\":"
+                        "\"median\":{\"bdata\":"
+                        "\"q3\":{\"bdata\":"
+                        "\"lowerfence\":{\"bdata\":"
+                        "\"upperfence\":{\"bdata\":"
+                        "\"notchspan\":{\"bdata\":"
+                        "\"mean\":{\"bdata\":"
+                        "\"sd\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on 1-D trace families``.``BoxPlot with encoded arrays``)
+                )
+                testCase "violin trace serializes encoded standard data-array fields" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on 1-D trace families``.``Violin with encoded arrays``)
+                )
+                testCase "ohlc trace serializes encoded finance arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                        "\"open\":{\"bdata\":"
+                        "\"high\":{\"bdata\":"
+                        "\"low\":{\"bdata\":"
+                        "\"close\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on 1-D trace families``.``OHLC with encoded arrays``)
+                )
+                testCase "candlestick trace serializes encoded finance arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                        "\"open\":{\"bdata\":"
+                        "\"high\":{\"bdata\":"
+                        "\"low\":{\"bdata\":"
+                        "\"close\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on 1-D trace families``.``Candlestick with encoded arrays``)
+                )
+                testCase "splom trace serializes encoded metadata arrays" (fun () ->
+                    [
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on 1-D trace families``.``Splom with encoded arrays``)
+                )
+            ]
+        ]
