@@ -18,6 +18,8 @@ type Error() =
     /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
     /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
     /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="ArrayEncoded">Sets the error-bar lengths as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>Array</c>.</param>
+    /// <param name ="ArrayminusEncoded">Sets the negative-direction error-bar lengths as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>Arrayminus</c>.</param>
     /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
     /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
     /// <param name ="Traceref"></param>
@@ -33,6 +35,8 @@ type Error() =
             ?Symmetric: bool,
             ?Array: seq<#IConvertible>,
             ?Arrayminus: seq<#IConvertible>,
+            ?ArrayEncoded: EncodedTypedArray,
+            ?ArrayminusEncoded: EncodedTypedArray,
             ?Value: float,
             ?Valueminus: float,
             ?Traceref: int,
@@ -49,6 +53,8 @@ type Error() =
             ?Symmetric = Symmetric,
             ?Array = Array,
             ?Arrayminus = Arrayminus,
+            ?ArrayEncoded = ArrayEncoded,
+            ?ArrayminusEncoded = ArrayminusEncoded,
             ?Value = Value,
             ?Valueminus = Valueminus,
             ?Traceref = Traceref,
@@ -67,6 +73,8 @@ type Error() =
     /// <param name ="Symmetric">Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.</param>
     /// <param name ="Array">Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.</param>
     /// <param name ="Arrayminus">Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.</param>
+    /// <param name ="ArrayEncoded">Sets the error-bar lengths as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>Array</c>.</param>
+    /// <param name ="ArrayminusEncoded">Sets the negative-direction error-bar lengths as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>Arrayminus</c>.</param>
     /// <param name ="Value">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars.</param>
     /// <param name ="Valueminus">Sets the value of either the percentage (if `type` is set to "percent") or the constant (if `type` is set to "constant") corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars</param>
     /// <param name ="Traceref"></param>
@@ -82,6 +90,8 @@ type Error() =
             ?Symmetric: bool,
             ?Array: seq<#IConvertible>,
             ?Arrayminus: seq<#IConvertible>,
+            ?ArrayEncoded: EncodedTypedArray,
+            ?ArrayminusEncoded: EncodedTypedArray,
             ?Value: float,
             ?Valueminus: float,
             ?Traceref: int,
@@ -99,6 +109,8 @@ type Error() =
             |> DynObj.withOptionalProperty "symmetric" Symmetric
             |> DynObj.withOptionalProperty "array" Array
             |> DynObj.withOptionalProperty "arrayminus" Arrayminus
+            |> DynObj.withOptionalProperty "array" ArrayEncoded
+            |> DynObj.withOptionalProperty "arrayminus" ArrayminusEncoded
             |> DynObj.withOptionalProperty "value" Value
             |> DynObj.withOptionalProperty "valueminus" Valueminus
             |> DynObj.withOptionalProperty "traceref" Traceref

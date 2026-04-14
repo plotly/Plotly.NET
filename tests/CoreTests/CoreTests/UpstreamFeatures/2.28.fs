@@ -19,5 +19,25 @@ module ``Encoded typed arrays`` =
                     """"y":{"bdata":"AAAAAAAACEAAAAAAAAAQQA==","dtype":"f8"}"""
                     |> chartGeneratedContains ``Encoded typed arrays``.``Scatter x/y encoded``
                 )
+                testCase "scatter additional data-array fields are serialized as encoded objects" (fun () ->
+                    [
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                        "\"selectedpoints\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays``.``Scatter fully encoded with error bars``)
+                )
+                testCase "encoded error_x array is serialized under error_x.array" (fun () ->
+                    """"error_x":{"type":"data","array":{"bdata":"""
+                    |> chartGeneratedContains ``Encoded typed arrays``.``Scatter fully encoded with error bars``
+                )
+                testCase "encoded error_y array and arrayminus are serialized under error_y" (fun () ->
+                    [
+                        "\"error_y\":{\"type\":\"data\",\"array\":{\"bdata\":"
+                        "\"arrayminus\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays``.``Scatter fully encoded with error bars``)
+                )
             ]
         ]
