@@ -5,7 +5,7 @@
 #r "nuget: FsHttp"
 #r "nuget: Newtonsoft.JSON, 13.0.3"
 #r "nuget: DynamicObj, 7.0.1"
-#r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
 #r "../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
 Plotly.NET.Defaults.DefaultDisplayOptions <-

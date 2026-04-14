@@ -22,13 +22,10 @@ open BasicTasks
 
 //let _ = TestTasks.buildTestsAll |> ignore
 //let _ = TestTasks.buildTestsCore |> ignore
-//let _ = TestTasks.buildTestsNetFX |> ignore
 //let _ = TestTasks.buildTestsExtensionsLibs |> ignore
 
 //let _ = TestTasks.runTestsAll |> ignore
 //let _ = TestTasks.runTestsCore |> ignore
-//let _ = TestTasks.runTestsNetFX |> ignore
-//let _ = TestTasks.runTestsCoreWithNetFX |> ignore
 //let _ = TestTasks.runTestsExtensionLibs |> ignore
 
 

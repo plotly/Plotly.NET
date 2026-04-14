@@ -28,18 +28,13 @@ build.sh runTestsCore
 Available test targets are:
 
 - `RunTestsAll` - runs all tests
-- `RunTestsAllNoNetFX` - runs all tests except the ones that require .NET Framework
-- `RunTestsCore` - runs all tests in the `CoreTests` folder except the ones that require .NET Framework
-- `RunTestsCoreWithNetFX` - runs all tests in the `CoreTests` folder including the ones that require .NET Framework
-- `RunTestsNetFX` - runs all tests that require .NET Framework
+- `RunTestsCore` - runs all tests in the `CoreTests` folder
 - `RunTestsExtensionLibs` - runs all tests in the `ExtensionLibTests` folder
 - `RunTestsJSTests` - runs all tests in the `JSTests` folder
 
 ### Using Visual Studio Test Explorer
 
 You can also run tests from within Visual Studio using the Test Explorer.
-
-Just note that test projects targeting .NET Framework will not be visible in the Test Explorer, as they are not supported by the Test Explorer.
 
 ## Folder structure
 
@@ -69,10 +64,6 @@ The largets test suite by far that tests all things Plotly.NET, such as HTML cod
 #### CSharpInteroperabilityTests.csproj
 
 Testing usage of the core F# API from C#
-
-#### StrongNameTests.fsproj
-
-Testing usage of the core F# in an environment that requires strong named libraries. This catches for example the addition of new dependencies that are not signed, and therefore cause errors in such an environment, but not in newer .NET environments.
 
 ### ExtensionLibTests
 

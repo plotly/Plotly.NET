@@ -88,13 +88,6 @@ let testProjectsExtensionsLibs = [
     CSharpTestProject
 ]
 
-// test projects (.NET framework)
-let StrongNameTestProject = ProjectInfo.create("StrongNameTests", "tests/CoreTests/StrongNameTests/StrongNameTests.fsproj")
-
-let testProjectsNetFX = [
-    StrongNameTestProject
-]
-
 let CoreProject = ProjectInfo.create("Plotly.NET", "src/Plotly.NET/Plotly.NET.fsproj", "src/Plotly.NET/RELEASE_NOTES.md")
 let InteractiveProject = ProjectInfo.create("Plotly.NET.Interactive", "src/Plotly.NET.Interactive/Plotly.NET.Interactive.fsproj", "src/Plotly.NET.Interactive/RELEASE_NOTES.md")
 let ImageExportProject = ProjectInfo.create("Plotly.NET.ImageExport", "src/Plotly.NET.ImageExport/Plotly.NET.ImageExport.fsproj", "src/Plotly.NET.ImageExport/RELEASE_NOTES.md")

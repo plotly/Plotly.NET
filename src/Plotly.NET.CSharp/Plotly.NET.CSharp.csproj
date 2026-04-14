@@ -14,10 +14,7 @@
     <!-- Optional: Include PDB in the built .nupkg -->
     <IncludeSymbols>true</IncludeSymbols>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -14,8 +14,6 @@
     <!-- Optional: Include PDB in the built .nupkg -->
     <IncludeSymbols>true</IncludeSymbols>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <Configurations>Debug;Release;Dotnet</Configurations>
@@ -40,7 +38,6 @@
     <InternalsVisibleTo Include="FSharpTestBase" />
     <InternalsVisibleTo Include="CSharpTestBase" />
     <InternalsVisibleTo Include="CoreTests" />
-    <InternalsVisibleTo Include="StrongNameTests" />
     <InternalsVisibleTo Include="CSharpTests" />
     <InternalsVisibleTo Include="ImageExportTests" />
   </ItemGroup>
@@ -175,6 +172,6 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="DynamicObj" Version="[7.0.1, 8.0.0)" />
-    <PackageReference Include="Giraffe.ViewEngine.StrongName" Version="2.0.0-alpha1" />
+    <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
   </ItemGroup>
 </Project>

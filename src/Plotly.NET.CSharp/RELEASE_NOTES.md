@@ -1,6 +1,7 @@
 ### 0.14.0 - TBD
 
 - bump version range of Plotly.NET to [6.0.0, 7.0.0)
+- **Breaking:** Plotly.NET.CSharp assemblies are no longer strong-named. See the Plotly.NET 6.0.0 release notes for context and migration options.
 
 ### 0.13.0 - September 04 2024
 

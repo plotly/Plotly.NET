@@ -1,4 +1,4 @@
-﻿module TestTasks
+module TestTasks
 
 open BlackFox.Fake
 open Fake.DotNet
@@ -22,13 +22,9 @@ let createTestBuildTask (name: string) (deps: BuildTask.TaskInfo list) (projects
         )
     }
 
-let buildTestsAll = createTestBuildTask "BuildTestsAll" [clean; build] (testBaseProjects @ testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
+let buildTestsAll = createTestBuildTask "BuildTestsAll" [clean; build] (testBaseProjects @ testProjectsCore @ testProjectsExtensionsLibs)
 
-let buildTestsAllNoNetFX = createTestBuildTask "BuildTestsAllNoNetFX" [clean; build] (testBaseProjects @ testProjectsCore @ testProjectsExtensionsLibs)
-   
 let buildTestsCore = createTestBuildTask "BuildTestsCore" [clean; build] (testBaseProjects @ testProjectsCore)
-
-let buildTestsNetFX = createTestBuildTask "BuildTestsNetFX" [clean; build] (testBaseProjects @ testProjectsNetFX)
 
 let buildTestsExtensionsLibs = createTestBuildTask "BuildTestsExtensionsLibs" [clean; build] (testBaseProjects @ testProjectsExtensionsLibs)
 
@@ -52,19 +48,10 @@ let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: 
     }
 
 /// runs the all test projects via `dotnet test`
-let runTestsAll = createRunTestTask "RunTestsAll" [ clean; build; buildTestsAll ] (testProjectsCore @ testProjectsExtensionsLibs @ testProjectsNetFX)
-
-/// runs the all test projects except those targeting netfx via `dotnet test`
-let runTestsAllNoNetFX = createRunTestTask "RunTestsAllNoNetFX" [ clean; build; buildTestsAllNoNetFX ] (testProjectsCore @ testProjectsExtensionsLibs)
+let runTestsAll = createRunTestTask "RunTestsAll" [ clean; build; buildTestsAll ] (testProjectsCore @ testProjectsExtensionsLibs)
 
 /// runs the core test projects via `dotnet test`
-let runTestsCore = createRunTestTask "RunTestsCore" [ clean; build; buildTestsCore; buildTestsCore] testProjectsCore 
-
-/// runs the core netfx test projects via `dotnet test`
-let runTestsNetFX = createRunTestTask "RunTestsNetFX" [ clean; build; buildTestsNetFX;] testProjectsNetFX
-
-/// runs the core and core netfx test projects via `dotnet test`
-let runTestsCoreWithNetFX = createRunTestTask "RunTestsCoreWithNetFX" [ clean; build; buildTestsCore; buildTestsNetFX;] (testProjectsCore @ testProjectsNetFX)
+let runTestsCore = createRunTestTask "RunTestsCore" [ clean; build; buildTestsCore; buildTestsCore] testProjectsCore
 
 /// runs the extension lib test projects via `dotnet test`
 let runTestsExtensionLibs = createRunTestTask "RunTestsExtensionLibs" [ clean; build; buildTestsExtensionsLibs] testProjectsExtensionsLibs

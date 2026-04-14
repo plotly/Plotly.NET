@@ -4,6 +4,10 @@ This version [removes C# interop from the core F# Plotly.NET library](https://gi
 
 [Milestone link with all the fixed/closed issues](https://github.com/plotly/Plotly.NET/milestone/8)
 
+**Breaking:** Plotly.NET assemblies are no longer strong-named. Maintaining a strong-named build chain has caused recurring friction (see [#452](https://github.com/plotly/Plotly.NET/issues/452), [#371](https://github.com/plotly/Plotly.NET/issues/371), and the broader discussion at [StephenCleary/AsyncEx#129](https://github.com/StephenCleary/AsyncEx/issues/129)) and forced us to maintain a re-packaged signed fork of Giraffe.ViewEngine ([giraffe-fsharp/Giraffe.ViewEngine#23](https://github.com/giraffe-fsharp/Giraffe.ViewEngine/pull/23)). Consumers that still need strong-named binaries can use [brutaldev/StrongNameSigner](https://github.com/brutaldev/StrongNameSigner) to sign assemblies post-build.
+
+As a consequence, the html dsl dependency switches back from `Giraffe.ViewEngine.StrongName 2.0.0-alpha1` to upstream `Giraffe.ViewEngine 1.4.0`. The namespace is unchanged, so user code is not affected.
+
 ### 5.1.0 - September 04 2024
 
 Maintenance release to prevent Plotly.NET breaking for users that upgrade the DynamicObj dependency to >=3.0.0. DynamicObj is now pinned to the version range [2.0.0, 3.0.0) until we manage to make Plotly.NET work with the major changes in that lib.
