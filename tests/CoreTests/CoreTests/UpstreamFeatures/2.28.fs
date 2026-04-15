@@ -154,6 +154,59 @@ module ``Encoded typed arrays on chart bar-family roots`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart distribution and finance roots`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart distribution and finance roots" [
+                testCase "histogram constructor serializes encoded sample data" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"orientation\":\"v\""
+                        "\"type\":\"histogram\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart distribution and finance roots``.``Histogram encoded constructor``)
+                )
+                testCase "boxplot constructor serializes encoded sample data" (fun () ->
+                    [
+                        "\"y\":{\"bdata\":"
+                        "\"type\":\"box\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart distribution and finance roots``.``BoxPlot encoded constructor``)
+                )
+                testCase "violin constructor serializes encoded sample data" (fun () ->
+                    [
+                        "\"y\":{\"bdata\":"
+                        "\"type\":\"violin\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart distribution and finance roots``.``Violin encoded constructor``)
+                )
+                testCase "ohlc constructor serializes encoded finance arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"open\":{\"bdata\":"
+                        "\"high\":{\"bdata\":"
+                        "\"low\":{\"bdata\":"
+                        "\"close\":{\"bdata\":"
+                        "\"type\":\"ohlc\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart distribution and finance roots``.``OHLC encoded constructor``)
+                )
+                testCase "candlestick constructor serializes encoded finance arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"open\":{\"bdata\":"
+                        "\"high\":{\"bdata\":"
+                        "\"low\":{\"bdata\":"
+                        "\"close\":{\"bdata\":"
+                        "\"type\":\"candlestick\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart distribution and finance roots``.``Candlestick encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]

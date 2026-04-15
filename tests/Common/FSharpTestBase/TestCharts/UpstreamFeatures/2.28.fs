@@ -155,6 +155,56 @@ module ``Encoded typed arrays on chart bar-family roots`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart distribution and finance roots`` =
+
+    let ``Histogram encoded constructor`` =
+        Chart.Histogram(
+            dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 2.0; 3.0 |],
+            orientation = StyleParam.Orientation.Vertical,
+            Name = "encoded histogram",
+            UseDefaults = false
+        )
+
+    let ``BoxPlot encoded constructor`` =
+        Chart.BoxPlot(
+            dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            orientation = StyleParam.Orientation.Vertical,
+            Name = "encoded boxplot",
+            UseDefaults = false
+        )
+
+    let ``Violin encoded constructor`` =
+        Chart.Violin(
+            dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            orientation = StyleParam.Orientation.Vertical,
+            Name = "encoded violin",
+            UseDefaults = false
+        )
+
+    let ``OHLC encoded constructor`` =
+        Chart.OHLC(
+            openEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+            highEncoded = EncodedTypedArray.ofFloat64Array [| 15.0; 16.0; 17.0 |],
+            lowEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 9.0; 10.0 |],
+            closeEncoded = EncodedTypedArray.ofFloat64Array [| 12.0; 13.0; 14.0 |],
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            Name = "encoded ohlc",
+            ShowXAxisRangeSlider = false,
+            UseDefaults = false
+        )
+
+    let ``Candlestick encoded constructor`` =
+        Chart.Candlestick(
+            openEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+            highEncoded = EncodedTypedArray.ofFloat64Array [| 15.0; 16.0; 17.0 |],
+            lowEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 9.0; 10.0 |],
+            closeEncoded = EncodedTypedArray.ofFloat64Array [| 12.0; 13.0; 14.0 |],
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            Name = "encoded candlestick",
+            ShowXAxisRangeSlider = false,
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     let ``Bar with encoded arrays`` =

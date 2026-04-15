@@ -4,28 +4,24 @@ open Plotly.NET
 [<EntryPoint>]
 let main _ =
 
-    let pointCount = 250
-    let xs = [| for i in 0 .. pointCount - 1 -> float i * 2.0 * Math.PI / float (pointCount - 1) |]
-    let ys = xs |> Array.map sin
-    let band = xs |> Array.map (fun x -> 0.15 + 0.1 * abs (cos x))
-    let upper = Array.map2 (+) ys band
-    let lower = Array.map2 (-) ys band
+    let xs = [| 1.0; 2.0; 3.0; 4.0; 5.0 |]
+    let openValues = [| 100.0; 103.0; 101.0; 106.0; 104.0 |]
+    let highValues = [| 106.0; 107.0; 108.0; 110.0; 109.0 |]
+    let lowValues = [| 98.0; 100.0; 99.0; 103.0; 101.0 |]
+    let closeValues = [| 104.0; 101.0; 107.0; 104.0; 108.0 |]
 
-    let chartRangeEncodedHelperPoC =
-        Chart.Range(
+    let chartCandlestickEncodedRootPoC =
+        Chart.Candlestick(
+            openEncoded = EncodedTypedArray.ofFloat64Array openValues,
+            highEncoded = EncodedTypedArray.ofFloat64Array highValues,
+            lowEncoded = EncodedTypedArray.ofFloat64Array lowValues,
+            closeEncoded = EncodedTypedArray.ofFloat64Array closeValues,
             xEncoded = EncodedTypedArray.ofFloat64Array xs,
-            yEncoded = EncodedTypedArray.ofFloat64Array ys,
-            upperEncoded = EncodedTypedArray.ofFloat64Array upper,
-            lowerEncoded = EncodedTypedArray.ofFloat64Array lower,
-            mode = StyleParam.Mode.Lines,
-            Name = "sin(x)",
-            GroupName = "confidence band",
-            RangeColor = Color.fromString "rgba(24,119,242,0.2)",
-            LineColor = Color.fromString "#1877f2",
+            Name = "encoded candlestick root",
             UseDefaults = true
         )
-        |> Chart.withTitle "H1-B: scatter-derived helper with encoded arrays"
+        |> Chart.withTitle "H1-D: distribution and finance roots with encoded arrays"
 
-    chartRangeEncodedHelperPoC |> Chart.show
+    chartCandlestickEncodedRootPoC |> Chart.show
 
     0

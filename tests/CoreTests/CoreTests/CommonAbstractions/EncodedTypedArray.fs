@@ -705,6 +705,99 @@ let ``Scatter trace remaining encoded fields`` =
     ]
 
 [<Tests>]
+let ``Chart distribution and finance roots encoded arrays`` =
+    testList "CommonAbstractions.EncodedTypedArray Chart distribution and finance integration" [
+
+        testCase "Chart.Histogram encoded overload serializes encoded sample data" (fun () ->
+            let chart =
+                Chart.Histogram(
+                    dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 2.0; 3.0 |],
+                    orientation = StyleParam.Orientation.Vertical,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart histogram sample data must be encoded"
+            Expect.stringContains json "\"orientation\":\"v\"" "chart histogram orientation must stay vertical"
+            Expect.stringContains json "\"type\":\"histogram\"" "chart histogram trace type must still be histogram"
+        )
+
+        testCase "Chart.BoxPlot encoded overload serializes encoded sample data" (fun () ->
+            let chart =
+                Chart.BoxPlot(
+                    dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    orientation = StyleParam.Orientation.Vertical,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart boxplot sample data must be encoded"
+            Expect.stringContains json "\"type\":\"box\"" "chart boxplot trace type must still be box"
+        )
+
+        testCase "Chart.Violin encoded overload serializes encoded sample data" (fun () ->
+            let chart =
+                Chart.Violin(
+                    dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    orientation = StyleParam.Orientation.Vertical,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart violin sample data must be encoded"
+            Expect.stringContains json "\"type\":\"violin\"" "chart violin trace type must still be violin"
+        )
+
+        testCase "Chart.OHLC encoded overload serializes encoded finance arrays" (fun () ->
+            let chart =
+                Chart.OHLC(
+                    openEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+                    highEncoded = EncodedTypedArray.ofFloat64Array [| 15.0; 16.0; 17.0 |],
+                    lowEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 9.0; 10.0 |],
+                    closeEncoded = EncodedTypedArray.ofFloat64Array [| 12.0; 13.0; 14.0 |],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    ShowXAxisRangeSlider = false,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            [
+                "\"x\":{\"bdata\":"
+                "\"open\":{\"bdata\":"
+                "\"high\":{\"bdata\":"
+                "\"low\":{\"bdata\":"
+                "\"close\":{\"bdata\":"
+                "\"type\":\"ohlc\""
+            ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "chart OHLC must contain %s" needle))
+        )
+
+        testCase "Chart.Candlestick encoded overload serializes encoded finance arrays" (fun () ->
+            let chart =
+                Chart.Candlestick(
+                    openEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+                    highEncoded = EncodedTypedArray.ofFloat64Array [| 15.0; 16.0; 17.0 |],
+                    lowEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 9.0; 10.0 |],
+                    closeEncoded = EncodedTypedArray.ofFloat64Array [| 12.0; 13.0; 14.0 |],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    ShowXAxisRangeSlider = false,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            [
+                "\"x\":{\"bdata\":"
+                "\"open\":{\"bdata\":"
+                "\"high\":{\"bdata\":"
+                "\"low\":{\"bdata\":"
+                "\"close\":{\"bdata\":"
+                "\"type\":\"candlestick\""
+            ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "chart candlestick must contain %s" needle))
+        )
+    ]
+
+[<Tests>]
 let ``Error object encoded arrays`` =
     testList "CommonAbstractions.EncodedTypedArray Error integration" [
 
