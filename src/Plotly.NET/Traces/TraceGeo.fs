@@ -95,12 +95,15 @@ type TraceGeoStyle() =
             ?LegendGroup: string,
             ?LegendGroupTitle: Title,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?GeoJson: obj,
             ?FeatureIdKey: string,
             ?Locations: seq<string>,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -108,6 +111,7 @@ type TraceGeoStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Geo: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?Marker: Marker,
@@ -121,6 +125,7 @@ type TraceGeoStyle() =
             ?Zmid: float,
             ?Zmax: float,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?HoverLabel: Hoverlabel,
@@ -138,16 +143,20 @@ type TraceGeoStyle() =
             |> DynObj.withOptionalProperty               "legendgroup"     LegendGroup                         
             |> DynObj.withOptionalProperty               "legendgrouptitle"LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "ids"             Ids                                 
+            |> DynObj.withOptionalProperty               "ids"             IdsEncoded                          
             |> DynObj.withOptionalProperty               "z"               Z                                   
+            |> DynObj.withOptionalProperty               "z"               ZEncoded                            
             |> DynObj.withOptionalProperty               "geojson"         GeoJson                             
             |> DynObj.withOptionalProperty               "featureidkey"    FeatureIdKey                        
             |> DynObj.withOptionalProperty               "locations"       Locations                           
             |> DynObj.withOptionalSingleOrMultiProperty  "text"            (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"            MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"       (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"       HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty               "meta"            Meta                                
             |> DynObj.withOptionalProperty               "customdata"      CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"      CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "geo"             Geo                                 StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"       ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "marker"          Marker                              
@@ -161,6 +170,7 @@ type TraceGeoStyle() =
             |> DynObj.withOptionalProperty               "zmid"            Zmid                                
             |> DynObj.withOptionalProperty               "zmax"            Zmax                                
             |> DynObj.withOptionalProperty               "selectedpoints"  SelectedPoints                      
+            |> DynObj.withOptionalProperty               "selectedpoints"  SelectedPointsEncoded               
             |> DynObj.withOptionalProperty               "selected"        Selected                            
             |> DynObj.withOptionalProperty               "unselected"      Unselected                          
             |> DynObj.withOptionalProperty               "hoverlabel"      HoverLabel                          
@@ -223,13 +233,17 @@ type TraceGeoStyle() =
             ?Opacity: float,
             ?Mode: StyleParam.Mode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Lat: #IConvertible seq,
+            ?LatEncoded: EncodedTypedArray,
             ?GeoJson: obj,
             ?FeatureIdKey: string,
             ?Locations: seq<string>,
             ?Lon: #IConvertible seq,
+            ?LonEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -241,11 +255,13 @@ type TraceGeoStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Geo: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?Line: Line,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?ConnectGaps: bool,
@@ -268,12 +284,16 @@ type TraceGeoStyle() =
             |> DynObj.withOptionalProperty                   "opacity"            Opacity                             
             |> DynObj.withOptionalPropertyBy                 "mode"               Mode                                StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "ids"                Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty                   "lat"                Lat                                 
+            |> DynObj.withOptionalProperty                   "lat"                LatEncoded                          
             |> DynObj.withOptionalProperty                   "geojson"            GeoJson                             
             |> DynObj.withOptionalProperty                   "featureidkey"       FeatureIdKey                        
             |> DynObj.withOptionalProperty                   "locations"          Locations                           
             |> DynObj.withOptionalProperty                   "lon"                Lon                                 
+            |> DynObj.withOptionalProperty                   "lon"                LonEncoded                          
             |> DynObj.withOptionalSingleOrMultiProperty      "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"       (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"       (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"          (HoverText, MultiHoverText)         
@@ -281,11 +301,13 @@ type TraceGeoStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"               Meta                                
             |> DynObj.withOptionalProperty                   "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy                 "geo"                Geo                                 StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty                   "marker"             Marker                              
             |> DynObj.withOptionalProperty                   "line"               Line                                
             |> DynObj.withOptionalProperty                   "textfont"           TextFont                            
             |> DynObj.withOptionalProperty                   "selectedpoints"     SelectedPoints                      
+            |> DynObj.withOptionalProperty                   "selectedpoints"     SelectedPointsEncoded               
             |> DynObj.withOptionalProperty                   "selected"           Selected                            
             |> DynObj.withOptionalProperty                   "unselected"         Unselected                          
             |> DynObj.withOptionalProperty                   "connectgaps"        ConnectGaps                         

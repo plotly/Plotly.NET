@@ -75,10 +75,14 @@ type TraceSmithStyle() =
             ?Opacity: float,
             ?Mode: StyleParam.Mode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Imag: seq<#IConvertible>,
+            ?ImagEncoded: EncodedTypedArray,
             ?Real: seq<#IConvertible>,
+            ?RealEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -90,11 +94,13 @@ type TraceSmithStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Subplot: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?Line: Line,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?ClipOnAxis: bool,
@@ -117,9 +123,13 @@ type TraceSmithStyle() =
             |> DynObj.withOptionalProperty                   "opacity"         Opacity                             
             |> DynObj.withOptionalPropertyBy                 "mode"            Mode                                StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "ids"             Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"             IdsEncoded                          
             |> DynObj.withOptionalProperty                   "imag"            Imag                                
+            |> DynObj.withOptionalProperty                   "imag"            ImagEncoded                         
             |> DynObj.withOptionalProperty                   "real"            Real                                
+            |> DynObj.withOptionalProperty                   "real"            RealEncoded                         
             |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"            MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)         
@@ -127,11 +137,13 @@ type TraceSmithStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"            Meta                                
             |> DynObj.withOptionalProperty                   "customdata"      CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"      CustomDataEncoded                   
             |> DynObj.withOptionalProperty                   "subplot"         Subplot                             
             |> DynObj.withOptionalProperty                   "marker"          Marker                              
             |> DynObj.withOptionalProperty                   "line"            Line                                
             |> DynObj.withOptionalProperty                   "textfont"        TextFont                            
             |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPoints                      
+            |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPointsEncoded               
             |> DynObj.withOptionalProperty                   "selected"        Selected                            
             |> DynObj.withOptionalProperty                   "unselected"      Unselected                          
             |> DynObj.withOptionalProperty                   "cliponaxis"      ClipOnAxis                          

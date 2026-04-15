@@ -96,15 +96,19 @@ type TracePolarStyle() =
             ?Opacity: float,
             ?Mode: StyleParam.Mode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?R: seq<#IConvertible>,
+            ?REncoded: EncodedTypedArray,
             ?R0: IConvertible,
             ?DR: IConvertible,
             ?Theta: seq<#IConvertible>,
+            ?ThetaEncoded: EncodedTypedArray,
             ?Theta0: #IConvertible,
             ?DTheta: #IConvertible,
             ?ThetaUnit: StyleParam.AngularUnit,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -115,12 +119,15 @@ type TracePolarStyle() =
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Subplot: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?Line: Line,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?ClipOnAxis: bool,
@@ -144,26 +151,33 @@ type TracePolarStyle() =
             |> DynObj.withOptionalProperty                   "opacity"            Opacity                             
             |> DynObj.withOptionalPropertyBy                 "mode"               Mode                                StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "ids"                Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty                   "r"                  R                                   
+            |> DynObj.withOptionalProperty                   "r"                  REncoded                            
             |> DynObj.withOptionalProperty                   "r0"                 R0                                  
             |> DynObj.withOptionalProperty                   "dr"                 DR                                  
             |> DynObj.withOptionalProperty                   "theta"              Theta                               
+            |> DynObj.withOptionalProperty                   "theta"              ThetaEncoded                        
             |> DynObj.withOptionalProperty                   "theta0"             Theta0                              
             |> DynObj.withOptionalProperty                   "dtheta"             DTheta                              
             |> DynObj.withOptionalPropertyBy                 "thetaunit"          ThetaUnit                           StyleParam.AngularUnit.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"       (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"       (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"          (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy                 "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"               Meta                                
+            |> DynObj.withOptionalProperty                   "meta"               MetaEncoded                         
             |> DynObj.withOptionalProperty                   "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy                 "subplot"            Subplot                             StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty                   "marker"             Marker                              
             |> DynObj.withOptionalProperty                   "line"               Line                                
             |> DynObj.withOptionalProperty                   "textfont"           TextFont                            
             |> DynObj.withOptionalProperty                   "selectedpoints"     SelectedPoints                      
+            |> DynObj.withOptionalProperty                   "selectedpoints"     SelectedPointsEncoded               
             |> DynObj.withOptionalProperty                   "selected"           Selected                            
             |> DynObj.withOptionalProperty                   "unselected"         Unselected                          
             |> DynObj.withOptionalProperty                   "cliponaxis"         ClipOnAxis                          
@@ -225,30 +239,39 @@ type TracePolarStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Base: #IConvertible,
             ?R: seq<#IConvertible>,
+            ?REncoded: EncodedTypedArray,
             ?R0: IConvertible,
             ?DR: IConvertible,
             ?Theta: seq<#IConvertible>,
+            ?ThetaEncoded: EncodedTypedArray,
             ?Theta0: #IConvertible,
             ?DTheta: #IConvertible,
             ?ThetaUnit: StyleParam.AngularUnit,
             ?Width: #IConvertible,
             ?MultiWidth: seq<#IConvertible>,
+            ?MultiWidthEncoded: EncodedTypedArray,
             ?Offset: #IConvertible,
             ?MultiOffset: seq<#IConvertible>,
+            ?MultiOffsetEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Subplot: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?HoverLabel: Hoverlabel,
@@ -266,25 +289,34 @@ type TracePolarStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"            Opacity                             
             |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty               "base"               Base                                
             |> DynObj.withOptionalProperty               "r"                  R                                   
+            |> DynObj.withOptionalProperty               "r"                  REncoded                            
             |> DynObj.withOptionalProperty               "r0"                 R0                                  
             |> DynObj.withOptionalProperty               "dr"                 DR                                  
             |> DynObj.withOptionalProperty               "theta"              Theta                               
+            |> DynObj.withOptionalProperty               "theta"              ThetaEncoded                        
             |> DynObj.withOptionalProperty               "theta0"             Theta0                              
             |> DynObj.withOptionalProperty               "dtheta"             DTheta                              
             |> DynObj.withOptionalPropertyBy             "thetaunit"          ThetaUnit                           StyleParam.AngularUnit.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "width"              (Width, MultiWidth)                 
+            |> DynObj.withOptionalProperty               "width"              MultiWidthEncoded                   
             |> DynObj.withOptionalSingleOrMultiProperty  "offset"             (Offset, MultiOffset)               
+            |> DynObj.withOptionalProperty               "offset"             MultiOffsetEncoded                  
             |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty               "meta"               Meta                                
+            |> DynObj.withOptionalProperty               "meta"               MetaEncoded                         
             |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "subplot"            Subplot                             StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "marker"             Marker                              
             |> DynObj.withOptionalProperty               "selectedpoints"     SelectedPoints                      
+            |> DynObj.withOptionalProperty               "selectedpoints"     SelectedPointsEncoded               
             |> DynObj.withOptionalProperty               "selected"           Selected                            
             |> DynObj.withOptionalProperty               "unselected"         Unselected                          
             |> DynObj.withOptionalProperty               "hoverlabel"         HoverLabel                          

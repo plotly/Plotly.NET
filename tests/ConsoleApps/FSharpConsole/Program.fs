@@ -140,6 +140,87 @@ let main args =
         |> GenericChart.ofTraceObject true
         |> Chart.withTitle "Fully encoded cone"
 
+    let fullyEncodedScatterPolar =
+        TracePolar.initScatterPolar (
+            TracePolarStyle.ScatterPolar(
+                Name = "encoded scatterpolar",
+                Mode = StyleParam.Mode.Lines_Markers,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 401; 402; 403 |],
+                REncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 1.5 |],
+                ThetaEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 120.0; 240.0 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 11.0; 12.0; 13.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded scatterpolar"
+
+    let fullyEncodedScatterGeo =
+        TraceGeo.initScatterGeo (
+            TraceGeoStyle.ScatterGeo(
+                Name = "encoded scattergeo",
+                Mode = StyleParam.Mode.Markers_Text,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 501; 502; 503 |],
+                LatEncoded = EncodedTypedArray.ofFloat64Array [| 52.52; 48.85; 41.90 |],
+                LonEncoded = EncodedTypedArray.ofFloat64Array [| 13.40; 2.35; 12.49 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0; 43.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded scattergeo"
+
+    let fullyEncodedScatterMapbox =
+        TraceMapbox.initScatterMapbox (
+            TraceMapboxStyle.ScatterMapbox(
+                Name = "encoded scattermapbox",
+                Mode = StyleParam.Mode.Markers_Text,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 601; 602; 603 |],
+                LatEncoded = EncodedTypedArray.ofFloat64Array [| 37.77; 34.05; 47.61 |],
+                LonEncoded = EncodedTypedArray.ofFloat64Array [| -122.42; -118.24; -122.33 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 51.0; 52.0; 53.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded scattermapbox"
+
+    let fullyEncodedScatterTernary =
+        TraceTernary.initScatterTernary (
+            TraceTernaryStyle.ScatterTernary(
+                Name = "encoded scatterternary",
+                Mode = StyleParam.Mode.Markers_Text,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 701; 702; 703 |],
+                AEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.3; 0.4 |],
+                BEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.3; 0.2 |],
+                CEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.4 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 81.0; 82.0; 83.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded scatterternary"
+
+    let fullyEncodedScatterSmith =
+        TraceSmith.initScatterSmith (
+            TraceSmithStyle.ScatterSmith(
+                Name = "encoded scattersmith",
+                Mode = StyleParam.Mode.Markers_Text,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 801; 802; 803 |],
+                RealEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 1.0; 1.5 |],
+                ImagEncoded = EncodedTypedArray.ofFloat64Array [| -0.2; 0.0; 0.2 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0; 103.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded scattersmith"
+
     simpleEncodedScatter |> Chart.show
     fullyEncodedScatterWithErrorBars |> Chart.show
     fullyEncodedBar |> Chart.show
@@ -147,5 +228,10 @@ let main args =
     fullyEncodedCandlestick |> Chart.show
     fullyEncodedHeatmap |> Chart.show
     fullyEncodedCone |> Chart.show
+    fullyEncodedScatterPolar |> Chart.show
+    fullyEncodedScatterGeo |> Chart.show
+    fullyEncodedScatterMapbox |> Chart.show
+    fullyEncodedScatterTernary |> Chart.show
+    fullyEncodedScatterSmith |> Chart.show
 
     0

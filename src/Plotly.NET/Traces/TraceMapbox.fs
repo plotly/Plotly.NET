@@ -103,11 +103,15 @@ type TraceMapboxStyle() =
             ?Opacity: float,
             ?Mode: StyleParam.Mode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Lat: #IConvertible seq,
+            ?LatEncoded: EncodedTypedArray,
             ?Lon: #IConvertible seq,
+            ?LonEncoded: EncodedTypedArray,
             ?Cluster: MapboxCluster,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -119,11 +123,13 @@ type TraceMapboxStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?SubPlot: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?Line: Line,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?Below: string,
@@ -145,10 +151,14 @@ type TraceMapboxStyle() =
             |> DynObj.withOptionalProperty                   "opacity"            Opacity                             
             |> DynObj.withOptionalPropertyBy                 "mode"               Mode                                StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "ids"                Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty                   "lat"                Lat                                 
+            |> DynObj.withOptionalProperty                   "lat"                LatEncoded                          
             |> DynObj.withOptionalProperty                   "lon"                Lon                                 
+            |> DynObj.withOptionalProperty                   "lon"                LonEncoded                          
             |> DynObj.withOptionalProperty                   "cluster"            Cluster                             
             |> DynObj.withOptionalSingleOrMultiProperty      "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"       (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"       (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"          (HoverText, MultiHoverText)         
@@ -156,11 +166,13 @@ type TraceMapboxStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"               Meta                                
             |> DynObj.withOptionalProperty                   "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy                 "subplot"            SubPlot                             StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty                   "marker"             Marker                              
             |> DynObj.withOptionalProperty                   "line"               Line                                
             |> DynObj.withOptionalProperty                   "textfont"           TextFont                            
             |> DynObj.withOptionalProperty                   "selectedpoints"     SelectedPoints                      
+            |> DynObj.withOptionalProperty                   "selectedpoints"     SelectedPointsEncoded               
             |> DynObj.withOptionalProperty                   "selected"           Selected                            
             |> DynObj.withOptionalProperty                   "unselected"         Unselected                          
             |> DynObj.withOptionalProperty                   "below"              Below                               
@@ -222,12 +234,15 @@ type TraceMapboxStyle() =
             ?LegendGroup: string,
             ?LegendGroupTitle: Title,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?GeoJson: obj,
             ?FeatureIdKey: string,
             ?Locations: seq<string>,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -235,6 +250,7 @@ type TraceMapboxStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?SubPlot: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?Marker: Marker,
@@ -248,6 +264,7 @@ type TraceMapboxStyle() =
             ?Zmid: float,
             ?Zmin: float,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?Below: string,
@@ -263,16 +280,20 @@ type TraceMapboxStyle() =
             |> DynObj.withOptionalProperty               "legendgroup"      LegendGroup                         
             |> DynObj.withOptionalProperty               "legendgrouptitle" LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "ids"              Ids                                 
+            |> DynObj.withOptionalProperty               "ids"              IdsEncoded                          
             |> DynObj.withOptionalProperty               "z"                Z                                   
+            |> DynObj.withOptionalProperty               "z"                ZEncoded                            
             |> DynObj.withOptionalProperty               "geojson"          GeoJson                             
             |> DynObj.withOptionalProperty               "featureidkey"     FeatureIdKey                        
             |> DynObj.withOptionalProperty               "locations"        Locations                           
             |> DynObj.withOptionalSingleOrMultiProperty  "text"             (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"             MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"        (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"        HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"    (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty               "meta"             Meta                                
             |> DynObj.withOptionalProperty               "customdata"       CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"       CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "subplot"          SubPlot                             StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"        ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "marker"           Marker                              
@@ -286,6 +307,7 @@ type TraceMapboxStyle() =
             |> DynObj.withOptionalProperty               "zmid"             Zmid                                
             |> DynObj.withOptionalProperty               "zmax"             Zmax                                
             |> DynObj.withOptionalProperty               "selectedpoints"   SelectedPoints                      
+            |> DynObj.withOptionalProperty               "selectedpoints"   SelectedPointsEncoded               
             |> DynObj.withOptionalProperty               "selected"         Selected                            
             |> DynObj.withOptionalProperty               "unselected"       Unselected                          
             |> DynObj.withOptionalProperty               "below"            Below                               
@@ -343,12 +365,17 @@ type TraceMapboxStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?Radius: int,
             ?Lat: #IConvertible seq,
+            ?LatEncoded: EncodedTypedArray,
             ?Lon: #IConvertible seq,
+            ?LonEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -356,6 +383,7 @@ type TraceMapboxStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?SubPlot: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?Marker: Marker,
@@ -383,16 +411,22 @@ type TraceMapboxStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle" LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"          Opacity                             
             |> DynObj.withOptionalProperty               "ids"              Ids                                 
+            |> DynObj.withOptionalProperty               "ids"              IdsEncoded                          
             |> DynObj.withOptionalProperty               "z"                Z                                   
+            |> DynObj.withOptionalProperty               "z"                ZEncoded                            
             |> DynObj.withOptionalProperty               "radius"           Radius                              
             |> DynObj.withOptionalProperty               "lat"              Lat                                 
+            |> DynObj.withOptionalProperty               "lat"              LatEncoded                          
             |> DynObj.withOptionalProperty               "lon"              Lon                                 
+            |> DynObj.withOptionalProperty               "lon"              LonEncoded                          
             |> DynObj.withOptionalSingleOrMultiProperty  "text"             (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"             MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"        (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"        HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"    (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty               "meta"             Meta                                
             |> DynObj.withOptionalProperty               "customdata"       CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"       CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "subplot"          SubPlot                             StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"        ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "marker"           Marker                              

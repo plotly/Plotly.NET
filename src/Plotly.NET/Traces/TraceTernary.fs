@@ -76,11 +76,16 @@ type TraceTernaryStyle() =
             ?Opacity: float,
             ?Mode: StyleParam.Mode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?A: seq<#IConvertible>,
+            ?AEncoded: EncodedTypedArray,
             ?B: seq<#IConvertible>,
+            ?BEncoded: EncodedTypedArray,
             ?C: seq<#IConvertible>,
+            ?CEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -92,11 +97,13 @@ type TraceTernaryStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?SubPlot: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?Line: Line,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?ClipOnAxis: bool,
@@ -121,10 +128,15 @@ type TraceTernaryStyle() =
             |> DynObj.withOptionalProperty                   "opacity"         Opacity                             
             |> DynObj.withOptionalPropertyBy                 "mode"            Mode                                StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "ids"             Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"             IdsEncoded                          
             |> DynObj.withOptionalProperty                   "a"               A                                   
+            |> DynObj.withOptionalProperty                   "a"               AEncoded                            
             |> DynObj.withOptionalProperty                   "b"               B                                   
+            |> DynObj.withOptionalProperty                   "b"               BEncoded                            
             |> DynObj.withOptionalProperty                   "c"               C                                   
+            |> DynObj.withOptionalProperty                   "c"               CEncoded                            
             |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"            MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)         
@@ -132,11 +144,13 @@ type TraceTernaryStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"            Meta                                
             |> DynObj.withOptionalProperty                   "customdata"      CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"      CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy                 "subplot"         SubPlot                             StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty                   "marker"          Marker                              
             |> DynObj.withOptionalProperty                   "line"            Line                                
             |> DynObj.withOptionalProperty                   "textfont"        TextFont                            
             |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPoints                      
+            |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPointsEncoded               
             |> DynObj.withOptionalProperty                   "selected"        Selected                            
             |> DynObj.withOptionalProperty                   "unselected"      Unselected                          
             |> DynObj.withOptionalProperty                   "cliponaxis"      ClipOnAxis                          
