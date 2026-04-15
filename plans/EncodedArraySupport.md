@@ -271,8 +271,10 @@ Implemented so far:
 - Trace3D encoded support
 - subplot trace-family support for polar, geo, mapbox, ternary, and smith traces
 - carpet and domain trace-family support
+- top-level `Chart` API encoded overloads for every foundational chart root (phase H1)
+- top-level `Chart` API encoded overloads for derived convenience helpers (phase H2)
 
-Committed so far:
+Trace-level commits:
 
 - `62a96500` `Bump bundled plotly.js to 2.28.0`
 - `43ff9869` `Complete encoded scatter fields and error arrays`
@@ -283,20 +285,34 @@ Committed so far:
 - `81bd99fd` `Add encoded subplot trace fields (part 1)`
 - `8a9fcb64` `Add encoded carpet and domain trace fields`
 
+Top-level Chart API commits:
+
+- `37006fd9` `Add encoded Chart.Scatter root support` (H1-A prototype, superseded by reset design)
+- `5edcbb17` `Add encoded scatter-derived helper support` (H1-B prototype, superseded by reset design)
+- `b5767af5` `Add encoded scatter-derived chart overloads` (H1-B, reset design)
+- `02df1fad` `Add encoded Waterfall width support` (H1-C support fix)
+- `4913748a` `Add encoded distribution and finance chart roots` (H1-D)
+- `ed86f94d` `Add encoded Dimension values and Chart.Splom root support` (H1-D-Splom)
+- `62e9161c` `Add encoded matrix chart root overloads` (H1-E)
+- `045a2b63` `Add encoded 3D chart root overloads` (H1-F)
+- `1d8e9e54` `Add encoded subplot and domain chart roots` (H1-G part 1)
+- `73965294` `Add remaining encoded chart roots` (H1-G part 2)
+- `c9446e58` `Add encoded derived convenience chart overloads` (H2)
+
 Implemented but not yet committed:
 
-- none for the trace-level rollout
+- none
 
-Next planned action:
+Current stage:
 
-- plan and implement top-level `Chart` API support for encoded arrays
+- phase H1 (foundational chart roots) and phase H2 (derived convenience helpers) are complete and committed
+- next planned phase is H3 (C# surface projection in `Plotly.NET.CSharp`)
 
 Latest verification result:
 
 - `.\build.cmd runTestsCore`
-- `802` tests passed
+- `933` tests passed
 - `Plotly.NET` builds successfully
-- current committed `Commit G1` work introduces temporary F# XML-doc warnings for newly added encoded parameters
 
 ## Next Phase: Top-Level Chart API Support
 
