@@ -202,3 +202,74 @@ module ``Encoded typed arrays on 1-D trace families`` =
             )
         )
         |> GenericChart.ofTraceObject true
+
+module ``Encoded typed arrays on matrix trace families`` =
+
+    let ``Histogram2D with encoded arrays`` =
+        Trace2D.initHistogram2D (
+            Trace2DStyle.Histogram2D(
+                Name = "encoded histogram2d",
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 11; 12; 13 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Histogram2DContour with encoded arrays`` =
+        Trace2D.initHistogram2DContour (
+            Trace2DStyle.Histogram2DContour(
+                Name = "encoded histogram2dcontour",
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 31; 32; 33 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0; 43.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Heatmap with encoded arrays`` =
+        Trace2D.initHeatmap (
+            Trace2DStyle.Heatmap(
+                Name = "encoded heatmap",
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0; 64.0; 65.0; 66.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Contour with encoded arrays`` =
+        Trace2D.initContour (
+            Trace2DStyle.Contour(
+                Name = "encoded contour",
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 81; 82 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0; 94.0; 95.0; 96.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Image with encoded metadata arrays`` =
+        Trace2D.initImage (
+            Trace2DStyle.Image(
+                Name = "encoded image metadata",
+                Z = [
+                    [ [ 255; 0; 0 ]; [ 0; 255; 0 ] ]
+                    [ [ 0; 0; 255 ]; [ 255; 255; 0 ] ]
+                ],
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 111; 112 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 121.0; 122.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true

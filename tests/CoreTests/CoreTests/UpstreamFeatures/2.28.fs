@@ -182,3 +182,66 @@ module ``Encoded typed arrays on 1-D trace families`` =
                 )
             ]
         ]
+
+module ``Encoded typed arrays on matrix trace families`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on matrix trace families" [
+                testCase "histogram2d trace serializes encoded standard matrix data-array fields" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,3\""
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on matrix trace families``.``Histogram2D with encoded arrays``)
+                )
+                testCase "histogram2dcontour trace serializes encoded standard matrix data-array fields" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,2\""
+                        "\"ids\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on matrix trace families``.``Histogram2DContour with encoded arrays``)
+                )
+                testCase "heatmap trace serializes encoded x y z text and customdata" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,3\""
+                        "\"ids\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on matrix trace families``.``Heatmap with encoded arrays``)
+                )
+                testCase "contour trace serializes encoded x y z text and customdata" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,3\""
+                        "\"ids\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on matrix trace families``.``Contour with encoded arrays``)
+                )
+                testCase "image trace serializes encoded metadata arrays" (fun () ->
+                    [
+                        "\"ids\":{\"bdata\":"
+                        "\"text\":{\"bdata\":"
+                        "\"customdata\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on matrix trace families``.``Image with encoded metadata arrays``)
+                )
+            ]
+        ]

@@ -107,10 +107,26 @@ let main args =
         |> GenericChart.ofTraceObject true
         |> Chart.withTitle "Fully encoded candlestick"
 
+    let fullyEncodedHeatmap =
+        Trace2D.initHeatmap (
+            Trace2DStyle.Heatmap(
+                Name = "encoded heatmap",
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 201; 202 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 11.0; 12.0; 13.0; 14.0; 15.0; 16.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded heatmap"
+
     simpleEncodedScatter |> Chart.show
     fullyEncodedScatterWithErrorBars |> Chart.show
     fullyEncodedBar |> Chart.show
     fullyEncodedBoxPlot |> Chart.show
     fullyEncodedCandlestick |> Chart.show
+    fullyEncodedHeatmap |> Chart.show
 
     0

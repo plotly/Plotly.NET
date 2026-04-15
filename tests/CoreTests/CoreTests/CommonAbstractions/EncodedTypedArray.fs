@@ -756,3 +756,178 @@ let ``1-D trace family encoded fields`` =
             Expect.stringContains json "\"text\":{\"bdata\":" "splom text must be encoded"
         )
     ]
+
+[<Tests>]
+let ``Matrix trace family encoded fields`` =
+    testList "CommonAbstractions.EncodedTypedArray matrix trace family integration" [
+
+        testCase "Histogram2D encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initHistogram2D (
+                    Trace2DStyle.Histogram2D(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 11; 12; 13 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "histogram2d x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "histogram2d y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "histogram2d z must be encoded"
+            Expect.stringContains json "\"shape\":\"2,3\"" "histogram2d z shape must be serialized"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "histogram2d ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "histogram2d customdata must be encoded"
+        )
+
+        testCase "Histogram2D encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initHistogram2D (
+                    Trace2DStyle.Histogram2D(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Z = [ [ 50.0; 60.0 ]; [ 70.0; 80.0 ] ],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 5.0; 6.0; 7.0; 8.0 |], shape = [ 2; 2 ]),
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain histogram2d x array must not be present"
+            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain histogram2d y array must not be present"
+            Expect.isFalse (json.Contains "\"z\":[[50.0,60.0],[70.0,80.0]]") "plain histogram2d z matrix must not be present"
+            Expect.isFalse (json.Contains "\"ids\":[1,2]") "plain histogram2d ids array must not be present"
+            Expect.isFalse (json.Contains "\"customdata\":[10.0,20.0]") "plain histogram2d customdata array must not be present"
+        )
+
+        testCase "Histogram2DContour encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initHistogram2DContour (
+                    Trace2DStyle.Histogram2DContour(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 31; 32; 33 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0; 43.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"x\":{\"bdata\":" "histogram2dcontour x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "histogram2dcontour y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "histogram2dcontour z must be encoded"
+            Expect.stringContains json "\"shape\":\"2,2\"" "histogram2dcontour z shape must be serialized"
+            Expect.stringContains json "\"ids\":{\"bdata\":" "histogram2dcontour ids must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "histogram2dcontour customdata must be encoded"
+        )
+
+        testCase "Heatmap encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initHeatmap (
+                    Trace2DStyle.Heatmap(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0; 64.0; 65.0; 66.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":{\"bdata\":"
+                "\"y\":{\"bdata\":"
+                "\"z\":{\"bdata\":"
+                "\"shape\":\"2,3\""
+                "\"ids\":{\"bdata\":"
+                "\"text\":{\"bdata\":"
+                "\"customdata\":{\"bdata\":"
+            ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "heatmap must contain %s" needle))
+        )
+
+        testCase "Heatmap encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace2D.initHeatmap (
+                    Trace2DStyle.Heatmap(
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Z = [ [ 50.0; 60.0 ]; [ 70.0; 80.0 ] ],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 5.0; 6.0; 7.0; 8.0 |], shape = [ 2; 2 ]),
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |],
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 5; 6 |],
+                        CustomData = [ 10.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 40.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":[10.0,20.0]"
+                "\"y\":[30.0,40.0]"
+                "\"z\":[[50.0,60.0],[70.0,80.0]]"
+                "\"ids\":[1,2]"
+                "\"customdata\":[10.0,20.0]"
+                "\"text\":[100.0,200.0]"
+            ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain heatmap value must not be present: %s" needle))
+        )
+
+        testCase "Contour encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initContour (
+                    Trace2DStyle.Contour(
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 81; 82 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0; 94.0; 95.0; 96.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [
+                "\"x\":{\"bdata\":"
+                "\"y\":{\"bdata\":"
+                "\"z\":{\"bdata\":"
+                "\"shape\":\"2,3\""
+                "\"ids\":{\"bdata\":"
+                "\"text\":{\"bdata\":"
+                "\"customdata\":{\"bdata\":"
+            ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "contour must contain %s" needle))
+        )
+
+        testCase "Image encoded metadata fields land under the expected properties" (fun () ->
+            let trace =
+                Trace2D.initImage (
+                    Trace2DStyle.Image(
+                        Z = [
+                            [ [ 255; 0; 0 ]; [ 0; 255; 0 ] ]
+                            [ [ 0; 0; 255 ]; [ 255; 255; 0 ] ]
+                        ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 111; 112 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 121.0; 122.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            Expect.stringContains json "\"ids\":{\"bdata\":" "image ids must be encoded"
+            Expect.stringContains json "\"text\":{\"bdata\":" "image text must be encoded"
+            Expect.stringContains json "\"customdata\":{\"bdata\":" "image customdata must be encoded"
+        )
+    ]
