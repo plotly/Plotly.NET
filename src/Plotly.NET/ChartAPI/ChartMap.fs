@@ -641,6 +641,58 @@ module ChartMap =
 
             )
 
+        /// <summary>Creates a PointGeo chart from encoded longitude and latitude coordinates.</summary>
+        [<Extension>]
+        static member PointGeo
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LocationMode: StyleParam.LocationFormat,
+                ?GeoJson: obj,
+                ?FeatureIdKey: string,
+                ?UseDefaults: bool
+            ) =
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.ScatterGeo(
+                longitudesEncoded,
+                latitudesEncoded,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a PointGeo chart.
         ///
@@ -861,6 +913,76 @@ module ChartMap =
             Chart.ScatterGeo(
                 longitudes,
                 latitudes,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?LocationMode = LocationMode,
+                ?GeoJson = GeoJson,
+                ?FeatureIdKey = FeatureIdKey,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a LineGeo chart from encoded longitude and latitude coordinates.</summary>
+        [<Extension>]
+        static member LineGeo
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?LocationMode: StyleParam.LocationFormat,
+                ?GeoJson: obj,
+                ?FeatureIdKey: string,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterGeo(
+                longitudesEncoded,
+                latitudesEncoded,
                 mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -1166,6 +1288,72 @@ module ChartMap =
                 )
             )
 
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>Creates a BubbleGeo chart from encoded longitude and latitude coordinates.</summary>
+        [<Extension>]
+        static member BubbleGeo
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LocationMode: StyleParam.LocationFormat,
+                ?GeoJson: obj,
+                ?FeatureIdKey: string,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            TraceGeo.initScatterGeo (
+                TraceGeoStyle.ScatterGeo(
+                    LonEncoded = longitudesEncoded,
+                    LatEncoded = latitudesEncoded,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    Marker = marker,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?LocationMode = LocationMode,
+                    ?GeoJson = GeoJson,
+                    ?FeatureIdKey = FeatureIdKey
+                )
+            )
             |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
@@ -1824,6 +2012,60 @@ module ChartMap =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>Creates a PointMapbox chart from encoded longitude and latitude coordinates.</summary>
+        [<Extension>]
+        static member PointMapbox
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?MapboxStyle: StyleParam.MapboxStyle,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?Below: string,
+                ?EnableClustering: bool,
+                ?Cluster: MapboxCluster,
+                ?UseDefaults: bool
+            ) =
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.ScatterMapbox(
+                longitudesEncoded,
+                latitudesEncoded,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?Below = Below,
+                ?EnableClustering = EnableClustering,
+                ?Cluster = Cluster,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a LineMapbox chart, where data is visualized on a geographic map connected by a line using mapbox.
         ///
@@ -1898,6 +2140,74 @@ module ChartMap =
             Chart.ScatterMapbox(
                 longitudes,
                 latitudes,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?MapboxStyle = MapboxStyle,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?Below = Below,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a LineMapbox chart from encoded longitude and latitude coordinates.</summary>
+        [<Extension>]
+        static member LineMapbox
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?MapboxStyle: StyleParam.MapboxStyle,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?Below: string,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterMapbox(
+                longitudesEncoded,
+                latitudesEncoded,
                 mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?MapboxStyle = MapboxStyle,
@@ -2095,6 +2405,77 @@ module ChartMap =
                 TraceMapboxStyle.ScatterMapbox(
                     Lon = longitudes,
                     Lat = latitudes,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    Marker = marker,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Below = Below
+                )
+            )
+
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (Layout.init () |> Layout.setMapbox (StyleParam.SubPlotId.Mapbox 1, mapbox))
+
+        /// <summary>Creates a BubbleMapbox chart from encoded longitude and latitude coordinates.</summary>
+        [<Extension>]
+        static member BubbleMapbox
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?MapboxStyle: StyleParam.MapboxStyle,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?Below: string,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let mapboxStyle =
+                defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+
+            let mapbox =
+                Mapbox.init (Style = mapboxStyle)
+
+            TraceMapbox.initScatterMapbox (
+                TraceMapboxStyle.ScatterMapbox(
+                    LonEncoded = longitudesEncoded,
+                    LatEncoded = latitudesEncoded,
                     Mode = changeMode StyleParam.Mode.Markers,
                     Marker = marker,
                     ?Name = Name,

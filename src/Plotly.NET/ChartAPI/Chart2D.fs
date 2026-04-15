@@ -3576,6 +3576,67 @@ module Chart2D =
             )
             |> GenericChart.mapLayout (Layout.style (FunnelMode = StyleParam.FunnelMode.Stack))
 
+        /// <summary>Creates a stacked funnel chart from encoded x and y coordinates.</summary>
+        [<Extension>]
+        static member StackedFunnel
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Width: float,
+                ?Offset: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?Orientation: StyleParam.Orientation,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?MarkerColor: Color,
+                ?MarkerOutline: Line,
+                ?Marker: Marker,
+                ?TextInfo: StyleParam.TextInfo,
+                ?ConnectorLineColor: Color,
+                ?ConnectorLineStyle: StyleParam.DrawingStyle,
+                ?ConnectorFillColor: Color,
+                ?ConnectorLine: Line,
+                ?Connector: FunnelConnector,
+                ?InsideTextFont: Font,
+                ?OutsideTextFont: Font,
+                ?UseDefaults: bool
+            ) =
+            Chart.Funnel(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Width = Width,
+                ?Offset = Offset,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?Orientation = Orientation,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
+                ?MarkerColor = MarkerColor,
+                ?MarkerOutline = MarkerOutline,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?ConnectorLineColor = ConnectorLineColor,
+                ?ConnectorLineStyle = ConnectorLineStyle,
+                ?ConnectorFillColor = ConnectorFillColor,
+                ?ConnectorLine = ConnectorLine,
+                ?Connector = Connector,
+                ?InsideTextFont = InsideTextFont,
+                ?OutsideTextFont = OutsideTextFont,
+                ?UseDefaults = UseDefaults
+            )
+            |> GenericChart.mapLayout (Layout.style (FunnelMode = StyleParam.FunnelMode.Stack))
+
         /// <summary>
         /// Creates a waterfall chart.
         ///
@@ -4306,6 +4367,60 @@ module Chart2D =
             )
             |> GenericChart.mapLayout (Layout.style (BarMode = StyleParam.BarMode.Stack))
 
+        /// <summary>
+        /// Creates a stacked bar chart from encoded values, with bars plotted horizontally.
+        /// </summary>
+        [<Extension>]
+        static member StackedBar
+            (
+                valuesEncoded: EncodedTypedArray,
+                ?KeysEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerPatternShape: StyleParam.PatternShape,
+                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                ?MarkerPattern: Pattern,
+                ?Marker: Marker,
+                ?Base: #IConvertible,
+                ?Width: #IConvertible,
+                ?MultiWidthEncoded: EncodedTypedArray,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?UseDefaults: bool
+            ) =
+
+            Chart.Bar(
+                valuesEncoded = valuesEncoded,
+                ?KeysEncoded = KeysEncoded,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerPatternShape = MarkerPatternShape,
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
+                ?Marker = Marker,
+                ?Base = Base,
+                ?Width = Width,
+                ?MultiWidthEncoded = MultiWidthEncoded,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?UseDefaults = UseDefaults
+            )
+            |> GenericChart.mapLayout (Layout.style (BarMode = StyleParam.BarMode.Stack))
+
 
         /// <summary>
         /// Creates a stacked bar chart, with bars plotted horizontally. Values with the same key are stacked on top of each other in the X dimension.
@@ -4479,6 +4594,75 @@ module Chart2D =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Creates a column chart from encoded values, with bars plotted vertically.
+        /// </summary>
+        [<Extension>]
+        static member Column
+            (
+                valuesEncoded: EncodedTypedArray,
+                ?KeysEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerPatternShape: StyleParam.PatternShape,
+                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                ?MarkerPattern: Pattern,
+                ?Marker: Marker,
+                ?Base: #IConvertible,
+                ?Width: #IConvertible,
+                ?MultiWidthEncoded: EncodedTypedArray,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    Pattern = pattern,
+                    ?MultiOpacity = MultiOpacity,
+                    ?Colorscale = MarkerColorScale,
+                    ?Outline = MarkerOutline
+                )
+
+
+            Trace2D.initBar (
+                Trace2DStyle.Bar(
+                    YEncoded = valuesEncoded,
+                    ?XEncoded = KeysEncoded,
+                    Orientation = StyleParam.Orientation.Vertical,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?Base = Base,
+                    ?Width = Width,
+                    ?MultiWidthEncoded = MultiWidthEncoded,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    Marker = marker
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
 
         /// <summary>
         /// Creates a column chart, with bars plotted vertically
@@ -4632,6 +4816,60 @@ module Chart2D =
                 ?Base = Base,
                 ?Width = Width,
                 ?MultiWidth = MultiWidth,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?UseDefaults = UseDefaults
+            )
+            |> GenericChart.mapLayout (Layout.style (BarMode = StyleParam.BarMode.Stack))
+
+        /// <summary>
+        /// Creates a stacked column chart from encoded values, with bars plotted vertically.
+        /// </summary>
+        [<Extension>]
+        static member StackedColumn
+            (
+                valuesEncoded: EncodedTypedArray,
+                ?KeysEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerPatternShape: StyleParam.PatternShape,
+                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                ?MarkerPattern: Pattern,
+                ?Marker: Marker,
+                ?Base: #IConvertible,
+                ?Width: #IConvertible,
+                ?MultiWidthEncoded: EncodedTypedArray,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?UseDefaults: bool
+            ) =
+
+            Chart.Column(
+                valuesEncoded = valuesEncoded,
+                ?KeysEncoded = KeysEncoded,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerPatternShape = MarkerPatternShape,
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
+                ?Marker = Marker,
+                ?Base = Base,
+                ?Width = Width,
+                ?MultiWidthEncoded = MultiWidthEncoded,
                 ?TextPosition = TextPosition,
                 ?MultiTextPosition = MultiTextPosition,
                 ?UseDefaults = UseDefaults
@@ -8263,6 +8501,113 @@ module Chart2D =
                     Trace2DStyle.Histogram2DContour(
                         X = x,
                         Y = y,
+                        Contours = contours,
+                        Line = contourLines,
+                        ?NContours = NContours,
+                        ?ColorBar = ColorBar,
+                        ?ColorScale = ColorScale,
+                        ?ShowScale = ShowScale,
+                        ?HistNorm = HistNorm,
+                        ?Opacity = ContourOpacity
+                    )
+                )
+
+            [
+                densityContourTrace :> Trace
+                pointTrace :> Trace
+            ]
+            |> GenericChart.ofTraceObjects useDefaults
+
+        /// <summary>Creates a point density plot from encoded x and y coordinates.</summary>
+        [<Extension>]
+        static member PointDensity
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?PointOpacity: float,
+                ?PointMarkerColor: Color,
+                ?PointMarkerSymbol: StyleParam.MarkerSymbol,
+                ?PointMarkerSize: int,
+                ?ContourLinesColor: Color,
+                ?ContourLinesDash: StyleParam.DrawingStyle,
+                ?ContourLinesSmoothing: float,
+                ?ContourLinesWidth: float,
+                ?ContourLines: Line,
+                ?ShowContourLines: bool,
+                ?ContoursColoring: StyleParam.ContourColoring,
+                ?ContoursOperation: StyleParam.ConstraintOperation,
+                ?ContoursType: StyleParam.ContourType,
+                ?ShowContoursLabels: bool,
+                ?ContoursLabelFont: Font,
+                ?ContoursStart: float,
+                ?ContoursEnd: float,
+                ?Contours: Contours,
+                ?NContours: int,
+                ?HistNorm: StyleParam.HistNorm,
+                ?ContourOpacity: float,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let showContourLines =
+                defaultArg ShowContourLines false
+
+            let pointOpacity =
+                defaultArg PointOpacity 0.3
+
+            let contoursColoring =
+                defaultArg ContoursColoring StyleParam.ContourColoring.Fill
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let contourLinesWidth =
+                ContourLinesWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+
+            let marker =
+                Marker.init (?Color = PointMarkerColor, ?Symbol = PointMarkerSymbol, ?Size = PointMarkerSize)
+
+            let pointTrace =
+                Trace2D.initScatter (
+                    Trace2DStyle.Scatter(
+                        XEncoded = xEncoded,
+                        YEncoded = yEncoded,
+                        Mode = StyleParam.Mode.Markers,
+                        Marker = marker,
+                        Opacity = pointOpacity
+                    )
+                )
+
+            let contourLines =
+                ContourLines
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    Width = contourLinesWidth,
+                    ?Color = ContourLinesColor,
+                    ?Dash = ContourLinesDash,
+                    ?Smoothing = ContourLinesSmoothing
+                )
+
+            let contours =
+                Contours
+                |> Option.defaultValue (TraceObjects.Contours.init ())
+                |> TraceObjects.Contours.style (
+                    Coloring = contoursColoring,
+                    ?Operation = ContoursOperation,
+                    ?Start = ContoursStart,
+                    ?End = ContoursEnd,
+                    ?Type = ContoursType,
+                    ?ShowLabels = ShowContoursLabels,
+                    ?LabelFont = ContoursLabelFont
+                )
+
+            let densityContourTrace =
+                Trace2D.initHistogram2DContour (
+                    Trace2DStyle.Histogram2DContour(
+                        XEncoded = xEncoded,
+                        YEncoded = yEncoded,
                         Contours = contours,
                         Line = contourLines,
                         ?NContours = NContours,

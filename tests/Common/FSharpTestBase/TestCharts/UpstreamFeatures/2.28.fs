@@ -530,6 +530,81 @@ module ``Encoded typed arrays on chart subplot and domain roots`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart H2 helper constructors`` =
+
+    let ``StackedBar encoded helper`` =
+        Chart.StackedBar(
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            KeysEncoded = EncodedTypedArray.ofInt32Array [| 10; 20; 30 |],
+            Name = "encoded stackedbar",
+            UseDefaults = false
+        )
+
+    let ``PointDensity encoded helper`` =
+        Chart.PointDensity(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 2.0; 1.0; 0.0 |],
+            UseDefaults = false
+        )
+
+    let ``PointPolar encoded helper`` =
+        Chart.PointPolar(
+            rEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+            thetaEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 60.0 |],
+            Name = "encoded pointpolar",
+            UseDefaults = false
+        )
+
+    let ``PointGeo encoded helper`` =
+        Chart.PointGeo(
+            longitudesEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 13.0 |],
+            latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 52.0 |],
+            Name = "encoded pointgeo",
+            UseDefaults = false
+        )
+
+    let ``PointMapbox encoded helper`` =
+        Chart.PointMapbox(
+            longitudesEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 13.0 |],
+            latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 52.0 |],
+            Name = "encoded pointmapbox",
+            UseDefaults = false
+        )
+
+    let ``PointTernary encoded helper`` =
+        Chart.PointTernary(
+            aEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.4 |],
+            bEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+            cEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.2 |],
+            Name = "encoded pointternary",
+            UseDefaults = false
+        )
+
+    let ``PointSmith encoded helper`` =
+        Chart.PointSmith(
+            realEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+            imagEncoded = EncodedTypedArray.ofFloat64Array [| -0.5; 0.5 |],
+            Name = "encoded pointsmith",
+            UseDefaults = false
+        )
+
+    let ``PointCarpet encoded helper`` =
+        Chart.PointCarpet(
+            aEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+            bEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+            carpetAnchorId = "a",
+            Name = "encoded pointcarpet",
+            UseDefaults = false
+        )
+
+    let ``Doughnut encoded helper`` =
+        Chart.Doughnut(
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+            Name = "encoded doughnut",
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     let ``Bar with encoded arrays`` =

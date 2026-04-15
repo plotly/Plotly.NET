@@ -512,6 +512,61 @@ module Chart3D =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>Creates a Point3D plot from encoded x, y, and z coordinates.</summary>
+        [<Extension>]
+        static member Point3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.Scatter3D(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
+                zEncoded = zEncoded,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?Projection = Projection,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?UseDefaults = UseDefaults
+            )
+
 
         /// <summary>
         /// Creates a Line3D plot.
@@ -708,6 +763,78 @@ module Chart3D =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>Creates a Line3D plot from encoded x, y, and z coordinates.</summary>
+        [<Extension>]
+        static member Line3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.Scatter3D(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
+                zEncoded = zEncoded,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
+                ?UseDefaults = UseDefaults
+            )
+
 
         /// <summary>
         /// Creates a Bubble3D plot.
@@ -808,6 +935,83 @@ module Chart3D =
                 )
             )
 
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>Creates a Bubble3D plot from encoded x, y, and z coordinates.</summary>
+        [<Extension>]
+        static member Bubble3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initScatter3D (
+                Trace3DStyle.Scatter3D(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Projection = Projection,
+                    Marker = marker
+                )
+            )
             |> GenericChart.ofTraceObject useDefaults
             |> GenericChart.addLayout (
                 Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))

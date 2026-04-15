@@ -532,6 +532,59 @@ module ChartCarpet =
 
             )
 
+        /// <summary>Creates a point plot on a specified carpet from encoded a and b coordinates.</summary>
+        [<Extension>]
+        static member PointCarpet
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                carpetAnchorId: string,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.ScatterCarpet(
+                aEncoded,
+                bEncoded,
+                changeMode StyleParam.Mode.Markers,
+                carpetAnchorId,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?UseDefaults = UseDefaults
+
+            )
+
         /// <summary>
         /// Creates a point plot that lies on a specified carpet.
         ///
@@ -673,6 +726,72 @@ module ChartCarpet =
             Chart.ScatterCarpet(
                 a,
                 b,
+                changeMode StyleParam.Mode.Lines,
+                carpetAnchorId,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a line plot on a specified carpet from encoded a and b coordinates.</summary>
+        [<Extension>]
+        static member LineCarpet
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                carpetAnchorId: string,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterCarpet(
+                aEncoded,
+                bEncoded,
                 changeMode StyleParam.Mode.Lines,
                 carpetAnchorId,
                 ?Name = Name,
@@ -902,6 +1021,92 @@ module ChartCarpet =
             )
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>Creates a spline plot on a specified carpet from encoded a and b coordinates.</summary>
+        [<Extension>]
+        static member SplineCarpet
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                carpetAnchorId: string,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth,
+                    ?Smoothing = Smoothing,
+                    Shape = StyleParam.Shape.Spline
+                )
+
+            TraceCarpet.initScatterCarpet (
+                TraceCarpetStyle.ScatterCarpet(
+                    AEncoded = aEncoded,
+                    BEncoded = bEncoded,
+                    Mode = changeMode StyleParam.Mode.Lines,
+                    Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
 
         /// <summary>
         /// Creates a spline plot that lies on a specified carpet.
@@ -1089,6 +1294,83 @@ module ChartCarpet =
                 TraceCarpetStyle.ScatterCarpet(
                     A = a,
                     B = b,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>Creates a bubble chart on a specified carpet from encoded a and b coordinates.</summary>
+        static member BubbleCarpet
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                carpetAnchorId: string,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            TraceCarpet.initScatterCarpet (
+                TraceCarpetStyle.ScatterCarpet(
+                    AEncoded = aEncoded,
+                    BEncoded = bEncoded,
                     Mode = changeMode StyleParam.Mode.Markers,
                     Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
                     Marker = marker,

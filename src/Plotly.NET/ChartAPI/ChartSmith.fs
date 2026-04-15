@@ -383,6 +383,52 @@ module ChartSmith =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>Creates a Point plot on a smith coordinate system from encoded real and imaginary components.</summary>
+        [<Extension>]
+        static member PointSmith
+            (
+                realEncoded: EncodedTypedArray,
+                imagEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?UseDefaults: bool
+            ) =
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.ScatterSmith(
+                realEncoded,
+                imagEncoded,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a Point plot on a smith coordinate system.
         ///
@@ -518,6 +564,73 @@ module ChartSmith =
             Chart.ScatterSmith(
                 real,
                 imag,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a Line plot on a smith coordinate system from encoded real and imaginary components.</summary>
+        [<Extension>]
+        static member LineSmith
+            (
+                realEncoded: EncodedTypedArray,
+                imagEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?Fill: StyleParam.Fill,
+                ?FillColor: Color,
+                ?UseDefaults: bool
+            ) =
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterSmith(
+                realEncoded,
+                imagEncoded,
                 mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -716,6 +829,77 @@ module ChartSmith =
             Chart.ScatterSmith(
                 real,
                 imag,
+                mode = changeMode StyleParam.Mode.Markers,
+                Marker = marker,
+                Line = line,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a Bubble plot on a smith coordinate system from encoded real and imaginary components.</summary>
+        [<Extension>]
+        static member BubbleSmith
+            (
+                realEncoded: EncodedTypedArray,
+                imagEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            Chart.ScatterSmith(
+                realEncoded,
+                imagEncoded,
                 mode = changeMode StyleParam.Mode.Markers,
                 Marker = marker,
                 Line = line,

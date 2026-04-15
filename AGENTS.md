@@ -112,6 +112,7 @@ When adding a new chart type or API surface, add or update the corresponding `.f
 - The core library is designed for C# interop — when adding public API, consider how it looks from C# (see the FAQ in [README.md](README.md) and [issue #285](https://github.com/plotly/Plotly.NET/issues/285)).
 - Release targets (`release`, `prerelease`) expect a `NUGET_KEY` environment variable. Don't run these unless you actually intend to publish.
 - Main branch for PRs is **`dev`**, not `main`/`master`.
+- when prompted for planning the implementation of a feature, draft a plan file and put it into /plans. Use that document to split the planned commits for the feature into self-contained commits that include tests. When working on the feature, continuously update the plan with implementation notes and mark the planned commits as done when they are implemented.
 
 ## License
 

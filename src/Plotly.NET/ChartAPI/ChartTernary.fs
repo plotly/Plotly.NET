@@ -382,6 +382,56 @@ module ChartTernary =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>Creates a point plot on a ternary coordinate system from encoded a, b, and c components.</summary>
+        static member PointTernary
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                cEncoded: EncodedTypedArray,
+                ?Sum: #IConvertible,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.ScatterTernary(
+                aEncoded,
+                bEncoded,
+                cEncoded,
+                ?Sum = Sum,
+                Mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a point plot on a ternary coordinate system
         ///
@@ -520,6 +570,73 @@ module ChartTernary =
                 ?A = A,
                 ?B = B,
                 ?C = C,
+                ?Sum = Sum,
+                Mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a line plot on a ternary coordinate system from encoded a, b, and c components.</summary>
+        static member LineTernary
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                cEncoded: EncodedTypedArray,
+                ?Sum: #IConvertible,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterTernary(
+                aEncoded,
+                bEncoded,
+                cEncoded,
                 ?Sum = Sum,
                 Mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
@@ -726,6 +843,85 @@ module ChartTernary =
                     ?A = A,
                     ?B = B,
                     ?C = C,
+                    ?Sum = Sum,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>Creates a bubble plot on a ternary coordinate system from encoded a, b, and c components.</summary>
+        static member BubbleTernary
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                cEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Sum: #IConvertible,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            TraceTernary.initScatterTernary (
+                TraceTernaryStyle.ScatterTernary(
+                    Marker = marker,
+                    Line = line,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    AEncoded = aEncoded,
+                    BEncoded = bEncoded,
+                    CEncoded = cEncoded,
                     ?Sum = Sum,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,

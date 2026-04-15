@@ -3,16 +3,16 @@ open Plotly.NET
 [<EntryPoint>]
 let main _ =
 
-    let chartScatterEncodedRootPoC =
-        Chart.Scatter(
+    let chartPointDensityEncodedHelpers =
+        Chart.PointDensity(
             xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0; 3.0; 4.0 |],
             yEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.5; 2.0; 1.5 |],
-            mode = StyleParam.Mode.Lines_Markers,
-            Name = "encoded scatter root",
+            ContoursColoring = StyleParam.ContourColoring.Fill,
+            Name = "encoded point density helper",
             UseDefaults = true
         )
-        |> Chart.withTitle "Scatter: encoded x/y at chart root"
+        |> Chart.withTitle "PointDensity: encoded x/y at chart helper layer"
 
-    chartScatterEncodedRootPoC |> Chart.show
+    chartPointDensityEncodedHelpers |> Chart.show
 
     0

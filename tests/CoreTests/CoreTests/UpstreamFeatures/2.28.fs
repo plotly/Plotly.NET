@@ -534,6 +534,89 @@ module ``Encoded typed arrays on chart subplot and domain roots`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart H2 helper constructors`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart H2 helper constructors" [
+                testCase "stacked bar helper serializes encoded values and keys" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"barmode\":\"stack\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``StackedBar encoded helper``)
+                )
+                testCase "point density helper serializes encoded x and y on both traces" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"type\":\"histogram2dcontour\""
+                        "\"type\":\"scatter\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointDensity encoded helper``)
+                )
+                testCase "point polar helper serializes encoded r and theta" (fun () ->
+                    [
+                        "\"r\":{\"bdata\":"
+                        "\"theta\":{\"bdata\":"
+                        "\"type\":\"scatterpolar\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointPolar encoded helper``)
+                )
+                testCase "point geo helper serializes encoded lon and lat" (fun () ->
+                    [
+                        "\"lon\":{\"bdata\":"
+                        "\"lat\":{\"bdata\":"
+                        "\"type\":\"scattergeo\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointGeo encoded helper``)
+                )
+                testCase "point mapbox helper serializes encoded lon and lat" (fun () ->
+                    [
+                        "\"lon\":{\"bdata\":"
+                        "\"lat\":{\"bdata\":"
+                        "\"type\":\"scattermapbox\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointMapbox encoded helper``)
+                )
+                testCase "point ternary helper serializes encoded a b and c" (fun () ->
+                    [
+                        "\"a\":{\"bdata\":"
+                        "\"b\":{\"bdata\":"
+                        "\"c\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointTernary encoded helper``)
+                )
+                testCase "point smith helper serializes encoded real and imag" (fun () ->
+                    [
+                        "\"real\":{\"bdata\":"
+                        "\"imag\":{\"bdata\":"
+                        "\"type\":\"scattersmith\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointSmith encoded helper``)
+                )
+                testCase "point carpet helper serializes encoded a and b" (fun () ->
+                    [
+                        "\"a\":{\"bdata\":"
+                        "\"b\":{\"bdata\":"
+                        "\"type\":\"scattercarpet\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``PointCarpet encoded helper``)
+                )
+                testCase "doughnut helper serializes encoded values and labels" (fun () ->
+                    [
+                        "\"values\":{\"bdata\":"
+                        "\"labels\":{\"bdata\":"
+                        "\"hole\":0.4"
+                        "\"type\":\"pie\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart H2 helper constructors``.``Doughnut encoded helper``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]

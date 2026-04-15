@@ -433,6 +433,71 @@ module ChartDomain =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>Creates a doughnut chart from encoded values and labels.</summary>
+        [<Extension>]
+        static member Doughnut
+            (
+                valuesEncoded: EncodedTypedArray,
+                ?labelsEncoded: EncodedTypedArray,
+                ?Hole: float,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Pull: float,
+                ?MultiPull: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?SectionColors: seq<Color>,
+                ?SectionOutlineColor: Color,
+                ?SectionOutlineWidth: float,
+                ?SectionOutlineMultiWidth: seq<float>,
+                ?SectionOutline: Line,
+                ?MarkerPatternShape: StyleParam.PatternShape,
+                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                ?MarkerPattern: Pattern,
+                ?Marker: Marker,
+                ?TextInfo: StyleParam.TextInfo,
+                ?Direction: StyleParam.Direction,
+                ?Rotation: float,
+                ?Sort: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let hole = Option.defaultValue 0.4 Hole
+
+            Chart.Pie(
+                valuesEncoded,
+                ?labelsEncoded = labelsEncoded,
+                Hole = hole,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?MultiPull = MultiPull,
+                ?Pull = Pull,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?SectionColors = SectionColors,
+                ?SectionOutlineColor = SectionOutlineColor,
+                ?SectionOutlineWidth = SectionOutlineWidth,
+                ?SectionOutlineMultiWidth = SectionOutlineMultiWidth,
+                ?SectionOutline = SectionOutline,
+                ?MarkerPatternShape = MarkerPatternShape,
+                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
+                ?MarkerPattern = MarkerPattern,
+                ?Marker = Marker,
+                ?TextInfo = TextInfo,
+                ?Direction = Direction,
+                ?Rotation = Rotation,
+                ?Sort = Sort,
+                ?UseDefaults = UseDefaults
+            )
+
 
         /// <summary>
         /// Creates a doughnut chart.

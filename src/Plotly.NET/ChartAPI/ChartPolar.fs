@@ -403,6 +403,55 @@ module ChartPolar =
 
             Chart.renderScatterPolarTrace useDefaults useWebGL style
 
+        /// <summary>Creates a polar point plot from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member PointPolar
+            (
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.ScatterPolar(
+                rEncoded,
+                thetaEncoded,
+                changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a polar point plot.
         ///
@@ -582,6 +631,72 @@ module ChartPolar =
             let useWebGL = defaultArg UseWebGL false
 
             Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>Creates a polar line plot from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member LinePolar
+            (
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.ScatterPolar(
+                rEncoded,
+                thetaEncoded,
+                changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a polar line plot.
@@ -785,6 +900,81 @@ module ChartPolar =
 
             Chart.renderScatterPolarTrace useDefaults useWebGL style
 
+        /// <summary>Creates a polar spline plot from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member SplinePolar
+            (
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth,
+                    ?Smoothing = Smoothing,
+                    Shape = StyleParam.Shape.Spline
+                )
+
+            Chart.ScatterPolar(
+                rEncoded,
+                thetaEncoded,
+                changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                Line = line,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
+
         /// <summary>
         /// Creates a polar spline plot.
         ///
@@ -945,6 +1135,66 @@ module ChartPolar =
                 TracePolarStyle.ScatterPolar(
                     R = r,
                     Theta = theta,
+                    Mode = StyleParam.Mode.Markers,
+                    Marker = marker,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>Creates a polar bubble chart from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member BubblePolar
+            (
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    REncoded = rEncoded,
+                    ThetaEncoded = thetaEncoded,
                     Mode = StyleParam.Mode.Markers,
                     Marker = marker,
                     ?Name = Name,
