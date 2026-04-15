@@ -23,6 +23,262 @@ let ``TypedArrayDType tests`` =
     ]
 
 [<Tests>]
+let ``Trace3D family encoded fields`` =
+    testList "CommonAbstractions.EncodedTypedArray Trace3D family integration" [
+
+        testCase "Scatter3D encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initScatter3D (
+                    Trace3DStyle.Scatter3D(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 13.0; 14.0; 15.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scatter3d must contain %s" needle))
+        )
+
+        testCase "Scatter3D encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace3D.initScatter3D (
+                    Trace3DStyle.Scatter3D(
+                        Ids = [ 9; 8; 7 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                        X = [ 10.0; 20.0; 30.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        Y = [ 40.0; 50.0; 60.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        Z = [ 70.0; 80.0; 90.0 ],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        MultiText = [ 100.0; 200.0; 300.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+                        CustomData = [ 13.0; 14.0; 15.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 16.0; 17.0; 18.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":[9,8,7]"; "\"x\":[10.0,20.0,30.0]"; "\"y\":[40.0,50.0,60.0]"; "\"z\":[70.0,80.0,90.0]"; "\"text\":[100.0,200.0,300.0]"; "\"customdata\":[13.0,14.0,15.0]" ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain scatter3d value must not be present: %s" needle))
+        )
+
+        testCase "Surface encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initSurface (
+                    Trace3DStyle.Surface(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 21; 22 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0; 34.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0 |],
+                        OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 1.0; 0.2 |], shape = [ 2; 2 ])
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"shape\":\"2,2\""; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"opacityscale\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "surface must contain %s" needle))
+        )
+
+        testCase "Surface encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace3D.initSurface (
+                    Trace3DStyle.Surface(
+                        Ids = [ 9; 8 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 21; 22 |],
+                        X = [ 10.0; 20.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        Y = [ 30.0; 40.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Z = [ [ 50.0; 60.0 ]; [ 70.0; 80.0 ] ],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                        MultiText = [ 100.0; 200.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0 |],
+                        CustomData = [ 41.0; 42.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 43.0; 44.0 |],
+                        OpacityScale = [ [ 0.0; 1.0 ]; [ 1.0; 0.2 ] ],
+                        OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 1.0; 0.2 |], shape = [ 2; 2 ])
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":[9,8]"; "\"x\":[10.0,20.0]"; "\"y\":[30.0,40.0]"; "\"z\":[[50.0,60.0],[70.0,80.0]]"; "\"text\":[100.0,200.0]"; "\"customdata\":[41.0,42.0]"; "\"opacityscale\":[[0.0,1.0],[1.0,0.2]]" ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain surface value must not be present: %s" needle))
+        )
+
+        testCase "Mesh3D encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initMesh3D (
+                    Trace3DStyle.Mesh3D(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 0.0 |],
+                        IEncoded = EncodedTypedArray.ofInt32Array [| 0 |],
+                        JEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+                        KEncoded = EncodedTypedArray.ofInt32Array [| 2 |],
+                        IntensityEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"i\":{\"bdata\":"; "\"j\":{\"bdata\":"; "\"k\":{\"bdata\":"; "\"intensity\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "mesh3d must contain %s" needle))
+        )
+
+        testCase "Mesh3D encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace3D.initMesh3D (
+                    Trace3DStyle.Mesh3D(
+                        Ids = [ 9; 8; 7 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
+                        X = [ 10.0; 20.0; 30.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.0 |],
+                        Y = [ 40.0; 50.0; 60.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+                        Z = [ 70.0; 80.0; 90.0 ],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 0.0 |],
+                        I = [ 9 ],
+                        IEncoded = EncodedTypedArray.ofInt32Array [| 0 |],
+                        J = [ 8 ],
+                        JEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+                        K = [ 7 ],
+                        KEncoded = EncodedTypedArray.ofInt32Array [| 2 |],
+                        Intensity = [ 0.9; 0.8; 0.7 ],
+                        IntensityEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                        MultiText = [ 100.0; 200.0; 300.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                        CustomData = [ 71.0; 72.0; 73.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 74.0; 75.0; 76.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":[9,8,7]"; "\"x\":[10.0,20.0,30.0]"; "\"y\":[40.0,50.0,60.0]"; "\"z\":[70.0,80.0,90.0]"; "\"i\":[9]"; "\"j\":[8]"; "\"k\":[7]"; "\"intensity\":[0.9,0.8,0.7]"; "\"text\":[100.0,200.0,300.0]"; "\"customdata\":[71.0,72.0,73.0]" ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain mesh3d value must not be present: %s" needle))
+        )
+
+        testCase "Cone encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initCone (
+                    Trace3DStyle.Cone(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 81; 82 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                        UEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+                        VEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                        WEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 93.0; 94.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"u\":{\"bdata\":"; "\"v\":{\"bdata\":"; "\"w\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "cone must contain %s" needle))
+        )
+
+        testCase "StreamTube encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initStreamTube (
+                    Trace3DStyle.StreamTube(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 101; 102 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                        UEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+                        VEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                        WEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 111.0; 112.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 113.0; 114.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"u\":{\"bdata\":"; "\"v\":{\"bdata\":"; "\"w\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "streamtube must contain %s" needle))
+        )
+
+        testCase "Volume encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initVolume (
+                    Trace3DStyle.Volume(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 121; 122; 123 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        ValueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 141.0; 142.0; 143.0 |],
+                        OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 0.5; 0.2; 1.0; 1.0 |], shape = [ 3; 2 ])
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"value\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"opacityscale\":{\"bdata\":"; "\"shape\":\"3,2\"" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "volume must contain %s" needle))
+        )
+
+        testCase "Volume encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                Trace3D.initVolume (
+                    Trace3DStyle.Volume(
+                        Ids = [ 9; 8; 7 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 121; 122; 123 |],
+                        X = [ 10.0; 20.0; 30.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        Y = [ 40.0; 50.0; 60.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        Z = [ 70.0; 80.0; 90.0 ],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        Value = [ 0.9; 0.8; 0.7 ],
+                        ValueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                        MultiText = [ 100.0; 200.0; 300.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |],
+                        CustomData = [ 141.0; 142.0; 143.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 144.0; 145.0; 146.0 |],
+                        OpacityScale = [ [ 0.0; 1.0 ]; [ 0.5; 0.2 ]; [ 1.0; 1.0 ] ],
+                        OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 0.5; 0.2; 1.0; 1.0 |], shape = [ 3; 2 ])
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":[9,8,7]"; "\"x\":[10.0,20.0,30.0]"; "\"y\":[40.0,50.0,60.0]"; "\"z\":[70.0,80.0,90.0]"; "\"value\":[0.9,0.8,0.7]"; "\"text\":[100.0,200.0,300.0]"; "\"customdata\":[141.0,142.0,143.0]"; "\"opacityscale\":[[0.0,1.0],[0.5,0.2],[1.0,1.0]]" ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain volume value must not be present: %s" needle))
+        )
+
+        testCase "IsoSurface encoded fields land under the expected properties" (fun () ->
+            let trace =
+                Trace3D.initIsoSurface (
+                    Trace3DStyle.IsoSurface(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 151; 152; 153 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        ValueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 161.0; 162.0; 163.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 171.0; 172.0; 173.0 |],
+                        OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 0.5; 0.2; 1.0; 1.0 |], shape = [ 3; 2 ])
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"value\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"opacityscale\":{\"bdata\":"; "\"shape\":\"3,2\"" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "isosurface must contain %s" needle))
+        )
+    ]
+
+[<Tests>]
 let ``EncodedTypedArray init`` =
     testList "CommonAbstractions.EncodedTypedArray.init" [
 

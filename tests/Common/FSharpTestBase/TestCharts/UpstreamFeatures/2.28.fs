@@ -273,3 +273,118 @@ module ``Encoded typed arrays on matrix trace families`` =
             )
         )
         |> GenericChart.ofTraceObject true
+
+module ``Encoded typed arrays on Trace3D families`` =
+
+    let ``Scatter3D with encoded arrays`` =
+        Trace3D.initScatter3D (
+            Trace3DStyle.Scatter3D(
+                Name = "encoded scatter3d",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 11.0; 12.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 13.0; 14.0; 15.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Surface with encoded arrays`` =
+        Trace3D.initSurface (
+            Trace3DStyle.Surface(
+                Name = "encoded surface",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 21; 22 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0; 34.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0 |],
+                OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 1.0; 0.2 |], shape = [ 2; 2 ])
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Mesh3D with encoded arrays`` =
+        Trace3D.initMesh3D (
+            Trace3DStyle.Mesh3D(
+                Name = "encoded mesh3d",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 0.0 |],
+                IEncoded = EncodedTypedArray.ofInt32Array [| 0 |],
+                JEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+                KEncoded = EncodedTypedArray.ofInt32Array [| 2 |],
+                IntensityEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Cone with encoded arrays`` =
+        Trace3D.initCone (
+            Trace3DStyle.Cone(
+                Name = "encoded cone",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 81; 82 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                UEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+                VEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                WEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 93.0; 94.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``StreamTube with encoded arrays`` =
+        Trace3D.initStreamTube (
+            Trace3DStyle.StreamTube(
+                Name = "encoded streamtube",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 101; 102 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                UEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+                VEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                WEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 111.0; 112.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 113.0; 114.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Volume with encoded arrays`` =
+        Trace3D.initVolume (
+            Trace3DStyle.Volume(
+                Name = "encoded volume",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 121; 122; 123 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                ValueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 141.0; 142.0; 143.0 |],
+                OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 0.5; 0.2; 1.0; 1.0 |], shape = [ 3; 2 ])
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``IsoSurface with encoded arrays`` =
+        Trace3D.initIsoSurface (
+            Trace3DStyle.IsoSurface(
+                Name = "encoded isosurface",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 151; 152; 153 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                ValueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 161.0; 162.0; 163.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 171.0; 172.0; 173.0 |],
+                OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 0.5; 0.2; 1.0; 1.0 |], shape = [ 3; 2 ])
+            )
+        )
+        |> GenericChart.ofTraceObject true

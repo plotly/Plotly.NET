@@ -122,11 +122,30 @@ let main args =
         |> GenericChart.ofTraceObject true
         |> Chart.withTitle "Fully encoded heatmap"
 
+    let fullyEncodedCone =
+        Trace3D.initCone (
+            Trace3DStyle.Cone(
+                Name = "encoded cone",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 301; 302 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                ZEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                UEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.4 |],
+                VEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.5 |],
+                WEncoded = EncodedTypedArray.ofFloat64Array [| 0.6; 0.8 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded cone"
+
     simpleEncodedScatter |> Chart.show
     fullyEncodedScatterWithErrorBars |> Chart.show
     fullyEncodedBar |> Chart.show
     fullyEncodedBoxPlot |> Chart.show
     fullyEncodedCandlestick |> Chart.show
     fullyEncodedHeatmap |> Chart.show
+    fullyEncodedCone |> Chart.show
 
     0

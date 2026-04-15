@@ -66,12 +66,17 @@ type Trace3DStyle() =
     /// <param name="Opacity">Sets the opacity of the trace.</param>
     /// <param name="Mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the z coordinates.</param>
+    /// <param name="ZEncoded">Sets the z coordinates as a base64 encoded typed array object.</param>
     /// <param name="SurfaceColor">Sets the surface fill color.</param>
     /// <param name="Text">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiTextEncoded">Sets the per-point text values as a base64 encoded typed array object.</param>
     /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
     /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
     /// <param name="TextTemplate">Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-format/tree/v1.4.5#d3-format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.</param>
@@ -85,6 +90,7 @@ type Trace3DStyle() =
     /// <param name="YHoverFormat">Sets the hover text formatting rulefor `y` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `yaxis.hoverformat`.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-point customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="Marker">Sets the marker of this trace.</param>
     /// <param name="Line">Sets the line of this trace.</param>
@@ -113,12 +119,17 @@ type Trace3DStyle() =
             ?Mode: StyleParam.Mode,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?SurfaceColor: Color,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -132,6 +143,7 @@ type Trace3DStyle() =
             ?YHoverFormat: string,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?Marker: Marker,
             ?Line: Line,
@@ -163,11 +175,16 @@ type Trace3DStyle() =
             |> DynObj.withOptionalPropertyBy                 "mode"              Mode                                StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "opacity"           Opacity                             
             |> DynObj.withOptionalProperty                   "ids"               Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"               IdsEncoded                          
             |> DynObj.withOptionalProperty                   "x"                 X                                   
+            |> DynObj.withOptionalProperty                   "x"                 XEncoded                            
             |> DynObj.withOptionalProperty                   "y"                 Y                                   
+            |> DynObj.withOptionalProperty                   "y"                 YEncoded                            
             |> DynObj.withOptionalProperty                   "z"                 Z                                   
+            |> DynObj.withOptionalProperty                   "z"                 ZEncoded                            
             |> DynObj.withOptionalProperty                   "surfacecolor"      SurfaceColor                        
             |> DynObj.withOptionalSingleOrMultiProperty      "text"              (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"              MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"      (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"      (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"         (HoverText, MultiHoverText)         
@@ -178,6 +195,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty                   "zhoverformat"      ZHoverFormat                        
             |> DynObj.withOptionalProperty                   "meta"              Meta                                
             |> DynObj.withOptionalProperty                   "customdata"        CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"        CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy                 "scene"             Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty                   "marker"            Marker                              
             |> DynObj.withOptionalProperty                   "line"              Line                                
@@ -206,12 +224,17 @@ type Trace3DStyle() =
     /// <param name="LegendGroupTitle">Sets the legend group title for this trace.</param>
     /// <param name="Opacity">Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the x coordinates.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the y coordinates.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the z coordinates.</param>
+    /// <param name="ZEncoded">Sets the z data as a flattened base64 encoded typed array object. Use `shape` to declare the matrix dimensions.</param>
     /// <param name="SurfaceColor">Sets the surface color values, used for setting a color scale independent of `z`.</param>
     /// <param name="Text">Sets the text elements associated with each z value. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets the text elements associated with each z value. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiTextEncoded">Sets the text values as a base64 encoded typed array object.</param>
     /// <param name="HoverText">Same as `text`.</param>
     /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -222,6 +245,7 @@ type Trace3DStyle() =
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-point customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace.</param>
@@ -240,6 +264,7 @@ type Trace3DStyle() =
     /// <param name="Lighting">Sets the Lighting style of this trace.</param>
     /// <param name="LightPosition">Sets the LightPosition style of this trace.</param>
     /// <param name="OpacityScale">Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.</param>
+    /// <param name="OpacityScaleEncoded">Sets the opacityscale as a flattened base64 encoded typed array object. Use `shape` to declare the matrix dimensions.</param>
     /// <param name="XCalendar">Sets the calendar system to use with `x` date data.</param>
     /// <param name="YCalendar">Sets the calendar system to use with `y` date data.</param>
     /// <param name="ZCalendar">Sets the calendar system to use with `z` date data.</param>
@@ -255,12 +280,17 @@ type Trace3DStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#seq<#IConvertible>>,
+            ?ZEncoded: EncodedTypedArray,
             ?SurfaceColor: Color,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -270,6 +300,7 @@ type Trace3DStyle() =
             ?YHoverFormat: string,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?ColorBar: ColorBar,
@@ -289,6 +320,7 @@ type Trace3DStyle() =
             ?Lighting: Lighting,
             ?LightPosition: LightPosition,
             ?OpacityScale: seq<#seq<#IConvertible>>,
+            ?OpacityScaleEncoded: EncodedTypedArray,
             ?XCalendar: StyleParam.Calendar,
             ?YCalendar: StyleParam.Calendar,
             ?ZCalendar: StyleParam.Calendar,
@@ -306,11 +338,16 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"  LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"           Opacity                             
             |> DynObj.withOptionalProperty               "ids"               Ids                                 
+            |> DynObj.withOptionalProperty               "ids"               IdsEncoded                          
             |> DynObj.withOptionalProperty               "x"                 X                                   
+            |> DynObj.withOptionalProperty               "x"                 XEncoded                            
             |> DynObj.withOptionalProperty               "y"                 Y                                   
+            |> DynObj.withOptionalProperty               "y"                 YEncoded                            
             |> DynObj.withOptionalProperty               "z"                 Z                                   
+            |> DynObj.withOptionalProperty               "z"                 ZEncoded                            
             |> DynObj.withOptionalProperty               "surfacecolor"      SurfaceColor                        
             |> DynObj.withOptionalSingleOrMultiProperty  "text"              (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"              MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"         (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"         HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"     (HoverTemplate, MultiHoverTemplate) 
@@ -319,6 +356,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "zhoverformat"      ZHoverFormat                        
             |> DynObj.withOptionalProperty               "meta"              Meta                                
             |> DynObj.withOptionalProperty               "customdata"        CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"        CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "scene"             Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"         ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "colorbar"          ColorBar                            
@@ -337,6 +375,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "lighting"          Lighting                            
             |> DynObj.withOptionalProperty               "lightposition"     LightPosition                       
             |> DynObj.withOptionalProperty               "opacityscale"      OpacityScale                        
+            |> DynObj.withOptionalProperty               "opacityscale"      OpacityScaleEncoded                 
             |> DynObj.withOptionalPropertyBy             "xcalendar"         XCalendar                           StyleParam.Calendar.convert
             |> DynObj.withOptionalPropertyBy             "ycalendar"         YCalendar                           StyleParam.Calendar.convert
             |> DynObj.withOptionalPropertyBy             "zcalendar"         ZCalendar                           StyleParam.Calendar.convert
@@ -354,18 +393,27 @@ type Trace3DStyle() =
     /// <param name="LegendGroupTitle">Sets the legend group title for this trace.</param>
     /// <param name="Opacity">Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.</param>
+    /// <param name="ZEncoded">Sets the z coordinates as a base64 encoded typed array object.</param>
     /// <param name="I">A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the "first" vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.</param>
+    /// <param name="IEncoded">Sets the first vertex indices as a base64 encoded typed array object.</param>
     /// <param name="J">A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the "second" vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.</param>
+    /// <param name="JEncoded">Sets the second vertex indices as a base64 encoded typed array object.</param>
     /// <param name="K">A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the "third" vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.</param>
+    /// <param name="KEncoded">Sets the third vertex indices as a base64 encoded typed array object.</param>
     /// <param name="FaceColor">Sets the color of each face Overrides "color" and "vertexcolor".</param>
     /// <param name="Intensity">Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.</param>
+    /// <param name="IntensityEncoded">Sets the intensity values as a base64 encoded typed array object.</param>
     /// <param name="IntensityMode">Determines the source of `intensity` values.</param>
     /// <param name="VertexColor">Sets the color of each vertex Overrides "color". While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.</param>
     /// <param name="Text">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiTextEncoded">Sets the per-vertex text values as a base64 encoded typed array object.</param>
     /// <param name="HoverText">Same as `text`.</param>
     /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -376,6 +424,7 @@ type Trace3DStyle() =
     /// <param name="ZHoverFormat">Sets the hover text formatting rulefor `z` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see: https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: "%h" for half of the year as a decimal number as well as "%{n}f" for fractional seconds with n digits. For example, "2016-10-13 09:15:23.456" with tickformat "%H~%M~%S.%2f" would display "09~15~23.46"By default the values are formatted using `zaxis.hoverformat`.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-vertex customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="Color">Sets the color values, used for setting a color scale independent of `z`.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
@@ -410,18 +459,27 @@ type Trace3DStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?I: seq<#IConvertible>,
+            ?IEncoded: EncodedTypedArray,
             ?J: seq<#IConvertible>,
+            ?JEncoded: EncodedTypedArray,
             ?K: seq<#IConvertible>,
+            ?KEncoded: EncodedTypedArray,
             ?FaceColor: Color,
             ?Intensity: seq<#IConvertible>,
+            ?IntensityEncoded: EncodedTypedArray,
             ?IntensityMode: StyleParam.IntensityMode,
             ?VertexColor: Color,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -431,6 +489,7 @@ type Trace3DStyle() =
             ?YHoverFormat: string,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?Color: Color,
             ?ColorAxis: StyleParam.SubPlotId,
@@ -469,17 +528,26 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"            Opacity                             
             |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty               "x"                  X                                   
+            |> DynObj.withOptionalProperty               "x"                  XEncoded                            
             |> DynObj.withOptionalProperty               "y"                  Y                                   
+            |> DynObj.withOptionalProperty               "y"                  YEncoded                            
             |> DynObj.withOptionalProperty               "z"                  Z                                   
+            |> DynObj.withOptionalProperty               "z"                  ZEncoded                            
             |> DynObj.withOptionalProperty               "i"                  I                                   
+            |> DynObj.withOptionalProperty               "i"                  IEncoded                            
             |> DynObj.withOptionalProperty               "j"                  J                                   
+            |> DynObj.withOptionalProperty               "j"                  JEncoded                            
             |> DynObj.withOptionalProperty               "k"                  K                                   
+            |> DynObj.withOptionalProperty               "k"                  KEncoded                            
             |> DynObj.withOptionalProperty               "facecolor"          FaceColor                           
             |> DynObj.withOptionalProperty               "intensity"          Intensity                           
+            |> DynObj.withOptionalProperty               "intensity"          IntensityEncoded                    
             |> DynObj.withOptionalPropertyBy             "intensitymode"      IntensityMode                       StyleParam.IntensityMode.convert
             |> DynObj.withOptionalProperty               "vertexcolor"        VertexColor                         
             |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
@@ -488,6 +556,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "zhoverformat"       ZHoverFormat                        
             |> DynObj.withOptionalProperty               "meta"               Meta                                
             |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "scene"              Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "color"              Color                               
             |> DynObj.withOptionalPropertyBy             "coloraxis"          ColorAxis                           StyleParam.SubPlotId.convert
@@ -525,14 +594,22 @@ type Trace3DStyle() =
     /// <param name="LegendGroupTitle">Sets the legend group title for this trace.</param>
     /// <param name="Opacity">Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the x coordinates of the vector field and of the displayed cones.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the y coordinates of the vector field and of the displayed cones.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the z coordinates of the vector field and of the displayed cones.</param>
+    /// <param name="ZEncoded">Sets the z coordinates as a base64 encoded typed array object.</param>
     /// <param name="U">Sets the x components of the vector field.</param>
+    /// <param name="UEncoded">Sets the x components of the vector field as a base64 encoded typed array object.</param>
     /// <param name="V">Sets the y components of the vector field.</param>
+    /// <param name="VEncoded">Sets the y components of the vector field as a base64 encoded typed array object.</param>
     /// <param name="W">Sets the z components of the vector field.</param>
+    /// <param name="WEncoded">Sets the z components of the vector field as a base64 encoded typed array object.</param>
     /// <param name="Text">Sets the text elements associated with the cones. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets the text elements associated with the cones. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiTextEncoded">Sets the per-cone text values as a base64 encoded typed array object.</param>
     /// <param name="HoverText">Same as `text`.</param>
     /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -546,6 +623,7 @@ type Trace3DStyle() =
     /// <param name="WHoverFormat">Sets the hover text formatting rulefor `w` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.By default the values are formatted using generic number format.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-cone customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the ColorBar object associated with the color scale of the cones</param>
@@ -575,14 +653,22 @@ type Trace3DStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?U: seq<#IConvertible>,
+            ?UEncoded: EncodedTypedArray,
             ?V: seq<#IConvertible>,
+            ?VEncoded: EncodedTypedArray,
             ?W: seq<#IConvertible>,
+            ?WEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -595,6 +681,7 @@ type Trace3DStyle() =
             ?WHoverFormat: string,
             ?Meta: seq<#IConvertible>,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?ColorBar: ColorBar,
@@ -626,13 +713,21 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"    LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"             Opacity                             
             |> DynObj.withOptionalProperty               "ids"                 Ids                                 
+            |> DynObj.withOptionalProperty               "ids"                 IdsEncoded                          
             |> DynObj.withOptionalProperty               "x"                   X                                   
+            |> DynObj.withOptionalProperty               "x"                   XEncoded                            
             |> DynObj.withOptionalProperty               "y"                   Y                                   
+            |> DynObj.withOptionalProperty               "y"                   YEncoded                            
             |> DynObj.withOptionalProperty               "z"                   Z                                   
+            |> DynObj.withOptionalProperty               "z"                   ZEncoded                            
             |> DynObj.withOptionalProperty               "u"                   U                                   
+            |> DynObj.withOptionalProperty               "u"                   UEncoded                            
             |> DynObj.withOptionalProperty               "v"                   V                                   
+            |> DynObj.withOptionalProperty               "v"                   VEncoded                            
             |> DynObj.withOptionalProperty               "w"                   W                                   
+            |> DynObj.withOptionalProperty               "w"                   WEncoded                            
             |> DynObj.withOptionalSingleOrMultiProperty  "text"                (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"                MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"           (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"           HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"       (HoverTemplate, MultiHoverTemplate) 
@@ -644,6 +739,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "whoverformat"        WHoverFormat                        
             |> DynObj.withOptionalProperty               "meta"                Meta                                
             |> DynObj.withOptionalProperty               "customdata"          CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"          CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "scene"               Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"           ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "colorbar"            ColorBar                            
@@ -675,14 +771,22 @@ type Trace3DStyle() =
     /// <param name="LegendGroupTitle">Sets the legend group title for this trace.</param>
     /// <param name="Opacity">Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the x coordinates of the vector field.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the y coordinates of the vector field.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the z coordinates of the vector field.</param>
+    /// <param name="ZEncoded">Sets the z coordinates as a base64 encoded typed array object.</param>
     /// <param name="U">Sets the x components of the vector field.</param>
+    /// <param name="UEncoded">Sets the x components of the vector field as a base64 encoded typed array object.</param>
     /// <param name="V">Sets the y components of the vector field.</param>
+    /// <param name="VEncoded">Sets the y components of the vector field as a base64 encoded typed array object.</param>
     /// <param name="W">Sets the z components of the vector field.</param>
+    /// <param name="WEncoded">Sets the z components of the vector field as a base64 encoded typed array object.</param>
     /// <param name="Text">Sets a text element associated with this trace. If trace `hoverinfo` contains a "text" flag, this text element will be seen in all hover labels. Note that streamtube traces do not support array `text` values.</param>
     /// <param name="MultiText">Sets a text element associated with this trace. If trace `hoverinfo` contains a "text" flag, this text element will be seen in all hover labels. Note that streamtube traces do not support array `text` values.</param>
+    /// <param name="MultiTextEncoded">Sets the text values as a base64 encoded typed array object.</param>
     /// <param name="HoverText">Same as `text`.</param>
     /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -696,6 +800,7 @@ type Trace3DStyle() =
     /// <param name="WHoverFormat">Sets the hover text formatting rulefor `w` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.By default the values are formatted using generic number format.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-sample customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the ColorBar object associated with the color scale of the streamtubes</param>
@@ -725,14 +830,22 @@ type Trace3DStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?U: seq<#IConvertible>,
+            ?UEncoded: EncodedTypedArray,
             ?V: seq<#IConvertible>,
+            ?VEncoded: EncodedTypedArray,
             ?W: seq<#IConvertible>,
+            ?WEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -745,6 +858,7 @@ type Trace3DStyle() =
             ?WHoverFormat: string,
             ?Meta: seq<#IConvertible>,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?ColorBar: ColorBar,
@@ -776,13 +890,21 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"  LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"           Opacity                             
             |> DynObj.withOptionalProperty               "ids"               Ids                                 
+            |> DynObj.withOptionalProperty               "ids"               IdsEncoded                          
             |> DynObj.withOptionalProperty               "x"                 X                                   
+            |> DynObj.withOptionalProperty               "x"                 XEncoded                            
             |> DynObj.withOptionalProperty               "y"                 Y                                   
+            |> DynObj.withOptionalProperty               "y"                 YEncoded                            
             |> DynObj.withOptionalProperty               "z"                 Z                                   
+            |> DynObj.withOptionalProperty               "z"                 ZEncoded                            
             |> DynObj.withOptionalProperty               "u"                 U                                   
+            |> DynObj.withOptionalProperty               "u"                 UEncoded                            
             |> DynObj.withOptionalProperty               "v"                 V                                   
+            |> DynObj.withOptionalProperty               "v"                 VEncoded                            
             |> DynObj.withOptionalProperty               "w"                 W                                   
+            |> DynObj.withOptionalProperty               "w"                 WEncoded                            
             |> DynObj.withOptionalSingleOrMultiProperty  "text"              (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"              MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"         (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"         HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"     (HoverTemplate, MultiHoverTemplate) 
@@ -794,6 +916,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "whoverformat"      WHoverFormat                        
             |> DynObj.withOptionalProperty               "meta"              Meta                                
             |> DynObj.withOptionalProperty               "customdata"        CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"        CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "scene"             Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"         ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "colorbar"          ColorBar                            
@@ -825,12 +948,18 @@ type Trace3DStyle() =
     /// <param name="LegendGroupTitle">Sets the title of the legendgroup</param>
     /// <param name="Opacity">Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the X coordinates of the vertices on X axis.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the Y coordinates of the vertices on Y axis.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the Z coordinates of the vertices on Z axis.</param>
+    /// <param name="ZEncoded">Sets the z coordinates as a base64 encoded typed array object.</param>
     /// <param name="Value">Sets the 4th dimension (value) of the vertices.</param>
+    /// <param name="ValueEncoded">Sets the value data as a base64 encoded typed array object.</param>
     /// <param name="Text">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiTextEncoded">Sets the per-vertex text values as a base64 encoded typed array object.</param>
     /// <param name="HoverText">Same as `text`.</param>
     /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -842,6 +971,7 @@ type Trace3DStyle() =
     /// <param name="ValueHoverFormat">Sets the hover text formatting rulefor `value` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.By default the values are formatted using generic number format.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-vertex customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace</param>
@@ -862,6 +992,7 @@ type Trace3DStyle() =
     /// <param name="Lighting">Sets the Lighting of this trace.</param>
     /// <param name="LightPosition">Sets the LightPosition of this trace.</param>
     /// <param name="OpacityScale">Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.</param>
+    /// <param name="OpacityScaleEncoded">Sets the opacityscale as a flattened base64 encoded typed array object. Use `shape` to declare the matrix dimensions.</param>
     /// <param name="Slices">Sets slices through the volume</param>
     /// <param name="SpaceFrame">Sets the SpaceFrame of this trace.</param>
     /// <param name="Surface">Sets the Surface of this trace.</param>
@@ -877,12 +1008,18 @@ type Trace3DStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?Value: seq<#IConvertible>,
+            ?ValueEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -893,6 +1030,7 @@ type Trace3DStyle() =
             ?ValueHoverFormat: string,
             ?Meta: seq<#IConvertible>,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?ColorBar: ColorBar,
@@ -914,6 +1052,7 @@ type Trace3DStyle() =
             ?Lighting: Lighting,
             ?LightPosition: LightPosition,
             ?OpacityScale: seq<#seq<#IConvertible>>,
+            ?OpacityScaleEncoded: EncodedTypedArray,
             ?Slices: Slices,
             ?SpaceFrame: Spaceframe,
             ?Surface: Surface,
@@ -931,11 +1070,17 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"            Opacity                             
             |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty               "x"                  X                                   
+            |> DynObj.withOptionalProperty               "x"                  XEncoded                            
             |> DynObj.withOptionalProperty               "y"                  Y                                   
+            |> DynObj.withOptionalProperty               "y"                  YEncoded                            
             |> DynObj.withOptionalProperty               "z"                  Z                                   
+            |> DynObj.withOptionalProperty               "z"                  ZEncoded                            
             |> DynObj.withOptionalProperty               "value"              Value                               
+            |> DynObj.withOptionalProperty               "value"              ValueEncoded                        
             |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
@@ -945,6 +1090,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "valuehoverformat"   ValueHoverFormat                    
             |> DynObj.withOptionalProperty               "meta"               Meta                                
             |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "scene"              Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"          ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "colorbar"           ColorBar                            
@@ -965,6 +1111,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "lighting"           Lighting                            
             |> DynObj.withOptionalProperty               "lightposition"      LightPosition                       
             |> DynObj.withOptionalProperty               "opacityscale"       OpacityScale                        
+            |> DynObj.withOptionalProperty               "opacityscale"       OpacityScaleEncoded                 
             |> DynObj.withOptionalProperty               "slices"             Slices                              
             |> DynObj.withOptionalProperty               "spaceframe"         SpaceFrame                          
             |> DynObj.withOptionalProperty               "surface"            Surface                             
@@ -982,12 +1129,18 @@ type Trace3DStyle() =
     /// <param name="LegendGroupTitle">Sets the title of the legendgroup</param>
     /// <param name="Opacity">Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.</param>
     /// <param name="Ids">Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.</param>
+    /// <param name="IdsEncoded">Sets the id labels as a base64 encoded typed array object.</param>
     /// <param name="X">Sets the X coordinates of the vertices on X axis.</param>
+    /// <param name="XEncoded">Sets the x coordinates as a base64 encoded typed array object.</param>
     /// <param name="Y">Sets the Y coordinates of the vertices on Y axis.</param>
+    /// <param name="YEncoded">Sets the y coordinates as a base64 encoded typed array object.</param>
     /// <param name="Z">Sets the Z coordinates of the vertices on Z axis.</param>
+    /// <param name="ZEncoded">Sets the z coordinates as a base64 encoded typed array object.</param>
     /// <param name="Value">Sets the 4th dimension (value) of the vertices.</param>
+    /// <param name="ValueEncoded">Sets the value data as a base64 encoded typed array object.</param>
     /// <param name="Text">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
     /// <param name="MultiText">Sets the text elements associated with the vertices. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+    /// <param name="MultiTextEncoded">Sets the per-vertex text values as a base64 encoded typed array object.</param>
     /// <param name="HoverText">Same as `text`.</param>
     /// <param name="MultiHoverText">Same as `text`.</param>
     /// <param name="HoverInfo">Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.</param>
@@ -999,6 +1152,7 @@ type Trace3DStyle() =
     /// <param name="ValueHoverFormat">Sets the hover text formatting rulefor `value` using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.By default the values are formatted using generic number format.</param>
     /// <param name="Meta">Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.</param>
     /// <param name="CustomData">Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, "scatter" traces also appends customdata items in the markers DOM elements</param>
+    /// <param name="CustomDataEncoded">Sets the per-vertex customdata values as a base64 encoded typed array object.</param>
     /// <param name="Scene">Sets a reference between this trace's 3D coordinate system and a 3D scene. If "scene" (the default value), the (x,y,z) coordinates refer to `layout.scene`. If "scene2", the (x,y,z) coordinates refer to `layout.scene2`, and so on.</param>
     /// <param name="ColorAxis">Sets a reference to a shared color axis. References to these shared color axes are "coloraxis", "coloraxis2", "coloraxis3", etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.</param>
     /// <param name="ColorBar">Sets the colorbar of this trace</param>
@@ -1019,6 +1173,7 @@ type Trace3DStyle() =
     /// <param name="Lighting">Sets the Lighting of this trace.</param>
     /// <param name="LightPosition">Sets the LightPosition of this trace.</param>
     /// <param name="OpacityScale">Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.</param>
+    /// <param name="OpacityScaleEncoded">Sets the opacityscale as a flattened base64 encoded typed array object. Use `shape` to declare the matrix dimensions.</param>
     /// <param name="Slices">Sets slices through the volume</param>
     /// <param name="SpaceFrame">Sets the SpaceFrame of this trace.</param>
     /// <param name="Surface">Sets the Surface of this trace.</param>
@@ -1034,12 +1189,18 @@ type Trace3DStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?Value: seq<#IConvertible>,
+            ?ValueEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?HoverInfo: StyleParam.HoverInfo,
@@ -1050,6 +1211,7 @@ type Trace3DStyle() =
             ?ValueHoverFormat: string,
             ?Meta: seq<#IConvertible>,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Scene: StyleParam.SubPlotId,
             ?ColorAxis: StyleParam.SubPlotId,
             ?ColorBar: ColorBar,
@@ -1071,6 +1233,7 @@ type Trace3DStyle() =
             ?Lighting: Lighting,
             ?LightPosition: LightPosition,
             ?OpacityScale: seq<#seq<#IConvertible>>,
+            ?OpacityScaleEncoded: EncodedTypedArray,
             ?Slices: Slices,
             ?SpaceFrame: Spaceframe,
             ?Surface: Surface,
@@ -1088,11 +1251,17 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"   LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"            Opacity                             
             |> DynObj.withOptionalProperty               "ids"                Ids                                 
+            |> DynObj.withOptionalProperty               "ids"                IdsEncoded                          
             |> DynObj.withOptionalProperty               "x"                  X                                   
+            |> DynObj.withOptionalProperty               "x"                  XEncoded                            
             |> DynObj.withOptionalProperty               "y"                  Y                                   
+            |> DynObj.withOptionalProperty               "y"                  YEncoded                            
             |> DynObj.withOptionalProperty               "z"                  Z                                   
+            |> DynObj.withOptionalProperty               "z"                  ZEncoded                            
             |> DynObj.withOptionalProperty               "value"              Value                               
+            |> DynObj.withOptionalProperty               "value"              ValueEncoded                        
             |> DynObj.withOptionalSingleOrMultiProperty  "text"               (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"               MultiTextEncoded                    
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"          (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"          HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"      (HoverTemplate, MultiHoverTemplate) 
@@ -1102,6 +1271,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "valuehoverformat"   ValueHoverFormat                    
             |> DynObj.withOptionalProperty               "meta"               Meta                                
             |> DynObj.withOptionalProperty               "customdata"         CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"         CustomDataEncoded                   
             |> DynObj.withOptionalPropertyBy             "scene"              Scene                               StyleParam.SubPlotId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"          ColorAxis                           StyleParam.SubPlotId.convert
             |> DynObj.withOptionalProperty               "colorbar"           ColorBar                            
@@ -1122,6 +1292,7 @@ type Trace3DStyle() =
             |> DynObj.withOptionalProperty               "lighting"           Lighting                            
             |> DynObj.withOptionalProperty               "lightposition"      LightPosition                       
             |> DynObj.withOptionalProperty               "opacityscale"       OpacityScale                        
+            |> DynObj.withOptionalProperty               "opacityscale"       OpacityScaleEncoded                 
             |> DynObj.withOptionalProperty               "slices"             Slices                              
             |> DynObj.withOptionalProperty               "spaceframe"         SpaceFrame                          
             |> DynObj.withOptionalProperty               "surface"            Surface                             

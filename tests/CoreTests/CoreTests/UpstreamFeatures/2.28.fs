@@ -245,3 +245,40 @@ module ``Encoded typed arrays on matrix trace families`` =
                 )
             ]
         ]
+
+module ``Encoded typed arrays on Trace3D families`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on Trace3D families" [
+                testCase "scatter3d trace serializes encoded xyz text and customdata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``Scatter3D with encoded arrays``)
+                )
+                testCase "surface trace serializes encoded matrix z and opacityscale arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"shape\":\"2,2\""; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"opacityscale\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``Surface with encoded arrays``)
+                )
+                testCase "mesh3d trace serializes encoded topology and intensity arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"i\":{\"bdata\":"; "\"j\":{\"bdata\":"; "\"k\":{\"bdata\":"; "\"intensity\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``Mesh3D with encoded arrays``)
+                )
+                testCase "cone trace serializes encoded vector-field arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"u\":{\"bdata\":"; "\"v\":{\"bdata\":"; "\"w\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``Cone with encoded arrays``)
+                )
+                testCase "streamtube trace serializes encoded vector-field arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"u\":{\"bdata\":"; "\"v\":{\"bdata\":"; "\"w\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``StreamTube with encoded arrays``)
+                )
+                testCase "volume trace serializes encoded value and opacityscale arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"value\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"opacityscale\":{\"bdata\":"; "\"shape\":\"3,2\"" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``Volume with encoded arrays``)
+                )
+                testCase "isosurface trace serializes encoded value and opacityscale arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"value\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"opacityscale\":{\"bdata\":"; "\"shape\":\"3,2\"" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on Trace3D families``.``IsoSurface with encoded arrays``)
+                )
+            ]
+        ]
