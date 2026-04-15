@@ -3,16 +3,16 @@ open Plotly.NET
 [<EntryPoint>]
 let main _ =
 
-    let chartTreemapEncodedRootPoC =
-        Chart.Treemap(
-            labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2; 3 |],
-            parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0; 1 |],
-            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 50.0; 30.0; 20.0 |],
-            Name = "encoded treemap root",
+    let chartScatterEncodedRootPoC =
+        Chart.Scatter(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0; 3.0; 4.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.5; 2.0; 1.5 |],
+            mode = StyleParam.Mode.Lines_Markers,
+            Name = "encoded scatter root",
             UseDefaults = true
         )
-        |> Chart.withTitle "Treemap: encoded hierarchy arrays at chart root"
+        |> Chart.withTitle "Scatter: encoded x/y at chart root"
 
-    chartTreemapEncodedRootPoC |> Chart.show
+    chartScatterEncodedRootPoC |> Chart.show
 
     0

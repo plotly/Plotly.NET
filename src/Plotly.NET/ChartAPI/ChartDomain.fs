@@ -711,6 +711,104 @@ module ChartDomain =
                 ?UseDefaults = UseDefaults
             )
 
+        /// <summary>
+        /// Creates a FunnelArea chart from encoded values and optional encoded labels.
+        ///
+        /// FunnelArea charts visualize stages in a process using area-encoded trapezoids, which can be used to show data in a part-to-whole representation similar to a piechart,
+        /// wherein each item appears in a single stage. See also the "funnel" chart for a different approach to visualizing funnel data.
+        /// </summary>
+        /// <param name="valuesEncoded">Sets the values of the sectors as an encoded typed array.</param>
+        /// <param name="labelsEncoded">Sets the sector labels as an encoded typed array. If label entries are duplicated, the associated values are summed.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+        /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+        /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+        /// <param name="SectionColors">Sets the colors associated with each section.</param>
+        /// <param name="SectionOutlineColor">Sets the color of the section outline.</param>
+        /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
+        /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
+        /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
+        /// <param name="AspectRatio"></param>
+        /// <param name="BaseRatio"></param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member FunnelArea
+            (
+                valuesEncoded: EncodedTypedArray,
+                ?labelsEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?SectionColors: seq<Color>,
+                ?SectionOutlineColor: Color,
+                ?SectionOutlineWidth: float,
+                ?SectionOutlineMultiWidth: seq<float>,
+                ?SectionOutline: Line,
+                ?MarkerPatternShape: StyleParam.PatternShape,
+                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                ?MarkerPattern: Pattern,
+                ?Marker: Marker,
+                ?TextInfo: StyleParam.TextInfo,
+                ?AspectRatio: float,
+                ?BaseRatio: float,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let outline =
+                SectionOutline
+                |> Option.defaultValue (Line.init ())
+                |> Line.style (
+                    ?Color = SectionOutlineColor,
+                    ?Width = SectionOutlineWidth,
+                    ?MultiWidth = SectionOutlineMultiWidth
+                )
+
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (?Colors = SectionColors, ?MultiOpacity = MultiOpacity, Outline = outline, Pattern = pattern)
+
+            TraceDomain.initFunnelArea (
+                TraceDomainStyle.FunnelArea(
+                    ValuesEncoded = valuesEncoded,
+                    ?LabelsEncoded = labelsEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    Marker = marker,
+                    ?TextInfo = TextInfo,
+                    ?AspectRatio = AspectRatio,
+                    ?BaseRatio = BaseRatio
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
 
         /// <summary>
         /// Creates a sunburst chart, which visualizes hierarchical data spanning outward radially from root to leaves.
@@ -2255,6 +2353,150 @@ module ChartDomain =
                     Tiling = tiling,
                     ?Values = Values,
                     ?Ids = Ids,
+                    ?Name = Name,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?BranchValues = BranchValues,
+                    ?Count = Count,
+                    ?TextInfo = TextInfo,
+                    ?Root = Root,
+                    ?Level = Level,
+                    ?MaxDepth = MaxDepth
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates an icicle chart from encoded hierarchy arrays.
+        ///
+        /// Icicle charts visualize hierarchal data from leaves (and/or outer branches) towards root with rectangles.
+        /// The icicle sectors are determined by the entries in "labels" or "ids" and in "parents".
+        /// </summary>
+        /// <param name="labelsEncoded">Sets the labels of each of the sectors as an encoded typed array.</param>
+        /// <param name="parentsEncoded">Sets the parent sectors for each of the sectors as an encoded typed array.</param>
+        /// <param name="valuesEncoded">Sets the values associated with each of the sectors as an encoded typed array.</param>
+        /// <param name="idsEncoded">Assigns id labels to each datum as an encoded typed array. These ids for object constancy of data points during animation.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+        /// <param name="MultiText">Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a "text" flag and "hovertext" is not set, these elements will be seen in the hover labels.</param>
+        /// <param name="TextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+        /// <param name="MultiTextPosition">Sets the positions of the `text` elements with respects to the (x,y) coordinates.</param>
+        /// <param name="SectionColors">Sets the colors associated with each section.</param>
+        /// <param name="SectionColorScale">Sets the colorscale for the section values</param>
+        /// <param name="ShowSectionColorScale">Whether or not to show the section colorbar</param>
+        /// <param name="ReverseSectionColorScale">Whether or not to show the section colorscale</param>
+        /// <param name="SectionOutlineColor">Sets the color of the section outline.</param>
+        /// <param name="SectionOutlineWidth">Sets the width of the section outline.</param>
+        /// <param name="SectionOutlineMultiWidth">Sets the width of each individual section outline.</param>
+        /// <param name="SectionOutline">Sets the section outline (use this for more finegrained control than the other section outline-associated arguments).</param>
+        /// <param name="MarkerPatternShape">Sets a pattern shape for all sections</param>
+        /// <param name="MultiMarkerPatternShape">Sets an individual pattern shape for each section</param>
+        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
+        /// <param name="Marker">Sets the marker for the sections (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="BranchValues">Determines how the items in `values` are summed. When set to "total", items in `values` are taken to be value of all its descendants. When set to "remainder", items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.</param>
+        /// <param name="Count">Determines default for `values` when it is not provided, by inferring a 1 for each of the "leaves" and/or "branches", otherwise 0.</param>
+        /// <param name="TilingOrientation">Sets the orientation of the tiling.</param>
+        /// <param name="TilingFlip">Sets the flip of the tiling: Determines if the positions obtained from solver are flipped on each axis.</param>
+        /// <param name="Tiling">Sets the styles for the icicle tiling</param>
+        /// <param name="PathBarEdgeShape">Sets the edge shape of the pathbar.</param>
+        /// <param name="PathBar">Sets the pathbar</param>
+        /// <param name="TextInfo">Determines which trace information appear on the graph.</param>
+        /// <param name="Root">Sets the styles for the root of this trace.</param>
+        /// <param name="Level">Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.</param>
+        /// <param name="MaxDepth">Sets the number of rendered sectors from any given `level`. Set `maxdepth` to "-1" to render all the levels in the hierarchy.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Icicle
+            (
+                labelsEncoded: EncodedTypedArray,
+                parentsEncoded: EncodedTypedArray,
+                ?valuesEncoded: EncodedTypedArray,
+                ?idsEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?SectionColors: seq<Color>,
+                ?SectionColorScale: StyleParam.Colorscale,
+                ?ShowSectionColorScale: bool,
+                ?ReverseSectionColorScale: bool,
+                ?SectionOutlineColor: Color,
+                ?SectionOutlineWidth: float,
+                ?SectionOutlineMultiWidth: seq<float>,
+                ?SectionOutline: Line,
+                ?MarkerPatternShape: StyleParam.PatternShape,
+                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
+                ?MarkerPattern: Pattern,
+                ?Marker: Marker,
+                ?BranchValues: StyleParam.BranchValues,
+                ?Count: StyleParam.IcicleCount,
+                ?TilingOrientation: StyleParam.Orientation,
+                ?TilingFlip: StyleParam.TilingFlip,
+                ?Tiling: IcicleTiling,
+                ?PathBarEdgeShape: StyleParam.PathbarEdgeShape,
+                ?PathBar: Pathbar,
+                ?TextInfo: StyleParam.TextInfo,
+                ?Root: IcicleRoot,
+                ?Level: string,
+                ?MaxDepth: int,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let outline =
+                SectionOutline
+                |> Option.defaultValue (Line.init ())
+                |> Line.style (
+                    ?Color = SectionOutlineColor,
+                    ?Width = SectionOutlineWidth,
+                    ?MultiWidth = SectionOutlineMultiWidth
+                )
+
+            let pattern =
+                MarkerPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?MultiOpacity = MultiOpacity,
+                    ?Colors = SectionColors,
+                    ?Colorscale = SectionColorScale,
+                    ?ShowScale = ShowSectionColorScale,
+                    ?ReverseScale = ReverseSectionColorScale,
+                    Outline = outline,
+                    Pattern = pattern
+                )
+
+            let tiling =
+                Tiling
+                |> Option.defaultValue (IcicleTiling.init ())
+                |> IcicleTiling.style (?Orientation = TilingOrientation, ?Flip = TilingFlip)
+
+            let pathbar =
+                PathBar |> Option.defaultValue (Pathbar.init ()) |> Pathbar.style (?EdgeShape = PathBarEdgeShape)
+
+            TraceDomain.initIcicle (
+                TraceDomainStyle.Icicle(
+                    LabelsEncoded = labelsEncoded,
+                    ParentsEncoded = parentsEncoded,
+                    Marker = marker,
+                    PathBar = pathbar,
+                    Tiling = tiling,
+                    ?ValuesEncoded = valuesEncoded,
+                    ?IdsEncoded = idsEncoded,
                     ?Name = Name,
                     ?Opacity = Opacity,
                     ?Text = Text,

@@ -127,6 +127,17 @@ module ``Encoded typed arrays on chart helper constructors`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart scatter root`` =
+
+    let ``Scatter encoded constructor`` =
+        Chart.Scatter(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 1.0; 4.0 |],
+            mode = StyleParam.Mode.Lines_Markers,
+            Name = "encoded scatter root",
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on chart bar-family roots`` =
 
     let ``Bar encoded constructor`` =
@@ -341,6 +352,23 @@ module ``Encoded typed arrays on chart 3D roots`` =
 
 module ``Encoded typed arrays on chart subplot and domain roots`` =
 
+    let ``BarPolar encoded constructor`` =
+        Chart.BarPolar(
+            rEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            thetaEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 90.0; 180.0 |],
+            MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.3; 0.4 |],
+            Name = "encoded barpolar",
+            UseDefaults = false
+        )
+
+    let ``ChoroplethMap encoded constructor`` =
+        Chart.ChoroplethMap(
+            locations = [ "DEU"; "FRA"; "ITA" ],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            Name = "encoded choropleth",
+            UseDefaults = false
+        )
+
     let ``ScatterPolar encoded constructor`` =
         Chart.ScatterPolar(
             rEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
@@ -365,6 +393,47 @@ module ``Encoded typed arrays on chart subplot and domain roots`` =
             latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 52.0 |],
             mode = StyleParam.Mode.Markers,
             Name = "encoded scattermapbox",
+            UseDefaults = false
+        )
+
+    let ``ChoroplethMapbox encoded constructor`` =
+        Chart.ChoroplethMapbox(
+            locations = [ "A"; "B"; "C" ],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            geoJson =
+                box
+                    {| ``type`` = "FeatureCollection"
+                       features =
+                        [|
+                            {| ``type`` = "Feature"
+                               id = "A"
+                               properties = {| name = "A" |}
+                               geometry =
+                                {| ``type`` = "Polygon"
+                                   coordinates = [| [| [| 0.0; 0.0 |]; [| 1.0; 0.0 |]; [| 1.0; 1.0 |]; [| 0.0; 1.0 |]; [| 0.0; 0.0 |] |] |] |} |}
+                            {| ``type`` = "Feature"
+                               id = "B"
+                               properties = {| name = "B" |}
+                               geometry =
+                                {| ``type`` = "Polygon"
+                                   coordinates = [| [| [| 1.0; 0.0 |]; [| 2.0; 0.0 |]; [| 2.0; 1.0 |]; [| 1.0; 1.0 |]; [| 1.0; 0.0 |] |] |] |} |}
+                            {| ``type`` = "Feature"
+                               id = "C"
+                               properties = {| name = "C" |}
+                               geometry =
+                                {| ``type`` = "Polygon"
+                                   coordinates = [| [| [| 2.0; 0.0 |]; [| 3.0; 0.0 |]; [| 3.0; 1.0 |]; [| 2.0; 1.0 |]; [| 2.0; 0.0 |] |] |] |} |}
+                        |] |},
+            Name = "encoded choroplethmapbox",
+            UseDefaults = false
+        )
+
+    let ``DensityMapbox encoded constructor`` =
+        Chart.DensityMapbox(
+            longitudesEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 8.5; 9.0 |],
+            latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 50.5; 51.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 1.5 |],
+            Name = "encoded densitymapbox",
             UseDefaults = false
         )
 
@@ -426,6 +495,14 @@ module ``Encoded typed arrays on chart subplot and domain roots`` =
             UseDefaults = false
         )
 
+    let ``FunnelArea encoded constructor`` =
+        Chart.FunnelArea(
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 20.0; 10.0 |],
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+            Name = "encoded funnelarea",
+            UseDefaults = false
+        )
+
     let ``Sunburst encoded constructor`` =
         Chart.Sunburst(
             labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2 |],
@@ -441,6 +518,15 @@ module ``Encoded typed arrays on chart subplot and domain roots`` =
             parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0 |],
             valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 10.0; 20.0 |],
             Name = "encoded treemap",
+            UseDefaults = false
+        )
+
+    let ``Icicle encoded constructor`` =
+        Chart.Icicle(
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2 |],
+            parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0 |],
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 10.0; 20.0 |],
+            Name = "encoded icicle",
             UseDefaults = false
         )
 

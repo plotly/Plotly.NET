@@ -441,6 +441,21 @@ let ``Scatter trace XEncoded/YEncoded`` =
 let ``Chart.Scatter XEncoded/YEncoded`` =
     testList "CommonAbstractions.EncodedTypedArray Chart.Scatter integration" [
 
+        testCase "Chart.Scatter encoded overload serializes encoded x/y under the chart root" (fun () ->
+            let chart =
+                Chart.Scatter(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    mode = StyleParam.Mode.Lines_Markers,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart scatter root x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart scatter root y must be encoded"
+            Expect.stringContains json "\"mode\":\"lines+markers\"" "chart scatter root mode must still be serialized"
+        )
+
         testCase "Chart.Scatter serializes XEncoded/YEncoded under x/y as encoded objects" (fun () ->
             let chart =
                 Chart.Scatter(
@@ -1033,6 +1048,36 @@ let ``Chart 3D roots encoded arrays`` =
 let ``Chart subplot and domain roots encoded arrays`` =
     testList "CommonAbstractions.EncodedTypedArray Chart subplot/domain integration" [
 
+        testCase "Chart.BarPolar encoded overload serializes encoded r/theta/width arrays" (fun () ->
+            let chart =
+                Chart.BarPolar(
+                    rEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    thetaEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 90.0; 180.0 |],
+                    MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.3; 0.4 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"r\":{\"bdata\":" "chart barpolar r must be encoded"
+            Expect.stringContains json "\"theta\":{\"bdata\":" "chart barpolar theta must be encoded"
+            Expect.stringContains json "\"width\":{\"bdata\":" "chart barpolar width must be encoded"
+            Expect.stringContains json "\"type\":\"barpolar\"" "chart barpolar trace type must still be correct"
+        )
+
+        testCase "Chart.ChoroplethMap encoded overload serializes encoded z and plain locations" (fun () ->
+            let chart =
+                Chart.ChoroplethMap(
+                    locations = [ "DEU"; "FRA"; "ITA" ],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"locations\":[\"DEU\",\"FRA\",\"ITA\"]" "chart choropleth locations must stay plain"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart choropleth z must be encoded"
+            Expect.stringContains json "\"type\":\"choropleth\"" "chart choropleth trace type must still be correct"
+        )
+
         testCase "Chart.ScatterPolar encoded overload serializes encoded r/theta arrays" (fun () ->
             let chart =
                 Chart.ScatterPolar(
@@ -1076,6 +1121,50 @@ let ``Chart subplot and domain roots encoded arrays`` =
             Expect.stringContains json "\"lon\":{\"bdata\":" "chart scattermapbox lon must be encoded"
             Expect.stringContains json "\"lat\":{\"bdata\":" "chart scattermapbox lat must be encoded"
             Expect.stringContains json "\"type\":\"scattermapbox\"" "chart scattermapbox trace type must still be correct"
+        )
+
+        testCase "Chart.ChoroplethMapbox encoded overload serializes encoded z and plain locations" (fun () ->
+            let geoJson =
+                box
+                    {| ``type`` = "FeatureCollection"
+                       features =
+                        [|
+                            {| ``type`` = "Feature"
+                               id = "A"
+                               properties = {| name = "A" |}
+                               geometry =
+                                {| ``type`` = "Polygon"
+                                   coordinates = [| [| [| 0.0; 0.0 |]; [| 1.0; 0.0 |]; [| 1.0; 1.0 |]; [| 0.0; 1.0 |]; [| 0.0; 0.0 |] |] |] |} |}
+                        |] |}
+
+            let chart =
+                Chart.ChoroplethMapbox(
+                    locations = [ "A" ],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 10.0 |],
+                    geoJson = geoJson,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"locations\":[\"A\"]" "chart choroplethmapbox locations must stay plain"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart choroplethmapbox z must be encoded"
+            Expect.stringContains json "\"type\":\"choroplethmapbox\"" "chart choroplethmapbox trace type must still be correct"
+        )
+
+        testCase "Chart.DensityMapbox encoded overload serializes encoded lon/lat/z arrays" (fun () ->
+            let chart =
+                Chart.DensityMapbox(
+                    longitudesEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 8.5; 9.0 |],
+                    latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 50.5; 51.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 1.5 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"lon\":{\"bdata\":" "chart densitymapbox lon must be encoded"
+            Expect.stringContains json "\"lat\":{\"bdata\":" "chart densitymapbox lat must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart densitymapbox z must be encoded"
+            Expect.stringContains json "\"type\":\"densitymapbox\"" "chart densitymapbox trace type must still be correct"
         )
 
         testCase "Chart.ScatterTernary encoded overload serializes encoded abc arrays" (fun () ->
@@ -1173,6 +1262,20 @@ let ``Chart subplot and domain roots encoded arrays`` =
             Expect.stringContains json "\"type\":\"pie\"" "chart pie trace type must still be correct"
         )
 
+        testCase "Chart.FunnelArea encoded overload serializes encoded values and labels" (fun () ->
+            let chart =
+                Chart.FunnelArea(
+                    valuesEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 20.0; 10.0 |],
+                    labelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"values\":{\"bdata\":" "chart funnelarea values must be encoded"
+            Expect.stringContains json "\"labels\":{\"bdata\":" "chart funnelarea labels must be encoded"
+            Expect.stringContains json "\"type\":\"funnelarea\"" "chart funnelarea trace type must still be correct"
+        )
+
         testCase "Chart.Sunburst encoded overload serializes encoded labels parents and values" (fun () ->
             let chart =
                 Chart.Sunburst(
@@ -1201,6 +1304,22 @@ let ``Chart subplot and domain roots encoded arrays`` =
             Expect.stringContains json "\"labels\":{\"bdata\":" "chart treemap labels must be encoded"
             Expect.stringContains json "\"parents\":{\"bdata\":" "chart treemap parents must be encoded"
             Expect.stringContains json "\"values\":{\"bdata\":" "chart treemap values must be encoded"
+        )
+
+        testCase "Chart.Icicle encoded overload serializes encoded labels parents and values" (fun () ->
+            let chart =
+                Chart.Icicle(
+                    labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2 |],
+                    parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0 |],
+                    valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 10.0; 20.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"labels\":{\"bdata\":" "chart icicle labels must be encoded"
+            Expect.stringContains json "\"parents\":{\"bdata\":" "chart icicle parents must be encoded"
+            Expect.stringContains json "\"values\":{\"bdata\":" "chart icicle values must be encoded"
+            Expect.stringContains json "\"type\":\"icicle\"" "chart icicle trace type must still be correct"
         )
     ]
 
