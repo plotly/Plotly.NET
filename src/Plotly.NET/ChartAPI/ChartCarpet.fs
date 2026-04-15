@@ -99,6 +99,67 @@ module ChartCarpet =
             |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
+        /// Creates a carpet in a 2D coordinate system from encoded parameter arrays.
+        /// </summary>
+        /// <param name="carpetId">An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie.</param>
+        /// <param name="aEncoded">An encoded array containing values of the first parameter value.</param>
+        /// <param name="bEncoded">An encoded array containing values of the second parameter value.</param>
+        /// <param name="xEncoded">A one dimensional or flattened encoded array of x coordinates matching the dimensions of `a` and `b`.</param>
+        /// <param name="yEncoded">A one dimensional or flattened encoded array of y coordinates matching the dimensions of `a` and `b`.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="AAxis">Sets this carpet's a axis.</param>
+        /// <param name="BAxis">Sets this carpet's b axis.</param>
+        /// <param name="XAxis">Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If "x" (the default value), the x coordinates refer to `layout.xaxis`. If "x2", the x coordinates refer to `layout.xaxis2`, and so on.</param>
+        /// <param name="YAxis">Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If "y" (the default value), the y coordinates refer to `layout.yaxis`. If "y2", the y coordinates refer to `layout.yaxis2`, and so on.</param>
+        /// <param name="Color">Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.</param>
+        /// <param name="CheaterSlope">The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been omitted.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Carpet
+            (
+                carpetId: string,
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                ?xEncoded: EncodedTypedArray,
+                ?yEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?AAxis: LinearAxis,
+                ?BAxis: LinearAxis,
+                ?XAxis: StyleParam.LinearAxisId,
+                ?YAxis: StyleParam.LinearAxisId,
+                ?Color: Color,
+                ?CheaterSlope: float,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            TraceCarpet.initCarpet (
+                TraceCarpetStyle.Carpet(
+                    Carpet = StyleParam.SubPlotId.Carpet carpetId,
+                    AEncoded = aEncoded,
+                    BEncoded = bEncoded,
+                    ?XEncoded = xEncoded,
+                    ?YEncoded = yEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?AAxis = AAxis,
+                    ?BAxis = BAxis,
+                    ?XAxis = XAxis,
+                    ?YAxis = YAxis,
+                    ?Color = Color,
+                    ?CheaterSlope = CheaterSlope
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
         /// Creates a scatter plot that lies on a specified carpet.
         ///
         /// In general, ScatterCarpet creates a plot that uses the given carpet identifier as coordinate system.
@@ -189,6 +250,106 @@ module ChartCarpet =
                 TraceCarpetStyle.ScatterCarpet(
                     A = a,
                     B = b,
+                    Mode = mode,
+                    Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates a scatter plot that lies on a specified carpet from encoded a and b coordinates.
+        /// </summary>
+        /// <param name="aEncoded">Sets the a-axis coordinates on the carpet as an encoded typed array.</param>
+        /// <param name="bEncoded">Sets the b-axis coordinates on the carpet as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace. If the provided `mode` includes "text" then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is "lines+markers". Otherwise, "lines".</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member ScatterCarpet
+            (
+                aEncoded: EncodedTypedArray,
+                bEncoded: EncodedTypedArray,
+                mode: StyleParam.Mode,
+                carpetAnchorId: string,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            TraceCarpet.initScatterCarpet (
+                TraceCarpetStyle.ScatterCarpet(
+                    AEncoded = aEncoded,
+                    BEncoded = bEncoded,
                     Mode = mode,
                     Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
                     Marker = marker,
@@ -1117,6 +1278,108 @@ module ChartCarpet =
                     Z = z,
                     ?A = A,
                     ?B = B,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?Transpose = Transpose,
+                    Carpet = (carpetAnchorId |> StyleParam.SubPlotId.Carpet),
+                    Contours = contours,
+                    Line = line
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates a contour chart that lies on a specified carpet from encoded z data.
+        /// </summary>
+        /// <param name="zEncoded">Sets the z data as an encoded typed array.</param>
+        /// <param name="carpetAnchorId">The identifier of the carpet that this trace will lie on.</param>
+        /// <param name="aEncoded">Sets the a coordinates as an encoded typed array.</param>
+        /// <param name="bEncoded">Sets the b coordinates as an encoded typed array.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the colorbar of this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale of this trace.</param>
+        /// <param name="ShowScale">Determines whether or not a colorbar is displayed for this trace.</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLineDash">Sets the contour line dash style</param>
+        /// <param name="ContourLineColor">Sets the contour line color</param>
+        /// <param name="ContourLineSmoothing">Sets the amount of smoothing for the contour lines, where "0" corresponds to no smoothing.</param>
+        /// <param name="ContourLine">Sets the contour lines (use this for more finegrained control than the other contourline-associated arguments).</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values. If "fill", coloring is done evenly between each contour level If "heatmap", a heatmap gradient coloring is applied between each contour level. If "lines", coloring is done on the contour lines. If "none", no coloring is applied on this trace.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation. "=" keeps regions equal to `value` "&lt;" and "&lt;=" keep regions less than `value` "&gt;" and "&gt;=" keep regions greater than `value` "[]", "()", "[)", and "(]" keep regions inside `value[0]` to `value[1]` "][", ")(", "](", ")[" keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.</param>
+        /// <param name="ContoursType">If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.</param>
+        /// <param name="ShowContourLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContourLabelFont">Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.</param>
+        /// <param name="Contours">Sets the styles of the contours (use this for more finegrained control than the other contour-associated arguments).</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        static member ContourCarpet
+            (
+                zEncoded: EncodedTypedArray,
+                carpetAnchorId: string,
+                ?aEncoded: EncodedTypedArray,
+                ?bEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ReverseScale: bool,
+                ?Transpose: bool,
+                ?ContourLineColor: Color,
+                ?ContourLineDash: StyleParam.DrawingStyle,
+                ?ContourLineSmoothing: float,
+                ?ContourLine: Line,
+                ?ContoursColoring: StyleParam.ContourColoring,
+                ?ContoursOperation: StyleParam.ConstraintOperation,
+                ?ContoursType: StyleParam.ContourType,
+                ?ShowContourLabels: bool,
+                ?ContourLabelFont: Font,
+                ?Contours: Contours,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let line =
+                ContourLine
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = ContourLineColor,
+                    ?Dash = ContourLineDash,
+                    ?Smoothing = ContourLineSmoothing
+                )
+
+            let contours =
+                Contours
+                |> Option.defaultValue (TraceObjects.Contours.init ())
+                |> TraceObjects.Contours.style (
+                    ?Coloring = ContoursColoring,
+                    ?Operation = ContoursOperation,
+                    ?Type = ContoursType,
+                    ?ShowLabels = ShowContourLabels,
+                    ?LabelFont = ContourLabelFont
+                )
+
+            TraceCarpet.initContourCarpet (
+                TraceCarpetStyle.ContourCarpet(
+                    ZEncoded = zEncoded,
+                    ?AEncoded = aEncoded,
+                    ?BEncoded = bEncoded,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,

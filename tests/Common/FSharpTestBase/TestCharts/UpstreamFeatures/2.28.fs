@@ -339,6 +339,111 @@ module ``Encoded typed arrays on chart 3D roots`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart subplot and domain roots`` =
+
+    let ``ScatterPolar encoded constructor`` =
+        Chart.ScatterPolar(
+            rEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            thetaEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 90.0; 180.0 |],
+            mode = StyleParam.Mode.Markers,
+            Name = "encoded scatterpolar",
+            UseDefaults = false
+        )
+
+    let ``ScatterGeo encoded constructor`` =
+        Chart.ScatterGeo(
+            longitudesEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 13.0 |],
+            latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 52.0 |],
+            mode = StyleParam.Mode.Markers,
+            Name = "encoded scattergeo",
+            UseDefaults = false
+        )
+
+    let ``ScatterMapbox encoded constructor`` =
+        Chart.ScatterMapbox(
+            longitudesEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 13.0 |],
+            latitudesEncoded = EncodedTypedArray.ofFloat64Array [| 50.0; 52.0 |],
+            mode = StyleParam.Mode.Markers,
+            Name = "encoded scattermapbox",
+            UseDefaults = false
+        )
+
+    let ``ScatterTernary encoded constructor`` =
+        Chart.ScatterTernary(
+            aEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.4 |],
+            bEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+            cEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.2 |],
+            Mode = StyleParam.Mode.Markers,
+            Name = "encoded scatterternary",
+            UseDefaults = false
+        )
+
+    let ``ScatterSmith encoded constructor`` =
+        Chart.ScatterSmith(
+            realEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+            imagEncoded = EncodedTypedArray.ofFloat64Array [| -0.5; 0.5 |],
+            mode = StyleParam.Mode.Markers,
+            Name = "encoded scattersmith",
+            UseDefaults = false
+        )
+
+    let ``Carpet encoded constructor`` =
+        Chart.Carpet(
+            carpetId = "a",
+            aEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            bEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.5; 1.0 |],
+            Name = "encoded carpet",
+            UseDefaults = false
+        )
+
+    let ``ScatterCarpet encoded constructor`` =
+        Chart.ScatterCarpet(
+            aEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            bEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            mode = StyleParam.Mode.Markers,
+            carpetAnchorId = "a",
+            Name = "encoded scattercarpet",
+            UseDefaults = false
+        )
+
+    let ``ContourCarpet encoded constructor`` =
+        Chart.ContourCarpet(
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            carpetAnchorId = "a",
+            aEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            bEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            Name = "encoded contourcarpet",
+            UseDefaults = false
+        )
+
+    let ``Pie encoded constructor`` =
+        Chart.Pie(
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+            Name = "encoded pie",
+            UseDefaults = false
+        )
+
+    let ``Sunburst encoded constructor`` =
+        Chart.Sunburst(
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2 |],
+            parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0 |],
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 10.0; 20.0 |],
+            Name = "encoded sunburst",
+            UseDefaults = false
+        )
+
+    let ``Treemap encoded constructor`` =
+        Chart.Treemap(
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2 |],
+            parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0 |],
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 10.0; 20.0 |],
+            Name = "encoded treemap",
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     let ``Bar with encoded arrays`` =

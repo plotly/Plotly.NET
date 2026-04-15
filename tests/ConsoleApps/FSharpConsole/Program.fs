@@ -3,19 +3,16 @@ open Plotly.NET
 [<EntryPoint>]
 let main _ =
 
-    let chartConeEncodedRootPoC =
-        Chart.Cone(
-            xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
-            yEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.5; 1.0 |],
-            zEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 0.0 |],
-            uEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.5; 0.5 |],
-            vEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.5; 1.0 |],
-            wEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 1.0; 1.0 |],
-            Name = "encoded cone root",
+    let chartTreemapEncodedRootPoC =
+        Chart.Treemap(
+            labelsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2; 3 |],
+            parentsEncoded = EncodedTypedArray.ofInt32Array [| -1; 0; 0; 1 |],
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 50.0; 30.0; 20.0 |],
+            Name = "encoded treemap root",
             UseDefaults = true
         )
-        |> Chart.withTitle "Cone: encoded vector field at chart root"
+        |> Chart.withTitle "Treemap: encoded hierarchy arrays at chart root"
 
-    chartConeEncodedRootPoC |> Chart.show
+    chartTreemapEncodedRootPoC |> Chart.show
 
     0

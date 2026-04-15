@@ -364,6 +364,108 @@ module ``Encoded typed arrays on chart 3D roots`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart subplot and domain roots`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart subplot and domain roots" [
+                testCase "scatterpolar constructor serializes encoded r/theta arrays" (fun () ->
+                    [
+                        "\"r\":{\"bdata\":"
+                        "\"theta\":{\"bdata\":"
+                        "\"type\":\"scatterpolar\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ScatterPolar encoded constructor``)
+                )
+                testCase "scattergeo constructor serializes encoded lon/lat arrays" (fun () ->
+                    [
+                        "\"lon\":{\"bdata\":"
+                        "\"lat\":{\"bdata\":"
+                        "\"type\":\"scattergeo\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ScatterGeo encoded constructor``)
+                )
+                testCase "scattermapbox constructor serializes encoded lon/lat arrays" (fun () ->
+                    [
+                        "\"lon\":{\"bdata\":"
+                        "\"lat\":{\"bdata\":"
+                        "\"type\":\"scattermapbox\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ScatterMapbox encoded constructor``)
+                )
+                testCase "scatterternary constructor serializes encoded a/b/c arrays" (fun () ->
+                    [
+                        "\"a\":{\"bdata\":"
+                        "\"b\":{\"bdata\":"
+                        "\"c\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ScatterTernary encoded constructor``)
+                )
+                testCase "scattersmith constructor serializes encoded real/imag arrays" (fun () ->
+                    [
+                        "\"real\":{\"bdata\":"
+                        "\"imag\":{\"bdata\":"
+                        "\"type\":\"scattersmith\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ScatterSmith encoded constructor``)
+                )
+                testCase "carpet constructor serializes encoded a/b/x/y arrays" (fun () ->
+                    [
+                        "\"a\":{\"bdata\":"
+                        "\"b\":{\"bdata\":"
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"type\":\"carpet\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``Carpet encoded constructor``)
+                )
+                testCase "scattercarpet constructor serializes encoded a/b arrays" (fun () ->
+                    [
+                        "\"a\":{\"bdata\":"
+                        "\"b\":{\"bdata\":"
+                        "\"type\":\"scattercarpet\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ScatterCarpet encoded constructor``)
+                )
+                testCase "contourcarpet constructor serializes encoded z/a/b arrays" (fun () ->
+                    [
+                        "\"z\":{\"bdata\":"
+                        "\"a\":{\"bdata\":"
+                        "\"b\":{\"bdata\":"
+                        "\"type\":\"contourcarpet\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``ContourCarpet encoded constructor``)
+                )
+                testCase "pie constructor serializes encoded values and labels" (fun () ->
+                    [
+                        "\"values\":{\"bdata\":"
+                        "\"labels\":{\"bdata\":"
+                        "\"type\":\"pie\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``Pie encoded constructor``)
+                )
+                testCase "sunburst constructor serializes encoded labels parents and values" (fun () ->
+                    [
+                        "\"labels\":{\"bdata\":"
+                        "\"parents\":{\"bdata\":"
+                        "\"values\":{\"bdata\":"
+                        "\"type\":\"sunburst\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``Sunburst encoded constructor``)
+                )
+                testCase "treemap constructor serializes encoded labels parents and values" (fun () ->
+                    [
+                        "\"labels\":{\"bdata\":"
+                        "\"parents\":{\"bdata\":"
+                        "\"values\":{\"bdata\":"
+                        "\"type\":\"treemap\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart subplot and domain roots``.``Treemap encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]

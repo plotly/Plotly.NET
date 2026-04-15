@@ -190,6 +190,115 @@ module ChartMap =
 
             |> GenericChart.ofTraceObject useDefaults
 
+        /// <summary>
+        /// Creates a ScatterGeo chart from encoded longitude and latitude coordinates.
+        /// </summary>
+        /// <param name="longitudesEncoded">Sets the longitude coordinates (in degrees East) as an encoded typed array.</param>
+        /// <param name="latitudesEncoded">Sets the latitude coordinates (in degrees North) as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="LocationMode">Determines the set of locations used to match entries in `locations` to regions on the map. Values "ISO-3", "USA-states", "country names" correspond to features on the base map and value "geojson-id" corresponds to features from a custom GeoJSON linked to the `geojson` attribute.</param>
+        /// <param name="GeoJson">Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type "FeatureCollection" or "Feature" with geometries of type "Polygon" or "MultiPolygon".</param>
+        /// <param name="FeatureIdKey">Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only has an effect when `geojson` is set. Support nested property, for example "properties.name".</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member ScatterGeo
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                mode: StyleParam.Mode,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?LocationMode: StyleParam.LocationFormat,
+                ?GeoJson: obj,
+                ?FeatureIdKey: string,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+
+            TraceGeo.initScatterGeo (
+                TraceGeoStyle.ScatterGeo(
+                    LonEncoded = longitudesEncoded,
+                    LatEncoded = latitudesEncoded,
+                    Mode = mode,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?LocationMode = LocationMode,
+                    ?GeoJson = GeoJson,
+                    ?FeatureIdKey = FeatureIdKey
+
+                )
+            )
+
+            |> GenericChart.ofTraceObject useDefaults
+
 
         /// <summary>
         /// Creates a ScatterGeo chart, where data is visualized using plotly's base geo map.
@@ -1259,6 +1368,126 @@ module ChartMap =
                 TraceMapboxStyle.ScatterMapbox(
                     Lon = longitudes,
                     Lat = latitudes,
+                    Cluster = cluster,
+                    Mode = mode,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Below = Below
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (Layout.init () |> Layout.setMapbox (StyleParam.SubPlotId.Mapbox 1, mapbox))
+
+        /// <summary>
+        /// Creates a ScatterMapbox chart from encoded longitude and latitude coordinates.
+        /// </summary>
+        /// <param name="longitudesEncoded">Sets the longitude coordinates (in degrees East) as an encoded typed array.</param>
+        /// <param name="latitudesEncoded">Sets the latitude coordinates (in degrees North) as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="MapboxStyle">Sets the base mapbox layer. Default is `OpenStreetMap`. Note that you will need an access token for some Mapbox presets.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="Below">Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to "''".</param>
+        /// <param name="EnableClustering">Whether or not to enable clustering for points</param>
+        /// <param name="Cluster">Sets the clustering options (use this for more finegrained control than the other cluster-associated arguments)</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member ScatterMapbox
+            (
+                longitudesEncoded: EncodedTypedArray,
+                latitudesEncoded: EncodedTypedArray,
+                mode: StyleParam.Mode,
+                ?MapboxStyle: StyleParam.MapboxStyle,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?Below: string,
+                ?EnableClustering: bool,
+                ?Cluster: MapboxCluster,
+                ?UseDefaults: bool
+            ) =
+
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            let cluster =
+                Cluster
+                |> Option.defaultValue (MapboxCluster.init ())
+                |> MapboxCluster.style (?Enabled = EnableClustering)
+
+            let mapboxStyle =
+                defaultArg MapboxStyle StyleParam.MapboxStyle.OpenStreetMap
+
+            let mapbox =
+                Mapbox.init (Style = mapboxStyle)
+
+            TraceMapbox.initScatterMapbox (
+                TraceMapboxStyle.ScatterMapbox(
+                    LonEncoded = longitudesEncoded,
+                    LatEncoded = latitudesEncoded,
                     Cluster = cluster,
                     Mode = mode,
                     Marker = marker,
