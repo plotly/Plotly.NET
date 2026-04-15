@@ -34,8 +34,10 @@ module Chart2D =
         /// Scatter charts are the basis of Point, Line, and Bubble Charts, and can be customized as such. We also provide abstractions for those: Chart.Line, Chart.Point, Chart.Bubble
         /// </summary>
         /// <param name="X">Sets the x coordinates of the plotted data.</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="MultiX">Sets the x coordinates of the plotted data. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="MultiY">Sets the x coordinates of the plotted data. Use two inner arrays here to plot multicategorial data</param>
         /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
@@ -71,8 +73,10 @@ module Chart2D =
         static member Scatter
             (
                 ?X: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
                 ?MultiX: seq<seq<#IConvertible>>,
                 ?Y: seq<#IConvertible>,
+                ?YEncoded: EncodedTypedArray,
                 ?MultiY: seq<seq<#IConvertible>>,
                 ?Mode: StyleParam.Mode,
                 ?Name: string,
@@ -134,8 +138,10 @@ module Chart2D =
             let style =
                 Trace2DStyle.Scatter(
                     ?X = X,
+                    ?XEncoded = XEncoded,
                     ?MultiX = MultiX,
                     ?Y = Y,
+                    ?YEncoded = YEncoded,
                     ?MultiY = MultiY,
                     ?Mode = Mode,
                     Marker = marker,

@@ -438,6 +438,44 @@ let ``Scatter trace XEncoded/YEncoded`` =
     ]
 
 [<Tests>]
+let ``Chart.Scatter XEncoded/YEncoded`` =
+    testList "CommonAbstractions.EncodedTypedArray Chart.Scatter integration" [
+
+        testCase "Chart.Scatter serializes XEncoded/YEncoded under x/y as encoded objects" (fun () ->
+            let chart =
+                Chart.Scatter(
+                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    Mode = StyleParam.Mode.Lines_Markers,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart scatter x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart scatter y must be an encoded object"
+            Expect.stringContains json "\"dtype\":\"f8\"" "chart scatter encoded dtype must be present"
+        )
+
+        testCase "Chart.Scatter encoded arrays override the plain x/y path when both are provided" (fun () ->
+            let chart =
+                Chart.Scatter(
+                    X = [ 10.0; 20.0 ],
+                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                    Y = [ 30.0; 40.0 ],
+                    YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                    Mode = StyleParam.Mode.Lines,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart scatter XEncoded must win over X"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart scatter YEncoded must win over Y"
+            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain chart scatter x array must not be present"
+            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain chart scatter y array must not be present"
+        )
+    ]
+
+[<Tests>]
 let ``Scatter trace remaining encoded fields`` =
     testList "CommonAbstractions.EncodedTypedArray Scatter additional integration" [
 
