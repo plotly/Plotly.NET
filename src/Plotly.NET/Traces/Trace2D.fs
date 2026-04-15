@@ -766,6 +766,7 @@ type Trace2DStyle() =
     /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
     /// <param name="Width">Sets the bar width (in position axis units).</param>
     /// <param name="MultiWidth">Sets the bar width (in position axis units).</param>
+    /// <param name="MultiWidthEncoded">Sets the bar width array as a base64-encoded typed array (plotly.js &gt;= 2.28.0). If provided, overrides <c>Width</c>/<c>MultiWidth</c>.</param>
     /// <param name="Measure">An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.</param>
     /// <param name="Offset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
     /// <param name="MultiOffset">Shifts the position where the bar is drawn (in position axis units). In "group" barmode, traces that set "offset" will be excluded and drawn in "overlay" mode instead.</param>
@@ -839,6 +840,7 @@ type Trace2DStyle() =
             ?Base: #IConvertible,
             ?Width: float,
             ?MultiWidth: seq<float>,
+            ?MultiWidthEncoded: EncodedTypedArray,
             ?Measure: StyleParam.WaterfallMeasure seq,
             ?Offset: #IConvertible,
             ?MultiOffset: seq<#IConvertible>,
@@ -911,6 +913,7 @@ type Trace2DStyle() =
             |> DynObj.withOptionalProperty                   "dy"                  DY                                 
             |> DynObj.withOptionalProperty                   "base"                Base                               
             |> DynObj.withOptionalSingleOrMultiProperty      "width"               (Width, MultiWidth)                
+            |> DynObj.withOptionalProperty                   "width"               MultiWidthEncoded
             |> DynObj.withOptionalPropertyBy                 "measure"             Measure                             (Seq.map StyleParam.WaterfallMeasure.convert)
             |> DynObj.withOptionalSingleOrMultiProperty      "offset"              (Offset, MultiOffset)              
             |> DynObj.withOptionalProperty                   "offset"              MultiOffsetEncoded

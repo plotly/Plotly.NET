@@ -119,6 +119,41 @@ module ``Encoded typed arrays on chart helper constructors`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart bar-family roots`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart bar-family roots" [
+                testCase "bar constructor serializes encoded values keys widths and orientation" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"width\":{\"bdata\":"
+                        "\"orientation\":\"h\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart bar-family roots``.``Bar encoded constructor``)
+                )
+                testCase "funnel constructor serializes encoded x/y" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"type\":\"funnel\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart bar-family roots``.``Funnel encoded constructor``)
+                )
+                testCase "waterfall constructor serializes encoded x/y/width" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"width\":{\"bdata\":"
+                        "\"type\":\"waterfall\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart bar-family roots``.``Waterfall encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]
@@ -154,10 +189,11 @@ module ``Encoded typed arrays on bar-family traces`` =
                     ]
                     |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Funnel with encoded arrays``)
                 )
-                testCase "waterfall trace serializes encoded x/y/offset" (fun () ->
+                testCase "waterfall trace serializes encoded x/y/width/offset" (fun () ->
                     [
                         "\"x\":{\"bdata\":"
                         "\"y\":{\"bdata\":"
+                        "\"width\":{\"bdata\":"
                         "\"offset\":{\"bdata\":"
                     ]
                     |> List.iter (chartGeneratedContains ``Encoded typed arrays on bar-family traces``.``Waterfall with encoded arrays``)

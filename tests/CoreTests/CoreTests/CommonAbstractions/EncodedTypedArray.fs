@@ -600,6 +600,57 @@ let ``Chart scatter-derived helpers encoded arrays`` =
     ]
 
 [<Tests>]
+let ``Chart bar-family roots encoded arrays`` =
+    testList "CommonAbstractions.EncodedTypedArray Chart bar-family integration" [
+
+        testCase "Chart.Bar encoded overload serializes encoded values and keys" (fun () ->
+            let chart =
+                Chart.Bar(
+                    valuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                    KeysEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.4; 0.5; 0.6 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart bar x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart bar y must be an encoded object"
+            Expect.stringContains json "\"width\":{\"bdata\":" "chart bar width must be an encoded object"
+            Expect.stringContains json "\"orientation\":\"h\"" "chart bar must stay horizontal"
+        )
+
+        testCase "Chart.Funnel encoded overload serializes encoded x/y" (fun () ->
+            let chart =
+                Chart.Funnel(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 20.0; 10.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart funnel x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart funnel y must be an encoded object"
+            Expect.stringContains json "\"type\":\"funnel\"" "chart funnel trace type must still be funnel"
+        )
+
+        testCase "Chart.Waterfall encoded overload serializes encoded x/y/width" (fun () ->
+            let chart =
+                Chart.Waterfall(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; -2.0; 4.0 |],
+                    MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.5 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart waterfall x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart waterfall y must be an encoded object"
+            Expect.stringContains json "\"width\":{\"bdata\":" "chart waterfall width must be an encoded object"
+            Expect.stringContains json "\"type\":\"waterfall\"" "chart waterfall trace type must still be waterfall"
+        )
+    ]
+
+[<Tests>]
 let ``Scatter trace remaining encoded fields`` =
     testList "CommonAbstractions.EncodedTypedArray Scatter additional integration" [
 
@@ -868,6 +919,7 @@ let ``Bar-family trace encoded fields`` =
                         CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
                         SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |],
                         MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.5 |],
                         MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.1; 0.0; 0.1 |]
                     )
                 )
@@ -879,6 +931,7 @@ let ``Bar-family trace encoded fields`` =
             Expect.stringContains json "\"customdata\":{\"bdata\":" "waterfall customdata must be encoded"
             Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "waterfall selectedpoints must be encoded"
             Expect.stringContains json "\"text\":{\"bdata\":" "waterfall text must be encoded"
+            Expect.stringContains json "\"width\":{\"bdata\":" "waterfall width must be encoded"
             Expect.stringContains json "\"offset\":{\"bdata\":" "waterfall offset must be encoded"
         )
 
@@ -898,6 +951,8 @@ let ``Bar-family trace encoded fields`` =
                         SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2; 3 |],
                         MultiText = [ 100.0; 200.0 ],
                         MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 300.0; 400.0 |],
+                        MultiWidth = [ 1.5; 2.5 ],
+                        MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
                         MultiOffset = [ -1.0; 1.0 ],
                         MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.5; 0.5 |]
                     )
@@ -910,6 +965,7 @@ let ``Bar-family trace encoded fields`` =
             Expect.isFalse (json.Contains "\"customdata\":[10.0,20.0]") "plain waterfall customdata array must not be present"
             Expect.isFalse (json.Contains "\"selectedpoints\":[0,1]") "plain waterfall selectedpoints array must not be present"
             Expect.isFalse (json.Contains "\"text\":[100.0,200.0]") "plain waterfall text array must not be present"
+            Expect.isFalse (json.Contains "\"width\":[1.5,2.5]") "plain waterfall width array must not be present"
             Expect.isFalse (json.Contains "\"offset\":[-1.0,1.0]") "plain waterfall offset array must not be present"
         )
     ]

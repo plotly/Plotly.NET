@@ -127,41 +127,33 @@ module ``Encoded typed arrays on chart helper constructors`` =
             UseDefaults = false
         )
 
-    let ``Scatter fully encoded with error bars`` =
-        let xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |]
-        let yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |]
-        let idsEncoded = EncodedTypedArray.ofInt32Array [| 101; 102; 103 |]
-        let customDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |]
-        let selectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |]
-        let multiTextEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |]
-        let xErrorEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |]
-        let yErrorEncoded = EncodedTypedArray.ofFloat64Array [| 0.4; 0.5; 0.6 |]
-        let yErrorMinusEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.2; 0.1 |]
+module ``Encoded typed arrays on chart bar-family roots`` =
 
-        Trace2D.initScatter (
-            Trace2DStyle.Scatter(
-                Name = "encoded scatter + error bars",
-                Mode = StyleParam.Mode.Lines_Markers,
-                XEncoded = xEncoded,
-                YEncoded = yEncoded,
-                IdsEncoded = idsEncoded,
-                CustomDataEncoded = customDataEncoded,
-                SelectedPointsEncoded = selectedPointsEncoded,
-                MultiTextEncoded = multiTextEncoded,
-                XError =
-                    Error.init(
-                        Type = StyleParam.ErrorType.Data,
-                        ArrayEncoded = xErrorEncoded
-                    ),
-                YError =
-                    Error.init(
-                        Type = StyleParam.ErrorType.Data,
-                        ArrayEncoded = yErrorEncoded,
-                        ArrayminusEncoded = yErrorMinusEncoded
-                    )
-            )
+    let ``Bar encoded constructor`` =
+        Chart.Bar(
+            valuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            KeysEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.5 |],
+            Name = "encoded bar",
+            UseDefaults = false
         )
-        |> GenericChart.ofTraceObject true
+
+    let ``Funnel encoded constructor`` =
+        Chart.Funnel(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 30.0; 20.0; 10.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            Name = "encoded funnel",
+            UseDefaults = false
+        )
+
+    let ``Waterfall encoded constructor`` =
+        Chart.Waterfall(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; -2.0; 4.0 |],
+            MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.5 |],
+            Name = "encoded waterfall",
+            UseDefaults = false
+        )
 
 module ``Encoded typed arrays on bar-family traces`` =
 
@@ -205,6 +197,7 @@ module ``Encoded typed arrays on bar-family traces`` =
                 CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
                 SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |],
                 MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                MultiWidthEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.5 |],
                 MultiOffsetEncoded = EncodedTypedArray.ofFloat64Array [| -0.1; 0.0; 0.1 |]
             )
         )
