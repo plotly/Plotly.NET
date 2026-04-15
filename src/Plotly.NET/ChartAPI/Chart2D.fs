@@ -386,7 +386,9 @@ module Chart2D =
         /// Creates a Point chart, which uses Points in a 2D space to visualize data.
         /// </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -413,6 +415,8 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -441,9 +445,11 @@ module Chart2D =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
             Chart.Scatter(
-                x = x,
-                y = y,
-                mode = changeMode StyleParam.Mode.Markers,
+                X = x,
+                Y = y,
+                ?XEncoded = XEncoded,
+                ?YEncoded = YEncoded,
+                Mode = changeMode StyleParam.Mode.Markers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -548,7 +554,9 @@ module Chart2D =
 
         /// <summary> Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -584,6 +592,8 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -627,9 +637,11 @@ module Chart2D =
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
             Chart.Scatter(
-                x = x,
-                y = y,
-                mode = changeMode StyleParam.Mode.Lines,
+                X = x,
+                Y = y,
+                ?XEncoded = XEncoded,
+                ?YEncoded = YEncoded,
+                Mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -673,6 +685,8 @@ module Chart2D =
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="MarkerColor">Sets the color of the marker</param>
@@ -809,6 +823,8 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Smoothing: float,
                 ?Name: string,
@@ -883,7 +899,9 @@ module Chart2D =
             let style =
                 Trace2DStyle.Scatter(
                     X = x,
+                    ?XEncoded = XEncoded,
                     Y = y,
+                    ?YEncoded = YEncoded,
                     Mode = changeMode StyleParam.Mode.Lines,
                     Marker = marker,
                     Line = line,
@@ -922,6 +940,8 @@ module Chart2D =
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="MarkerColor">Sets the color of the marker</param>
@@ -1057,6 +1077,8 @@ module Chart2D =
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
                 sizes: seq<int>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -1118,7 +1140,9 @@ module Chart2D =
             let style =
                 Trace2DStyle.Scatter(
                     X = x,
+                    ?XEncoded = XEncoded,
                     Y = y,
+                    ?YEncoded = YEncoded,
                     Mode = changeMode StyleParam.Mode.Markers,
                     Marker = marker,
                     Line = line,
@@ -1240,9 +1264,13 @@ module Chart2D =
         /// The mid Y value usually resembles some kind of central tendency and the upper/lower Y values some kind of spread.
         /// </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="y">Sets the y coordinates of the plotted data for the mid Y value.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data for the mid Y value as an encoded typed array.</param>
         /// <param name="upper">Sets the y coordinates of the plotted data for the upper Y value.</param>
+        /// <param name="UpperEncoded">Sets the y coordinates of the plotted data for the upper Y value as an encoded typed array.</param>
         /// <param name="lower">Sets the y coordinates of the plotted data for the lower Y value.</param>
+        /// <param name="LowerEncoded">Sets the y coordinates of the plotted data for the lower Y value as an encoded typed array.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name of the mid Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
@@ -1285,6 +1313,10 @@ module Chart2D =
                 upper: seq<#IConvertible>,
                 lower: seq<#IConvertible>,
                 mode: StyleParam.Mode,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
+                ?UpperEncoded: EncodedTypedArray,
+                ?LowerEncoded: EncodedTypedArray,
                 ?Name: string,
                 ?GroupName: string,
                 ?ShowMarkers: bool,
@@ -1338,9 +1370,11 @@ module Chart2D =
 
             let trace =
                 Chart.Scatter(
-                    x = x,
-                    y = y,
-                    mode = changeMode mode,
+                    X = x,
+                    Y = y,
+                    ?XEncoded = XEncoded,
+                    ?YEncoded = YEncoded,
+                    Mode = changeMode mode,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Text = Text,
@@ -1370,7 +1404,9 @@ module Chart2D =
                 Trace2D.initScatter (
                     Trace2DStyle.Scatter(
                         X = x,
+                        ?XEncoded = XEncoded,
                         Y = lower,
+                        ?YEncoded = LowerEncoded,
                         Mode = changeMode mode,
                         ?FillColor = RangeColor,
                         ?Name = Some lowerName,
@@ -1396,7 +1432,9 @@ module Chart2D =
                 Trace2D.initScatter (
                     Trace2DStyle.Scatter(
                         X = x,
+                        ?XEncoded = XEncoded,
                         Y = upper,
+                        ?YEncoded = UpperEncoded,
                         Mode = changeMode mode,
                         Fill = StyleParam.Fill.ToNext_y,
                         ?FillColor = RangeColor,
@@ -1571,6 +1609,8 @@ module Chart2D =
         /// <param name="MarkerOutline">Sets the outline of the marker</param>
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="LineColor">Sets the color of the line</param>
         /// <param name="LineColorScale">Sets the colorscale of the line</param>
@@ -1592,6 +1632,8 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -1632,6 +1674,8 @@ module Chart2D =
             Chart.Line(
                 x = x,
                 y = y,
+                ?XEncoded = XEncoded,
+                ?YEncoded = YEncoded,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
@@ -1682,6 +1726,8 @@ module Chart2D =
         /// <param name="MarkerOutline">Sets the outline of the marker</param>
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="LineColor">Sets the color of the line</param>
         /// <param name="LineColorScale">Sets the colorscale of the line</param>
@@ -1811,6 +1857,8 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Smoothing: float,
                 ?Name: string,
@@ -1852,6 +1900,8 @@ module Chart2D =
             Chart.Spline(
                 x = x,
                 y = y,
+                ?XEncoded = XEncoded,
+                ?YEncoded = YEncoded,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Smoothing = Smoothing,
@@ -1903,6 +1953,8 @@ module Chart2D =
         /// <param name="MarkerOutline">Sets the outline of the marker</param>
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="LineColor">Sets the color of the line</param>
         /// <param name="LineColorScale">Sets the colorscale of the line</param>
@@ -2028,6 +2080,8 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
+                ?XEncoded: EncodedTypedArray,
+                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -2065,6 +2119,8 @@ module Chart2D =
             Chart.Line(
                 x = x,
                 y = y,
+                ?XEncoded = XEncoded,
+                ?YEncoded = YEncoded,
                 Fill = StyleParam.Fill.ToNext_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
