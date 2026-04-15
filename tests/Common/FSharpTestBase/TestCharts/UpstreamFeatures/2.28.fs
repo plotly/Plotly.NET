@@ -388,3 +388,107 @@ module ``Encoded typed arrays on Trace3D families`` =
             )
         )
         |> GenericChart.ofTraceObject true
+
+module ``Encoded typed arrays on remaining subplot traces`` =
+
+    let ``ScatterPolar with encoded arrays`` =
+        TracePolar.initScatterPolar (
+            TracePolarStyle.ScatterPolar(
+                Name = "encoded scatterpolar",
+                Mode = StyleParam.Mode.Lines_Markers,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 401; 402; 403 |],
+                REncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 1.5 |],
+                ThetaEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 120.0; 240.0 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 11.0; 12.0; 13.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``ScatterGeo with encoded arrays`` =
+        TraceGeo.initScatterGeo (
+            TraceGeoStyle.ScatterGeo(
+                Name = "encoded scattergeo",
+                Mode = StyleParam.Mode.Markers_Text,
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 501; 502; 503 |],
+                LatEncoded = EncodedTypedArray.ofFloat64Array [| 52.52; 48.85; 41.90 |],
+                LonEncoded = EncodedTypedArray.ofFloat64Array [| 13.40; 2.35; 12.49 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0; 43.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+module ``Encoded typed arrays on carpet and domain traces`` =
+
+    let ``Carpet with encoded arrays`` =
+        TraceCarpet.initCarpet (
+            TraceCarpetStyle.Carpet(
+                Name = "encoded carpet",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 40.0; 50.0; 60.0 |],
+                AEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+                BEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Pie with encoded arrays`` =
+        TraceDomain.initPie (
+            TraceDomainStyle.Pie(
+                Name = "encoded pie",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 31; 32; 33 |],
+                ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                LabelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                MetaEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 81.0; 82.0; 83.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Sunburst with encoded arrays`` =
+        TraceDomain.initSunburst (
+            TraceDomainStyle.Sunburst(
+                Name = "encoded sunburst",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 41; 42; 43 |],
+                ParentsEncoded = EncodedTypedArray.ofInt32Array [| 0; 41; 41 |],
+                ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 6.0; 4.0 |],
+                LabelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0 |],
+                MetaEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0; 103.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 111.0; 112.0; 113.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``ParallelCoord with encoded arrays`` =
+        TraceDomain.initParallelCoord (
+            TraceDomainStyle.ParallelCoord(
+                Name = "encoded parallelcoord",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
+                Dimensions = [
+                    Dimension.initParallel(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
+                    Dimension.initParallel(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                ],
+                MetaEncoded = EncodedTypedArray.ofFloat64Array [| 121.0; 122.0; 123.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+
+    let ``Sankey with encoded arrays`` =
+        TraceDomain.initSankey (
+            TraceDomainStyle.Sankey(
+                Name = "encoded sankey",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 61; 62 |],
+                MetaEncoded = EncodedTypedArray.ofFloat64Array [| 141.0; 142.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 151.0; 152.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true

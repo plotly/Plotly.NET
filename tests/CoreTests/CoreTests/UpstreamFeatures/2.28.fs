@@ -282,3 +282,49 @@ module ``Encoded typed arrays on Trace3D families`` =
                 )
             ]
         ]
+
+module ``Encoded typed arrays on remaining subplot traces`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on remaining subplot traces" [
+                testCase "scatterpolar trace serializes encoded polar and metadata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"r\":{\"bdata\":"; "\"theta\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on remaining subplot traces``.``ScatterPolar with encoded arrays``)
+                )
+                testCase "scattergeo trace serializes encoded lat lon and metadata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"lat\":{\"bdata\":"; "\"lon\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on remaining subplot traces``.``ScatterGeo with encoded arrays``)
+                )
+            ]
+        ]
+
+module ``Encoded typed arrays on carpet and domain traces`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on carpet and domain traces" [
+                testCase "carpet trace serializes encoded coordinate and metadata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"a\":{\"bdata\":"; "\"b\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``Carpet with encoded arrays``)
+                )
+                testCase "pie trace serializes encoded values labels text meta and customdata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"values\":{\"bdata\":"; "\"labels\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``Pie with encoded arrays``)
+                )
+                testCase "sunburst trace serializes encoded hierarchy arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"parents\":{\"bdata\":"; "\"values\":{\"bdata\":"; "\"labels\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``Sunburst with encoded arrays``)
+                )
+                testCase "parallelcoord trace serializes encoded metadata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``ParallelCoord with encoded arrays``)
+                )
+                testCase "sankey trace serializes encoded metadata arrays" (fun () ->
+                    [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``Sankey with encoded arrays``)
+                )
+            ]
+        ]

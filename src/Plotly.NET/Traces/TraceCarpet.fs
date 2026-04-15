@@ -83,18 +83,24 @@ type TraceCarpetStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?X: seq<#IConvertible>,
+            ?XEncoded: EncodedTypedArray,
             ?MultiX: seq<#seq<#IConvertible>>,
             ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray,
             ?MultiY: seq<#seq<#IConvertible>>,
             ?A: seq<#IConvertible>,
+            ?AEncoded: EncodedTypedArray,
             ?A0: #IConvertible,
             ?DA: #IConvertible,
             ?B: seq<#IConvertible>,
+            ?BEncoded: EncodedTypedArray,
             ?B0: #IConvertible,
             ?DB: #IConvertible,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?AAxis: LinearAxis,
             ?BAxis: LinearAxis,
             ?XAxis: StyleParam.LinearAxisId,
@@ -117,16 +123,22 @@ type TraceCarpetStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"LegendGroupTitle    
             |> DynObj.withOptionalProperty               "opacity"         Opacity             
             |> DynObj.withOptionalProperty               "ids"             Ids                 
+            |> DynObj.withOptionalProperty               "ids"             IdsEncoded
             |> DynObj.withOptionalSingleOrAnyProperty    "x"               (X, MultiX)         
+            |> DynObj.withOptionalProperty               "x"               XEncoded
             |> DynObj.withOptionalSingleOrAnyProperty    "y"               (Y, MultiY)         
+            |> DynObj.withOptionalProperty               "y"               YEncoded
             |> DynObj.withOptionalProperty               "a"               A                   
+            |> DynObj.withOptionalProperty               "a"               AEncoded
             |> DynObj.withOptionalProperty               "a0"              A0                  
             |> DynObj.withOptionalProperty               "da"              DA                  
             |> DynObj.withOptionalProperty               "b"               B                   
+            |> DynObj.withOptionalProperty               "b"               BEncoded
             |> DynObj.withOptionalProperty               "b0"              B0                  
             |> DynObj.withOptionalProperty               "db"              DB                  
             |> DynObj.withOptionalProperty               "meta"            Meta                
             |> DynObj.withOptionalProperty               "customdata"      CustomData          
+            |> DynObj.withOptionalProperty               "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty               "aaxis"           AAxis               
             |> DynObj.withOptionalProperty               "baxis"           BAxis               
             |> DynObj.withOptionalPropertyBy             "xaxis"           XAxis               StyleParam.LinearAxisId.convert
@@ -192,10 +204,14 @@ type TraceCarpetStyle() =
             ?Opacity: float,
             ?Mode: StyleParam.Mode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?A: seq<#IConvertible>,
+            ?AEncoded: EncodedTypedArray,
             ?B: seq<#IConvertible>,
+            ?BEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -207,12 +223,14 @@ type TraceCarpetStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?XAxis: StyleParam.LinearAxisId,
             ?YAxis: StyleParam.LinearAxisId,
             ?Marker: Marker,
             ?Line: Line,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Selected: TraceSelection,
             ?Unselected: TraceSelection,
             ?Carpet: StyleParam.SubPlotId,
@@ -236,9 +254,13 @@ type TraceCarpetStyle() =
             |> DynObj.withOptionalProperty                   "opacity"         Opacity                                
             |> DynObj.withOptionalPropertyBy                 "mode"            Mode                                   StyleParam.Mode.convert
             |> DynObj.withOptionalProperty                   "ids"             Ids                                    
+            |> DynObj.withOptionalProperty                   "ids"             IdsEncoded
             |> DynObj.withOptionalProperty                   "a"               A                                      
+            |> DynObj.withOptionalProperty                   "a"               AEncoded
             |> DynObj.withOptionalProperty                   "b"               B                                      
+            |> DynObj.withOptionalProperty                   "b"               BEncoded
             |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                      
+            |> DynObj.withOptionalProperty                   "text"            MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)      StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)      
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)            
@@ -246,12 +268,14 @@ type TraceCarpetStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate)    
             |> DynObj.withOptionalProperty                   "meta"            Meta                                   
             |> DynObj.withOptionalProperty                   "customdata"      CustomData                             
+            |> DynObj.withOptionalProperty                   "customdata"      CustomDataEncoded
             |> DynObj.withOptionalPropertyBy                 "xaxis"           XAxis                                  StyleParam.LinearAxisId.convert
             |> DynObj.withOptionalPropertyBy                 "yaxis"           YAxis                                  StyleParam.LinearAxisId.convert
             |> DynObj.withOptionalProperty                   "marker"          Marker                                 
             |> DynObj.withOptionalProperty                   "line"            Line                                   
             |> DynObj.withOptionalProperty                   "textfont"        TextFont                               
             |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPoints                         
+            |> DynObj.withOptionalProperty                   "selectedpoints"  SelectedPointsEncoded
             |> DynObj.withOptionalProperty                   "selected"        Selected                               
             |> DynObj.withOptionalProperty                   "unselected"      Unselected                             
             |> DynObj.withOptionalPropertyBy                 "carpet"          Carpet                                 StyleParam.SubPlotId.convert
@@ -320,21 +344,27 @@ type TraceCarpetStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Z: seq<#IConvertible>,
+            ?ZEncoded: EncodedTypedArray,
             ?A: seq<#IConvertible>,
+            ?AEncoded: EncodedTypedArray,
             ?AType: StyleParam.CoordinateType,
             ?A0: #IConvertible,
             ?DA: #IConvertible,
             ?B: seq<#IConvertible>,
+            ?BEncoded: EncodedTypedArray,
             ?BType: StyleParam.CoordinateType,
             ?B0: #IConvertible,
             ?DB: #IConvertible,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?HoverText: string,
             ?MultiHoverText: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?XAxis: StyleParam.LinearAxisId,
             ?YAxis: StyleParam.LinearAxisId,
             ?ColorAxis: StyleParam.SubPlotId,
@@ -368,19 +398,25 @@ type TraceCarpetStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"LegendGroupTitle            
             |> DynObj.withOptionalProperty               "opacity"         Opacity                     
             |> DynObj.withOptionalProperty               "ids"             Ids                         
+            |> DynObj.withOptionalProperty               "ids"             IdsEncoded
             |> DynObj.withOptionalProperty               "z"               Z                           
+            |> DynObj.withOptionalProperty               "z"               ZEncoded
             |> DynObj.withOptionalProperty               "a"               A                           
+            |> DynObj.withOptionalProperty               "a"               AEncoded
             |> DynObj.withOptionalPropertyBy             "atype"           AType                       StyleParam.CoordinateType.convert
             |> DynObj.withOptionalProperty               "a0"              A0                          
             |> DynObj.withOptionalProperty               "da"              DA                          
             |> DynObj.withOptionalProperty               "b"               B                           
+            |> DynObj.withOptionalProperty               "b"               BEncoded
             |> DynObj.withOptionalPropertyBy             "btype"           BType                       StyleParam.CoordinateType.convert
             |> DynObj.withOptionalProperty               "b0"              B0                          
             |> DynObj.withOptionalProperty               "db"              DB                          
             |> DynObj.withOptionalSingleOrMultiProperty  "text"            (Text, MultiText)           
+            |> DynObj.withOptionalProperty               "text"            MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"       (HoverText, MultiHoverText) 
             |> DynObj.withOptionalProperty               "meta"            Meta                        
             |> DynObj.withOptionalProperty               "customdata"      CustomData                  
+            |> DynObj.withOptionalProperty               "customdata"      CustomDataEncoded
             |> DynObj.withOptionalPropertyBy             "xaxis"           XAxis                       StyleParam.LinearAxisId.convert
             |> DynObj.withOptionalPropertyBy             "yaxis"           YAxis                       StyleParam.LinearAxisId.convert
             |> DynObj.withOptionalPropertyBy             "coloraxis"       ColorAxis                   StyleParam.SubPlotId.convert

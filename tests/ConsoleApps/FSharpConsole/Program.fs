@@ -221,6 +221,49 @@ let main args =
         |> GenericChart.ofTraceObject true
         |> Chart.withTitle "Fully encoded scattersmith"
 
+    let fullyEncodedCarpet =
+        TraceCarpet.initCarpet (
+            TraceCarpetStyle.Carpet(
+                Name = "encoded carpet",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 901; 902; 903 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 40.0; 50.0; 60.0 |],
+                AEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+                BEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded carpet"
+
+    let fullyEncodedPie =
+        TraceDomain.initPie (
+            TraceDomainStyle.Pie(
+                Name = "encoded pie",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 911; 912; 913 |],
+                ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                LabelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                MetaEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 81.0; 82.0; 83.0 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded pie"
+
+    let fullyEncodedSankey =
+        TraceDomain.initSankey (
+            TraceDomainStyle.Sankey(
+                Name = "encoded sankey",
+                IdsEncoded = EncodedTypedArray.ofInt32Array [| 921; 922 |],
+                MetaEncoded = EncodedTypedArray.ofFloat64Array [| 141.0; 142.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 151.0; 152.0 |],
+                SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+            )
+        )
+        |> GenericChart.ofTraceObject true
+        |> Chart.withTitle "Fully encoded sankey"
+
     simpleEncodedScatter |> Chart.show
     fullyEncodedScatterWithErrorBars |> Chart.show
     fullyEncodedBar |> Chart.show
@@ -233,5 +276,8 @@ let main args =
     fullyEncodedScatterMapbox |> Chart.show
     fullyEncodedScatterTernary |> Chart.show
     fullyEncodedScatterSmith |> Chart.show
+    fullyEncodedCarpet |> Chart.show
+    fullyEncodedPie |> Chart.show
+    fullyEncodedSankey |> Chart.show
 
     0

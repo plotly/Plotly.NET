@@ -1187,3 +1187,292 @@ let ``Matrix trace family encoded fields`` =
             Expect.stringContains json "\"customdata\":{\"bdata\":" "image customdata must be encoded"
         )
     ]
+
+[<Tests>]
+let ``Remaining subplot trace family encoded fields`` =
+    testList "CommonAbstractions.EncodedTypedArray remaining subplot trace family integration" [
+
+        testCase "ScatterPolar encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TracePolar.initScatterPolar (
+                    TracePolarStyle.ScatterPolar(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                        REncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 1.5 |],
+                        ThetaEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 120.0; 240.0 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 11.0; 12.0; 13.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"r\":{\"bdata\":"; "\"theta\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scatterpolar must contain %s" needle))
+        )
+
+        testCase "ScatterGeo encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceGeo.initScatterGeo (
+                    TraceGeoStyle.ScatterGeo(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 11; 12; 13 |],
+                        LatEncoded = EncodedTypedArray.ofFloat64Array [| 52.52; 48.85; 41.90 |],
+                        LonEncoded = EncodedTypedArray.ofFloat64Array [| 13.40; 2.35; 12.49 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0; 43.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"lat\":{\"bdata\":"; "\"lon\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scattergeo must contain %s" needle))
+        )
+
+        testCase "ScatterMapbox encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceMapbox.initScatterMapbox (
+                    TraceMapboxStyle.ScatterMapbox(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 21; 22; 23 |],
+                        LatEncoded = EncodedTypedArray.ofFloat64Array [| 37.77; 34.05; 47.61 |],
+                        LonEncoded = EncodedTypedArray.ofFloat64Array [| -122.42; -118.24; -122.33 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 51.0; 52.0; 53.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"lat\":{\"bdata\":"; "\"lon\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scattermapbox must contain %s" needle))
+        )
+
+        testCase "ScatterTernary encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceTernary.initScatterTernary (
+                    TraceTernaryStyle.ScatterTernary(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 31; 32; 33 |],
+                        AEncoded = EncodedTypedArray.ofFloat64Array [| 0.2; 0.3; 0.4 |],
+                        BEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.3; 0.2 |],
+                        CEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4; 0.4 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 81.0; 82.0; 83.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 2 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"a\":{\"bdata\":"; "\"b\":{\"bdata\":"; "\"c\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scatterternary must contain %s" needle))
+        )
+
+        testCase "ScatterSmith encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceSmith.initScatterSmith (
+                    TraceSmithStyle.ScatterSmith(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 41; 42; 43 |],
+                        RealEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 1.0; 1.5 |],
+                        ImagEncoded = EncodedTypedArray.ofFloat64Array [| -0.2; 0.0; 0.2 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0; 103.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 1 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"real\":{\"bdata\":"; "\"imag\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scattersmith must contain %s" needle))
+        )
+    ]
+
+[<Tests>]
+let ``Carpet and domain trace family encoded fields`` =
+    testList "CommonAbstractions.EncodedTypedArray carpet and domain trace family integration" [
+
+        testCase "Carpet encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceCarpet.initCarpet (
+                    TraceCarpetStyle.Carpet(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 40.0; 50.0; 60.0 |],
+                        AEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+                        BEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 2.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"x\":{\"bdata\":"; "\"y\":{\"bdata\":"; "\"a\":{\"bdata\":"; "\"b\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "carpet must contain %s" needle))
+        )
+
+        testCase "Carpet encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                TraceCarpet.initCarpet (
+                    TraceCarpetStyle.Carpet(
+                        Ids = [ 10; 20 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2 |],
+                        X = [ 1.0; 2.0 ],
+                        XEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                        Y = [ 5.0; 6.0 ],
+                        YEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0 |],
+                        A = [ 9.0; 10.0 ],
+                        AEncoded = EncodedTypedArray.ofFloat64Array [| 11.0; 12.0 |],
+                        B = [ 13.0; 14.0 ],
+                        BEncoded = EncodedTypedArray.ofFloat64Array [| 15.0; 16.0 |],
+                        CustomData = [ 17.0; 18.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 19.0; 20.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":[10,20]"; "\"x\":[1.0,2.0]"; "\"y\":[5.0,6.0]"; "\"a\":[9.0,10.0]"; "\"b\":[13.0,14.0]"; "\"customdata\":[17.0,18.0]" ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain carpet array must not be present: %s" needle))
+        )
+
+        testCase "ScatterCarpet encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceCarpet.initScatterCarpet (
+                    TraceCarpetStyle.ScatterCarpet(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 11; 12; 13 |],
+                        AEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        BEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0; 23.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 31.0; 32.0; 33.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 0; 2 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"a\":{\"bdata\":"; "\"b\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "scattercarpet must contain %s" needle))
+        )
+
+        testCase "ContourCarpet encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceCarpet.initContourCarpet (
+                    TraceCarpetStyle.ContourCarpet(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 21; 22; 23 |],
+                        ZEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                        AEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                        BEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 41.0; 42.0; 43.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 51.0; 52.0; 53.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"z\":{\"bdata\":"; "\"a\":{\"bdata\":"; "\"b\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "contourcarpet must contain %s" needle))
+        )
+
+        testCase "Pie encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceDomain.initPie (
+                    TraceDomainStyle.Pie(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 31; 32; 33 |],
+                        ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                        LabelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 61.0; 62.0; 63.0 |],
+                        MetaEncoded = EncodedTypedArray.ofFloat64Array [| 71.0; 72.0; 73.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 81.0; 82.0; 83.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"values\":{\"bdata\":"; "\"labels\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "pie must contain %s" needle))
+        )
+
+        testCase "Pie encoded fields override the plain array path when both are provided" (fun () ->
+            let trace =
+                TraceDomain.initPie (
+                    TraceDomainStyle.Pie(
+                        Ids = [ 1; 2 ],
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 11; 12 |],
+                        Values = [ 3.0; 4.0 ],
+                        ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                        Labels = [ 7; 8 ],
+                        LabelsEncoded = EncodedTypedArray.ofInt32Array [| 9; 10 |],
+                        MultiText = [ 11.0; 12.0 ],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 13.0; 14.0 |],
+                        Meta = [ 15.0; 16.0 ],
+                        MetaEncoded = EncodedTypedArray.ofFloat64Array [| 17.0; 18.0 |],
+                        CustomData = [ 19.0; 20.0 ],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 21.0; 22.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":[1,2]"; "\"values\":[3.0,4.0]"; "\"labels\":[7,8]"; "\"text\":[11.0,12.0]"; "\"meta\":[15.0,16.0]"; "\"customdata\":[19.0,20.0]" ]
+            |> List.iter (fun needle -> Expect.isFalse (json.Contains needle) (sprintf "plain pie array must not be present: %s" needle))
+        )
+
+        testCase "Sunburst encoded fields land under the expected properties" (fun () ->
+            let trace =
+                TraceDomain.initSunburst (
+                    TraceDomainStyle.Sunburst(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 41; 42; 43 |],
+                        ParentsEncoded = EncodedTypedArray.ofInt32Array [| 0; 41; 41 |],
+                        ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 6.0; 4.0 |],
+                        LabelsEncoded = EncodedTypedArray.ofInt32Array [| 1; 2; 3 |],
+                        MultiTextEncoded = EncodedTypedArray.ofFloat64Array [| 91.0; 92.0; 93.0 |],
+                        MetaEncoded = EncodedTypedArray.ofFloat64Array [| 101.0; 102.0; 103.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 111.0; 112.0; 113.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"parents\":{\"bdata\":"; "\"values\":{\"bdata\":"; "\"labels\":{\"bdata\":"; "\"text\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "sunburst must contain %s" needle))
+        )
+
+        testCase "ParallelCoord encoded metadata fields land under the expected properties" (fun () ->
+            let trace =
+                TraceDomain.initParallelCoord (
+                    TraceDomainStyle.ParallelCoord(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
+                        Dimensions = [
+                            Dimension.initParallel(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
+                            Dimension.initParallel(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                        ],
+                        MetaEncoded = EncodedTypedArray.ofFloat64Array [| 121.0; 122.0; 123.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "parallelcoord must contain %s" needle))
+        )
+
+        testCase "Sankey encoded metadata fields land under the expected properties" (fun () ->
+            let trace =
+                TraceDomain.initSankey (
+                    TraceDomainStyle.Sankey(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 61; 62 |],
+                        MetaEncoded = EncodedTypedArray.ofFloat64Array [| 141.0; 142.0 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 151.0; 152.0 |],
+                        SelectedPointsEncoded = EncodedTypedArray.ofInt32Array [| 1 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "sankey must contain %s" needle))
+        )
+
+        testCase "Indicator encoded metadata fields land under the expected properties" (fun () ->
+            let trace =
+                TraceDomain.initIndicator (
+                    TraceDomainStyle.Indicator(
+                        IdsEncoded = EncodedTypedArray.ofInt32Array [| 71; 72 |],
+                        CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 161.0; 162.0 |]
+                    )
+                )
+
+            let json = serialize trace
+            [ "\"ids\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+            |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "indicator must contain %s" needle))
+        )
+    ]

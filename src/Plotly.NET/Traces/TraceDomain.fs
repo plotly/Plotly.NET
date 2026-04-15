@@ -105,14 +105,18 @@ type TraceDomainStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Labels: seq<#IConvertible>,
+            ?LabelsEncoded: EncodedTypedArray,
             ?DLabel: #IConvertible,
             ?Label0: #IConvertible,
             ?Pull: float,
             ?MultiPull: seq<float>,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -123,7 +127,9 @@ type TraceDomainStyle() =
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?AutoMargin: bool,
             ?Marker: Marker,
@@ -152,19 +158,25 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty                   "legendgrouptitle"      LegendGroupTitle                    
             |> DynObj.withOptionalProperty                   "opacity"               Opacity                             
             |> DynObj.withOptionalProperty                   "ids"                   Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"                   IdsEncoded
             |> DynObj.withOptionalProperty                   "values"                Values                              
+            |> DynObj.withOptionalProperty                   "values"                ValuesEncoded
             |> DynObj.withOptionalProperty                   "labels"                Labels                              
+            |> DynObj.withOptionalProperty                   "labels"                LabelsEncoded
             |> DynObj.withOptionalProperty                   "dlabel"                DLabel                              
             |> DynObj.withOptionalProperty                   "label0"                Label0                              
             |> DynObj.withOptionalSingleOrMultiProperty      "pull"                  (Pull, MultiPull)                   
             |> DynObj.withOptionalSingleOrMultiProperty      "text"                  (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"                  MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"          (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"          (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"             (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy                 "hoverinfo"             HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"         (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"                  Meta                                
+            |> DynObj.withOptionalProperty                   "meta"                  MetaEncoded
             |> DynObj.withOptionalProperty                   "customdata"            CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"            CustomDataEncoded
             |> DynObj.withOptionalProperty                   "domain"                Domain                              
             |> DynObj.withOptionalProperty                   "automargin"            AutoMargin                          
             |> DynObj.withOptionalProperty                   "marker"                Marker                              
@@ -233,12 +245,16 @@ type TraceDomainStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Labels: seq<#IConvertible>,
+            ?LabelsEncoded: EncodedTypedArray,
             ?DLabel: #IConvertible,
             ?Label0: #IConvertible,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -249,7 +265,9 @@ type TraceDomainStyle() =
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Marker: Marker,
             ?TextFont: Font,
@@ -273,18 +291,24 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty                   "legendgrouptitle"LegendGroupTitle                    
             |> DynObj.withOptionalProperty                   "opacity"         Opacity                             
             |> DynObj.withOptionalProperty                   "ids"             Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"             IdsEncoded
             |> DynObj.withOptionalProperty                   "values"          Values                              
+            |> DynObj.withOptionalProperty                   "values"          ValuesEncoded
             |> DynObj.withOptionalProperty                   "labels"          Labels                              
+            |> DynObj.withOptionalProperty                   "labels"          LabelsEncoded
             |> DynObj.withOptionalProperty                   "dlabel"          DLabel                              
             |> DynObj.withOptionalProperty                   "label0"          Label0                              
             |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"            MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy                 "hoverinfo"       HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"            Meta                                
+            |> DynObj.withOptionalProperty                   "meta"            MetaEncoded
             |> DynObj.withOptionalProperty                   "customdata"      CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty                   "domain"          Domain                              
             |> DynObj.withOptionalProperty                   "marker"          Marker                              
             |> DynObj.withOptionalProperty                   "textfont"        TextFont                            
@@ -352,11 +376,16 @@ type TraceDomainStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Parents: seq<#IConvertible>,
+            ?ParentsEncoded: EncodedTypedArray,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Labels: seq<#IConvertible>,
+            ?LabelsEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextTemplate: string,
             ?MultiTextTemplate: seq<string>,
             ?HoverText: string,
@@ -365,7 +394,9 @@ type TraceDomainStyle() =
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Marker: Marker,
             ?TextFont: Font,
@@ -397,16 +428,23 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty               "legendgrouptitle"        LegendGroupTitle                    
             |> DynObj.withOptionalProperty               "opacity"                 Opacity                             
             |> DynObj.withOptionalProperty               "ids"                     Ids                                 
+            |> DynObj.withOptionalProperty               "ids"                     IdsEncoded
             |> DynObj.withOptionalProperty               "parents"                 Parents                             
+            |> DynObj.withOptionalProperty               "parents"                 ParentsEncoded
             |> DynObj.withOptionalProperty               "values"                  Values                              
+            |> DynObj.withOptionalProperty               "values"                  ValuesEncoded
             |> DynObj.withOptionalProperty               "labels"                  Labels                              
+            |> DynObj.withOptionalProperty               "labels"                  LabelsEncoded
             |> DynObj.withOptionalSingleOrMultiProperty  "text"                    (Text, MultiText)                   
+            |> DynObj.withOptionalProperty               "text"                    MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiProperty  "texttemplate"            (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertext"               (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy             "hoverinfo"               HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"           (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty               "meta"                    Meta                                
+            |> DynObj.withOptionalProperty               "meta"                    MetaEncoded
             |> DynObj.withOptionalProperty               "customdata"              CustomData                          
+            |> DynObj.withOptionalProperty               "customdata"              CustomDataEncoded
             |> DynObj.withOptionalProperty               "domain"                  Domain                              
             |> DynObj.withOptionalProperty               "marker"                  Marker                              
             |> DynObj.withOptionalProperty               "textfont"                TextFont                            
@@ -481,11 +519,16 @@ type TraceDomainStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Parents: seq<#IConvertible>,
+            ?ParentsEncoded: EncodedTypedArray,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Labels: seq<#IConvertible>,
+            ?LabelsEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -496,7 +539,9 @@ type TraceDomainStyle() =
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Marker: Marker,
             ?TextFont: Font,
@@ -526,17 +571,24 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty                   "legendgrouptitle"LegendGroupTitle                    
             |> DynObj.withOptionalProperty                   "opacity"         Opacity                             
             |> DynObj.withOptionalProperty                   "ids"             Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"             IdsEncoded
             |> DynObj.withOptionalProperty                   "parents"         Parents                             
+            |> DynObj.withOptionalProperty                   "parents"         ParentsEncoded
             |> DynObj.withOptionalProperty                   "values"          Values                              
+            |> DynObj.withOptionalProperty                   "values"          ValuesEncoded
             |> DynObj.withOptionalProperty                   "labels"          Labels                              
+            |> DynObj.withOptionalProperty                   "labels"          LabelsEncoded
             |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"            MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)         
             |> DynObj.withOptionalPropertyBy                 "hoverinfo"       HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"            Meta                                
+            |> DynObj.withOptionalProperty                   "meta"            MetaEncoded
             |> DynObj.withOptionalProperty                   "customdata"      CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty                   "domain"          Domain                              
             |> DynObj.withOptionalProperty                   "marker"          Marker                              
             |> DynObj.withOptionalProperty                   "textfont"        TextFont                            
@@ -584,9 +636,12 @@ type TraceDomainStyle() =
             ?LegendGroup: string,
             ?LegendGroupTitle: Title,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Dimensions: seq<Dimension>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Line: Line,
             ?Unselected: TraceSelection,
@@ -606,9 +661,12 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty   "legendgroup"      LegendGroup        
             |> DynObj.withOptionalProperty   "legendgrouptitle" LegendGroupTitle   
             |> DynObj.withOptionalProperty   "ids"              Ids                
+            |> DynObj.withOptionalProperty   "ids"              IdsEncoded
             |> DynObj.withOptionalProperty   "dimensions"       Dimensions         
             |> DynObj.withOptionalProperty   "meta"             Meta               
+            |> DynObj.withOptionalProperty   "meta"             MetaEncoded
             |> DynObj.withOptionalProperty   "customdata"       CustomData         
+            |> DynObj.withOptionalProperty   "customdata"       CustomDataEncoded
             |> DynObj.withOptionalProperty   "domain"           Domain             
             |> DynObj.withOptionalProperty   "line"             Line               
             |> DynObj.withOptionalProperty   "unselected"       Unselected         
@@ -655,6 +713,7 @@ type TraceDomainStyle() =
             ?HoverTemplate: string,
             ?MultiHoverTemplate: seq<string>,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Line: Line,
             ?Arrangement: StyleParam.CategoryArrangement,
@@ -678,6 +737,7 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalPropertyBy             "hoverinfo"       HoverInfo                           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalSingleOrMultiProperty  "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty               "meta"            Meta                                
+            |> DynObj.withOptionalProperty               "meta"            MetaEncoded
             |> DynObj.withOptionalProperty               "domain"          Domain                              
             |> DynObj.withOptionalProperty               "line"            Line                                
             |> DynObj.withOptionalPropertyBy             "arrangement"     Arrangement                         StyleParam.CategoryArrangement.convert
@@ -721,15 +781,19 @@ type TraceDomainStyle() =
             ?LegendGroup: string,
             ?LegendGroupTitle: Title,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?HoverInfo: StyleParam.HoverInfo,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Orientation: StyleParam.Orientation,
             ?Node: SankeyNodes,
             ?Link: SankeyLinks,
             ?TextFont: Font,
             ?SelectedPoints: seq<#IConvertible>,
+            ?SelectedPointsEncoded: EncodedTypedArray,
             ?Arrangement: StyleParam.CategoryArrangement,
             ?HoverLabel: Hoverlabel,
             ?ValueFormat: string,
@@ -746,15 +810,19 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty   "legendgroup"     LegendGroup         
             |> DynObj.withOptionalProperty   "legendgrouptitle"LegendGroupTitle    
             |> DynObj.withOptionalProperty   "ids"             Ids                 
+            |> DynObj.withOptionalProperty   "ids"             IdsEncoded
             |> DynObj.withOptionalPropertyBy "hoverinfo"       HoverInfo           StyleParam.HoverInfo.convert
             |> DynObj.withOptionalProperty   "meta"            Meta                
+            |> DynObj.withOptionalProperty   "meta"            MetaEncoded
             |> DynObj.withOptionalProperty   "customdata"      CustomData          
+            |> DynObj.withOptionalProperty   "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty   "domain"          Domain              
             |> DynObj.withOptionalPropertyBy "orientation"     Orientation         StyleParam.Orientation.convert
             |> DynObj.withOptionalProperty   "node"            Node                
             |> DynObj.withOptionalProperty   "link"            Link                
             |> DynObj.withOptionalProperty   "textfont"        TextFont            
             |> DynObj.withOptionalProperty   "selectedpoints"  SelectedPoints      
+            |> DynObj.withOptionalProperty   "selectedpoints"  SelectedPointsEncoded
             |> DynObj.withOptionalPropertyBy "arrangement"     Arrangement         StyleParam.CategoryArrangement.convert
             |> DynObj.withOptionalProperty   "hoverlabel"      HoverLabel          
             |> DynObj.withOptionalProperty   "valueformat"     ValueFormat         
@@ -790,12 +858,15 @@ type TraceDomainStyle() =
             ?LegendRank: bool,
             ?LegendGroupTitle: Title,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?ColumnOrder: seq<int>,
             ?ColumnWidth: float,
             ?MultiColumnWidth: seq<float>,
             ?HoverInfo: StyleParam.HoverInfo,
             ?Meta: seq<#IConvertible>,
+            ?MetaEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Cells: TableCells,
             ?Header: TableHeader,
@@ -810,11 +881,14 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty               "legendrank"      LegendRank                      
             |> DynObj.withOptionalProperty               "legendgrouptitle"LegendGroupTitle                
             |> DynObj.withOptionalProperty               "ids"             Ids                             
+            |> DynObj.withOptionalProperty               "ids"             IdsEncoded
             |> DynObj.withOptionalProperty               "columnorder"     ColumnOrder                     
             |> DynObj.withOptionalSingleOrMultiProperty  "columnwidth"     (ColumnWidth, MultiColumnWidth) 
             |> DynObj.withOptionalPropertyBy             "hoverinfo"       HoverInfo                       StyleParam.HoverInfo.convert
             |> DynObj.withOptionalProperty               "meta"            Meta                            
+            |> DynObj.withOptionalProperty               "meta"            MetaEncoded
             |> DynObj.withOptionalProperty               "customdata"      CustomData                      
+            |> DynObj.withOptionalProperty               "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty               "domain"          Domain                          
             |> DynObj.withOptionalProperty               "cells"           Cells                           
             |> DynObj.withOptionalProperty               "header"          Header                          
@@ -851,9 +925,11 @@ type TraceDomainStyle() =
             ?LegendGroupTitle: Title,
             ?Mode: StyleParam.IndicatorMode,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Value: #IConvertible,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Align: StyleParam.IndicatorAlignment,
             ?Delta: IndicatorDelta,
@@ -872,9 +948,11 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty   "legendgrouptitle"LegendGroupTitle    
             |> DynObj.withOptionalPropertyBy "mode"            Mode                StyleParam.IndicatorMode.convert
             |> DynObj.withOptionalProperty   "ids"             Ids                 
+            |> DynObj.withOptionalProperty   "ids"             IdsEncoded
             |> DynObj.withOptionalProperty   "value"           Value               
             |> DynObj.withOptionalProperty   "meta"            Meta                
             |> DynObj.withOptionalProperty   "customdata"      CustomData          
+            |> DynObj.withOptionalProperty   "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty   "domain"          Domain              
             |> DynObj.withOptionalPropertyBy "align"           Align               StyleParam.IndicatorAlignment.convert
             |> DynObj.withOptionalProperty   "delta"           Delta               
@@ -934,11 +1012,16 @@ type TraceDomainStyle() =
             ?LegendGroupTitle: Title,
             ?Opacity: float,
             ?Ids: seq<#IConvertible>,
+            ?IdsEncoded: EncodedTypedArray,
             ?Parents: seq<#IConvertible>,
+            ?ParentsEncoded: EncodedTypedArray,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Labels: seq<#IConvertible>,
+            ?LabelsEncoded: EncodedTypedArray,
             ?Text: #IConvertible,
             ?MultiText: seq<#IConvertible>,
+            ?MultiTextEncoded: EncodedTypedArray,
             ?TextPosition: StyleParam.TextPosition,
             ?MultiTextPosition: seq<StyleParam.TextPosition>,
             ?TextTemplate: string,
@@ -950,6 +1033,7 @@ type TraceDomainStyle() =
             ?MultiHoverTemplate: seq<string>,
             ?Meta: string,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Domain: Domain,
             ?Marker: Marker,
             ?TextFont: Font,
@@ -978,10 +1062,15 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty                   "legendgrouptitle"LegendGroupTitle                    
             |> DynObj.withOptionalProperty                   "opacity"         Opacity                             
             |> DynObj.withOptionalProperty                   "ids"             Ids                                 
+            |> DynObj.withOptionalProperty                   "ids"             IdsEncoded
             |> DynObj.withOptionalProperty                   "parents"         Parents                             
+            |> DynObj.withOptionalProperty                   "parents"         ParentsEncoded
             |> DynObj.withOptionalProperty                   "values"          Values                              
+            |> DynObj.withOptionalProperty                   "values"          ValuesEncoded
             |> DynObj.withOptionalProperty                   "labels"          Labels                              
+            |> DynObj.withOptionalProperty                   "labels"          LabelsEncoded
             |> DynObj.withOptionalSingleOrMultiProperty      "text"            (Text, MultiText)                   
+            |> DynObj.withOptionalProperty                   "text"            MultiTextEncoded
             |> DynObj.withOptionalSingleOrMultiPropertyBy    "textposition"    (TextPosition, MultiTextPosition)   StyleParam.TextPosition.convert
             |> DynObj.withOptionalSingleOrMultiProperty      "texttemplate"    (TextTemplate, MultiTextTemplate)   
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertext"       (HoverText, MultiHoverText)         
@@ -989,6 +1078,7 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalSingleOrMultiProperty      "hovertemplate"   (HoverTemplate, MultiHoverTemplate) 
             |> DynObj.withOptionalProperty                   "meta"            Meta                                
             |> DynObj.withOptionalProperty                   "customdata"      CustomData                          
+            |> DynObj.withOptionalProperty                   "customdata"      CustomDataEncoded
             |> DynObj.withOptionalProperty                   "domain"          Domain                              
             |> DynObj.withOptionalProperty                   "marker"          Marker                              
             |> DynObj.withOptionalProperty                   "textfont"        TextFont                            
