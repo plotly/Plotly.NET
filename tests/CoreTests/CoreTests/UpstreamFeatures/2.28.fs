@@ -207,6 +207,31 @@ module ``Encoded typed arrays on chart distribution and finance roots`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart splom root`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart splom root" [
+                testCase "splom constructor serializes encoded dimension values" (fun () ->
+                    [
+                        "\"dimensions\":[{\"label\":\"A\",\"values\":{\"bdata\":"
+                        "\"label\":\"B\",\"values\":{\"bdata\":"
+                        "\"label\":\"C\",\"values\":{\"bdata\":"
+                        "\"type\":\"splom\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart splom root``.``Splom encoded constructor``)
+                )
+                testCase "splom constructor preserves chart-specific options" (fun () ->
+                    [
+                        "\"name\":\"encoded chart splom\""
+                        "\"showlowerhalf\":false"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart splom root``.``Splom encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]
@@ -339,6 +364,7 @@ module ``Encoded typed arrays on 1-D trace families`` =
                 )
                 testCase "splom trace serializes encoded metadata arrays" (fun () ->
                     [
+                        "\"dimensions\":[{\"label\":\"A\",\"values\":{\"bdata\":"
                         "\"ids\":{\"bdata\":"
                         "\"customdata\":{\"bdata\":"
                         "\"selectedpoints\":{\"bdata\":"
@@ -485,7 +511,7 @@ module ``Encoded typed arrays on carpet and domain traces`` =
                     |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``Sunburst with encoded arrays``)
                 )
                 testCase "parallelcoord trace serializes encoded metadata arrays" (fun () ->
-                    [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
+                    [ "\"dimensions\":[{\"label\":\"A\",\"values\":{\"bdata\":"; "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
                     |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``ParallelCoord with encoded arrays``)
                 )
                 testCase "sankey trace serializes encoded metadata arrays" (fun () ->

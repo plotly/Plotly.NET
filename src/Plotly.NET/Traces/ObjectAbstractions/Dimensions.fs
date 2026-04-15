@@ -23,6 +23,7 @@ type Dimension() =
             ?TickText: seq<#IConvertible>,
             ?Tickvals: seq<#IConvertible>,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Visible: bool
         ) =
         Dimension()
@@ -37,6 +38,7 @@ type Dimension() =
             ?TickText = TickText,
             ?Tickvals = Tickvals,
             ?Values = Values,
+            ?ValuesEncoded = ValuesEncoded,
             ?Visible = Visible
 
         )
@@ -51,6 +53,7 @@ type Dimension() =
             ?Name: string,
             ?TemplateItemName: string,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Visible: bool
         ) =
         Dimension()
@@ -61,6 +64,7 @@ type Dimension() =
             ?Name = Name,
             ?TemplateItemName = TemplateItemName,
             ?Values = Values,
+            ?ValuesEncoded = ValuesEncoded,
             ?Visible = Visible
 
         )
@@ -73,6 +77,7 @@ type Dimension() =
             ?Name: string,
             ?TemplateItemName: string,
             ?Values: seq<#IConvertible>,
+            ?ValuesEncoded: EncodedTypedArray,
             ?Visible: bool,
             ?ConstraintRange: StyleParam.Range,
             ?MultiSelect: bool,
@@ -94,6 +99,7 @@ type Dimension() =
             |> DynObj.withOptionalProperty "name" Name
             |> DynObj.withOptionalProperty "templateitemname" TemplateItemName
             |> DynObj.withOptionalProperty "values" Values
+            |> DynObj.withOptionalProperty "values" ValuesEncoded
             |> DynObj.withOptionalProperty "visible" Visible
             |> DynObj.withOptionalPropertyBy "constraintrange" ConstraintRange StyleParam.Range.convert
             |> DynObj.withOptionalProperty "multiselect" MultiSelect

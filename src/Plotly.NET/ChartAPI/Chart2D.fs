@@ -7540,6 +7540,75 @@ module Chart2D =
             )
 
         /// <summary>
+        /// Creates a scatter plot matrix (SPLOM) from multiple encoded input dimensions.
+        ///
+        /// Each splom dimension is provided as a pair of a dimension label and an encoded typed array containing that dimension's values.
+        /// Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style.
+        /// </summary>
+        /// <param name="keyValuesEncoded">Sets the dimensions of the scatter plot matrix as (dimensionKey, encodedDimensionValues) pairs, where each such pair corresponds to a generated axis.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker. Use `Color.fromColorScaleValues` to map marker colors to a colorscale.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the symbol of all marker</param>
+        /// <param name="MultiMarkerSymbol">Sets the symbol of each individual marker</param>
+        /// <param name="Marker">Sets the markers (use this for more finegrained control than the other marker-associated arguments).</param>
+        /// <param name="ShowDiagonal">Whether or not to show the matrix diagional</param>
+        /// <param name="Diagonal">Sets the styles applied to the scatter plot matrix diagonal</param>
+        /// <param name="ShowLowerHalf">Determines whether or not subplots on the lower half from the diagonal are displayed.</param>
+        /// <param name="ShowUpperHalf">Determines whether or not subplots on the upper half from the diagonal are displayed.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Splom
+            (
+                keyValuesEncoded: seq<string * EncodedTypedArray>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?ShowDiagonal: bool,
+                ?Diagonal: SplomDiagonal,
+                ?ShowLowerHalf: bool,
+                ?ShowUpperHalf: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let dims =
+                keyValuesEncoded
+                |> Seq.map (fun (key, encodedVals) -> Dimension.initSplom (Label = key, ValuesEncoded = encodedVals))
+
+            Chart.Splom(
+                dims,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?ShowDiagonal = ShowDiagonal,
+                ?Diagonal = Diagonal,
+                ?ShowLowerHalf = ShowLowerHalf,
+                ?ShowUpperHalf = ShowUpperHalf,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>
         /// Creates a point density plot - a combination of a Scatter plot and Histogram2DContour.
         ///
         /// Additionally to plotting the (x,y) data as points on a 2D plane, a density contour plot is computed by grouping a set of points specified by their x and y coordinates into bins, and applying a count aggregation function to compute the value to be used to compute contours.

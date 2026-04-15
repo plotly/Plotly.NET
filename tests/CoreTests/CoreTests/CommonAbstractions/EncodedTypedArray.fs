@@ -798,6 +798,74 @@ let ``Chart distribution and finance roots encoded arrays`` =
     ]
 
 [<Tests>]
+let ``Chart splom root encoded arrays`` =
+    testList "CommonAbstractions.EncodedTypedArray Chart splom integration" [
+
+        testCase "Chart.Splom encoded overload serializes encoded dimensions" (fun () ->
+            let chart =
+                Chart.Splom(
+                    keyValuesEncoded = [
+                        "A", EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |]
+                        "B", EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |]
+                    ],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"dimensions\":[{\"label\":\"A\",\"values\":{\"bdata\":" "chart splom must encode the first dimension values"
+            Expect.stringContains json "\"label\":\"B\",\"values\":{\"bdata\":" "chart splom must encode the second dimension values"
+            Expect.stringContains json "\"type\":\"splom\"" "chart splom trace type must still be splom"
+        )
+
+        testCase "Chart.Splom encoded overload keeps splom-specific options" (fun () ->
+            let chart =
+                Chart.Splom(
+                    keyValuesEncoded = [
+                        "A", EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |]
+                        "B", EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |]
+                    ],
+                    ShowLowerHalf = false,
+                    Name = "encoded chart splom",
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"showlowerhalf\":false" "chart splom must keep showlowerhalf"
+            Expect.stringContains json "\"name\":\"encoded chart splom\"" "chart splom name must still serialize"
+        )
+    ]
+
+[<Tests>]
+let ``Dimension encoded arrays`` =
+    testList "CommonAbstractions.EncodedTypedArray Dimension integration" [
+
+        testCase "Dimension.ValuesEncoded serializes under values" (fun () ->
+            let dim =
+                Dimension.initSplom(
+                    Label = "A",
+                    ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |]
+                )
+
+            let json = serialize dim
+            Expect.stringContains json "\"values\":{\"bdata\":" "dimension values must be encoded"
+            Expect.stringContains json "\"label\":\"A\"" "dimension label must still be serialized"
+        )
+
+        testCase "Dimension.ValuesEncoded overrides Values when both are provided" (fun () ->
+            let dim =
+                Dimension.initSplom(
+                    Label = "A",
+                    Values = [ 10.0; 20.0 ],
+                    ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |]
+                )
+
+            let json = serialize dim
+            Expect.stringContains json "\"values\":{\"bdata\":" "encoded dimension values must win over plain values"
+            Expect.isFalse (json.Contains "\"values\":[10.0,20.0]") "plain dimension values must not be present"
+        )
+    ]
+
+[<Tests>]
 let ``Error object encoded arrays`` =
     testList "CommonAbstractions.EncodedTypedArray Error integration" [
 
@@ -1306,8 +1374,8 @@ let ``1-D trace family encoded fields`` =
                 Trace2D.initSplom (
                     Trace2DStyle.Splom(
                         Dimensions = [
-                            Dimension.initSplom(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
-                            Dimension.initSplom(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                            Dimension.initSplom(Label = "A", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |])
+                            Dimension.initSplom(Label = "B", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |])
                         ],
                         IdsEncoded = EncodedTypedArray.ofInt32Array [| 141; 142; 143 |],
                         CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 151.0; 152.0; 153.0 |],
@@ -1317,6 +1385,7 @@ let ``1-D trace family encoded fields`` =
                 )
 
             let json = serialize trace
+            Expect.stringContains json "\"dimensions\":[{\"label\":\"A\",\"values\":{\"bdata\":" "splom dimension values must be encoded"
             Expect.stringContains json "\"ids\":{\"bdata\":" "splom ids must be encoded"
             Expect.stringContains json "\"customdata\":{\"bdata\":" "splom customdata must be encoded"
             Expect.stringContains json "\"selectedpoints\":{\"bdata\":" "splom selectedpoints must be encoded"
@@ -1744,8 +1813,8 @@ let ``Carpet and domain trace family encoded fields`` =
                     TraceDomainStyle.ParallelCoord(
                         IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
                         Dimensions = [
-                            Dimension.initParallel(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
-                            Dimension.initParallel(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                            Dimension.initParallel(Label = "A", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |])
+                            Dimension.initParallel(Label = "B", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |])
                         ],
                         MetaEncoded = EncodedTypedArray.ofFloat64Array [| 121.0; 122.0; 123.0 |],
                         CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |]
@@ -1753,6 +1822,7 @@ let ``Carpet and domain trace family encoded fields`` =
                 )
 
             let json = serialize trace
+            Expect.stringContains json "\"dimensions\":[{\"label\":\"A\",\"values\":{\"bdata\":" "parallelcoord dimension values must be encoded"
             [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":" ]
             |> List.iter (fun needle -> Expect.stringContains json needle (sprintf "parallelcoord must contain %s" needle))
         )

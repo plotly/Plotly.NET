@@ -205,6 +205,20 @@ module ``Encoded typed arrays on chart distribution and finance roots`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart splom root`` =
+
+    let ``Splom encoded constructor`` =
+        Chart.Splom(
+            keyValuesEncoded = [
+                "A", EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |]
+                "B", EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |]
+                "C", EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |]
+            ],
+            Name = "encoded chart splom",
+            ShowLowerHalf = false,
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     let ``Bar with encoded arrays`` =
@@ -343,8 +357,8 @@ module ``Encoded typed arrays on 1-D trace families`` =
             Trace2DStyle.Splom(
                 Name = "encoded splom",
                 Dimensions = [
-                    Dimension.initSplom(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
-                    Dimension.initSplom(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                    Dimension.initSplom(Label = "A", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |])
+                    Dimension.initSplom(Label = "B", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |])
                 ],
                 IdsEncoded = EncodedTypedArray.ofInt32Array [| 141; 142; 143 |],
                 CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 151.0; 152.0; 153.0 |],
@@ -623,8 +637,8 @@ module ``Encoded typed arrays on carpet and domain traces`` =
                 Name = "encoded parallelcoord",
                 IdsEncoded = EncodedTypedArray.ofInt32Array [| 51; 52; 53 |],
                 Dimensions = [
-                    Dimension.initParallel(Label = "A", Values = [ 1.0; 2.0; 3.0 ])
-                    Dimension.initParallel(Label = "B", Values = [ 4.0; 5.0; 6.0 ])
+                    Dimension.initParallel(Label = "A", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |])
+                    Dimension.initParallel(Label = "B", ValuesEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |])
                 ],
                 MetaEncoded = EncodedTypedArray.ofFloat64Array [| 121.0; 122.0; 123.0 |],
                 CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 131.0; 132.0; 133.0 |]
