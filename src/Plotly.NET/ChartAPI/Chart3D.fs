@@ -141,6 +141,124 @@ module Chart3D =
                 Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
+        /// <summary>
+        /// Creates a Scatter3D plot from encoded x, y, and z coordinates.
+        /// </summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="zEncoded">Sets the z coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Scatter3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                mode: StyleParam.Mode,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initScatter3D (
+                Trace3DStyle.Scatter3D(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    Mode = mode,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Projection = Projection,
+                    Marker = marker,
+                    Line = line
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
 
         /// <summary>
         /// Creates a Scatter3D plot.
@@ -929,6 +1047,59 @@ module Chart3D =
             )
 
         /// <summary>
+        /// Creates a surface plot from an encoded z matrix and optional encoded x and y coordinates.
+        /// </summary>
+        [<Extension>]
+        static member Surface
+            (
+                zEncoded: EncodedTypedArray,
+                ?xEncoded: EncodedTypedArray,
+                ?yEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?Contours: Contours,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initSurface (
+                Trace3DStyle.Surface(
+                    ZEncoded = zEncoded,
+                    ?XEncoded = xEncoded,
+                    ?YEncoded = yEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?Contours = Contours,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>
         /// Visualizes a 3D mesh.
         ///
         /// Draws sets of triangles with coordinates given by three 1-dimensional arrays in `x`, `y`, `z` and
@@ -1007,6 +1178,75 @@ module Chart3D =
                     ?I = I,
                     ?J = J,
                     ?K = K,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?Color = Color,
+                    ?Contour = Contour,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ColorBar = ColorBar,
+                    ?FlatShading = FlatShading,
+                    ?AlphaHull = TriangulationAlgorithm
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>
+        /// Visualizes a 3D mesh from encoded coordinate and optional encoded topology/intensity arrays.
+        /// </summary>
+        [<Extension>]
+        static member Mesh3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                ?iEncoded: EncodedTypedArray,
+                ?jEncoded: EncodedTypedArray,
+                ?kEncoded: EncodedTypedArray,
+                ?intensityEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?Color: Color,
+                ?Contour: Contour,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ColorBar: ColorBar,
+                ?FlatShading: bool,
+                ?TriangulationAlgorithm: StyleParam.TriangulationAlgorithm,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initMesh3D (
+                Trace3DStyle.Mesh3D(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    ?IEncoded = iEncoded,
+                    ?JEncoded = jEncoded,
+                    ?KEncoded = kEncoded,
+                    ?IntensityEncoded = intensityEncoded,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -1181,6 +1421,69 @@ module Chart3D =
                     U = u,
                     V = v,
                     W = w,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ColorBar = ColorBar,
+                    ?SizeMode = SizeMode,
+                    ?Anchor = ConeAnchor
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>
+        /// Creates a cone plot from encoded vector-field coordinates and components.
+        /// </summary>
+        [<Extension>]
+        static member Cone
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                uEncoded: EncodedTypedArray,
+                vEncoded: EncodedTypedArray,
+                wEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ColorBar: ColorBar,
+                ?SizeMode: StyleParam.ConeSizeMode,
+                ?ConeAnchor: StyleParam.ConeAnchor,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initCone (
+                Trace3DStyle.Cone(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    UEncoded = uEncoded,
+                    VEncoded = vEncoded,
+                    WEncoded = wEncoded,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -1419,6 +1722,69 @@ module Chart3D =
                     U = u,
                     V = v,
                     W = w,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ColorBar = ColorBar,
+                    ?MaxDisplayed = MaxDisplayed,
+                    ?Starts = TubeStarts
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>
+        /// Creates a streamtube plot from encoded vector-field coordinates and components.
+        /// </summary>
+        [<Extension>]
+        static member StreamTube
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                uEncoded: EncodedTypedArray,
+                vEncoded: EncodedTypedArray,
+                wEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ColorBar: ColorBar,
+                ?MaxDisplayed: int,
+                ?TubeStarts: StreamTubeStarts,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initStreamTube (
+                Trace3DStyle.StreamTube(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    UEncoded = uEncoded,
+                    VEncoded = vEncoded,
+                    WEncoded = wEncoded,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -1686,6 +2052,73 @@ module Chart3D =
             )
 
         /// <summary>
+        /// Creates a volume plot from encoded coordinate and value arrays.
+        /// </summary>
+        [<Extension>]
+        static member Volume
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                valueEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ColorBar: ColorBar,
+                ?IsoMin: float,
+                ?IsoMax: float,
+                ?Caps: Caps,
+                ?Slices: Slices,
+                ?Surface: Surface,
+                ?OpacityScaleEncoded: EncodedTypedArray,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initVolume (
+                Trace3DStyle.Volume(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    ValueEncoded = valueEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ColorBar = ColorBar,
+                    ?IsoMin = IsoMin,
+                    ?IsoMax = IsoMax,
+                    ?Caps = Caps,
+                    ?Slices = Slices,
+                    ?Surface = Surface,
+                    ?OpacityScaleEncoded = OpacityScaleEncoded
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>
         /// Creates a isosurface plot to visualize the volume of a 3D shape.
         ///
         /// An isosurface is a surface that represents points of a constant value (e.g. pressure, temperature, velocity, density) within a volume of space.
@@ -1757,6 +2190,72 @@ module Chart3D =
                     Y = y,
                     Z = z,
                     Value = value,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ColorBar = ColorBar,
+                    ?IsoMin = IsoMin,
+                    ?IsoMax = IsoMax,
+                    ?Caps = Caps,
+                    ?Slices = Slices,
+                    ?Surface = Surface
+
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
+
+        /// <summary>
+        /// Creates an isosurface plot from encoded coordinate and value arrays.
+        /// </summary>
+        [<Extension>]
+        static member IsoSurface
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                valueEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ColorBar: ColorBar,
+                ?IsoMin: float,
+                ?IsoMax: float,
+                ?Caps: Caps,
+                ?Slices: Slices,
+                ?Surface: Surface,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initIsoSurface (
+                Trace3DStyle.IsoSurface(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    ValueEncoded = valueEncoded,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,

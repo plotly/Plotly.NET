@@ -906,6 +906,130 @@ let ``Chart matrix roots encoded arrays`` =
     ]
 
 [<Tests>]
+let ``Chart 3D roots encoded arrays`` =
+    testList "CommonAbstractions.EncodedTypedArray Chart 3D integration" [
+
+        testCase "Chart.Scatter3D encoded overload serializes encoded xyz arrays" (fun () ->
+            let chart =
+                Chart.Scatter3D(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                    mode = StyleParam.Mode.Markers,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart scatter3d x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart scatter3d y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart scatter3d z must be encoded"
+        )
+
+        testCase "Chart.Surface encoded overload serializes encoded z matrix and optional axes" (fun () ->
+            let chart =
+                Chart.Surface(
+                    zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 100.0; 200.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart surface z must be encoded"
+            Expect.stringContains json "\"shape\":\"2,2\"" "chart surface z shape must serialize"
+            Expect.stringContains json "\"type\":\"surface\"" "chart surface trace type must still be surface"
+        )
+
+        testCase "Chart.Mesh3D encoded overload serializes encoded xyz topology and intensity arrays" (fun () ->
+            let chart =
+                Chart.Mesh3D(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 0.0 |],
+                    iEncoded = EncodedTypedArray.ofInt32Array [| 0 |],
+                    jEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+                    kEncoded = EncodedTypedArray.ofInt32Array [| 2 |],
+                    intensityEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"i\":{\"bdata\":" "chart mesh3d i must be encoded"
+            Expect.stringContains json "\"j\":{\"bdata\":" "chart mesh3d j must be encoded"
+            Expect.stringContains json "\"k\":{\"bdata\":" "chart mesh3d k must be encoded"
+            Expect.stringContains json "\"intensity\":{\"bdata\":" "chart mesh3d intensity must be encoded"
+        )
+
+        testCase "Chart.Cone encoded overload serializes encoded vector-field arrays" (fun () ->
+            let chart =
+                Chart.Cone(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                    uEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+                    vEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                    wEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"u\":{\"bdata\":" "chart cone u must be encoded"
+            Expect.stringContains json "\"v\":{\"bdata\":" "chart cone v must be encoded"
+            Expect.stringContains json "\"w\":{\"bdata\":" "chart cone w must be encoded"
+        )
+
+        testCase "Chart.StreamTube encoded overload serializes encoded vector-field arrays" (fun () ->
+            let chart =
+                Chart.StreamTube(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                    uEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+                    vEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+                    wEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"u\":{\"bdata\":" "chart streamtube u must be encoded"
+            Expect.stringContains json "\"v\":{\"bdata\":" "chart streamtube v must be encoded"
+            Expect.stringContains json "\"w\":{\"bdata\":" "chart streamtube w must be encoded"
+        )
+
+        testCase "Chart.Volume encoded overload serializes encoded value and opacityscale arrays" (fun () ->
+            let chart =
+                Chart.Volume(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                    valueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                    OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 1.0; 0.2 |], shape = [ 2; 2 ]),
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"value\":{\"bdata\":" "chart volume value must be encoded"
+            Expect.stringContains json "\"opacityscale\":{\"bdata\":" "chart volume opacityscale must be encoded"
+            Expect.stringContains json "\"shape\":\"2,2\"" "chart volume opacityscale shape must serialize"
+        )
+
+        testCase "Chart.IsoSurface encoded overload serializes encoded value arrays" (fun () ->
+            let chart =
+                Chart.IsoSurface(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+                    valueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"value\":{\"bdata\":" "chart isosurface value must be encoded"
+            Expect.stringContains json "\"type\":\"isosurface\"" "chart isosurface trace type must still be isosurface"
+        )
+    ]
+
+[<Tests>]
 let ``Dimension encoded arrays`` =
     testList "CommonAbstractions.EncodedTypedArray Dimension integration" [
 

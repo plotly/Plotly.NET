@@ -260,6 +260,85 @@ module ``Encoded typed arrays on chart matrix roots`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart 3D roots`` =
+
+    let ``Scatter3D encoded constructor`` =
+        Chart.Scatter3D(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+            mode = StyleParam.Mode.Markers,
+            Name = "encoded scatter3d",
+            UseDefaults = false
+        )
+
+    let ``Surface encoded constructor`` =
+        Chart.Surface(
+            zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 100.0; 200.0 |],
+            Name = "encoded surface",
+            UseDefaults = false
+        )
+
+    let ``Mesh3D encoded constructor`` =
+        Chart.Mesh3D(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 1.0; 0.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 0.0 |],
+            iEncoded = EncodedTypedArray.ofInt32Array [| 0 |],
+            jEncoded = EncodedTypedArray.ofInt32Array [| 1 |],
+            kEncoded = EncodedTypedArray.ofInt32Array [| 2 |],
+            intensityEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+            Name = "encoded mesh3d",
+            UseDefaults = false
+        )
+
+    let ``Cone encoded constructor`` =
+        Chart.Cone(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+            uEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+            vEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+            wEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+            Name = "encoded cone",
+            UseDefaults = false
+        )
+
+    let ``StreamTube encoded constructor`` =
+        Chart.StreamTube(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+            uEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2 |],
+            vEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.4 |],
+            wEncoded = EncodedTypedArray.ofFloat64Array [| 0.5; 0.6 |],
+            Name = "encoded streamtube",
+            UseDefaults = false
+        )
+
+    let ``Volume encoded constructor`` =
+        Chart.Volume(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+            valueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+            OpacityScaleEncoded = EncodedTypedArray.ofFloat64Array([| 0.0; 1.0; 1.0; 0.2 |], shape = [ 2; 2 ]),
+            Name = "encoded volume",
+            UseDefaults = false
+        )
+
+    let ``IsoSurface encoded constructor`` =
+        Chart.IsoSurface(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+            valueEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |],
+            Name = "encoded isosurface",
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     let ``Bar with encoded arrays`` =

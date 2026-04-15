@@ -281,6 +281,89 @@ module ``Encoded typed arrays on chart matrix roots`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart 3D roots`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart 3D roots" [
+                testCase "scatter3d constructor serializes encoded xyz arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"type\":\"scatter3d\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``Scatter3D encoded constructor``)
+                )
+                testCase "surface constructor serializes encoded z matrix and axes" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,2\""
+                        "\"type\":\"surface\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``Surface encoded constructor``)
+                )
+                testCase "mesh3d constructor serializes encoded xyz topology and intensity arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"i\":{\"bdata\":"
+                        "\"j\":{\"bdata\":"
+                        "\"k\":{\"bdata\":"
+                        "\"intensity\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``Mesh3D encoded constructor``)
+                )
+                testCase "cone constructor serializes encoded vector-field arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"u\":{\"bdata\":"
+                        "\"v\":{\"bdata\":"
+                        "\"w\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``Cone encoded constructor``)
+                )
+                testCase "streamtube constructor serializes encoded vector-field arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"u\":{\"bdata\":"
+                        "\"v\":{\"bdata\":"
+                        "\"w\":{\"bdata\":"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``StreamTube encoded constructor``)
+                )
+                testCase "volume constructor serializes encoded value and opacityscale arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"value\":{\"bdata\":"
+                        "\"opacityscale\":{\"bdata\":"
+                        "\"shape\":\"2,2\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``Volume encoded constructor``)
+                )
+                testCase "isosurface constructor serializes encoded value arrays" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"value\":{\"bdata\":"
+                        "\"type\":\"isosurface\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart 3D roots``.``IsoSurface encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]
