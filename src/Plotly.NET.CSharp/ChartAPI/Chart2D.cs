@@ -181,8 +181,6 @@ namespace Plotly.NET.CSharp
             Plotly.NET.Chart2D.Chart.Point(
                 x: x,
                 y: y,
-                XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                 Name: Name.ToOption(),
                 ShowLegend: ShowLegend.ToOption(),
                 Opacity: Opacity.ToOption(),
@@ -280,8 +278,6 @@ namespace Plotly.NET.CSharp
             Plotly.NET.Chart2D.Chart.Line(
                 x: x,
                 y: y,
-                XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                 ShowMarkers: ShowMarkers.ToOption(),
                 Name: Name.ToOption(),
                 ShowLegend: ShowLegend.ToOption(),
@@ -391,8 +387,6 @@ namespace Plotly.NET.CSharp
             Plotly.NET.Chart2D.Chart.Spline(
                 x: x,
                 y: y,
-                XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                 ShowMarkers: ShowMarkers.ToOption(),
                 Smoothing: Smoothing.ToOption(),
                 Name: Name.ToOption(),
@@ -495,8 +489,6 @@ namespace Plotly.NET.CSharp
                 x: x,
                 y: y,
                 sizes: sizes,
-                XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                 Name: Name.ToOption(),
                 ShowLegend: ShowLegend.ToOption(),
                 Opacity: Opacity.ToOption(),
@@ -618,10 +610,6 @@ namespace Plotly.NET.CSharp
                     upper: upper,
                     lower: lower,
                     mode: mode,
-                    XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                    YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                    UpperEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                    LowerEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                     Name: Name.ToOption(),
                     GroupName: GroupName.ToOption(),
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -773,8 +761,6 @@ namespace Plotly.NET.CSharp
                 Plotly.NET.Chart2D.Chart.Area<XType, YType, TextType>(
                     x: x,
                     y: y,
-                    XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                    YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                     ShowMarkers: ShowMarkers.ToOption(),
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -883,8 +869,6 @@ namespace Plotly.NET.CSharp
                 Plotly.NET.Chart2D.Chart.SplineArea<XType, YType, TextType>(
                     x: x,
                     y: y,
-                    XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                    YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                     ShowMarkers: ShowMarkers.ToOption(),
                     Smoothing: Smoothing.ToOption(),
                     Name: Name.ToOption(),
@@ -986,8 +970,6 @@ namespace Plotly.NET.CSharp
                 Plotly.NET.Chart2D.Chart.StackedArea<XType, YType, TextType>(
                     x: x,
                     y: y,
-                    XEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
-                    YEncoded: Microsoft.FSharp.Core.FSharpOption<Plotly.NET.EncodedTypedArray>.None,
                     ShowMarkers: ShowMarkers.ToOption(),
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),

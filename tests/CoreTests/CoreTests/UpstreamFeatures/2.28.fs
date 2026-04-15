@@ -42,6 +42,83 @@ module ``Encoded typed arrays`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart helper constructors`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart helper constructors" [
+                testCase "point constructor serializes encoded x/y and marker mode" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"mode\":\"markers\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``Point encoded constructor``)
+                )
+                testCase "line constructor serializes encoded x/y and line mode" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"mode\":\"lines\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``Line encoded constructor``)
+                )
+                testCase "spline constructor serializes encoded x/y and spline smoothing" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"shape\":\"spline\""
+                        "\"smoothing\":0.7"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``Spline encoded constructor``)
+                )
+                testCase "bubble constructor serializes encoded x/y and marker sizes" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"size\":[10,20,30]"
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``Bubble encoded constructor``)
+                )
+                testCase "area constructor serializes encoded x/y with tozeroy fill" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"fill\":\"tozeroy\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``Area encoded constructor``)
+                )
+                testCase "spline area constructor serializes encoded x/y with spline shape and tozeroy fill" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"shape\":\"spline\""
+                        "\"fill\":\"tozeroy\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``SplineArea encoded constructor``)
+                )
+                testCase "stacked area constructor serializes encoded x/y with stackgroup and tonexty fill" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"stackgroup\":\"stackedarea\""
+                        "\"fill\":\"tonexty\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``StackedArea encoded constructor``)
+                )
+                testCase "range constructor serializes encoded x/y across all traces and tonexty fill" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"fill\":\"tonexty\""
+                        "\"legendgroup\":\"Range\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart helper constructors``.``Range encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]

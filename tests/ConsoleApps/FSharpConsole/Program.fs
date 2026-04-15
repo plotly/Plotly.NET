@@ -13,14 +13,10 @@ let main _ =
 
     let chartRangeEncodedHelperPoC =
         Chart.Range(
-            x = xs,
-            y = ys,
-            upper = upper,
-            lower = lower,
-            XEncoded = EncodedTypedArray.ofFloat64Array xs,
-            YEncoded = EncodedTypedArray.ofFloat64Array ys,
-            UpperEncoded = EncodedTypedArray.ofFloat64Array upper,
-            LowerEncoded = EncodedTypedArray.ofFloat64Array lower,
+            xEncoded = EncodedTypedArray.ofFloat64Array xs,
+            yEncoded = EncodedTypedArray.ofFloat64Array ys,
+            upperEncoded = EncodedTypedArray.ofFloat64Array upper,
+            lowerEncoded = EncodedTypedArray.ofFloat64Array lower,
             mode = StyleParam.Mode.Lines,
             Name = "sin(x)",
             GroupName = "confidence band",

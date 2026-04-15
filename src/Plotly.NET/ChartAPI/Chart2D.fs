@@ -386,9 +386,7 @@ module Chart2D =
         /// Creates a Point chart, which uses Points in a 2D space to visualize data.
         /// </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -415,8 +413,6 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -447,8 +443,90 @@ module Chart2D =
             Chart.Scatter(
                 X = x,
                 Y = y,
-                ?XEncoded = XEncoded,
-                ?YEncoded = YEncoded,
+                Mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>
+        /// Creates a Point chart from encoded x and y coordinates.
+        /// </summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Point
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?StackGroup: string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.Scatter(
+                XEncoded = xEncoded,
+                YEncoded = yEncoded,
                 Mode = changeMode StyleParam.Mode.Markers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -554,9 +632,7 @@ module Chart2D =
 
         /// <summary> Creates a Line chart, which uses a Line plotted between the given datums in a 2D space to visualize typically an evolution of Y depending on X.</summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="y">Sets the y coordinates of the plotted data.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -592,8 +668,6 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -639,8 +713,121 @@ module Chart2D =
             Chart.Scatter(
                 X = x,
                 Y = y,
-                ?XEncoded = XEncoded,
-                ?YEncoded = YEncoded,
+                Mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?Fill = Fill,
+                ?FillColor = FillColor,
+                ?FillPattern = FillPattern,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+
+            )
+
+        /// <summary>Creates a Line chart from encoded x and y coordinates.</summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces linked to the same position axis or matching axes to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Line
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?StackGroup: string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?Fill: StyleParam.Fill,
+                ?FillColor: Color,
+                ?FillPattern: Pattern,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.Scatter(
+                XEncoded = xEncoded,
+                YEncoded = yEncoded,
                 Mode = changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -685,8 +872,6 @@ module Chart2D =
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="MarkerColor">Sets the color of the marker</param>
@@ -823,8 +1008,6 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Smoothing: float,
                 ?Name: string,
@@ -899,9 +1082,146 @@ module Chart2D =
             let style =
                 Trace2DStyle.Scatter(
                     X = x,
-                    ?XEncoded = XEncoded,
                     Y = y,
-                    ?YEncoded = YEncoded,
+                    Mode = changeMode StyleParam.Mode.Lines,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
+                    ?StackGroup = StackGroup,
+                    ?Orientation = Orientation,
+                    ?GroupNorm = GroupNorm,
+                    ?Fill = Fill,
+                    ?FillColor = FillColor,
+                    ?FillPattern = FillPattern
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterTrace useDefaults useWebGL style
+
+        /// <summary>
+        /// Creates a Spline chart from encoded x and y coordinates.
+        /// </summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="Fill">Sets the area to fill with a solid color. Defaults to "none" unless this trace is stacked, then it gets "tonexty" ("tonextx") if `orientation` is "v" ("h") Use with `FillColor` if not "none". "tozerox" and "tozeroy" fill to x=0 and y=0 respectively. "tonextx" and "tonexty" fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like "tozerox" and "tozeroy". "toself" connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. "tonext" fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like "toself" if there is no trace before it. "tonext" should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.</param>
+        /// <param name="FillColor">Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPattern">Sets the pattern within the marker.</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Spline
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?StackGroup: string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?Fill: StyleParam.Fill,
+                ?FillColor: Color,
+                ?FillPattern: Pattern,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth,
+                    Shape = StyleParam.Shape.Spline,
+                    ?Smoothing = Smoothing
+
+                )
+
+            let style =
+                Trace2DStyle.Scatter(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
                     Mode = changeMode StyleParam.Mode.Lines,
                     Marker = marker,
                     Line = line,
@@ -940,8 +1260,6 @@ module Chart2D =
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="TextPosition">Sets the position of text associated with each datum</param>
         /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
         /// <param name="MarkerColor">Sets the color of the marker</param>
@@ -1077,8 +1395,6 @@ module Chart2D =
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
                 sizes: seq<int>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -1140,9 +1456,125 @@ module Chart2D =
             let style =
                 Trace2DStyle.Scatter(
                     X = x,
-                    ?XEncoded = XEncoded,
                     Y = y,
-                    ?YEncoded = YEncoded,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?AlignmentGroup = AlignmentGroup,
+                    ?OffsetGroup = OffsetGroup,
+                    ?StackGroup = StackGroup,
+                    ?Orientation = Orientation,
+                    ?GroupNorm = GroupNorm
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterTrace useDefaults useWebGL style
+
+        /// <summary>Creates a bubble chart from encoded x and y coordinates.</summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="sizes">Sets the bubble sizes of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Bubble
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?StackGroup: string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol = MarkerSymbol,
+                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            let style =
+                Trace2DStyle.Scatter(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
                     Mode = changeMode StyleParam.Mode.Markers,
                     Marker = marker,
                     Line = line,
@@ -1264,13 +1696,9 @@ module Chart2D =
         /// The mid Y value usually resembles some kind of central tendency and the upper/lower Y values some kind of spread.
         /// </summary>
         /// <param name="x">Sets the x coordinates of the plotted data.</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="y">Sets the y coordinates of the plotted data for the mid Y value.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data for the mid Y value as an encoded typed array.</param>
         /// <param name="upper">Sets the y coordinates of the plotted data for the upper Y value.</param>
-        /// <param name="UpperEncoded">Sets the y coordinates of the plotted data for the upper Y value as an encoded typed array.</param>
         /// <param name="lower">Sets the y coordinates of the plotted data for the lower Y value.</param>
-        /// <param name="LowerEncoded">Sets the y coordinates of the plotted data for the lower Y value as an encoded typed array.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name of the mid Y values. The trace name appear as the legend item and on hover</param>
         /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
@@ -1313,10 +1741,6 @@ module Chart2D =
                 upper: seq<#IConvertible>,
                 lower: seq<#IConvertible>,
                 mode: StyleParam.Mode,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
-                ?UpperEncoded: EncodedTypedArray,
-                ?LowerEncoded: EncodedTypedArray,
                 ?Name: string,
                 ?GroupName: string,
                 ?ShowMarkers: bool,
@@ -1372,8 +1796,6 @@ module Chart2D =
                 Chart.Scatter(
                     X = x,
                     Y = y,
-                    ?XEncoded = XEncoded,
-                    ?YEncoded = YEncoded,
                     Mode = changeMode mode,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
@@ -1404,9 +1826,7 @@ module Chart2D =
                 Trace2D.initScatter (
                     Trace2DStyle.Scatter(
                         X = x,
-                        ?XEncoded = XEncoded,
                         Y = lower,
-                        ?YEncoded = LowerEncoded,
                         Mode = changeMode mode,
                         ?FillColor = RangeColor,
                         ?Name = Some lowerName,
@@ -1432,9 +1852,198 @@ module Chart2D =
                 Trace2D.initScatter (
                     Trace2DStyle.Scatter(
                         X = x,
-                        ?XEncoded = XEncoded,
                         Y = upper,
-                        ?YEncoded = UpperEncoded,
+                        Mode = changeMode mode,
+                        Fill = StyleParam.Fill.ToNext_y,
+                        ?FillColor = RangeColor,
+                        ?FillPattern = RangePattern,
+                        ?Name = Some upperName,
+                        ShowLegend = (defaultArg ShowLegend true),
+                        ?Text = UpperText,
+                        ?MultiText = MultiUpperText,
+                        ?TextPosition = TextPosition,
+                        ?TextFont = TextFont,
+                        ?Marker = UpperMarker,
+                        ?Line = UpperLine,
+                        LegendGroup = (defaultArg GroupName "Range")
+                    )
+                )
+                |> TraceStyle.Marker(
+                    Color =
+                        if RangeColor.IsSome then
+                            RangeColor.Value
+                        else
+                            (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)")
+                )
+
+            GenericChart.ofTraceObjects
+                useDefaults
+                [
+                    lower
+                    upper
+                    yield! (GenericChart.getTraces trace)
+                ]
+
+        /// <summary>
+        /// Displays a range of data from encoded x and y coordinates by plotting three encoded Y values per data point (upper, mid, lower).
+        /// </summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data for the mid Y values as an encoded typed array.</param>
+        /// <param name="upperEncoded">Sets the y coordinates of the plotted data for the upper Y value as an encoded typed array.</param>
+        /// <param name="lowerEncoded">Sets the y coordinates of the plotted data for the lower Y value as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="GroupName">Sets the name of the legendgroup for the three traces of this plot.</param>
+        /// <param name="ShowMarkers">Determines whether or not an To show markers for each datum.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Text">Sets a text associated with each datum for the mid Y values.</param>
+        /// <param name="MultiText">Sets individual text for each datum for the mid Y values.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker for the mid Y values.</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker for the mid Y values.</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker for the mid Y values.</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum for the mid Y values.</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum for the mid Y values.</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments) for the mid Y values.</param>
+        /// <param name="LineColor">Sets the color of the line for the mid Y values.</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line for the mid Y values.</param>
+        /// <param name="LineWidth">Sets the width of the line for the mid Y values.</param>
+        /// <param name="LineDash">sets the drawing style of the line for the mid Y values.</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments) for the mid Y values.</param>
+        /// <param name="RangeColor">Sets the color of the range between upper and lower Y values.</param>
+        /// <param name="RangePattern">Sets the pattern of the range between upper and lower Y values.</param>
+        /// <param name="UpperText">Sets a text associated with each datum for the upper Y values.</param>
+        /// <param name="MultiUpperText">Sets individual text for each datum for the upper Y values.</param>
+        /// <param name="LowerText">Sets a text associated with each datum for the lower Y values.</param>
+        /// <param name="MultiLowerText">Sets individual text for each datum for the lower Y values.</param>
+        /// <param name="TextFont">Sets the text font for all Text items</param>
+        /// <param name="LowerName">Sets the name of the lower Y value trace.</param>
+        /// <param name="LowerLine">Sets the line for the lower Y values.</param>
+        /// <param name="LowerMarker">Sets the marker for the lower Y values.</param>
+        /// <param name="UpperName">Sets the name of the uper Y value trace.</param>
+        /// <param name="UpperLine">Sets the line for the upper Y values.</param>
+        /// <param name="UpperMarker">Sets the marker for the upper Y values.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Range
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                upperEncoded: EncodedTypedArray,
+                lowerEncoded: EncodedTypedArray,
+                mode: StyleParam.Mode,
+                ?Name: string,
+                ?GroupName: string,
+                ?ShowMarkers: bool,
+                ?ShowLegend: bool,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?UpperMarker: Marker,
+                ?LowerMarker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?UpperLine: Line,
+                ?LowerLine: Line,
+                ?RangeColor: Color,
+                ?RangePattern: Pattern,
+                ?UpperText: #IConvertible,
+                ?MultiUpperText: seq<#IConvertible>,
+                ?LowerText: #IConvertible,
+                ?MultiLowerText: seq<#IConvertible>,
+                ?TextFont: Font,
+                ?LowerName: string,
+                ?UpperName: string,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let upperName = defaultArg UpperName "upper"
+            let lowerName = defaultArg LowerName "lower"
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || TextFont.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            let trace =
+                Chart.Scatter(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    Mode = changeMode mode,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?MarkerColor = MarkerColor,
+                    ?MarkerColorScale = MarkerColorScale,
+                    ?MarkerOutline = MarkerOutline,
+                    ?MarkerSymbol = MarkerSymbol,
+                    ?MultiMarkerSymbol = MultiMarkerSymbol,
+                    ?Marker = Marker,
+                    ?LineColor = LineColor,
+                    ?LineColorScale = LineColorScale,
+                    ?LineWidth = LineWidth,
+                    ?LineDash = LineDash,
+                    ?Line = Line
+                )
+                |> GenericChart.mapTrace (
+                    Trace2DStyle.Scatter(
+                        LegendGroup = (defaultArg GroupName "Range"),
+                        LegendGroupTitle = (Title.init (Text = (defaultArg GroupName "Range")))
+                    )
+                )
+
+            let lower =
+                Trace2D.initScatter (
+                    Trace2DStyle.Scatter(
+                        XEncoded = xEncoded,
+                        YEncoded = lowerEncoded,
+                        Mode = changeMode mode,
+                        ?FillColor = RangeColor,
+                        ?Name = Some lowerName,
+                        ShowLegend = (defaultArg ShowLegend true),
+                        ?Text = LowerText,
+                        ?MultiText = MultiLowerText,
+                        ?TextPosition = TextPosition,
+                        ?TextFont = TextFont,
+                        ?Marker = LowerMarker,
+                        ?Line = LowerLine,
+                        LegendGroup = (defaultArg GroupName "Range")
+                    )
+                )
+                |> TraceStyle.Marker(
+                    Color =
+                        if RangeColor.IsSome then
+                            RangeColor.Value
+                        else
+                            (Plotly.NET.Color.fromString "rgba(0,0,0,0.5)")
+                )
+
+            let upper =
+                Trace2D.initScatter (
+                    Trace2DStyle.Scatter(
+                        XEncoded = xEncoded,
+                        YEncoded = upperEncoded,
                         Mode = changeMode mode,
                         Fill = StyleParam.Fill.ToNext_y,
                         ?FillColor = RangeColor,
@@ -1609,8 +2218,6 @@ module Chart2D =
         /// <param name="MarkerOutline">Sets the outline of the marker</param>
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="LineColor">Sets the color of the line</param>
         /// <param name="LineColorScale">Sets the colorscale of the line</param>
@@ -1632,8 +2239,6 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -1674,8 +2279,116 @@ module Chart2D =
             Chart.Line(
                 x = x,
                 y = y,
-                ?XEncoded = XEncoded,
-                ?YEncoded = YEncoded,
+                Fill = StyleParam.Fill.ToZero_y,
+                ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                FillPattern = fillpattern,
+                ?FillColor = FillColor,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates an Area chart from encoded x and y coordinates.</summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Area
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?StackGroup: string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?FillColor: Color,
+                ?FillPatternShape: StyleParam.PatternShape,
+                ?FillPattern: Pattern,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let fillpattern =
+                FillPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
+
+            Chart.Line(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
@@ -1726,8 +2439,6 @@ module Chart2D =
         /// <param name="MarkerOutline">Sets the outline of the marker</param>
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="LineColor">Sets the color of the line</param>
         /// <param name="LineColorScale">Sets the colorscale of the line</param>
@@ -1857,8 +2568,6 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Smoothing: float,
                 ?Name: string,
@@ -1900,8 +2609,120 @@ module Chart2D =
             Chart.Spline(
                 x = x,
                 y = y,
-                ?XEncoded = XEncoded,
-                ?YEncoded = YEncoded,
+                Fill = StyleParam.Fill.ToZero_y,
+                ?ShowMarkers = ShowMarkers,
+                ?Smoothing = Smoothing,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?AlignmentGroup = AlignmentGroup,
+                ?OffsetGroup = OffsetGroup,
+                ?StackGroup = StackGroup,
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                FillPattern = fillpattern,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+
+            )
+
+        /// <summary>Creates a Spline area chart from encoded x and y coordinates.</summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="AlignmentGroup">Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.</param>
+        /// <param name="OffsetGroup">Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.</param>
+        /// <param name="StackGroup">Set several traces (on the same subplot) to the same stackgroup in order to add their y values (or their x values if `Orientation` is Horizontal). Stacking also turns `fill` on by default and sets the default `mode` to "lines" irrespective of point count. ou can only stack on a numeric (linear or log) axis. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member SplineArea
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?AlignmentGroup: string,
+                ?OffsetGroup: string,
+                ?StackGroup: string,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?FillColor: Color,
+                ?FillPatternShape: StyleParam.PatternShape,
+                ?FillPattern: Pattern,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let fillpattern =
+                FillPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
+
+            Chart.Spline(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
                 Fill = StyleParam.Fill.ToZero_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Smoothing = Smoothing,
@@ -1953,8 +2774,6 @@ module Chart2D =
         /// <param name="MarkerOutline">Sets the outline of the marker</param>
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="XEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
-        /// <param name="YEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
         /// <param name="LineColor">Sets the color of the line</param>
         /// <param name="LineColorScale">Sets the colorscale of the line</param>
@@ -2080,8 +2899,6 @@ module Chart2D =
             (
                 x: seq<#IConvertible>,
                 y: seq<#IConvertible>,
-                ?XEncoded: EncodedTypedArray,
-                ?YEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -2119,8 +2936,108 @@ module Chart2D =
             Chart.Line(
                 x = x,
                 y = y,
-                ?XEncoded = XEncoded,
-                ?YEncoded = YEncoded,
+                Fill = StyleParam.Fill.ToNext_y,
+                ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                StackGroup = "stackedarea",
+                ?Orientation = Orientation,
+                ?GroupNorm = GroupNorm,
+                ?FillColor = FillColor,
+                FillPattern = fillpattern,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a stacked Area chart from encoded x and y coordinates.</summary>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="Orientation">Sets the stacking direction. Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used.</param>
+        /// <param name="GroupNorm">Sets the normalization for the sum of this `stackgroup. Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used</param>
+        /// <param name="FillColor">ets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.</param>
+        /// <param name="FillPatternShape">Sets a pattern shape for the area fill</param>
+        /// <param name="FillPattern">Sets the pattern within the area. (use this for more finegrained control than the other fillpattern-associated arguments).</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member StackedArea
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?Orientation: StyleParam.Orientation,
+                ?GroupNorm: StyleParam.GroupNorm,
+                ?FillColor: Color,
+                ?FillPatternShape: StyleParam.PatternShape,
+                ?FillPattern: Pattern,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let fillpattern =
+                FillPattern
+                |> Option.defaultValue (TraceObjects.Pattern.init ())
+                |> TraceObjects.Pattern.style (?Shape = FillPatternShape)
+
+            Chart.Line(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
                 Fill = StyleParam.Fill.ToNext_y,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,

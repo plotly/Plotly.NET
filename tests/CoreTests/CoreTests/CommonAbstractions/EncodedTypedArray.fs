@@ -479,48 +479,40 @@ let ``Chart.Scatter XEncoded/YEncoded`` =
 let ``Chart scatter-derived helpers encoded arrays`` =
     testList "CommonAbstractions.EncodedTypedArray Chart helper integration" [
 
-        testCase "Chart.Point serializes XEncoded/YEncoded under x/y as encoded objects" (fun () ->
+        testCase "Chart.Point encoded overload serializes x/y as encoded objects" (fun () ->
             let chart =
                 Chart.Point(
-                    x = [ 10.0; 20.0; 30.0 ],
-                    y = [ 1.0; 4.0; 9.0 ],
-                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
-                    YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
                     UseDefaults = false
                 )
 
             let json = chart |> GenericChart.toFigureJson
             Expect.stringContains json "\"x\":{\"bdata\":" "chart point x must be an encoded object"
             Expect.stringContains json "\"y\":{\"bdata\":" "chart point y must be an encoded object"
-            Expect.isFalse (json.Contains "\"x\":[10.0,20.0,30.0]") "plain chart point x array must not be present"
-            Expect.isFalse (json.Contains "\"y\":[1.0,4.0,9.0]") "plain chart point y array must not be present"
+            Expect.stringContains json "\"mode\":\"markers\"" "point mode must still be markers"
         )
 
-        testCase "Chart.Line encoded arrays override the plain x/y path when both are provided" (fun () ->
+        testCase "Chart.Line encoded overload serializes x/y as encoded objects" (fun () ->
             let chart =
                 Chart.Line(
-                    x = [ 10.0; 20.0 ],
-                    y = [ 30.0; 40.0 ],
-                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
-                    YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
                     UseDefaults = false
                 )
 
             let json = chart |> GenericChart.toFigureJson
-            Expect.stringContains json "\"x\":{\"bdata\":" "chart line XEncoded must win over X"
-            Expect.stringContains json "\"y\":{\"bdata\":" "chart line YEncoded must win over Y"
-            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain chart line x array must not be present"
-            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain chart line y array must not be present"
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart line x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart line y must be an encoded object"
+            Expect.stringContains json "\"mode\":\"lines\"" "line mode must still be lines"
         )
 
-        testCase "Chart.Bubble serializes XEncoded/YEncoded while keeping bubble sizes" (fun () ->
+        testCase "Chart.Bubble encoded overload serializes x/y while keeping bubble sizes" (fun () ->
             let chart =
                 Chart.Bubble(
-                    x = [ 10.0; 20.0; 30.0 ],
-                    y = [ 30.0; 20.0; 10.0 ],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
                     sizes = [ 11; 22; 33 ],
-                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
-                    YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
                     UseDefaults = false
                 )
 
@@ -530,13 +522,41 @@ let ``Chart scatter-derived helpers encoded arrays`` =
             Expect.stringContains json "\"size\":[11,22,33]" "bubble sizes must still serialize"
         )
 
-        testCase "Chart.SplineArea serializes XEncoded/YEncoded under x/y as encoded objects" (fun () ->
+        testCase "Chart.Spline encoded overload serializes x/y and keeps spline styling" (fun () ->
+            let chart =
+                Chart.Spline(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    Smoothing = 0.7,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart spline x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart spline y must be an encoded object"
+            Expect.stringContains json "\"shape\":\"spline\"" "spline shape must still be present"
+            Expect.stringContains json "\"smoothing\":0.7" "spline smoothing must still serialize"
+        )
+
+        testCase "Chart.Area encoded overload serializes x/y and keeps fill styling" (fun () ->
+            let chart =
+                Chart.Area(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 2.0; 5.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart area x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart area y must be an encoded object"
+            Expect.stringContains json "\"fill\":\"tozeroy\"" "area fill must still be present"
+        )
+
+        testCase "Chart.SplineArea encoded overload serializes x/y as encoded objects" (fun () ->
             let chart =
                 Chart.SplineArea(
-                    x = [ 10.0; 20.0; 30.0 ],
-                    y = [ 3.0; 2.0; 5.0 ],
-                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
-                    YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
                     UseDefaults = false
                 )
 
@@ -546,17 +566,28 @@ let ``Chart scatter-derived helpers encoded arrays`` =
             Expect.stringContains json "\"fill\":\"tozeroy\"" "spline area fill must still be present"
         )
 
-        testCase "Chart.Range encoded arrays override plain x/y/upper/lower arrays" (fun () ->
+        testCase "Chart.StackedArea encoded overload serializes x/y and keeps stackgroup" (fun () ->
+            let chart =
+                Chart.StackedArea(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 2.0; 4.0; 3.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart stacked area x must be an encoded object"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart stacked area y must be an encoded object"
+            Expect.stringContains json "\"fill\":\"tonexty\"" "stacked area fill must still be present"
+            Expect.stringContains json "\"stackgroup\":\"stackedarea\"" "stacked area stackgroup must still serialize"
+        )
+
+        testCase "Chart.Range encoded overload serializes all encoded arrays across traces" (fun () ->
             let chart =
                 Chart.Range(
-                    x = [ 10.0; 20.0 ],
-                    y = [ 30.0; 40.0 ],
-                    upper = [ 50.0; 60.0 ],
-                    lower = [ 70.0; 80.0 ],
-                    XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
-                    YEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
-                    UpperEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
-                    LowerEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0 |],
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 3.0; 4.0 |],
+                    upperEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 6.0 |],
+                    lowerEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0 |],
                     mode = StyleParam.Mode.Lines,
                     UseDefaults = false
                 )
@@ -564,10 +595,7 @@ let ``Chart scatter-derived helpers encoded arrays`` =
             let json = chart |> GenericChart.toFigureJson
             Expect.stringContains json "\"x\":{\"bdata\":" "chart range x must be an encoded object"
             Expect.stringContains json "\"y\":{\"bdata\":" "chart range y must be encoded on all traces"
-            Expect.isFalse (json.Contains "\"x\":[10.0,20.0]") "plain chart range x array must not be present"
-            Expect.isFalse (json.Contains "\"y\":[30.0,40.0]") "plain chart range mid y array must not be present"
-            Expect.isFalse (json.Contains "\"y\":[50.0,60.0]") "plain chart range upper y array must not be present"
-            Expect.isFalse (json.Contains "\"y\":[70.0,80.0]") "plain chart range lower y array must not be present"
+            Expect.stringContains json "\"fill\":\"tonexty\"" "chart range upper trace fill must still be present"
         )
     ]
 
