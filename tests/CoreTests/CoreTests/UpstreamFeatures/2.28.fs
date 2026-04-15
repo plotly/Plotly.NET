@@ -232,6 +232,55 @@ module ``Encoded typed arrays on chart splom root`` =
             ]
         ]
 
+module ``Encoded typed arrays on chart matrix roots`` =
+
+    [<Tests>]
+    let ``Encoded typed array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Encoded typed arrays on chart matrix roots" [
+                testCase "histogram2d constructor serializes encoded x y and z" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,2\""
+                        "\"type\":\"histogram2d\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart matrix roots``.``Histogram2D encoded constructor``)
+                )
+                testCase "histogram2dcontour constructor serializes encoded x y and z" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,2\""
+                        "\"type\":\"histogram2dcontour\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart matrix roots``.``Histogram2DContour encoded constructor``)
+                )
+                testCase "heatmap constructor serializes encoded axes z and layout reversal" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,3\""
+                        "\"autorange\":\"reversed\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart matrix roots``.``Heatmap encoded constructor``)
+                )
+                testCase "contour constructor serializes encoded axes and z" (fun () ->
+                    [
+                        "\"x\":{\"bdata\":"
+                        "\"y\":{\"bdata\":"
+                        "\"z\":{\"bdata\":"
+                        "\"shape\":\"2,2\""
+                        "\"type\":\"contour\""
+                    ]
+                    |> List.iter (chartGeneratedContains ``Encoded typed arrays on chart matrix roots``.``Contour encoded constructor``)
+                )
+            ]
+        ]
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     [<Tests>]

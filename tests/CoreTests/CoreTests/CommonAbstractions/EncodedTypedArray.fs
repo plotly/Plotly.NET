@@ -836,6 +836,76 @@ let ``Chart splom root encoded arrays`` =
     ]
 
 [<Tests>]
+let ``Chart matrix roots encoded arrays`` =
+    testList "CommonAbstractions.EncodedTypedArray Chart matrix integration" [
+
+        testCase "Chart.Histogram2D encoded overload serializes encoded x y and z" (fun () ->
+            let chart =
+                Chart.Histogram2D(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart histogram2d x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart histogram2d y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart histogram2d z must be encoded"
+            Expect.stringContains json "\"shape\":\"2,2\"" "chart histogram2d z shape must serialize"
+        )
+
+        testCase "Chart.Histogram2DContour encoded overload serializes encoded x y and z" (fun () ->
+            let chart =
+                Chart.Histogram2DContour(
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+                    zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart histogram2dcontour x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart histogram2dcontour y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart histogram2dcontour z must be encoded"
+            Expect.stringContains json "\"type\":\"histogram2dcontour\"" "chart histogram2dcontour trace type must still be correct"
+        )
+
+        testCase "Chart.Heatmap encoded overload serializes encoded z and optional axes" (fun () ->
+            let chart =
+                Chart.Heatmap(
+                    zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 100.0; 200.0 |],
+                    ReverseYAxis = true,
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart heatmap x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart heatmap y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart heatmap z must be encoded"
+            Expect.stringContains json "\"autorange\":\"reversed\"" "chart heatmap must preserve reverse y-axis behavior"
+        )
+
+        testCase "Chart.Contour encoded overload serializes encoded z and optional axes" (fun () ->
+            let chart =
+                Chart.Contour(
+                    zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+                    xEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+                    yEncoded = EncodedTypedArray.ofFloat64Array [| 100.0; 200.0 |],
+                    UseDefaults = false
+                )
+
+            let json = chart |> GenericChart.toFigureJson
+            Expect.stringContains json "\"x\":{\"bdata\":" "chart contour x must be encoded"
+            Expect.stringContains json "\"y\":{\"bdata\":" "chart contour y must be encoded"
+            Expect.stringContains json "\"z\":{\"bdata\":" "chart contour z must be encoded"
+            Expect.stringContains json "\"type\":\"contour\"" "chart contour trace type must still be contour"
+        )
+    ]
+
+[<Tests>]
 let ``Dimension encoded arrays`` =
     testList "CommonAbstractions.EncodedTypedArray Dimension integration" [
 

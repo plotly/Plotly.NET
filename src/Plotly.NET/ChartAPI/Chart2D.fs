@@ -5010,6 +5010,84 @@ module Chart2D =
             |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
+        /// Visualizes the distribution of the encoded 2-dimensional input data as a 2D histogram.
+        ///
+        /// The sample data from which statistics are computed is set in `xEncoded` and `yEncoded`, and optional encoded aggregation data can be provided through `zEncoded`.
+        /// </summary>
+        /// <param name="xEncoded">Sets the sample data to be binned on the x axis as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the sample data to be binned on the y axis as an encoded typed array.</param>
+        /// <param name="zEncoded">Sets the aggregation data as an encoded typed array.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity of the trace.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace.</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins.</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Histogram2D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?zEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?XGap: int,
+                ?YGap: int,
+                ?HistFunc: StyleParam.HistFunc,
+                ?HistNorm: StyleParam.HistNorm,
+                ?NBinsX: int,
+                ?NBinsY: int,
+                ?XBins: Bins,
+                ?YBins: Bins,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ReverseScale: bool,
+                ?ZSmooth: StyleParam.SmoothAlg,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            Trace2D.initHistogram2D (
+                Trace2DStyle.Histogram2D(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ?ZEncoded = zEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?XGap = XGap,
+                    ?YGap = YGap,
+                    ?HistFunc = HistFunc,
+                    ?HistNorm = HistNorm,
+                    ?NBinsX = NBinsX,
+                    ?NBinsY = NBinsY,
+                    ?XBins = XBins,
+                    ?YBins = YBins,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?ZSmooth = ZSmooth
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
         /// Visualizes the distribution of the 2-dimensional input data as 2D Histogram.
         ///
         ///The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a heatmap.
@@ -6083,6 +6161,147 @@ module Chart2D =
             |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
+        /// Computes a 2D histogram contour plot from encoded input data.
+        /// </summary>
+        /// <param name="xEncoded">Sets the sample data to be binned on the x axis as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the sample data to be binned on the y axis as an encoded typed array.</param>
+        /// <param name="zEncoded">Sets the aggregation data as an encoded typed array.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="HistFunc">Specifies the binning function used for this histogram trace.</param>
+        /// <param name="HistNorm">Specifies the type of normalization used for this histogram trace.</param>
+        /// <param name="NBinsX">Specifies the maximum number of desired bins.</param>
+        /// <param name="NBinsY">Specifies the maximum number of desired bins.</param>
+        /// <param name="BinGroup">Set the `xbingroup` and `ybingroup` default prefix.</param>
+        /// <param name="XBinGroup">Set a group of histogram traces which will have compatible x-bin settings.</param>
+        /// <param name="XBins">Sets the binning across the x dimension</param>
+        /// <param name="YBinGroup">Set a group of histogram traces which will have compatible y-bin settings.</param>
+        /// <param name="YBins">Sets the binning across the y dimension</param>
+        /// <param name="Marker">Sets the marker of this trace.</param>
+        /// <param name="ContourLinesDash">Sets the contour line dash style</param>
+        /// <param name="ContourLinesColor">Sets the contour line color</param>
+        /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines.</param>
+        /// <param name="ContourLinesWidth">Sets the width of the contour lines</param>
+        /// <param name="ContourLines">Sets the contour lines.</param>
+        /// <param name="ShowContourLines">Wether or not to show the contour line</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation.</param>
+        /// <param name="ContoursType">Sets the contour representation type.</param>
+        /// <param name="ShowContoursLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContoursLabelFont">Sets the font used for labeling the contour levels.</param>
+        /// <param name="ContoursStart">Sets the starting contour level value.</param>
+        /// <param name="ContoursEnd">Sets the end contour level value.</param>
+        /// <param name="Contours">Sets the styles of the contours.</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+        /// <param name="NContours">Sets the maximum number of contour levels.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Histogram2DContour
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                ?zEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?HistFunc: StyleParam.HistFunc,
+                ?HistNorm: StyleParam.HistNorm,
+                ?NBinsX: int,
+                ?NBinsY: int,
+                ?BinGroup: string,
+                ?XBinGroup: string,
+                ?XBins: Bins,
+                ?YBinGroup: string,
+                ?YBins: Bins,
+                ?Marker: Marker,
+                ?ContourLinesColor: Color,
+                ?ContourLinesDash: StyleParam.DrawingStyle,
+                ?ContourLinesSmoothing: float,
+                ?ContourLinesWidth: float,
+                ?ContourLines: Line,
+                ?ShowContourLines: bool,
+                ?ContoursColoring: StyleParam.ContourColoring,
+                ?ContoursOperation: StyleParam.ConstraintOperation,
+                ?ContoursType: StyleParam.ContourType,
+                ?ShowContoursLabels: bool,
+                ?ContoursLabelFont: Font,
+                ?ContoursStart: float,
+                ?ContoursEnd: float,
+                ?Contours: Contours,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ReverseScale: bool,
+                ?NContours: int,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let showContourLines =
+                defaultArg ShowContourLines false
+
+            let contourLineWidth =
+                ContourLinesWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+
+            let contours =
+                Contours
+                |> Option.defaultValue (TraceObjects.Contours.init ())
+                |> TraceObjects.Contours.style (
+                    ?Coloring = ContoursColoring,
+                    ?Operation = ContoursOperation,
+                    ?Start = ContoursStart,
+                    ?End = ContoursEnd,
+                    ?Type = ContoursType,
+                    ?ShowLabels = ShowContoursLabels,
+                    ?LabelFont = ContoursLabelFont
+                )
+
+            let contourLines =
+                ContourLines
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    Width = contourLineWidth,
+                    ?Color = ContourLinesColor,
+                    ?Dash = ContourLinesDash,
+                    ?Smoothing = ContourLinesSmoothing
+                )
+
+            Trace2D.initHistogram2DContour (
+                Trace2DStyle.Histogram2DContour(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ?ZEncoded = zEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?HistFunc = HistFunc,
+                    ?HistNorm = HistNorm,
+                    ?NBinsX = NBinsX,
+                    ?NBinsY = NBinsY,
+                    ?BinGroup = BinGroup,
+                    ?XBinGroup = XBinGroup,
+                    ?XBins = XBins,
+                    ?YBinGroup = YBinGroup,
+                    ?YBins = YBins,
+                    ?Marker = Marker,
+                    Line = contourLines,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    Contours = contours,
+                    ?NContours = NContours
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
         /// Computes a 2D histogram contour plot, also known as a density contour plot, which is a 2-dimensional generalization of a histogram which resembles a contour plot but is computed by grouping a set of points specified by their x and y coordinates into bins, and applying an aggregation function such as count or sum (if z is provided) to compute the value to be used to compute contours.
         ///
         /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a contour plot.
@@ -6267,6 +6486,87 @@ module Chart2D =
                     ?MultiX = MultiX,
                     ?Y = Y,
                     ?MultiY = MultiY,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?XGap = XGap,
+                    ?YGap = YGap,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?ZSmooth = ZSmooth,
+                    ?Transpose = Transpose
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderHeatmapTrace useDefaults useWebGL style
+            |> fun c ->
+                if reverseYAxis then
+                    c |> Chart.withYAxis (LinearAxis.init (AutoRange = StyleParam.AutoRange.Reversed))
+                else
+                    c
+
+        /// <summary>
+        /// Creates a heatmap from an encoded z matrix and optional encoded axes.
+        /// </summary>
+        /// <param name="zEncoded">Sets the 2-dimensional z data as an encoded typed array.</param>
+        /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="XGap">Sets the horizontal gap (in pixels) between bricks.</param>
+        /// <param name="YGap">Sets the vertical gap (in pixels) between bricks.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+        /// <param name="ZSmooth">Picks a smoothing algorithm use to smooth `z` data.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="UseWebGL">Whether or not to use WebGL to render this trace</param>
+        /// <param name="ReverseYAxis">Whether or not to reverse the y axis.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Heatmap
+            (
+                zEncoded: EncodedTypedArray,
+                ?xEncoded: EncodedTypedArray,
+                ?yEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?XGap: int,
+                ?YGap: int,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ReverseScale: bool,
+                ?ZSmooth: StyleParam.SmoothAlg,
+                ?Transpose: bool,
+                ?UseWebGL: bool,
+                ?ReverseYAxis: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let reverseYAxis =
+                defaultArg ReverseYAxis false
+
+            let style =
+                Trace2DStyle.Heatmap(
+                    ZEncoded = zEncoded,
+                    ?XEncoded = xEncoded,
+                    ?YEncoded = yEncoded,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -6776,6 +7076,129 @@ module Chart2D =
                     ?MultiX = MultiX,
                     ?Y = Y,
                     ?MultiY = MultiY,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?ColorBar = ColorBar,
+                    ?ColorScale = ColorScale,
+                    ?ShowScale = ShowScale,
+                    ?ReverseScale = ReverseScale,
+                    ?Transpose = Transpose,
+                    ?FillColor = FillColor,
+                    ?NContours = NContours,
+                    Contours = contours,
+                    Line = contourLines
+                )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates a contour chart from an encoded z matrix and optional encoded axes.
+        /// </summary>
+        /// <param name="zEncoded">Sets the 2-dimensional z data as an encoded typed array.</param>
+        /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover.</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the Opacity otf the trace.</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="ColorBar">Sets the styles of the colorbar for this trace.</param>
+        /// <param name="ColorScale">Sets the colorscale for this trace.</param>
+        /// <param name="ShowScale">Whether or not to show the colorscale/colorbar</param>
+        /// <param name="ReverseScale">Reverses the color mapping if true.</param>
+        /// <param name="Transpose">Transposes the z data.</param>
+        /// <param name="ContourLinesDash">Sets the contour line dash style</param>
+        /// <param name="ContourLinesColor">Sets the contour line color</param>
+        /// <param name="ContourLinesSmoothing">Sets the amount of smoothing for the contour lines.</param>
+        /// <param name="ContourLinesWidth">Sets the width of the contour lines</param>
+        /// <param name="ContourLines">Sets the contour lines.</param>
+        /// <param name="ShowContourLines">Wether or not to show the contour line</param>
+        /// <param name="ContoursColoring">Determines the coloring method showing the contour values.</param>
+        /// <param name="ContoursOperation">Sets the constraint operation.</param>
+        /// <param name="ContoursType">Sets the contour representation type.</param>
+        /// <param name="ShowContoursLabels">Determines whether to label the contour lines with their values.</param>
+        /// <param name="ContoursLabelFont">Sets the font used for labeling the contour levels.</param>
+        /// <param name="ContoursStart">Sets the starting contour level value.</param>
+        /// <param name="ContoursEnd">Sets the end contour level value.</param>
+        /// <param name="Contours">Sets the styles of the contours.</param>
+        /// <param name="FillColor">Sets the fill color if `contours.type` is "constraint".</param>
+        /// <param name="NContours">Sets the maximum number of contour levels.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Contour
+            (
+                zEncoded: EncodedTypedArray,
+                ?xEncoded: EncodedTypedArray,
+                ?yEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?ColorBar: ColorBar,
+                ?ColorScale: StyleParam.Colorscale,
+                ?ShowScale: bool,
+                ?ReverseScale: bool,
+                ?Transpose: bool,
+                ?ContourLinesColor: Color,
+                ?ContourLinesDash: StyleParam.DrawingStyle,
+                ?ContourLinesSmoothing: float,
+                ?ContourLinesWidth: float,
+                ?ContourLines: Line,
+                ?ShowContourLines: bool,
+                ?ContoursColoring: StyleParam.ContourColoring,
+                ?ContoursOperation: StyleParam.ConstraintOperation,
+                ?ContoursType: StyleParam.ContourType,
+                ?ShowContoursLabels: bool,
+                ?ContoursLabelFont: Font,
+                ?ContoursStart: float,
+                ?ContoursEnd: float,
+                ?Contours: Contours,
+                ?FillColor: Color,
+                ?NContours: int,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let showContourLines =
+                defaultArg ShowContourLines false
+
+            let contourLinesWidth =
+                ContourLinesWidth |> Option.map (fun v -> if showContourLines then v else 0.) |> Option.defaultValue 0.
+
+            let contours =
+                Contours
+                |> Option.defaultValue (TraceObjects.Contours.init ())
+                |> TraceObjects.Contours.style (
+                    ?Coloring = ContoursColoring,
+                    ?Operation = ContoursOperation,
+                    ?Start = ContoursStart,
+                    ?End = ContoursEnd,
+                    ?Type = ContoursType,
+                    ?ShowLabels = ShowContoursLabels,
+                    ?LabelFont = ContoursLabelFont
+                )
+
+            let contourLines =
+                ContourLines
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    Width = contourLinesWidth,
+                    ?Color = ContourLinesColor,
+                    ?Dash = ContourLinesDash,
+                    ?Smoothing = ContourLinesSmoothing
+                )
+
+            Trace2D.initContour (
+                Trace2DStyle.Contour(
+                    ZEncoded = zEncoded,
+                    ?XEncoded = xEncoded,
+                    ?YEncoded = yEncoded,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?ColorBar = ColorBar,

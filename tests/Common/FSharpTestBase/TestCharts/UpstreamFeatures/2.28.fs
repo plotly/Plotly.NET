@@ -219,6 +219,47 @@ module ``Encoded typed arrays on chart splom root`` =
             UseDefaults = false
         )
 
+module ``Encoded typed arrays on chart matrix roots`` =
+
+    let ``Histogram2D encoded constructor`` =
+        Chart.Histogram2D(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+            Name = "encoded histogram2d",
+            UseDefaults = false
+        )
+
+    let ``Histogram2DContour encoded constructor`` =
+        Chart.Histogram2DContour(
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+            zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+            Name = "encoded histogram2dcontour",
+            ShowContourLines = true,
+            UseDefaults = false
+        )
+
+    let ``Heatmap encoded constructor`` =
+        Chart.Heatmap(
+            zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |], shape = [ 2; 3 ]),
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 100.0; 200.0 |],
+            Name = "encoded heatmap",
+            ReverseYAxis = true,
+            UseDefaults = false
+        )
+
+    let ``Contour encoded constructor`` =
+        Chart.Contour(
+            zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0 |], shape = [ 2; 2 ]),
+            xEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |],
+            yEncoded = EncodedTypedArray.ofFloat64Array [| 100.0; 200.0 |],
+            Name = "encoded contour",
+            ShowContourLines = true,
+            UseDefaults = false
+        )
+
 module ``Encoded typed arrays on bar-family traces`` =
 
     let ``Bar with encoded arrays`` =
