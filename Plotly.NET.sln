@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11709.299 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		AGENTS.md = AGENTS.md
 		CITATION.cff = CITATION.cff
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 		LICENSE = LICENSE
@@ -135,9 +136,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_distribution-charts", "0
 		docs\distribution-charts\histograms.fsx = docs\distribution-charts\histograms.fsx
 		docs\distribution-charts\pareto-chart.fsx = docs\distribution-charts\pareto-chart.fsx
 		docs\distribution-charts\point-density.fsx = docs\distribution-charts\point-density.fsx
+		docs\distribution-charts\residual.fsx = docs\distribution-charts\residual.fsx
 		docs\distribution-charts\splom.fsx = docs\distribution-charts\splom.fsx
 		docs\distribution-charts\violin-plots.fsx = docs\distribution-charts\violin-plots.fsx
-		docs\distribution-charts\residual.fsx = docs\distribution-charts\residual.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_chart-layout", "01_chart-layout", "{C7D0EF67-9A18-49DD-AC79-944E384BD8D0}"
@@ -169,6 +170,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_general", "00_general", 
 		docs\general\chart-config.fsx = docs\general\chart-config.fsx
 		docs\general\defaults.fsx = docs\general\defaults.fsx
 		docs\general\display-options.fsx = docs\general\display-options.fsx
+		docs\general\encoded-arrays.fsx = docs\general\encoded-arrays.fsx
 		docs\general\image-export.fsx = docs\general\image-export.fsx
 		docs\general\multi-arguments.fsx = docs\general\multi-arguments.fsx
 		docs\general\styling-markers.fsx = docs\general\styling-markers.fsx

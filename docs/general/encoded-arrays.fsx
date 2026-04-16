@@ -39,6 +39,9 @@ Plotly.NET.Defaults.DefaultDisplayOptions <-
 - [Using encoded arrays with Scatter](#Using-encoded-arrays-with-Scatter)
 - [Using encoded arrays with Bar and Column charts](#Using-encoded-arrays-with-Bar-and-Column-charts)
 - [Using encoded arrays with Heatmap](#Using-encoded-arrays-with-Heatmap)
+- [Using encoded arrays with 3D charts](#Using-encoded-arrays-with-3D-charts)
+- [Using encoded arrays with statistical charts](#Using-encoded-arrays-with-statistical-charts)
+- [Using encoded arrays for error bars and trace-level styling](#Using-encoded-arrays-for-error-bars-and-trace-level-styling)
 
 ## What are encoded typed arrays?
 
@@ -119,8 +122,7 @@ let barEncoded =
     Chart.Bar(
         valuesEncoded = EncodedTypedArray.ofFloat64Array [| 5.0; 3.0; 7.0; 2.0 |],
         KeysEncoded = EncodedTypedArray.ofInt32Array [| 0; 1; 2; 3 |],
-        Name = "encoded bar",
-        UseDefaults = false
+        Name = "encoded bar"
     )
 
 (*** condition: ipynb ***)
@@ -137,12 +139,13 @@ The same pattern applies to `Chart.Column`, `Chart.StackedBar`, and `Chart.Stack
 
 ## Using encoded arrays with Heatmap
 
-For heatmaps, the z matrix is required and encoded; x and y axes are optional and encoded:
+For heatmaps, the z matrix is required and encoded; x and y axes are optional and encoded.
+When `zEncoded` is given as a flat encoded array, `shape` must also be set so plotly.js can reconstruct the matrix:
 *)
 
 let heatmapEncoded =
     Chart.Heatmap(
-        zEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0; 7.0; 8.0; 9.0 |],
+        zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0; 7.0; 8.0; 9.0 |], shape = [ 3; 3 ]),
         Name = "encoded heatmap",
         UseDefaults = false
     )
@@ -155,17 +158,120 @@ heatmapEncoded
 (***hide***)
 heatmapEncoded |> GenericChart.toChartHTML
 (***include-it-raw***)
-
 (**
 Note that for heatmaps the z data is passed as a flat 1D encoded array. plotly.js uses the `shape` field
-(rows × columns) to interpret the layout. If you need to specify the shape, build the `EncodedTypedArray`
-manually:
+(rows × columns) to interpret the layout, so `shape` must be specified:
 
-```fsharp
+```
 // Explicit 3x3 shape
 let z3x3 =
-    { EncodedTypedArray.ofFloat64Array [| 1.0..9.0 |] with Shape = Some "3,3" }
+    EncodedTypedArray.ofFloat64Array([| 1.0 .. 9.0 |], shape = [ 3; 3 ])
 ```
+
+The same `shape` requirement applies to other matrix-style traces such as `Chart.Surface`, `Chart.Contour`,
+`Chart.Histogram2D`, and `Chart.Histogram2DContour`.
+
+## Using encoded arrays with 3D charts
+
+Encoded typed arrays work the same way on 3D traces. For example, `Chart.Scatter3D` accepts encoded x, y, and z coordinates:
+*)
+
+let scatter3DEncoded =
+    Chart.Scatter3D(
+        xEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+        yEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+        zEncoded = EncodedTypedArray.ofFloat64Array [| 7.0; 8.0; 9.0 |],
+        mode = StyleParam.Mode.Markers,
+        Name = "encoded scatter3d",
+        UseDefaults = false
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+scatter3DEncoded
+#endif // IPYNB
+
+(***hide***)
+scatter3DEncoded |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+For matrix-based 3D traces such as `Chart.Surface` and `Chart.Volume`, encoded arrays are also supported,
+and `shape` must be set wherever plotly.js needs to reconstruct multi-dimensional data from a flat payload.
+
+## Using encoded arrays with statistical charts
+
+Distribution and statistical charts support encoded sample arrays as well. Here is a histogram example:
+*)
+
+let histogramEncoded =
+    Chart.Histogram(
+        dataEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 2.0; 3.0; 3.0; 3.0; 4.0 |],
+        orientation = StyleParam.Orientation.Vertical,
+        Name = "encoded histogram",
+        UseDefaults = false
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+histogramEncoded
+#endif // IPYNB
+
+(***hide***)
+histogramEncoded |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+The same pattern works for `Chart.BoxPlot`, `Chart.Violin`, and finance-style traces such as
+`Chart.OHLC` and `Chart.Candlestick`.
+
+## Using encoded arrays for error bars and trace-level styling
+
+Some features are available through trace-level styling rather than only through chart-root overloads.
+This is especially useful when you want encoded error bars, encoded metadata arrays, or other advanced options:
+*)
+
+open Plotly.NET.TraceObjects
+
+let scatterWithEncodedErrorBars =
+    let xErrorEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.2; 0.3 |]
+    let yErrorEncoded = EncodedTypedArray.ofFloat64Array [| 0.4; 0.5; 0.6 |]
+    let yErrorMinusEncoded = EncodedTypedArray.ofFloat64Array [| 0.3; 0.2; 0.1 |]
+
+    Trace2D.initScatter(
+        Trace2DStyle.Scatter(
+            Name = "encoded scatter + error bars",
+            Mode = StyleParam.Mode.Lines_Markers,
+            XEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+            YEncoded = EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |],
+            XError =
+                Error.init(
+                    Type = StyleParam.ErrorType.Data,
+                    ArrayEncoded = xErrorEncoded
+                ),
+            YError =
+                Error.init(
+                    Type = StyleParam.ErrorType.Data,
+                    ArrayEncoded = yErrorEncoded,
+                    ArrayminusEncoded = yErrorMinusEncoded
+                )
+        )
+    )
+    |> GenericChart.ofTraceObject true
+    |> Chart.withDisplayOptionsStyle(PlotlyJSReference = PlotlyJSReference.NoReference)
+
+(*** condition: ipynb ***)
+#if IPYNB
+scatterWithEncodedErrorBars
+#endif // IPYNB
+
+(***hide***)
+scatterWithEncodedErrorBars |> GenericChart.toChartHTML
+(***include-it-raw***)
+
+(**
+The trace-style modules (`Trace2DStyle`, `Trace3DStyle`, `TraceDomainStyle`, and others) also accept encoded arrays
+for many metadata fields such as ids, custom data, selected points, text, dimensions, and trace-specific attributes.
 
 For more advanced usage including encoded arrays on 3D, domain, and map traces, see the trace-level
 style modules (`Trace2DStyle`, `Trace3DStyle`, `TraceDomainStyle`, etc.) which accept `*Encoded` optional parameters
