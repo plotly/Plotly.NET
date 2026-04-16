@@ -30,11 +30,11 @@ The fixes are JS-runtime-only and do not require Plotly.NET changes — they are
 
 | Feature | F# Trace Layer | F# Chart API | C# Wrapper | Tests | Status |
 |---------|:-:|:-:|:-:|:-:|---|
-| Encoded typed arrays | ✅ | ✅ | ❌ | ✅ 942 passing | H3 pending |
+| Encoded typed arrays | ✅ | ✅ | ✅ (foundational) | ✅ 944 passing | H3 done |
 | Sankey node `align` | ✅ | ✅ | ❌ | ✅ | Done (Commit I) |
 | Virtual-WebGL | ❌ | N/A | N/A | ❌ | Not started |
 | Sankey encoded arrays (nodes + links) | ✅ | ✅ | ❌ | ✅ | Done (Commit K) |
-| ParallelCoord/Categories `keyValuesEncoded` | ✅ Dimension-level | ❌ deferred | ❌ | ❌ | Deferred in H1-G |
+| ParallelCoord/Categories `keyValuesEncoded` | ✅ | ✅ | ❌ | ✅ | Done (Commit L) |
 | Bundled plotly.js 2.28.0 | ✅ | — | — | — | Done |
 
 ## Remaining Work Packages

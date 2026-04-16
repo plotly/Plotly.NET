@@ -1102,3 +1102,23 @@ module ``Sankey encoded node and link arrays`` =
                 CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |]
             )
         Chart.Sankey(nodes, links, UseDefaults = false)
+
+module ``ParallelCoord and ParallelCategories encoded dimensions`` =
+
+    let ``ParallelCoord with encoded dimensions`` =
+        Chart.ParallelCoord(
+            keyValuesEncoded = [
+                "A", EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |]
+                "B", EncodedTypedArray.ofFloat64Array [| 4.0; 5.0; 6.0 |]
+            ],
+            UseDefaults = false
+        )
+
+    let ``ParallelCategories with encoded dimensions`` =
+        Chart.ParallelCategories(
+            keyValuesEncoded = [
+                "X", EncodedTypedArray.ofInt32Array [| 0; 1; 0 |]
+                "Y", EncodedTypedArray.ofInt32Array [| 1; 0; 1 |]
+            ],
+            UseDefaults = false
+        )

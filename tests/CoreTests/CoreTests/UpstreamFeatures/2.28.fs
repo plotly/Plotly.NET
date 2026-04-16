@@ -967,3 +967,20 @@ module ``Sankey encoded node and link arrays`` =
                 )
             ]
         ]
+
+module ``ParallelCoord and ParallelCategories encoded dimensions`` =
+
+    [<Tests>]
+    let ``ParallelCoord and ParallelCategories encoded dimension tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "ParallelCoord and ParallelCategories encoded dimensions" [
+                testCase "ParallelCoord dimension A values are serialized as encoded object" (fun () ->
+                    "\"values\":{\"bdata\":"
+                    |> chartGeneratedContains ``ParallelCoord and ParallelCategories encoded dimensions``.``ParallelCoord with encoded dimensions``
+                )
+                testCase "ParallelCategories dimension X values are serialized as encoded object" (fun () ->
+                    "\"values\":{\"bdata\":"
+                    |> chartGeneratedContains ``ParallelCoord and ParallelCategories encoded dimensions``.``ParallelCategories with encoded dimensions``
+                )
+            ]
+        ]

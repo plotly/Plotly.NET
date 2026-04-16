@@ -142,6 +142,61 @@ module ChartDomain_Relations =
             )
 
         /// <summary>
+        /// Creates a parallel coordinates plot from encoded dimension values.
+        ///
+        /// Parallel coordinates are a common way of visualizing and analyzing high-dimensional datasets.
+        /// </summary>
+        /// <param name="keyValuesEncoded">Sets the values for each dimension as (dimensionKey, encodedDimensionValues) pairs.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="LineColor">Sets the color of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="LineColorScale">Sets the colorscale of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ShowLineColorScale">Whether or not to show the colorbar of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ReverseLineColorScale">Whether or not to reverse the colorscale of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="Line">Sets the lines that are connecting the datums on the dimensions (use this for more finegrained control than the other line-associated arguments).</param>
+        /// <param name="LabelAngle">Sets the angle of the labels with respect to the horizontal.</param>
+        /// <param name="LabelFont">Sets the label font of this trace.</param>
+        /// <param name="LabelSide">Specifies the location of the `label`.</param>
+        /// <param name="RangeFont">Sets the range font of this trace.</param>
+        /// <param name="TickFont">Sets the tick font of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member ParallelCoord
+            (
+                keyValuesEncoded: seq<string * EncodedTypedArray>,
+                ?Name: string,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?ShowLineColorScale: bool,
+                ?ReverseLineColorScale: bool,
+                ?Line: Line,
+                ?LabelAngle: int,
+                ?LabelFont: Font,
+                ?LabelSide: StyleParam.Side,
+                ?RangeFont: Font,
+                ?TickFont: Font,
+                ?UseDefaults: bool
+            ) =
+
+            let dims =
+                keyValuesEncoded |> Seq.map (fun (key, encodedVals) -> Dimension.initParallel (Label = key, ValuesEncoded = encodedVals))
+
+            Chart.ParallelCoord(
+                dimensions = dims,
+                ?Name = Name,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?ShowLineColorScale = ShowLineColorScale,
+                ?ReverseLineColorScale = ReverseLineColorScale,
+                ?Line = Line,
+                ?LabelAngle = LabelAngle,
+                ?LabelFont = LabelFont,
+                ?LabelSide = LabelSide,
+                ?RangeFont = RangeFont,
+                ?TickFont = TickFont,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>
         /// Creates a parallel categories plot.
         ///
         /// The parallel categories diagram (also known as parallel sets or alluvial diagram) is a visualization of
@@ -288,6 +343,68 @@ module ChartDomain_Relations =
                 )
             )
             |> GenericChart.ofTraceObject useDefaults
+
+        /// <summary>
+        /// Creates a parallel categories plot from encoded dimension values.
+        ///
+        /// The parallel categories diagram (also known as parallel sets or alluvial diagram) is a visualization of
+        /// multi-dimensional categorical data sets.
+        /// </summary>
+        /// <param name="keyValuesEncoded">Sets the values for each dimension as (dimensionKey, encodedDimensionValues) pairs.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="Counts">The number of observations represented by each state. Defaults to 1 so that each state represents one observation</param>
+        /// <param name="LineColor">Sets the color of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="LineShape">Sets the shape of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="LineColorScale">Sets the colorscale of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ShowLineColorScale">Whether or not to show the colorbar of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="ReverseLineColorScale">Whether or not to reverse the colorscale of the lines that are connecting the datums on the dimensions</param>
+        /// <param name="Line">Sets the lines that are connecting the datums on the dimensions (use this for more finegrained control than the other line-associated arguments).</param>
+        /// <param name="Arrangement">Sets the drag interaction mode for categories and dimensions.</param>
+        /// <param name="BundleColors">Sort paths so that like colors are bundled together within each category.</param>
+        /// <param name="SortPaths">Sets the path sorting algorithm.</param>
+        /// <param name="LabelFont">Sets the label font of this trace.</param>
+        /// <param name="TickFont">Sets the tick font of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member ParallelCategories
+            (
+                keyValuesEncoded: seq<string * EncodedTypedArray>,
+                ?Name: string,
+                ?Counts: int,
+                ?LineColor: Color,
+                ?LineShape: StyleParam.Shape,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?ShowLineColorScale: bool,
+                ?ReverseLineColorScale: bool,
+                ?Line: Line,
+                ?Arrangement: StyleParam.CategoryArrangement,
+                ?BundleColors: bool,
+                ?SortPaths: StyleParam.SortAlgorithm,
+                ?LabelFont: Font,
+                ?TickFont: Font,
+                ?UseDefaults: bool
+            ) =
+
+            let dims =
+                keyValuesEncoded |> Seq.map (fun (key, encodedVals) -> Dimension.initParallel (Label = key, ValuesEncoded = encodedVals))
+
+            Chart.ParallelCategories(
+                dimensions = dims,
+                ?Name = Name,
+                ?Counts = Counts,
+                ?LineColor = LineColor,
+                ?LineShape = LineShape,
+                ?LineColorScale = LineColorScale,
+                ?ShowLineColorScale = ShowLineColorScale,
+                ?ReverseLineColorScale = ReverseLineColorScale,
+                ?Line = Line,
+                ?Arrangement = Arrangement,
+                ?BundleColors = BundleColors,
+                ?SortPaths = SortPaths,
+                ?LabelFont = LabelFont,
+                ?TickFont = TickFont,
+                ?UseDefaults = UseDefaults
+            )
 
         /// <summary>
         /// Creates a sankey diagram.
