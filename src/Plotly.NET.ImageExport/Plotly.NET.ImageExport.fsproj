@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[6.0.0, 7.0.0)" />
-    <PackageReference Include="PuppeteerSharp" Version="20.2.2" />
+    <PackageReference Include="PuppeteerSharp" Version="24.40.0" />
   </ItemGroup>
   <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
     <ItemGroup>

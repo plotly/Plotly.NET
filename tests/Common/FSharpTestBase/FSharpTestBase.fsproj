@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -10,7 +10,7 @@
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.28.0.min.js" />
     <EmbeddedResource Include="..\..\..\src\Plotly.NET\plotly-2.28.0.min.js.LICENSE.txt" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Compile Include="TestCharts\FeatureAdditions\Fix_3d_GridPosition.fs" />
     <Compile Include="TestCharts\FeatureAdditions\Grid_SubPlotTitles.fs" />
@@ -39,9 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Deedle" Version="2.4.1" />
+    <PackageReference Include="Deedle" Version="5.0.0" />
     <PackageReference Include="Expecto" Version="10.*" />
-    <PackageReference Include="FSharp.Data" Version="4.2.0" />
+    <PackageReference Include="FSharp.Data" Version="8.1.7" />
   </ItemGroup>
 
   <ItemGroup>
