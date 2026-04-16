@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
@@ -160,14 +160,35 @@
     <Compile Include="ChartAPI\HTML.fs" />
     <Compile Include="ChartAPI\GenericChart.fs" />
     <Compile Include="ChartAPI\Chart.fs" />
-    <Compile Include="ChartAPI\Chart2D.fs" />
-    <Compile Include="ChartAPI\Chart3D.fs" />
-    <Compile Include="ChartAPI\ChartPolar.fs" />
-    <Compile Include="ChartAPI\ChartMap.fs" />
-    <Compile Include="ChartAPI\ChartTernary.fs" />
-    <Compile Include="ChartAPI\ChartCarpet.fs" />
-    <Compile Include="ChartAPI\ChartDomain.fs" />
-    <Compile Include="ChartAPI\ChartSmith.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Scatter.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Area.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Funnel.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Bar.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Histogram.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Distribution.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Heatmap.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Finance.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Splom.fs" />
+    <Compile Include="ChartAPI\Chart2D\Chart2D_Statistical.fs" />
+    <Compile Include="ChartAPI\Chart3D\Chart3D_Scatter.fs" />
+    <Compile Include="ChartAPI\Chart3D\Chart3D_Surface.fs" />
+    <Compile Include="ChartAPI\Chart3D\Chart3D_VectorField.fs" />
+    <Compile Include="ChartAPI\Chart3D\Chart3D_Volume.fs" />
+    <Compile Include="ChartAPI\ChartPolar\ChartPolar_Scatter.fs" />
+    <Compile Include="ChartAPI\ChartPolar\ChartPolar_Bar.fs" />
+    <Compile Include="ChartAPI\ChartMap\ChartMap_Geo.fs" />
+    <Compile Include="ChartAPI\ChartMap\ChartMap_Mapbox.fs" />
+    <Compile Include="ChartAPI\ChartMap\ChartMap_Density.fs" />
+    <Compile Include="ChartAPI\ChartTernary\ChartTernary_Scatter.fs" />
+    <Compile Include="ChartAPI\ChartCarpet\ChartCarpet_Base.fs" />
+    <Compile Include="ChartAPI\ChartCarpet\ChartCarpet_Scatter.fs" />
+    <Compile Include="ChartAPI\ChartCarpet\ChartCarpet_Contour.fs" />
+    <Compile Include="ChartAPI\ChartDomain\ChartDomain_Pie.fs" />
+    <Compile Include="ChartAPI\ChartDomain\ChartDomain_Hierarchy.fs" />
+    <Compile Include="ChartAPI\ChartDomain\ChartDomain_Relations.fs" />
+    <Compile Include="ChartAPI\ChartDomain\ChartDomain_Table.fs" />
+    <Compile Include="ChartAPI\ChartDomain\ChartDomain_Icicle.fs" />
+    <Compile Include="ChartAPI\ChartSmith\ChartSmith_Scatter.fs" />
     <None Include="Playground.fsx" />
   </ItemGroup>
   <ItemGroup>
@@ -176,3 +197,5 @@
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
   </ItemGroup>
 </Project>
+
+

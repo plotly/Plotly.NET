@@ -1,4 +1,4 @@
-﻿using Microsoft.FSharp.Core;
+using Microsoft.FSharp.Core;
 using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
@@ -77,7 +77,7 @@ namespace Plotly.NET.CSharp
             where LabelsType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Pie<ValuesType, LabelsType, TextType>(
+                Plotly.NET.ChartDomain_Pie.Chart.Pie<ValuesType, LabelsType, TextType>(
                     values: values,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -172,7 +172,7 @@ namespace Plotly.NET.CSharp
             where LabelsType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Doughnut<ValuesType, LabelsType, TextType>(
+                Plotly.NET.ChartDomain_Pie.Chart.Doughnut<ValuesType, LabelsType, TextType>(
                     values: values,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -260,7 +260,7 @@ namespace Plotly.NET.CSharp
             where LabelsType : IConvertible
             where TextType   : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.FunnelArea<ValuesType, LabelsType, TextType>(
+                Plotly.NET.ChartDomain_Pie.Chart.FunnelArea<ValuesType, LabelsType, TextType>(
                     values: values,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -363,7 +363,7 @@ namespace Plotly.NET.CSharp
             where IdsType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Sunburst<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
+                Plotly.NET.ChartDomain_Hierarchy.Chart.Sunburst<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
                     labels: labels,
                     parents: parents,
                     Values: Values.ToOption(),
@@ -479,7 +479,7 @@ namespace Plotly.NET.CSharp
             where IdsType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Treemap<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
+                Plotly.NET.ChartDomain_Hierarchy.Chart.Treemap<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
                     labels: labels,
                     parents: parents,
                     Values: Values.ToOption(),
@@ -553,7 +553,7 @@ namespace Plotly.NET.CSharp
             Optional<bool> UseDefaults = default
         )
             =>
-                Plotly.NET.ChartDomain.Chart.ParallelCoord(
+                Plotly.NET.ChartDomain_Relations.Chart.ParallelCoord(
                     dimensions: dimensions,
                     Name: Name.ToOption(),
                     LineColor: LineColor.ToOption(),
@@ -610,7 +610,7 @@ namespace Plotly.NET.CSharp
             Optional<bool> UseDefaults = default
         )
             =>
-                Plotly.NET.ChartDomain.Chart.ParallelCategories(
+                Plotly.NET.ChartDomain_Relations.Chart.ParallelCategories(
                     dimensions: dimensions,
                     Name: Name.ToOption(),
                     Counts: Counts.ToOption(),
@@ -659,7 +659,7 @@ namespace Plotly.NET.CSharp
         )
             where IdsType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Sankey<IdsType>(
+                Plotly.NET.ChartDomain_Relations.Chart.Sankey<IdsType>(
                     nodes: nodes,
                     links: links,
                     Name: Name.ToOption(),
@@ -694,7 +694,7 @@ namespace Plotly.NET.CSharp
             Optional<bool> UseDefaults = default
         )
             =>
-                Plotly.NET.ChartDomain.Chart.Table(
+                Plotly.NET.ChartDomain_Table.Chart.Table(
                    header: header,
                    cells: cells,
                    Name: Name.ToOption(),
@@ -745,7 +745,7 @@ namespace Plotly.NET.CSharp
         )
             where ValueType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Indicator<ValueType>(
+                Plotly.NET.ChartDomain_Table.Chart.Indicator<ValueType>(
                     value: value,
                     mode: mode,
                     Range: Range.ToOption(),
@@ -847,7 +847,7 @@ namespace Plotly.NET.CSharp
             where IdsType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartDomain.Chart.Icicle<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
+                Plotly.NET.ChartDomain_Icicle.Chart.Icicle<LabelsType, ParentsType, ValuesType, IdsType, TextType>(
                     labels: labels,
                     parents: parents,
                     Values: Values.ToOption(),
@@ -886,3 +886,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,7 +82,7 @@ namespace Plotly.NET.CSharp
             where ZType : IConvertible
             where TextType : IConvertible
             
-            => Plotly.NET.Chart3D.Chart.Scatter3D<XType, YType, ZType, TextType>(
+            => Plotly.NET.Chart3D_Scatter.Chart.Scatter3D<XType, YType, ZType, TextType>(
                 x: x,
                 y: y,
                 z: z,
@@ -166,7 +166,7 @@ namespace Plotly.NET.CSharp
             where ZType : IConvertible
             where TextType : IConvertible
 
-            => Plotly.NET.Chart3D.Chart.Point3D<XType, YType, ZType, TextType>(
+            => Plotly.NET.Chart3D_Scatter.Chart.Point3D<XType, YType, ZType, TextType>(
                 x: x,
                 y: y,
                 z: z,
@@ -256,7 +256,7 @@ namespace Plotly.NET.CSharp
             where ZType : IConvertible
             where TextType : IConvertible
 
-            => Plotly.NET.Chart3D.Chart.Line3D<XType, YType, ZType, TextType>(
+            => Plotly.NET.Chart3D_Scatter.Chart.Line3D<XType, YType, ZType, TextType>(
                 x: x,
                 y: y,
                 z: z,
@@ -342,7 +342,7 @@ namespace Plotly.NET.CSharp
             where ZType : IConvertible
             where TextType : IConvertible
 
-            => Plotly.NET.Chart3D.Chart.Bubble3D<XType, YType, ZType, TextType>(
+            => Plotly.NET.Chart3D_Scatter.Chart.Bubble3D<XType, YType, ZType, TextType>(
                 x: x,
                 y: y,
                 z: z,
@@ -412,7 +412,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart3D.Chart.Surface<IEnumerable<ZType>, ZType, XType, YType, TextType>(
+                Plotly.NET.Chart3D_Surface.Chart.Surface<IEnumerable<ZType>, ZType, XType, YType, TextType>(
                     zData: zData,
                     X: X.ToOption(),
                     Y: Y.ToOption(),
@@ -494,7 +494,7 @@ namespace Plotly.NET.CSharp
             where KType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart3D.Chart.Mesh3D<XType, YType, ZType, IType, JType, KType, TextType>(
+                Plotly.NET.Chart3D_Surface.Chart.Mesh3D<XType, YType, ZType, IType, JType, KType, TextType>(
                     x: x,
                     y: y,
                     z: z,
@@ -577,7 +577,7 @@ namespace Plotly.NET.CSharp
             where WType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart3D.Chart.Cone<XType, YType, ZType, UType, VType, WType, TextType>(
+                Plotly.NET.Chart3D_VectorField.Chart.Cone<XType, YType, ZType, UType, VType, WType, TextType>(
                     x: x,
                     y: y,
                     z: z,
@@ -660,7 +660,7 @@ namespace Plotly.NET.CSharp
             where WType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart3D.Chart.StreamTube<XType, YType, ZType, UType, VType, WType, TextType>(
+                Plotly.NET.Chart3D_VectorField.Chart.StreamTube<XType, YType, ZType, UType, VType, WType, TextType>(
                     x: x,
                     y: y,
                     z: z,
@@ -741,7 +741,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
             where OpacityScaleType : IConvertible
             =>
-                Plotly.NET.Chart3D.Chart.Volume<XType, YType, ZType, ValueType, TextType, IEnumerable<OpacityScaleType>, OpacityScaleType>(
+                Plotly.NET.Chart3D_Volume.Chart.Volume<XType, YType, ZType, ValueType, TextType, IEnumerable<OpacityScaleType>, OpacityScaleType>(
                     x: x,
                     y: y,
                     z: z,
@@ -823,7 +823,7 @@ namespace Plotly.NET.CSharp
             where ValueType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart3D.Chart.IsoSurface<XType, YType, ZType, ValueType, TextType>(
+                Plotly.NET.Chart3D_Volume.Chart.IsoSurface<XType, YType, ZType, ValueType, TextType>(
                     x: x,
                     y: y,
                     z: z,
@@ -847,3 +847,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+

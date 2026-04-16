@@ -398,7 +398,7 @@ module Indicator =
     open Plotly.NET.LayoutObjects
 
     let ``Angular gauge indicator`` =
-        ChartDomain.Chart.Indicator(
+        Chart.Indicator(
             value = 200., 
             mode = StyleParam.IndicatorMode.NumberDeltaGauge,
             Delta   = IndicatorDelta.init(Reference=160),

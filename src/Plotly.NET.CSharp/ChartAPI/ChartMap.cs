@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +51,7 @@ namespace Plotly.NET.CSharp
             where ZType: IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.ChoroplethMap<ZType, TextType>(
+                Plotly.NET.ChartMap_Geo.Chart.ChoroplethMap<ZType, TextType>(
                     locations: locations,
                     z: z,
                     Name: Name.ToOption(),
@@ -133,7 +133,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.ScatterGeo<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Geo.Chart.ScatterGeo<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     mode: mode,
@@ -213,7 +213,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.PointGeo<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Geo.Chart.PointGeo<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     Name: Name.ToOption(),
@@ -299,7 +299,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.LineGeo<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Geo.Chart.LineGeo<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -381,7 +381,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.BubbleGeo<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Geo.Chart.BubbleGeo<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     sizes: sizes,
@@ -474,7 +474,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.ScatterMapbox<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Mapbox.Chart.ScatterMapbox<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     mode: mode,
@@ -559,7 +559,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.PointMapbox<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Mapbox.Chart.PointMapbox<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     Name: Name.ToOption(),
@@ -646,7 +646,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.LineMapbox<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Mapbox.Chart.LineMapbox<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -727,7 +727,7 @@ namespace Plotly.NET.CSharp
             where LatitudesType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.BubbleMapbox<LongitudesType, LatitudesType, TextType>(
+                Plotly.NET.ChartMap_Mapbox.Chart.BubbleMapbox<LongitudesType, LatitudesType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     sizes: sizes,
@@ -796,7 +796,7 @@ namespace Plotly.NET.CSharp
             where ZType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.ChoroplethMapbox<ZType, TextType>(
+                Plotly.NET.ChartMap_Density.Chart.ChoroplethMapbox<ZType, TextType>(
                     locations: locations,
                     z: z,
                     Name: Name.ToOption(),
@@ -860,7 +860,7 @@ namespace Plotly.NET.CSharp
             where ZType: IConvertible
             where TextType: IConvertible
             =>
-                Plotly.NET.ChartMap.Chart.DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
+                Plotly.NET.ChartMap_Density.Chart.DensityMapbox<LongitudesType, LatitudesType, ZType, TextType>(
                     longitudes: longitudes,
                     latitudes: latitudes,
                     Name: Name.ToOption(),
@@ -880,3 +880,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+
