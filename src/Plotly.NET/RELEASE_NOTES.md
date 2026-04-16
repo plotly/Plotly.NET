@@ -8,6 +8,19 @@ This version [removes C# interop from the core F# Plotly.NET library](https://gi
 
 As a consequence, the html dsl dependency switches back from `Giraffe.ViewEngine.StrongName 2.0.0-alpha1` to upstream `Giraffe.ViewEngine 1.4.0`. The namespace is unchanged, so user code is not affected.
 
+- Bump bundled plotly.js to **2.28.0**
+
+- [#441](https://github.com/plotly/Plotly.NET/issues/441): **Encoded typed array support** — plotly.js 2.28 introduced base64-encoded typed arrays as a high-performance alternative to JSON arrays for trace data fields. Plotly.NET now exposes this fully:
+
+  - New `EncodedTypedArray` type (in `Plotly.NET`) carrying a base64 payload (`bdata`), a dtype tag (`dtype`), and an optional shape for multi-dimensional data. Supported dtypes: `Float64`, `Float32`, `Int32`, `UInt32`, `Int16`, `UInt16`, `Int8`, `UInt8`, `UInt8Clamped`.
+  - Convenience constructors: `EncodedTypedArray.ofFloat64Array`, `ofFloat32Array`, `ofInt32Array`, `ofUInt32Array`, `ofInt16Array`, `ofUInt16Array`, `ofInt8Array`, `ofUInt8Array`, `ofUInt8ClampedArray` — all accept a 1-D .NET array and an optional `shape` parameter for multi-dimensional layouts.
+  - Encoded fields added to **all trace style modules** (`Trace2DStyle`, `Trace3DStyle`, `TracePolarStyle`, `TraceGeoStyle`, `TraceMapboxStyle`, `TraceTernaryStyle`, `TraceCarpetStyle`, `TraceDomainStyle`, `TraceSmithStyle`), covering data arrays (`XEncoded`, `YEncoded`, `ZEncoded`, etc.), metadata arrays (`IdsEncoded`, `CustomDataEncoded`, `MultiTextEncoded`, `SelectedPointsEncoded`), error bar arrays (`ArrayEncoded`, `ArrayminusEncoded`), and trace-specific fields (e.g. `Q1Encoded`/`MedianEncoded`/`Q3Encoded` on BoxPlot, `OpenEncoded`/`HighEncoded`/`LowEncoded`/`CloseEncoded` on OHLC/Candlestick, `OpacityScaleEncoded` on Surface/Volume/IsoSurface, `IntensityEncoded`/`IEncoded`/`JEncoded`/`KEncoded` on Mesh3D, dimension `ValuesEncoded` on Splom/ParallelCoord).
+  - Encoded overloads added to **all `Chart` module root functions** (e.g. `Chart.Scatter`, `Chart.Bar`, `Chart.Waterfall`, `Chart.Histogram`, `Chart.BoxPlot`, `Chart.Violin`, `Chart.OHLC`, `Chart.Candlestick`, `Chart.Splom`, `Chart.Histogram2D`, `Chart.Heatmap`, `Chart.Contour`, `Chart.Scatter3D`, `Chart.Surface`, `Chart.Mesh3D`, `Chart.Cone`, `Chart.StreamTube`, `Chart.Volume`, `Chart.IsoSurface`, `Chart.ScatterPolar`, `Chart.BarPolar`, `Chart.ScatterGeo`, `Chart.ChoroplethMap`, `Chart.ScatterMapbox`, `Chart.ChoroplethMapbox`, `Chart.DensityMapbox`, `Chart.ScatterTernary`, `Chart.Carpet`, `Chart.ScatterCarpet`, `Chart.ContourCarpet`, `Chart.ScatterSmith`, `Chart.Pie`, `Chart.FunnelArea`, `Chart.Sunburst`, `Chart.Treemap`, `Chart.Icicle`) and to all **H1/H2 convenience helpers** (e.g. `Chart.Point`, `Chart.Line`, `Chart.Spline`, `Chart.Bubble`, `Chart.Area`, `Chart.SplineArea`, `Chart.StackedArea`, `Chart.Range`, `Chart.Funnel`, `Chart.Histogram`, `Chart.StackedBar`, `Chart.PointDensity`, `Chart.PointPolar`, `Chart.PointGeo`, `Chart.PointMapbox`, `Chart.PointTernary`, `Chart.PointSmith`, `Chart.PointCarpet`, `Chart.Doughnut`).
+
+- [#500](https://github.com/plotly/Plotly.NET/pull/500): Internal refactor — split the monolithic `Chart.fs` into per-chart-family files (`Chart2D_Scatter.fs`, `Chart2D_Bar.fs`, etc.) for better maintainability. No API changes.
+
+- Dev tooling: target framework for build/test projects updated to `net10.0`; NuGet dependency updates (Newtonsoft.Json 13.0.4, Deedle 5.0.0, FSharp.Data 8.1.7, FAKE 6.1.4, Microsoft.NET.Test.Sdk 18.x).
+
 ### 5.1.0 - September 04 2024
 
 Maintenance release to prevent Plotly.NET breaking for users that upgrade the DynamicObj dependency to >=3.0.0. DynamicObj is now pinned to the version range [2.0.0, 3.0.0) until we manage to make Plotly.NET work with the major changes in that lib.

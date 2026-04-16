@@ -2,6 +2,7 @@
 
 - bump version range of Plotly.NET to [6.0.0, 7.0.0)
 - **Breaking:** Plotly.NET.CSharp assemblies are no longer strong-named. See the Plotly.NET 6.0.0 release notes for context and migration options.
+- Dev tooling: target framework updated to `net10.0`; xunit 2.9.3, xunit.runner.visualstudio 3.1.5, coverlet.collector 8.0.1
 
 ### 0.13.0 - September 04 2024
 

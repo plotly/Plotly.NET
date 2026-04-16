@@ -114,6 +114,14 @@ When adding a new chart type or API surface, add or update the corresponding `.f
 - Main branch for PRs is **`dev`**, not `main`/`master`.
 - when prompted for planning the implementation of a feature, draft a plan file and put it into /plans. Use that document to split the planned commits for the feature into self-contained commits that include tests. When working on the feature, continuously update the plan with implementation notes and mark the planned commits as done when they are implemented.
 
+### Upstream changes from plotly.js
+
+- Plotly.NET wraps plotly.js. 
+- Plotly.js releases are found on this website: https://github.com/plotly/plotly.js/releases
+- When prompted to plan a feature set from an upstream release, check the respective release notes.
+- Upstream features have special test locations in tests/CoreTests/CoreTests/UpstreamFeatures/. When adding tests for an upstream feature.
+- test fixtures for upstream feature patches are found in tests/Common/FSharpTestBase/TestCharts/UpstreamFeatures. When adding a test for an upstream feature, check if there is a test fixture for it and use it as a base.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

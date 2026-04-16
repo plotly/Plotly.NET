@@ -2,6 +2,8 @@
 
 - bump version range of Plotly.NET to [6.0.0, 7.0.0)
 - **Breaking:** Plotly.NET.ImageExport assemblies are no longer strong-named. See the Plotly.NET 6.0.0 release notes for context and migration options.
+- Update PuppeteerSharp dependency to 24.40.0
+- Dev tooling: target framework for test projects updated to `net10.0`
 
 ### 6.1.0 - September 04 2024
 
