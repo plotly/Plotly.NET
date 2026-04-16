@@ -14,7 +14,7 @@ index: 2
 #r "nuget: Newtonsoft.JSON, 13.0.3"
 #r "nuget: DynamicObj, 7.0.1"
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
-#r "nuget: PuppeteerSharp, 9.0.2"
+#r "nuget: PuppeteerSharp, 24.40.0"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 #r "../../src/Plotly.NET.ImageExport/bin/Release/netstandard2.0/Plotly.NET.ImageExport.dll"
 
