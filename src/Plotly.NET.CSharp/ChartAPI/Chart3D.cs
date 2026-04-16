@@ -845,6 +845,74 @@ namespace Plotly.NET.CSharp
                     Camera: Camera.ToOption(),
                     UseDefaults: UseDefaults.ToOption()
                 );
+        // ---- Encoded array overloads ----
+
+        /// <summary>Creates a Scatter3D plot from encoded x, y, and z typed arrays.</summary>
+        /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+        /// <param name="zEncoded">Sets the z coordinates as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart Scatter3D<TextType>(
+            EncodedTypedArray xEncoded,
+            EncodedTypedArray yEncoded,
+            EncodedTypedArray zEncoded,
+            StyleParam.Mode mode,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol3D> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol3D>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<StyleParam.CameraProjectionType> CameraProjectionType = default,
+            Optional<Camera> Camera = default,
+            Optional<Projection> Projection = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart3D_Scatter.Chart.Scatter3D(
+                    xEncoded: xEncoded,
+                    yEncoded: yEncoded,
+                    zEncoded: zEncoded,
+                    mode: mode,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    CameraProjectionType: CameraProjectionType.ToOption(),
+                    Camera: Camera.ToOption(),
+                    Projection: Projection.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
     }
 }
 

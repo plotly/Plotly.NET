@@ -2750,6 +2750,413 @@ namespace Plotly.NET.CSharp
                     UseDefaults: UseDefaults.ToOption()
                 );
 
+        // ---- Encoded array overloads ----
+
+        /// <summary>Creates a Scatter plot from encoded x and y typed arrays.</summary>
+        /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart Scatter<TextType>(
+            EncodedTypedArray xEncoded,
+            EncodedTypedArray yEncoded,
+            StyleParam.Mode mode,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+            Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+            Optional<Marker> Marker = default,
+            Optional<Color> LineColor = default,
+            Optional<StyleParam.Colorscale> LineColorScale = default,
+            Optional<double> LineWidth = default,
+            Optional<StyleParam.DrawingStyle> LineDash = default,
+            Optional<Line> Line = default,
+            Optional<string> AlignmentGroup = default,
+            Optional<string> OffsetGroup = default,
+            Optional<string> StackGroup = default,
+            Optional<StyleParam.Orientation> Orientation = default,
+            Optional<StyleParam.GroupNorm> GroupNorm = default,
+            Optional<StyleParam.Fill> Fill = default,
+            Optional<Color> FillColor = default,
+            Optional<Pattern> FillPattern = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D_Scatter.Chart.Scatter(
+                    xEncoded: xEncoded,
+                    yEncoded: yEncoded,
+                    mode: mode,
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerSymbol: MarkerSymbol.ToOption(),
+                    MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                    Marker: Marker.ToOption(),
+                    LineColor: LineColor.ToOption(),
+                    LineColorScale: LineColorScale.ToOption(),
+                    LineWidth: LineWidth.ToOption(),
+                    LineDash: LineDash.ToOption(),
+                    Line: Line.ToOption(),
+                    AlignmentGroup: AlignmentGroup.ToOption(),
+                    OffsetGroup: OffsetGroup.ToOption(),
+                    StackGroup: StackGroup.ToOption(),
+                    Orientation: Orientation.ToOption(),
+                    GroupNorm: GroupNorm.ToOption(),
+                    Fill: Fill.ToOption(),
+                    FillColor: FillColor.ToOption(),
+                    FillPattern: FillPattern.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a bar chart from encoded values, with bars plotted horizontally.</summary>
+        /// <param name="valuesEncoded">Sets the bar lengths as an encoded typed array.</param>
+        /// <param name="KeysEncoded">Sets the bar keys as an encoded typed array.</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart Bar<TextType, BaseType, WidthType>(
+            EncodedTypedArray valuesEncoded,
+            Optional<EncodedTypedArray> KeysEncoded = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<BaseType> Base = default,
+            Optional<WidthType> Width = default,
+            Optional<EncodedTypedArray> MultiWidthEncoded = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            where BaseType : IConvertible
+            where WidthType : IConvertible
+            =>
+                Plotly.NET.Chart2D_Bar.Chart.Bar(
+                    valuesEncoded: valuesEncoded,
+                    KeysEncoded: KeysEncoded.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidthEncoded: MultiWidthEncoded.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a stacked bar chart from encoded values, with bars plotted horizontally.</summary>
+        /// <param name="valuesEncoded">Sets the bar lengths as an encoded typed array.</param>
+        /// <param name="KeysEncoded">Sets the bar keys as an encoded typed array.</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart StackedBar<TextType, BaseType, WidthType>(
+            EncodedTypedArray valuesEncoded,
+            Optional<EncodedTypedArray> KeysEncoded = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<BaseType> Base = default,
+            Optional<WidthType> Width = default,
+            Optional<EncodedTypedArray> MultiWidthEncoded = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            where BaseType : IConvertible
+            where WidthType : IConvertible
+            =>
+                Plotly.NET.Chart2D_Bar.Chart.StackedBar(
+                    valuesEncoded: valuesEncoded,
+                    KeysEncoded: KeysEncoded.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidthEncoded: MultiWidthEncoded.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a column chart from encoded values, with bars plotted vertically.</summary>
+        /// <param name="valuesEncoded">Sets the bar lengths as an encoded typed array.</param>
+        /// <param name="KeysEncoded">Sets the bar keys as an encoded typed array.</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart Column<TextType, BaseType, WidthType>(
+            EncodedTypedArray valuesEncoded,
+            Optional<EncodedTypedArray> KeysEncoded = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<BaseType> Base = default,
+            Optional<WidthType> Width = default,
+            Optional<EncodedTypedArray> MultiWidthEncoded = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            where BaseType : IConvertible
+            where WidthType : IConvertible
+            =>
+                Plotly.NET.Chart2D_Bar.Chart.Column(
+                    valuesEncoded: valuesEncoded,
+                    KeysEncoded: KeysEncoded.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidthEncoded: MultiWidthEncoded.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a stacked column chart from encoded values, with bars plotted vertically.</summary>
+        /// <param name="valuesEncoded">Sets the bar lengths as an encoded typed array.</param>
+        /// <param name="KeysEncoded">Sets the bar keys as an encoded typed array.</param>
+        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart StackedColumn<TextType, BaseType, WidthType>(
+            EncodedTypedArray valuesEncoded,
+            Optional<EncodedTypedArray> KeysEncoded = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<IEnumerable<double>> MultiOpacity = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<Color> MarkerColor = default,
+            Optional<StyleParam.Colorscale> MarkerColorScale = default,
+            Optional<Line> MarkerOutline = default,
+            Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+            Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+            Optional<Pattern> MarkerPattern = default,
+            Optional<Marker> Marker = default,
+            Optional<BaseType> Base = default,
+            Optional<WidthType> Width = default,
+            Optional<EncodedTypedArray> MultiWidthEncoded = default,
+            Optional<StyleParam.TextPosition> TextPosition = default,
+            Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            where BaseType : IConvertible
+            where WidthType : IConvertible
+            =>
+                Plotly.NET.Chart2D_Bar.Chart.StackedColumn(
+                    valuesEncoded: valuesEncoded,
+                    KeysEncoded: KeysEncoded.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    MultiOpacity: MultiOpacity.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    MarkerColor: MarkerColor.ToOption(),
+                    MarkerColorScale: MarkerColorScale.ToOption(),
+                    MarkerOutline: MarkerOutline.ToOption(),
+                    MarkerPatternShape: MarkerPatternShape.ToOption(),
+                    MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                    MarkerPattern: MarkerPattern.ToOption(),
+                    Marker: Marker.ToOption(),
+                    Base: Base.ToOption(),
+                    Width: Width.ToOption(),
+                    MultiWidthEncoded: MultiWidthEncoded.ToOption(),
+                    TextPosition: TextPosition.ToOption(),
+                    MultiTextPosition: MultiTextPosition.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a heatmap from encoded z data and optional encoded axes.</summary>
+        /// <param name="zEncoded">Sets the z matrix as an encoded typed array.</param>
+        /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart Heatmap<TextType>(
+            EncodedTypedArray zEncoded,
+            Optional<EncodedTypedArray> xEncoded = default,
+            Optional<EncodedTypedArray> yEncoded = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<int> XGap = default,
+            Optional<int> YGap = default,
+            Optional<TextType> Text = default,
+            Optional<IEnumerable<TextType>> MultiText = default,
+            Optional<ColorBar> ColorBar = default,
+            Optional<StyleParam.Colorscale> ColorScale = default,
+            Optional<bool> ShowScale = default,
+            Optional<bool> ReverseScale = default,
+            Optional<StyleParam.SmoothAlg> ZSmooth = default,
+            Optional<bool> Transpose = default,
+            Optional<bool> UseWebGL = default,
+            Optional<bool> ReverseYAxis = default,
+            Optional<bool> UseDefaults = default
+        )
+            where TextType : IConvertible
+            =>
+                Plotly.NET.Chart2D_Heatmap.Chart.Heatmap(
+                    zEncoded: zEncoded,
+                    xEncoded: xEncoded.ToOption(),
+                    yEncoded: yEncoded.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    XGap: XGap.ToOption(),
+                    YGap: YGap.ToOption(),
+                    Text: Text.ToOption(),
+                    MultiText: MultiText.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOption(),
+                    ReverseScale: ReverseScale.ToOption(),
+                    ZSmooth: ZSmooth.ToOption(),
+                    Transpose: Transpose.ToOption(),
+                    UseWebGL: UseWebGL.ToOption(),
+                    ReverseYAxis: ReverseYAxis.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
+        /// <summary>Creates a 2D histogram from encoded x and y data.</summary>
+        /// <param name="xEncoded">Sets the x sample data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y sample data as an encoded typed array.</param>
+        /// <param name="zEncoded">Sets the z aggregation data as an encoded typed array.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+        public static GenericChart Histogram2D(
+            EncodedTypedArray xEncoded,
+            EncodedTypedArray yEncoded,
+            Optional<EncodedTypedArray> zEncoded = default,
+            Optional<string> Name = default,
+            Optional<bool> ShowLegend = default,
+            Optional<double> Opacity = default,
+            Optional<int> XGap = default,
+            Optional<int> YGap = default,
+            Optional<StyleParam.HistFunc> HistFunc = default,
+            Optional<StyleParam.HistNorm> HistNorm = default,
+            Optional<int> NBinsX = default,
+            Optional<int> NBinsY = default,
+            Optional<Bins> XBins = default,
+            Optional<Bins> YBins = default,
+            Optional<ColorBar> ColorBar = default,
+            Optional<StyleParam.Colorscale> ColorScale = default,
+            Optional<bool> ShowScale = default,
+            Optional<bool> ReverseScale = default,
+            Optional<StyleParam.SmoothAlg> ZSmooth = default,
+            Optional<bool> UseDefaults = default
+        )
+            =>
+                Plotly.NET.Chart2D_Histogram.Chart.Histogram2D(
+                    xEncoded: xEncoded,
+                    yEncoded: yEncoded,
+                    zEncoded: zEncoded.ToOption(),
+                    Name: Name.ToOption(),
+                    ShowLegend: ShowLegend.ToOption(),
+                    Opacity: Opacity.ToOption(),
+                    XGap: XGap.ToOption(),
+                    YGap: YGap.ToOption(),
+                    HistFunc: HistFunc.ToOption(),
+                    HistNorm: HistNorm.ToOption(),
+                    NBinsX: NBinsX.ToOption(),
+                    NBinsY: NBinsY.ToOption(),
+                    XBins: XBins.ToOption(),
+                    YBins: YBins.ToOption(),
+                    ColorBar: ColorBar.ToOption(),
+                    ColorScale: ColorScale.ToOption(),
+                    ShowScale: ShowScale.ToOption(),
+                    ReverseScale: ReverseScale.ToOption(),
+                    ZSmooth: ZSmooth.ToOption(),
+                    UseDefaults: UseDefaults.ToOption()
+                );
+
     };
 
 }
