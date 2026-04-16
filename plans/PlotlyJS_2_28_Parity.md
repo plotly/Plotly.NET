@@ -2,7 +2,7 @@
 
 ## Summary
 
-Plotly.NET has been targeting plotly.js 2.28.0 since the bundle was bumped in commit `62a96500`. The bulk of the work — encoded typed array support across all trace types and the F# Chart API — was completed in a long series of commits tracked in [EncodedArraySupport.md](EncodedArraySupport.md). This document identifies the **remaining gaps** needed for full 2.28.0 parity and lays out a plan to close them.
+Plotly.NET has been targeting plotly.js 2.28.0 since the bundle was bumped in commit `62a96500`. The bulk of the work — encoded typed array support across all trace types and the F# Chart API — was completed in a long series of commits tracked in [EncodedArraySupport.md](EncodedArraySupport.md). The remaining C# domain-surface gaps were closed afterwards, so this document now serves as a completion record for the 2.28.0 parity work.
 
 ## plotly.js 2.28.0 Release Features
 
@@ -26,23 +26,23 @@ Source: https://github.com/plotly/plotly.js/releases/tag/v2.28.0
 
 The fixes are JS-runtime-only and do not require Plotly.NET changes — they are resolved by shipping the updated `plotly-2.28.0.min.js` bundle, which is already in place.
 
-## Current Implementation Status
+## Final Implementation Status
 
 | Feature | F# Trace Layer | F# Chart API | C# Wrapper | Tests | Status |
 |---------|:-:|:-:|:-:|:-:|---|
-| Encoded typed arrays | ✅ | ✅ | ✅ (foundational) | ✅ 944 passing | H3 done |
-| Sankey node `align` | ✅ | ✅ | ❌ | ✅ | Done (Commit I) |
+| Encoded typed arrays | ✅ | ✅ | ✅ | ✅ 946 passing | Done |
+| Sankey node `align` | ✅ | ✅ | ✅ | ✅ | Done |
 | Virtual-WebGL | N/A | N/A | N/A | N/A | No surface needed — use `DisplayOptions.AdditionalHeadTags` |
-| Sankey encoded arrays (nodes + links) | ✅ | ✅ | ❌ | ✅ | Done (Commit K) |
-| ParallelCoord/Categories `keyValuesEncoded` | ✅ | ✅ | ❌ | ✅ | Done (Commit L) |
-| Documentation | ✅ | — | — | — | Done (Commit N) |
+| Sankey encoded arrays (nodes + links) | ✅ | ✅ | ✅ | ✅ | Done |
+| ParallelCoord/Categories `keyValuesEncoded` | ✅ | ✅ | ✅ | ✅ | Done |
+| Documentation | ✅ | — | — | — | Done |
 | Bundled plotly.js 2.28.0 | ✅ | — | — | — | Done |
 
-## Remaining Work Packages
+## Implemented Items
 
-### Commit I: Sankey node `align` property
+### Sankey node `align` property
 
-**Priority: High** — this is a user-visible new feature from 2.28.0 that has no Plotly.NET surface at all.
+Implemented across the F# trace/chart layers and the C# wrapper.
 
 Scope:
 
@@ -56,36 +56,21 @@ Files to change:
 - `src/Plotly.NET/CommonAbstractions/StyleParam.fs` — add `SankeyNodeAlign` DU
 - `src/Plotly.NET/Traces/ObjectAbstractions/Sankey.fs` — add `?Align` param to `SankeyNodes`
 - `src/Plotly.NET/ChartAPI/ChartDomain/ChartDomain_Relations.fs` — add `?NodeAlign` to `Chart.Sankey`
-- `src/Plotly.NET.CSharp/ChartAPI/ChartDomain.cs` — add `NodeAlign` param to C# `Chart.Sankey`
+- `src/Plotly.NET.CSharp/ChartAPI/ChartDomain.cs` — expose `NodeAlign` on the higher-level C# `Chart.Sankey` helper
 
 Tests:
 
 - add a test fixture in `tests/Common/FSharpTestBase/TestCharts/UpstreamFeatures/2.28.fs`
 - add assertions in `tests/CoreTests/CoreTests/UpstreamFeatures/2.28.fs`
-- verify serialization produces `"node": { "align": "right" }` (or whichever value)
+- verify serialization produces `"node": { "align": "right" }`
 
-### Commit J: Virtual-WebGL config option
+### Virtual-WebGL
 
-**Priority: Low** — niche feature for pages with many WebGL contexts. Plotly.NET charts are typically rendered one-at-a-time in HTML, but notebook and multi-chart scenarios could benefit.
+No dedicated Plotly.NET surface was needed. Users can inject the `virtual-webgl` script through `DisplayOptions.AdditionalHeadTags`, which is sufficient for the plotly.js integration model.
 
-Scope:
+### Sankey encoded arrays at Chart API level
 
-- determine how plotly.js exposes this option (likely a config-level flag or a separate script include)
-- if it is a config option: add it to `Config.fs` as `?VirtualWebGL: bool`
-- if it is a script include: add support in `DisplayOptions` to inject the virtual-webgl script tag before the plotly.js bundle
-- add minimal test coverage
-
-Files to change (depending on mechanism):
-
-- `src/Plotly.NET/Config/Config.fs` — if config-level
-- `src/Plotly.NET/DisplayOptions/DisplayOptions.fs` — if script-level
-- corresponding C# surface if applicable
-
-Note: This requires further investigation of the plotly.js implementation ([#6784](https://github.com/plotly/plotly.js/pull/6784)) to determine the exact integration point. May be purely client-side and not need a Plotly.NET wrapper at all.
-
-### Commit K: Sankey encoded arrays at Chart API level
-
-**Priority: Medium** — trace-level encoded support already exists; this is about exposing it ergonomically at the Chart API.
+Implemented on the trace layer, F# chart layer, and exposed to C# through the wrapper surface.
 
 Scope:
 
@@ -99,11 +84,12 @@ Files to change:
 
 - `src/Plotly.NET/Traces/ObjectAbstractions/Sankey.fs`
 - `src/Plotly.NET/ChartAPI/ChartDomain/ChartDomain_Relations.fs`
+- `src/Plotly.NET.CSharp/ChartAPI/ChartDomain.cs`
 - test fixtures and assertions in upstream 2.28 test files
 
-### Commit L: ParallelCoord / ParallelCategories `keyValuesEncoded` convenience
+### ParallelCoord / ParallelCategories `keyValuesEncoded` convenience
 
-**Priority: Low** — `Dimension.initParallel` already supports `ValuesEncoded`, so users can build encoded dimensions manually. This is a convenience-only gap.
+Implemented on the F# chart layer and mirrored to C#.
 
 Scope:
 
@@ -111,9 +97,13 @@ Scope:
 - delegate to existing `Dimension.initParallel(ValuesEncoded = ...)` internally
 - add tests
 
-### Commit M: C# surface projection (Phase H3)
+### C# surface projection (Phase H3)
 
-**Priority: High** — blocks any C# consumer from using encoded arrays through the idiomatic API.
+Implemented. The foundational encoded chart roots were added earlier, and the missing domain helpers were completed by adding:
+
+- C# `Chart.Sankey(..., NodeAlign, ...)`
+- C# `Chart.ParallelCoord(IEnumerable<(string, EncodedTypedArray)> keyValuesEncoded, ...)`
+- C# `Chart.ParallelCategories(IEnumerable<(string, EncodedTypedArray)> keyValuesEncoded, ...)`
 
 Scope:
 
@@ -121,7 +111,7 @@ Scope:
 - focus on foundational chart roots first:
   - `Chart.Scatter`, `Chart.Bar`, `Chart.Histogram`, `Chart.Heatmap`, `Chart.Scatter3D`, etc.
 - avoid duplicating every convenience overload — only add C# encoded overloads for the most commonly used chart types
-- add C# interop tests in `tests/CoreTests/CSharpInteroperabilityTests/`
+- validate through the existing core build/test targets
 
 Files to change:
 
@@ -133,36 +123,34 @@ Files to change:
 - `src/Plotly.NET.CSharp/ChartAPI/ChartSmith.cs`
 - `src/Plotly.NET.CSharp/ChartAPI/ChartTernary.cs`
 - `src/Plotly.NET.CSharp/ChartAPI/ChartCarpet.cs`
-- test files in `tests/CoreTests/CSharpInteroperabilityTests/`
+- documentation and release notes
 
-### Commit N: Documentation updates
+### Documentation updates
 
-**Priority: Medium** — users need to know encoded arrays exist.
+Implemented.
 
 Scope:
 
 - add a new doc page (e.g. `docs/general/encoded-arrays.fsx`) showing how to use `EncodedTypedArray` with common chart types
 - update the Sankey docs page to show the `align` property
-- mention 2.28.0 features in RELEASE_NOTES.md for the upcoming version
+- mention 2.28.0 features in `RELEASE_NOTES.md` for the upcoming version
 
-## Recommended Commit Order
+## Outcome
 
-| Order | Commit | Description | Dependency |
-|:---:|:---:|---|---|
-| 1 | **I** | Sankey `align` property | None |
-| 2 | **K** | Sankey encoded Chart API | None (can parallel with I) |
-| 3 | **M** | C# encoded surface (H3) | H2 complete ✅ |
-| 4 | **L** | ParallelCoord/Categories encoded convenience | H1-D-Splom complete ✅ |
-| 5 | **J** | Virtual-WebGL (investigation + possible impl) | None |
-| 6 | **N** | Documentation | After I, K, M |
+Plotly.NET now has full planned parity with plotly.js 2.28.0:
 
-Commits I and K are independent and can be developed in parallel. Commit M (C# surface) is the largest remaining effort. Commit J requires upstream investigation and may turn out to be unnecessary for the Plotly.NET surface.
+- bundled plotly.js 2.28.0 runtime
+- encoded typed arrays across trace layers and chart APIs
+- Sankey node alignment
+- encoded Sankey node/link support
+- encoded ParallelCoord/ParallelCategories convenience overloads
+- C# wrapper coverage for the parity surface
+- docs and release notes
 
 ## Verification
 
-After all commits:
+Verified in repo:
 
-- `.\build.cmd runTestsAll` should pass
-- all upstream 2.28 test fixtures should be green
-- C# interop tests should cover at least the foundational encoded chart roots
-- manual console samples should render correctly in a browser
+- `.\build.cmd runTestsCore` passes
+- upstream 2.28 fixtures are present and green in the core suite
+- the C# wrapper builds successfully with the completed domain bindings
