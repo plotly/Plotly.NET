@@ -79,3 +79,31 @@ sankey1
 (***hide***)
 sankey1 |> GenericChart.toChartHTML
 (***include-it-raw***)
+
+(**
+## Node alignment
+
+The `NodeAlign` parameter controls how nodes are aligned horizontally. The available options are
+`Left`, `Right`, `Center`, and `Justify` (the default).
+
+Use the `NodeAlign` parameter on `Chart.Sankey` to apply alignment via the convenience overload,
+or pass `Align` to `SankeyNodes.init` directly when building nodes manually:
+*)
+
+let sankeyAligned =
+    Chart.Sankey(
+        nodeLabels = [ "Source A"; "Source B"; "Sink" ],
+        linkedNodeIds = [ 0, 2; 1, 2 ],
+        linkValues = [ 8; 4 ],
+        NodeAlign = StyleParam.SankeyNodeAlign.Left,
+        UseDefaults = false
+    )
+
+(*** condition: ipynb ***)
+#if IPYNB
+sankeyAligned
+#endif // IPYNB
+
+(***hide***)
+sankeyAligned |> GenericChart.toChartHTML
+(***include-it-raw***)

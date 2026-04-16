@@ -32,9 +32,10 @@ The fixes are JS-runtime-only and do not require Plotly.NET changes — they are
 |---------|:-:|:-:|:-:|:-:|---|
 | Encoded typed arrays | ✅ | ✅ | ✅ (foundational) | ✅ 944 passing | H3 done |
 | Sankey node `align` | ✅ | ✅ | ❌ | ✅ | Done (Commit I) |
-| Virtual-WebGL | ❌ | N/A | N/A | ❌ | Not started |
+| Virtual-WebGL | N/A | N/A | N/A | N/A | No surface needed — use `DisplayOptions.AdditionalHeadTags` |
 | Sankey encoded arrays (nodes + links) | ✅ | ✅ | ❌ | ✅ | Done (Commit K) |
 | ParallelCoord/Categories `keyValuesEncoded` | ✅ | ✅ | ❌ | ✅ | Done (Commit L) |
+| Documentation | ✅ | — | — | — | Done (Commit N) |
 | Bundled plotly.js 2.28.0 | ✅ | — | — | — | Done |
 
 ## Remaining Work Packages
