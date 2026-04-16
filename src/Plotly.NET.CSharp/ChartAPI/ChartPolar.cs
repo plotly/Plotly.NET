@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,7 +74,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
 
             =>
-                Plotly.NET.ChartPolar.Chart.ScatterPolar<RType, ThetaType, TextType>(
+                Plotly.NET.ChartPolar_Scatter.Chart.ScatterPolar<RType, ThetaType, TextType>(
                     r: r,
                     theta: theta,
                     mode: mode,
@@ -149,7 +149,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
 
             =>
-                Plotly.NET.ChartPolar.Chart.PointPolar<RType, ThetaType, TextType>(
+                Plotly.NET.ChartPolar_Scatter.Chart.PointPolar<RType, ThetaType, TextType>(
                     r: r,
                     theta: theta,
                     Name: Name.ToOption(),
@@ -230,7 +230,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
 
             =>
-                Plotly.NET.ChartPolar.Chart.LinePolar<RType, ThetaType, TextType>(
+                Plotly.NET.ChartPolar_Scatter.Chart.LinePolar<RType, ThetaType, TextType>(
                     r: r,
                     theta: theta,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -319,7 +319,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
 
             =>
-                Plotly.NET.ChartPolar.Chart.SplinePolar<RType, ThetaType, TextType>(
+                Plotly.NET.ChartPolar_Scatter.Chart.SplinePolar<RType, ThetaType, TextType>(
                     r: r,
                     theta: theta,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -397,7 +397,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
 
             =>
-                Plotly.NET.ChartPolar.Chart.BubblePolar<RType, ThetaType, TextType>(
+                Plotly.NET.ChartPolar_Scatter.Chart.BubblePolar<RType, ThetaType, TextType>(
                     r: r,
                     theta: theta,
                     sizes: sizes,
@@ -469,7 +469,7 @@ namespace Plotly.NET.CSharp
             where TextType : IConvertible
 
             =>
-                Plotly.NET.ChartPolar.Chart.BarPolar<RType, ThetaType, TextType, RType, ThetaType>(
+                Plotly.NET.ChartPolar_Bar.Chart.BarPolar<RType, ThetaType, TextType, RType, ThetaType>(
                     r: r,
                     theta: theta,
                     Name: Name.ToOption(),
@@ -492,3 +492,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+

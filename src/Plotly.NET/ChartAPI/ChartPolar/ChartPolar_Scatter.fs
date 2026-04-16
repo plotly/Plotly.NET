@@ -1,4 +1,4 @@
-﻿namespace Plotly.NET
+namespace Plotly.NET
 
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
@@ -12,23 +12,31 @@ open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
 
 [<AutoOpen>]
-module ChartTernary =
+module ChartPolar_Scatter =
 
     [<Extension>]
     type Chart =
+        [<Extension>]
+        static member internal renderScatterPolarTrace
+            (useDefaults: bool)
+            (useWebGL: bool)
+            (style: TracePolar -> TracePolar)
+            =
+            if useWebGL then
+                TracePolar.initScatterPolarGL style |> GenericChart.ofTraceObject useDefaults
+            else
+                TracePolar.initScatterPolar style |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
-        /// Creates a Scatter plot on a ternary coordinate system
+        /// Creates a polar scatter plot.
         ///
-        /// In general, ScatterTernary creates a barycentric plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// In general, ScatterPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales.
         ///
-        /// ScatterTernary charts are the basis of PointTernary, LineTernary, and BubbleTernary Charts, and can be customized as such. We also provide abstractions for those: Chart.LineTernary, Chart.PointTernary, Chart.BubbleTernary
+        /// ScatterPolar charts are the basis of PointPolar, LinePolar, SplinePolar, and BubblePolar Charts, and can be customized as such. We also provide abstractions for those: Chart.PointPolar, Chart.LinePolar, Chart.SplinePolar , Chart.BubblePolar
         /// </summary>
-        /// <param name="A">Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="B">Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="C">Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
-        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="r">Sets the radial coordinates of the plotted data</param>
+        /// <param name="theta">Sets the angular coordinates of the plotted data (in degrees)</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -48,14 +56,14 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member ScatterTernary
+        [<Extension>]
+        static member ScatterPolar
             (
-                ?A: seq<#IConvertible>,
-                ?B: seq<#IConvertible>,
-                ?C: seq<#IConvertible>,
-                ?Sum: #IConvertible,
-                ?Mode: StyleParam.Mode,
+                r: seq<#IConvertible>,
+                theta: seq<#IConvertible>,
+                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -67,14 +75,15 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
@@ -87,8 +96,8 @@ module ChartTernary =
                 |> TraceObjects.Marker.style (
                     ?Color = MarkerColor,
                     ?Outline = MarkerOutline,
-                    ?Symbol = MarkerSymbol,
-                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
                     ?Colorscale = MarkerColorScale,
                     ?MultiOpacity = MultiOpacity
                 )
@@ -103,15 +112,13 @@ module ChartTernary =
                     ?Width = LineWidth
                 )
 
-            TraceTernary.initScatterTernary (
-                TraceTernaryStyle.ScatterTernary(
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    R = r,
+                    Theta = theta,
+                    Mode = mode,
                     Marker = marker,
                     Line = line,
-                    ?A = A,
-                    ?B = B,
-                    ?C = C,
-                    ?Mode = Mode,
-                    ?Sum = Sum,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -120,17 +127,17 @@ module ChartTernary =
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition
                 )
-            )
-            |> GenericChart.ofTraceObject useDefaults
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         /// <summary>
-        /// Creates a Scatter plot on a ternary coordinate system from encoded a, b, and c components.
+        /// Creates a polar scatter plot from encoded radial and angular coordinates.
         /// </summary>
-        /// <param name="aEncoded">Sets the quantity of component `a` in each data point as an encoded typed array.</param>
-        /// <param name="bEncoded">Sets the quantity of component `b` in each data point as an encoded typed array.</param>
-        /// <param name="cEncoded">Sets the quantity of component `c` in each data point as an encoded typed array.</param>
-        /// <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
-        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="rEncoded">Sets the radial coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="thetaEncoded">Sets the angular coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -150,14 +157,14 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member ScatterTernary
+        [<Extension>]
+        static member ScatterPolar
             (
-                aEncoded: EncodedTypedArray,
-                bEncoded: EncodedTypedArray,
-                cEncoded: EncodedTypedArray,
-                ?Sum: #IConvertible,
-                ?Mode: StyleParam.Mode,
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -169,14 +176,15 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
@@ -189,8 +197,8 @@ module ChartTernary =
                 |> TraceObjects.Marker.style (
                     ?Color = MarkerColor,
                     ?Outline = MarkerOutline,
-                    ?Symbol = MarkerSymbol,
-                    ?MultiSymbol = MultiMarkerSymbol,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
                     ?Colorscale = MarkerColorScale,
                     ?MultiOpacity = MultiOpacity
                 )
@@ -205,15 +213,13 @@ module ChartTernary =
                     ?Width = LineWidth
                 )
 
-            TraceTernary.initScatterTernary (
-                TraceTernaryStyle.ScatterTernary(
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    REncoded = rEncoded,
+                    ThetaEncoded = thetaEncoded,
+                    Mode = mode,
                     Marker = marker,
                     Line = line,
-                    AEncoded = aEncoded,
-                    BEncoded = bEncoded,
-                    CEncoded = cEncoded,
-                    ?Mode = Mode,
-                    ?Sum = Sum,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -222,18 +228,20 @@ module ChartTernary =
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition
                 )
-            )
-            |> GenericChart.ofTraceObject useDefaults
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         /// <summary>
-        /// Creates a Scatter plot on a ternary coordinate system
+        /// Creates a polar scatter plot.
         ///
-        /// In general, ScatterTernary creates a barycentric plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// In general, ScatterPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales.
         ///
-        /// ScatterTernary charts are the basis of PointTernary, LineTernary, and BubbleTernary Charts, and can be customized as such. We also provide abstractions for those: Chart.LineTernary, Chart.PointTernary, Chart.BubbleTernary
+        /// ScatterPolar charts are the basis of PointPolar, LinePolar, SplinePolar, and BubblePolar Charts, and can be customized as such. We also provide abstractions for those: Chart.PointPolar, Chart.LinePolar, Chart.SplinePolar , Chart.BubblePolar
         /// </summary>
-        /// <param name="abc">Sets the quantities of the a, b, and c components</param>
-        /// <param name="Mode">Determines the drawing mode for this scatter trace.</param>
+        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
+        /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -253,11 +261,13 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member ScatterTernary
+        [<Extension>]
+        static member ScatterPolar
             (
-                abc,
-                ?Mode: StyleParam.Mode,
+                rTheta: seq<#IConvertible * #IConvertible>,
+                mode: StyleParam.Mode,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -269,24 +279,24 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
-            let a, b, c = Seq.unzip3 abc
+            let r, t = Seq.unzip rTheta
 
-            Chart.ScatterTernary(
-                A = a,
-                B = b,
-                C = c,
-                ?Mode = Mode,
+            Chart.ScatterPolar(
+                r,
+                t,
+                mode,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -306,18 +316,17 @@ module ChartTernary =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
 
         /// <summary>
-        /// Creates a point plot on a ternary coordinate system
+        /// Creates a polar point plot.
         ///
-        /// In general, PointTernary creates a barycentric point plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// PointPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales as points.
         /// </summary>
-        /// <param name="A">Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="B">Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="C">Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
+        /// <param name="r">Sets the radial coordinates of the plotted data</param>
+        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -332,13 +341,13 @@ module ChartTernary =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member PointTernary
+        [<Extension>]
+        static member PointPolar
             (
-                ?A: seq<#IConvertible>,
-                ?B: seq<#IConvertible>,
-                ?C: seq<#IConvertible>,
-                ?Sum: #IConvertible,
+                r: seq<#IConvertible>,
+                theta: seq<#IConvertible>,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -350,21 +359,81 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity
+                )
+
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    R = r,
+                    Theta = theta,
+                    Mode = changeMode StyleParam.Mode.Markers,
+                    Marker = marker,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>Creates a polar point plot from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member PointPolar
+            (
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
             let changeMode =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
 
-            Chart.ScatterTernary(
-                ?A = A,
-                ?B = B,
-                ?C = C,
-                Mode = changeMode StyleParam.Mode.Markers,
-                ?Sum = Sum,
+            Chart.ScatterPolar(
+                rEncoded,
+                thetaEncoded,
+                changeMode StyleParam.Mode.Markers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -379,65 +448,16 @@ module ChartTernary =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
-                ?UseDefaults = UseDefaults
-            )
-
-        /// <summary>Creates a point plot on a ternary coordinate system from encoded a, b, and c components.</summary>
-        static member PointTernary
-            (
-                aEncoded: EncodedTypedArray,
-                bEncoded: EncodedTypedArray,
-                cEncoded: EncodedTypedArray,
-                ?Sum: #IConvertible,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
-                ?Marker: Marker,
-                ?UseDefaults: bool
-            ) =
-
-            let changeMode =
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-
-            Chart.ScatterTernary(
-                aEncoded,
-                bEncoded,
-                cEncoded,
-                ?Sum = Sum,
-                Mode = changeMode StyleParam.Mode.Markers,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
 
         /// <summary>
-        /// Creates a point plot on a ternary coordinate system
+        /// Creates a polar point plot.
         ///
-        /// In general, PointTernary creates a barycentric point plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// PointPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales as points.
         /// </summary>
-        /// <param name="abc">Sets the quantities of the a, b, and c components</param>
+        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -452,10 +472,12 @@ module ChartTernary =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member PointTernary
+        [<Extension>]
+        static member PointPolar
             (
-                abc: seq<#IConvertible * #IConvertible * #IConvertible>,
+                rTheta: seq<#IConvertible * #IConvertible>,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -467,18 +489,18 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
-            let a, b, c = Seq.unzip3 abc
+            let r, t = Seq.unzip rTheta
 
-            Chart.PointTernary(
-                A = a,
-                B = b,
-                C = c,
+            Chart.PointPolar(
+                r,
+                t,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -493,20 +515,19 @@ module ChartTernary =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
             )
 
         /// <summary>
-        /// Creates a line plot on a ternary coordinate system
+        /// Creates a polar line plot.
         ///
-        /// In general, LineTernary creates a barycentric line plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a line.
         /// </summary>
-        /// <param name="A">Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="B">Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="C">Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
-        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="r">Sets the radial coordinates of the plotted data</param>
+        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -526,13 +547,13 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member LineTernary
+        [<Extension>]
+        static member LinePolar
             (
-                ?A: seq<#IConvertible>,
-                ?B: seq<#IConvertible>,
-                ?C: seq<#IConvertible>,
-                ?Sum: #IConvertible,
+                r: seq<#IConvertible>,
+                theta: seq<#IConvertible>,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -545,17 +566,20 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
+            let useDefaults =
+                defaultArg UseDefaults true
 
             let changeMode =
                 let isShowMarker =
@@ -566,41 +590,54 @@ module ChartTernary =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            Chart.ScatterTernary(
-                ?A = A,
-                ?B = B,
-                ?C = C,
-                ?Sum = Sum,
-                Mode = changeMode StyleParam.Mode.Lines,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                ?LineColor = LineColor,
-                ?LineColorScale = LineColorScale,
-                ?LineWidth = LineWidth,
-                ?LineDash = LineDash,
-                ?Line = Line,
-                ?UseDefaults = UseDefaults
-            )
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?MultiOpacity = MultiOpacity,
+                    ?Colorscale = MarkerColorScale
+                )
 
-        /// <summary>Creates a line plot on a ternary coordinate system from encoded a, b, and c components.</summary>
-        static member LineTernary
+            let line =
+                Line
+                |> Option.defaultValue (Plotly.NET.Line.init ())
+                |> Plotly.NET.Line.style (
+                    ?Color = LineColor,
+                    ?Dash = LineDash,
+                    ?Colorscale = LineColorScale,
+                    ?Width = LineWidth
+                )
+
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    R = r,
+                    Theta = theta,
+                    Mode = changeMode StyleParam.Mode.Lines,
+                    Marker = marker,
+                    Line = line,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>Creates a polar line plot from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member LinePolar
             (
-                aEncoded: EncodedTypedArray,
-                bEncoded: EncodedTypedArray,
-                cEncoded: EncodedTypedArray,
-                ?Sum: #IConvertible,
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -613,14 +650,15 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
@@ -633,12 +671,10 @@ module ChartTernary =
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
                 >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
-            Chart.ScatterTernary(
-                aEncoded,
-                bEncoded,
-                cEncoded,
-                ?Sum = Sum,
-                Mode = changeMode StyleParam.Mode.Lines,
+            Chart.ScatterPolar(
+                rEncoded,
+                thetaEncoded,
+                changeMode StyleParam.Mode.Lines,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -658,16 +694,17 @@ module ChartTernary =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
             )
 
         /// <summary>
-        /// Creates a line plot on a ternary coordinate system
+        /// Creates a polar line plot.
         ///
-        /// In general, LineTernary creates a barycentric line plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
+        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a line.
         /// </summary>
-        /// <param name="abc">Sets the quantities of the a, b, and c components</param>
-        /// <param name="ShowMarkers">Whether to show markers for the individual data points</param>
+        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -687,10 +724,12 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member LineTernary
+        [<Extension>]
+        static member LinePolar
             (
-                abc,
+                rTheta: seq<#IConvertible * #IConvertible>,
                 ?ShowMarkers: bool,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -703,23 +742,23 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
-            let a, b, c = Seq.unzip3 abc
+            let r, t = Seq.unzip rTheta
 
-            Chart.LineTernary(
-                A = a,
-                B = b,
-                C = c,
+            Chart.LinePolar(
+                r,
+                t,
                 ?ShowMarkers = ShowMarkers,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -740,22 +779,20 @@ module ChartTernary =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
 
             )
 
-        //// Creates a bubble plot on a ternary coordinate system
+        /// <summary>
+        /// Creates a polar spline plot.
         ///
-        /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
-        ///
-        /// In general, BubbleTernary creates a barycentric point plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
-        /// A 4th data dimension is used to determine the size of the points.
+        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a smoothed line.
         /// </summary>
-        /// <param name="sizes">Sets the bubble size of the plotted data</param>
-        /// <param name="A">Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="B">Sets the quantity of component `b` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="C">Sets the quantity of component `c` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary&lt;i&gt;.sum`.</param>
-        /// <param name="Sum">The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary&lt;i&gt;.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use `ternary&lt;i&gt;.sum`</param>
+        /// <param name="r">Sets the radial coordinates of the plotted data</param>
+        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -775,14 +812,15 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member BubbleTernary
+        [<Extension>]
+        static member SplinePolar
             (
-                sizes: seq<int>,
-                ?A: seq<#IConvertible>,
-                ?B: seq<#IConvertible>,
-                ?C: seq<#IConvertible>,
-                ?Sum: #IConvertible,
+                r: seq<#IConvertible>,
+                theta: seq<#IConvertible>,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -794,23 +832,29 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
             let useDefaults =
                 defaultArg UseDefaults true
 
-            // if text position or font is set than show labels (not only when hovering)
             let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
                 StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
             let marker =
                 Marker
@@ -818,11 +862,10 @@ module ChartTernary =
                 |> TraceObjects.Marker.style (
                     ?Color = MarkerColor,
                     ?Outline = MarkerOutline,
-                    ?Symbol = MarkerSymbol,
-                    ?MultiSymbol = MultiMarkerSymbol,
-                    ?Colorscale = MarkerColorScale,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
                     ?MultiOpacity = MultiOpacity,
-                    MultiSize = sizes
+                    ?Colorscale = MarkerColorScale
                 )
 
             let line =
@@ -832,18 +875,18 @@ module ChartTernary =
                     ?Color = LineColor,
                     ?Dash = LineDash,
                     ?Colorscale = LineColorScale,
-                    ?Width = LineWidth
+                    ?Width = LineWidth,
+                    ?Smoothing = Smoothing,
+                    Shape = StyleParam.Shape.Spline
                 )
 
-            TraceTernary.initScatterTernary (
-                TraceTernaryStyle.ScatterTernary(
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    R = r,
+                    Theta = theta,
+                    Mode = changeMode StyleParam.Mode.Lines,
                     Marker = marker,
                     Line = line,
-                    Mode = changeMode StyleParam.Mode.Markers,
-                    ?A = A,
-                    ?B = B,
-                    ?C = C,
-                    ?Sum = Sum,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
@@ -852,17 +895,19 @@ module ChartTernary =
                     ?TextPosition = TextPosition,
                     ?MultiTextPosition = MultiTextPosition
                 )
-            )
-            |> GenericChart.ofTraceObject useDefaults
 
-        /// <summary>Creates a bubble plot on a ternary coordinate system from encoded a, b, and c components.</summary>
-        static member BubbleTernary
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>Creates a polar spline plot from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member SplinePolar
             (
-                aEncoded: EncodedTypedArray,
-                bEncoded: EncodedTypedArray,
-                cEncoded: EncodedTypedArray,
-                sizes: seq<int>,
-                ?Sum: #IConvertible,
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -874,35 +919,26 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
-
             let changeMode =
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
 
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    ?Outline = MarkerOutline,
-                    ?Symbol = MarkerSymbol,
-                    ?MultiSymbol = MultiMarkerSymbol,
-                    ?Colorscale = MarkerColorScale,
-                    ?MultiOpacity = MultiOpacity,
-                    MultiSize = sizes
-                )
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
 
             let line =
                 Line
@@ -911,38 +947,42 @@ module ChartTernary =
                     ?Color = LineColor,
                     ?Dash = LineDash,
                     ?Colorscale = LineColorScale,
-                    ?Width = LineWidth
+                    ?Width = LineWidth,
+                    ?Smoothing = Smoothing,
+                    Shape = StyleParam.Shape.Spline
                 )
 
-            TraceTernary.initScatterTernary (
-                TraceTernaryStyle.ScatterTernary(
-                    Marker = marker,
-                    Line = line,
-                    Mode = changeMode StyleParam.Mode.Markers,
-                    AEncoded = aEncoded,
-                    BEncoded = bEncoded,
-                    CEncoded = cEncoded,
-                    ?Sum = Sum,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
-                )
+            Chart.ScatterPolar(
+                rEncoded,
+                thetaEncoded,
+                changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                Line = line,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
             )
-            |> GenericChart.ofTraceObject useDefaults
 
         /// <summary>
-        /// Creates a bubble plot on a ternary coordinate system
+        /// Creates a polar spline plot.
         ///
-        /// A bubble chart is a variation of the Point chart, where the data points get an additional scale by being rendered as bubbles of different sizes.
-        ///
-        /// In general, BubbleTernary creates a barycentric point plot on three variables which sum to a constant, graphically depicting the ratios of the three variables as positions in an equilateral triangle.
-        /// A 4th data dimension is used to determine the size of the points.
+        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a smoothed line.
         /// </summary>
-        /// <param name="abcSizes">Sets the quantities of the a, b, and c components</param>
+        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
+        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -962,10 +1002,14 @@ module ChartTernary =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        static member BubbleTernary
+        [<Extension>]
+        static member SplinePolar
             (
-                abcSizes: seq<#IConvertible * #IConvertible * #IConvertible * int>,
+                rTheta: seq<#IConvertible * #IConvertible>,
+                ?ShowMarkers: bool,
+                ?Smoothing: float,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -977,28 +1021,25 @@ module ChartTernary =
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol>,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
                 ?LineColor: Color,
                 ?LineColorScale: StyleParam.Colorscale,
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
+                ?UseWebGL: bool,
                 ?UseDefaults: bool
             ) =
 
-            let a, b, c, sizes =
-                abcSizes |> Seq.map (fun (a, _, _, _) -> a),
-                abcSizes |> Seq.map (fun (_, b, _, _) -> b),
-                abcSizes |> Seq.map (fun (_, _, c, _) -> c),
-                abcSizes |> Seq.map (fun (_, _, _, s) -> s)
+            let r, t = Seq.unzip rTheta
 
-            Chart.BubbleTernary(
-                sizes,
-                A = a,
-                B = b,
-                C = c,
+            Chart.SplinePolar(
+                r,
+                t,
+                ?ShowMarkers = ShowMarkers,
+                ?Smoothing = Smoothing,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
@@ -1018,5 +1059,223 @@ module ChartTernary =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
+                ?UseWebGL = UseWebGL,
                 ?UseDefaults = UseDefaults
+
             )
+
+        /// <summary>
+        /// Creates a polar bubble chart.
+        ///
+        /// BubblePolar Plots plot two-dimensional data on on a polar coordinate system comprised of angular and radial position scales, additionally using the points size as a 4th dimension.
+        /// </summary>
+        /// <param name="r">Sets the radial coordinates of the plotted data</param>
+        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
+        /// <param name="sizes">Sets the bubble size of the plotted data</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member BubblePolar
+            (
+                r: seq<#IConvertible>,
+                theta: seq<#IConvertible>,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    R = r,
+                    Theta = theta,
+                    Mode = StyleParam.Mode.Markers,
+                    Marker = marker,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>Creates a polar bubble chart from encoded radial and angular coordinates.</summary>
+        [<Extension>]
+        static member BubblePolar
+            (
+                rEncoded: EncodedTypedArray,
+                thetaEncoded: EncodedTypedArray,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let useDefaults =
+                defaultArg UseDefaults true
+
+            let marker =
+                Marker
+                |> Option.defaultValue (TraceObjects.Marker.init ())
+                |> TraceObjects.Marker.style (
+                    ?Color = MarkerColor,
+                    ?Outline = MarkerOutline,
+                    ?Symbol3D = MarkerSymbol,
+                    ?MultiSymbol3D = MultiMarkerSymbol,
+                    ?Colorscale = MarkerColorScale,
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
+                )
+
+            let style =
+                TracePolarStyle.ScatterPolar(
+                    REncoded = rEncoded,
+                    ThetaEncoded = thetaEncoded,
+                    Mode = StyleParam.Mode.Markers,
+                    Marker = marker,
+                    ?Name = Name,
+                    ?ShowLegend = ShowLegend,
+                    ?Opacity = Opacity,
+                    ?Text = Text,
+                    ?MultiText = MultiText,
+                    ?TextPosition = TextPosition,
+                    ?MultiTextPosition = MultiTextPosition
+                )
+
+            let useWebGL = defaultArg UseWebGL false
+
+            Chart.renderScatterPolarTrace useDefaults useWebGL style
+
+        /// <summary>
+        /// Creates a polar bubble chart.
+        ///
+        /// BubblePolar Plots plot two-dimensional data on on a polar coordinate system comprised of angular and radial position scales, additionally using the points size as a 4th dimension.
+        /// </summary>
+        /// <param name="rThetaSizes">Sets the radial and angular coordinates of the plotted data together with the sizes of the points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member BubblePolar
+            (
+                rThetaSizes: seq<#IConvertible * #IConvertible * int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?UseWebGL: bool,
+                ?UseDefaults: bool
+            ) =
+
+            let r, t, sizes = Seq.unzip3 rThetaSizes
+
+            Chart.BubblePolar(
+                r,
+                t,
+                sizes,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?UseWebGL = UseWebGL,
+                ?UseDefaults = UseDefaults
+
+            )
+

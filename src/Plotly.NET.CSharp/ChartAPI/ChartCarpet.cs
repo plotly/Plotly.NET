@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +71,7 @@ namespace Plotly.NET.CSharp
             where AType : IConvertible 
             where BType : IConvertible
             =>
-                Plotly.NET.ChartCarpet.Chart.Carpet<XType, IEnumerable<MultiXType>, MultiXType, YType, IEnumerable<MultiYType>, MultiYType, AType, BType>(
+                Plotly.NET.ChartCarpet_Base.Chart.Carpet<XType, IEnumerable<MultiXType>, MultiXType, YType, IEnumerable<MultiYType>, MultiYType, AType, BType>(
                     carpetId: carpetId,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -154,7 +154,7 @@ namespace Plotly.NET.CSharp
             where BType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.ChartCarpet.Chart.ScatterCarpet<AType, BType, TextType>(
+            Plotly.NET.ChartCarpet_Scatter.Chart.ScatterCarpet<AType, BType, TextType>(
                 a: a,
                 b: b,
                 mode: mode,
@@ -230,7 +230,7 @@ namespace Plotly.NET.CSharp
             where BType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.ChartCarpet.Chart.PointCarpet<AType, BType, TextType>(
+            Plotly.NET.ChartCarpet_Scatter.Chart.PointCarpet<AType, BType, TextType>(
                 a: a,
                 b: b,
                 carpetAnchorId: carpetAnchorId,
@@ -312,7 +312,7 @@ namespace Plotly.NET.CSharp
             where BType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.ChartCarpet.Chart.LineCarpet<AType, BType, TextType>(
+            Plotly.NET.ChartCarpet_Scatter.Chart.LineCarpet<AType, BType, TextType>(
                 a: a,
                 b: b,
                 carpetAnchorId: carpetAnchorId,
@@ -403,7 +403,7 @@ namespace Plotly.NET.CSharp
             where BType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.ChartCarpet.Chart.SplineCarpet<AType, BType, TextType>(
+            Plotly.NET.ChartCarpet_Scatter.Chart.SplineCarpet<AType, BType, TextType>(
                 a: a,
                 b: b,
                 carpetAnchorId: carpetAnchorId,
@@ -494,7 +494,7 @@ namespace Plotly.NET.CSharp
             where BType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.ChartCarpet.Chart.BubbleCarpet<AType, BType, TextType>(
+            Plotly.NET.ChartCarpet_Scatter.Chart.BubbleCarpet<AType, BType, TextType>(
                 a: a,
                 b: b,
                 sizes: sizes,
@@ -583,7 +583,7 @@ namespace Plotly.NET.CSharp
             where BType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartCarpet.Chart.ContourCarpet<ZType, AType, BType, TextType>(
+                Plotly.NET.ChartCarpet_Contour.Chart.ContourCarpet<ZType, AType, BType, TextType>(
                     z: z,
                     carpetAnchorId: carpetAnchorId,
                     Name: Name.ToOption(),
@@ -612,3 +612,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,7 +76,7 @@ namespace Plotly.NET.CSharp
             where SumType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartTernary.Chart.ScatterTernary<AType, BType, CType, SumType, TextType>(
+                Plotly.NET.ChartTernary_Scatter.Chart.ScatterTernary<AType, BType, CType, SumType, TextType>(
                     A: A.ToOption(),
                     B: B.ToOption(),
                     C: C.ToOption(),
@@ -155,7 +155,7 @@ namespace Plotly.NET.CSharp
             where SumType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartTernary.Chart.PointTernary<AType, BType, CType, SumType, TextType>(
+                Plotly.NET.ChartTernary_Scatter.Chart.PointTernary<AType, BType, CType, SumType, TextType>(
                     A: A.ToOption(),
                     B: B.ToOption(),
                     C: C.ToOption(),
@@ -240,7 +240,7 @@ namespace Plotly.NET.CSharp
             where SumType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartTernary.Chart.LineTernary<AType, BType, CType, SumType, TextType>(
+                Plotly.NET.ChartTernary_Scatter.Chart.LineTernary<AType, BType, CType, SumType, TextType>(
                     A: A.ToOption(),
                     B: B.ToOption(),
                     C: C.ToOption(),
@@ -334,7 +334,7 @@ namespace Plotly.NET.CSharp
             where SumType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartTernary.Chart.BubbleTernary<AType, BType, CType, SumType, TextType>(
+                Plotly.NET.ChartTernary_Scatter.Chart.BubbleTernary<AType, BType, CType, SumType, TextType>(
                     sizes: sizes,
                     A: A.ToOption(),
                     B: B.ToOption(),
@@ -363,3 +363,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+

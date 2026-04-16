@@ -1,4 +1,4 @@
-﻿namespace Plotly.NET
+namespace Plotly.NET
 
 open Plotly.NET.LayoutObjects
 open Plotly.NET.TraceObjects
@@ -6,36 +6,27 @@ open Plotly.NET.TraceObjects
 open DynamicObj
 open System
 open System.IO
+//open FSharp.Care.Collections
 
 open StyleParam
 open System.Runtime.InteropServices
 open System.Runtime.CompilerServices
 
 [<AutoOpen>]
-module ChartPolar =
+module Chart3D_Scatter =
 
     [<Extension>]
     type Chart =
-        [<Extension>]
-        static member internal renderScatterPolarTrace
-            (useDefaults: bool)
-            (useWebGL: bool)
-            (style: TracePolar -> TracePolar)
-            =
-            if useWebGL then
-                TracePolar.initScatterPolarGL style |> GenericChart.ofTraceObject useDefaults
-            else
-                TracePolar.initScatterPolar style |> GenericChart.ofTraceObject useDefaults
-
         /// <summary>
-        /// Creates a polar scatter plot.
+        /// Creates a Scatter3D plot.
         ///
-        /// In general, ScatterPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales.
+        /// In general, Scatter3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension.
         ///
-        /// ScatterPolar charts are the basis of PointPolar, LinePolar, SplinePolar, and BubblePolar Charts, and can be customized as such. We also provide abstractions for those: Chart.PointPolar, Chart.LinePolar, Chart.SplinePolar , Chart.BubblePolar
+        /// Scatter3D charts are the basis of Point3D, Line3D, and Bubble3D Charts, and can be customized as such. We also provide abstractions for those: Chart.Line3D, Chart.Point3D, Chart.Bubble3D
         /// </summary>
-        /// <param name="r">Sets the radial coordinates of the plotted data</param>
-        /// <param name="theta">Sets the angular coordinates of the plotted data (in degrees)</param>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="z">Sets the z coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -56,13 +47,16 @@ module ChartPolar =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member ScatterPolar
+        static member Scatter3D
             (
-                r: seq<#IConvertible>,
-                theta: seq<#IConvertible>,
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
                 mode: StyleParam.Mode,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -83,7 +77,9 @@ module ChartPolar =
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
-                ?UseWebGL: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
@@ -112,31 +108,44 @@ module ChartPolar =
                     ?Width = LineWidth
                 )
 
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    R = r,
-                    Theta = theta,
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initScatter3D (
+                Trace3DStyle.Scatter3D(
+                    X = x,
+                    Y = y,
+                    Z = z,
                     Mode = mode,
-                    Marker = marker,
-                    Line = line,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Projection = Projection,
+                    Marker = marker,
+                    Line = line
                 )
+            )
 
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
 
         /// <summary>
-        /// Creates a polar scatter plot from encoded radial and angular coordinates.
+        /// Creates a Scatter3D plot from encoded x, y, and z coordinates.
         /// </summary>
-        /// <param name="rEncoded">Sets the radial coordinates of the plotted data as an encoded typed array.</param>
-        /// <param name="thetaEncoded">Sets the angular coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="xEncoded">Sets the x coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="yEncoded">Sets the y coordinates of the plotted data as an encoded typed array.</param>
+        /// <param name="zEncoded">Sets the z coordinates of the plotted data as an encoded typed array.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -157,13 +166,16 @@ module ChartPolar =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member ScatterPolar
+        static member Scatter3D
             (
-                rEncoded: EncodedTypedArray,
-                thetaEncoded: EncodedTypedArray,
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
                 mode: StyleParam.Mode,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -184,7 +196,9 @@ module ChartPolar =
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
-                ?UseWebGL: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
@@ -213,34 +227,46 @@ module ChartPolar =
                     ?Width = LineWidth
                 )
 
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    REncoded = rEncoded,
-                    ThetaEncoded = thetaEncoded,
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initScatter3D (
+                Trace3DStyle.Scatter3D(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
                     Mode = mode,
-                    Marker = marker,
-                    Line = line,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Projection = Projection,
+                    Marker = marker,
+                    Line = line
                 )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
 
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         /// <summary>
-        /// Creates a polar scatter plot.
+        /// Creates a Scatter3D plot.
         ///
-        /// In general, ScatterPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales.
+        /// In general, Scatter3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension.
         ///
-        /// ScatterPolar charts are the basis of PointPolar, LinePolar, SplinePolar, and BubblePolar Charts, and can be customized as such. We also provide abstractions for those: Chart.PointPolar, Chart.LinePolar, Chart.SplinePolar , Chart.BubblePolar
+        /// Scatter3D charts are the basis of Point3D, Line3D, and Bubble3D Charts, and can be customized as such. We also provide abstractions for those: Chart.Line3D, Chart.Point3D, Chart.Bubble3D
         /// </summary>
-        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
+        /// <param name="xyz">Sets the x, y, and z coordinates of the plotted data.</param>
         /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
@@ -261,12 +287,14 @@ module ChartPolar =
         /// <param name="LineWidth">Sets the width of the line</param>
         /// <param name="LineDash">sets the drawing style of the line</param>
         /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member ScatterPolar
+        static member Scatter3D
             (
-                rTheta: seq<#IConvertible * #IConvertible>,
+                xyz: seq<#IConvertible * #IConvertible * #IConvertible>,
                 mode: StyleParam.Mode,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -287,15 +315,21 @@ module ChartPolar =
                 ?LineWidth: float,
                 ?LineDash: StyleParam.DrawingStyle,
                 ?Line: Line,
-                ?UseWebGL: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
-            let r, t = Seq.unzip rTheta
+            let useDefaults =
+                defaultArg UseDefaults true
 
-            Chart.ScatterPolar(
-                r,
-                t,
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Scatter3D(
+                x,
+                y,
+                z,
                 mode,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -316,17 +350,20 @@ module ChartPolar =
                 ?LineWidth = LineWidth,
                 ?LineDash = LineDash,
                 ?Line = Line,
-                ?UseWebGL = UseWebGL,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
                 ?UseDefaults = UseDefaults
             )
 
         /// <summary>
-        /// Creates a polar point plot.
+        /// Creates a Point3D plot.
         ///
-        /// PointPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales as points.
+        /// Point3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as points.
         /// </summary>
-        /// <param name="r">Sets the radial coordinates of the plotted data</param>
-        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="z">Sets the z coordinates of the plotted data.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -341,13 +378,16 @@ module ChartPolar =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member PointPolar
+        static member Point3D
             (
-                r: seq<#IConvertible>,
-                theta: seq<#IConvertible>,
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -362,7 +402,490 @@ module ChartPolar =
                 ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
-                ?UseWebGL: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            // if text position or font is set, then show labels (not only when hovering)
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.Scatter3D(
+                x = x,
+                y = y,
+                z = z,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?Projection = Projection,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>
+        /// Creates a Point3D plot.
+        ///
+        /// Point3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as points.
+        /// </summary>
+        /// <param name="xyz">Sets the x, y, and z coordinates of the plotted data.</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Point3D
+            (
+                xyz: seq<#IConvertible * #IConvertible * #IConvertible>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Point3D(
+                x,
+                y,
+                z,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a Point3D plot from encoded x, y, and z coordinates.</summary>
+        [<Extension>]
+        static member Point3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+
+            Chart.Scatter3D(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
+                zEncoded = zEncoded,
+                mode = changeMode StyleParam.Mode.Markers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?Projection = Projection,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?UseDefaults = UseDefaults
+            )
+
+
+        /// <summary>
+        /// Creates a Line3D plot.
+        ///
+        /// Line3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as a line connecting the individual datums.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="z">Sets the z coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Line3D
+            (
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.Scatter3D(
+                x = x,
+                y = y,
+                z = z,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
+                ?UseDefaults = UseDefaults
+
+            )
+
+        /// <summary>
+        /// Creates a Line3D plot.
+        ///
+        /// Line3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as a line connecting the individual datums.
+        /// </summary>
+        /// <param name="xyz">Sets the x, y, and z coordinates of the plotted data.</param>
+        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="LineColor">Sets the color of the line</param>
+        /// <param name="LineColorScale">Sets the colorscale of the line</param>
+        /// <param name="LineWidth">Sets the width of the line</param>
+        /// <param name="LineDash">sets the drawing style of the line</param>
+        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Line3D
+            (
+                xyz: seq<#IConvertible * #IConvertible * #IConvertible>,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let x, y, z = Seq.unzip3 xyz
+
+            Chart.Line3D(
+                x,
+                y,
+                z,
+                ?ShowMarkers = ShowMarkers,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
+                ?UseDefaults = UseDefaults
+            )
+
+        /// <summary>Creates a Line3D plot from encoded x, y, and z coordinates.</summary>
+        [<Extension>]
+        static member Line3D
+            (
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
+                ?ShowMarkers: bool,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?LineColor: Color,
+                ?LineColorScale: StyleParam.Colorscale,
+                ?LineWidth: float,
+                ?LineDash: StyleParam.DrawingStyle,
+                ?Line: Line,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
+                ?UseDefaults: bool
+            ) =
+
+            let changeMode =
+                let isShowMarker =
+                    match ShowMarkers with
+                    | Some isShow -> isShow
+                    | Option.None -> false
+
+                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
+                >> StyleParam.ModeUtils.showMarker (isShowMarker)
+
+            Chart.Scatter3D(
+                xEncoded = xEncoded,
+                yEncoded = yEncoded,
+                zEncoded = zEncoded,
+                mode = changeMode StyleParam.Mode.Lines,
+                ?Name = Name,
+                ?ShowLegend = ShowLegend,
+                ?Opacity = Opacity,
+                ?MultiOpacity = MultiOpacity,
+                ?Text = Text,
+                ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
+                ?MarkerColor = MarkerColor,
+                ?MarkerColorScale = MarkerColorScale,
+                ?MarkerOutline = MarkerOutline,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
+                ?Marker = Marker,
+                ?LineColor = LineColor,
+                ?LineColorScale = LineColorScale,
+                ?LineWidth = LineWidth,
+                ?LineDash = LineDash,
+                ?Line = Line,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
+                ?UseDefaults = UseDefaults
+            )
+
+
+        /// <summary>
+        /// Creates a Bubble3D plot.
+        ///
+        /// Bubble3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as points, additionally using the points size as a 4th dimension.
+        /// </summary>
+        /// <param name="x">Sets the x coordinates of the plotted data.</param>
+        /// <param name="y">Sets the y coordinates of the plotted data.</param>
+        /// <param name="z">Sets the z coordinates of the plotted data.</param>
+        /// <param name="sizes">Sets the size of the points</param>
+        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
+        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
+        /// <param name="Opacity">Sets the opactity of the trace</param>
+        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
+        /// <param name="Text">Sets a text associated with each datum</param>
+        /// <param name="MultiText">Sets individual text for each datum</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
+        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        [<Extension>]
+        static member Bubble3D
+            (
+                x: seq<#IConvertible>,
+                y: seq<#IConvertible>,
+                z: seq<#IConvertible>,
+                sizes: seq<int>,
+                ?Name: string,
+                ?ShowLegend: bool,
+                ?Opacity: float,
+                ?MultiOpacity: seq<float>,
+                ?Text: #IConvertible,
+                ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
+                ?MarkerColor: Color,
+                ?MarkerColorScale: StyleParam.Colorscale,
+                ?MarkerOutline: Line,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
+                ?Marker: Marker,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
@@ -381,718 +904,48 @@ module ChartPolar =
                     ?Symbol3D = MarkerSymbol,
                     ?MultiSymbol3D = MultiMarkerSymbol,
                     ?Colorscale = MarkerColorScale,
-                    ?MultiOpacity = MultiOpacity
+                    ?MultiOpacity = MultiOpacity,
+                    MultiSize = sizes
                 )
 
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    R = r,
-                    Theta = theta,
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initScatter3D (
+                Trace3DStyle.Scatter3D(
+                    X = x,
+                    Y = y,
+                    Z = z,
                     Mode = changeMode StyleParam.Mode.Markers,
-                    Marker = marker,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Projection = Projection,
+                    Marker = marker
                 )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
-
-        /// <summary>Creates a polar point plot from encoded radial and angular coordinates.</summary>
-        [<Extension>]
-        static member PointPolar
-            (
-                rEncoded: EncodedTypedArray,
-                thetaEncoded: EncodedTypedArray,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let changeMode =
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-
-            Chart.ScatterPolar(
-                rEncoded,
-                thetaEncoded,
-                changeMode StyleParam.Mode.Markers,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                ?UseWebGL = UseWebGL,
-                ?UseDefaults = UseDefaults
             )
 
-        /// <summary>
-        /// Creates a polar point plot.
-        ///
-        /// PointPolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales as points.
-        /// </summary>
-        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="MarkerColor">Sets the color of the marker</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
-        /// <param name="MarkerOutline">Sets the outline of the marker</param>
-        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
-        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member PointPolar
-            (
-                rTheta: seq<#IConvertible * #IConvertible>,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let r, t = Seq.unzip rTheta
-
-            Chart.PointPolar(
-                r,
-                t,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                ?UseWebGL = UseWebGL,
-                ?UseDefaults = UseDefaults
-
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
             )
 
-        /// <summary>
-        /// Creates a polar line plot.
-        ///
-        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a line.
-        /// </summary>
-        /// <param name="r">Sets the radial coordinates of the plotted data</param>
-        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="MarkerColor">Sets the color of the marker</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
-        /// <param name="MarkerOutline">Sets the outline of the marker</param>
-        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
-        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="LineColor">Sets the color of the line</param>
-        /// <param name="LineColorScale">Sets the colorscale of the line</param>
-        /// <param name="LineWidth">Sets the width of the line</param>
-        /// <param name="LineDash">sets the drawing style of the line</param>
-        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
+        /// <summary>Creates a Bubble3D plot from encoded x, y, and z coordinates.</summary>
         [<Extension>]
-        static member LinePolar
+        static member Bubble3D
             (
-                r: seq<#IConvertible>,
-                theta: seq<#IConvertible>,
-                ?ShowMarkers: bool,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?LineColor: Color,
-                ?LineColorScale: StyleParam.Colorscale,
-                ?LineWidth: float,
-                ?LineDash: StyleParam.DrawingStyle,
-                ?Line: Line,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let changeMode =
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None -> false
-
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    ?Outline = MarkerOutline,
-                    ?Symbol3D = MarkerSymbol,
-                    ?MultiSymbol3D = MultiMarkerSymbol,
-                    ?MultiOpacity = MultiOpacity,
-                    ?Colorscale = MarkerColorScale
-                )
-
-            let line =
-                Line
-                |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (
-                    ?Color = LineColor,
-                    ?Dash = LineDash,
-                    ?Colorscale = LineColorScale,
-                    ?Width = LineWidth
-                )
-
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    R = r,
-                    Theta = theta,
-                    Mode = changeMode StyleParam.Mode.Lines,
-                    Marker = marker,
-                    Line = line,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
-                )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
-
-        /// <summary>Creates a polar line plot from encoded radial and angular coordinates.</summary>
-        [<Extension>]
-        static member LinePolar
-            (
-                rEncoded: EncodedTypedArray,
-                thetaEncoded: EncodedTypedArray,
-                ?ShowMarkers: bool,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?LineColor: Color,
-                ?LineColorScale: StyleParam.Colorscale,
-                ?LineWidth: float,
-                ?LineDash: StyleParam.DrawingStyle,
-                ?Line: Line,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let changeMode =
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None -> false
-
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
-            Chart.ScatterPolar(
-                rEncoded,
-                thetaEncoded,
-                changeMode StyleParam.Mode.Lines,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                ?LineColor = LineColor,
-                ?LineColorScale = LineColorScale,
-                ?LineWidth = LineWidth,
-                ?LineDash = LineDash,
-                ?Line = Line,
-                ?UseWebGL = UseWebGL,
-                ?UseDefaults = UseDefaults
-            )
-
-        /// <summary>
-        /// Creates a polar line plot.
-        ///
-        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a line.
-        /// </summary>
-        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="MarkerColor">Sets the color of the marker</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
-        /// <param name="MarkerOutline">Sets the outline of the marker</param>
-        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
-        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="LineColor">Sets the color of the line</param>
-        /// <param name="LineColorScale">Sets the colorscale of the line</param>
-        /// <param name="LineWidth">Sets the width of the line</param>
-        /// <param name="LineDash">sets the drawing style of the line</param>
-        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member LinePolar
-            (
-                rTheta: seq<#IConvertible * #IConvertible>,
-                ?ShowMarkers: bool,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?LineColor: Color,
-                ?LineColorScale: StyleParam.Colorscale,
-                ?LineWidth: float,
-                ?LineDash: StyleParam.DrawingStyle,
-                ?Line: Line,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let r, t = Seq.unzip rTheta
-
-            Chart.LinePolar(
-                r,
-                t,
-                ?ShowMarkers = ShowMarkers,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                ?LineColor = LineColor,
-                ?LineColorScale = LineColorScale,
-                ?LineWidth = LineWidth,
-                ?LineDash = LineDash,
-                ?Line = Line,
-                ?UseWebGL = UseWebGL,
-                ?UseDefaults = UseDefaults
-
-            )
-
-        /// <summary>
-        /// Creates a polar spline plot.
-        ///
-        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a smoothed line.
-        /// </summary>
-        /// <param name="r">Sets the radial coordinates of the plotted data</param>
-        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
-        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="MarkerColor">Sets the color of the marker</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
-        /// <param name="MarkerOutline">Sets the outline of the marker</param>
-        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
-        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="LineColor">Sets the color of the line</param>
-        /// <param name="LineColorScale">Sets the colorscale of the line</param>
-        /// <param name="LineWidth">Sets the width of the line</param>
-        /// <param name="LineDash">sets the drawing style of the line</param>
-        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member SplinePolar
-            (
-                r: seq<#IConvertible>,
-                theta: seq<#IConvertible>,
-                ?ShowMarkers: bool,
-                ?Smoothing: float,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?LineColor: Color,
-                ?LineColorScale: StyleParam.Colorscale,
-                ?LineWidth: float,
-                ?LineDash: StyleParam.DrawingStyle,
-                ?Line: Line,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let changeMode =
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None -> false
-
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    ?Outline = MarkerOutline,
-                    ?Symbol3D = MarkerSymbol,
-                    ?MultiSymbol3D = MultiMarkerSymbol,
-                    ?MultiOpacity = MultiOpacity,
-                    ?Colorscale = MarkerColorScale
-                )
-
-            let line =
-                Line
-                |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (
-                    ?Color = LineColor,
-                    ?Dash = LineDash,
-                    ?Colorscale = LineColorScale,
-                    ?Width = LineWidth,
-                    ?Smoothing = Smoothing,
-                    Shape = StyleParam.Shape.Spline
-                )
-
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    R = r,
-                    Theta = theta,
-                    Mode = changeMode StyleParam.Mode.Lines,
-                    Marker = marker,
-                    Line = line,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
-                )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
-
-        /// <summary>Creates a polar spline plot from encoded radial and angular coordinates.</summary>
-        [<Extension>]
-        static member SplinePolar
-            (
-                rEncoded: EncodedTypedArray,
-                thetaEncoded: EncodedTypedArray,
-                ?ShowMarkers: bool,
-                ?Smoothing: float,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?LineColor: Color,
-                ?LineColorScale: StyleParam.Colorscale,
-                ?LineWidth: float,
-                ?LineDash: StyleParam.DrawingStyle,
-                ?Line: Line,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let changeMode =
-                let isShowMarker =
-                    match ShowMarkers with
-                    | Some isShow -> isShow
-                    | Option.None -> false
-
-                StyleParam.ModeUtils.showText (TextPosition.IsSome || MultiTextPosition.IsSome)
-                >> StyleParam.ModeUtils.showMarker (isShowMarker)
-
-            let line =
-                Line
-                |> Option.defaultValue (Plotly.NET.Line.init ())
-                |> Plotly.NET.Line.style (
-                    ?Color = LineColor,
-                    ?Dash = LineDash,
-                    ?Colorscale = LineColorScale,
-                    ?Width = LineWidth,
-                    ?Smoothing = Smoothing,
-                    Shape = StyleParam.Shape.Spline
-                )
-
-            Chart.ScatterPolar(
-                rEncoded,
-                thetaEncoded,
-                changeMode StyleParam.Mode.Lines,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                Line = line,
-                ?UseWebGL = UseWebGL,
-                ?UseDefaults = UseDefaults
-            )
-
-        /// <summary>
-        /// Creates a polar spline plot.
-        ///
-        /// LinePolar plots plot two-dimensional data on a polar coordinate system comprised of angular and radial position scales connected via a smoothed line.
-        /// </summary>
-        /// <param name="rTheta">Sets the radial and angular coordinates of the plotted data</param>
-        /// <param name="ShowMarkers">Whether to show markers for the datums additionally to the line</param>
-        /// <param name="Smoothing">Sets the amount of smoothing. "0" corresponds to no smoothing (equivalent to a "linear" shape).  Use values between 0. and 1.3</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="MarkerColor">Sets the color of the marker</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
-        /// <param name="MarkerOutline">Sets the outline of the marker</param>
-        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
-        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="LineColor">Sets the color of the line</param>
-        /// <param name="LineColorScale">Sets the colorscale of the line</param>
-        /// <param name="LineWidth">Sets the width of the line</param>
-        /// <param name="LineDash">sets the drawing style of the line</param>
-        /// <param name="Line">Sets the line (use this for more finegrained control than the other line-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member SplinePolar
-            (
-                rTheta: seq<#IConvertible * #IConvertible>,
-                ?ShowMarkers: bool,
-                ?Smoothing: float,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?LineColor: Color,
-                ?LineColorScale: StyleParam.Colorscale,
-                ?LineWidth: float,
-                ?LineDash: StyleParam.DrawingStyle,
-                ?Line: Line,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let r, t = Seq.unzip rTheta
-
-            Chart.SplinePolar(
-                r,
-                t,
-                ?ShowMarkers = ShowMarkers,
-                ?Smoothing = Smoothing,
-                ?Name = Name,
-                ?ShowLegend = ShowLegend,
-                ?Opacity = Opacity,
-                ?MultiOpacity = MultiOpacity,
-                ?Text = Text,
-                ?MultiText = MultiText,
-                ?TextPosition = TextPosition,
-                ?MultiTextPosition = MultiTextPosition,
-                ?MarkerColor = MarkerColor,
-                ?MarkerColorScale = MarkerColorScale,
-                ?MarkerOutline = MarkerOutline,
-                ?MarkerSymbol = MarkerSymbol,
-                ?MultiMarkerSymbol = MultiMarkerSymbol,
-                ?Marker = Marker,
-                ?LineColor = LineColor,
-                ?LineColorScale = LineColorScale,
-                ?LineWidth = LineWidth,
-                ?LineDash = LineDash,
-                ?Line = Line,
-                ?UseWebGL = UseWebGL,
-                ?UseDefaults = UseDefaults
-
-            )
-
-        /// <summary>
-        /// Creates a polar bubble chart.
-        ///
-        /// BubblePolar Plots plot two-dimensional data on on a polar coordinate system comprised of angular and radial position scales, additionally using the points size as a 4th dimension.
-        /// </summary>
-        /// <param name="r">Sets the radial coordinates of the plotted data</param>
-        /// <param name="theta">Sets the angular coordinates of the plotted data</param>
-        /// <param name="sizes">Sets the bubble size of the plotted data</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
-        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
-        /// <param name="MarkerColor">Sets the color of the marker</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
-        /// <param name="MarkerOutline">Sets the outline of the marker</param>
-        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
-        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
-        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member BubblePolar
-            (
-                r: seq<#IConvertible>,
-                theta: seq<#IConvertible>,
+                xEncoded: EncodedTypedArray,
+                yEncoded: EncodedTypedArray,
+                zEncoded: EncodedTypedArray,
                 sizes: seq<int>,
                 ?Name: string,
                 ?ShowLegend: bool,
@@ -1108,7 +961,9 @@ module ChartPolar =
                 ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
-                ?UseWebGL: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
@@ -1131,91 +986,44 @@ module ChartPolar =
                     MultiSize = sizes
                 )
 
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    R = r,
-                    Theta = theta,
-                    Mode = StyleParam.Mode.Markers,
-                    Marker = marker,
+            let cameraProjection =
+                defaultArg CameraProjectionType StyleParam.CameraProjectionType.Perspective
+
+            let camera =
+                Camera
+                |> Option.defaultValue (LayoutObjects.Camera.init ())
+                |> LayoutObjects.Camera.style (Projection = CameraProjection.init (ProjectionType = cameraProjection))
+
+            Trace3D.initScatter3D (
+                Trace3DStyle.Scatter3D(
+                    XEncoded = xEncoded,
+                    YEncoded = yEncoded,
+                    ZEncoded = zEncoded,
+                    Mode = changeMode StyleParam.Mode.Markers,
                     ?Name = Name,
                     ?ShowLegend = ShowLegend,
                     ?Opacity = Opacity,
                     ?Text = Text,
                     ?MultiText = MultiText,
                     ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
+                    ?MultiTextPosition = MultiTextPosition,
+                    ?Projection = Projection,
+                    Marker = marker
                 )
+            )
+            |> GenericChart.ofTraceObject useDefaults
+            |> GenericChart.addLayout (
+                Layout.init () |> Layout.setScene (StyleParam.SubPlotId.Scene 1, Scene.init (Camera = camera))
+            )
 
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
-
-        /// <summary>Creates a polar bubble chart from encoded radial and angular coordinates.</summary>
-        [<Extension>]
-        static member BubblePolar
-            (
-                rEncoded: EncodedTypedArray,
-                thetaEncoded: EncodedTypedArray,
-                sizes: seq<int>,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?TextPosition: StyleParam.TextPosition,
-                ?MultiTextPosition: seq<StyleParam.TextPosition>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
-                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
-                ?Marker: Marker,
-                ?UseWebGL: bool,
-                ?UseDefaults: bool
-            ) =
-
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    ?Outline = MarkerOutline,
-                    ?Symbol3D = MarkerSymbol,
-                    ?MultiSymbol3D = MultiMarkerSymbol,
-                    ?Colorscale = MarkerColorScale,
-                    ?MultiOpacity = MultiOpacity,
-                    MultiSize = sizes
-                )
-
-            let style =
-                TracePolarStyle.ScatterPolar(
-                    REncoded = rEncoded,
-                    ThetaEncoded = thetaEncoded,
-                    Mode = StyleParam.Mode.Markers,
-                    Marker = marker,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?TextPosition = TextPosition,
-                    ?MultiTextPosition = MultiTextPosition
-                )
-
-            let useWebGL = defaultArg UseWebGL false
-
-            Chart.renderScatterPolarTrace useDefaults useWebGL style
 
         /// <summary>
-        /// Creates a polar bubble chart.
+        /// Creates a Bubble3D plot.
         ///
-        /// BubblePolar Plots plot two-dimensional data on on a polar coordinate system comprised of angular and radial position scales, additionally using the points size as a 4th dimension.
+        /// Bubble3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as points, additionally using the points size as a 4th dimension.
         /// </summary>
-        /// <param name="rThetaSizes">Sets the radial and angular coordinates of the plotted data together with the sizes of the points</param>
+        /// <param name="xyz">Sets the x, y, and z coordinates of the plotted data.</param>
+        /// <param name="sizes">Sets the size of the points</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
@@ -1230,12 +1038,15 @@ module ChartPolar =
         /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
         /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
         /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
-        /// <param name="UseWebGL">If true, plotly.js will use the WebGL engine to render this chart. use this when you want to render many objects at once.</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member BubblePolar
+        static member Bubble3D
             (
-                rThetaSizes: seq<#IConvertible * #IConvertible * int>,
+                xyz,
+                sizes,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
@@ -1250,15 +1061,18 @@ module ChartPolar =
                 ?MarkerSymbol: StyleParam.MarkerSymbol3D,
                 ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
-                ?UseWebGL: bool,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
-            let r, t, sizes = Seq.unzip3 rThetaSizes
+            let x, y, z = Seq.unzip3 xyz
 
-            Chart.BubblePolar(
-                r,
-                t,
+            Chart.Bubble3D(
+                x,
+                y,
+                z,
                 sizes,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
@@ -1274,246 +1088,90 @@ module ChartPolar =
                 ?MarkerSymbol = MarkerSymbol,
                 ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
-                ?UseWebGL = UseWebGL,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
                 ?UseDefaults = UseDefaults
 
             )
 
         /// <summary>
-        /// Creates a polar bar chart.
+        /// Creates a Bubble3D plot.
         ///
-        /// A polar bar chart is a chart that presents categorical data on a polar coordinate system with bars with radial height proportional to the values that they represent.
+        /// Bubble3D Plots plot three-dimensional data on 3 cartesian position scales in the X, Y, and Z dimension as points, additionally using the points size as a 4th dimension.
         /// </summary>
-        /// <param name="r">Sets the radial height of the bars</param>
-        /// <param name="theta">sets the angular position of the bars</param>
+        /// <param name="xyzsizes">Sets the x, y, and z coordinates together with the point size.</param>
         /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
         /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
         /// <param name="Opacity">Sets the opactity of the trace</param>
         /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
         /// <param name="Text">Sets a text associated with each datum</param>
         /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="MarkerColor">Sets the color of the bars</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the bars</param>
-        /// <param name="MarkerOutline">Sets the color of the bar outline</param>
-        /// <param name="MarkerPatternShape">Sets the pattern shape for all bars</param>
-        /// <param name="MultiMarkerPatternShape">Sets individual pattern shapes for the bars</param>
-        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
-        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
-        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
-        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
-        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
+        /// <param name="TextPosition">Sets the position of text associated with each datum</param>
+        /// <param name="MultiTextPosition">Sets the position of text associated with individual datum</param>
+        /// <param name="MarkerColor">Sets the color of the marker</param>
+        /// <param name="MarkerColorScale">Sets the colorscale of the marker</param>
+        /// <param name="MarkerOutline">Sets the outline of the marker</param>
+        /// <param name="MarkerSymbol">Sets the marker symbol for each datum</param>
+        /// <param name="MultiMarkerSymbol">Sets the marker symbol for each individual datum</param>
+        /// <param name="Marker">Sets the marker (use this for more finegrained control than the other marker-associated arguments)</param>
+        /// <param name="CameraProjectionType">Sets the camera projection type of this trace.</param>
+        /// <param name="Camera">Sets the camera of this trace.</param>
+        /// <param name="Projection">Sets the projection of this trace.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
         [<Extension>]
-        static member BarPolar
+        static member Bubble3D
             (
-                r: seq<#IConvertible>,
-                theta: seq<#IConvertible>,
+                xyzsizes,
                 ?Name: string,
                 ?ShowLegend: bool,
                 ?Opacity: float,
                 ?MultiOpacity: seq<float>,
                 ?Text: #IConvertible,
                 ?MultiText: seq<#IConvertible>,
+                ?TextPosition: StyleParam.TextPosition,
+                ?MultiTextPosition: seq<StyleParam.TextPosition>,
                 ?MarkerColor: Color,
                 ?MarkerColorScale: StyleParam.Colorscale,
                 ?MarkerOutline: Line,
-                ?MarkerPatternShape: StyleParam.PatternShape,
-                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
-                ?MarkerPattern: Pattern,
+                ?MarkerSymbol: StyleParam.MarkerSymbol3D,
+                ?MultiMarkerSymbol: seq<StyleParam.MarkerSymbol3D>,
                 ?Marker: Marker,
-                ?Base: #IConvertible,
-                ?Width: #IConvertible,
-                ?MultiWidth: seq<#IConvertible>,
+                ?CameraProjectionType: StyleParam.CameraProjectionType,
+                ?Camera: Camera,
+                ?Projection: Projection,
                 ?UseDefaults: bool
             ) =
 
-            let useDefaults =
-                defaultArg UseDefaults true
+            let x, y, z, sizes =
+                xyzsizes |> Seq.map (fun (x, _, _, _) -> x),
+                xyzsizes |> Seq.map (fun (_, y, _, _) -> y),
+                xyzsizes |> Seq.map (fun (_, _, z, _) -> z),
+                xyzsizes |> Seq.map (fun (_, _, _, size) -> size)
 
-            let pattern =
-                MarkerPattern
-                |> Option.defaultValue (TraceObjects.Pattern.init ())
-                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
-
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    Pattern = pattern,
-                    ?MultiOpacity = MultiOpacity,
-                    ?Colorscale = MarkerColorScale,
-                    ?Outline = MarkerOutline
-                )
-
-            TracePolar.initBarPolar (
-                TracePolarStyle.BarPolar(
-                    R = r,
-                    Theta = theta,
-                    Marker = marker,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?Base = Base,
-                    ?Width = Width,
-                    ?MultiWidth = MultiWidth
-                )
-            )
-            |> GenericChart.ofTraceObject useDefaults
-
-        /// <summary>
-        /// Creates a polar bar chart.
-        ///
-        /// A polar bar chart is a chart that presents categorical data on a polar coordinate system with bars with radial height proportional to the values that they represent.
-        /// </summary>
-        /// <param name="rTheta">Sets the radial height and angular position of the bars</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="MarkerColor">Sets the color of the bars</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the bars</param>
-        /// <param name="MarkerOutline">Sets the color of the bar outline</param>
-        /// <param name="MarkerPatternShape">Sets the pattern shape for all bars</param>
-        /// <param name="MultiMarkerPatternShape">Sets individual pattern shapes for the bars</param>
-        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
-        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
-        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
-        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
-        /// <param name="MultiWidth">Sets the individual bar width (in position axis units) for each bar.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member BarPolar
-            (
-                rTheta: seq<#IConvertible * #IConvertible>,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerPatternShape: StyleParam.PatternShape,
-                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
-                ?MarkerPattern: Pattern,
-                ?Marker: Marker,
-                ?Base: #IConvertible,
-                ?Width: #IConvertible,
-                ?MultiWidth: seq<#IConvertible>,
-                ?UseDefaults: bool
-            ) =
-
-            let r, theta = Seq.unzip rTheta
-
-            Chart.BarPolar(
-                r,
-                theta,
+            Chart.Bubble3D(
+                x,
+                y,
+                z,
+                sizes,
                 ?Name = Name,
                 ?ShowLegend = ShowLegend,
                 ?Opacity = Opacity,
                 ?MultiOpacity = MultiOpacity,
                 ?Text = Text,
                 ?MultiText = MultiText,
+                ?TextPosition = TextPosition,
+                ?MultiTextPosition = MultiTextPosition,
                 ?MarkerColor = MarkerColor,
                 ?MarkerColorScale = MarkerColorScale,
                 ?MarkerOutline = MarkerOutline,
-                ?MarkerPatternShape = MarkerPatternShape,
-                ?MultiMarkerPatternShape = MultiMarkerPatternShape,
-                ?MarkerPattern = MarkerPattern,
+                ?MarkerSymbol = MarkerSymbol,
+                ?MultiMarkerSymbol = MultiMarkerSymbol,
                 ?Marker = Marker,
-                ?Base = Base,
-                ?Width = Width,
-                ?MultiWidth = MultiWidth,
+                ?CameraProjectionType = CameraProjectionType,
+                ?Camera = Camera,
+                ?Projection = Projection,
                 ?UseDefaults = UseDefaults
 
             )
 
-        /// <summary>
-        /// Creates a polar bar chart from encoded radial and angular coordinates.
-        ///
-        /// A polar bar chart is a chart that presents categorical data on a polar coordinate system with bars with radial height proportional to the values that they represent.
-        /// </summary>
-        /// <param name="rEncoded">Sets the radial height of the bars as an encoded typed array.</param>
-        /// <param name="thetaEncoded">Sets the angular position of the bars as an encoded typed array.</param>
-        /// <param name="Name">Sets the trace name. The trace name appear as the legend item and on hover</param>
-        /// <param name="ShowLegend">Determines whether or not an item corresponding to this trace is shown in the legend.</param>
-        /// <param name="Opacity">Sets the opactity of the trace</param>
-        /// <param name="MultiOpacity">Sets the opactity of individual datum markers</param>
-        /// <param name="Text">Sets a text associated with each datum</param>
-        /// <param name="MultiText">Sets individual text for each datum</param>
-        /// <param name="MarkerColor">Sets the color of the bars</param>
-        /// <param name="MarkerColorScale">Sets the colorscale of the bars</param>
-        /// <param name="MarkerOutline">Sets the color of the bar outline</param>
-        /// <param name="MarkerPatternShape">Sets the pattern shape for all bars</param>
-        /// <param name="MultiMarkerPatternShape">Sets individual pattern shapes for the bars</param>
-        /// <param name="MarkerPattern">Sets the marker pattern (use this for more finegrained control than the other pattern-associated arguments).</param>
-        /// <param name="Marker">Sets the marker for the bars (use this for more finegrained control than the other marker-associated arguments).</param>
-        /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
-        /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
-        /// <param name="MultiWidthEncoded">Sets the individual bar width (in position axis units) for each bar as an encoded typed array.</param>
-        /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
-        [<Extension>]
-        static member BarPolar
-            (
-                rEncoded: EncodedTypedArray,
-                thetaEncoded: EncodedTypedArray,
-                ?Name: string,
-                ?ShowLegend: bool,
-                ?Opacity: float,
-                ?MultiOpacity: seq<float>,
-                ?Text: #IConvertible,
-                ?MultiText: seq<#IConvertible>,
-                ?MarkerColor: Color,
-                ?MarkerColorScale: StyleParam.Colorscale,
-                ?MarkerOutline: Line,
-                ?MarkerPatternShape: StyleParam.PatternShape,
-                ?MultiMarkerPatternShape: seq<StyleParam.PatternShape>,
-                ?MarkerPattern: Pattern,
-                ?Marker: Marker,
-                ?Base: #IConvertible,
-                ?Width: #IConvertible,
-                ?MultiWidthEncoded: EncodedTypedArray,
-                ?UseDefaults: bool
-            ) =
-
-            let useDefaults =
-                defaultArg UseDefaults true
-
-            let pattern =
-                MarkerPattern
-                |> Option.defaultValue (TraceObjects.Pattern.init ())
-                |> TraceObjects.Pattern.style (?Shape = MarkerPatternShape, ?MultiShape = MultiMarkerPatternShape)
-
-            let marker =
-                Marker
-                |> Option.defaultValue (TraceObjects.Marker.init ())
-                |> TraceObjects.Marker.style (
-                    ?Color = MarkerColor,
-                    Pattern = pattern,
-                    ?MultiOpacity = MultiOpacity,
-                    ?Colorscale = MarkerColorScale,
-                    ?Outline = MarkerOutline
-                )
-
-            TracePolar.initBarPolar (
-                TracePolarStyle.BarPolar(
-                    REncoded = rEncoded,
-                    ThetaEncoded = thetaEncoded,
-                    Marker = marker,
-                    ?Name = Name,
-                    ?ShowLegend = ShowLegend,
-                    ?Opacity = Opacity,
-                    ?Text = Text,
-                    ?MultiText = MultiText,
-                    ?Base = Base,
-                    ?Width = Width,
-                    ?MultiWidthEncoded = MultiWidthEncoded
-                )
-            )
-            |> GenericChart.ofTraceObject useDefaults

@@ -1,4 +1,4 @@
-﻿using Plotly.NET;
+using Plotly.NET;
 using Plotly.NET.LayoutObjects;
 using Plotly.NET.TraceObjects;
 using System.Runtime.InteropServices;
@@ -70,7 +70,7 @@ namespace Plotly.NET.CSharp
             where ImagType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartSmith.Chart.ScatterSmith<RealType, ImagType, TextType>(
+                Plotly.NET.ChartSmith_Scatter.Chart.ScatterSmith<RealType, ImagType, TextType>(
                     real: real,
                     imag: imag,
                     mode: mode,
@@ -143,7 +143,7 @@ namespace Plotly.NET.CSharp
             where ImagType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartSmith.Chart.PointSmith<RealType, ImagType, TextType>(
+                Plotly.NET.ChartSmith_Scatter.Chart.PointSmith<RealType, ImagType, TextType>(
                     real: real,
                     imag: imag,
                     Name: Name.ToOption(),
@@ -224,7 +224,7 @@ namespace Plotly.NET.CSharp
             where ImagType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartSmith.Chart.LineSmith<RealType, ImagType, TextType>(
+                Plotly.NET.ChartSmith_Scatter.Chart.LineSmith<RealType, ImagType, TextType>(
                     real: real,
                     imag: imag,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -308,7 +308,7 @@ namespace Plotly.NET.CSharp
             where ImagType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.ChartSmith.Chart.BubbleSmith<RealType, ImagType, TextType>(
+                Plotly.NET.ChartSmith_Scatter.Chart.BubbleSmith<RealType, ImagType, TextType>(
                     real: real,
                     imag: imag,
                     sizes: sizes,
@@ -335,3 +335,4 @@ namespace Plotly.NET.CSharp
                 );
     }
 }
+

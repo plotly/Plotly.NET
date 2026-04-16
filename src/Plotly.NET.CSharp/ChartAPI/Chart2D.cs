@@ -88,7 +88,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.Chart2D.Chart.Scatter(
+            Plotly.NET.Chart2D_Scatter.Chart.Scatter(
                 x: x, 
                 y: y, 
                 mode: mode,
@@ -178,7 +178,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.Chart2D.Chart.Point(
+            Plotly.NET.Chart2D_Scatter.Chart.Point(
                 x: x,
                 y: y,
                 Name: Name.ToOption(),
@@ -275,7 +275,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.Chart2D.Chart.Line(
+            Plotly.NET.Chart2D_Scatter.Chart.Line(
                 x: x,
                 y: y,
                 ShowMarkers: ShowMarkers.ToOption(),
@@ -384,7 +384,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.Chart2D.Chart.Spline(
+            Plotly.NET.Chart2D_Scatter.Chart.Spline(
                 x: x,
                 y: y,
                 ShowMarkers: ShowMarkers.ToOption(),
@@ -485,7 +485,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
         =>
-            Plotly.NET.Chart2D.Chart.Bubble<XType, YType, TextType>(
+            Plotly.NET.Chart2D_Scatter.Chart.Bubble<XType, YType, TextType>(
                 x: x,
                 y: y,
                 sizes: sizes,
@@ -604,7 +604,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Range<XType, YType, YType, YType, TextType, TextType, TextType>(
+                Plotly.NET.Chart2D_Scatter.Chart.Range<XType, YType, YType, YType, TextType, TextType, TextType>(
                     x: x,
                     y: y,
                     upper: upper,
@@ -658,7 +658,7 @@ namespace Plotly.NET.CSharp
             ) 
             where TLabel : IConvertible
             =>
-                Chart2D.Chart.Pareto(
+                Chart2D_Statistical.Chart.Pareto(
                     keysValues.Select(t => t.ToTuple())
                     , Name: Name.ToOption()
                     , Label: Label.ToOption()
@@ -679,7 +679,7 @@ namespace Plotly.NET.CSharp
             ) 
             where TLabel : IConvertible
             =>
-                Chart2D.Chart.Pareto(
+                Chart2D_Statistical.Chart.Pareto(
                     labels
                     , values
                     , Name: Name.ToOption()
@@ -758,7 +758,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Area<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Area.Chart.Area<XType, YType, TextType>(
                     x: x,
                     y: y,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -866,7 +866,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.SplineArea<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Area.Chart.SplineArea<XType, YType, TextType>(
                     x: x,
                     y: y,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -967,7 +967,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.StackedArea<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Area.Chart.StackedArea<XType, YType, TextType>(
                     x: x,
                     y: y,
                     ShowMarkers: ShowMarkers.ToOption(),
@@ -1062,7 +1062,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Funnel<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Funnel.Chart.Funnel<XType, YType, TextType>(
                     x: x,
                     y: y,
                     Name: Name.ToOption(),
@@ -1155,7 +1155,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.StackedFunnel<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Funnel.Chart.StackedFunnel<XType, YType, TextType>(
                     x: x,
                     y: y,
                     Name: Name.ToOption(),
@@ -1245,7 +1245,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Waterfall<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Funnel.Chart.Waterfall<XType, YType, TextType>(
                     x: x,
                     y: y,
                     Name: Name.ToOption(),
@@ -1328,7 +1328,7 @@ namespace Plotly.NET.CSharp
             where KeysType : IConvertible
             where TextType: IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Bar<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
+                Plotly.NET.Chart2D_Bar.Chart.Bar<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
                     values: values,
                     Keys: Keys.ToOption(),
                     MultiKeys: MultiKeys.ToOption(),
@@ -1409,7 +1409,7 @@ namespace Plotly.NET.CSharp
             where KeysType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.StackedBar<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
+                Plotly.NET.Chart2D_Bar.Chart.StackedBar<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
                     values: values,
                     Keys: Keys.ToOption(),
                     MultiKeys: MultiKeys.ToOption(),
@@ -1489,7 +1489,7 @@ namespace Plotly.NET.CSharp
             where KeysType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Column<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
+                Plotly.NET.Chart2D_Bar.Chart.Column<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
                     values: values,
                     Keys: Keys.ToOption(),
                     MultiKeys: MultiKeys.ToOption(),
@@ -1570,7 +1570,7 @@ namespace Plotly.NET.CSharp
             where KeysType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.StackedColumn<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
+                Plotly.NET.Chart2D_Bar.Chart.StackedColumn<ValuesType, KeysType, TextType, ValuesType, ValuesType>(
                     values: values,
                     Keys: Keys.ToOption(),
                     MultiKeys: MultiKeys.ToOption(),
@@ -1675,7 +1675,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Histogram<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Histogram.Chart.Histogram<XType, YType, TextType>(
                     X: X.ToOption(),
                     MultiX: MultiX.ToOption(),
                     Y: Y.ToOption(),
@@ -1762,7 +1762,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where ZType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Histogram2D<XType, YType, IEnumerable<ZType>, ZType>(
+                Plotly.NET.Chart2D_Histogram.Chart.Histogram2D<XType, YType, IEnumerable<ZType>, ZType>(
                     x: x,
                     y: y,
                     Z: Z.ToOption(),
@@ -1854,7 +1854,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.BoxPlot<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Distribution.Chart.BoxPlot<XType, YType, TextType>(
                     X: X.ToOption(),
                     MultiX: MultiX.ToOption(),
                     Y: Y.ToOption(),
@@ -1966,7 +1966,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Violin<XType, YType, TextType>(
+                Plotly.NET.Chart2D_Distribution.Chart.Violin<XType, YType, TextType>(
                     X: X.ToOption(),
                     MultiX: MultiX.ToOption(),
                     Y: Y.ToOption(),
@@ -2090,7 +2090,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where ZType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Histogram2DContour<XType, YType, IEnumerable<ZType>, ZType>(
+                Plotly.NET.Chart2D_Histogram.Chart.Histogram2DContour<XType, YType, IEnumerable<ZType>, ZType>(
                     X: X.ToOption(),
                     MultiX: MultiX.ToOption(),
                     Y: Y.ToOption(),
@@ -2185,7 +2185,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Heatmap<IEnumerable<ZType>, ZType, XType, YType, TextType>(
+                Plotly.NET.Chart2D_Heatmap.Chart.Heatmap<IEnumerable<ZType>, ZType, XType, YType, TextType>(
                     zData: zData,
                     X: X.ToOption(),
                     MultiX: MultiX.ToOption(),
@@ -2267,7 +2267,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.AnnotatedHeatmap<IEnumerable<ZType>, ZType, IEnumerable<string>, XType, YType, TextType>(
+                Plotly.NET.Chart2D_Heatmap.Chart.AnnotatedHeatmap<IEnumerable<ZType>, ZType, IEnumerable<string>, XType, YType, TextType>(
                     zData: zData,
                     annotationText: annotationText,
                     Name: Name.ToOption(),
@@ -2321,7 +2321,7 @@ namespace Plotly.NET.CSharp
         )
             where IdType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Image<IEnumerable<IEnumerable<int>>, IEnumerable<int>, IdType>(
+                Plotly.NET.Chart2D_Heatmap.Chart.Image<IEnumerable<IEnumerable<int>>, IEnumerable<int>, IdType>(
                     Z: Z.ToOption(),
                     Source: Source.ToOption(),
                     Name: Name.ToOption(),
@@ -2413,7 +2413,7 @@ namespace Plotly.NET.CSharp
             where YType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Contour<IEnumerable<ZType>, ZType, XType, YType, TextType>(
+                Plotly.NET.Chart2D_Heatmap.Chart.Contour<IEnumerable<ZType>, ZType, XType, YType, TextType>(
                     zData: zData,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -2498,7 +2498,7 @@ namespace Plotly.NET.CSharp
             where XType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.OHLC<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                Plotly.NET.Chart2D_Finance.Chart.OHLC<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
                     open: open,
                     high: high,
                     low: low,
@@ -2569,7 +2569,7 @@ namespace Plotly.NET.CSharp
             where XType : IConvertible
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
+                Plotly.NET.Chart2D_Finance.Chart.Candlestick<OHLCType, OHLCType, OHLCType, OHLCType, XType, TextType>(
                     open: open,
                     high: high,
                     low: low,
@@ -2634,7 +2634,7 @@ namespace Plotly.NET.CSharp
         )
             where TextType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.Splom<TextType>(
+                Plotly.NET.Chart2D_Splom.Chart.Splom<TextType>(
                     dimensions: dimensions,
                     Name: Name.ToOption(),
                     ShowLegend: ShowLegend.ToOption(),
@@ -2720,7 +2720,7 @@ namespace Plotly.NET.CSharp
             where XType : IConvertible
             where YType : IConvertible
             =>
-                Plotly.NET.Chart2D.Chart.PointDensity<XType, YType>(
+                Plotly.NET.Chart2D_Splom.Chart.PointDensity<XType, YType>(
                     x: x,
                     y: y,
                     PointOpacity: PointOpacity.ToOption(),
