@@ -1043,3 +1043,62 @@ module ``Encoded typed arrays on carpet and domain traces`` =
             )
         )
         |> GenericChart.ofTraceObject true
+
+module ``Sankey node align`` =
+
+    let ``Sankey with node align right`` =
+        let nodes =
+            SankeyNodes.init(
+                Label = ["A"; "B"; "C"],
+                Align = StyleParam.SankeyNodeAlign.Right
+            )
+        let links =
+            SankeyLinks.init(
+                Source = [0; 1],
+                Target = [2; 2],
+                Value = [8; 4]
+            )
+        Chart.Sankey(nodes, links, UseDefaults = false)
+
+    let ``Sankey with node align via Chart overload`` =
+        Chart.Sankey(
+            nodeLabels = ["A"; "B"; "C"],
+            linkedNodeIds = [(0, 2); (1, 2)],
+            linkValues = [8; 4],
+            NodeAlign = StyleParam.SankeyNodeAlign.Left,
+            UseDefaults = false
+        )
+
+module ``Sankey encoded node and link arrays`` =
+
+    let ``Sankey with encoded node arrays`` =
+        let nodes =
+            SankeyNodes.init(
+                Label = ["A"; "B"; "C"],
+                ColorEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0; 3.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0; 30.0 |],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.5; 0.9 |],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 0.1; 0.5; 0.9 |]
+            )
+        let links =
+            SankeyLinks.init(
+                Source = [0; 1],
+                Target = [2; 2],
+                Value = [8; 4]
+            )
+        Chart.Sankey(nodes, links, UseDefaults = false)
+
+    let ``Sankey with encoded link arrays`` =
+        let nodes =
+            SankeyNodes.init(
+                Label = ["A"; "B"; "C"]
+            )
+        let links =
+            SankeyLinks.init(
+                SourceEncoded = EncodedTypedArray.ofInt32Array [| 0; 1 |],
+                TargetEncoded = EncodedTypedArray.ofInt32Array [| 2; 2 |],
+                ValueEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 4.0 |],
+                ColorEncoded = EncodedTypedArray.ofFloat64Array [| 1.0; 2.0 |],
+                CustomDataEncoded = EncodedTypedArray.ofFloat64Array [| 10.0; 20.0 |]
+            )
+        Chart.Sankey(nodes, links, UseDefaults = false)

@@ -11,8 +11,11 @@ type SankeyNodes() =
 
     static member init
         (
+            ?Align: StyleParam.SankeyNodeAlign,
             ?Color: Color,
+            ?ColorEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Groups: seq<#seq<int>>,
             ?HoverInfo: StyleParam.HoverInfo,
             ?HoverLabel: Hoverlabel,
@@ -23,13 +26,18 @@ type SankeyNodes() =
             ?Pad: int,
             ?Thickness: int,
             ?X: seq<#IConvertible>,
-            ?Y: seq<#IConvertible>
+            ?XEncoded: EncodedTypedArray,
+            ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray
         ) =
 
         SankeyNodes()
         |> SankeyNodes.style (
+            ?Align = Align,
             ?Color = Color,
+            ?ColorEncoded = ColorEncoded,
             ?CustomData = CustomData,
+            ?CustomDataEncoded = CustomDataEncoded,
             ?Groups = Groups,
             ?HoverInfo = HoverInfo,
             ?HoverLabel = HoverLabel,
@@ -40,14 +48,18 @@ type SankeyNodes() =
             ?Pad = Pad,
             ?Thickness = Thickness,
             ?X = X,
-            ?Y = Y
-
+            ?XEncoded = XEncoded,
+            ?Y = Y,
+            ?YEncoded = YEncoded
         )
 
     static member style
         (
+            ?Align: StyleParam.SankeyNodeAlign,
             ?Color: Color,
+            ?ColorEncoded: EncodedTypedArray,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?Groups: seq<#seq<int>>,
             ?HoverInfo: StyleParam.HoverInfo,
             ?HoverLabel: Hoverlabel,
@@ -58,12 +70,17 @@ type SankeyNodes() =
             ?Pad: int,
             ?Thickness: int,
             ?X: seq<#IConvertible>,
-            ?Y: seq<#IConvertible>
+            ?XEncoded: EncodedTypedArray,
+            ?Y: seq<#IConvertible>,
+            ?YEncoded: EncodedTypedArray
         ) =
         fun (sankeyNodes: SankeyNodes) ->
             sankeyNodes
+            |> DynObj.withOptionalPropertyBy "align" Align StyleParam.SankeyNodeAlign.convert
             |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "color" ColorEncoded
             |> DynObj.withOptionalProperty "customdata" CustomData
+            |> DynObj.withOptionalProperty "customdata" CustomDataEncoded
             |> DynObj.withOptionalProperty "groups" Groups
             |> DynObj.withOptionalPropertyBy "hoverinfo" HoverInfo StyleParam.HoverInfo.convert
             |> DynObj.withOptionalProperty "hoverlabel" HoverLabel
@@ -73,7 +90,9 @@ type SankeyNodes() =
             |> DynObj.withOptionalProperty "pad" Pad
             |> DynObj.withOptionalProperty "thickness" Thickness
             |> DynObj.withOptionalProperty "x" X
+            |> DynObj.withOptionalProperty "x" XEncoded
             |> DynObj.withOptionalProperty "y" Y
+            |> DynObj.withOptionalProperty "y" YEncoded
 
 type SankeyLinkColorscale() =
     inherit DynamicObj()
@@ -125,8 +144,10 @@ type SankeyLinks() =
         (
             ?ArrowLen: int,
             ?Color: Color,
+            ?ColorEncoded: EncodedTypedArray,
             ?ColorScales: seq<SankeyLinkColorscale>,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?HoverInfo: StyleParam.HoverInfo,
             ?HoverLabel: Hoverlabel,
             ?HoverTemplate: string,
@@ -134,16 +155,21 @@ type SankeyLinks() =
             ?Label: seq<string>,
             ?Line: Line,
             ?Source: seq<int>,
+            ?SourceEncoded: EncodedTypedArray,
             ?Target: seq<int>,
-            ?Value: seq<#IConvertible>
+            ?TargetEncoded: EncodedTypedArray,
+            ?Value: seq<#IConvertible>,
+            ?ValueEncoded: EncodedTypedArray
         ) =
 
         SankeyLinks()
         |> SankeyLinks.style (
             ?ArrowLen = ArrowLen,
             ?Color = Color,
+            ?ColorEncoded = ColorEncoded,
             ?ColorScales = ColorScales,
             ?CustomData = CustomData,
+            ?CustomDataEncoded = CustomDataEncoded,
             ?HoverInfo = HoverInfo,
             ?HoverLabel = HoverLabel,
             ?HoverTemplate = HoverTemplate,
@@ -151,17 +177,21 @@ type SankeyLinks() =
             ?Label = Label,
             ?Line = Line,
             ?Source = Source,
+            ?SourceEncoded = SourceEncoded,
             ?Target = Target,
-            ?Value = Value
-
+            ?TargetEncoded = TargetEncoded,
+            ?Value = Value,
+            ?ValueEncoded = ValueEncoded
         )
 
     static member style
         (
             ?ArrowLen: int,
             ?Color: Color,
+            ?ColorEncoded: EncodedTypedArray,
             ?ColorScales: seq<SankeyLinkColorscale>,
             ?CustomData: seq<#IConvertible>,
+            ?CustomDataEncoded: EncodedTypedArray,
             ?HoverInfo: StyleParam.HoverInfo,
             ?HoverLabel: Hoverlabel,
             ?HoverTemplate: string,
@@ -169,22 +199,30 @@ type SankeyLinks() =
             ?Label: seq<string>,
             ?Line: Line,
             ?Source: seq<int>,
+            ?SourceEncoded: EncodedTypedArray,
             ?Target: seq<int>,
-            ?Value: seq<#IConvertible>
+            ?TargetEncoded: EncodedTypedArray,
+            ?Value: seq<#IConvertible>,
+            ?ValueEncoded: EncodedTypedArray
         ) =
         fun (sankeyLinks: SankeyLinks) ->
 
             sankeyLinks
             |> DynObj.withOptionalProperty "arrowlen" ArrowLen
             |> DynObj.withOptionalProperty "color" Color
+            |> DynObj.withOptionalProperty "color" ColorEncoded
             |> DynObj.withOptionalProperty "colorscales" ColorScales
             |> DynObj.withOptionalProperty "customdata" CustomData
+            |> DynObj.withOptionalProperty "customdata" CustomDataEncoded
             |> DynObj.withOptionalPropertyBy "hoverinfo" HoverInfo StyleParam.HoverInfo.convert
             |> DynObj.withOptionalProperty "hoverlabel" HoverLabel
             |> DynObj.withOptionalSingleOrMultiProperty "hovertemplate" (HoverTemplate, MultiHoverTemplate)
             |> DynObj.withOptionalProperty "label" Label
             |> DynObj.withOptionalProperty "line" Line
             |> DynObj.withOptionalProperty "source" Source
+            |> DynObj.withOptionalProperty "source" SourceEncoded
             |> DynObj.withOptionalProperty "target" Target
+            |> DynObj.withOptionalProperty "target" TargetEncoded
             |> DynObj.withOptionalProperty "value" Value
+            |> DynObj.withOptionalProperty "value" ValueEncoded
 

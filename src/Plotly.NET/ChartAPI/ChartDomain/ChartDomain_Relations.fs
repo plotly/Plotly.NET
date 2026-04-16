@@ -364,6 +364,7 @@ module ChartDomain_Relations =
         /// <param name="Orientation">Sets the orientation of the Sankey diagram.</param>
         /// <param name="TextFont">Sets the text font of this trace.</param>
         /// <param name="Arrangement">If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are stationary.</param>
+        /// <param name="NodeAlign">Sets the horizontal alignment of the nodes in the Sankey diagram. If value is `justify` (the default), the nodes are spread to fill the width. If value is `left`, `right`, or `center`, the nodes are aligned accordingly.</param>
         /// <param name="ValueFormat">Sets the value formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.</param>
         /// <param name="ValueSuffix">Adds a unit to follow the value in the hover tooltip. Add a space if a separation is necessary from the value.</param>
         /// <param name="UseDefaults">If set to false, ignore the global default settings set in `Defaults`</param>
@@ -388,6 +389,7 @@ module ChartDomain_Relations =
                 ?Orientation: StyleParam.Orientation,
                 ?TextFont: Font,
                 ?Arrangement: StyleParam.CategoryArrangement,
+                ?NodeAlign: StyleParam.SankeyNodeAlign,
                 ?ValueFormat: string,
                 ?ValueSuffix: string,
                 ?UseDefaults: bool
@@ -400,6 +402,7 @@ module ChartDomain_Relations =
                 SankeyNodes.init (
                     Label = nodeLabels,
                     Line = nodeOutline,
+                    ?Align = NodeAlign,
                     ?Color = NodeColor,
                     ?Thickness = NodeThickness,
                     ?Groups = NodeGroups

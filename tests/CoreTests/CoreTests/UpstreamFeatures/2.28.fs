@@ -905,3 +905,65 @@ module ``Encoded typed arrays on carpet and domain traces`` =
                 )
             ]
         ]
+
+module ``Sankey node align`` =
+
+    [<Tests>]
+    let ``Sankey node align tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Sankey node align" [
+                testCase "Sankey with node align right serializes align property on node object" (fun () ->
+                    "\"node\":{\"align\":\"right\",\"label\":[\"A\",\"B\",\"C\"]}"
+                    |> chartGeneratedContains ``Sankey node align``.``Sankey with node align right``
+                )
+                testCase "Sankey via Chart overload serializes align property on node object" (fun () ->
+                    "\"node\":{\"align\":\"left\",\"label\":[\"A\",\"B\",\"C\"],\"line\":{}}"
+                    |> chartGeneratedContains ``Sankey node align``.``Sankey with node align via Chart overload``
+                )
+            ]
+        ]
+
+module ``Sankey encoded node and link arrays`` =
+
+    [<Tests>]
+    let ``Sankey encoded node and link array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Sankey encoded node and link arrays" [
+                testCase "Sankey node color is serialized as encoded object" (fun () ->
+                    "\"color\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey node customdata is serialized as encoded object" (fun () ->
+                    "\"customdata\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey node x is serialized as encoded object" (fun () ->
+                    "\"x\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey node y is serialized as encoded object" (fun () ->
+                    "\"y\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey link source is serialized as encoded object" (fun () ->
+                    "\"source\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link target is serialized as encoded object" (fun () ->
+                    "\"target\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link value is serialized as encoded object" (fun () ->
+                    "\"value\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link color is serialized as encoded object" (fun () ->
+                    "\"color\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link customdata is serialized as encoded object" (fun () ->
+                    "\"customdata\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+            ]
+        ]
