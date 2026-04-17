@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet fsi *)",
+      "Bash(./build.cmd RunCSharpTestsFast)"
+    ]
+  }
+}

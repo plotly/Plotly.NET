@@ -356,10 +356,10 @@ Exit criteria:
 
 Implementation notes:
 
-- PoC implemented for `Scatter` only.
-- Added [src/Plotly.NET.CSharp/ChartAPI/Chart2D/Scatter.cs](src/Plotly.NET.CSharp/ChartAPI/Chart2D/Scatter.cs) and removed the `Scatter` method from [Chart2D.cs](src/Plotly.NET.CSharp/ChartAPI/Chart2D.cs).
-- Added [tests/ExtensionLibsTests/CSharpTests/Chart2D/ScatterTests.cs](tests/ExtensionLibsTests/CSharpTests/Chart2D/ScatterTests.cs) with a mirrored C# fixture using `UseDefaults = false`.
-- The PoC uses a mirrored C# test fixture because the existing F# fixtures are not yet exposed in a C#-friendly way for direct reuse.
+- Done. All seven scatter-derived method groups live in [src/Plotly.NET.CSharp/ChartAPI/Chart2D/](src/Plotly.NET.CSharp/ChartAPI/Chart2D/): `Scatter.cs`, `Point.cs`, `Line.cs`, `Spline.cs`, `Bubble.cs`, `Range.cs`, `Pareto.cs` (both overloads together).
+- Those methods have been removed from [Chart2D.cs](src/Plotly.NET.CSharp/ChartAPI/Chart2D.cs) (now ~2081 lines, down from ~2564).
+- Test coverage lives under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart2D/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart2D/) — one `*Tests.cs` per method, with mirrored C# fixtures using `UseDefaults = false` and full `var data = ...` baseline assertions.
+- Verification: `./build.cmd RunCSharpTestsFast` (16 passed), `./build.cmd runTestsExtensionLibs` (16 passed), `./build.cmd runTestsCore` (933 passed).
 
 ### Commit 2: Finish Chart2D wrapper split
 
