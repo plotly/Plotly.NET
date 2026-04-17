@@ -82,6 +82,18 @@ See [tests/README.md](tests/README.md) for the authoritative overview. Short ver
 ./build.cmd runTestsJSTests          # JS / Mocha tests
 ```
 
+For faster local iteration, prefer the FAKE `*Fast` test targets. These skip the repo-wide `Clean` step and let `dotnet test` decide whether restore/build work is actually needed:
+
+```shell
+./build.cmd RunTestsAllFast
+./build.cmd RunTestsCoreFast
+./build.cmd RunTestsExtensionLibsFast
+./build.cmd RunImageExportTestsFast
+./build.cmd RunCSharpTestsFast
+```
+
+Use the fast targets during implementation, but **always run a full `./build.cmd runTestsAll` before committing changes** so the clean end-to-end pipeline is exercised at least once.
+
 ### Writing tests
 - Use `FSharpTestBase` helpers: `substringIsInChart`, `chartGeneratedContains`, `getFullPlotlyJS`, etc.
 - **Set `UseDefaults = false` on test charts** to avoid dumping the large default template HTML into test output and making diffs unreadable.
