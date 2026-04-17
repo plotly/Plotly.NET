@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Plotly.NET.CSharp;
 using static Plotly.NET.StyleParam;
 
@@ -8,6 +9,26 @@ namespace TestConsoleApp
     {
         static void Main(string[] args)
         {
+            Directory.CreateDirectory("temp");
+
+            var scatter = Chart.Scatter<double, double, string>(
+                x: new[] { 0.0, 1.0, 2.0, 3.0 },
+                y: new[] { 1.0, 4.0, 9.0, 16.0 },
+                mode: Mode.Lines_Markers,
+                Name: "scatter",
+                UseDefaults: false
+            );
+
+            var point = Chart.Point<double, double, string>(
+                x: new[] { 0.0, 1.0, 2.0, 3.0 },
+                y: new[] { 1.0, 4.0, 9.0, 16.0 },
+                Name: "points",
+                UseDefaults: false
+            );
+
+            File.WriteAllText("temp/csharp-scatter.html", Plotly.NET.GenericChart.toChartHTML(scatter));
+            File.WriteAllText("temp/csharp-point.html", Plotly.NET.GenericChart.toChartHTML(point));
+
             //Chart.Grid(
             //    nRows: 10,
             //    nCols: 7,
