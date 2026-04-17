@@ -89,10 +89,10 @@ let createChart () : GenericChart =
     //     Name = "points",
     //     UseDefaults = false
     // )
-    Chart.Point(
-        x = [ 0.0; 1.0; 2.0; 3.0 ],
-        y = [ 1.0; 4.0; 9.0; 16.0 ],
-        Name = "points",
+    Plotly.NET.CSharp.Chart.StackedArea<double, double, string>(
+        x = [| 0.0; 1.0; 2.0; 3.0 |],
+        y = [| 1.0; 4.0; 9.0; 16.0 |],
+        Name = "stackedArea",
         UseDefaults = false
     )
 
