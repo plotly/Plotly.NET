@@ -1,0 +1,39 @@
+{
+    "name": "Plotly.NET agent sandbox",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/dotnet:2": {
+            "version": "10.0",
+            "installUsingApt": false
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "remoteUser": "vscode",
+    "containerEnv": {
+        "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+        "DOTNET_NOLOGO": "1",
+        "NUGET_XMLDOC_MODE": "skip",
+        "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
+    },
+    "postCreateCommand": "bash .devcontainer/postCreate.sh",
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude.json,target=/home/vscode/.claude.json,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.codex,target=/home/vscode/.codex,type=bind,consistency=cached"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csdevkit",
+                "ionide.ionide-fsharp",
+                "anthropic.claude-code",
+                "openai.chatgpt"
+            ]
+        }
+    }
+}
