@@ -10,7 +10,8 @@ dotnet restore Plotly.NET.sln || true
 echo "==> Installing agent CLIs globally (Claude Code + Codex)"
 npm install -g \
     @anthropic-ai/claude-code \
-    @openai/codex
+    @openai/codex \
+    opencode-ai@latest 
 
 echo "==> Aliasing agent CLIs to skip approvals (sandbox is the devcontainer itself)"
 cat >> ~/.bashrc <<'EOF'
