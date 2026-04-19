@@ -457,7 +457,12 @@ Scope:
 
 Implementation notes:
 
-- Pending.
+- `ChartDomain/`, `ChartCarpet/`, and `ChartSmith/` source folders were already present in the branch, so this package focused on filling the missing C# html-codegen coverage for those wrapper families.
+- Added C# wrapper serialization coverage under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartDomain/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartDomain/) for `Pie`, `Doughnut`, `FunnelArea`, `Sunburst`, `Treemap`, `ParallelCoord`, `ParallelCategories`, `Sankey`, `Table`, `Indicator`, and `Icicle`.
+- Added C# wrapper serialization coverage under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartCarpet/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartCarpet/) for `Carpet`, `ScatterCarpet`, `PointCarpet`, `LineCarpet`, `SplineCarpet`, `BubbleCarpet`, and `ContourCarpet`.
+- Added C# wrapper serialization coverage under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartSmith/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartSmith/) for `ScatterSmith`, `PointSmith`, `LineSmith`, and `BubbleSmith`.
+- Adjusted the initial baselines to match actual C# wrapper serialization for the object-heavy and carpet traces, especially `Table`, `ContourCarpet`, `BubbleGeo`, `BubbleMapbox`, and `ChoroplethMapbox`.
+- Verification: `dotnet run --project ./build/build.fsproj -- RunCSharpTestsFast` (105 passed), `dotnet run --project ./build/build.fsproj -- RunTestsCoreFast` (933 passed), `dotnet run --project ./build/build.fsproj -- RunTestsExtensionLibsFast` (C# tests 105 passed; ImageExportTests 6 passed, 2 skipped).
 
 ### Commit 7: Consistency pass and final verification
 
@@ -477,17 +482,20 @@ Suggested verification:
 
 Implementation notes:
 
-- Pending.
+- No additional namespace or `using` normalization was needed for the newly added C# test files; they already match the file-scoped namespace style used in the surrounding C# test suite.
+- Searched for stale references to removed umbrella C# Chart API files. Remaining mentions are confined to planning documents that still describe the pre-split starting point; no code or project files needed cleanup.
+- Final verification: `dotnet run --project ./build/build.fsproj` (Build target succeeded), `dotnet run --project ./build/build.fsproj -- RunTestsCoreFast` (933 passed), `dotnet run --project ./build/build.fsproj -- RunTestsExtensionLibsFast` (C# tests 105 passed; ImageExportTests 6 passed, 2 skipped).
 
-## Open decisions
+## Completion status
 
-These do not block the plan, but we should settle them before implementation starts:
+Implemented.
 
-1. Whether to use file-scoped namespaces in new files or keep the existing block-scoped namespace style for minimal diff noise.
-2. Whether some tiny related methods should intentionally stay grouped in one file, despite the ideal of one chart per file:
-   `Area` + `SplineArea` + `StackedArea`
-   `Bar` + `StackedBar` + `Column` + `StackedColumn`
-   `Scatter3D` + `Point3D` + `Line3D` + `Bubble3D`
-3. Whether the root helpers under `Chart/` should be strictly one file per method (`Combine.cs`, `Grid.cs`, `SingleStack.cs`, `Invisible.cs`) or whether `Grid` + `SingleStack` should intentionally stay together because they are both layout-composition helpers. Current recommendation: keep one file per public method for consistency.
-4. Whether direct F# fixture reuse from C# is ergonomic enough to standardize on, or whether we should proactively add a small adapter layer in `FSharpTestBase` to expose stable fixture accessors for C#.
-5. Whether to leave tiny placeholder umbrella files such as `Chart2D.cs` or `Chart.cs` that only document the folder layout, or delete umbrella files entirely. Current recommendation: delete them entirely once empty.
+Resolved decisions:
+
+1. New C# test files follow the surrounding suite's file-scoped namespace style; no normalization pass was needed beyond keeping that style consistent.
+2. The split stayed at one public chart wrapper per file across the migrated families instead of regrouping tiny related methods.
+3. Root helpers were split into one file per method: `Combine.cs`, `Grid.cs`, `SingleStack.cs`, and `Invisible.cs`.
+4. Direct F# fixture reuse was not standardized for this pass; the new C# html-codegen coverage uses mirrored C# fixtures and rendered baselines where that kept the tests simpler and more stable.
+5. Empty umbrella files were removed rather than kept as placeholders; the root `Chart.cs` file was deleted once its helpers moved.
+
+No further implementation work remains for this plan.
