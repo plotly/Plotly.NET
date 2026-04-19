@@ -421,7 +421,11 @@ Why this pairing:
 
 Implementation notes:
 
-- Pending.
+- `Chart3D/` and `ChartPolar/` source folders were already present in the branch, so this work package focused on the missing C# html-codegen coverage for those wrappers rather than another source-file move.
+- Added focused C# wrapper serialization tests under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart3D/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart3D/) for `Scatter3D`, `Point3D`, `Line3D`, `Bubble3D`, `Surface`, `Mesh3D`, `Cone`, `StreamTube`, `Volume`, and `IsoSurface`.
+- Added matching C# wrapper serialization tests under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartPolar/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartPolar/) for `ScatterPolar`, `PointPolar`, `LinePolar`, `SplinePolar`, `BubblePolar`, and `BarPolar`.
+- Derived and corrected the new expected markup against actual rendered output during verification, including the `BubblePolar` and `BarPolar` baseline differences.
+- Verification: `dotnet run --project ./build/build.fsproj -- RunCSharpTestsFast` (68 passed), `dotnet run --project ./build/build.fsproj -- RunTestsCoreFast` (933 passed), `dotnet run --project ./build/build.fsproj -- RunTestsExtensionLibsFast` (C# tests 68 passed; ImageExportTests 6 passed, 2 skipped).
 
 ### Commit 5: Split ChartMap and ChartTernary
 
