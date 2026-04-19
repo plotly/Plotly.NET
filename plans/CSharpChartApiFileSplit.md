@@ -379,7 +379,9 @@ Exit criteria:
 
 Implementation notes:
 
-- Pending.
+- Added the remaining `tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart2D/*Tests.cs` coverage for the split `Chart2D` wrappers: `Bar`, `StackedBar`, `Column`, `StackedColumn`, `Funnel`, `StackedFunnel`, `Waterfall`, `Histogram`, `Histogram2D`, `Histogram2DContour`, `BoxPlot`, `Violin`, `Heatmap`, `AnnotatedHeatmap`, `Image`, `Contour`, `OHLC`, `Candlestick`, `Splom`, and `PointDensity`.
+- Generated the expected `data`/`layout` baselines from real chart rendering via `tools/chart-baseline-generation/generate-chart-markup.fsx` instead of hand-authoring the markup.
+- Verification: `./build.cmd RunCSharpTestsFast` / `dotnet run --project ./build/build.fsproj -- RunCSharpTestsFast` (45 passed).
 
 ### Commit 3: Split root Chart helpers
 
