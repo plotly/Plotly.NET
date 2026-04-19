@@ -30,7 +30,7 @@ If you edit sources in `src/Plotly.NET` or `src/Plotly.NET.CSharp` during the in
 1. Ensure the dependency DLLs exist (see Prerequisites above); build them if missing.
 2. Identify the chart fixture or chart-construction expression you want to validate.
 3. Prefer an existing fixture from `tests/Common/FSharpTestBase/TestCharts/`.
-4. If there is no suitable fixture, put a temporary focused chart expression into `.claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx`.
+4. If there is no suitable fixture, put a temporary focused chart expression into `tools/chart-baseline-generation/generate-chart-markup.fsx`.
 5. Always use that script for both F# tests and C# tests.
 6. For C# wrapper baselines, call `Plotly.NET.CSharp.Chart...` inside the F# script.
 7. Keep `UseDefaults = false` on the chart to avoid noisy default template output.
@@ -44,20 +44,20 @@ If you edit sources in `src/Plotly.NET` or `src/Plotly.NET.CSharp` during the in
 
 ## Where to generate output
 
-Always use `.claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx` as the investigation harness. Do not create or edit console app projects for this workflow.
+Always use `tools/chart-baseline-generation/generate-chart-markup.fsx` as the investigation harness. Do not create or edit console app projects for this workflow.
 
-Edit `createChart()` in `.claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx`, run the script for the section you need, inspect the generated output, then revert the temporary chart expression when finished.
+Edit `createChart()` in `tools/chart-baseline-generation/generate-chart-markup.fsx`, run the script for the section you need, inspect the generated output, then revert the temporary chart expression when finished.
 
 ## How to run the script
 
 Examples:
 
 ```powershell
-dotnet fsi .claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx
-dotnet fsi .claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx -- data
-dotnet fsi .claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx -- layout
-dotnet fsi .claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx -- html
-dotnet fsi .claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx -- data --write-html temp/chart.html
+dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx
+dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- data
+dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- layout
+dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- html
+dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- data --write-html temp/chart.html
 ```
 
 By default, the script prints extracted stable sections to stdout and does not create temporary files.
@@ -74,7 +74,7 @@ Use the full `./build.cmd runTestsAll` before committing.
 
 ## Recommended temporary pattern
 
-For a one-off investigation, edit `.claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx` so it generates the chart you need, then run the script with the section you want to inspect.
+For a one-off investigation, edit `tools/chart-baseline-generation/generate-chart-markup.fsx` so it generates the chart you need, then run the script with the section you want to inspect.
 
 Prefer temporary F# script code like:
 
@@ -90,7 +90,7 @@ let html = GenericChart.toChartHTML chart
 
 Do not leave exploratory printouts or file dumps in committed script code.
 
-Do not create extra helper files for this workflow unless there is a strong reason. Prefer modifying `.claude/skills/chart-baseline-generation/scripts/generate-chart-markup.fsx` directly and then reverting the temporary code.
+Do not create extra helper files for this workflow unless there is a strong reason. Prefer modifying `tools/chart-baseline-generation/generate-chart-markup.fsx` directly and then reverting the temporary code.
 
 ## What to assert
 

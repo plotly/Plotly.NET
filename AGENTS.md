@@ -126,6 +126,20 @@ When adding a new chart type or API surface, add or update the corresponding `.f
 - Main branch for PRs is **`dev`**, not `main`/`master`.
 - when prompted for planning the implementation of a feature, draft a plan file and put it into /plans. Use that document to split the planned commits for the feature into self-contained commits that include tests. When working on the feature, continuously update the plan with implementation notes and mark the planned commits as done when they are implemented.
 
+## Agent workflows
+
+### Chart baseline generation
+
+- When adding or updating tests that assert chart markup, generate the expected `data` or `layout` from real chart rendering first. Do not hand-write large expected strings from memory.
+- Use the canonical harness at `tools/chart-baseline-generation/generate-chart-markup.fsx`.
+- Prefer existing fixtures from `tests/Common/FSharpTestBase/TestCharts/`. If there is no suitable fixture, temporarily edit `createChart()` in that script, run it, copy the stable section you need, then revert the temporary chart code.
+- Keep `UseDefaults = false` on investigation charts to avoid noisy template output.
+- Useful commands:
+  - `dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- data`
+  - `dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- layout`
+  - `dotnet fsi tools/chart-baseline-generation/generate-chart-markup.fsx -- html`
+- For local verification, prefer the smallest matching FAKE target such as `./build.cmd RunCSharpTestsFast`, `./build.cmd RunTestsCoreFast`, or `./build.cmd RunTestsExtensionLibsFast`.
+
 ### Upstream changes from plotly.js
 
 - Plotly.NET wraps plotly.js. 
