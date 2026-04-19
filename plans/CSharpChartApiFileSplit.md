@@ -400,7 +400,10 @@ Why here:
 
 Implementation notes:
 
-- Pending.
+- Split the root `Chart` wrapper into dedicated partials under [src/Plotly.NET.CSharp/ChartAPI/Chart/](src/Plotly.NET.CSharp/ChartAPI/Chart/): `Combine.cs`, `Invisible.cs`, `Grid.cs`, and `SingleStack.cs`.
+- Deleted [Chart.cs](src/Plotly.NET.CSharp/ChartAPI/Chart.cs) after moving the last root helper methods out of it.
+- Added focused C# html-codegen coverage under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/Chart/) for `Combine`, `Invisible`, `Grid`, and `SingleStack`, including baselines for the serialized invisible chart output.
+- Verification: `dotnet run --project ./build/build.fsproj -- RunCSharpTestsFast` (52 passed), `dotnet run --project ./build/build.fsproj -- RunTestsExtensionLibsFast` (C# tests 52 passed; ImageExportTests 6 passed, 2 skipped).
 
 ### Commit 4: Split Chart3D and ChartPolar
 
