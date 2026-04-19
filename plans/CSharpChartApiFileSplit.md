@@ -439,7 +439,11 @@ Scope:
 
 Implementation notes:
 
-- Pending.
+- `ChartMap/` and `ChartTernary/` source folders were already present in the branch, so this package focused on adding the missing C# html-codegen coverage for those wrappers.
+- Added focused C# wrapper serialization tests under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartMap/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartMap/) for `ScatterGeo`, `PointGeo`, `LineGeo`, `BubbleGeo`, `ScatterMapbox`, `PointMapbox`, `LineMapbox`, `BubbleMapbox`, `DensityMapbox`, `ChoroplethMap`, and `ChoroplethMapbox`.
+- Added focused C# wrapper serialization tests under [tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartTernary/](tests/ExtensionLibsTests/CSharpTests/htmlcodegen/ChartTernary/) for `ScatterTernary`, `PointTernary`, `LineTernary`, and `BubbleTernary`.
+- Corrected the initial baselines against actual serialized output for `BubbleGeo`, `BubbleMapbox`, and `ChoroplethMapbox` where the emitted shape differed from the first-pass expectation.
+- Verification: `dotnet run --project ./build/build.fsproj -- RunCSharpTestsFast` (83 passed), `dotnet run --project ./build/build.fsproj -- RunTestsCoreFast` (933 passed), `dotnet run --project ./build/build.fsproj -- RunTestsExtensionLibsFast` (C# tests 83 passed; ImageExportTests 6 passed, 2 skipped).
 
 ### Commit 6: Split ChartDomain, ChartCarpet, and ChartSmith
 
