@@ -41,3 +41,39 @@ module Venn =
                 );
             ]
         ]
+
+module UpSet =
+    [<Tests>]
+    let ``UpSet chart HTML codegeneration tests`` =
+        testList "HTMLCodegen.ChartComposite" [
+            testList "UpSet" [
+                testCase "Three set intersection size bars" ( fun () ->
+                    // intersection sizes, sorted descending, drawn as vertical bars in the top right cell
+                    """{"type":"bar","y":[4,3,3,2,2,1,1],"orientation":"v","marker":{"color":"rgba(0, 0, 139, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x2","yaxis":"y2"}"""
+                    |> chartGeneratedContains UpSet.``Three set upset plot``
+                );
+                testCase "Three set size bars" ( fun () ->
+                    // per-set sizes drawn as horizontal bars in the bottom left cell
+                    """{"type":"bar","x":[7,9,11],"y":["A","B","C"],"orientation":"h","marker":{"color":"rgba(0, 0, 139, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x3","yaxis":"y3"}"""
+                    |> chartGeneratedContains UpSet.``Three set upset plot``
+                );
+                testCase "Three set triple intersection matrix line" ( fun () ->
+                    // the final intersection (A∩B∩C) connects all three set rows in the matrix
+                    """{"type":"scatter","mode":"lines+markers","x":[6,6,6],"y":[0,1,2],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"}"""
+                    |> chartGeneratedContains UpSet.``Three set upset plot``
+                );
+                testCase "Three set grid layout" ( fun () ->
+                    """"grid":{"rows":2,"columns":2,"roworder":"top to bottom","pattern":"independent"}"""
+                    |> chartGeneratedContains UpSet.``Three set upset plot``
+                );
+                testCase "Three set set-size axis" ( fun () ->
+                    // set size bars use a reversed x-range so they grow towards the matrix
+                    """"xaxis3":{"title":{"text":"Set Size","font":{"family":"Arial","size":20.0}},"range":[11.0,0.0],"domain":[0.0,0.2]}"""
+                    |> chartGeneratedContains UpSet.``Three set upset plot``
+                );
+                testCase "Three set matrix label axis" ( fun () ->
+                    """"yaxis4":{"range":[-0.5,2.5],"tickmode":"array","tickvals":[0,1,2],"ticktext":["A","B","C"],"showticklabels":true,"tickfont":{"family":"Arial","size":20.0},"showline":false,"showgrid":false,"zeroline":false}"""
+                    |> chartGeneratedContains UpSet.``Three set upset plot``
+                );
+            ]
+        ]

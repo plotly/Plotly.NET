@@ -4,9 +4,9 @@ open Plotly.NET
 let main _ =
 
     // sample sets with overlapping members to exercise every venn region
-    let setA = Set.ofList [ 1; 2; 3; 4; 5; 6; 11 ]
-    let setB = Set.ofList [ 1; 2; 3; 7; 8; 9; 10; 12; 13 ]
-    let setC = Set.ofList [ 1; 4; 5; 6; 7; 8; 9; 10; 14; 15; 16 ]
+    let setA = [| "1"; "2"; "3"; "4"; "5"; "6"; "11" |]
+    let setB = [| "1"; "2"; "3"; "7"; "8"; "9"; "10"; "12"; "13" |]
+    let setC = [| "1"; "4"; "5"; "6"; "7"; "8"; "9"; "10"; "14"; "15"; "16" |]
 
     // two-set venn diagram
     let twoSetVenn =
@@ -34,7 +34,17 @@ let main _ =
         )
         |> Chart.withTitle "Venn: three sets (styled)"
 
+    // upset plot comparing the same three sets
+    let upset =
+        Chart.UpSet(
+            labels = [| "A"; "B"; "C" |],
+            sets = [| setA; setB; setC |],
+            MinIntersectionSize = 1,
+            UseDefaults = true
+        )
+
     twoSetVenn |> Chart.show
     threeSetVenn |> Chart.show
+    upset |> Chart.show
 
     0
