@@ -19,6 +19,12 @@ As a consequence, the html dsl dependency switches back from `Giraffe.ViewEngine
 
 - [#500](https://github.com/plotly/Plotly.NET/pull/500): Internal refactor — split the monolithic `Chart.fs` into per-chart-family files (`Chart2D_Scatter.fs`, `Chart2D_Bar.fs`, etc.) for better maintainability. No API changes.
 
+- **Set comparison charts** — new composite charts for visualizing set membership and intersections (in `ChartComposite`):
+
+  - `Chart.Venn` draws a Venn diagram comparing two or three sets (`set1`, `set2`, optional `Set3`), annotating each region with its member count. Axes are locked to a 1:1 pixel ratio so the circles always render round, and colors/labels/text font are customizable.
+  - `Chart.UpSet` draws an UpSet plot for an arbitrary number of sets: an intersection matrix, an intersection-size bar chart, and a set-size bar chart, with optional per-intersection attribute plots via `SetData`/`SetDataChartsTitle`.
+  - Both take plain `#seq<string>` / `#seq<#seq<string>>` set inputs (treated as sets internally; duplicates ignored) and support the standard `UseDefaults` parameter.
+
 - Dev tooling: target framework for build/test projects updated to `net10.0`; NuGet dependency updates (Newtonsoft.Json 13.0.4, Deedle 5.0.0, FSharp.Data 8.1.7, FAKE 6.1.4, Microsoft.NET.Test.Sdk 18.x).
 
 ### 5.1.0 - September 04 2024
