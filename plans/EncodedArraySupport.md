@@ -6,18 +6,18 @@ Encoded-array support is a shared Plotly.NET feature, not a C#-only feature. The
 
 The upstream context is [Plotly.NET issue #441](https://github.com/plotly/Plotly.NET/issues/441) and [plotly.js 2.28.0](https://github.com/plotly/plotly.js/releases/tag/v2.28.0). The wire representation contains `dtype`, base64 `bdata`, and optional `shape`; it is shared by both languages. This plan does not claim a measured performance improvement.
 
-Updated on 2026-09-10 for the merge of `dev` at `41f2f88c` (the merged C# refactor, PR #503) into `plotly2.28` at `fd862365` (PR #502). Status means present in the resolved merge unless another ref is named explicitly. Verification of this integration is recorded below.
+Updated on 2026-09-10 after merging `dev` at `41f2f88c` (C# refactor PR #503) into `plotly2.28` (PR #502) and completing the agreed follow-up scope. Status means present on this branch unless another ref is named explicitly. Integration and completion verification are recorded separately below.
 
 | Layer / scope | Status in this checkout | Remaining work |
 |---|---|---|
-| Shared `EncodedTypedArray`, numeric factories, JSON representation | Implemented; C# factory syntax compiled in regression tests | Document the verified syntax in Next 6; reuse the shared type |
+| Shared `EncodedTypedArray`, numeric factories, JSON representation | Implemented; C# factory syntax compiled in regression tests and documented | Reuse the shared type for further wrappers |
 | Bundled plotly.js 2.28.0 and selected trace fields (A–G2) | Implemented | Preserve existing serialization and precedence coverage |
 | Selected foundational F# chart constructors (H1) | Implemented and committed | No repeat implementation; exclusions are listed below |
 | Selected derived F# constructors (H2) | Implemented and committed | No repeat implementation |
-| C# direct encoded chart overloads (H3) | Eight existing overloads ported into the split files and regression-tested from C# | Usage documentation remains; further families are in the backlog |
-| Encoded dimensions | Shared Dimension support and F#/C# parallel-chart pair conveniences are present and tested | Additional C# encoded-SPLOM coverage remains Next 5 |
-| Encoded Sankey flow data | Shared node/link support is present and tested through the existing object-based C# wrapper | Explicit plain/encoded collision coverage remains Next 4 |
-| User documentation for encoded arrays | F# documentation is present | C# documentation and the broader documentation review remain Next 6 |
+| C# direct encoded chart overloads (H3) | Eight overloads in split files with C# regression tests and documented examples | Further families remain in the separately scoped backlog |
+| Encoded dimensions | Shared Dimension support, F#/C# parallel pairs, and C# encoded SPLOM are tested | No work remaining in the selected dimension scope |
+| Encoded Sankey flow data | Shared node/link support, existing C# wrapper, and init/style precedence are tested | No work remaining in the selected nested-data scope |
+| User documentation for encoded arrays | F# and compiled C# examples, scope/limits, and script loading are documented; docs build and strict reevaluation passed | No work remaining in the selected documentation scope |
 
 The structural [F# chart split](ChartAPIFileSplit.md) and [C# chart split](CSharpChartApiFileSplit.md) are separate plans. Their completion does not imply C# encoded-array coverage or full plotly.js feature parity.
 
@@ -94,6 +94,20 @@ Keep the removed umbrella files deleted and all overloads grouped in their per-c
 
 ## Next commit packages
 
+### Completion pass agreed on 2026-09-10 [done]
+
+This self-contained follow-up closes the selected 2.28 scope after the refactor integration:
+
+- [x] Add shared Sankey init/style collision fixtures and assertions, plus C# encoded-SPLOM coverage.
+- [x] Add compiled C# documentation examples for a 1D chart and a non-square matrix.
+- [x] Correct the encoded-array guide and both package release notes; document the selected wrappers and numeric/shape limits.
+- [x] Smoke-test real generated charts with bundled plotly.js 2.28.0, including nested data and Virtual-WebGL loading, and record the observed results.
+- [x] Run the documentation build and full clean FAKE test suite, then update both plans with completion evidence.
+
+Additional C# chart families remain the separately scoped backlog below.
+
+Final verification on 2026-09-10: **full clean `./build.cmd runTestsAll` passed with 960 core tests, 126 C# tests, and 6 ImageExport tests passed / 2 already pending**. `./build.cmd BuildDocs` completed, followed by successful strict reevaluation of the edited pages with `dotnet fsdocs build --eval --strict --properties Configuration=Release --parameters fsdocs-package-version 6.0.0`. This also verified the installation-example formatting fix in `docs/index.fsx`. The guide's C# examples are compiled in `EncodedArrayExamplesTests.cs`. Browser checks for Scatter, a 2x3 Heatmap, nested Sankey, SPLOM, and four Virtual-WebGL charts passed; environment, scope, and observations are recorded in [the 2.28 integration status](PlotlyJS_2_28_Parity.md#browser-verification-2026-09-10).
+
 Each package includes implementation and its tests in the same independently buildable commit. Mark it done only after integration and verification on the working branch. The packages below define an initial C# milestone plus separate shared-core/convenience follow-ups; they do not require mirroring every F# overload.
 
 ### Next 1: C# Scatter and factory interoperability [done in integration merge]
@@ -119,9 +133,9 @@ Each package includes implementation and its tests in the same independently bui
 
 Next 1–3 cover exactly the eight existing C# candidate methods. This is the initial H3 implementation milestone, not full F# chart parity. Additional roots are tracked separately below.
 
-### Next 4: Shared Sankey node/link support [integrated; precedence coverage pending]
+### Next 4: Shared Sankey node/link support [done]
 
-Integration retains the shared implementation and adds C# coverage for node positions and link source/target/value. Existing F# tests also cover encoded metadata. The explicit plain/encoded collision tests below remain a follow-up; encoded-only serialization tests do not establish precedence.
+Integration retains the shared implementation and C# coverage for node positions and link source/target/value. The completion pass adds shared fixtures and tests for init and style collisions across all nine encoded node/link fields, verifies plain labels/alignment survive, and rejects duplicate JSON properties. The style fixture starts from existing objects to cover replacement of earlier values.
 
 - Review and adapt the encoded portion of `d91fe84a` in `Traces/ObjectAbstractions/Sankey.fs`.
 - Cover the meaningful nested numeric inputs first: node positions and link source/target/value, plus supported metadata fields. Preserve existing plain inputs and encoded precedence.
@@ -130,9 +144,9 @@ Integration retains the shared implementation and adds C# coverage for node posi
 - Keep the node-alignment API change separate from the encoded-array completion criteria.
 - Verify with `RunTestsCoreFast` and `RunCSharpTestsFast`.
 
-### Next 5: Parallel dimension conveniences [integrated; extra SPLOM coverage pending]
+### Next 5: Parallel dimension conveniences [done]
 
-Integration retains both pair conveniences and adds C# serialization/option-forwarding tests. The additional C# encoded-SPLOM test below remains a follow-up; no new SPLOM wrapper is needed.
+Integration retains both pair conveniences and C# serialization/option-forwarding tests. The completion pass adds a C# test through the existing SPLOM wrapper, covering encoded dimension values, replacement of plain values, labels, axis matching, marker color, and diagonal/upper-half options. No new SPLOM wrapper is needed.
 
 - Adapt shared F# pair constructors from `1f775369`, then matching C# wrappers from `fd862365` in the existing `ParallelCoord.cs` and `ParallelCategories.cs` files.
 - Use the candidate C# `IEnumerable<(string, EncodedTypedArray)>` shape and delegate to the shared Dimension-based implementation.
@@ -140,7 +154,7 @@ Integration retains both pair conveniences and adds C# serialization/option-forw
 - Exercise C# `Splom(dimensions, ...)` with encoded dimensions as well; a new SPLOM pair overload is optional, not required to enable encoded values.
 - Verify with `RunTestsCoreFast` and `RunCSharpTestsFast`.
 
-### Next 6: Usage documentation and completion record [pending]
+### Next 6: Usage documentation and completion record [done]
 
 - Adapt `docs/general/encoded-arrays.fsx` from `263d7518` to APIs actually integrated on this branch.
 - Explain the shared representation, numeric dtype limits, matrix shape, plain/encoded precedence at the object layer, and the distinction between direct wrappers and nested-object support.

@@ -86,7 +86,8 @@ Plotly.NET packages are available on NuGet to plug into your favorite package ma
 
 You can include the package via an inline package reference:
 
-```
+```text
+[lang=text]
 #r "nuget: Plotly.NET, {{fsdocs-package-version}}"
 ```
 
@@ -95,7 +96,8 @@ You can include the package via an inline package reference:
 You can use the same inline package reference as in scripts, but as an additional goodie
 the interactive extensions for dotnet interactive have you covered for seamless chart rendering:
 
-```
+```text
+[lang=text]
 #r "nuget: Plotly.NET.Interactive, {{fsdocs-package-version}}"
 ```
 

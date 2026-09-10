@@ -1103,6 +1103,77 @@ module ``Sankey encoded node and link arrays`` =
             )
         Chart.Sankey(nodes, links, UseDefaults = false)
 
+module ``Sankey encoded precedence`` =
+
+    // Deliberately different plain inputs prove that encoded values replace them.
+    let private styleNodes =
+        SankeyNodes.style(
+            Align = StyleParam.SankeyNodeAlign.Right,
+            Label = [ "A"; "B"; "C" ],
+            Color = Color.fromString "red",
+            ColorEncoded = EncodedTypedArray.ofFloat32Array [| 1.0f; 2.0f; 3.0f |],
+            CustomData = [ 99; 99; 99 ],
+            CustomDataEncoded = EncodedTypedArray.ofInt32Array [| 10; 20; 30 |],
+            X = [ 0.9; 0.9; 0.9 ],
+            XEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+            Y = [ 0.9; 0.9; 0.9 ],
+            YEncoded = EncodedTypedArray.ofFloat64Array [| 0.25; 0.75; 0.5 |]
+        )
+
+    let private styleLinks =
+        SankeyLinks.style(
+            Label = [ "A to C"; "B to C" ],
+            Color = Color.fromString "blue",
+            ColorEncoded = EncodedTypedArray.ofFloat32Array [| 4.0f; 5.0f |],
+            CustomData = [ 99; 99 ],
+            CustomDataEncoded = EncodedTypedArray.ofInt32Array [| 40; 50 |],
+            Source = [ 2; 2 ],
+            SourceEncoded = EncodedTypedArray.ofInt32Array [| 0; 1 |],
+            Target = [ 0; 0 ],
+            TargetEncoded = EncodedTypedArray.ofInt32Array [| 2; 2 |],
+            Value = [ 99.0; 99.0 ],
+            ValueEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 4.0 |]
+        )
+
+    let ``Sankey init prefers encoded node and link inputs`` =
+        let nodes =
+            SankeyNodes.init(
+                Align = StyleParam.SankeyNodeAlign.Right,
+                Label = [ "A"; "B"; "C" ],
+                Color = Color.fromString "red",
+                ColorEncoded = EncodedTypedArray.ofFloat32Array [| 1.0f; 2.0f; 3.0f |],
+                CustomData = [ 99; 99; 99 ],
+                CustomDataEncoded = EncodedTypedArray.ofInt32Array [| 10; 20; 30 |],
+                X = [ 0.9; 0.9; 0.9 ],
+                XEncoded = EncodedTypedArray.ofFloat64Array [| 0.0; 0.0; 1.0 |],
+                Y = [ 0.9; 0.9; 0.9 ],
+                YEncoded = EncodedTypedArray.ofFloat64Array [| 0.25; 0.75; 0.5 |]
+            )
+        let links =
+            SankeyLinks.init(
+                Label = [ "A to C"; "B to C" ],
+                Color = Color.fromString "blue",
+                ColorEncoded = EncodedTypedArray.ofFloat32Array [| 4.0f; 5.0f |],
+                CustomData = [ 99; 99 ],
+                CustomDataEncoded = EncodedTypedArray.ofInt32Array [| 40; 50 |],
+                Source = [ 2; 2 ],
+                SourceEncoded = EncodedTypedArray.ofInt32Array [| 0; 1 |],
+                Target = [ 0; 0 ],
+                TargetEncoded = EncodedTypedArray.ofInt32Array [| 2; 2 |],
+                Value = [ 99.0; 99.0 ],
+                ValueEncoded = EncodedTypedArray.ofFloat64Array [| 8.0; 4.0 |]
+            )
+        Chart.Sankey(nodes, links, UseDefaults = false)
+
+    let ``Sankey style prefers encoded node and link inputs`` =
+        let nodes =
+            SankeyNodes.init(Label = [ "old" ], X = [ 0.5 ], Y = [ 0.5 ])
+            |> styleNodes
+        let links =
+            SankeyLinks.init(Source = [ 0 ], Target = [ 1 ], Value = [ 100.0 ])
+            |> styleLinks
+        Chart.Sankey(nodes, links, UseDefaults = false)
+
 module ``ParallelCoord and ParallelCategories encoded dimensions`` =
 
     let ``ParallelCoord with encoded dimensions`` =

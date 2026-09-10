@@ -5,6 +5,36 @@ open Expecto
 open TestUtils.HtmlCodegen
 open PlotlyJS_2_28_TestCharts
 
+module ``Sankey encoded precedence`` =
+
+    // Generated from the shared init fixture through the canonical baseline harness.
+    let private expectedData = """[{"type":"sankey","node":{"align":"right","color":{"bdata":"AACAPwAAAEAAAEBA","dtype":"f4"},"customdata":{"bdata":"CgAAABQAAAAeAAAA","dtype":"i4"},"label":["A","B","C"],"x":{"bdata":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/","dtype":"f8"},"y":{"bdata":"AAAAAAAA0D8AAAAAAADoPwAAAAAAAOA/","dtype":"f8"}},"link":{"color":{"bdata":"AACAQAAAoEA=","dtype":"f4"},"customdata":{"bdata":"KAAAADIAAAA=","dtype":"i4"},"label":["A to C","B to C"],"source":{"bdata":"AAAAAAEAAAA=","dtype":"i4"},"target":{"bdata":"AgAAAAIAAAA=","dtype":"i4"},"value":{"bdata":"AAAAAAAAIEAAAAAAAAAQQA==","dtype":"f8"}}}]"""
+
+    [<Tests>]
+    let ``Sankey nested encoded precedence tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28.Sankey precedence" [
+            for name, chart in [
+                "init", ``Sankey encoded precedence``.``Sankey init prefers encoded node and link inputs``
+                "style", ``Sankey encoded precedence``.``Sankey style prefers encoded node and link inputs``
+            ] do
+                testCase (name + " replaces plain nested values with encoded values") (fun () ->
+                    for render in [ Plotly.NET.GenericChart.toChartHTML; Plotly.NET.GenericChart.toEmbeddedHTML ] do
+                        let html = render chart
+                        let data = System.Text.RegularExpressions.Regex.Match(html, @"var data = (.*?);")
+                        Expect.isTrue data.Success "Generated HTML contains chart data"
+                        let settings =
+                            Newtonsoft.Json.Linq.JsonLoadSettings(
+                                DuplicatePropertyNameHandling = Newtonsoft.Json.Linq.DuplicatePropertyNameHandling.Error
+                            )
+                        let actual = Newtonsoft.Json.Linq.JArray.Parse(data.Groups[1].Value, settings)
+                        let expected = Newtonsoft.Json.Linq.JArray.Parse(expectedData)
+                        Expect.isTrue
+                            (Newtonsoft.Json.Linq.JToken.DeepEquals(actual, expected))
+                            (sprintf "Encoded node/link properties replace plain inputs; labels and alignment survive. Actual: %O" actual)
+                )
+        ]
+
+
 module ``Encoded typed arrays`` =
 
     [<Tests>]

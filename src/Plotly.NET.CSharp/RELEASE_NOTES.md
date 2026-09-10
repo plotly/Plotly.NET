@@ -1,5 +1,11 @@
 ### 0.14.0 - TBD
 
+- Add direct encoded-array overloads for `Scatter`, `Bar`, `StackedBar`, `Column`, `StackedColumn`, `Heatmap`, `Histogram2D`, and `Scatter3D`, reusing `Plotly.NET.EncodedTypedArray`.
+- Add `ParallelCoord` / `ParallelCategories` conveniences accepting label/encoded-value pairs. Existing SPLOM and Sankey wrappers also accept shared dimension/node/link objects containing encoded values.
+- Add a Sankey label/link convenience with `NodeAlign` for Left, Right, Center, or Justify alignment.
+- Document and test C# factory syntax for 1D arrays and shaped matrices. Additional direct encoded wrappers remain outside this release's selected C# scope; existing plain overloads are preserved.
+- Split the C# chart implementation and tests into per-chart files without changing the existing API.
+
 - bump version range of Plotly.NET to [6.0.0, 7.0.0)
 - **Breaking:** Plotly.NET.CSharp assemblies are no longer strong-named. See the Plotly.NET 6.0.0 release notes for context and migration options.
 - Dev tooling: target framework updated to `net10.0`; xunit 2.9.3, xunit.runner.visualstudio 3.1.5, coverlet.collector 8.0.1
