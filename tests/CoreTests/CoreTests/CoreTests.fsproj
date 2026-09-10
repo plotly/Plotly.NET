@@ -19,6 +19,7 @@
     <Compile Include="HTMLCodegen\ChartCarpet.fs" />
     <Compile Include="HTMLCodegen\ChartDomain.fs" />
     <Compile Include="HTMLCodegen\ChartSmith.fs" />
+    <Compile Include="HTMLCodegen\ChartComposite.fs" />
     <Compile Include="HTMLCodegen\SimpleTests.fs" />
     <Compile Include="HTMLCodegen\ChartLayout.fs" />
     <Compile Include="HTMLCodegen\MulticategoryData.fs" />
