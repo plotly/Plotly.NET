@@ -5,6 +5,36 @@ open Expecto
 open TestUtils.HtmlCodegen
 open PlotlyJS_2_28_TestCharts
 
+module ``Sankey encoded precedence`` =
+
+    // Generated from the shared init fixture through the canonical baseline harness.
+    let private expectedData = """[{"type":"sankey","node":{"align":"right","color":{"bdata":"AACAPwAAAEAAAEBA","dtype":"f4"},"customdata":{"bdata":"CgAAABQAAAAeAAAA","dtype":"i4"},"label":["A","B","C"],"x":{"bdata":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/","dtype":"f8"},"y":{"bdata":"AAAAAAAA0D8AAAAAAADoPwAAAAAAAOA/","dtype":"f8"}},"link":{"color":{"bdata":"AACAQAAAoEA=","dtype":"f4"},"customdata":{"bdata":"KAAAADIAAAA=","dtype":"i4"},"label":["A to C","B to C"],"source":{"bdata":"AAAAAAEAAAA=","dtype":"i4"},"target":{"bdata":"AgAAAAIAAAA=","dtype":"i4"},"value":{"bdata":"AAAAAAAAIEAAAAAAAAAQQA==","dtype":"f8"}}}]"""
+
+    [<Tests>]
+    let ``Sankey nested encoded precedence tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28.Sankey precedence" [
+            for name, chart in [
+                "init", ``Sankey encoded precedence``.``Sankey init prefers encoded node and link inputs``
+                "style", ``Sankey encoded precedence``.``Sankey style prefers encoded node and link inputs``
+            ] do
+                testCase (name + " replaces plain nested values with encoded values") (fun () ->
+                    for render in [ Plotly.NET.GenericChart.toChartHTML; Plotly.NET.GenericChart.toEmbeddedHTML ] do
+                        let html = render chart
+                        let data = System.Text.RegularExpressions.Regex.Match(html, @"var data = (.*?);")
+                        Expect.isTrue data.Success "Generated HTML contains chart data"
+                        let settings =
+                            Newtonsoft.Json.Linq.JsonLoadSettings(
+                                DuplicatePropertyNameHandling = Newtonsoft.Json.Linq.DuplicatePropertyNameHandling.Error
+                            )
+                        let actual = Newtonsoft.Json.Linq.JArray.Parse(data.Groups[1].Value, settings)
+                        let expected = Newtonsoft.Json.Linq.JArray.Parse(expectedData)
+                        Expect.isTrue
+                            (Newtonsoft.Json.Linq.JToken.DeepEquals(actual, expected))
+                            (sprintf "Encoded node/link properties replace plain inputs; labels and alignment survive. Actual: %O" actual)
+                )
+        ]
+
+
 module ``Encoded typed arrays`` =
 
     [<Tests>]
@@ -902,6 +932,85 @@ module ``Encoded typed arrays on carpet and domain traces`` =
                 testCase "sankey trace serializes encoded metadata arrays" (fun () ->
                     [ "\"ids\":{\"bdata\":"; "\"meta\":{\"bdata\":"; "\"customdata\":{\"bdata\":"; "\"selectedpoints\":{\"bdata\":" ]
                     |> List.iter (chartGeneratedContains ``Encoded typed arrays on carpet and domain traces``.``Sankey with encoded arrays``)
+                )
+            ]
+        ]
+
+module ``Sankey node align`` =
+
+    [<Tests>]
+    let ``Sankey node align tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Sankey node align" [
+                testCase "Sankey with node align right serializes align property on node object" (fun () ->
+                    "\"node\":{\"align\":\"right\",\"label\":[\"A\",\"B\",\"C\"]}"
+                    |> chartGeneratedContains ``Sankey node align``.``Sankey with node align right``
+                )
+                testCase "Sankey via Chart overload serializes align property on node object" (fun () ->
+                    "\"node\":{\"align\":\"left\",\"label\":[\"A\",\"B\",\"C\"],\"line\":{}}"
+                    |> chartGeneratedContains ``Sankey node align``.``Sankey with node align via Chart overload``
+                )
+            ]
+        ]
+
+module ``Sankey encoded node and link arrays`` =
+
+    [<Tests>]
+    let ``Sankey encoded node and link array tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "Sankey encoded node and link arrays" [
+                testCase "Sankey node color is serialized as encoded object" (fun () ->
+                    "\"color\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey node customdata is serialized as encoded object" (fun () ->
+                    "\"customdata\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey node x is serialized as encoded object" (fun () ->
+                    "\"x\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey node y is serialized as encoded object" (fun () ->
+                    "\"y\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded node arrays``
+                )
+                testCase "Sankey link source is serialized as encoded object" (fun () ->
+                    "\"source\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link target is serialized as encoded object" (fun () ->
+                    "\"target\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link value is serialized as encoded object" (fun () ->
+                    "\"value\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link color is serialized as encoded object" (fun () ->
+                    "\"color\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+                testCase "Sankey link customdata is serialized as encoded object" (fun () ->
+                    "\"customdata\":{\"bdata\":"
+                    |> chartGeneratedContains ``Sankey encoded node and link arrays``.``Sankey with encoded link arrays``
+                )
+            ]
+        ]
+
+module ``ParallelCoord and ParallelCategories encoded dimensions`` =
+
+    [<Tests>]
+    let ``ParallelCoord and ParallelCategories encoded dimension tests`` =
+        testList "UpstreamFeatures.PlotlyJS_2_28" [
+            testList "ParallelCoord and ParallelCategories encoded dimensions" [
+                testCase "ParallelCoord dimension A values are serialized as encoded object" (fun () ->
+                    "\"values\":{\"bdata\":"
+                    |> chartGeneratedContains ``ParallelCoord and ParallelCategories encoded dimensions``.``ParallelCoord with encoded dimensions``
+                )
+                testCase "ParallelCategories dimension X values are serialized as encoded object" (fun () ->
+                    "\"values\":{\"bdata\":"
+                    |> chartGeneratedContains ``ParallelCoord and ParallelCategories encoded dimensions``.``ParallelCategories with encoded dimensions``
                 )
             ]
         ]

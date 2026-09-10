@@ -6,7 +6,7 @@ Guidance for AI coding agents working in the Plotly.NET repo. This is a first dr
 
 Plotly.NET is an interactive charting library for .NET, built on top of plotly.js. The core is written in F# and wraps the plotly.js JSON schema with multiple API layers (high-level type-safe `Chart` API down to low-level object manipulation). See [README.md](README.md) for user-facing docs and the [F1000Research paper](https://doi.org/10.12688/f1000research.123971.1) for design rationale.
 
-Currently targeted plotly.js version: **2.27.1** (bundled at [src/Plotly.NET/plotly-2.27.1.min.js](src/Plotly.NET/plotly-2.27.1.min.js)).
+Currently targeted plotly.js version: **2.28.0** (bundled at [src/Plotly.NET/plotly-2.28.0.min.js](src/Plotly.NET/plotly-2.28.0.min.js)).
 
 ## Packages (monorepo layout)
 

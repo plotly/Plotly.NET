@@ -88,4 +88,61 @@ public static partial class Chart
                 MultiTextPosition: MultiTextPosition.ToOption(),
                 UseDefaults: UseDefaults.ToOption()
             );
+
+    /// <summary>Creates a column chart from encoded values, with bars plotted vertically.</summary>
+    /// <param name="valuesEncoded">Sets the bar lengths as an encoded typed array.</param>
+    /// <param name="KeysEncoded">Sets the bar keys as an encoded typed array.</param>
+    /// <param name="Base">Sets where the bar base is drawn (in position axis units).</param>
+    /// <param name="Width">Sets the bar width (in position axis units) of all bars.</param>
+    /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+    public static GenericChart Column<TextType, BaseType, WidthType>(
+        EncodedTypedArray valuesEncoded,
+        Optional<EncodedTypedArray> KeysEncoded = default,
+        Optional<string> Name = default,
+        Optional<bool> ShowLegend = default,
+        Optional<double> Opacity = default,
+        Optional<IEnumerable<double>> MultiOpacity = default,
+        Optional<TextType> Text = default,
+        Optional<IEnumerable<TextType>> MultiText = default,
+        Optional<Color> MarkerColor = default,
+        Optional<StyleParam.Colorscale> MarkerColorScale = default,
+        Optional<Line> MarkerOutline = default,
+        Optional<StyleParam.PatternShape> MarkerPatternShape = default,
+        Optional<IEnumerable<StyleParam.PatternShape>> MultiMarkerPatternShape = default,
+        Optional<Pattern> MarkerPattern = default,
+        Optional<Marker> Marker = default,
+        Optional<BaseType> Base = default,
+        Optional<WidthType> Width = default,
+        Optional<EncodedTypedArray> MultiWidthEncoded = default,
+        Optional<StyleParam.TextPosition> TextPosition = default,
+        Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+        Optional<bool> UseDefaults = default
+    )
+        where TextType : IConvertible
+        where BaseType : IConvertible
+        where WidthType : IConvertible
+        =>
+            Plotly.NET.Chart2D_Bar.Chart.Column(
+                valuesEncoded: valuesEncoded,
+                KeysEncoded: KeysEncoded.ToOption(),
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                MultiOpacity: MultiOpacity.ToOption(),
+                Text: Text.ToOption(),
+                MultiText: MultiText.ToOption(),
+                MarkerColor: MarkerColor.ToOption(),
+                MarkerColorScale: MarkerColorScale.ToOption(),
+                MarkerOutline: MarkerOutline.ToOption(),
+                MarkerPatternShape: MarkerPatternShape.ToOption(),
+                MultiMarkerPatternShape: MultiMarkerPatternShape.ToOption(),
+                MarkerPattern: MarkerPattern.ToOption(),
+                Marker: Marker.ToOption(),
+                Base: Base.ToOption(),
+                Width: Width.ToOption(),
+                MultiWidthEncoded: MultiWidthEncoded.ToOption(),
+                TextPosition: TextPosition.ToOption(),
+                MultiTextPosition: MultiTextPosition.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
+            );
 }

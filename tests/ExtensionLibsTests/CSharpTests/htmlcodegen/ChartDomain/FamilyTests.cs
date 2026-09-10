@@ -191,8 +191,11 @@ public class SankeyTests
     private static Plotly.NET.GenericChart CreateChart() =>
         Chart.Sankey<string>(
             nodes: SankeyNodes.init<string, int[], string, string>(
+                Align: default,
                 Color: default,
+                ColorEncoded: default,
                 CustomData: default,
+                CustomDataEncoded: default,
                 Groups: default,
                 HoverInfo: default,
                 HoverLabel: default,
@@ -203,13 +206,17 @@ public class SankeyTests
                 Pad: default,
                 Thickness: default,
                 X: default,
-                Y: default
+                XEncoded: default,
+                Y: default,
+                YEncoded: default
             ),
             links: SankeyLinks.init<string, int>(
                 ArrowLen: default,
                 Color: default,
+                ColorEncoded: default,
                 ColorScales: default,
                 CustomData: default,
+                CustomDataEncoded: default,
                 HoverInfo: default,
                 HoverLabel: default,
                 HoverTemplate: default,
@@ -217,8 +224,11 @@ public class SankeyTests
                 Label: default,
                 Line: default,
                 Source: new[] { 0, 1, 1 },
+                SourceEncoded: default,
                 Target: new[] { 2, 2, 3 },
-                Value: new[] { 1, 2, 5 }
+                TargetEncoded: default,
+                Value: new[] { 1, 2, 5 },
+                ValueEncoded: default
             ),
             UseDefaults: false
         );

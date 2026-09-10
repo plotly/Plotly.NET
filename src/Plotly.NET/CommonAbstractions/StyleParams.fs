@@ -2685,6 +2685,24 @@ module StyleParam =
     //--------------------------
 
     [<RequireQualifiedAccess>]
+    type SankeyNodeAlign =
+        | Left
+        | Right
+        | Center
+        | Justify
+
+        static member toString =
+            function
+            | Left -> "left"
+            | Right -> "right"
+            | Center -> "center"
+            | Justify -> "justify"
+
+        static member convert = SankeyNodeAlign.toString >> box
+        override this.ToString() = this |> SankeyNodeAlign.toString
+        member this.Convert() = this |> SankeyNodeAlign.convert
+
+    [<RequireQualifiedAccess>]
     type ScaleAnchor =
         | False
         | X of int

@@ -86,4 +86,54 @@ public static partial class Chart
                 ReverseYAxis: ReverseYAxis.ToOption(),
                 UseDefaults: UseDefaults.ToOption()
             );
+
+    /// <summary>Creates a heatmap from encoded z data and optional encoded axes.</summary>
+    /// <param name="zEncoded">Sets the z matrix as an encoded typed array.</param>
+    /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+    /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+    /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+    public static GenericChart Heatmap<TextType>(
+        EncodedTypedArray zEncoded,
+        Optional<EncodedTypedArray> xEncoded = default,
+        Optional<EncodedTypedArray> yEncoded = default,
+        Optional<string> Name = default,
+        Optional<bool> ShowLegend = default,
+        Optional<double> Opacity = default,
+        Optional<int> XGap = default,
+        Optional<int> YGap = default,
+        Optional<TextType> Text = default,
+        Optional<IEnumerable<TextType>> MultiText = default,
+        Optional<ColorBar> ColorBar = default,
+        Optional<StyleParam.Colorscale> ColorScale = default,
+        Optional<bool> ShowScale = default,
+        Optional<bool> ReverseScale = default,
+        Optional<StyleParam.SmoothAlg> ZSmooth = default,
+        Optional<bool> Transpose = default,
+        Optional<bool> UseWebGL = default,
+        Optional<bool> ReverseYAxis = default,
+        Optional<bool> UseDefaults = default
+    )
+        where TextType : IConvertible
+        =>
+            Plotly.NET.Chart2D_Heatmap.Chart.Heatmap(
+                zEncoded: zEncoded,
+                xEncoded: xEncoded.ToOption(),
+                yEncoded: yEncoded.ToOption(),
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                XGap: XGap.ToOption(),
+                YGap: YGap.ToOption(),
+                Text: Text.ToOption(),
+                MultiText: MultiText.ToOption(),
+                ColorBar: ColorBar.ToOption(),
+                ColorScale: ColorScale.ToOption(),
+                ShowScale: ShowScale.ToOption(),
+                ReverseScale: ReverseScale.ToOption(),
+                ZSmooth: ZSmooth.ToOption(),
+                Transpose: Transpose.ToOption(),
+                UseWebGL: UseWebGL.ToOption(),
+                ReverseYAxis: ReverseYAxis.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
+            );
 }

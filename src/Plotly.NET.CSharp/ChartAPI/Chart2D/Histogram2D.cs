@@ -82,4 +82,55 @@ public static partial class Chart
                 ZSmooth: ZSmooth.ToOption(),
                 UseDefaults: UseDefaults.ToOption()
             );
+
+    /// <summary>Creates a 2D histogram from encoded x and y data.</summary>
+    /// <param name="xEncoded">Sets the x sample data as an encoded typed array.</param>
+    /// <param name="yEncoded">Sets the y sample data as an encoded typed array.</param>
+    /// <param name="zEncoded">Sets the z aggregation data as an encoded typed array.</param>
+    /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+    public static GenericChart Histogram2D(
+        EncodedTypedArray xEncoded,
+        EncodedTypedArray yEncoded,
+        Optional<EncodedTypedArray> zEncoded = default,
+        Optional<string> Name = default,
+        Optional<bool> ShowLegend = default,
+        Optional<double> Opacity = default,
+        Optional<int> XGap = default,
+        Optional<int> YGap = default,
+        Optional<StyleParam.HistFunc> HistFunc = default,
+        Optional<StyleParam.HistNorm> HistNorm = default,
+        Optional<int> NBinsX = default,
+        Optional<int> NBinsY = default,
+        Optional<Bins> XBins = default,
+        Optional<Bins> YBins = default,
+        Optional<ColorBar> ColorBar = default,
+        Optional<StyleParam.Colorscale> ColorScale = default,
+        Optional<bool> ShowScale = default,
+        Optional<bool> ReverseScale = default,
+        Optional<StyleParam.SmoothAlg> ZSmooth = default,
+        Optional<bool> UseDefaults = default
+    )
+        =>
+            Plotly.NET.Chart2D_Histogram.Chart.Histogram2D(
+                xEncoded: xEncoded,
+                yEncoded: yEncoded,
+                zEncoded: zEncoded.ToOption(),
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                XGap: XGap.ToOption(),
+                YGap: YGap.ToOption(),
+                HistFunc: HistFunc.ToOption(),
+                HistNorm: HistNorm.ToOption(),
+                NBinsX: NBinsX.ToOption(),
+                NBinsY: NBinsY.ToOption(),
+                XBins: XBins.ToOption(),
+                YBins: YBins.ToOption(),
+                ColorBar: ColorBar.ToOption(),
+                ColorScale: ColorScale.ToOption(),
+                ShowScale: ShowScale.ToOption(),
+                ReverseScale: ReverseScale.ToOption(),
+                ZSmooth: ZSmooth.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
+            );
 }

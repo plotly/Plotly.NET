@@ -118,4 +118,80 @@ public static partial class Chart
                 UseWebGL: UseWebGL.ToOption(),
                 UseDefaults: UseDefaults.ToOption()
             );
+
+    /// <summary>Creates a Scatter plot from encoded x and y typed arrays.</summary>
+    /// <param name="xEncoded">Sets the x coordinates as an encoded typed array.</param>
+    /// <param name="yEncoded">Sets the y coordinates as an encoded typed array.</param>
+    /// <param name="mode">Determines the drawing mode for this scatter trace.</param>
+    /// <param name="UseDefaults">If set to false, ignore the global default settings set in <c>Defaults</c></param>
+    public static GenericChart Scatter<TextType>(
+        EncodedTypedArray xEncoded,
+        EncodedTypedArray yEncoded,
+        StyleParam.Mode mode,
+        Optional<string> Name = default,
+        Optional<bool> ShowLegend = default,
+        Optional<double> Opacity = default,
+        Optional<IEnumerable<double>> MultiOpacity = default,
+        Optional<TextType> Text = default,
+        Optional<IEnumerable<TextType>> MultiText = default,
+        Optional<StyleParam.TextPosition> TextPosition = default,
+        Optional<IEnumerable<StyleParam.TextPosition>> MultiTextPosition = default,
+        Optional<Color> MarkerColor = default,
+        Optional<StyleParam.Colorscale> MarkerColorScale = default,
+        Optional<Line> MarkerOutline = default,
+        Optional<StyleParam.MarkerSymbol> MarkerSymbol = default,
+        Optional<IEnumerable<StyleParam.MarkerSymbol>> MultiMarkerSymbol = default,
+        Optional<Marker> Marker = default,
+        Optional<Color> LineColor = default,
+        Optional<StyleParam.Colorscale> LineColorScale = default,
+        Optional<double> LineWidth = default,
+        Optional<StyleParam.DrawingStyle> LineDash = default,
+        Optional<Line> Line = default,
+        Optional<string> AlignmentGroup = default,
+        Optional<string> OffsetGroup = default,
+        Optional<string> StackGroup = default,
+        Optional<StyleParam.Orientation> Orientation = default,
+        Optional<StyleParam.GroupNorm> GroupNorm = default,
+        Optional<StyleParam.Fill> Fill = default,
+        Optional<Color> FillColor = default,
+        Optional<Pattern> FillPattern = default,
+        Optional<bool> UseWebGL = default,
+        Optional<bool> UseDefaults = default
+    )
+        where TextType : IConvertible
+        =>
+            Plotly.NET.Chart2D_Scatter.Chart.Scatter(
+                xEncoded: xEncoded,
+                yEncoded: yEncoded,
+                mode: mode,
+                Name: Name.ToOption(),
+                ShowLegend: ShowLegend.ToOption(),
+                Opacity: Opacity.ToOption(),
+                MultiOpacity: MultiOpacity.ToOption(),
+                Text: Text.ToOption(),
+                MultiText: MultiText.ToOption(),
+                TextPosition: TextPosition.ToOption(),
+                MultiTextPosition: MultiTextPosition.ToOption(),
+                MarkerColor: MarkerColor.ToOption(),
+                MarkerColorScale: MarkerColorScale.ToOption(),
+                MarkerOutline: MarkerOutline.ToOption(),
+                MarkerSymbol: MarkerSymbol.ToOption(),
+                MultiMarkerSymbol: MultiMarkerSymbol.ToOption(),
+                Marker: Marker.ToOption(),
+                LineColor: LineColor.ToOption(),
+                LineColorScale: LineColorScale.ToOption(),
+                LineWidth: LineWidth.ToOption(),
+                LineDash: LineDash.ToOption(),
+                Line: Line.ToOption(),
+                AlignmentGroup: AlignmentGroup.ToOption(),
+                OffsetGroup: OffsetGroup.ToOption(),
+                StackGroup: StackGroup.ToOption(),
+                Orientation: Orientation.ToOption(),
+                GroupNorm: GroupNorm.ToOption(),
+                Fill: Fill.ToOption(),
+                FillColor: FillColor.ToOption(),
+                FillPattern: FillPattern.ToOption(),
+                UseWebGL: UseWebGL.ToOption(),
+                UseDefaults: UseDefaults.ToOption()
+            );
 }

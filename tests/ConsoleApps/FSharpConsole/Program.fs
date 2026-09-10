@@ -3,6 +3,13 @@ open Plotly.NET
 [<EntryPoint>]
 let main _ =
 
+    let encodedHeatmap =
+        Chart.Heatmap(
+            zEncoded = EncodedTypedArray.ofFloat64Array([| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0; 7.0; 8.0; 9.0 |], shape = [ 3; 3 ]),
+            Name = "encoded heatmap",
+            UseDefaults = false
+        )
+
     // sample sets with overlapping members to exercise every venn region
     let setA = [| "1"; "2"; "3"; "4"; "5"; "6"; "11" |]
     let setB = [| "1"; "2"; "3"; "7"; "8"; "9"; "10"; "12"; "13" |]
@@ -43,6 +50,7 @@ let main _ =
             UseDefaults = true
         )
 
+    encodedHeatmap |> Chart.show
     twoSetVenn |> Chart.show
     threeSetVenn |> Chart.show
     upset |> Chart.show
