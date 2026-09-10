@@ -220,11 +220,11 @@ Use focused output-based assertions similar to the existing `htmlcodegen/SimpleT
 
 ### Shared test utilities
 
-The current C# test base is effectively empty, so part of this work should be to make it useful:
+The shared markup helpers remain in `tests/ExtensionLibsTests/CSharpTests/TestUtils.cs`, where they serve the folders within the same C# test project.
 
-- move or generalize `tests/ExtensionLibsTests/CSharpTests/TestUtils.cs` into [tests/Common/CSharpTestBase/](tests/Common/CSharpTestBase/) if multiple test folders start reusing it,
-- add reusable chart-fixture accessors there when mirrored C# fixtures are needed,
-- keep helper names aligned with the F# `TestUtils` vocabulary where that improves cross-language readability.
+- Moving the helpers into [tests/Common/CSharpTestBase/](tests/Common/CSharpTestBase/) is deferred until another test project needs them. Reuse across folders in one project does not require a separate assembly.
+- Add reusable fixture accessors to the common project when cross-project fixture reuse is needed.
+- Keep helper names aligned with the F# `TestUtils` vocabulary where that improves cross-language readability.
 
 ## Refactor strategy
 
@@ -485,6 +485,7 @@ Implementation notes:
 - No additional namespace or `using` normalization was needed for the newly added C# test files; they already match the file-scoped namespace style used in the surrounding C# test suite.
 - Searched for stale references to removed umbrella C# Chart API files. Remaining mentions are confined to planning documents that still describe the pre-split starting point; no code or project files needed cleanup.
 - Final verification: `dotnet run --project ./build/build.fsproj` (Build target succeeded), `dotnet run --project ./build/build.fsproj -- RunTestsCoreFast` (933 passed), `dotnet run --project ./build/build.fsproj -- RunTestsExtensionLibsFast` (C# tests 105 passed; ImageExportTests 6 passed, 2 skipped).
+- Merge verification on 2026-09-10: fetched `origin`, fast-forwarded local `dev` to `bca20de4`, and merged it into `C#-refactor` without conflicts in `51c744b0`. The full clean `./build.cmd runTestsAll` pipeline passed before the merge commit: core tests 945 passed, C# tests 105 passed, ImageExportTests 6 passed and 2 already marked pending. The additional core tests cover the incoming Venn and UpSet charts.
 
 ## Completion status
 
@@ -497,5 +498,6 @@ Resolved decisions:
 3. Root helpers were split into one file per method: `Combine.cs`, `Grid.cs`, `SingleStack.cs`, and `Invisible.cs`.
 4. Direct F# fixture reuse was not standardized for this pass; the new C# html-codegen coverage uses mirrored C# fixtures and rendered baselines where that kept the tests simpler and more stable.
 5. Empty umbrella files were removed rather than kept as placeholders; the root `Chart.cs` file was deleted once its helpers moved.
+6. Shared markup helpers stay in the CSharpTests project; moving them into CSharpTestBase is deferred until there is cross-project reuse.
 
 No further implementation work remains for this plan.
