@@ -2,6 +2,7 @@ module TestTasks
 
 open BlackFox.Fake
 open Fake.DotNet
+open Fake.Core
 
 open ProjectInfo
 open BasicTasks
@@ -47,6 +48,28 @@ let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: 
         )
     }
 
+let createRunTestFastTask (name: string) (projects: ProjectInfo list) =
+    BuildTask.create name [] {
+        Trace.trace $"Running {name} without Clean, while letting dotnet test handle restore and incremental builds."
+
+        projects
+        |> Seq.iter (fun testProjectInfo ->
+            Fake.DotNet.DotNet.test
+                (fun testParams ->
+                    { testParams with
+                        Logger = Some "console;verbosity=detailed"
+                        Configuration = DotNet.BuildConfiguration.fromString configuration
+                        MSBuildParams = { testParams.MSBuildParams with DisableInternalBinLog = true }
+                    }
+                    |> DotNet.Options.withCustomParams (Some "-tl")
+                )
+                testProjectInfo.ProjFile
+        )
+    }
+
+let createRunSingleTestProjectFastTask (project: ProjectInfo) =
+    createRunTestFastTask $"Run{project.Name}Fast" [ project ]
+
 /// runs the all test projects via `dotnet test`
 let runTestsAll = createRunTestTask "RunTestsAll" [ clean; build; buildTestsAll ] (testProjectsCore @ testProjectsExtensionsLibs)
 
@@ -55,3 +78,18 @@ let runTestsCore = createRunTestTask "RunTestsCore" [ clean; build; buildTestsCo
 
 /// runs the extension lib test projects via `dotnet test`
 let runTestsExtensionLibs = createRunTestTask "RunTestsExtensionLibs" [ clean; build; buildTestsExtensionsLibs] testProjectsExtensionsLibs
+
+/// runs all test projects via incremental `dotnet test`, without cleaning first.
+let runTestsAllFast = createRunTestFastTask "RunTestsAllFast" (testProjectsCore @ testProjectsExtensionsLibs)
+
+/// runs core test projects via incremental `dotnet test`, without cleaning first.
+let runTestsCoreFast = createRunTestFastTask "RunTestsCoreFast" testProjectsCore
+
+/// runs extension lib test projects via incremental `dotnet test`, without cleaning first.
+let runTestsExtensionLibsFast = createRunTestFastTask "RunTestsExtensionLibsFast" testProjectsExtensionsLibs
+
+/// runs the ImageExportTests project via incremental `dotnet test`, without cleaning first.
+let runImageExportTestsFast = createRunSingleTestProjectFastTask ImageExportTestProject
+
+/// runs the CSharpTests project via incremental `dotnet test`, without cleaning first.
+let runCSharpTestsFast = createRunSingleTestProjectFastTask CSharpTestProject
