@@ -1,746 +1,187 @@
 # Encoded Typed Array Support Plan
 
-## Background
+## Scope and current status
 
-Issue `#441` tracks Plotly.NET support for the plotly.js `>= 2.28.0` encoded `data_array` object form:
+Encoded-array support is a shared Plotly.NET feature, not a C#-only feature. The core `Plotly.NET` assembly owns the data representation, encoding helpers, serialization, trace objects, and F# `Chart` constructors. C# can already use those public .NET types and pass encoded nested objects through existing wrappers. Phase H3 adds convenient encoded overloads to `Plotly.NET.CSharp.Chart`.
 
-```json
-{
-  "dtype": "f8",
-  "bdata": "...base64...",
-  "shape": "rows,cols"
-}
-```
+The upstream context is [Plotly.NET issue #441](https://github.com/plotly/Plotly.NET/issues/441) and [plotly.js 2.28.0](https://github.com/plotly/plotly.js/releases/tag/v2.28.0). The wire representation contains `dtype`, base64 `bdata`, and optional `shape`; it is shared by both languages. This plan does not claim a measured performance improvement.
 
-This enables faster transport for trace data fields such as `x`, `y`, `z`, error arrays, and many other `arrayOk` properties.
+Updated on 2026-09-10 for the merge of `dev` at `41f2f88c` (the merged C# refactor, PR #503) into `plotly2.28` at `fd862365` (PR #502). Status means present in the resolved merge unless another ref is named explicitly. Verification of this integration is recorded below.
 
-The implementation approach we agreed on is:
+| Layer / scope | Status in this checkout | Remaining work |
+|---|---|---|
+| Shared `EncodedTypedArray`, numeric factories, JSON representation | Implemented; C# factory syntax compiled in regression tests | Document the verified syntax in Next 6; reuse the shared type |
+| Bundled plotly.js 2.28.0 and selected trace fields (A–G2) | Implemented | Preserve existing serialization and precedence coverage |
+| Selected foundational F# chart constructors (H1) | Implemented and committed | No repeat implementation; exclusions are listed below |
+| Selected derived F# constructors (H2) | Implemented and committed | No repeat implementation |
+| C# direct encoded chart overloads (H3) | Eight existing overloads ported into the split files and regression-tested from C# | Usage documentation remains; further families are in the backlog |
+| Encoded dimensions | Shared Dimension support and F#/C# parallel-chart pair conveniences are present and tested | Additional C# encoded-SPLOM coverage remains Next 5 |
+| Encoded Sankey flow data | Shared node/link support is present and tested through the existing object-based C# wrapper | Explicit plain/encoded collision coverage remains Next 4 |
+| User documentation for encoded arrays | F# documentation is present | C# documentation and the broader documentation review remain Next 6 |
 
-- keep the existing plain `seq<#IConvertible>` API surface
-- add parallel `...Encoded` optional parameters using `EncodedTypedArray`
-- serialize the encoded property after the plain property so the encoded form wins when both are set
-- cover the feature at three levels:
-  - low-level serialization/precedence tests in `tests/CoreTests/CoreTests/CommonAbstractions/EncodedTypedArray.fs`
-  - upstream feature fixtures in `tests/Common/FSharpTestBase/TestCharts/UpstreamFeatures/2.28.fs`
-  - upstream HTML assertions in `tests/CoreTests/CoreTests/UpstreamFeatures/2.28.fs`
-- add a small number of manually testable charts in `tests/ConsoleApps/FSharpConsole/Program.fs`
+The structural [F# chart split](ChartAPIFileSplit.md) and [C# chart split](CSharpChartApiFileSplit.md) are separate plans. Their completion does not imply C# encoded-array coverage or full plotly.js feature parity.
 
-## Commit Packages
+## API contracts to preserve
 
-### Commit A: Bundle bump + 2.28 scaffold
+- Reuse [EncodedTypedArray.fs](../src/Plotly.NET/CommonAbstractions/EncodedTypedArray.fs) from `Plotly.NET`. Do not introduce another C# payload type, base64 encoder, or serializer.
+- Existing factories support float64/float32 and signed/unsigned 8-, 16-, and 32-bit integers, plus the UInt8Clamped tag. Arbitrary strings, objects, decimal, and 64-bit integer arrays are not additional supported dtypes. Do not silently coerce them or promise support for every field accepting `IConvertible`.
+- At the trace/object layer, retain the existing plain parameters and parallel optional `...Encoded` parameters. When both set the same property, apply the encoded value last so the final JSON property contains the encoded object. This is property replacement, not duplicate JSON keys.
+- At the high-level chart layer, prefer one additional overload per selected chart type, with explicit encoded primary inputs and no alternative plain inputs for those same fields. Preserve existing overloads, names, defaults, and behavior. Do not multiply coordinate tuple/zip variants.
+- The original optional `Chart.Scatter` encoded parameters remain public and are used by the explicit overload. The design reset superseded the preferred API pattern; it did not remove that implementation. Do not remove it as part of H3.
+- Follow actual F# signatures rather than a generic template: `Scatter(xEncoded, yEncoded, mode, ...)` requires `mode`; `Bar(valuesEncoded, KeysEncoded = ..., ...)` and `Heatmap(zEncoded, xEncoded = ..., yEncoded = ..., ...)` have different optional inputs.
+- Encoded support does not make every accompanying argument encoded. Preserve meaningful plain labels, styles, or auxiliary inputs already accepted by the selected F# overload; for example encoded `Bubble` still takes plain `sizes`. Document mixed-input limitations. Any new mixed-input chart design should be addressed in the shared F# API before adding a C#-only variant.
+- Multi-dimensional numeric data uses a flat payload with a matching `shape`, such as `[2; 3]` for a 2-by-3 matrix. Test shape retention and flattening order. Do not apply matrix assumptions to one-dimensional histogram samples or RGB/RGBA image pixels.
+- For nested objects, put encoding where the values live: `dimensions[i].values`, `node.x`, or `link.value`. Existing chart wrappers can consume such objects without another encoded chart overload. Labeled-dimension pair conveniences are distinct from coordinate zip overloads.
 
-Scope:
+### C# interoperability decisions
 
-- bump embedded `plotly.js` from `2.27.1` to `2.28.0`
-- update embedded resources and `Globals.PLOTLYJS_VERSION`
-- remove the explicit CDN pin from `FSharpConsole`
-- add the `PlotlyJS_2_28` upstream scaffold and first encoded scatter smoke test
+- Use required `EncodedTypedArray` arguments for primary encoded data and the existing `Optional<EncodedTypedArray>` / `.ToOption()` convention for optional encoded arguments.
+- Verify actual C# factory calls for both one-dimensional and shaped data. The shared factory's optional F# `shape` is represented through `FSharpOption<IEnumerable<int>>`; do not assume C# can omit it as an ordinary optional parameter. Add a small forwarding adapter only if the compiled examples demonstrate that one is needed.
+- Remove generic parameters that represented replaced numeric arrays, but retain generic style parameters required by the F# target. Existing candidate wrappers include `Scatter<TextType>`, `Heatmap<TextType>`, and `Bar<TextType, BaseType, WidthType>`. Test calls that omit optional styles with explicit type arguments; do not promise inference from omitted `Text`, `Base`, or `Width` arguments.
+- Keep all overloads in the existing per-chart partial file under `src/Plotly.NET.CSharp/ChartAPI/<family>/`. Preserve plain C# call sites and check overload resolution with representative existing calls.
 
-Status:
+## Completed implementation record
 
-- implemented and committed as `62a96500`
+The earlier plan contained contradictory pending/complete notes. The following records the implemented scope and its exceptions without scheduling it again.
 
-### Commit B: Scatter completion + Error object
-
-Scope:
+| Package | Implemented scope | Commits |
+|---|---|---|
+| A | Bundle bump, globals/resources, upstream 2.28 scaffold | `62a96500` |
+| B | Scatter metadata and error arrays | `43ff9869` |
+| C | Bar/Funnel/Waterfall trace fields | `9c7d1bdd` |
+| D | Distribution, finance, and SPLOM trace fields | `f70dea0b` |
+| E | Matrix trace fields; Image metadata only | `97de944e` |
+| F | 3D coordinates, vectors, topology, values, and metadata | `343e31e4` |
+| G1 | Polar, geo/mapbox, ternary, and Smith trace fields | `81bd99fd` |
+| G2 | Carpet/domain trace fields; not nested Sankey flow arrays | `8a9fcb64` |
+| H1-A | Explicit `Scatter(xEncoded, yEncoded, mode, ...)` overload | `73965294` |
+| H1-B | Point, Line, Spline, Bubble, Range, Area, SplineArea, StackedArea | `b5767af5` |
+| H1-C | Bar, Funnel, Waterfall roots under the reset design, including Waterfall width support | `02df1fad` |
+| H1-D | Histogram, BoxPlot, Violin, OHLC, Candlestick | `4913748a` |
+| H1-D-Splom | Encoded Dimension values and `Splom(keyValuesEncoded = ...)` | `ed86f94d` |
+| H1-E | Histogram2D, Histogram2DContour, Heatmap, Contour | `62e9161c` |
+| H1-F | Scatter3D, Surface, Mesh3D, Cone, StreamTube, Volume, IsoSurface | `045a2b63` |
+| H1-G | Selected subplot/domain roots listed below | `1d8e9e54`, `73965294` |
+| H2 | Selected derived constructors listed below | `c9446e58` |
 
-- finish remaining encoded `Scatter` data-array fields:
-  - `IdsEncoded`
-  - `CustomDataEncoded`
-  - `SelectedPointsEncoded`
-  - `MultiTextEncoded`
-- add encoded error arrays on `Error`:
-  - `ArrayEncoded`
-  - `ArrayminusEncoded`
-- add precedence tests and a manual scatter-with-error-bars console chart
+`37006fd9` and `5edcbb17` record the earlier optional-parameter prototype. Later commits established the preferred explicit-overload design.
 
-Status:
+H1-G covers `BarPolar`, `Pie`, `FunnelArea`, `Sunburst`, `Treemap`, `Icicle`, `ChoroplethMap`, `ChoroplethMapbox`, `DensityMapbox`, `ScatterPolar`, `ScatterGeo`, `ScatterMapbox`, `ScatterTernary`, `ScatterSmith`, `Carpet`, `ScatterCarpet`, and `ContourCarpet`.
 
-- implemented and committed as `43ff9869`
+H2 adds `StackedBar`, `Column`, `StackedColumn`, `PointDensity`, `StackedFunnel`; `Point3D`, `Line3D`, `Bubble3D`; carpet Point/Line/Spline/Bubble; `Doughnut`; geo/mapbox Point/Line/Bubble; polar Point/Line/Spline/Bubble; Smith and ternary Point/Line/Bubble. H1-B already covers the earlier scatter/area conveniences.
 
-### Commit C: Trace2D bar family
+Encoded dimensions are implemented in [Dimensions.fs](../src/Plotly.NET/Traces/ObjectAbstractions/Dimensions.fs), and the F# SPLOM overload is in [Chart2D_Splom.fs](../src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Splom.fs). Existing `Splom(dimensions, ...)`, `ParallelCoord(dimensions, ...)`, and `ParallelCategories(dimensions, ...)` can carry encoded dimension values, including through their existing C# wrappers. A missing pair convenience is not a missing encoding capability.
 
-Scope:
+Historical verification recorded for H1/H2: `runTestsCore`, 933 passing. The full clean `runTestsAll` pipeline passed for refactor merge `51c744b0` on 2026-09-10: core tests 945 passed, C# tests 105 passed, and ImageExportTests 6 passed with 2 already marked pending. Those C# tests covered the plain wrapper surface; the current integration adds explicit regression coverage for the moved encoded and domain additions.
 
-- `Bar`
-- `Funnel`
-- `Waterfall`
+Verification for the resolved `dev` → `plotly2.28` merge on 2026-09-10: full clean `./build.cmd runTestsAll` passed with **958 core tests, 123 C# tests, and 6 ImageExportTests passed / 2 already pending**. The 18 new C# cases in `htmlcodegen/UpstreamFeatures/PlotlyJS228Tests.cs` cover all 11 moved additions and the existing nested-object Sankey path. Expected data/layout came from actual C# chart rendering through the canonical baseline harness, which was restored afterwards. A read-only comparison confirmed preservation of all 99 original branch C# methods and all 88 `dev` methods. The resolved F# console was also type-checked with FSI. No new browser-rendering verification is claimed by this merge.
 
-Fields:
+## Implementations retained during integration
 
-- shared where applicable:
-  - `XEncoded`
-  - `YEncoded`
-  - `IdsEncoded`
-  - `CustomDataEncoded`
-  - `SelectedPointsEncoded`
-  - `MultiTextEncoded`
-- additional:
-  - `Bar.MultiWidthEncoded`
-  - `Bar.MultiOffsetEncoded`
-  - `Waterfall.MultiOffsetEncoded`
-
-Status:
-
-- implemented and committed as `9c7d1bdd`
-
-### Commit D: Trace2D 1-D trace families
-
-Scope:
-
-- `Histogram`
-- `BoxPlot`
-- `Violin`
-- `OHLC`
-- `Candlestick`
-- `Splom`
+The following commits are already ancestors of the `plotly2.28` branch. The merge retains their implementations while adopting the C# file split from `dev`; do not reimplement or cherry-pick them again.
 
-Fields:
+| Existing commit | Retained work | Integration concern |
+|---|---|---|
+| `f1e362a4` | Eight C# encoded overloads: Scatter, Bar, StackedBar, Column, StackedColumn, Heatmap, Histogram2D, Scatter3D | Moved out of the removed umbrella files into current partial files, preserving signatures and forwarding calls |
+| `d91fe84a` | Shared Sankey node/link encoded fields; also node alignment | Review nested-field behavior; node alignment is a separate upstream feature, not a prerequisite for encoding |
+| `1f775369` | F# ParallelCoord/ParallelCategories `keyValuesEncoded` conveniences | Reuse existing Dimension encoding; these are additive conveniences |
+| `fd862365` | Matching C# parallel-chart pair overloads and a plain Sankey helper with NodeAlign | Parallel wrappers depend on the shared F# conveniences; the plain Sankey helper is not an encoded overload |
+| `263d7518` | Encoded-array documentation and Sankey examples | Adapt to selected integrated APIs and add compiled C# examples |
 
-- standard encoded sample/metadata arrays where applicable
-- `BoxPlot` computed-stat arrays:
-  - `Q1Encoded`
-  - `MedianEncoded`
-  - `Q3Encoded`
-  - `LowerFenceEncoded`
-  - `UpperFenceEncoded`
-  - `NotchSpanEncoded`
-  - `MeanEncoded`
-  - `SDEncoded`
-- finance arrays:
-  - `OpenEncoded`
-  - `HighEncoded`
-  - `LowEncoded`
-  - `CloseEncoded`
-
-Status:
-
-- implemented and committed as `f70dea0b`
-
-### Commit E: Trace2D matrix trace families
-
-Scope:
-
-- `Histogram2D`
-- `Histogram2DContour`
-- `Heatmap`
-- `Contour`
-- `Image`
-
-Fields:
-
-- matrix traces:
-  - `IdsEncoded`
-  - `XEncoded`
-  - `YEncoded`
-  - `ZEncoded`
-  - `CustomDataEncoded`
-- `Heatmap` and `Contour` additionally:
-  - `MultiTextEncoded`
-- `Image` only:
-  - `IdsEncoded`
-  - `MultiTextEncoded`
-  - `CustomDataEncoded`
-
-Design note:
-
-- `ZEncoded` uses a flat payload plus `shape`, for example `EncodedTypedArray.ofFloat64Array(flat, shape = [ rows; cols ])`
-- `Image` intentionally does **not** get `ZEncoded`, because its `z` shape is RGB/RGBA pixel data rather than the standard numeric matrix path
-
-Status:
-
-- implemented and committed as `97de944e`
-
-### Commit F: Trace3D families
-
-Planned scope:
-
-- `Scatter3D`
-- `Surface`
-- `Mesh3D`
-- `Cone`
-- `StreamTube`
-- `Volume`
-- `IsoSurface`
-
-Expected encoded coverage:
-
-- common:
-  - `XEncoded`
-  - `YEncoded`
-  - `ZEncoded`
-  - `IdsEncoded`
-  - `CustomDataEncoded`
-  - `MultiTextEncoded`
-- vector-field traces:
-  - `UEncoded`
-  - `VEncoded`
-  - `WEncoded`
-- `Mesh3D`:
-  - `IEncoded`
-  - `JEncoded`
-  - `KEncoded`
-  - `IntensityEncoded`
-- `Volume` / `IsoSurface`:
-  - `ValueEncoded`
-- matrix-like scale arrays should follow the same flattened `EncodedTypedArray + shape` pattern when appropriate
-
-Status:
-
-- implemented and committed as `343e31e4`
-
-### Commit G1: Remaining subplot traces, part 1
-
-Planned scope:
-
-- `TracePolar`
-- `TraceGeo`
-- `TraceMapbox`
-- `TraceTernary`
-- `TraceSmith`
-
-Expected families include:
-
-- polar:
-  - `ScatterPolar`
-  - `BarPolar`
-- geo/map:
-  - `ScatterGeo`
-  - `ScatterMapbox`
-  - `ChoroplethMap`
-  - `ChoroplethMapbox`
-  - `DensityMapbox`
-- ternary/smith:
-  - `ScatterTernary`
-  - `ScatterSmith`
-
-Status:
-
-- implemented and committed as `81bd99fd`
-
-### Commit G2: Remaining subplot/domain trace families, part 2
-
-Planned scope:
-
-- `TraceCarpet`
-- `TraceDomain`
-
-Expected families include:
-
-- carpet:
-  - `Carpet`
-  - `ScatterCarpet`
-  - `ContourCarpet`
-- domain traces:
-  - `Pie`
-  - `FunnelArea`
-  - `Sunburst`
-  - `Treemap`
-  - `Icicle`
-  - `ParallelCoord`
-  - `ParallelCategories`
-  - `Sankey`
-  - `Table`
-  - `Indicator`
-
-Status:
-
-- implemented and committed as `8a9fcb64`
-
-## Cross-Cutting Test Strategy
-
-Each package should include:
-
-- low-level integration tests in `EncodedTypedArray.fs`
-- matching upstream fixture charts in `TestCharts/UpstreamFeatures/2.28.fs`
-- matching upstream HTML assertions in `CoreTests/UpstreamFeatures/2.28.fs`
-- one or a few representative manual charts in `FSharpConsole`
-
-For precedence, encoded values should override plain values when both are supplied. This is tested explicitly wherever both APIs coexist.
-
-## Current Progress Summary
-
-Implemented so far:
-
-- base `EncodedTypedArray` type and helpers
-- bundle bump to plotly.js `2.28.0`
-- full scatter + error-object encoded support
-- bar-family encoded support
-- 1-D trace-family encoded support
-- matrix trace-family encoded support
-- Trace3D encoded support
-- subplot trace-family support for polar, geo, mapbox, ternary, and smith traces
-- carpet and domain trace-family support
-- top-level `Chart` API encoded overloads for every foundational chart root (phase H1)
-- top-level `Chart` API encoded overloads for derived convenience helpers (phase H2)
-
-Trace-level commits:
-
-- `62a96500` `Bump bundled plotly.js to 2.28.0`
-- `43ff9869` `Complete encoded scatter fields and error arrays`
-- `9c7d1bdd` `Add encoded bar-family trace fields`
-- `f70dea0b` `Add encoded 1-D trace-family fields`
-- `97de944e` `Add encoded matrix trace-family fields`
-- `343e31e4` `Add encoded Trace3D fields`
-- `81bd99fd` `Add encoded subplot trace fields (part 1)`
-- `8a9fcb64` `Add encoded carpet and domain trace fields`
-
-Top-level Chart API commits:
-
-- `37006fd9` `Add encoded Chart.Scatter root support` (H1-A prototype, superseded by reset design)
-- `5edcbb17` `Add encoded scatter-derived helper support` (H1-B prototype, superseded by reset design)
-- `b5767af5` `Add encoded scatter-derived chart overloads` (H1-B, reset design)
-- `02df1fad` `Add encoded Waterfall width support` (H1-C support fix)
-- `4913748a` `Add encoded distribution and finance chart roots` (H1-D)
-- `ed86f94d` `Add encoded Dimension values and Chart.Splom root support` (H1-D-Splom)
-- `62e9161c` `Add encoded matrix chart root overloads` (H1-E)
-- `045a2b63` `Add encoded 3D chart root overloads` (H1-F)
-- `1d8e9e54` `Add encoded subplot and domain chart roots` (H1-G part 1)
-- `73965294` `Add remaining encoded chart roots` (H1-G part 2)
-- `c9446e58` `Add encoded derived convenience chart overloads` (H2)
+The accompanying [2.28 integration status](PlotlyJS_2_28_Parity.md) records the same selected C# scope. The original feature commits did not add C# encoded tests; these are part of the merge validation. Neither a successful wrapper build nor F# tests prove C# forwarding behavior across all families.
 
-Implemented but not yet committed:
+Keep the removed umbrella files deleted and all overloads grouped in their per-chart files. Unrelated existing changes on PR #502 remain outside the conflict-resolution scope.
 
-- none
+## Next commit packages
 
-Current stage:
+Each package includes implementation and its tests in the same independently buildable commit. Mark it done only after integration and verification on the working branch. The packages below define an initial C# milestone plus separate shared-core/convenience follow-ups; they do not require mirroring every F# overload.
 
-- phase H1 (foundational chart roots) and phase H2 (derived convenience helpers) are complete and committed
-- next planned phase is H3 (C# surface projection in `Plotly.NET.CSharp`)
+### Next 1: C# Scatter and factory interoperability [done in integration merge]
 
-Latest verification result:
+- Adapt the encoded `Scatter` overload from `f1e362a4` into `ChartAPI/Chart2D/Scatter.cs`.
+- Compile C# examples creating encoded arrays with the shared factories, including 1D data without a declared shape (passing `None` explicitly if C# requires it) and shaped data. Resolve factory/generic ergonomics using the rules above before expanding the surface.
+- Add C# tests calling the C# wrapper with encoded coordinates, an omitted optional style, and a nondefault style. Assert dtype/base64 preservation and retain a representative plain call to verify overload resolution.
+- Use `UseDefaults: false`; the integration regressions live in `htmlcodegen/UpstreamFeatures/PlotlyJS228Tests.cs` alongside the existing per-chart plain tests.
+- Verify with `RunCSharpTestsFast`.
 
-- `.\build.cmd runTestsCore`
-- `933` tests passed
-- `Plotly.NET` builds successfully
+### Next 2: C# bar family [done in integration merge]
 
-## Next Phase: Top-Level Chart API Support
+- Adapt `Bar`, `StackedBar`, `Column`, and `StackedColumn` from `f1e362a4` into their existing files.
+- Add C# serialization tests for values/key forwarding, absent optional keys, an encoded width option where exposed, orientation, and stacked layout behavior. Exercise the remaining generic style arguments explicitly.
+- Keep the plain wrappers and their current tests unchanged.
+- Verify with `RunCSharpTestsFast`.
 
-Now that trace-level support is complete, the next phase is exposing encoded arrays through the high-level `Chart` API in a way that fits the existing Plotly.NET surface.
+### Next 3: C# matrix and 3D representatives [done in integration merge]
 
-### Observed `Chart` API shape today
+- Adapt `Heatmap`, `Histogram2D`, and `Scatter3D` from `f1e362a4`.
+- Add a non-square shaped heatmap test, histogram sample/optional aggregation tests, and a 3D coordinate forwarding test. Check both omitted and supplied optional encoded inputs where they change behavior.
+- Verify with `RunCSharpTestsFast`.
 
-The current high-level API generally follows this pattern:
+Next 1–3 cover exactly the eight existing C# candidate methods. This is the initial H3 implementation milestone, not full F# chart parity. Additional roots are tracked separately below.
 
-- one or a few foundational constructors per chart family:
-  - `Chart.Scatter`
-  - `Chart.Bar`
-  - `Chart.Histogram`
-  - `Chart.Heatmap`
-  - `Chart.Scatter3D`
-  - `Chart.Pie`
-  - etc.
-- multiple convenience overloads for alternate input shapes:
-  - `x/y`
-  - zipped tuples
-  - category/value pairs
-  - family-specific shortcuts
-- derived chart helpers delegate to those foundations:
-  - `Point`/`Line`/`Bubble` build on `Scatter`
-  - `Column`/`StackedBar` build on `Bar`
-  - similar patterns exist in `Chart3D`, `ChartPolar`, `ChartDomain`, and others
+### Next 4: Shared Sankey node/link support [integrated; precedence coverage pending]
 
-This means the most natural place for encoded support is the foundational chart constructors, not a totally separate abstraction layer.
+Integration retains the shared implementation and adds C# coverage for node positions and link source/target/value. Existing F# tests also cover encoded metadata. The explicit plain/encoded collision tests below remain a follow-up; encoded-only serialization tests do not establish precedence.
 
-### Top-level API design reset
+- Review and adapt the encoded portion of `d91fe84a` in `Traces/ObjectAbstractions/Sankey.fs`.
+- Cover the meaningful nested numeric inputs first: node positions and link source/target/value, plus supported metadata fields. Preserve existing plain inputs and encoded precedence.
+- Add shared-core nested serialization/precedence tests and an upstream fixture/assertion pair. Numeric encoding must not be presented as arbitrary string-label or color-string encoding.
+- Add a C# test using the existing `Chart.Sankey(nodes, links, ...)` wrapper with encoded nested objects. Add another chart overload only if that test demonstrates a missing capability.
+- Keep the node-alignment API change separate from the encoded-array completion criteria.
+- Verify with `RunTestsCoreFast` and `RunCSharpTestsFast`.
 
-The original H1 prototype work explored adding `...Encoded` optional parameters to existing `Chart.*` methods.
+### Next 5: Parallel dimension conveniences [integrated; extra SPLOM coverage pending]
 
-That direction is now superseded.
+Integration retains both pair conveniences and adds C# serialization/option-forwarding tests. The additional C# encoded-SPLOM test below remains a follow-up; no new SPLOM wrapper is needed.
 
-New rule set for the top-level API:
+- Adapt shared F# pair constructors from `1f775369`, then matching C# wrappers from `fd862365` in the existing `ParallelCoord.cs` and `ParallelCategories.cs` files.
+- Use the candidate C# `IEnumerable<(string, EncodedTypedArray)>` shape and delegate to the shared Dimension-based implementation.
+- Add F# and C# tests for string dimension labels with encoded numeric values in `dimensions[i].values`, preserving options and existing dimensions-based calls.
+- Exercise C# `Splom(dimensions, ...)` with encoded dimensions as well; a new SPLOM pair overload is optional, not required to enable encoded values.
+- Verify with `RunTestsCoreFast` and `RunCSharpTestsFast`.
 
-- keep the existing chart family names such as `Chart.Scatter`, `Chart.Bar`, `Chart.Heatmap`
-- add **one additional encoded overload per chart type**
-- the encoded overload should take encoded array arguments directly, for example `xEncoded`, `yEncoded`
-- the encoded overload should **not** also expose the corresponding plain `x`/`y`/`z`/`values` parameters
-- do **not** add tuple-based encoded overloads
-- keep tuple/zip convenience overloads on the plain pathway only
-- style/config arguments can remain optional on the encoded overload, but the encoded data arguments themselves should be explicit and required where they define the chart
+### Next 6: Usage documentation and completion record [pending]
 
-Examples of the intended shape:
+- Adapt `docs/general/encoded-arrays.fsx` from `263d7518` to APIs actually integrated on this branch.
+- Explain the shared representation, numeric dtype limits, matrix shape, plain/encoded precedence at the object layer, and the distinction between direct wrappers and nested-object support.
+- Include F# and C# examples for a 1D chart and shaped matrix; mirror executable C# examples in tests so the documented factory and generic-call syntax is checked.
+- Document any mixed categorical/numeric input limitations and the selected C# coverage. Avoid claiming all-chart parity or guaranteed performance gains.
+- Update applicable release notes with the actual delivered scope and this plan with commits/test results. Record Next 4 and Next 5 independently if they have not been integrated.
+- Verify through the FAKE build entry points, including the full clean `./build.cmd runTestsAll` before committing changes; run the docs build target if executable docs are changed.
 
-- `Chart.Scatter(xEncoded, yEncoded, ?Mode, ?Name, ...)`
-- `Chart.Bar(valuesEncoded, ?keysEncoded, ?MultiWidthEncoded, ?Name, ...)`
-- `Chart.Heatmap(zEncoded, ?xEncoded, ?yEncoded, ?Name, ...)`
+## Further C# coverage backlog
 
-This gives a clearer user-facing distinction than mixing plain and encoded inputs in one giant signature, while still preserving the familiar `Chart.*` family names.
+These are additional family-sized packages, not prerequisites for calling the initial eight-wrapper milestone complete. Each selected package must include C# compilation and serialization tests before it is marked implemented.
 
-### Consequence for current H1 work
+| Candidate package | Constructors / behavior |
+|---|---|
+| Distribution and finance roots | Histogram, BoxPlot, Violin, OHLC, Candlestick |
+| Other 2D roots | Funnel, Waterfall, Histogram2DContour, Contour |
+| Other 3D roots | Surface, Mesh3D, Cone, StreamTube, Volume, IsoSurface |
+| Geo and mapbox roots | ScatterGeo, ScatterMapbox, ChoroplethMap, ChoroplethMapbox, DensityMapbox |
+| Other subplot roots | ScatterPolar, BarPolar, ScatterTernary, ScatterSmith |
+| Domain and carpet roots | Pie, FunnelArea, Sunburst, Treemap, Icicle, Carpet, ScatterCarpet, ContourCarpet |
+| Derived conveniences | Select useful existing H1-B/H2 helpers after their roots; do not automatically replicate every plain overload |
 
-The first top-level API commits were implemented against the older optional-parameter design and should still be treated as **prototype-only**:
+Prefer foundational roots before additional conveniences. Update this table with the chosen scope and commit references as packages are selected. Do not mark H3 as full parity while these gaps remain.
 
-- `37006fd9` (`H1-A`)
-- `5edcbb17` (`H1-B`)
+## Deliberate exclusions and limits
 
-After the reset, the current working direction is:
+- `Image`: encoded trace metadata exists, but no `ZEncoded` RGB/RGBA pixel API or high-level encoded Image overload is planned here.
+- `Pareto`, `Residual`, and `AnnotatedHeatmap`: intentionally excluded from direct encoded overloads because their in-F# computations need accessible input values. A separate design would be needed for opaque encoded payloads.
+- `Table` and `Indicator`: no dedicated encoded root is required by this plan; existing trace metadata support is not equivalent to an encoded primary-data path.
+- Parallel pair conveniences are additive; existing Dimension-based support remains useful independently of Next 5.
+- String/object encoding, new numeric conversions, shape-validation redesign, and encoding-performance benchmarks are separate work. Preserve current behavior and document limits in this pass.
+- Sankey alignment, virtual-WebGL, and other plotly.js 2.28 features are outside encoded-array completion criteria.
 
-- keep those earlier commits as historical prototypes for now
-- re-implement the desired API shape through new encoded-only overloads
-- continue package-by-package from that reset design
+## Verification and completion criteria
 
-Current reset-design status:
+For each implementation package:
 
-- `H1-A` scatter root overload is still pending under the reset design
-- `H1-B` scatter-derived encoded overloads are implemented and committed as `b5767af5`
-- `H1-C` bar-family roots are implemented and committed with the Waterfall encoded-width fix
-- `H1-D` distribution and finance roots are implemented and committed as `4913748a`
-- encoded `Dimension` values and top-level `Chart.Splom` encoded construction are implemented and committed as `ed86f94d`
-- `H1-E` matrix roots are implemented and committed as `62e9161c`
-- `H1-F` 3D roots are implemented and committed as `045a2b63`
-- `H1-G` subplot and domain roots are implemented locally and pending commit, with Sankey intentionally deferred
+- Test through the public C# wrapper when checking C# behavior. Reuse shared fixtures where practical; do not count an F# test as a C# wrapper test.
+- Check stable JSON sections, including nested fields and nondefault options, rather than full HTML snapshots. Generate new markup expectations with [the canonical baseline harness](../tools/chart-baseline-generation/generate-chart-markup.fsx); do not invent base64 or serialized expectations.
+- Set `UseDefaults = false`. When overriding the JS reference, replace display options with `Chart.withDisplayOptions` rather than merging defaults.
+- Run the smallest matching FAKE target during iteration (`RunCSharpTestsFast`, and `RunTestsCoreFast` for shared changes). Run full `./build.cmd runTestsAll` before committing changes and record results with the tested commit.
+- For shared runtime behavior, use the existing upstream [2.28 fixtures](../tests/Common/FSharpTestBase/TestCharts/UpstreamFeatures/2.28.fs) and [tests](../tests/CoreTests/CoreTests/UpstreamFeatures/2.28.fs). Serialization assertions prove the emitted representation, not browser rendering; smoke-test representative 1D, non-square matrix, and nested charts with the bundled runtime when integrating those paths. Record that evidence separately and avoid implying all trace fields were browser-validated.
 
-### Recommended scope split for this phase
-
-#### Phase H1: Core family constructors
-
-H1 should be implemented as a sequence of small work packages rather than one full API sweep.
-
-##### H1-A: Scatter encoded overload
-
-Scope:
-
-- add one encoded overload for `Chart2D.Scatter`
-- require `xEncoded` and `yEncoded`
-- do not expose plain `x` or `y` on that overload
-- do not add encoded tuple overloads
-- keep the existing plain overloads untouched
-- add focused chart-level tests plus one manual console sample
-
-Status:
-
-- implemented locally and ready to commit
-- encoded overload is in place for `Chart.Scatter(xEncoded, yEncoded, mode, ...)`
-- chart-level, upstream, and console coverage are in place
-
-Why first:
-
-- smallest useful slice
-- validates the reset top-level API shape
-- establishes the encoded-overload test pattern before applying the change broadly
-
-##### H1-B: Scatter-derived encoded overloads
-
-Scope:
-
-- add one encoded overload per scatter-derived helper that meaningfully owns data binding:
-  - `Point`
-  - `Line`
-  - `Spline`
-  - `Bubble`
-  - `Range`
-  - `Area`
-  - `SplineArea`
-  - `StackedArea`
-- each encoded overload should take encoded primary data arrays as direct arguments
-- no tuple-based encoded overloads
-
-Why grouped:
-
-- same underlying trace family
-- strong chance to reuse the same overload and delegation pattern introduced by H1-A
-
-Status:
-
-- implemented and committed as `b5767af5`
-
-Verification completed locally:
-
-- chart-level unit tests in `EncodedTypedArray.fs`
-- upstream `2.28` fixtures/tests for helper constructors
-- focused `FSharpConsole` sample using encoded `Chart.Range`
-- `.\build.cmd runTestsCore`
-
-##### H1-C: Bar-family roots
-
-Scope:
-
-- add one encoded overload for each foundational bar-family constructor:
-  - `Chart2D.Bar`
-  - `Chart2D.Funnel`
-  - `Chart2D.Waterfall`
-- use the existing public vocabulary of each chart type:
-  - `Bar(valuesEncoded, ?keysEncoded, ...)`
-  - `Funnel(xEncoded, yEncoded, ...)`
-  - `Waterfall(xEncoded, yEncoded, ...)`
-- include encoded width/offset arrays only when they are already meaningful on that chart type at the top-level API
-- no encoded tuple overloads
-
-Why grouped:
-
-- these constructors already share similar positional/value wiring
-- natural continuation after scatter-style 1D arrays
-
-Status:
-
-- implemented and committed under the reset design
-
-Verification completed locally:
-
-- chart-level unit tests in `EncodedTypedArray.fs`
-- upstream `2.28` fixtures/tests for bar-family root constructors
-- focused `FSharpConsole` sample using encoded `Chart.Bar`
-- `.\build.cmd runTestsCore`
-
-##### H1-D: Distribution and finance roots
-
-Scope:
-
-- add one encoded overload per foundational root:
-  - `Chart2D.Histogram`
-  - `Chart2D.BoxPlot`
-  - `Chart2D.Violin`
-  - `Chart2D.OHLC`
-  - `Chart2D.Candlestick`
-- keep the encoded overload count to one per chart type
-- no tuple-based encoded overloads
-
-Why grouped:
-
-- all are foundational `Chart2D` roots with mainly 1D encoded inputs
-- finance traces share the open/high/low/close pattern
-- boxplot is the one larger outlier, but still mechanical once the encoded-overload convention is set
-
-Status:
-
-- implemented and committed under the reset design for `Histogram`, `BoxPlot`, `Violin`, `OHLC`, and `Candlestick` as `4913748a`
-- `Splom` deferred pending a dedicated chart-level design pass around encoded `Dimension` construction
-
-Verification completed locally:
-
-- chart-level unit tests in `EncodedTypedArray.fs`
-- upstream `2.28` fixtures/tests for distribution and finance root constructors
-- focused `FSharpConsole` sample using encoded `Chart.Candlestick`
-- `.\build.cmd runTestsCore`
-
-##### H1-D-Splom: Draft adjustments
-
-Original problem:
-
-- `Chart2D.Splom` does not bind raw arrays directly at the chart-root signature
-- it binds through `Dimension` objects, and each `Dimension` carries its own values
-- the current reset-design rule of "one additional encoded overload per chart type" does not map as neatly here as it does for `Histogram` or `OHLC`
-- the actual serialization seam is `Dimension.style`, which currently only writes plain `"values"`
-
-Chosen adjustment:
-
-- keep `Chart.Splom(dimensions, ...)` as the primary high-level constructor
-- add one focused encoded chart overload:
-  - `Chart.Splom(keyValuesEncoded = seq<string * EncodedTypedArray>, ...)`
-- keep the existing `Chart.Splom(dimensions, ...)` and plain `Chart.Splom(keyValues, ...)` overloads intact
-- instead, add encoded construction support at the `Dimension` layer and let `Chart.Splom` consume those dimensions unchanged
-
-Concrete design sketch:
-
-- add an encoded-capable dimension constructor, for example:
-  - `Dimension.initSplom(Label = ..., ValuesEncoded = encoded)`
-- extend `Dimension.style` with `?ValuesEncoded: EncodedTypedArray`
-- serialize `"values"` twice in `Dimension.style`, plain first and encoded second, matching the precedence pattern used elsewhere
-- keep the existing plain `Values` path intact
-- ensure the resulting `Dimension` serializes encoded values to the underlying trace `dimensions[i].values` field
-- then the new `Chart.Splom(keyValuesEncoded = ...)` overload simply maps into encoded `Dimension` objects and reuses the existing `Chart.Splom(dimensions, ...)` pathway
-
-Likely code changes:
-
-- [Dimensions.fs](/g:/source/repos/plotly/Plotly.NET/src/Plotly.NET/Traces/ObjectAbstractions/Dimensions.fs)
-  - add `?ValuesEncoded` to `Dimension.style`
-  - add `?ValuesEncoded` to `Dimension.initSplom`
-  - optionally add `?ValuesEncoded` to `Dimension.initParallel` too, if we want the same capability available to `ParallelCoord`/`ParallelCategories`
-- [Chart2D.fs](/g:/source/repos/plotly/Plotly.NET/src/Plotly.NET/ChartAPI/Chart2D.fs)
-  - add a focused `Chart.Splom(keyValuesEncoded = ...)` overload that delegates to encoded `Dimension` construction
-- trace layer:
-  - no `Trace2DStyle.Splom` change appears necessary, because it already accepts `Dimensions: seq<Dimension>`
-
-Why this fits the API better:
-
-- preserves the existing `Splom` shape, where dimensions are first-class objects
-- avoids inventing a chart-level overload with awkward arguments like `dimensionsEncoded`
-- mirrors the actual plotly.js data model more closely, where SPLOM values live inside per-dimension objects
-- keeps the reset-design principle of explicit encoded inputs while still giving `Chart.Splom` a direct encoded constructor
-
-Suggested implementation split:
-
-- `Splom-A`: add encoded support to `Dimension` / related trace object constructors
-- `Splom-B`: add low-level tests for encoded dimension serialization
-- `Splom-C`: add chart-level `Chart.Splom(keyValuesEncoded = ...)` tests
-- `Splom-D`: add one upstream `2.28` fixture/assertion pair and one focused `FSharpConsole` sample
-
-Suggested tests:
-
-- low-level serialization in `tests/CoreTests/CoreTests/CommonAbstractions/EncodedTypedArray.fs`
-  - `Dimension.initSplom(ValuesEncoded=...)` writes `"values":{"bdata":...}`
-  - when both `Values` and `ValuesEncoded` are set, the encoded object wins
-- chart-level:
-  - `Chart.Splom(keyValuesEncoded = [ "a", ...; "b", ... ], UseDefaults=false)` emits encoded `dimensions[0].values`
-  - `ShowLowerHalf`, `Name`, and other SPLOM-specific options still serialize correctly
-- upstream:
-  - one representative `Splom` chart with two encoded dimensions
-  - assertions should check nested `"dimensions":[{"label":"...","values":{"bdata":...}}` rather than top-level data-array fields
-- manual:
-  - one small `FSharpConsole` example with two or three encoded dimensions and a marker color for easy visual inspection
-
-Potential follow-on benefit:
-
-- if `Dimension.style` gains `ValuesEncoded`, the same mechanism could unlock encoded support for:
-  - `Chart.ParallelCoord`
-  - `Chart.ParallelCategories`
-- that suggests `Dimension` may be the better abstraction boundary than adding separate top-level encoded overloads for each chart that consumes dimensions
-
-Status:
-
-- implemented and committed as `ed86f94d`
-- `Dimension.initSplom`, `Dimension.initParallel`, and `Dimension.style` now accept `ValuesEncoded`
-- `Chart.Splom(keyValuesEncoded = ...)` is implemented at the top level
-- low-level, upstream, and console coverage are in place
-
-##### H1-E: Matrix roots
-
-Scope:
-
-- add one encoded overload per matrix root:
-  - `Chart2D.Histogram2D`
-  - `Chart2D.Histogram2DContour`
-  - `Chart2D.Heatmap`
-  - `Chart2D.Contour`
-- consider `Image` separately only if a high-level encoded metadata pathway is still worth exposing
-
-Special concern:
-
-- matrix payloads need explicit `zEncoded` plus `shape`
-- the encoded overload should reflect the chart-level semantics directly rather than mixing plain and encoded `z` in the same signature
-
-Why grouped:
-
-- all share the same matrix/flattening design question
-
-Status:
-
-- implemented and committed as `62e9161c`
-- encoded overloads are in place for `Histogram2D`, `Histogram2DContour`, `Heatmap`, and `Contour`
-- chart-level, upstream, and console coverage are in place
-
-##### H1-F: 3D roots
-
-Scope:
-
-- add one encoded overload per foundational root:
-  - `Chart3D.Scatter3D`
-  - `Chart3D.Surface`
-  - `Chart3D.Mesh3D`
-  - `Chart3D.Cone`
-  - `Chart3D.StreamTube`
-  - `Chart3D.Volume`
-  - `Chart3D.IsoSurface`
-
-Why grouped:
-
-- common xyz-style input shape
-- vector-field and topology/value extras are easiest to review together once the chart-level pattern is established
-
-Status:
-
-- implemented and committed as `045a2b63`
-- encoded overloads are in place for `Scatter3D`, `Surface`, `Mesh3D`, `Cone`, `StreamTube`, `Volume`, and `IsoSurface`
-- chart-level, upstream, and console coverage are in place
-
-##### H1-G: Subplot and domain roots
-
-Scope:
-
-- add one encoded overload per true root:
-  - `BarPolar`
-  - `Pie`
-  - `Sunburst`
-  - `Treemap`
-  - `FunnelArea`
-  - `Icicle`
-  - `ChoroplethMap`
-  - `ChoroplethMapbox`
-  - `DensityMapbox`
-  - `ScatterPolar`
-  - `ScatterGeo`
-  - `ScatterMapbox`
-  - `ScatterTernary`
-  - `ScatterSmith`
-  - `Carpet`
-  - `ScatterCarpet`
-  - `ContourCarpet`
-- defer `Sankey` to a later follow-up because the meaningful encoded payloads live inside nested `node`/`link` objects rather than the top-level root signature
-- do not add `keyValuesEncoded` conveniences for `ParallelCoord` or `ParallelCategories` in this slice
-- leave `Indicator` and `Table` out unless a strong encoded root use case emerges later
-
-Why grouped:
-
-- smaller trace families with different file locations but the same top-level API decision
-- better saved until the core 2D/3D patterns are stable
-
-Status:
-
-- implemented locally and ready to commit
-- encoded overloads are in place for `BarPolar`, `ChoroplethMap`, `Pie`, `FunnelArea`, `Sunburst`, `Treemap`, `Icicle`, `ScatterPolar`, `ScatterGeo`, `ScatterMapbox`, `ChoroplethMapbox`, `DensityMapbox`, `ScatterTernary`, `ScatterSmith`, `Carpet`, `ScatterCarpet`, and `ContourCarpet`
-- `Sankey` was analyzed and intentionally deferred for now
-- no `keyValuesEncoded` overloads were added for `ParallelCoord` or `ParallelCategories`
-- chart-level, upstream, and console coverage are in place
-
-### Recommended H1 order
-
-1. H1-A `Scatter` PoC
-2. H1-B scatter-derived helpers
-3. H1-C bar-family roots
-4. H1-D distribution and finance roots
-5. H1-E matrix roots
-6. H1-F 3D roots
-7. H1-G subplot and domain roots
-
-### H1 testing expectations
-
-Each H1 work package should add:
-
-- chart-level serialization tests proving encoded objects appear in the generated figure JSON
-- overload-shape tests where relevant, proving the encoded overload uses only the encoded pathway
-- a small `FSharpConsole` sample only for the package currently under discussion, not a cumulative playground
-- upstream feature coverage only once we decide that top-level API support is part of the user-facing 2.28 feature story and not just a convenience layer over the already-tested trace support
-
-#### Phase H2: Derived convenience constructors
-
-Update any remaining helpers that still deserve dedicated encoded overloads after H1:
-
-- `Point`, `Line`, `Spline`, `Bubble`
-- `Column`, `StackedBar`, `StackedColumn`, `Area`, `SplineArea`, `StackedArea`
-- domain and map convenience helpers where encoded input still makes ergonomic sense
-
-Rule of thumb:
-
-- do not automatically mirror every plain convenience overload
-- only add an encoded overload when the chart type is valuable enough on its own and still reads clearly without tuple shortcuts
-
-Status:
-
-- implemented for the full set of derived convenience helpers across `Chart2D`, `Chart3D`, `ChartCarpet`, `ChartDomain`, `ChartMap`, `ChartPolar`, `ChartSmith`, and `ChartTernary`
-- `Chart2D`: `StackedBar`, `Column`, `StackedColumn`, `PointDensity`, `StackedFunnel`
-- `Chart3D`: `Point3D`, `Line3D`, `Bubble3D`
-- `ChartCarpet`: `PointCarpet`, `LineCarpet`, `SplineCarpet`, `BubbleCarpet`
-- `ChartDomain`: `Doughnut`
-- `ChartMap`: `PointGeo`, `LineGeo`, `BubbleGeo`, `PointMapbox`, `LineMapbox`, `BubbleMapbox`
-- `ChartPolar`: `PointPolar`, `LinePolar`, `SplinePolar`, `BubblePolar`
-- `ChartSmith`: `PointSmith`, `LineSmith`, `BubbleSmith`
-- `ChartTernary`: `PointTernary`, `LineTernary`, `BubbleTernary`
-- intentionally excluded: `Pareto`, `Residual`, `AnnotatedHeatmap` (in-F# computation over input arrays does not fit opaque encoded data)
-- chart-level, upstream, and console coverage are in place
-- `.\build.cmd runTestsCore` reports 933 tests passing
-
-#### Phase H3: C# surface
-
-Project the finalized F# shape into `Plotly.NET.CSharp`:
-
-- avoid exposing a larger set of C# methods than necessary
-- prefer mirroring the foundational F# constructors first
-- only add C# convenience overloads after the F# API shape is stable
-
-### Working rules for implementation
-
-- avoid creating a parallel `Chart.*Encoded` namespace unless the current overload-based plan proves unworkable
-- prefer adding encoded support to the smallest set of foundational methods that gives the rest of the API a delegation path
-- keep encoded-overrides-plain precedence consistent with the trace layer
-- add tests at the `Chart` level once the first H1 slice is in place
-- defer XML-doc cleanup into its own targeted follow-up unless it blocks review
+The initial H3 milestone is complete when the eight selected wrappers have C# tests, factory call syntax is verified, existing plain calls still compile, usage docs match the implementation, and the required verification is recorded. Shared Sankey support, parallel conveniences, and further C# families each retain their own status; none is implicitly completed by the C# file split or by this plan revision.

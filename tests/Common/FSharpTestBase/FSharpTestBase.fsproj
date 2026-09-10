@@ -29,6 +29,7 @@
     <Compile Include="TestCharts\ChartCarpetTestCharts.fs" />
     <Compile Include="TestCharts\ChartDomainTestCharts.fs" />
     <Compile Include="TestCharts\ChartSmithTestCharts.fs" />
+    <Compile Include="TestCharts\ChartCompositeTestCharts.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.25.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.24.fs" />
     <Compile Include="TestCharts\UpstreamFeatures\2.23.fs" />

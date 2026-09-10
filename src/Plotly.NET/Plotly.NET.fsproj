@@ -189,6 +189,7 @@
     <Compile Include="ChartAPI\ChartDomain\ChartDomain_Table.fs" />
     <Compile Include="ChartAPI\ChartDomain\ChartDomain_Icicle.fs" />
     <Compile Include="ChartAPI\ChartSmith\ChartSmith_Scatter.fs" />
+    <Compile Include="ChartAPI\ChartComposite\ChartComposite_SetComparison.fs" />
     <None Include="Playground.fsx" />
   </ItemGroup>
   <ItemGroup>
