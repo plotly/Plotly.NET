@@ -33,7 +33,7 @@ type ColorKeyword =
     | DarkGrey
     | DarkKhaki
     | DarkMagenta
-    | Darkolivegreen
+    | DarkOliveGreen
     | DarkOrange
     | DarkOrchid
     | DarkRed
@@ -61,8 +61,8 @@ type ColorKeyword =
     | Grey
     | Green
     | GreenYellow
-    | Honeydew
-    | Hotpink
+    | HoneyDew
+    | HotPink
     | IndianRed
     | Indigo
     | Ivory
@@ -79,11 +79,11 @@ type ColorKeyword =
     | LightGreen
     | LightGrey
     | LightPink
-    | LightAalmon
-    | LightAeaGreen
-    | LightAkyBlue
-    | LightAlateGray
-    | LightslateGrey
+    | LightSalmon
+    | LightSeaGreen
+    | LightSkyBlue
+    | LightSlateGray
+    | LightSlateGrey
     | LightSteelBlue
     | LightYellow
     | Lime
@@ -133,7 +133,7 @@ type ColorKeyword =
     | SeaShell
     | Sienna
     | Silver
-    | Skyblue
+    | SkyBlue
     | SlateBlue
     | SlateGray
     | SlateGrey
@@ -152,6 +152,8 @@ type ColorKeyword =
     | Yellow
     | YellowGreen
 
+    /// Returns a canonical keyword for an RGB value. Synonyms such as Gray/Grey share a value;
+    /// (119, 136, 153) returns LightSlateGray.
     static member internal ofRGB (r: int) (g: int) (b: int) =
         match (r, g, b) with
         | (240, 248, 255) -> AliceBlue
@@ -181,7 +183,7 @@ type ColorKeyword =
         | (169, 169, 169) -> DarkGray
         | (189, 183, 107) -> DarkKhaki
         | (139, 0, 139) -> DarkMagenta
-        | (85, 107, 47) -> Darkolivegreen
+        | (85, 107, 47) -> DarkOliveGreen
         | (255, 140, 0) -> DarkOrange
         | (153, 50, 204) -> DarkOrchid
         | (139, 0, 0) -> DarkRed
@@ -205,8 +207,8 @@ type ColorKeyword =
         | (128, 128, 128) -> Gray
         | (0, 128, 0) -> Green
         | (173, 255, 47) -> GreenYellow
-        | (240, 255, 240) -> Honeydew
-        | (255, 105, 180) -> Hotpink
+        | (240, 255, 240) -> HoneyDew
+        | (255, 105, 180) -> HotPink
         | (205, 92, 92) -> IndianRed
         | (75, 0, 130) -> Indigo
         | (255, 255, 240) -> Ivory
@@ -222,10 +224,10 @@ type ColorKeyword =
         | (211, 211, 211) -> LightGray
         | (144, 238, 144) -> LightGreen
         | (255, 182, 193) -> LightPink
-        | (255, 160, 122) -> LightAalmon
-        | (32, 178, 170) -> LightAeaGreen
-        | (135, 206, 250) -> LightAkyBlue
-        | (119, 136, 153) -> LightAlateGray
+        | (255, 160, 122) -> LightSalmon
+        | (32, 178, 170) -> LightSeaGreen
+        | (135, 206, 250) -> LightSkyBlue
+        | (119, 136, 153) -> LightSlateGray
         | (176, 196, 222) -> LightSteelBlue
         | (255, 255, 224) -> LightYellow
         | (0, 255, 0) -> Lime
@@ -275,7 +277,7 @@ type ColorKeyword =
         | (255, 245, 238) -> SeaShell
         | (160, 82, 45) -> Sienna
         | (192, 192, 192) -> Silver
-        | (135, 206, 235) -> Skyblue
+        | (135, 206, 235) -> SkyBlue
         | (106, 90, 205) -> SlateBlue
         | (112, 128, 144) -> SlateGray
         | (255, 250, 250) -> Snow
@@ -325,7 +327,7 @@ type ColorKeyword =
         | DarkGrey -> (169, 169, 169)
         | DarkKhaki -> (189, 183, 107)
         | DarkMagenta -> (139, 0, 139)
-        | Darkolivegreen -> (85, 107, 47)
+        | DarkOliveGreen -> (85, 107, 47)
         | DarkOrange -> (255, 140, 0)
         | DarkOrchid -> (153, 50, 204)
         | DarkRed -> (139, 0, 0)
@@ -353,8 +355,8 @@ type ColorKeyword =
         | Grey -> (128, 128, 128)
         | Green -> (0, 128, 0)
         | GreenYellow -> (173, 255, 47)
-        | Honeydew -> (240, 255, 240)
-        | Hotpink -> (255, 105, 180)
+        | HoneyDew -> (240, 255, 240)
+        | HotPink -> (255, 105, 180)
         | IndianRed -> (205, 92, 92)
         | Indigo -> (75, 0, 130)
         | Ivory -> (255, 255, 240)
@@ -371,11 +373,11 @@ type ColorKeyword =
         | LightGreen -> (144, 238, 144)
         | LightGrey -> (211, 211, 211)
         | LightPink -> (255, 182, 193)
-        | LightAalmon -> (255, 160, 122)
-        | LightAeaGreen -> (32, 178, 170)
-        | LightAkyBlue -> (135, 206, 250)
-        | LightAlateGray -> (119, 136, 153)
-        | LightslateGrey -> (119, 136, 153)
+        | LightSalmon -> (255, 160, 122)
+        | LightSeaGreen -> (32, 178, 170)
+        | LightSkyBlue -> (135, 206, 250)
+        | LightSlateGray
+        | LightSlateGrey -> (119, 136, 153)
         | LightSteelBlue -> (176, 196, 222)
         | LightYellow -> (255, 255, 224)
         | Lime -> (0, 255, 0)
@@ -425,7 +427,7 @@ type ColorKeyword =
         | SeaShell -> (255, 245, 238)
         | Sienna -> (160, 82, 45)
         | Silver -> (192, 192, 192)
-        | Skyblue -> (135, 206, 235)
+        | SkyBlue -> (135, 206, 235)
         | SlateBlue -> (106, 90, 205)
         | SlateGray -> (112, 128, 144)
         | SlateGrey -> (112, 128, 144)
@@ -475,7 +477,7 @@ type ColorKeyword =
         | "darkgrey" -> DarkGrey
         | "darkkhaki" -> DarkKhaki
         | "darkmagenta" -> DarkMagenta
-        | "darkolivegreen" -> Darkolivegreen
+        | "darkolivegreen" -> DarkOliveGreen
         | "darkorange" -> DarkOrange
         | "darkorchid" -> DarkOrchid
         | "darkred" -> DarkRed
@@ -503,8 +505,8 @@ type ColorKeyword =
         | "grey" -> Grey
         | "green" -> Green
         | "greenyellow" -> GreenYellow
-        | "honeydew" -> Honeydew
-        | "hotpink" -> Hotpink
+        | "honeydew" -> HoneyDew
+        | "hotpink" -> HotPink
         | "indianred" -> IndianRed
         | "indigo" -> Indigo
         | "ivory" -> Ivory
@@ -521,11 +523,11 @@ type ColorKeyword =
         | "lightgreen" -> LightGreen
         | "lightgrey" -> LightGrey
         | "lightpink" -> LightPink
-        | "lightsalmon" -> LightAalmon
-        | "lightseagreen" -> LightAeaGreen
-        | "lightskyblue" -> LightAkyBlue
-        | "lightslategray" -> LightAlateGray
-        | "lightslategrey" -> LightslateGrey
+        | "lightsalmon" -> LightSalmon
+        | "lightseagreen" -> LightSeaGreen
+        | "lightskyblue" -> LightSkyBlue
+        | "lightslategray" -> LightSlateGray
+        | "lightslategrey" -> LightSlateGrey
         | "lightsteelblue" -> LightSteelBlue
         | "lightyellow" -> LightYellow
         | "lime" -> Lime
@@ -575,7 +577,7 @@ type ColorKeyword =
         | "seashell" -> SeaShell
         | "sienna" -> Sienna
         | "silver" -> Silver
-        | "skyblue" -> Skyblue
+        | "skyblue" -> SkyBlue
         | "slateblue" -> SlateBlue
         | "slategray" -> SlateGray
         | "slategrey" -> SlateGrey

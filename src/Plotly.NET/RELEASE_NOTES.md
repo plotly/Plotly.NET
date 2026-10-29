@@ -12,6 +12,20 @@ As a consequence, the html dsl dependency switches back from `Giraffe.ViewEngine
 
 - Bump bundled plotly.js to **2.28.0**
 
+- [#459](https://github.com/plotly/Plotly.NET/issues/459): **Breaking:** Rename nine `ColorKeyword` cases. The old names have been removed; replace usages and pattern matches using the mapping below. RGB values are unchanged, including `LightSlateGray` and `LightSlateGrey`, which both map to `(119, 136, 153)`.
+
+  | Removed name | Replacement |
+  | --- | --- |
+  | `Darkolivegreen` | `DarkOliveGreen` |
+  | `Honeydew` | `HoneyDew` |
+  | `Hotpink` | `HotPink` |
+  | `LightAalmon` | `LightSalmon` |
+  | `LightAeaGreen` | `LightSeaGreen` |
+  | `LightAkyBlue` | `LightSkyBlue` |
+  | `LightAlateGray` | `LightSlateGray` |
+  | `LightslateGrey` | `LightSlateGrey` |
+  | `Skyblue` | `SkyBlue` |
+
 - [#477](https://github.com/plotly/Plotly.NET/issues/477): Fix tick-font serialization for parallel categories and parallel coordinates charts, and add `StyleParam.Shape.HSpline` for horizontal spline paths in parallel categories plots.
 
 - [#441](https://github.com/plotly/Plotly.NET/issues/441): **Encoded typed array support** — plotly.js 2.28 introduced a base64 representation for numeric arrays. Plotly.NET supports it for selected trace fields and chart constructors:

@@ -61,6 +61,16 @@ let singleColor1 = Color.fromKeyword Red // using html color keywords
 let singleColor2 = Color.fromARGB 255 42 13 1 // using type-safe argb
 let singleColor3 = Color.fromHex "#FFFFFF" // parsing hex strings
 let singleColor4 = Color.fromString "red" // you can also set any string value if you really need to
+let singleColor5 = Color.fromKeyword ColorKeyword.LightSkyBlue
+
+(**
+Plotly.NET 6.0 renames nine `ColorKeyword` cases to `DarkOliveGreen`, `HoneyDew`, `HotPink`,
+`LightSalmon`, `LightSeaGreen`, `LightSkyBlue`, `LightSlateGray`, `LightSlateGrey`, and `SkyBlue`.
+This is a breaking change: the old spellings have been removed. Update usages and pattern matches
+to use the corrected names. `ColorKeyword.ofKeyWord` also returns the corrected cases.
+
+The RGB values are unchanged. `LightSlateGray` and `LightSlateGrey` both represent RGB `(119, 136, 153)`.
+*)
 
 (**
 The `Color` type is basically a container for boxed values that gets converted to correct plotly attributes internally:

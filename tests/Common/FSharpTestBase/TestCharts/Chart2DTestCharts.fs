@@ -380,7 +380,7 @@ module Image =
         let argbs = [
             [ColorKeyword.AliceBlue     ; ColorKeyword.CornSilk ; ColorKeyword.LavenderBlush ] |> List.map ARGB.fromKeyword
             [ColorKeyword.DarkGray      ; ColorKeyword.Snow     ; ColorKeyword.MidnightBlue  ] |> List.map ARGB.fromKeyword
-            [ColorKeyword.LightSteelBlue; ColorKeyword.DarkKhaki; ColorKeyword.LightAkyBlue  ] |> List.map ARGB.fromKeyword
+            [ColorKeyword.LightSteelBlue; ColorKeyword.DarkKhaki; ColorKeyword.LightSkyBlue  ] |> List.map ARGB.fromKeyword
         ]
         Chart.Image(z = argbs, UseDefaults = false)
         |> Chart.withTitle "ARGB image chart"

@@ -92,7 +92,7 @@ let argbs =
       |> List.map ARGB.fromKeyword
       [ ColorKeyword.LightSteelBlue
         ColorKeyword.DarkKhaki
-        ColorKeyword.LightAkyBlue ]
+        ColorKeyword.LightSkyBlue ]
       |> List.map ARGB.fromKeyword ]
 
 let imageARGB = Chart.Image(z = argbs) |> Chart.withTitle "ARGB image chart"
