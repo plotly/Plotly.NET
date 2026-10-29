@@ -1,0 +1,4649 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://plotly.net/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Chart (Plotly.NET)" />
+    <meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Chart (Plotly.NET)">
+    
+    <title>Chart (Plotly.NET) | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-details-set-expanded.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.28.0.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="license-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="release-notes-menu-item builtin-menu-item nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="repository-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/encoded-arrays.html">
+    Encoded typed arrays
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/residual.html">
+    Residual chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Set comparison charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/venn.html">
+    Venn diagrams
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/upset.html">
+    UpSet plots
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://plotly.net/">
+            <img alt="Logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="license-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="release-notes-menu-item builtin-menu-item nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="repository-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/encoded-arrays.html">
+    Encoded typed arrays
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/residual.html">
+    Residual chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Set comparison charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/venn.html">
+    Venn diagrams
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/upset.html">
+    UpSet plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    Chart Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://plotly.net/reference/plotly-net.html">
+        Plotly.NET
+      </a>
+    </dt>
+    <dt>
+      Assembly: Plotly.NET.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://plotly.net/reference/plotly-net-chart2d_finance.html">
+        Chart2D_Finance
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <div class="fsdocs-summary-contents">
+        <p class="fsdocs-summary">
+          
+        </p>
+      </div>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Static members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Static member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+            <fsdocs-details-toggle></fsdocs-details-toggle>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="87" data-fsdocs-tip-unique="87">
+                <p>
+                  <a id="Candlestick">
+                    <a href="#Candlestick">
+                      <code><span>Chart.Candlestick<span><span>(<span>stockTimeSeries,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="87">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Candlestick<span><span>(<span>stockTimeSeries,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        stockTimeSeries
+                      </b>
+                      :
+                      <code><span><span>(<span><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-traceobjects-stockdata.html">StockData</a></span>)</span>&#32;seq</span></code>
+                       - 
+                      a series of (time,StockData), where StockData contains opwn, high, low and close values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity otf the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'a</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?WhiskerWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a (requires :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates a candlestick chart.
+
+ The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L577-577" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``1\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``1```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    stockTimeSeries
+                  </span>
+                  :
+                  <code><span><span>(<span><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-traceobjects-stockdata.html">StockData</a></span>)</span>&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    a series of (time,StockData), where StockData contains opwn, high, low and close values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity otf the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?WhiskerWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="88" data-fsdocs-tip-unique="88">
+                <p>
+                  <a id="Candlestick">
+                    <a href="#Candlestick">
+                      <code><span>Chart.Candlestick<span><span>(<span>openEncoded,&#32;highEncoded,&#32;lowEncoded,&#32;closeEncoded,&#32;?xEncoded,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="88">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Candlestick<span><span>(<span>openEncoded,&#32;highEncoded,&#32;lowEncoded,&#32;closeEncoded,&#32;?xEncoded,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        openEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the open values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        highEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the high values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lowEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the low values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        closeEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the close values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?xEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the x coordinates as an encoded typed array. If absent, linear coordinates will be generated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity of the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'a</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?WhiskerWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the whiskers relative to the box&#39; width.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a (requires :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates a candlestick chart from encoded financial arrays.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L495-495" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``1\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``1```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    openEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the open values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    highEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the high values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    lowEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the low values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    closeEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the close values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?xEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates as an encoded typed array. If absent, linear coordinates will be generated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity of the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?WhiskerWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the whiskers relative to the box&#39; width.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="89" data-fsdocs-tip-unique="89">
+                <p>
+                  <a id="Candlestick">
+                    <a href="#Candlestick">
+                      <code><span>Chart.Candlestick<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;x,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="89">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Candlestick<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;x,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        open
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets the open values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        high
+                      </b>
+                      :
+                      <code><span>'b&#32;seq</span></code>
+                       - 
+                      Sets the high values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        low
+                      </b>
+                      :
+                      <code><span>'c&#32;seq</span></code>
+                       - 
+                      Sets the low values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        close
+                      </b>
+                      :
+                      <code><span>'d&#32;seq</span></code>
+                       - 
+                      Sets the close values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><span>'e&#32;seq</span></code>
+                       - 
+                      Sets the x coordinates. If absent, linear coordinate will be generated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity otf the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'f</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'f&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?WhiskerWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a, &#39;b, &#39;c, &#39;d, &#39;e, &#39;f (requires :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates a candlestick chart.
+
+ The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L430-430" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``6\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``6```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    open
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the open values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    high
+                  </span>
+                  :
+                  <code><span>'b&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the high values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    low
+                  </span>
+                  :
+                  <code><span>'c&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the low values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    close
+                  </span>
+                  :
+                  <code><span>'d&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the close values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>'e&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates. If absent, linear coordinate will be generated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity otf the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'f</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'f&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?WhiskerWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="90" data-fsdocs-tip-unique="90">
+                <p>
+                  <a id="Candlestick">
+                    <a href="#Candlestick">
+                      <code><span>Chart.Candlestick<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;?X,&#32;?MultiX,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="90">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.Candlestick<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;?X,&#32;?MultiX,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?WhiskerWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        open
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets the open values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        high
+                      </b>
+                      :
+                      <code><span>'b&#32;seq</span></code>
+                       - 
+                      Sets the high values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        low
+                      </b>
+                      :
+                      <code><span>'c&#32;seq</span></code>
+                       - 
+                      Sets the low values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        close
+                      </b>
+                      :
+                      <code><span>'d&#32;seq</span></code>
+                       - 
+                      Sets the close values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?X
+                      </b>
+                      :
+                      <code><span>'e&#32;seq</span></code>
+                       - 
+                      Sets the x coordinates. If absent, linear coordinate will be generated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiX
+                      </b>
+                      :
+                      <code><span><span>'e&#32;seq</span>&#32;seq</span></code>
+                       - 
+                      Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity otf the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'f</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'f&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?WhiskerWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a, &#39;b, &#39;c, &#39;d, &#39;e, &#39;f (requires :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates a candlestick chart.
+
+ The candlestick is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The boxes represent the spread between the `open` and `close` values and the lines represent the spread between the `low` and `high` values Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing candles are drawn in green whereas decreasing are drawn in red.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L342-342" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``6\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.Candlestick``6```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    open
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the open values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    high
+                  </span>
+                  :
+                  <code><span>'b&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the high values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    low
+                  </span>
+                  :
+                  <code><span>'c&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the low values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    close
+                  </span>
+                  :
+                  <code><span>'d&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the close values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?X
+                  </span>
+                  :
+                  <code><span>'e&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates. If absent, linear coordinate will be generated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiX
+                  </span>
+                  :
+                  <code><span><span>'e&#32;seq</span>&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity otf the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'f</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'f&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?WhiskerWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="91" data-fsdocs-tip-unique="91">
+                <p>
+                  <a id="OHLC">
+                    <a href="#OHLC">
+                      <code><span>Chart.OHLC<span><span>(<span>stockTimeSeries,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="91">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.OHLC<span><span>(<span>stockTimeSeries,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        stockTimeSeries
+                      </b>
+                      :
+                      <code><span><span>(<span><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-traceobjects-stockdata.html">StockData</a></span>)</span>&#32;seq</span></code>
+                       - 
+                      a series of (time,StockData), where StockData contains opwn, high, low and close values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity otf the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'a</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TickWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the open/close tick marks relative to the &quot;x&quot; minimal interval.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a (requires :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates an OHLC chart.
+
+ The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L277-277" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.OHLC``1\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.OHLC``1```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    stockTimeSeries
+                  </span>
+                  :
+                  <code><span><span>(<span><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;*&#32;<a href="https://plotly.net/reference/plotly-net-traceobjects-stockdata.html">StockData</a></span>)</span>&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    a series of (time,StockData), where StockData contains opwn, high, low and close values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity otf the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TickWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the open/close tick marks relative to the &quot;x&quot; minimal interval.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="92" data-fsdocs-tip-unique="92">
+                <p>
+                  <a id="OHLC">
+                    <a href="#OHLC">
+                      <code><span>Chart.OHLC<span><span>(<span>openEncoded,&#32;highEncoded,&#32;lowEncoded,&#32;closeEncoded,&#32;?xEncoded,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="92">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.OHLC<span><span>(<span>openEncoded,&#32;highEncoded,&#32;lowEncoded,&#32;closeEncoded,&#32;?xEncoded,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        openEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the open values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        highEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the high values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lowEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the low values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        closeEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the close values as an encoded typed array.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?xEncoded
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                       - 
+                      Sets the x coordinates as an encoded typed array. If absent, linear coordinates will be generated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity of the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'a</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TickWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the open/close tick marks.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a (requires :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates an OHLC chart from encoded financial arrays.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L195-195" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.OHLC``1\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.OHLC``1```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    openEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the open values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    highEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the high values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    lowEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the low values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    closeEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the close values as an encoded typed array.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?xEncoded
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-encodedtypedarray.html">EncodedTypedArray</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates as an encoded typed array. If absent, linear coordinates will be generated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity of the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TickWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the open/close tick marks.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="93" data-fsdocs-tip-unique="93">
+                <p>
+                  <a id="OHLC">
+                    <a href="#OHLC">
+                      <code><span>Chart.OHLC<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;x,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="93">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.OHLC<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;x,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        open
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets the open values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        high
+                      </b>
+                      :
+                      <code><span>'b&#32;seq</span></code>
+                       - 
+                      Sets the high values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        low
+                      </b>
+                      :
+                      <code><span>'c&#32;seq</span></code>
+                       - 
+                      Sets the low values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        close
+                      </b>
+                      :
+                      <code><span>'d&#32;seq</span></code>
+                       - 
+                      Sets the close values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><span>'e&#32;seq</span></code>
+                       - 
+                      Sets the x coordinates. If absent, linear coordinate will be generated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity otf the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'f</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'f&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TickWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the open/close tick marks relative to the &quot;x&quot; minimal interval.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a, &#39;b, &#39;c, &#39;d, &#39;e, &#39;f (requires :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates an OHLC chart.
+
+ The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L130-130" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.OHLC``6\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.OHLC``6```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    open
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the open values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    high
+                  </span>
+                  :
+                  <code><span>'b&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the high values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    low
+                  </span>
+                  :
+                  <code><span>'c&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the low values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    close
+                  </span>
+                  :
+                  <code><span>'d&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the close values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    x
+                  </span>
+                  :
+                  <code><span>'e&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates. If absent, linear coordinate will be generated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity otf the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'f</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'f&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TickWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the open/close tick marks relative to the &quot;x&quot; minimal interval.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code data-fsdocs-tip="94" data-fsdocs-tip-unique="94">
+                <p>
+                  <a id="OHLC">
+                    <a href="#OHLC">
+                      <code><span>Chart.OHLC<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;?X,&#32;?MultiX,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div popover="" class="fsdocs-tip" id="94">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Chart.OHLC<span><span>(<span>open,&#32;high,&#32;low,&#32;close,&#32;?X,&#32;?MultiX,&#32;?Name,&#32;?ShowLegend,&#32;?Opacity,&#32;?Text,&#32;?MultiText,&#32;?Line,&#32;?IncreasingColor,&#32;?Increasing,&#32;?DecreasingColor,&#32;?Decreasing,&#32;?TickWidth,&#32;?ShowXAxisRangeSlider,&#32;?UseDefaults</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        open
+                      </b>
+                      :
+                      <code><span>'a&#32;seq</span></code>
+                       - 
+                      Sets the open values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        high
+                      </b>
+                      :
+                      <code><span>'b&#32;seq</span></code>
+                       - 
+                      Sets the high values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        low
+                      </b>
+                      :
+                      <code><span>'c&#32;seq</span></code>
+                       - 
+                      Sets the low values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        close
+                      </b>
+                      :
+                      <code><span>'d&#32;seq</span></code>
+                       - 
+                      Sets the close values.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?X
+                      </b>
+                      :
+                      <code><span>'e&#32;seq</span></code>
+                       - 
+                      Sets the x coordinates. If absent, linear coordinate will be generated.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiX
+                      </b>
+                      :
+                      <code><span><span>'e&#32;seq</span>&#32;seq</span></code>
+                       - 
+                      Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Name
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Sets the trace name. The trace name appear as the legend item and on hover.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowLegend
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Determines whether or not an item corresponding to this trace is shown in the legend.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Opacity
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the Opacity otf the trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Text
+                      </b>
+                      :
+                      <code>'f</code>
+                       - 
+                      Sets a text associated with each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?MultiText
+                      </b>
+                      :
+                      <code><span>'f&#32;seq</span></code>
+                       - 
+                      Sets individual text for each datum
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Line
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                       - 
+                      Sets the line of this trace.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?IncreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of increasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Increasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?DecreasingColor
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                       - 
+                      Sets the color of decreasing values
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?Decreasing
+                      </b>
+                      :
+                      <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                       - 
+                      Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?TickWidth
+                      </b>
+                      :
+                      <code>float</code>
+                       - 
+                      Sets the width of the open/close tick marks relative to the &quot;x&quot; minimal interval.
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?ShowXAxisRangeSlider
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Whether or not to show a rangeslider for the xaxis
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ?UseDefaults
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      If set to false, ignore the global default settings set in `Defaults`
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                  </span>
+                  <br/>
+                  Type parameters: 
+                  &#39;a, &#39;b, &#39;c, &#39;d, &#39;e, &#39;f (requires :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible and :&gt; System.IConvertible)
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-summary-contents">
+                    <p class="fsdocs-summary">
+                      
+ Creates an OHLC chart.
+
+ The ohlc (short for Open-High-Low-Close) is a style of financial chart describing open, high, low and close for a given `x` coordinate (most likely time). The tip of the lines represent the `low` and `high` values and the horizontal segments represent the `open` and `close` values. Sample points where the close value is higher (lower) then the open value are called increasing (decreasing). By default, increasing items are drawn in green whereas decreasing are drawn in red.
+ 
+                    </p>
+                  </div>
+                  <div class="icon-button-row">
+                    <a href="https://github.com/plotly/Plotly.NET//tree/master/src/Plotly.NET/ChartAPI/Chart2D/Chart2D_Finance.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
+                      <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                    </a>
+                    <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Plotly.NET.Chart2D_Finance.Chart.OHLC``6\'/>')">
+                      <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                    </div>
+                    <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Plotly.NET.Chart2D_Finance.Chart.OHLC``6```')">
+                      <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    open
+                  </span>
+                  :
+                  <code><span>'a&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the open values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    high
+                  </span>
+                  :
+                  <code><span>'b&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the high values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    low
+                  </span>
+                  :
+                  <code><span>'c&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the low values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    close
+                  </span>
+                  :
+                  <code><span>'d&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the close values.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?X
+                  </span>
+                  :
+                  <code><span>'e&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates. If absent, linear coordinate will be generated.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiX
+                  </span>
+                  :
+                  <code><span><span>'e&#32;seq</span>&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the x coordinates. If absent, linear coordinate will be generated. Use two inner arrays here to plot multicategorial data
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the trace name. The trace name appear as the legend item and on hover.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowLegend
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Determines whether or not an item corresponding to this trace is shown in the legend.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Opacity
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the Opacity otf the trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Text
+                  </span>
+                  :
+                  <code>'f</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets a text associated with each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?MultiText
+                  </span>
+                  :
+                  <code><span>'f&#32;seq</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets individual text for each datum
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Line
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-line.html">Line</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the line of this trace.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?IncreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of increasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Increasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of increasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?DecreasingColor
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-color.html">Color</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the color of decreasing values
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?Decreasing
+                  </span>
+                  :
+                  <code><a href="https://plotly.net/reference/plotly-net-traceobjects-financemarker.html">FinanceMarker</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the style options of decreasing values (use this for more finegrained control than the other increasing-associated arguments).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?TickWidth
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Sets the width of the open/close tick marks relative to the &quot;x&quot; minimal interval.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?ShowXAxisRangeSlider
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Whether or not to show a rangeslider for the xaxis
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?UseDefaults
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If set to false, ignore the global default settings set in `Defaults`
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://plotly.net/reference/plotly-net-genericchart.html">GenericChart</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-details-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-copy-button.js"></script>
+
+</body>
+</html>

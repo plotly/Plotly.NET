@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://plotly.net/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="UpSet plots" />
+    <meta property="og:url" content="https://plotly.net/set-comparison-charts/upset.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="UpSet plots">
+    
+    <title>UpSet plots | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-details-set-expanded.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.28.0.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="license-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="release-notes-menu-item builtin-menu-item nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="repository-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/encoded-arrays.html">
+    Encoded typed arrays
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/residual.html">
+    Residual chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>             
+<li class="nav-header active">
+  Set comparison charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/venn.html">
+    Venn diagrams
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/upset.html">
+    UpSet plots
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://plotly.net/">
+            <img alt="Logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="license-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="release-notes-menu-item builtin-menu-item nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="repository-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/encoded-arrays.html">
+    Encoded typed arrays
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/residual.html">
+    Residual chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>             
+<li class="nav-header active">
+  Set comparison charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/venn.html">
+    Venn diagrams
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/upset.html">
+    UpSet plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="UpSet-plots" class="anchor" href="#UpSet-plots">UpSet plots</a></h1>
+<p><code>Chart.UpSet</code> compares membership across several sets using a dot matrix and bar charts.
+It is useful when a <a href="venn.html">Venn diagram</a> would become difficult to read.</p>
+<p>Each matrix column represents an <strong>exclusive intersection</strong>: a member belongs to every set marked
+with a dark dot and to none of the sets marked with a pale dot. Connecting lines join the dark dots.
+The bar above a column counts its members; the horizontal bars on the left show the full set sizes.
+Intersections are ordered by decreasing size by default.</p>
+<h2><a name="Basic-example" class="anchor" href="#Basic-example">Basic example</a></h2>
+<p>Provide one unique label for each set, in the same order as the <code>sets</code> input. Members are strings,
+and duplicate entries within a set are ignored. Here, A and B share <code>"2"</code> and <code>"3"</code> exclusively;
+<code>"1"</code> belongs to all three sets and is counted in a separate column.</p>
+<p>The default <code>MinIntersectionSize</code> is <strong>5</strong>. This small example uses <strong>1</strong> to show every nonempty
+intersection, including those containing just one member.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span data-fsdocs-tip="fs1" data-fsdocs-tip-unique="13" class="id">Plotly</span><span class="pn">.</span><span data-fsdocs-tip="fs2" data-fsdocs-tip-unique="14" class="id">NET</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="15" class="id">labels</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;A&quot;</span><span class="pn">;</span> <span class="s">&quot;B&quot;</span><span class="pn">;</span> <span class="s">&quot;C&quot;</span> <span class="pn">|]</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="16" class="id">sets</span> <span class="o">=</span>
+    <span class="pn">[|</span>
+        <span class="pn">[|</span> <span class="s">&quot;1&quot;</span><span class="pn">;</span> <span class="s">&quot;2&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">;</span> <span class="s">&quot;4&quot;</span><span class="pn">;</span> <span class="s">&quot;5&quot;</span><span class="pn">;</span> <span class="s">&quot;6&quot;</span><span class="pn">;</span> <span class="s">&quot;11&quot;</span> <span class="pn">|]</span>
+        <span class="pn">[|</span> <span class="s">&quot;1&quot;</span><span class="pn">;</span> <span class="s">&quot;2&quot;</span><span class="pn">;</span> <span class="s">&quot;3&quot;</span><span class="pn">;</span> <span class="s">&quot;7&quot;</span><span class="pn">;</span> <span class="s">&quot;8&quot;</span><span class="pn">;</span> <span class="s">&quot;9&quot;</span><span class="pn">;</span> <span class="s">&quot;10&quot;</span><span class="pn">;</span> <span class="s">&quot;12&quot;</span><span class="pn">;</span> <span class="s">&quot;13&quot;</span> <span class="pn">|]</span>
+        <span class="pn">[|</span> <span class="s">&quot;1&quot;</span><span class="pn">;</span> <span class="s">&quot;4&quot;</span><span class="pn">;</span> <span class="s">&quot;5&quot;</span><span class="pn">;</span> <span class="s">&quot;6&quot;</span><span class="pn">;</span> <span class="s">&quot;7&quot;</span><span class="pn">;</span> <span class="s">&quot;8&quot;</span><span class="pn">;</span> <span class="s">&quot;9&quot;</span><span class="pn">;</span> <span class="s">&quot;10&quot;</span><span class="pn">;</span> <span class="s">&quot;14&quot;</span><span class="pn">;</span> <span class="s">&quot;15&quot;</span><span class="pn">;</span> <span class="s">&quot;16&quot;</span> <span class="pn">|]</span>
+    <span class="pn">|]</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="17" class="id">upset</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="18" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs13" data-fsdocs-tip-unique="19" class="id">UpSet</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="20" class="fn">labels</span> <span class="o">=</span> <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="21" class="id">labels</span><span class="pn">,</span>
+        <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="22" class="fn">sets</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="23" class="id">sets</span><span class="pn">,</span>
+        <span class="fn">MinIntersectionSize</span> <span class="o">=</span> <span class="n">1</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="24" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs14" data-fsdocs-tip-unique="25" class="id">withTitle</span> <span class="s">&quot;Membership across three sets&quot;</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="26" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs15" data-fsdocs-tip-unique="27" class="id">withSize</span><span class="pn">(</span><span class="n">640</span><span class="pn">,</span> <span class="n">500</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="28" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs16" data-fsdocs-tip-unique="29" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span> <span class="o">=</span> <span class="n">65</span><span class="pn">,</span> <span class="fn">Right</span> <span class="o">=</span> <span class="n">25</span><span class="pn">,</span> <span class="fn">Top</span> <span class="o">=</span> <span class="n">65</span><span class="pn">,</span> <span class="fn">Bottom</span> <span class="o">=</span> <span class="n">45</span><span class="pn">)</span>
+</code></pre>
+<div><div id="1efbb364-caf5-4511-a9c4-a1e50a4e08df"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_1efbb364caf54511a9c4a1e50a4e08df = function() {
+    var data = [{"type":null,"xaxis":"x","yaxis":"y"},{"type":"bar","y":[4,3,3,2,2,1,1],"orientation":"v","marker":{"color":"rgba(0, 0, 139, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x2","yaxis":"y2"},{"type":"bar","x":[7,9,11],"y":["A","B","C"],"orientation":"h","marker":{"color":"rgba(0, 0, 139, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[0],"y":[0],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[0,0],"y":[1,2],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[1],"y":[1],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[1,1],"y":[0,2],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[2,2],"y":[0,1],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[2],"y":[2],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[3],"y":[2],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[3,3],"y":[0,1],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[4,4],"y":[0,2],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[4],"y":[1],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[5,5],"y":[1,2],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[5],"y":[0],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[],"y":[],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":25,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[6,6,6],"y":[0,1,2],"marker":{"size":25,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":5.0,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"}];
+    var layout = {"yaxis":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"width":640,"height":500,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"type":"bar","marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"type":"barpolar","marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"type":"carpet","aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"type":"histogram","marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"type":"pie","automargin":true}],"scatter":[{"type":"scatter","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"type":"table","cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"yaxis2":{"title":{"text":"Intersection Size","font":{"family":"Arial","size":20.0}}},"xaxis2":{"range":[-0.5,6.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis3":{"range":[-0.5,2.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis3":{"title":{"text":"Set Size","font":{"family":"Arial","size":20.0}},"range":[11.0,0.0],"domain":[0.0,0.2]},"xaxis4":{"range":[-0.5,6.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis4":{"range":[-0.5,2.5],"tickmode":"array","tickvals":[0,1,2],"ticktext":["A","B","C"],"showticklabels":true,"tickfont":{"family":"Arial","size":20.0},"showline":false,"showgrid":false,"zeroline":false},"annotations":[],"grid":{"rows":2,"columns":2,"roworder":"top to bottom","pattern":"independent"},"title":{"text":"Membership across three sets"},"margin":{"l":65,"r":25,"t":65,"b":45}};
+    var config = {"responsive":true};
+    Plotly.newPlot('1efbb364-caf5-4511-a9c4-a1e50a4e08df', data, layout, config);
+};
+renderPlotly_1efbb364caf54511a9c4a1e50a4e08df();
+</script></div>
+<h2><a name="Filtering-and-styling" class="anchor" href="#Filtering-and-styling">Filtering and styling</a></h2>
+<p>Raise <code>MinIntersectionSize</code> to hide small intersections. The set-size bars still count all members
+of each input set, including members whose intersection columns have been filtered out.</p>
+<p><code>MainColor</code> controls the bars and the active membership dots and lines. <code>SecondaryColor</code> controls
+the inactive dots. <code>MarkerSize</code>, <code>TextFont</code>, and <code>TextFontLabel</code> adjust the matrix markers,
+axis titles, and set labels respectively.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs19" data-fsdocs-tip-unique="33" class="id">upsetStyled</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="34" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs13" data-fsdocs-tip-unique="35" class="id">UpSet</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="36" class="fn">labels</span> <span class="o">=</span> <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="37" class="id">labels</span><span class="pn">,</span>
+        <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="38" class="fn">sets</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="39" class="id">sets</span><span class="pn">,</span>
+        <span class="fn">MinIntersectionSize</span> <span class="o">=</span> <span class="n">2</span><span class="pn">,</span>
+        <span class="fn">MainColor</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="40" class="rt">Color</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="41" class="id">fromHex</span> <span class="s">&quot;#2A6F97&quot;</span><span class="pn">,</span>
+        <span class="fn">SecondaryColor</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="42" class="rt">Color</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="43" class="id">fromHex</span> <span class="s">&quot;#DCE6ED&quot;</span><span class="pn">,</span>
+        <span class="fn">MarkerSize</span> <span class="o">=</span> <span class="n">18</span><span class="pn">,</span>
+        <span class="fn">TextFont</span> <span class="o">=</span> <span data-fsdocs-tip="fs22" data-fsdocs-tip-unique="44" class="rt">Font</span><span class="pn">.</span><span data-fsdocs-tip="fs23" data-fsdocs-tip-unique="45" class="id">init</span><span class="pn">(</span><span class="fn">Family</span> <span class="o">=</span> <span data-fsdocs-tip="fs24" data-fsdocs-tip-unique="46" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs25" data-fsdocs-tip-unique="47" class="rt">FontFamily</span><span class="pn">.</span><span data-fsdocs-tip="fs26" data-fsdocs-tip-unique="48" class="id">Arial</span><span class="pn">,</span> <span class="fn">Size</span> <span class="o">=</span> <span class="n">14.</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">TextFontLabel</span> <span class="o">=</span> <span data-fsdocs-tip="fs22" data-fsdocs-tip-unique="49" class="rt">Font</span><span class="pn">.</span><span data-fsdocs-tip="fs23" data-fsdocs-tip-unique="50" class="id">init</span><span class="pn">(</span><span class="fn">Family</span> <span class="o">=</span> <span data-fsdocs-tip="fs24" data-fsdocs-tip-unique="51" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs25" data-fsdocs-tip-unique="52" class="rt">FontFamily</span><span class="pn">.</span><span data-fsdocs-tip="fs26" data-fsdocs-tip-unique="53" class="id">Arial</span><span class="pn">,</span> <span class="fn">Size</span> <span class="o">=</span> <span class="n">16.</span><span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="54" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs14" data-fsdocs-tip-unique="55" class="id">withTitle</span> <span class="s">&quot;Intersections with at least two members&quot;</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="56" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs15" data-fsdocs-tip-unique="57" class="id">withSize</span><span class="pn">(</span><span class="n">640</span><span class="pn">,</span> <span class="n">500</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="58" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs16" data-fsdocs-tip-unique="59" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span> <span class="o">=</span> <span class="n">65</span><span class="pn">,</span> <span class="fn">Right</span> <span class="o">=</span> <span class="n">25</span><span class="pn">,</span> <span class="fn">Top</span> <span class="o">=</span> <span class="n">65</span><span class="pn">,</span> <span class="fn">Bottom</span> <span class="o">=</span> <span class="n">45</span><span class="pn">)</span>
+</code></pre>
+<div><div id="b40c8a79-3de2-4eb8-badb-717b57d92210"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_b40c8a793de24eb8badb717b57d92210 = function() {
+    var data = [{"type":null,"xaxis":"x","yaxis":"y"},{"type":"bar","y":[4,3,3,2,2],"orientation":"v","marker":{"color":"rgba(42, 111, 151, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x2","yaxis":"y2"},{"type":"bar","x":[7,9,11],"y":["A","B","C"],"orientation":"h","marker":{"color":"rgba(42, 111, 151, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x3","yaxis":"y3"},{"type":"scatter","mode":"markers","x":[0],"y":[0],"marker":{"color":"rgba(220, 230, 237, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[0,0],"y":[1,2],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(42, 111, 151, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[1],"y":[1],"marker":{"color":"rgba(220, 230, 237, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[1,1],"y":[0,2],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(42, 111, 151, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[2,2],"y":[0,1],"marker":{"color":"rgba(220, 230, 237, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[2],"y":[2],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(42, 111, 151, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[3],"y":[2],"marker":{"color":"rgba(220, 230, 237, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[3,3],"y":[0,1],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(42, 111, 151, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"markers","x":[4,4],"y":[0,2],"marker":{"color":"rgba(220, 230, 237, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"scatter","mode":"lines+markers","x":[4],"y":[1],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(42, 111, 151, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x4","yaxis":"y4"}];
+    var layout = {"yaxis":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"width":640,"height":500,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"type":"bar","marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"type":"barpolar","marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"type":"carpet","aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"type":"histogram","marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"type":"pie","automargin":true}],"scatter":[{"type":"scatter","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"type":"table","cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"yaxis2":{"title":{"text":"Intersection Size","font":{"family":"Arial","size":14.0}}},"xaxis2":{"range":[-0.5,4.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis3":{"range":[-0.5,2.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis3":{"title":{"text":"Set Size","font":{"family":"Arial","size":14.0}},"range":[11.0,0.0],"domain":[0.0,0.2]},"xaxis4":{"range":[-0.5,4.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis4":{"range":[-0.5,2.5],"tickmode":"array","tickvals":[0,1,2],"ticktext":["A","B","C"],"showticklabels":true,"tickfont":{"family":"Arial","size":16.0},"showline":false,"showgrid":false,"zeroline":false},"annotations":[],"grid":{"rows":2,"columns":2,"roworder":"top to bottom","pattern":"independent"},"title":{"text":"Intersections with at least two members"},"margin":{"l":65,"r":25,"t":65,"b":45}};
+    var config = {"responsive":true};
+    Plotly.newPlot('b40c8a79-3de2-4eb8-badb-717b57d92210', data, layout, config);
+};
+renderPlotly_b40c8a793de24eb8badb717b57d92210();
+</script></div>
+<h2><a name="Adding-member-measurements" class="anchor" href="#Adding-member-measurements">Adding member measurements</a></h2>
+<p><code>SetData</code> adds feature plots above the intersection counts. Each map associates a member identifier
+with a measurement and must contain every member in every displayed intersection. A map covering
+only one input set is insufficient; this example builds one map for the entire union.</p>
+<p>Provide one <code>(chart function, title)</code> pair in <code>SetDataChartsTitle</code> for each map in <code>SetData</code>, in the
+same order. The chart function receives the values for one exclusive intersection at a time.
+Here, a box plot shows the measurements for each displayed intersection. For this illustration,
+a member's score is simply the numeric value of its identifier.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs27" data-fsdocs-tip-unique="63" class="id">memberScores</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="64" class="id">sets</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs28" data-fsdocs-tip-unique="65" class="m">Seq</span><span class="pn">.</span><span data-fsdocs-tip="fs29" data-fsdocs-tip-unique="66" class="id">collect</span> <span data-fsdocs-tip="fs30" data-fsdocs-tip-unique="67" class="fn">id</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs28" data-fsdocs-tip-unique="68" class="m">Seq</span><span class="pn">.</span><span data-fsdocs-tip="fs31" data-fsdocs-tip-unique="69" class="id">distinct</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs28" data-fsdocs-tip-unique="70" class="m">Seq</span><span class="pn">.</span><span data-fsdocs-tip="fs32" data-fsdocs-tip-unique="71" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span data-fsdocs-tip="fs33" data-fsdocs-tip-unique="72" class="fn">memberId</span> <span class="k">-&gt;</span> <span data-fsdocs-tip="fs33" data-fsdocs-tip-unique="73" class="fn">memberId</span><span class="pn">,</span> <span data-fsdocs-tip="fs34" data-fsdocs-tip-unique="74" class="fn">float</span> <span class="pn">(</span><span data-fsdocs-tip="fs35" data-fsdocs-tip-unique="75" class="fn">int</span> <span data-fsdocs-tip="fs33" data-fsdocs-tip-unique="76" class="fn">memberId</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs36" data-fsdocs-tip-unique="77" class="m">Map</span><span class="pn">.</span><span data-fsdocs-tip="fs37" data-fsdocs-tip-unique="78" class="id">ofSeq</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs38" data-fsdocs-tip-unique="79" class="fn">scoreBoxPlot</span> <span class="pn">(</span><span data-fsdocs-tip="fs39" data-fsdocs-tip-unique="80" class="fn">scores</span><span class="pn">:</span> <span data-fsdocs-tip="fs34" data-fsdocs-tip-unique="81" class="vt">float</span><span class="pn">[</span><span class="pn">]</span><span class="pn">)</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="82" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs40" data-fsdocs-tip-unique="83" class="id">BoxPlot</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs41" data-fsdocs-tip-unique="84" class="fn">Y</span> <span class="o">=</span> <span data-fsdocs-tip="fs39" data-fsdocs-tip-unique="85" class="fn">scores</span><span class="pn">,</span>
+        <span class="fn">BoxPoints</span> <span class="o">=</span> <span data-fsdocs-tip="fs24" data-fsdocs-tip-unique="86" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs42" data-fsdocs-tip-unique="87" class="rt">BoxPoints</span><span class="pn">.</span><span data-fsdocs-tip="fs43" data-fsdocs-tip-unique="88" class="id">All</span><span class="pn">,</span>
+        <span class="fn">Jitter</span> <span class="o">=</span> <span class="n">0.15</span><span class="pn">,</span>
+        <span class="fn">PointPos</span> <span class="o">=</span> <span class="n">0.</span><span class="pn">,</span>
+        <span class="fn">MarkerColor</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="89" class="rt">Color</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="90" class="id">fromHex</span> <span class="s">&quot;#2A6F97&quot;</span><span class="pn">,</span>
+        <span class="fn">OutlineColor</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="91" class="rt">Color</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="92" class="id">fromHex</span> <span class="s">&quot;#2A6F97&quot;</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs44" data-fsdocs-tip-unique="93" class="id">upsetWithScores</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="94" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs13" data-fsdocs-tip-unique="95" class="id">UpSet</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="96" class="fn">labels</span> <span class="o">=</span> <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="97" class="id">labels</span><span class="pn">,</span>
+        <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="98" class="fn">sets</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="99" class="id">sets</span><span class="pn">,</span>
+        <span class="fn">MinIntersectionSize</span> <span class="o">=</span> <span class="n">2</span><span class="pn">,</span>
+        <span class="fn">SetData</span> <span class="o">=</span> <span class="pn">[</span> <span data-fsdocs-tip="fs27" data-fsdocs-tip-unique="100" class="id">memberScores</span> <span class="pn">]</span><span class="pn">,</span>
+        <span class="fn">SetDataChartsTitle</span> <span class="o">=</span> <span class="pn">[</span> <span class="pn">(</span><span data-fsdocs-tip="fs38" data-fsdocs-tip-unique="101" class="fn">scoreBoxPlot</span><span class="pn">,</span> <span class="s">&quot;Member score&quot;</span><span class="pn">)</span> <span class="pn">]</span><span class="pn">,</span>
+        <span class="fn">MarkerSize</span> <span class="o">=</span> <span class="n">18</span><span class="pn">,</span>
+        <span class="fn">TextFont</span> <span class="o">=</span> <span data-fsdocs-tip="fs22" data-fsdocs-tip-unique="102" class="rt">Font</span><span class="pn">.</span><span data-fsdocs-tip="fs23" data-fsdocs-tip-unique="103" class="id">init</span><span class="pn">(</span><span class="fn">Family</span> <span class="o">=</span> <span data-fsdocs-tip="fs24" data-fsdocs-tip-unique="104" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs25" data-fsdocs-tip-unique="105" class="rt">FontFamily</span><span class="pn">.</span><span data-fsdocs-tip="fs26" data-fsdocs-tip-unique="106" class="id">Arial</span><span class="pn">,</span> <span class="fn">Size</span> <span class="o">=</span> <span class="n">14.</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">TextFontLabel</span> <span class="o">=</span> <span data-fsdocs-tip="fs22" data-fsdocs-tip-unique="107" class="rt">Font</span><span class="pn">.</span><span data-fsdocs-tip="fs23" data-fsdocs-tip-unique="108" class="id">init</span><span class="pn">(</span><span class="fn">Family</span> <span class="o">=</span> <span data-fsdocs-tip="fs24" data-fsdocs-tip-unique="109" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs25" data-fsdocs-tip-unique="110" class="rt">FontFamily</span><span class="pn">.</span><span data-fsdocs-tip="fs26" data-fsdocs-tip-unique="111" class="id">Arial</span><span class="pn">,</span> <span class="fn">Size</span> <span class="o">=</span> <span class="n">16.</span><span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="112" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs14" data-fsdocs-tip-unique="113" class="id">withTitle</span> <span class="s">&quot;Member scores within each intersection&quot;</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="114" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs15" data-fsdocs-tip-unique="115" class="id">withSize</span><span class="pn">(</span><span class="n">640</span><span class="pn">,</span> <span class="n">600</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="116" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs16" data-fsdocs-tip-unique="117" class="id">withMarginSize</span><span class="pn">(</span><span class="fn">Left</span> <span class="o">=</span> <span class="n">65</span><span class="pn">,</span> <span class="fn">Right</span> <span class="o">=</span> <span class="n">25</span><span class="pn">,</span> <span class="fn">Top</span> <span class="o">=</span> <span class="n">65</span><span class="pn">,</span> <span class="fn">Bottom</span> <span class="o">=</span> <span class="n">45</span><span class="pn">)</span>
+</code></pre>
+<div><div id="6c9af587-c79c-4169-8ebf-ec2a275bcea2"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_6c9af587c79c41698ebfec2a275bcea2 = function() {
+    var data = [{"type":null,"xaxis":"x","yaxis":"y"},{"type":"box","y":[10.0,7.0,8.0,9.0],"marker":{"color":"rgba(42, 111, 151, 1.0)"},"line":{"color":"rgba(42, 111, 151, 1.0)"},"boxpoints":"all","pointpos":0.0,"jitter":0.15,"xaxis":"x2","yaxis":"y2"},{"type":"box","y":[4.0,5.0,6.0],"marker":{"color":"rgba(42, 111, 151, 1.0)"},"line":{"color":"rgba(42, 111, 151, 1.0)"},"boxpoints":"all","pointpos":0.0,"jitter":0.15,"xaxis":"x2","yaxis":"y2"},{"type":"box","y":[14.0,15.0,16.0],"marker":{"color":"rgba(42, 111, 151, 1.0)"},"line":{"color":"rgba(42, 111, 151, 1.0)"},"boxpoints":"all","pointpos":0.0,"jitter":0.15,"xaxis":"x2","yaxis":"y2"},{"type":"box","y":[2.0,3.0],"marker":{"color":"rgba(42, 111, 151, 1.0)"},"line":{"color":"rgba(42, 111, 151, 1.0)"},"boxpoints":"all","pointpos":0.0,"jitter":0.15,"xaxis":"x2","yaxis":"y2"},{"type":"box","y":[12.0,13.0],"marker":{"color":"rgba(42, 111, 151, 1.0)"},"line":{"color":"rgba(42, 111, 151, 1.0)"},"boxpoints":"all","pointpos":0.0,"jitter":0.15,"xaxis":"x2","yaxis":"y2"},{"type":null,"xaxis":"x3","yaxis":"y3"},{"type":"bar","y":[4,3,3,2,2],"orientation":"v","marker":{"color":"rgba(0, 0, 139, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x4","yaxis":"y4"},{"type":"bar","x":[7,9,11],"y":["A","B","C"],"orientation":"h","marker":{"color":"rgba(0, 0, 139, 1.0)","pattern":{}},"showlegend":false,"xaxis":"x5","yaxis":"y5"},{"type":"scatter","mode":"markers","x":[0],"y":[0],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"lines+markers","x":[0,0],"y":[1,2],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"markers","x":[1],"y":[1],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"lines+markers","x":[1,1],"y":[0,2],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"markers","x":[2,2],"y":[0,1],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"lines+markers","x":[2],"y":[2],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"markers","x":[3],"y":[2],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"lines+markers","x":[3,3],"y":[0,1],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"markers","x":[4,4],"y":[0,2],"marker":{"color":"rgba(173, 216, 230, 1.0)","size":18,"symbol":"0"},"line":{},"showlegend":false,"xaxis":"x6","yaxis":"y6"},{"type":"scatter","mode":"lines+markers","x":[4],"y":[1],"marker":{"size":18,"symbol":"0"},"line":{"color":"rgba(0, 0, 139, 1.0)","width":3.6,"dash":"solid"},"showlegend":false,"xaxis":"x6","yaxis":"y6"}];
+    var layout = {"yaxis":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"width":640,"height":600,"template":{"layout":{"title":{"x":0.05},"font":{"color":"rgba(42, 63, 95, 1.0)"},"paper_bgcolor":"rgba(255, 255, 255, 1.0)","plot_bgcolor":"rgba(229, 236, 246, 1.0)","autotypenumbers":"strict","colorscale":{"diverging":[[0.0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1.0,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"hovermode":"closest","hoverlabel":{"align":"left"},"coloraxis":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"geo":{"showland":true,"landcolor":"rgba(229, 236, 246, 1.0)","showlakes":true,"lakecolor":"rgba(255, 255, 255, 1.0)","subunitcolor":"rgba(255, 255, 255, 1.0)","bgcolor":"rgba(255, 255, 255, 1.0)"},"mapbox":{"style":"light"},"polar":{"bgcolor":"rgba(229, 236, 246, 1.0)","radialaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""},"angularaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","ticks":""}},"scene":{"xaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"yaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true},"zaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","gridwidth":2.0,"zerolinecolor":"rgba(255, 255, 255, 1.0)","backgroundcolor":"rgba(229, 236, 246, 1.0)","showbackground":true}},"ternary":{"aaxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"baxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"caxis":{"ticks":"","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)"},"bgcolor":"rgba(229, 236, 246, 1.0)"},"xaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"yaxis":{"title":{"standoff":15},"ticks":"","automargin":"height+width+left+right+top+bottom","linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","zerolinecolor":"rgba(255, 255, 255, 1.0)","zerolinewidth":2.0},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"shapedefaults":{"line":{"color":"rgba(42, 63, 95, 1.0)"}},"colorway":["rgba(99, 110, 250, 1.0)","rgba(239, 85, 59, 1.0)","rgba(0, 204, 150, 1.0)","rgba(171, 99, 250, 1.0)","rgba(255, 161, 90, 1.0)","rgba(25, 211, 243, 1.0)","rgba(255, 102, 146, 1.0)","rgba(182, 232, 128, 1.0)","rgba(255, 151, 255, 1.0)","rgba(254, 203, 82, 1.0)"]},"data":{"bar":[{"type":"bar","marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"error_x":{"color":"rgba(42, 63, 95, 1.0)"},"error_y":{"color":"rgba(42, 63, 95, 1.0)"}}],"barpolar":[{"type":"barpolar","marker":{"line":{"color":"rgba(229, 236, 246, 1.0)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"carpet":[{"type":"carpet","aaxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"},"baxis":{"linecolor":"rgba(255, 255, 255, 1.0)","gridcolor":"rgba(255, 255, 255, 1.0)","endlinecolor":"rgba(42, 63, 95, 1.0)","minorgridcolor":"rgba(255, 255, 255, 1.0)","startlinecolor":"rgba(42, 63, 95, 1.0)"}}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0.0,"ticks":""}}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram":[{"type":"histogram","marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0.0,"ticks":""}}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"pie":[{"type":"pie","automargin":true}],"scatter":[{"type":"scatter","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}},"line":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0.0,"ticks":""}}}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0.0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"table":[{"type":"table","cells":{"fill":{"color":"rgba(235, 240, 248, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}},"header":{"fill":{"color":"rgba(200, 212, 227, 1.0)"},"line":{"color":"rgba(255, 255, 255, 1.0)"}}}]}},"legend":{"visible":false},"yaxis2":{"title":{"text":"Member score","font":{"family":"Arial","size":14.0}}},"xaxis2":{"range":[-0.5,4.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis3":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis3":{"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"yaxis4":{"title":{"text":"Intersection Size","font":{"family":"Arial","size":14.0}}},"xaxis4":{"range":[-0.5,4.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis5":{"range":[-0.5,2.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false},"xaxis5":{"title":{"text":"Set Size","font":{"family":"Arial","size":14.0}},"range":[11.0,0.0],"domain":[0.0,0.2]},"xaxis6":{"range":[-0.5,4.5],"showticklabels":false,"showline":false,"showgrid":false,"zeroline":false,"domain":[0.3,1.0]},"yaxis6":{"range":[-0.5,2.5],"tickmode":"array","tickvals":[0,1,2],"ticktext":["A","B","C"],"showticklabels":true,"tickfont":{"family":"Arial","size":16.0},"showline":false,"showgrid":false,"zeroline":false},"annotations":[],"grid":{"rows":3,"columns":2,"roworder":"top to bottom","pattern":"independent"},"title":{"text":"Member scores within each intersection"},"margin":{"l":65,"r":25,"t":65,"b":45}};
+    var config = {"responsive":true};
+    Plotly.newPlot('6c9af587-c79c-4169-8ebf-ec2a275bcea2', data, layout, config);
+};
+renderPlotly_6c9af587c79c41698ebfec2a275bcea2();
+</script></div>
+
+        <div popover class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div popover class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div popover class="fsdocs-tip" id="fs3">module Defaults
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Contains mutable global default values.
+
+ Changing these values will apply the default values to all consecutive Chart generations.
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs4">val mutable DefaultDisplayOptions: Plotly.NET.DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs5">Multiple items<br />type DisplayOptions =
+  inherit DynamicObj
+  new: unit -&gt; DisplayOptions
+  static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addChartDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
+  static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getChartDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDocumentCharset: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentDescription: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentFavicon: displayOpts: DisplayOptions -&gt; XmlNode
+  ...<br /><br />--------------------<br />new: unit -&gt; Plotly.NET.DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs6">static member Plotly.NET.DisplayOptions.init: ?DocumentTitle: string * ?DocumentCharset: string * ?DocumentDescription: string * ?DocumentFavicon: Giraffe.ViewEngine.HtmlElements.XmlNode * ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?ChartDescription: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: Plotly.NET.PlotlyJSReference -&gt; Plotly.NET.DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs7">type PlotlyJSReference =
+  | CDN of string
+  | Full
+  | Require of string
+  | NoReference<br /><em>&lt;summary&gt;
+Sets how plotly is referenced in the head of html docs.
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs8">union case Plotly.NET.PlotlyJSReference.NoReference: Plotly.NET.PlotlyJSReference</div>
+<div popover class="fsdocs-tip" id="fs9">val labels: string array</div>
+<div popover class="fsdocs-tip" id="fs10">val sets: string array array</div>
+<div popover class="fsdocs-tip" id="fs11">val upset: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs12">type Chart =
+  static member Bubble: x: #IConvertible seq * y: #IConvertible seq * sizes: int seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads
+  static member Line: x: #IConvertible seq * y: #IConvertible seq * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?Fill: Fill * ?FillColor: Color * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads
+  static member Point: x: #IConvertible seq * y: #IConvertible seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads
+  static member Range: x: #IConvertible seq * y: #IConvertible seq * upper: #IConvertible seq * lower: #IConvertible seq * mode: Mode * ?Name: string * ?GroupName: string * ?ShowMarkers: bool * ?ShowLegend: bool * ?Text: &#39;e * ?MultiText: &#39;e seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?UpperMarker: Marker * ?LowerMarker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?UpperLine: Line * ?LowerLine: Line * ?RangeColor: Color * ?RangePattern: Pattern * ?UpperText: &#39;f * ?MultiUpperText: &#39;f seq * ?LowerText: &#39;g * ?MultiLowerText: &#39;g seq * ?TextFont: Font * ?LowerName: string * ?UpperName: string * ?UseDefaults: bool -&gt; GenericChart (requires &#39;e :&gt; IConvertible and &#39;f :&gt; IConvertible and &#39;g :&gt; IConvertible) + 2 overloads
+  static member Scatter: ?X: &#39;a seq * ?XEncoded: EncodedTypedArray * ?MultiX: &#39;a seq seq * ?Y: &#39;b seq * ?YEncoded: EncodedTypedArray * ?MultiY: &#39;b seq seq * ?Mode: Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?Fill: Fill * ?FillColor: Color * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; IConvertible and &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible) + 3 overloads
+  static member Spline: x: #IConvertible seq * y: #IConvertible seq * ?ShowMarkers: bool * ?Smoothing: float * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?Fill: Fill * ?FillColor: Color * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads</div>
+<div popover class="fsdocs-tip" id="fs13">static member Chart.UpSet: labels: #seq&lt;string&gt; * sets: #seq&lt;&#39;c&gt; * ?SetData: #seq&lt;Map&lt;string,&#39;b0&gt;&gt; * ?SetDataChartsTitle: #seq&lt;(&#39;b0 array -&gt; GenericChart) * string&gt; * ?MarkerSize: int * ?MainColor: Color * ?SecondaryColor: Color * ?DomainSet: (float * float) * ?DomainIntersection: (float * float) * ?TextFont: Font * ?TextFontLabel: Font * ?MinIntersectionSize: int * ?SortIntersectionsBy: ((string list * Set&lt;string&gt;) array -&gt; (string list * Set&lt;string&gt;) array) * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; string seq)</div>
+<div popover class="fsdocs-tip" id="fs14">static member Chart.withTitle: title: Title -&gt; (GenericChart -&gt; GenericChart)<br />static member Chart.withTitle: title: string * ?TitleFont: Font -&gt; (GenericChart -&gt; GenericChart)</div>
+<div popover class="fsdocs-tip" id="fs15">static member Chart.withSize: width: float * height: float -&gt; (GenericChart -&gt; GenericChart)<br />static member Chart.withSize: ?Width: int * ?Height: int -&gt; (GenericChart -&gt; GenericChart)</div>
+<div popover class="fsdocs-tip" id="fs16">static member Chart.withMarginSize: ?Left: &#39;a * ?Right: &#39;b * ?Top: &#39;c * ?Bottom: &#39;d * ?Pad: &#39;e * ?Autoexpand: &#39;f -&gt; (GenericChart -&gt; GenericChart)</div>
+<div popover class="fsdocs-tip" id="fs17">type GenericChart =
+  | Chart of data: Trace * layout: Layout * config: Config * displayOpts: DisplayOptions
+  | MultiChart of data: Trace list * layout: Layout * config: Config * displayOpts: DisplayOptions
+  static member addConfig: config: Config -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addDisplayOptions: displayOpts: DisplayOptions -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addLayout: layout: Layout -&gt; gChart: GenericChart -&gt; GenericChart
+  static member combine: gCharts: GenericChart seq -&gt; GenericChart
+  static member countTrace: gChart: GenericChart -&gt; int
+  static member existsTrace: predicate: (Trace -&gt; bool) -&gt; gChart: GenericChart -&gt; bool
+  static member fromChartDTO: dto: ChartDTO -&gt; GenericChart
+  static member fromFigure: fig: Figure -&gt; GenericChart
+  static member getConfig: gChart: GenericChart -&gt; Config
+  static member getDisplayOptions: gChart: GenericChart -&gt; DisplayOptions
+  ...<br /><em>&lt;summary&gt;
+ The central type that gets created by all Chart constructors is GenericChart, which itself represents either a single chart or a multi chart (as a Discriminate Union type).
+ 
+ A GenericChart consists of four top level objects: Trace (multiple of those in the case of a MultiChart), Layout, Config, and DisplayOptions.
+ 
+ - `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
+
+ - `Layout` is everything of the chart that is not dataset specific - e.g. the shape and style of axes, the chart title, etc.
+
+ - `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
+
+ - `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs18">static member GenericChart.toChartHTML: gChart: GenericChart -&gt; string</div>
+<div popover class="fsdocs-tip" id="fs19">val upsetStyled: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs20">type Color =
+  override Equals: other: obj -&gt; bool
+  override GetHashCode: unit -&gt; int
+  static member fromARGB: a: int -&gt; r: int -&gt; g: int -&gt; b: int -&gt; Color
+  static member fromColorScaleValues: c: #IConvertible seq -&gt; Color
+  static member fromColors: c: Color seq -&gt; Color
+  static member fromHex: s: string -&gt; Color
+  static member fromKeyword: c: ColorKeyword -&gt; Color
+  static member fromRGB: r: int -&gt; g: int -&gt; b: int -&gt; Color
+  static member fromString: c: string -&gt; Color
+  member Value: obj<br /><em>&lt;summary&gt;
+ Plotly color can be a single color, a sequence of colors, or a sequence of numeric values referencing the color of the colorscale obj
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs21">static member Color.fromHex: s: string -&gt; Color</div>
+<div popover class="fsdocs-tip" id="fs22">Multiple items<br />type Font =
+  inherit DynamicObj
+  new: unit -&gt; Font
+  static member init: ?Family: FontFamily * ?Size: float * ?Color: Color -&gt; Font
+  static member style: ?Family: FontFamily * ?Size: float * ?Color: Color -&gt; (Font -&gt; Font)<br /><em>&lt;summary&gt;
+ Font type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; Font</div>
+<div popover class="fsdocs-tip" id="fs23">static member Font.init: ?Family: StyleParam.FontFamily * ?Size: float * ?Color: Color -&gt; Font</div>
+<div popover class="fsdocs-tip" id="fs24">module StyleParam
+
+from Plotly.NET</div>
+<div popover class="fsdocs-tip" id="fs25">type FontFamily =
+  | Arial
+  | Balto
+  | Courier_New
+  | Consolas
+  | Droid_Sans
+  | Droid_Serif
+  | Droid_Sans_Mono
+  | Gravitas_One
+  | Old_Standard_TT
+  | Open_Sans
+  ...
+  member Convert: unit -&gt; objnull
+  override ToString: unit -&gt; string
+  static member convert: (FontFamily -&gt; objnull)
+  static member toString: (FontFamily -&gt; string)<br /><em>&lt;summary&gt;
+ Names of installed font families
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs26">union case StyleParam.FontFamily.Arial: StyleParam.FontFamily</div>
+<div popover class="fsdocs-tip" id="fs27">val memberScores: Map&lt;string,float&gt;</div>
+<div popover class="fsdocs-tip" id="fs28">module Seq
+
+from Microsoft.FSharp.Collections</div>
+<div popover class="fsdocs-tip" id="fs29">val collect: mapping: (&#39;T -&gt; #seq&lt;&#39;U&gt;) -&gt; source: &#39;T seq -&gt; &#39;U seq</div>
+<div popover class="fsdocs-tip" id="fs30">val id: x: &#39;T -&gt; &#39;T</div>
+<div popover class="fsdocs-tip" id="fs31">val distinct: source: &#39;T seq -&gt; &#39;T seq (requires equality)</div>
+<div popover class="fsdocs-tip" id="fs32">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; source: &#39;T seq -&gt; &#39;U seq</div>
+<div popover class="fsdocs-tip" id="fs33">val memberId: string</div>
+<div popover class="fsdocs-tip" id="fs34">Multiple items<br />val float: value: &#39;T -&gt; float (requires member op_Explicit)<br /><br />--------------------<br />type float = System.Double<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; =
+  float</div>
+<div popover class="fsdocs-tip" id="fs35">Multiple items<br />val int: value: &#39;T -&gt; int (requires member op_Explicit)<br /><br />--------------------<br />type int = int32<br /><br />--------------------<br />type int&lt;&#39;Measure&gt; =
+  int</div>
+<div popover class="fsdocs-tip" id="fs36">Multiple items<br />module Map
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type Map&lt;&#39;Key,&#39;Value (requires comparison)&gt; =
+  interface IReadOnlyDictionary&lt;&#39;Key,&#39;Value&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;
+  interface IEnumerable
+  interface IStructuralEquatable
+  interface IComparable
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;
+  interface ICollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;
+  interface IDictionary&lt;&#39;Key,&#39;Value&gt;
+  new: elements: (&#39;Key * &#39;Value) seq -&gt; Map&lt;&#39;Key,&#39;Value&gt;
+  member Add: key: &#39;Key * value: &#39;Value -&gt; Map&lt;&#39;Key,&#39;Value&gt;
+  ...<br /><br />--------------------<br />new: elements: (&#39;Key * &#39;Value) seq -&gt; Map&lt;&#39;Key,&#39;Value&gt;</div>
+<div popover class="fsdocs-tip" id="fs37">val ofSeq: elements: (&#39;Key * &#39;T) seq -&gt; Map&lt;&#39;Key,&#39;T&gt; (requires comparison)</div>
+<div popover class="fsdocs-tip" id="fs38">val scoreBoxPlot: scores: float array -&gt; GenericChart</div>
+<div popover class="fsdocs-tip" id="fs39">val scores: float array</div>
+<div popover class="fsdocs-tip" id="fs40">static member Chart.BoxPlot: xy: (#System.IConvertible * #System.IConvertible) seq * ?Name: string * ?ShowLegend: bool * ?Text: &#39;c * ?MultiText: &#39;c seq * ?FillColor: Color * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: StyleParam.BoxPoints * ?BoxMean: StyleParam.BoxMean * ?Jitter: float * ?PointPos: float * ?Orientation: StyleParam.Orientation * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: StyleParam.QuartileMethod * ?SizeMode: StyleParam.BoxSizeMode * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; System.IConvertible)<br />static member Chart.BoxPlot: dataEncoded: EncodedTypedArray * orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Text: &#39;a * ?MultiText: &#39;a seq * ?FillColor: Color * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: StyleParam.BoxPoints * ?BoxMean: StyleParam.BoxMean * ?Jitter: float * ?PointPos: float * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: StyleParam.QuartileMethod * ?SizeMode: StyleParam.BoxSizeMode * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible)<br />static member Chart.BoxPlot: data: #System.IConvertible seq * orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Text: &#39;b * ?MultiText: &#39;b seq * ?FillColor: Color * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: StyleParam.BoxPoints * ?BoxMean: StyleParam.BoxMean * ?Jitter: float * ?PointPos: float * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: StyleParam.QuartileMethod * ?SizeMode: StyleParam.BoxSizeMode * ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; System.IConvertible)<br />static member Chart.BoxPlot: ?X: &#39;a seq * ?MultiX: &#39;a seq seq * ?Y: &#39;b seq * ?MultiY: &#39;b seq seq * ?Name: string * ?ShowLegend: bool * ?Text: &#39;c * ?MultiText: &#39;c seq * ?FillColor: Color * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Opacity: float * ?WhiskerWidth: float * ?BoxPoints: StyleParam.BoxPoints * ?BoxMean: StyleParam.BoxMean * ?Jitter: float * ?PointPos: float * ?Orientation: StyleParam.Orientation * ?OutlineColor: Color * ?OutlineWidth: float * ?Outline: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?Notched: bool * ?NotchWidth: float * ?QuartileMethod: StyleParam.QuartileMethod * ?SizeMode: StyleParam.BoxSizeMode * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible and &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible)</div>
+<div popover class="fsdocs-tip" id="fs41">argument Y: float seq option<br /><em>&lt;summary&gt;
+ Visualizes the distribution of the input data as a box plot.
+
+ A box plot is a method for graphically demonstrating the locality, spread and skewness groups of numerical data through their quartiles.
+ The default style is based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+
+ The sample data from which statistics are computed is set in `x` for vertically spanning boxes and in `y` for horizontally spanning boxes.
+ &lt;/summary&gt;<br />&lt;param name=&quot;X&quot;&gt;Sets the x sample data or coordinates&lt;/param&gt;<br />&lt;param name=&quot;MultiX&quot;&gt;Sets the x sample data or coordinates. Use two inner arrays here to plot multicategorial data&lt;/param&gt;<br />&lt;param name=&quot;Y&quot;&gt;Sets the y sample data or coordinates&lt;/param&gt;<br />&lt;param name=&quot;MultiY&quot;&gt;Sets the y sample data or coordinates. Use two inner arrays here to plot multicategorial data&lt;/param&gt;<br />&lt;param name=&quot;Name&quot;&gt;Sets the trace name. The trace name appear as the legend item and on hover.&lt;/param&gt;<br />&lt;param name=&quot;ShowLegend&quot;&gt;Determines whether or not an item corresponding to this trace is shown in the legend.&lt;/param&gt;<br />&lt;param name=&quot;Text&quot;&gt;Sets a text associated with each datum&lt;/param&gt;<br />&lt;param name=&quot;MultiText&quot;&gt;Sets individual text for each datum&lt;/param&gt;<br />&lt;param name=&quot;FillColor&quot;&gt;Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.&lt;/param&gt;<br />&lt;param name=&quot;MarkerColor&quot;&gt;Sets the marker color.&lt;/param&gt;<br />&lt;param name=&quot;Marker&quot;&gt;Sets the marker for the box (use this for more finegrained control than the other marker-associated arguments).&lt;/param&gt;<br />// <br />&lt;param name=&quot;Opacity&quot;&gt;Sets the opacity of this trace.&lt;/param&gt;<br />&lt;param name=&quot;WhiskerWidth&quot;&gt;Sets the width of the whiskers relative to the box&#39; width. For example, with 1, the whiskers are as wide as the box(es).&lt;/param&gt;<br />&lt;param name=&quot;BoxPoints&quot;&gt;If &quot;outliers&quot;, only the sample points lying outside the whiskers are shown If &quot;suspectedoutliers&quot;, the outlier points are shown and points either less than 4&quot;Q1-3&quot;Q3 or greater than 4&quot;Q3-3&quot;Q1 are highlighted (see `outliercolor`) If &quot;all&quot;, all sample points are shown If &quot;false&quot;, only the box(es) are shown with no sample points Defaults to &quot;suspectedoutliers&quot; when `marker.outliercolor` or `marker.line.outliercolor` is set. Defaults to &quot;all&quot; under the q1/median/q3 signature. Otherwise defaults to &quot;outliers&quot;.&lt;/param&gt;<br />&lt;param name=&quot;BoxMean&quot;&gt;If &quot;true&quot;, the mean of the box(es)&#39; underlying distribution is drawn as a dashed line inside the box(es). If &quot;sd&quot; the standard deviation is also drawn. Defaults to &quot;true&quot; when `mean` is set. Defaults to &quot;sd&quot; when `sd` is set Otherwise defaults to &quot;false&quot;.&lt;/param&gt;<br />&lt;param name=&quot;Jitter&quot;&gt;Sets the amount of jitter in the sample points drawn. If &quot;0&quot;, the sample points align along the distribution axis. If &quot;1&quot;, the sample points are drawn in a random jitter of width equal to the width of the box(es).&lt;/param&gt;<br />&lt;param name=&quot;PointPos&quot;&gt;Sets the position of the sample points in relation to the box(es). If &quot;0&quot;, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes&lt;/param&gt;<br />&lt;param name=&quot;Orientation&quot;&gt;Sets the orientation of the box(es). If &quot;v&quot; (&quot;h&quot;), the distribution is visualized along the vertical (horizontal).&lt;/param&gt;<br />&lt;param name=&quot;OutlineColor&quot;&gt;Sets the color of the box outline&lt;/param&gt;<br />&lt;param name=&quot;OutlineWidth&quot;&gt;Sets the width of the box outline&lt;/param&gt;<br />&lt;param name=&quot;Outline&quot;&gt;Sets the box outline (use this for more finegrained control than the other outline-associated arguments).&lt;/param&gt;<br />&lt;param name=&quot;AlignmentGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.&lt;/param&gt;<br />&lt;param name=&quot;OffsetGroup&quot;&gt;Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.&lt;/param&gt;<br />&lt;param name=&quot;Notched&quot;&gt;Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 &quot; IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes&#39; notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to &quot;false&quot; unless `notchwidth` or `notchspan` is set.&lt;/param&gt;<br />&lt;param name=&quot;NotchWidth&quot;&gt;Sets the width of the notches relative to the box&#39; width. For example, with 0, the notches are as wide as the box(es).&lt;/param&gt;<br />&lt;param name=&quot;QuartileMethod&quot;&gt;Sets the method used to compute the sample&#39;s Q1 and Q3 quartiles. The &quot;linear&quot; method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The &quot;exclusive&quot; method uses the median to divide the ordered dataset into two halves if the sample is odd, it does not include the median in either half - Q1 is then the median of the lower half and Q3 the median of the upper half. The &quot;inclusive&quot; method also uses the median to divide the ordered dataset into two halves but if the sample is odd, it includes the median in both halves - Q1 is then the median of the lower half and Q3 the median of the upper half.&lt;/param&gt;<br />&lt;param name=&quot;SizeMode&quot;&gt;Sets the upper and lower bound for the boxes quartiles means box is drawn between Q1 and Q3 SD means the box is drawn between Mean +- Standard Deviation Argument sdmultiple (default 1) to scale the box size So it could be drawn 1-stddev, 3-stddev etc&lt;/param&gt;<br />&lt;param name=&quot;UseDefaults&quot;&gt;If set to false, ignore the global default settings set in `Defaults`&lt;/param&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs42">type BoxPoints =
+  | Outliers
+  | All
+  | SuspectedOutliers
+  | False
+  member Convert: unit -&gt; objnull
+  static member convert: (BoxPoints -&gt; objnull)</div>
+<div popover class="fsdocs-tip" id="fs43">union case StyleParam.BoxPoints.All: StyleParam.BoxPoints</div>
+<div popover class="fsdocs-tip" id="fs44">val upsetWithScores: GenericChart</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#UpSet-plots">
+      UpSet plots
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-example">
+      Basic example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Filtering-and-styling">
+      Filtering and styling
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Adding-member-measurements">
+      Adding member measurements
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-details-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-copy-button.js"></script>
+
+</body>
+</html>

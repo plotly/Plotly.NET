@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://plotly.net/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Timo Mühlhaus, Kevin Schneider, F# open source contributors" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="Plotly.NET">
+    <meta property="og:title" content="Encoded typed arrays" />
+    <meta property="og:url" content="https://plotly.net/general/encoded-arrays.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://plotly.net/">
+    <meta name="twitter:title" content="Encoded typed arrays">
+    
+    <title>Encoded typed arrays | Plotly.NET</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://plotly.net/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-theme-set-dark.js"></script>
+    <script type="application/javascript" src="https://plotly.net/content/fsdocs-details-set-expanded.js"></script>
+    <link href="https://plotly.net/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://plotly.net/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+<title>{{fsdocs-page-title}}</title>
+<meta name="author" content="{{fsdocs-authors}}">
+<meta name="description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+
+<!-- Opengraph properties (https://ogp.me/) -->
+<meta property="og:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}" />
+<meta property="og:url" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Plotly.NET" />
+<meta property="og:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta property="og:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<!-- Twitter cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://plotly.net/{{fsdocs-source-basename}}.html">
+<meta property="twitter:url" content="https://plotly.net">
+<meta name="twitter:title" content="Plotly.NET documentation for: {{fsdocs-page-title}}">
+<meta name="twitter:description" content="Plotly.NET documentation for: {{fsdocs-page-title}}. Plotly.NET is an Interactive charting library for .NET programming languages.">
+<meta name="twitter:image" content="https://plotly.net/img/logo_meta_tags.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://plotly.net//img/favicon.ico">
+<script src="https://cdn.plot.ly/plotly-2.28.0.min.js"></script>
+<script>MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-svg.js"></script>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="license-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+                </li>
+                <li class="release-notes-menu-item builtin-menu-item nav-item"><a class="nav-link"
+                                        href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="repository-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://plotly.net/general/encoded-arrays.html">
+    Encoded typed arrays
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/residual.html">
+    Residual chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Set comparison charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/venn.html">
+    Venn diagrams
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/upset.html">
+    UpSet plots
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://plotly.net/">
+            <img alt="Logo" src="https://plotly.net/img/logo.png">
+            <strong>Plotly.NET</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/plotly/Plotly.NET/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="license-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/blob/dev/LICENSE">License</a>
+        </li>
+        <li class="release-notes-menu-item builtin-menu-item nav-item"><a class="nav-link"
+                                href="https://github.com/plotly/Plotly.NET/blob/dev/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="repository-menu-item builtin-menu-item nav-item"><a class="nav-link" href="https://github.com/plotly/Plotly.NET/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  General
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/basics.html">
+    Basics
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/image-export.html">
+    Static image export
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/display-options.html">
+    Display Options
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/chart-config.html">
+    Chart config
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/templates.html">
+    Chart Templates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/defaults.html">
+    Global default values
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/multi-arguments.html">
+    Single and multi arguments
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/working-with-colors.html">
+    Working with colors
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/general/styling-markers.html">
+    Styling Markers
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://plotly.net/general/encoded-arrays.html">
+    Encoded typed arrays
+  </a>
+</li>             
+<li class="nav-header ">
+  Chart Layout
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/axis-styling.html">
+    Axis styling
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/errorbars.html">
+    Error bars
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/multiple-charts.html">
+    Multicharts and subplots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/shapes.html">
+    Shapes
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/annotations.html">
+    Annotations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/layout_images.html">
+    Layout images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/sliders.html">
+    Sliders
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/update_menus.html">
+    Update menus
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/chart-layout/legends.html">
+    Legends
+  </a>
+</li>             
+<li class="nav-header ">
+  Simple Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/line-scatter-plots.html">
+    Line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bar-and-column-charts.html">
+    Bar and column charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/area-plots.html">
+    Area charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/range-plots.html">
+    Range plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/bubble-charts.html">
+    Bubble charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/pie-doughnut-charts.html">
+    Pie and doughnut Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/table.html">
+    Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/heatmaps.html">
+    Heatmaps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/images.html">
+    Images
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/simple-charts/multicategory.html">
+    Plotting multicategory data
+  </a>
+</li>             
+<li class="nav-header ">
+  3D Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-scatter-plots.html">
+    3D point and line charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-surface-plots.html">
+    3D surface plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-mesh-plots.html">
+    3D Mesh plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-cone-charts.html">
+    3D Cone plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-streamtube-plots.html">
+    3D streamtube plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-volume-plots.html">
+    3D Volume plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/3D-charts/3d-isosurface-plots.html">
+    3D IsoSurface plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Distribution Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/histograms.html">
+    Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/box-plots.html">
+    BoxPlots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/violin-plots.html">
+    Violin plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/2d-histograms.html">
+    2D Histograms
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/contour-plots.html">
+    Contour plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/splom.html">
+    Scatterplot matrix
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/point-density.html">
+    PointDensity
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/pareto-chart.html">
+    Pareto chart
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/distribution-charts/residual.html">
+    Residual chart
+  </a>
+</li>             
+<li class="nav-header ">
+  Geo map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/geo-plots.html">
+    Scatter and line plots on Geo maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/geo-map-charts/choropleth-map.html">
+    Choropleth maps
+  </a>
+</li>             
+<li class="nav-header ">
+  Mapbox map charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/geo-vs-mapbox.html">
+    Geo vs. Mapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/mapbox-plots.html">
+    Scatter and line plots on Mapbox maps
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/choropleth-mapbox.html">
+    ChoroplethMapbox
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/mapbox-map-charts/density-mapbox.html">
+    DensityMapbox charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Finance Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/ohlc.html">
+    OHLC Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/candlestick.html">
+    Candlestick Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel.html">
+    Funnel Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/funnel_area.html">
+    FunnelArea Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/indicator.html">
+    Indicator Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/finance-charts/waterfall.html">
+    Waterfall Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Polar Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_line-scatter-plots.html">
+    Polar line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/polar_bar_charts.html">
+    Polar bar charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/polar-charts/styling_polar_layouts.html">
+    Styling polar layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Categorical Charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-categories.html">
+    Parallel categories
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/parallel-coords.html">
+    Parallel coordinates
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sankey.html">
+    Sankey Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/icicle.html">
+    Icicle Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/treemap.html">
+    Treemap Charts
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/categorical-charts/sunburst.html">
+    Sunburst Charts
+  </a>
+</li>             
+<li class="nav-header ">
+  Ternary Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/ternary_line_scatter_plots.html">
+    Ternary line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/ternary-charts/styling_ternary_layouts.html">
+    Styling ternary layouts
+  </a>
+</li>             
+<li class="nav-header ">
+  Carpet Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/carpet_line_scatter_plots.html">
+    Carpet line and scatter plots
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/carpet-charts/contourcarpet_plots.html">
+    Contour carpet plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Smith Plots
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/smith-charts/smith_line_scatter_plots.html">
+    Smith line and scatter plots
+  </a>
+</li>             
+<li class="nav-header ">
+  Set comparison charts
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/venn.html">
+    Venn diagrams
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://plotly.net/set-comparison-charts/upset.html">
+    UpSet plots
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://plotly.net/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Encoded-typed-arrays" class="anchor" href="#Encoded-typed-arrays">Encoded typed arrays</a></h1>
+<p><a href="https://mybinder.org/v2/gh/plotly/plotly.net/gh-pages?urlpath=/tree/home/jovyan/general/encoded-arrays.ipynb"><img src="https://plotly.net/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://plotly.net/general/encoded-arrays.ipynb"><img src="https://plotly.net/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<p><em>Summary:</em> This page explains numeric encoded arrays in Plotly.NET and the selected C# chart overloads, using plotly.js 2.28.0.</p>
+<h3><a name="Table-of-contents" class="anchor" href="#Table-of-contents">Table of contents</a></h3>
+<ul>
+<li><a href="#What-are-encoded-typed-arrays">What are encoded typed arrays?</a></li>
+<li><a href="#Creating-EncodedTypedArray-values">Creating EncodedTypedArray values</a></li>
+<li><a href="#Using-encoded-arrays-with-Scatter">Using encoded arrays with Scatter</a></li>
+<li><a href="#Using-encoded-arrays-with-Bar-and-Column-charts">Using encoded arrays with Bar and Column charts</a></li>
+<li><a href="#Using-encoded-arrays-with-Heatmap">Using encoded arrays with Heatmap</a></li>
+<li><a href="#Using-encoded-arrays-with-3D-charts">Using encoded arrays with 3D charts</a></li>
+<li><a href="#Using-encoded-arrays-with-statistical-charts">Using encoded arrays with statistical charts</a></li>
+<li><a href="#Using-encoded-arrays-for-error-bars-and-trace-level-styling">Using encoded arrays for error bars and trace-level styling</a></li>
+<li><a href="#Using-encoded-arrays-from-C">Using encoded arrays from C#</a></li>
+<li><a href="#Nested-data-and-precedence">Nested data and precedence</a></li>
+<li><a href="#Supported-scope-and-limitations">Supported scope and limitations</a></li>
+<li><a href="#Loading-Virtual-WebGL">Loading Virtual-WebGL</a></li>
+</ul>
+<h2><a name="What-are-encoded-typed-arrays" class="anchor" href="#What-are-encoded-typed-arrays">What are encoded typed arrays?</a></h2>
+<p>plotly.js 2.28.0 introduced support for passing data arrays as <strong>base64-encoded typed arrays</strong> instead of plain JSON arrays.
+The representation contains a base64 byte payload (<code>bdata</code>), a numeric type tag (<code>dtype</code>), and an optional
+matrix shape (<code>shape</code>). Its size and parsing cost depend on the data and dtype; this release does not
+provide a benchmark or guarantee that it is smaller or faster than JSON arrays.</p>
+<p>The core Plotly.NET assembly owns <code>EncodedTypedArray</code>, its factories, and serialization. Both F# and C#
+use this same representation.</p>
+<h2><a name="Creating-EncodedTypedArray-values" class="anchor" href="#Creating-EncodedTypedArray-values">Creating EncodedTypedArray values</a></h2>
+<p><code>EncodedTypedArray</code> can be constructed from the supported numeric arrays listed below:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span data-fsdocs-tip="fs1" data-fsdocs-tip-unique="13" class="id">Plotly</span><span class="pn">.</span><span data-fsdocs-tip="fs2" data-fsdocs-tip-unique="14" class="id">NET</span>
+
+<span class="c">// Float64 (double) arrays — most common for continuous data</span>
+<span class="k">let</span> <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="15" class="id">xEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="16" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="17" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">5.0</span> <span class="pn">|]</span>
+<span class="k">let</span> <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="18" class="id">yEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="19" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="20" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">5.0</span><span class="pn">;</span> <span class="n">3.0</span> <span class="pn">|]</span>
+
+<span class="c">// Int32 arrays — for integer data like indices or counts</span>
+<span class="k">let</span> <span data-fsdocs-tip="fs13" data-fsdocs-tip-unique="21" class="id">sourceEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="22" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs14" data-fsdocs-tip-unique="23" class="id">ofInt32Array</span> <span class="pn">[|</span> <span class="n">0</span><span class="pn">;</span> <span class="n">1</span><span class="pn">;</span> <span class="n">2</span> <span class="pn">|]</span>
+
+<span class="c">// Float32 arrays — smaller footprint when full precision is not needed</span>
+<span class="k">let</span> <span data-fsdocs-tip="fs15" data-fsdocs-tip-unique="24" class="id">valuesEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="25" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs16" data-fsdocs-tip-unique="26" class="id">ofFloat32Array</span> <span class="pn">[|</span> <span class="n">1.0f</span><span class="pn">;</span> <span class="n">2.5f</span><span class="pn">;</span> <span class="n">0.8f</span> <span class="pn">|]</span>
+</code></pre>
+<p>Supported constructors:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Constructor</p></th>
+<th><p>F# array type</p></th>
+<th><p>plotly.js dtype</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>EncodedTypedArray.ofFloat64Array</code></p></td>
+<td><p><code>float[]</code></p></td>
+<td><p><code>f8</code> (64-bit float)</p></td>
+</tr>
+<tr class="even">
+<td><p><code>EncodedTypedArray.ofFloat32Array</code></p></td>
+<td><p><code>float32[]</code></p></td>
+<td><p><code>f4</code> (32-bit float)</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>EncodedTypedArray.ofInt32Array</code></p></td>
+<td><p><code>int[]</code></p></td>
+<td><p><code>i4</code> (32-bit int)</p></td>
+</tr>
+<tr class="even">
+<td><p><code>EncodedTypedArray.ofInt16Array</code></p></td>
+<td><p><code>int16[]</code></p></td>
+<td><p><code>i2</code> (16-bit int)</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>EncodedTypedArray.ofInt8Array</code></p></td>
+<td><p><code>sbyte[]</code></p></td>
+<td><p><code>i1</code> (8-bit int)</p></td>
+</tr>
+<tr class="even">
+<td><p><code>EncodedTypedArray.ofUInt32Array</code></p></td>
+<td><p><code>uint32[]</code></p></td>
+<td><p><code>u4</code> (unsigned 32-bit)</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>EncodedTypedArray.ofUInt16Array</code></p></td>
+<td><p><code>uint16[]</code></p></td>
+<td><p><code>u2</code> (unsigned 16-bit)</p></td>
+</tr>
+<tr class="even">
+<td><p><code>EncodedTypedArray.ofUInt8Array</code></p></td>
+<td><p><code>byte[]</code></p></td>
+<td><p><code>u1</code> (unsigned 8-bit)</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>EncodedTypedArray.ofUInt8ClampedArray</code></p></td>
+<td><p><code>byte[]</code></p></td>
+<td><p><code>u1c</code> (clamped unsigned 8-bit)</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>There are no factories for strings, arbitrary objects, decimal, or signed/unsigned 64-bit integers.
+Choose a supported dtype explicitly when converting data, accounting for its range and precision.</p>
+<h2><a name="Using-encoded-arrays-with-Scatter" class="anchor" href="#Using-encoded-arrays-with-Scatter">Using encoded arrays with Scatter</a></h2>
+<p>The encoded convenience overload for <code>Chart.Scatter</code> takes <code>xEncoded</code> and <code>yEncoded</code> as required
+positional arguments instead of plain <code>x</code>/<code>y</code> sequences:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs17" data-fsdocs-tip-unique="27" class="id">scatterEncoded</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs18" data-fsdocs-tip-unique="28" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs19" data-fsdocs-tip-unique="29" class="id">Scatter</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="30" class="fn">xEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="31" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="32" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">5.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="33" class="fn">yEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="34" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="35" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">5.0</span><span class="pn">;</span> <span class="n">3.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="fn">mode</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="36" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="37" class="rt">Mode</span><span class="pn">.</span><span data-fsdocs-tip="fs22" data-fsdocs-tip-unique="38" class="id">Markers</span><span class="pn">,</span>
+        <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;encoded scatter&quot;</span><span class="pn">,</span>
+        <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="9a832480-190a-4e97-8646-67080ff4f17f"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_9a832480190a4e97864667080ff4f17f = function() {
+    var data = [{"type":"scatter","name":"encoded scatter","mode":"markers","x":{"bdata":"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAAhAAAAAAAAAEEAAAAAAAAAUQA==","dtype":"f8"},"y":{"bdata":"AAAAAAAAAEAAAAAAAAAQQAAAAAAAAPA/AAAAAAAAFEAAAAAAAAAIQA==","dtype":"f8"},"marker":{},"line":{}}];
+    var layout = {};
+    var config = {};
+    Plotly.newPlot('9a832480-190a-4e97-8646-67080ff4f17f', data, layout, config);
+};
+renderPlotly_9a832480190a4e97864667080ff4f17f();
+</script></div>
+<p>The same encoded overload is available for <code>Chart.Point</code>, <code>Chart.Line</code>, <code>Chart.Bubble</code>, <code>Chart.Area</code>, <code>Chart.SplineArea</code>, and <code>Chart.StackedArea</code>.</p>
+<h2><a name="Using-encoded-arrays-with-Bar-and-Column-charts" class="anchor" href="#Using-encoded-arrays-with-Bar-and-Column-charts">Using encoded arrays with Bar and Column charts</a></h2>
+<p>For bar and column charts, the main data array (<code>values</code>) is always required and encoded.
+The keys array is optional:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs25" data-fsdocs-tip-unique="42" class="id">barEncoded</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs18" data-fsdocs-tip-unique="43" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs26" data-fsdocs-tip-unique="44" class="id">Bar</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs15" data-fsdocs-tip-unique="45" class="fn">valuesEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="46" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="47" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">5.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">7.0</span><span class="pn">;</span> <span class="n">2.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="fn">KeysEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="48" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs14" data-fsdocs-tip-unique="49" class="id">ofInt32Array</span> <span class="pn">[|</span> <span class="n">0</span><span class="pn">;</span> <span class="n">1</span><span class="pn">;</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;encoded bar&quot;</span><span class="pn">,</span>
+        <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="46582864-f499-4993-a99c-56a32d09d41e"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_46582864f4994993a99c56a32d09d41e = function() {
+    var data = [{"type":"bar","name":"encoded bar","x":{"bdata":"AAAAAAAAFEAAAAAAAAAIQAAAAAAAABxAAAAAAAAAAEA=","dtype":"f8"},"y":{"bdata":"AAAAAAEAAAACAAAAAwAAAA==","dtype":"i4"},"orientation":"h","marker":{"pattern":{}}}];
+    var layout = {};
+    var config = {};
+    Plotly.newPlot('46582864-f499-4993-a99c-56a32d09d41e', data, layout, config);
+};
+renderPlotly_46582864f4994993a99c56a32d09d41e();
+</script></div>
+<p>The same pattern applies to <code>Chart.Column</code>, <code>Chart.StackedBar</code>, and <code>Chart.StackedColumn</code>.</p>
+<h2><a name="Using-encoded-arrays-with-Heatmap" class="anchor" href="#Using-encoded-arrays-with-Heatmap">Using encoded arrays with Heatmap</a></h2>
+<p>For heatmaps, the z matrix is required and encoded; x and y axes are optional and encoded.
+When <code>zEncoded</code> is given as a flat encoded array, <code>shape</code> must also be set so plotly.js can reconstruct the matrix:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs27" data-fsdocs-tip-unique="53" class="id">heatmapEncoded</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs18" data-fsdocs-tip-unique="54" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs28" data-fsdocs-tip-unique="55" class="id">Heatmap</span><span class="pn">(</span>
+        <span class="fn">zEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="56" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="57" class="id">ofFloat64Array</span><span class="pn">(</span><span class="pn">[|</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">5.0</span><span class="pn">;</span> <span class="n">6.0</span> <span class="pn">|]</span><span class="pn">,</span> <span class="fn">shape</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span> <span class="pn">]</span><span class="pn">)</span><span class="pn">,</span>
+        <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;encoded heatmap&quot;</span><span class="pn">,</span>
+        <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="b064e032-9cdf-4e0e-9f39-f272ec841802"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_b064e0329cdf4e0e9f39f272ec841802 = function() {
+    var data = [{"type":"heatmap","name":"encoded heatmap","z":{"bdata":"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAAhAAAAAAAAAEEAAAAAAAAAUQAAAAAAAABhA","dtype":"f8","shape":"2,3"}}];
+    var layout = {};
+    var config = {};
+    Plotly.newPlot('b064e032-9cdf-4e0e-9f39-f272ec841802', data, layout, config);
+};
+renderPlotly_b064e0329cdf4e0e9f39f272ec841802();
+</script></div>
+<p>Note that for heatmaps the z data is passed as a flat 1D encoded array. plotly.js uses the <code>shape</code> field
+(rows × columns) to interpret the layout, so <code>shape</code> must be specified:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Row-major 2x3 matrix: [[1; 2; 3]; [4; 5; 6]]</span>
+<span class="k">let</span> <span data-fsdocs-tip="fs29" data-fsdocs-tip-unique="61" class="id">z2x3</span> <span class="o">=</span>
+    <span class="id">EncodedTypedArray</span><span class="pn">.</span><span class="id">ofFloat64Array</span><span class="pn">(</span><span class="pn">[|</span> <span class="n">1.0</span> <span class="o">..</span> <span class="n">6.0</span> <span class="pn">|]</span><span class="pn">,</span> <span class="id">shape</span> <span class="o">=</span> <span class="pn">[</span> <span class="n">2</span><span class="pn">;</span> <span class="n">3</span> <span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+<p>Supply a matching row count and column count for matrix-valued inputs such as the z grid of
+<code>Chart.Surface</code> or <code>Chart.Contour</code>. The factories preserve the supplied shape; they do not validate
+that its dimensions match the payload length.</p>
+<p><code>Chart.Histogram2D</code> and <code>Chart.Histogram2DContour</code> instead consume one-dimensional x/y samples and
+optional z aggregation values, one per sample. Do not reshape those sample arrays into a matrix;
+plotly.js computes the bins.</p>
+<h2><a name="Using-encoded-arrays-with-3D-charts" class="anchor" href="#Using-encoded-arrays-with-3D-charts">Using encoded arrays with 3D charts</a></h2>
+<p>Encoded typed arrays work the same way on 3D traces. For example, <code>Chart.Scatter3D</code> accepts encoded x, y, and z coordinates:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs30" data-fsdocs-tip-unique="62" class="id">scatter3DEncoded</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs18" data-fsdocs-tip-unique="63" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs31" data-fsdocs-tip-unique="64" class="id">Scatter3D</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs9" data-fsdocs-tip-unique="65" class="fn">xEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="66" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="67" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">3.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span data-fsdocs-tip="fs12" data-fsdocs-tip-unique="68" class="fn">yEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="69" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="70" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">5.0</span><span class="pn">;</span> <span class="n">6.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="fn">zEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="71" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="72" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">7.0</span><span class="pn">;</span> <span class="n">8.0</span><span class="pn">;</span> <span class="n">9.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="fn">mode</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="73" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="74" class="rt">Mode</span><span class="pn">.</span><span data-fsdocs-tip="fs22" data-fsdocs-tip-unique="75" class="id">Markers</span><span class="pn">,</span>
+        <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;encoded scatter3d&quot;</span><span class="pn">,</span>
+        <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="9a34e300-6e82-4d58-a117-4c892a7a33b1"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_9a34e3006e824d58a1174c892a7a33b1 = function() {
+    var data = [{"type":"scatter3d","name":"encoded scatter3d","mode":"markers","x":{"bdata":"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAAhA","dtype":"f8"},"y":{"bdata":"AAAAAAAAEEAAAAAAAAAUQAAAAAAAABhA","dtype":"f8"},"z":{"bdata":"AAAAAAAAHEAAAAAAAAAgQAAAAAAAACJA","dtype":"f8"},"marker":{},"line":{}}];
+    var layout = {"scene":{"camera":{"projection":{"type":"perspective"}}}};
+    var config = {};
+    Plotly.newPlot('9a34e300-6e82-4d58-a117-4c892a7a33b1', data, layout, config);
+};
+renderPlotly_9a34e3006e824d58a1174c892a7a33b1();
+</script></div>
+<p><code>Chart.Surface</code> uses a two-dimensional z grid. <code>Chart.Volume</code> and <code>Chart.IsoSurface</code> use parallel
+one-dimensional x/y/z/value arrays describing samples in space; their coordinates and values do not
+require a matrix shape simply because the chart is three-dimensional.</p>
+<h2><a name="Using-encoded-arrays-with-statistical-charts" class="anchor" href="#Using-encoded-arrays-with-statistical-charts">Using encoded arrays with statistical charts</a></h2>
+<p>Distribution and statistical charts support encoded sample arrays as well. Here is a histogram example:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span data-fsdocs-tip="fs32" data-fsdocs-tip-unique="79" class="id">histogramEncoded</span> <span class="o">=</span>
+    <span data-fsdocs-tip="fs18" data-fsdocs-tip-unique="80" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs33" data-fsdocs-tip-unique="81" class="id">Histogram</span><span class="pn">(</span>
+        <span class="fn">dataEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="82" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="83" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">3.0</span><span class="pn">;</span> <span class="n">4.0</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="fn">orientation</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="84" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs34" data-fsdocs-tip-unique="85" class="rt">Orientation</span><span class="pn">.</span><span data-fsdocs-tip="fs35" data-fsdocs-tip-unique="86" class="id">Vertical</span><span class="pn">,</span>
+        <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;encoded histogram&quot;</span><span class="pn">,</span>
+        <span class="fn">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
+    <span class="pn">)</span>
+</code></pre>
+<div><div id="af8241bf-66f2-4d21-b8bc-ef71f8224921"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_af8241bf66f24d21b8bcef71f8224921 = function() {
+    var data = [{"type":"histogram","orientation":"v","marker":{},"name":"encoded histogram","x":{"bdata":"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAABAAAAAAAAACEAAAAAAAAAIQAAAAAAAAAhAAAAAAAAAEEA=","dtype":"f8"}}];
+    var layout = {};
+    var config = {};
+    Plotly.newPlot('af8241bf-66f2-4d21-b8bc-ef71f8224921', data, layout, config);
+};
+renderPlotly_af8241bf66f24d21b8bcef71f8224921();
+</script></div>
+<p>The same pattern works for <code>Chart.BoxPlot</code>, <code>Chart.Violin</code>, and finance-style traces such as
+<code>Chart.OHLC</code> and <code>Chart.Candlestick</code>.</p>
+<h2><a name="Using-encoded-arrays-for-error-bars-and-trace-level-styling" class="anchor" href="#Using-encoded-arrays-for-error-bars-and-trace-level-styling">Using encoded arrays for error bars and trace-level styling</a></h2>
+<p>Some features are available through trace-level styling rather than only through chart-root overloads.
+This is especially useful when you want encoded error bars, encoded metadata arrays, or other advanced options:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span data-fsdocs-tip="fs1" data-fsdocs-tip-unique="90" class="id">Plotly</span><span class="pn">.</span><span data-fsdocs-tip="fs2" data-fsdocs-tip-unique="91" class="id">NET</span><span class="pn">.</span><span data-fsdocs-tip="fs36" data-fsdocs-tip-unique="92" class="id">TraceObjects</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs37" data-fsdocs-tip-unique="93" class="id">scatterWithEncodedErrorBars</span> <span class="o">=</span>
+    <span class="k">let</span> <span data-fsdocs-tip="fs38" data-fsdocs-tip-unique="94" class="fn">xErrorEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="95" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="96" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">0.1</span><span class="pn">;</span> <span class="n">0.2</span><span class="pn">;</span> <span class="n">0.3</span> <span class="pn">|]</span>
+    <span class="k">let</span> <span data-fsdocs-tip="fs39" data-fsdocs-tip-unique="97" class="fn">yErrorEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="98" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="99" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">0.4</span><span class="pn">;</span> <span class="n">0.5</span><span class="pn">;</span> <span class="n">0.6</span> <span class="pn">|]</span>
+    <span class="k">let</span> <span data-fsdocs-tip="fs40" data-fsdocs-tip-unique="100" class="fn">yErrorMinusEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="101" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="102" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">0.3</span><span class="pn">;</span> <span class="n">0.2</span><span class="pn">;</span> <span class="n">0.1</span> <span class="pn">|]</span>
+
+    <span data-fsdocs-tip="fs41" data-fsdocs-tip-unique="103" class="rt">Trace2D</span><span class="pn">.</span><span data-fsdocs-tip="fs42" data-fsdocs-tip-unique="104" class="id">initScatter</span><span class="pn">(</span>
+        <span data-fsdocs-tip="fs43" data-fsdocs-tip-unique="105" class="rt">Trace2DStyle</span><span class="pn">.</span><span data-fsdocs-tip="fs44" data-fsdocs-tip-unique="106" class="id">Scatter</span><span class="pn">(</span>
+            <span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;encoded scatter + error bars&quot;</span><span class="pn">,</span>
+            <span class="fn">Mode</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="107" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs21" data-fsdocs-tip-unique="108" class="rt">Mode</span><span class="pn">.</span><span data-fsdocs-tip="fs45" data-fsdocs-tip-unique="109" class="id">Lines_Markers</span><span class="pn">,</span>
+            <span class="fn">XEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="110" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="111" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">1.0</span><span class="pn">;</span> <span class="n">2.0</span><span class="pn">;</span> <span class="n">3.0</span> <span class="pn">|]</span><span class="pn">,</span>
+            <span class="fn">YEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs10" data-fsdocs-tip-unique="112" class="rt">EncodedTypedArray</span><span class="pn">.</span><span data-fsdocs-tip="fs11" data-fsdocs-tip-unique="113" class="id">ofFloat64Array</span> <span class="pn">[|</span> <span class="n">4.0</span><span class="pn">;</span> <span class="n">5.0</span><span class="pn">;</span> <span class="n">6.0</span> <span class="pn">|]</span><span class="pn">,</span>
+            <span class="fn">XError</span> <span class="o">=</span>
+                <span data-fsdocs-tip="fs46" data-fsdocs-tip-unique="114" class="rt">Error</span><span class="pn">.</span><span data-fsdocs-tip="fs47" data-fsdocs-tip-unique="115" class="id">init</span><span class="pn">(</span>
+                    <span class="fn">Type</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="116" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs48" data-fsdocs-tip-unique="117" class="rt">ErrorType</span><span class="pn">.</span><span data-fsdocs-tip="fs49" data-fsdocs-tip-unique="118" class="id">Data</span><span class="pn">,</span>
+                    <span class="fn">ArrayEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs38" data-fsdocs-tip-unique="119" class="fn">xErrorEncoded</span>
+                <span class="pn">)</span><span class="pn">,</span>
+            <span class="fn">YError</span> <span class="o">=</span>
+                <span data-fsdocs-tip="fs46" data-fsdocs-tip-unique="120" class="rt">Error</span><span class="pn">.</span><span data-fsdocs-tip="fs47" data-fsdocs-tip-unique="121" class="id">init</span><span class="pn">(</span>
+                    <span class="fn">Type</span> <span class="o">=</span> <span data-fsdocs-tip="fs20" data-fsdocs-tip-unique="122" class="m">StyleParam</span><span class="pn">.</span><span data-fsdocs-tip="fs48" data-fsdocs-tip-unique="123" class="rt">ErrorType</span><span class="pn">.</span><span data-fsdocs-tip="fs49" data-fsdocs-tip-unique="124" class="id">Data</span><span class="pn">,</span>
+                    <span class="fn">ArrayEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs39" data-fsdocs-tip-unique="125" class="fn">yErrorEncoded</span><span class="pn">,</span>
+                    <span class="fn">ArrayminusEncoded</span> <span class="o">=</span> <span data-fsdocs-tip="fs40" data-fsdocs-tip-unique="126" class="fn">yErrorMinusEncoded</span>
+                <span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs23" data-fsdocs-tip-unique="127" class="rt">GenericChart</span><span class="pn">.</span><span data-fsdocs-tip="fs50" data-fsdocs-tip-unique="128" class="id">ofTraceObject</span> <span class="k">false</span>
+    <span class="o">|&gt;</span> <span data-fsdocs-tip="fs18" data-fsdocs-tip-unique="129" class="rt">Chart</span><span class="pn">.</span><span data-fsdocs-tip="fs51" data-fsdocs-tip-unique="130" class="id">withDisplayOptions</span><span class="pn">(</span><span data-fsdocs-tip="fs52" data-fsdocs-tip-unique="131" class="rt">DisplayOptions</span><span class="pn">.</span><span data-fsdocs-tip="fs53" data-fsdocs-tip-unique="132" class="id">init</span><span class="pn">(</span><span data-fsdocs-tip="fs7" data-fsdocs-tip-unique="133" class="fn">PlotlyJSReference</span> <span class="o">=</span> <span data-fsdocs-tip="fs7" data-fsdocs-tip-unique="134" class="rt">PlotlyJSReference</span><span class="pn">.</span><span data-fsdocs-tip="fs54" data-fsdocs-tip-unique="135" class="id">NoReference</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<div><div id="f1a8f04e-60a5-4e92-b2c0-09d363e14e58"><!-- Plotly chart will be drawn inside this DIV --></div><script type="text/javascript">var renderPlotly_f1a8f04e60a54e92b2c009d363e14e58 = function() {
+    var data = [{"type":"scatter","name":"encoded scatter + error bars","mode":"lines+markers","x":{"bdata":"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAAhA","dtype":"f8"},"y":{"bdata":"AAAAAAAAEEAAAAAAAAAUQAAAAAAAABhA","dtype":"f8"},"error_x":{"type":"data","array":{"bdata":"mpmZmZmZuT+amZmZmZnJPzMzMzMzM9M/","dtype":"f8"}},"error_y":{"type":"data","array":{"bdata":"mpmZmZmZ2T8AAAAAAADgPzMzMzMzM+M/","dtype":"f8"},"arrayminus":{"bdata":"MzMzMzMz0z+amZmZmZnJP5qZmZmZmbk/","dtype":"f8"}}}];
+    var layout = {};
+    var config = {};
+    Plotly.newPlot('f1a8f04e-60a5-4e92-b2c0-09d363e14e58', data, layout, config);
+};
+renderPlotly_f1a8f04e60a54e92b2c009d363e14e58();
+</script></div>
+<p>The trace-style modules (<code>Trace2DStyle</code>, <code>Trace3DStyle</code>, <code>TraceDomainStyle</code>, and others) also accept encoded arrays
+for many metadata fields such as ids, custom data, selected points, text, dimensions, and trace-specific attributes.</p>
+<p>For more advanced usage including encoded arrays on 3D, domain, and map traces, see the trace-level
+style modules (<code>Trace2DStyle</code>, <code>Trace3DStyle</code>, <code>TraceDomainStyle</code>, etc.) which accept <code>*Encoded</code> optional parameters
+for selected data-array fields. An encoded option only changes the transport representation; the
+underlying plotly.js field must still accept the resulting values.</p>
+<h2><a name="Using-encoded-arrays-from-C" class="anchor" href="#Using-encoded-arrays-from-C">Using encoded arrays from C#</a></h2>
+<p>Reference both <code>Plotly.NET</code> and <code>Plotly.NET.CSharp</code>. The factories are F# methods in the shared core:
+C# supplies <code>shape: default</code> for a one-dimensional array, or an explicit
+<code>FSharpOption&lt;IEnumerable&lt;int&gt;&gt;</code> for a matrix. The remaining generic type argument on Scatter/Heatmap
+describes optional text; specify it even when no text is supplied.</p>
+<p>This 1D example is compiled and checked in <code>EncodedArrayExamplesTests</code>:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">using</span> Plotly.NET;
+<span class="k">using</span> Chart <span class="o">=</span> Plotly.NET.CSharp.Chart;
+
+<span class="k">var</span> x <span class="o">=</span> EncodedTypedArray.ofInt<span class="n">32</span>Array(<span class="k">new</span>[] { <span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span> }, shape: <span class="k">default</span>);
+<span class="k">var</span> y <span class="o">=</span> EncodedTypedArray.ofFloat<span class="n">32</span>Array(<span class="k">new</span>[] { <span class="n">1.5</span>f, <span class="n">4.5</span>f, <span class="n">2.5</span>f }, shape: <span class="k">default</span>);
+<span class="k">var</span> scatter <span class="o">=</span> Chart.Scatter&lt;<span class="k">string</span>&gt;(
+    xEncoded: x, yEncoded: y, mode: StyleParam.Mode.Markers,
+    Name: <span class="s">"encoded scatter"</span>, UseDefaults: <span class="k">false</span>);
+</code></pre></td></tr></table>
+<p>For a 2-by-3 heatmap, flatten the rows in order and supply three x coordinates and two y coordinates.
+This example is also compiled and checked in the C# tests:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">using</span> System.Collections.Generic;
+<span class="k">using</span> Microsoft.FSharp.Core;
+<span class="k">using</span> Plotly.NET;
+<span class="k">using</span> Chart <span class="o">=</span> Plotly.NET.CSharp.Chart;
+
+<span class="k">var</span> z <span class="o">=</span> EncodedTypedArray.ofFloat<span class="n">32</span>Array(
+    <span class="k">new</span>[] { <span class="n">1.0</span>f, <span class="n">2.0</span>f, <span class="n">3.0</span>f, <span class="n">4.0</span>f, <span class="n">5.0</span>f, <span class="n">6.0</span>f },
+    shape: <span class="k">new</span> FSharpOption&lt;IEnumerable&lt;<span class="k">int</span>&gt;<span class="o">&gt;</span>(<span class="k">new</span>[] { <span class="n">2</span>, <span class="n">3</span> }));
+<span class="k">var</span> heatmap <span class="o">=</span> Chart.Heatmap&lt;<span class="k">string</span>&gt;(
+    zEncoded: z,
+    xEncoded: EncodedTypedArray.ofInt<span class="n">32</span>Array(<span class="k">new</span>[] { <span class="n">10</span>, <span class="n">20</span>, <span class="n">30</span> }, shape: <span class="k">default</span>),
+    yEncoded: EncodedTypedArray.ofInt<span class="n">32</span>Array(<span class="k">new</span>[] { <span class="n">100</span>, <span class="n">200</span> }, shape: <span class="k">default</span>),
+    ReverseYAxis: <span class="k">true</span>, ShowScale: <span class="k">false</span>, UseDefaults: <span class="k">false</span>);
+</code></pre></td></tr></table>
+<h2><a name="Nested-data-and-precedence" class="anchor" href="#Nested-data-and-precedence">Nested data and precedence</a></h2>
+<p>Use <code>Dimension.initSplom</code> / <code>Dimension.initParallel</code> with <code>ValuesEncoded</code> for nested dimension data.
+Existing F# and C# SPLOM/parallel chart wrappers accept these objects. ParallelCoord and
+ParallelCategories also offer label/encoded-value pair conveniences.</p>
+<p>For Sankey, use <code>SankeyNodes.init</code> with <code>XEncoded</code> / <code>YEncoded</code> and <code>SankeyLinks.init</code> with
+<code>SourceEncoded</code> / <code>TargetEncoded</code> / <code>ValueEncoded</code>, then pass the objects to <code>Chart.Sankey(nodes, links, ...)</code>.
+Labels remain plain strings. These shared object APIs also expose numeric <code>CustomDataEncoded</code> and
+<code>ColorEncoded</code>; numeric encoding does not turn color names or other strings into supported typed arrays,
+and each field retains its plotly.js value requirements.</p>
+<p>At the trace/object layer, if one init/style call supplies both the plain and encoded parameter for
+the same property, the encoded value wins. For example, <code>Value = [ 99.0 ]</code> together with
+<code>ValueEncoded = EncodedTypedArray.ofFloat64Array [| 8.0 |]</code> serializes a single encoded <code>value</code> property.
+A later style call can replace that property again. The explicit chart overloads instead take
+encoded primary inputs directly.</p>
+<h2><a name="Supported-scope-and-limitations" class="anchor" href="#Supported-scope-and-limitations">Supported scope and limitations</a></h2>
+<p>The examples earlier on this page use the F# API. Direct encoded C# chart overloads currently cover:</p>
+<ul>
+<li><code>Scatter</code>, <code>Bar</code>, <code>StackedBar</code>, <code>Column</code>, <code>StackedColumn</code>, <code>Heatmap</code>, <code>Histogram2D</code>, and <code>Scatter3D</code>.</li>
+<li><code>ParallelCoord</code> / <code>ParallelCategories</code> label/encoded-value pairs.</li>
+<li>Nested objects through existing wrappers, including SPLOM and Sankey.</li>
+</ul>
+<p>Other direct C# wrappers, including Histogram, Surface, and map/polar/carpet families, are a later
+milestone. C# can also use the shared low-level core types. Existing plain overloads remain available.</p>
+<p>Encoded primary arrays do not make every accompanying input encoded. For example, the encoded F#
+Bubble convenience still takes plain sizes, and labels/styles stay plain where the signature says so.
+Bar keys and Heatmap axes in these encoded overloads are numeric encoded arrays; there is no matching
+plain string-key argument on those overloads. Use existing plain chart overloads when needed, or
+compose the supported fields through the shared trace API.</p>
+<p>Image pixel arrays and helpers that compute from the input values, such as Pareto, Residual, and
+AnnotatedHeatmap, are outside the direct encoded-overload scope. Neither a metadata option nor the
+existence of a numeric factory establishes support for every field or chart type.</p>
+<h2><a name="Loading-Virtual-WebGL" class="anchor" href="#Loading-Virtual-WebGL">Loading Virtual-WebGL</a></h2>
+<p>Virtual-WebGL is a separate plotly.js 2.28 feature for sharing WebGL contexts. It is optional and
+does not enable encoded arrays. To use the WebGL 1 script (<code>src/virtual-webgl.js</code> from Virtual-WebGL
+1.0.6, the version used for this integration check), serve the files below with your page
+and load Virtual-WebGL before plotly.js, as described by the
+<a href="https://github.com/greggman/virtual-webgl#how-to-use">Virtual-WebGL project</a>.</p>
+<p>Existing display options can set that order without a new wrapper API:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="id">Giraffe</span><span class="pn">.</span><span class="id">ViewEngine</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs55" data-fsdocs-tip-unique="139" class="id">displayOptions</span> <span class="o">=</span>
+    <span class="id">DisplayOptions</span><span class="pn">.</span><span class="id">init</span><span class="pn">(</span>
+        <span class="id">PlotlyJSReference</span> <span class="o">=</span> <span class="id">PlotlyJSReference</span><span class="pn">.</span><span class="id">NoReference</span><span class="pn">,</span>
+        <span class="id">AdditionalHeadTags</span> <span class="o">=</span> <span class="pn">[</span>
+            <span class="id">script</span> <span class="pn">[</span> <span class="id">_src</span> <span class="s">&quot;/lib/virtual-webgl.js&quot;</span> <span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+            <span class="id">script</span> <span class="pn">[</span> <span class="id">_src</span> <span class="s">&quot;/lib/plotly-2.28.0.min.js&quot;</span> <span class="pn">]</span> <span class="pn">[</span><span class="pn">]</span>
+        <span class="pn">]</span>
+    <span class="pn">)</span>
+
+<span class="k">let</span> <span data-fsdocs-tip="fs56" data-fsdocs-tip-unique="140" class="id">standaloneHtml</span> <span class="o">=</span>
+    <span class="id">Chart</span><span class="pn">.</span><span class="id">Scatter</span><span class="pn">(</span>
+        <span class="id">xEncoded</span> <span class="o">=</span> <span class="id">EncodedTypedArray</span><span class="pn">.</span><span class="id">ofInt32Array</span> <span class="pn">[|</span> <span class="n">0</span><span class="pn">;</span> <span class="n">1</span><span class="pn">;</span> <span class="n">2</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="id">yEncoded</span> <span class="o">=</span> <span class="id">EncodedTypedArray</span><span class="pn">.</span><span class="id">ofFloat32Array</span> <span class="pn">[|</span> <span class="n">1.5f</span><span class="pn">;</span> <span class="n">4.5f</span><span class="pn">;</span> <span class="n">2.5f</span> <span class="pn">|]</span><span class="pn">,</span>
+        <span class="id">mode</span> <span class="o">=</span> <span class="id">StyleParam</span><span class="pn">.</span><span class="id">Mode</span><span class="pn">.</span><span class="id">Markers</span><span class="pn">,</span>
+        <span class="id">UseWebGL</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+        <span class="id">UseDefaults</span> <span class="o">=</span> <span class="k">false</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span class="id">Chart</span><span class="pn">.</span><span class="id">withDisplayOptions</span> <span data-fsdocs-tip="fs55" data-fsdocs-tip-unique="141" class="id">displayOptions</span>
+    <span class="o">|&gt;</span> <span class="id">GenericChart</span><span class="pn">.</span><span class="id">toEmbeddedHTML</span>
+</code></pre>
+<p><code>NoReference</code> prevents an earlier automatic plotly.js script tag. Replace the paths with your
+hosted files and use a WebGL chart, such as Scatter with <code>UseWebGL = true</code>, when exercising the
+virtualized contexts. <code>toEmbeddedHTML</code> emits the head tags; <code>toChartHTML</code> emits only a fragment
+and requires the host page to supply the scripts.</p>
+
+        <div popover class="fsdocs-tip" id="fs1">namespace Plotly</div>
+<div popover class="fsdocs-tip" id="fs2">namespace Plotly.NET</div>
+<div popover class="fsdocs-tip" id="fs3">module Defaults
+
+from Plotly.NET<br /><em>&lt;summary&gt;
+ Contains mutable global default values.
+
+ Changing these values will apply the default values to all consecutive Chart generations.
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs4">val mutable DefaultDisplayOptions: Plotly.NET.DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs5">Multiple items<br />type DisplayOptions =
+  inherit DynamicObj
+  new: unit -&gt; DisplayOptions
+  static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addChartDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
+  static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getChartDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDocumentCharset: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentDescription: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentFavicon: displayOpts: DisplayOptions -&gt; XmlNode
+  ...<br /><br />--------------------<br />new: unit -&gt; Plotly.NET.DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs6">static member Plotly.NET.DisplayOptions.init: ?DocumentTitle: string * ?DocumentCharset: string * ?DocumentDescription: string * ?DocumentFavicon: Giraffe.ViewEngine.HtmlElements.XmlNode * ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?ChartDescription: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: Plotly.NET.PlotlyJSReference -&gt; Plotly.NET.DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs7">type PlotlyJSReference =
+  | CDN of string
+  | Full
+  | Require of string
+  | NoReference<br /><em>&lt;summary&gt;
+Sets how plotly is referenced in the head of html docs.
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs8">union case Plotly.NET.PlotlyJSReference.NoReference: Plotly.NET.PlotlyJSReference</div>
+<div popover class="fsdocs-tip" id="fs9">val xEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs10">Multiple items<br />type EncodedTypedArray =
+  inherit DynamicObj
+  new: unit -&gt; EncodedTypedArray
+  static member init: bdata: string * dtype: TypedArrayDType * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofFloat32Array: data: single array * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofFloat64Array: data: float array * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofInt16Array: data: int16 array * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofInt32Array: data: int32 array * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofInt8Array: data: sbyte array * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofUInt16Array: data: uint16 array * ?shape: int seq -&gt; EncodedTypedArray
+  static member ofUInt32Array: data: uint32 array * ?shape: int seq -&gt; EncodedTypedArray
+  ...<br /><em>&lt;summary&gt;
+ Base64-encoded typed array representation accepted by plotly.js (&amp;gt;= 2.28.0) for trace data_array fields.
+
+ Carries a base64-encoded byte payload (&lt;c&gt;bdata&lt;/c&gt;), the underlying value data type (&lt;c&gt;dtype&lt;/c&gt;),
+ and an optional &lt;c&gt;shape&lt;/c&gt; for multi-dimensional arrays. See the plotly.js v2.28.0 release notes.
+ &lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs11">static member EncodedTypedArray.ofFloat64Array: data: float array * ?shape: int seq -&gt; EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs12">val yEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs13">val sourceEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs14">static member EncodedTypedArray.ofInt32Array: data: int32 array * ?shape: int seq -&gt; EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs15">val valuesEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs16">static member EncodedTypedArray.ofFloat32Array: data: single array * ?shape: int seq -&gt; EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs17">val scatterEncoded: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs18">type Chart =
+  static member Bubble: x: #IConvertible seq * y: #IConvertible seq * sizes: int seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads
+  static member Line: x: #IConvertible seq * y: #IConvertible seq * ?ShowMarkers: bool * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?Fill: Fill * ?FillColor: Color * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads
+  static member Point: x: #IConvertible seq * y: #IConvertible seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads
+  static member Range: x: #IConvertible seq * y: #IConvertible seq * upper: #IConvertible seq * lower: #IConvertible seq * mode: Mode * ?Name: string * ?GroupName: string * ?ShowMarkers: bool * ?ShowLegend: bool * ?Text: &#39;e * ?MultiText: &#39;e seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?UpperMarker: Marker * ?LowerMarker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?UpperLine: Line * ?LowerLine: Line * ?RangeColor: Color * ?RangePattern: Pattern * ?UpperText: &#39;f * ?MultiUpperText: &#39;f seq * ?LowerText: &#39;g * ?MultiLowerText: &#39;g seq * ?TextFont: Font * ?LowerName: string * ?UpperName: string * ?UseDefaults: bool -&gt; GenericChart (requires &#39;e :&gt; IConvertible and &#39;f :&gt; IConvertible and &#39;g :&gt; IConvertible) + 2 overloads
+  static member Scatter: ?X: &#39;a seq * ?XEncoded: EncodedTypedArray * ?MultiX: &#39;a seq seq * ?Y: &#39;b seq * ?YEncoded: EncodedTypedArray * ?MultiY: &#39;b seq seq * ?Mode: Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?Fill: Fill * ?FillColor: Color * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; IConvertible and &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible) + 3 overloads
+  static member Spline: x: #IConvertible seq * y: #IConvertible seq * ?ShowMarkers: bool * ?Smoothing: float * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: MarkerSymbol * ?MultiMarkerSymbol: MarkerSymbol seq * ?Marker: Marker * ?LineColor: Color * ?LineColorScale: Colorscale * ?LineWidth: float * ?LineDash: DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: Orientation * ?GroupNorm: GroupNorm * ?Fill: Fill * ?FillColor: Color * ?FillPattern: Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; IConvertible) + 2 overloads</div>
+<div popover class="fsdocs-tip" id="fs19">static member Chart.Scatter: xy: (#System.IConvertible * #System.IConvertible) seq * mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: StyleParam.MarkerSymbol seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; System.IConvertible)<br />static member Chart.Scatter: x: #System.IConvertible seq * y: #System.IConvertible seq * mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: StyleParam.MarkerSymbol seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; System.IConvertible)<br />static member Chart.Scatter: xEncoded: EncodedTypedArray * yEncoded: EncodedTypedArray * mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;a * ?MultiText: &#39;a seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: StyleParam.MarkerSymbol seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible)<br />static member Chart.Scatter: ?X: &#39;a seq * ?XEncoded: EncodedTypedArray * ?MultiX: &#39;a seq seq * ?Y: &#39;b seq * ?YEncoded: EncodedTypedArray * ?MultiY: &#39;b seq seq * ?Mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol * ?MultiMarkerSymbol: StyleParam.MarkerSymbol seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: TraceObjects.Pattern * ?UseWebGL: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible and &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible)</div>
+<div popover class="fsdocs-tip" id="fs20">module StyleParam
+
+from Plotly.NET</div>
+<div popover class="fsdocs-tip" id="fs21">type Mode =
+  | None
+  | Lines
+  | Lines_Markers
+  | Lines_Text
+  | Lines_Markers_Text
+  | Markers
+  | Markers_Text
+  | Text
+  member Convert: unit -&gt; objnull
+  override ToString: unit -&gt; string
+  static member convert: (Mode -&gt; objnull)
+  static member toString: (Mode -&gt; string)</div>
+<div popover class="fsdocs-tip" id="fs22">union case StyleParam.Mode.Markers: StyleParam.Mode</div>
+<div popover class="fsdocs-tip" id="fs23">type GenericChart =
+  | Chart of data: Trace * layout: Layout * config: Config * displayOpts: DisplayOptions
+  | MultiChart of data: Trace list * layout: Layout * config: Config * displayOpts: DisplayOptions
+  static member addConfig: config: Config -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addDisplayOptions: displayOpts: DisplayOptions -&gt; gChart: GenericChart -&gt; GenericChart
+  static member addLayout: layout: Layout -&gt; gChart: GenericChart -&gt; GenericChart
+  static member combine: gCharts: GenericChart seq -&gt; GenericChart
+  static member countTrace: gChart: GenericChart -&gt; int
+  static member existsTrace: predicate: (Trace -&gt; bool) -&gt; gChart: GenericChart -&gt; bool
+  static member fromChartDTO: dto: ChartDTO -&gt; GenericChart
+  static member fromFigure: fig: Figure -&gt; GenericChart
+  static member getConfig: gChart: GenericChart -&gt; Config
+  static member getDisplayOptions: gChart: GenericChart -&gt; DisplayOptions
+  ...<br /><em>&lt;summary&gt;
+ The central type that gets created by all Chart constructors is GenericChart, which itself represents either a single chart or a multi chart (as a Discriminate Union type).
+ 
+ A GenericChart consists of four top level objects: Trace (multiple of those in the case of a MultiChart), Layout, Config, and DisplayOptions.
+ 
+ - `Trace` is in principle the representation of a dataset on a chart, including for example the data itself, color and shape of the visualization, etc.
+
+ - `Layout` is everything of the chart that is not dataset specific - e.g. the shape and style of axes, the chart title, etc.
+
+ - `Config` is an object that configures high level properties of the chart like making all chart elements editable or the tool bar on top
+
+ - `DisplayOptions` is an object that contains meta information about how the html document that contains the chart.
+&lt;/summary&gt;</em></div>
+<div popover class="fsdocs-tip" id="fs24">static member GenericChart.toChartHTML: gChart: GenericChart -&gt; string</div>
+<div popover class="fsdocs-tip" id="fs25">val barEncoded: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs26">static member Chart.Bar: keysValues: (#System.IConvertible * #System.IConvertible) seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: StyleParam.PatternShape * ?MultiMarkerPatternShape: StyleParam.PatternShape seq * ?MarkerPattern: TraceObjects.Pattern * ?Marker: TraceObjects.Marker * ?Base: #System.IConvertible * ?Width: &#39;e * ?MultiWidth: &#39;e seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?UseDefaults: bool -&gt; GenericChart (requires &#39;c :&gt; System.IConvertible and &#39;e :&gt; System.IConvertible)<br />static member Chart.Bar: valuesEncoded: EncodedTypedArray * ?KeysEncoded: EncodedTypedArray * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;a * ?MultiText: &#39;a seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: StyleParam.PatternShape * ?MultiMarkerPatternShape: StyleParam.PatternShape seq * ?MarkerPattern: TraceObjects.Pattern * ?Marker: TraceObjects.Marker * ?Base: #System.IConvertible * ?Width: #System.IConvertible * ?MultiWidthEncoded: EncodedTypedArray * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible)<br />static member Chart.Bar: values: #System.IConvertible seq * ?Keys: &#39;b seq * ?MultiKeys: &#39;b seq seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;c * ?MultiText: &#39;c seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: StyleParam.PatternShape * ?MultiMarkerPatternShape: StyleParam.PatternShape seq * ?MarkerPattern: TraceObjects.Pattern * ?Marker: TraceObjects.Marker * ?Base: #System.IConvertible * ?Width: &#39;e * ?MultiWidth: &#39;e seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible and &#39;e :&gt; System.IConvertible)</div>
+<div popover class="fsdocs-tip" id="fs27">val heatmapEncoded: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs28">static member Chart.Heatmap: zData: #seq&lt;&#39;b&gt; seq * colNames: string seq * rowNames: string seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;c * ?MultiText: &#39;c seq * ?ColorBar: ColorBar * ?ColorScale: StyleParam.Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: StyleParam.SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible)<br />static member Chart.Heatmap: zEncoded: EncodedTypedArray * ?xEncoded: EncodedTypedArray * ?yEncoded: EncodedTypedArray * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;a * ?MultiText: &#39;a seq * ?ColorBar: ColorBar * ?ColorScale: StyleParam.Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: StyleParam.SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible)<br />static member Chart.Heatmap: zData: #seq&lt;&#39;b&gt; seq * ?X: &#39;c seq * ?MultiX: &#39;c seq seq * ?Y: &#39;d seq * ?MultiY: &#39;d seq seq * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?XGap: int * ?YGap: int * ?Text: &#39;e * ?MultiText: &#39;e seq * ?ColorBar: ColorBar * ?ColorScale: StyleParam.Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZSmooth: StyleParam.SmoothAlg * ?Transpose: bool * ?UseWebGL: bool * ?ReverseYAxis: bool * ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible and &#39;d :&gt; System.IConvertible and &#39;e :&gt; System.IConvertible)</div>
+<div popover class="fsdocs-tip" id="fs29">val z2x3: obj</div>
+<div popover class="fsdocs-tip" id="fs30">val scatter3DEncoded: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs31">static member Chart.Scatter3D: xyz: (#System.IConvertible * #System.IConvertible * #System.IConvertible) seq * mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;d * ?MultiText: &#39;d seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol3D * ?MultiMarkerSymbol: StyleParam.MarkerSymbol3D seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?CameraProjectionType: StyleParam.CameraProjectionType * ?Camera: LayoutObjects.Camera * ?Projection: TraceObjects.Projection * ?UseDefaults: bool -&gt; GenericChart (requires &#39;d :&gt; System.IConvertible)<br />static member Chart.Scatter3D: xEncoded: EncodedTypedArray * yEncoded: EncodedTypedArray * zEncoded: EncodedTypedArray * mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;a * ?MultiText: &#39;a seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol3D * ?MultiMarkerSymbol: StyleParam.MarkerSymbol3D seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?CameraProjectionType: StyleParam.CameraProjectionType * ?Camera: LayoutObjects.Camera * ?Projection: TraceObjects.Projection * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible)<br />static member Chart.Scatter3D: x: #System.IConvertible seq * y: #System.IConvertible seq * z: #System.IConvertible seq * mode: StyleParam.Mode * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?MultiOpacity: float seq * ?Text: &#39;d * ?MultiText: &#39;d seq * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerSymbol: StyleParam.MarkerSymbol3D * ?MultiMarkerSymbol: StyleParam.MarkerSymbol3D seq * ?Marker: TraceObjects.Marker * ?LineColor: Color * ?LineColorScale: StyleParam.Colorscale * ?LineWidth: float * ?LineDash: StyleParam.DrawingStyle * ?Line: Line * ?CameraProjectionType: StyleParam.CameraProjectionType * ?Camera: LayoutObjects.Camera * ?Projection: TraceObjects.Projection * ?UseDefaults: bool -&gt; GenericChart (requires &#39;d :&gt; System.IConvertible)</div>
+<div popover class="fsdocs-tip" id="fs32">val histogramEncoded: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs33">static member Chart.Histogram: dataEncoded: EncodedTypedArray * orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;a * ?MultiText: &#39;a seq * ?HistFunc: StyleParam.HistFunc * ?HistNorm: StyleParam.HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?BinGroup: string * ?XBins: TraceObjects.Bins * ?YBins: TraceObjects.Bins * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Line: Line * ?XError: TraceObjects.Error * ?YError: TraceObjects.Error * ?Cumulative: TraceObjects.Cumulative * ?HoverLabel: LayoutObjects.Hoverlabel * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible)<br />static member Chart.Histogram: data: #System.IConvertible seq * orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;b * ?MultiText: &#39;b seq * ?HistFunc: StyleParam.HistFunc * ?HistNorm: StyleParam.HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?BinGroup: string * ?XBins: TraceObjects.Bins * ?YBins: TraceObjects.Bins * ?MarkerColor: Color * ?Marker: TraceObjects.Marker * ?Line: Line * ?XError: TraceObjects.Error * ?YError: TraceObjects.Error * ?Cumulative: TraceObjects.Cumulative * ?HoverLabel: LayoutObjects.Hoverlabel * ?UseDefaults: bool -&gt; GenericChart (requires &#39;b :&gt; System.IConvertible)<br />static member Chart.Histogram: ?X: &#39;a seq * ?MultiX: &#39;a seq seq * ?Y: &#39;b seq * ?MultiY: &#39;b seq seq * ?Orientation: StyleParam.Orientation * ?Name: string * ?ShowLegend: bool * ?Opacity: float * ?Text: &#39;c * ?MultiText: &#39;c seq * ?TextPosition: StyleParam.TextPosition * ?HistFunc: StyleParam.HistFunc * ?HistNorm: StyleParam.HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?BinGroup: string * ?XBins: TraceObjects.Bins * ?YBins: TraceObjects.Bins * ?MarkerColor: Color * ?MarkerColorScale: StyleParam.Colorscale * ?MarkerOutline: Line * ?MarkerPatternShape: StyleParam.PatternShape * ?MultiMarkerPatternShape: StyleParam.PatternShape seq * ?MarkerPattern: TraceObjects.Pattern * ?Marker: TraceObjects.Marker * ?Line: Line * ?XError: TraceObjects.Error * ?YError: TraceObjects.Error * ?Cumulative: TraceObjects.Cumulative * ?HoverLabel: LayoutObjects.Hoverlabel * ?UseDefaults: bool -&gt; GenericChart (requires &#39;a :&gt; System.IConvertible and &#39;b :&gt; System.IConvertible and &#39;c :&gt; System.IConvertible)</div>
+<div popover class="fsdocs-tip" id="fs34">type Orientation =
+  | Horizontal
+  | Vertical
+  member Convert: unit -&gt; objnull
+  override ToString: unit -&gt; string
+  static member convert: (Orientation -&gt; objnull)
+  static member toString: (Orientation -&gt; string)</div>
+<div popover class="fsdocs-tip" id="fs35">union case StyleParam.Orientation.Vertical: StyleParam.Orientation</div>
+<div popover class="fsdocs-tip" id="fs36">namespace Plotly.NET.TraceObjects</div>
+<div popover class="fsdocs-tip" id="fs37">val scatterWithEncodedErrorBars: GenericChart</div>
+<div popover class="fsdocs-tip" id="fs38">val xErrorEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs39">val yErrorEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs40">val yErrorMinusEncoded: EncodedTypedArray</div>
+<div popover class="fsdocs-tip" id="fs41">Multiple items<br />type Trace2D =
+  inherit Trace
+  new: traceTypeName: string -&gt; Trace2D
+  static member initBar: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initBoxPlot: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initCandlestick: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initContour: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initFunnel: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHeatmap: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHeatmapGL: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  static member initHistogram: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D
+  ...<br /><em>&lt;summary&gt;
+ The most commonly-used kind of subplot is a two-dimensional Cartesian subplot. Traces compatible with these subplots
+ support xaxis and yaxis attributes whose values must refer to corresponding objects in the layout portion of the figure.
+ For example, if xaxis=&quot;x&quot;, and yaxis=&quot;y&quot; (which is the default) then this trace is drawn on the subplot at the intersection
+ of the axes configured under layout.xaxis and layout.yaxis, but if xaxis=&quot;x2&quot; and yaxis=&quot;y3&quot; then the trace is drawn at the
+ intersection of the axes configured under layout.xaxis2 and layout.yaxis3. Note that attributes such as layout.xaxis and
+ layout.xaxis2 etc do not have to be explicitly defined, in which case default values will be inferred. Multiple traces of
+ different types can be drawn on the same subplot.
+
+ X- and Y-axes support the type attribute, which enables them to represent continuous values (type=&quot;linear&quot;, type=&quot;log&quot;),
+ temporal values (type=&quot;date&quot;) or categorical values (type=&quot;category&quot;, type=&quot;multicategory). Axes can also be overlaid on
+ top of one another to create dual-axis or multiple-axis charts. 2-d cartesian subplots lend themselves very well to creating
+ &quot;small multiples&quot; figures, also known as facet or trellis plots.
+
+ The following trace types are compatible with 2D-cartesian subplots via the xaxis and yaxis attributes:
+
+ - scatter-like trace types: scatter and scattergl can be used to draw scatter plots, line plots and curves, time-series plots,
+ bubble charts, dot plots and filled areas and also support error bars
+
+ - bar, funnel, waterfall: bar-like trace types which can also be used to draw timelines and Gantt charts
+
+ - histogram: an aggregating bar-like trace type
+
+ - box and violin: 1-dimensional distribution-like trace types
+
+ - histogram2D and histogram2Dcontour: 2-dimensional distribution-like density trace types
+
+ - image, heatmap and contour: matrix trace types
+
+ - ohlc and candlestick: stock-like trace types
+
+ - splom: multi-dimensional scatter plots which implicitly refer to many 2-d cartesian subplots at once.
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: traceTypeName: string -&gt; Trace2D</div>
+<div popover class="fsdocs-tip" id="fs42">static member Trace2D.initScatter: applyStyle: (Trace2D -&gt; Trace2D) -&gt; Trace2D</div>
+<div popover class="fsdocs-tip" id="fs43">Multiple items<br />type Trace2DStyle =
+  new: unit -&gt; Trace2DStyle
+  static member Bar: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?X0: #IConvertible * ?DX: #IConvertible * ?Y: &#39;e seq * ?MultiY: &#39;e seq seq * ?YEncoded: EncodedTypedArray * ?Y0: #IConvertible * ?DY: #IConvertible * ?Base: #IConvertible * ?Width: &#39;i * ?MultiWidth: &#39;i seq * ?MultiWidthEncoded: EncodedTypedArray * ?Offset: &#39;j * ?MultiOffset: &#39;j seq * ?MultiOffsetEncoded: EncodedTypedArray * ?Text: &#39;k * ?MultiText: &#39;k seq * ?MultiTextEncoded: EncodedTypedArray * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?TextTemplate: string * ?MultiTextTemplate: string seq * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Marker: Marker * ?TextAngle: float * ?TextFont: Font * ?XError: Error * ?YError: Error * ?SelectedPoints: #IConvertible seq * ?SelectedPointsEncoded: EncodedTypedArray * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?ClipOnAxis: bool * ?Constraintext: ConstrainText * ?HoverLabel: Hoverlabel * ?InsideTextAnchor: InsideTextAnchor * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;k :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member BoxPlot: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?LegendWidth: float * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?X0: #IConvertible * ?DX: #IConvertible * ?Y: &#39;e seq * ?MultiY: &#39;e seq seq * ?YEncoded: EncodedTypedArray * ?Y0: #IConvertible * ?DY: #IConvertible * ?Width: float * ?Text: &#39;h * ?MultiText: &#39;h seq * ?MultiTextEncoded: EncodedTypedArray * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Marker: Marker * ?Line: Line * ?BoxMean: BoxMean * ?BoxPoints: BoxPoints * ?Notched: bool * ?NotchWidth: float * ?ShowWhiskers: bool * ?WhiskerWidth: float * ?Q1: IConvertible seq * ?Q1Encoded: EncodedTypedArray * ?Median: IConvertible seq * ?MedianEncoded: EncodedTypedArray * ?Q3: IConvertible seq * ?Q3Encoded: EncodedTypedArray * ?LowerFence: IConvertible seq * ?LowerFenceEncoded: EncodedTypedArray * ?UpperFence: IConvertible seq * ?UpperFenceEncoded: EncodedTypedArray * ?NotchSpan: IConvertible seq * ?NotchSpanEncoded: EncodedTypedArray * ?Mean: IConvertible seq * ?MeanEncoded: EncodedTypedArray * ?SD: IConvertible seq * ?SDEncoded: EncodedTypedArray * ?SDMultiple: float * ?QuartileMethod: QuartileMethod * ?SelectedPoints: #IConvertible seq * ?SelectedPointsEncoded: EncodedTypedArray * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?FillColor: Color * ?HoverLabel: Hoverlabel * ?HoverOn: HoverOn * ?PointPos: float * ?Jitter: float * ?SizeMode: BoxSizeMode * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;h :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Candlestick: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?Close: #IConvertible seq * ?CloseEncoded: EncodedTypedArray * ?Open: #IConvertible seq * ?OpenEncoded: EncodedTypedArray * ?High: #IConvertible seq * ?HighEncoded: EncodedTypedArray * ?Low: #IConvertible seq * ?LowEncoded: EncodedTypedArray * ?Text: &#39;g * ?MultiText: &#39;g seq * ?MultiTextEncoded: EncodedTypedArray * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Line: Line * ?WhiskerWidth: float * ?SelectedPoints: #IConvertible seq * ?SelectedPointsEncoded: EncodedTypedArray * ?Increasing: FinanceMarker * ?Decreasing: FinanceMarker * ?HoverLabel: Hoverlabel * ?XCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;g :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Contour: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?X0: #IConvertible * ?DX: #IConvertible * ?XType: CoordinateType * ?Y: &#39;e seq * ?MultiY: &#39;e seq seq * ?YEncoded: EncodedTypedArray * ?Y0: #IConvertible * ?DY: #IConvertible * ?YType: CoordinateType * ?Z: #seq&lt;&#39;i&gt; seq * ?ZEncoded: EncodedTypedArray * ?Text: &#39;j * ?MultiText: &#39;j seq * ?MultiTextEncoded: EncodedTypedArray * ?TextTemplate: string * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Line: Line * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?ZMax: #IConvertible * ?ZMid: #IConvertible * ?ZMin: #IConvertible * ?AutoContour: bool * ?ConnectGaps: bool * ?Contours: Contours * ?FillColor: Color * ?HoverLabel: Hoverlabel * ?HoverOnGaps: bool * ?NContours: int * ?Transpose: bool * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Funnel: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?X0: #IConvertible * ?DX: #IConvertible * ?Y: &#39;e seq * ?MultiY: &#39;e seq seq * ?YEncoded: EncodedTypedArray * ?Y0: #IConvertible * ?DY: #IConvertible * ?Width: float * ?Offset: float * ?Text: &#39;h * ?MultiText: &#39;h seq * ?MultiTextEncoded: EncodedTypedArray * ?TextPosition: TextPosition * ?MultiTextPosition: TextPosition seq * ?TextTemplate: string * ?MultiTextTemplate: string seq * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?AlignmentGroup: string * ?OffsetGroup: string * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?Marker: Marker * ?TextAngle: float * ?TextFont: Font * ?TextInfo: TextInfo * ?SelectedPoints: #IConvertible seq * ?SelectedPointsEncoded: EncodedTypedArray * ?ClipOnAxis: bool * ?Connector: FunnelConnector * ?Constraintext: ConstrainText * ?HoverLabel: Hoverlabel * ?InsideTextAnchor: InsideTextAnchor * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?UIRevision: string -&gt; (&#39;o -&gt; &#39;o) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;h :&gt; IConvertible and &#39;o :&gt; Trace)
+  static member Heatmap: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?X0: #IConvertible * ?DX: #IConvertible * ?XType: CoordinateType * ?XGap: int * ?Y: &#39;e seq * ?MultiY: &#39;e seq seq * ?YEncoded: EncodedTypedArray * ?Y0: #IConvertible * ?DY: #IConvertible * ?YType: CoordinateType * ?YGap: int * ?Z: #seq&lt;&#39;i&gt; seq * ?ZEncoded: EncodedTypedArray * ?Text: &#39;j * ?MultiText: &#39;j seq * ?MultiTextEncoded: EncodedTypedArray * ?TextTemplate: string * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?XPeriod: #IConvertible * ?XPeriodAlignment: PeriodAlignment * ?XPeriod0: #IConvertible * ?YPeriod: #IConvertible * ?YPeriodAlignment: PeriodAlignment * ?YPeriod0: #IConvertible * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?ZMax: #IConvertible * ?ZMid: #IConvertible * ?ZMin: #IConvertible * ?ZSmooth: SmoothAlg * ?ConnectGaps: bool * ?HoverLabel: Hoverlabel * ?HoverOnGaps: bool * ?Transpose: bool * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;i :&gt; IConvertible and &#39;j :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?Y: &#39;c seq * ?MultiY: &#39;c seq seq * ?YEncoded: EncodedTypedArray * ?Text: &#39;d * ?MultiText: &#39;d seq * ?MultiTextEncoded: EncodedTypedArray * ?TextPosition: TextPosition * ?TextTemplate: string * ?MultiTextTemplate: string seq * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?Orientation: Orientation * ?HistFunc: HistFunc * ?HistNorm: HistNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?NBinsX: int * ?NBinsY: int * ?AutoBinX: bool * ?AutoBinY: bool * ?BinGroup: string * ?XBins: Bins * ?YBins: Bins * ?Marker: Marker * ?TextAngle: float * ?TextFont: Font * ?Line: Line * ?XError: Error * ?YError: Error * ?SelectedPoints: #IConvertible seq * ?SelectedPointsEncoded: EncodedTypedArray * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?ClipOnAxis: bool * ?Constraintext: ConstrainText * ?Cumulative: Cumulative * ?HoverLabel: Hoverlabel * ?InsideTextAnchor: InsideTextAnchor * ?InsideTextFont: Font * ?OutsideTextFont: Font * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;d :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram2D: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?XGap: int * ?Y: &#39;c seq * ?MultiY: &#39;c seq seq * ?YEncoded: EncodedTypedArray * ?YGap: int * ?Z: #seq&lt;&#39;e&gt; seq * ?ZEncoded: EncodedTypedArray * ?TextTemplate: string * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?HistFunc: HistFunc * ?HistNorm: HistNorm * ?NBinsX: int * ?NBinsY: int * ?AutoBinX: bool * ?AutoBinY: bool * ?BinGroup: string * ?XBinGroup: string * ?XBins: Bins * ?YBinGroup: string * ?YBins: Bins * ?Marker: Marker * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?ZMin: float * ?ZMid: float * ?ZMax: float * ?ZSmooth: SmoothAlg * ?HoverLabel: Hoverlabel * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;T :&gt; Trace)
+  static member Histogram2DContour: ?Name: string * ?Visible: Visible * ?ShowLegend: bool * ?Legend: SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Ids: #IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?XEncoded: EncodedTypedArray * ?Y: &#39;c seq * ?MultiY: &#39;c seq seq * ?YEncoded: EncodedTypedArray * ?Z: #seq&lt;&#39;e&gt; seq * ?ZEncoded: EncodedTypedArray * ?TextTemplate: string * ?HoverInfo: HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: LinearAxisId * ?YAxis: LinearAxisId * ?ColorAxis: SubPlotId * ?HistFunc: HistFunc * ?HistNorm: HistNorm * ?NBinsX: int * ?NBinsY: int * ?AutoBinX: bool * ?AutoBinY: bool * ?BinGroup: string * ?XBinGroup: string * ?XBins: Bins * ?YBinGroup: string * ?YBins: Bins * ?Marker: Marker * ?Line: Line * ?TextFont: Font * ?ColorBar: ColorBar * ?AutoColorScale: bool * ?ColorScale: Colorscale * ?ShowScale: bool * ?ReverseScale: bool * ?ZAuto: bool * ?ZHoverFormat: string * ?Zmin: float * ?Zmid: float * ?Zmax: float * ?AutoContour: bool * ?Contours: Contours * ?HoverLabel: Hoverlabel * ?NContours: int * ?XCalendar: Calendar * ?YCalendar: Calendar * ?UIRevision: string -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; IConvertible and &#39;c :&gt; IConvertible and &#39;e :&gt; IConvertible and &#39;T :&gt; Trace)
+  ...<br /><em>&lt;summary&gt;
+ Create various functions for applying 2D chart styles to traces
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; Trace2DStyle</div>
+<div popover class="fsdocs-tip" id="fs44">static member Trace2DStyle.Scatter: ?Name: string * ?Visible: StyleParam.Visible * ?ShowLegend: bool * ?Legend: StyleParam.SubPlotId * ?LegendRank: int * ?LegendGroup: string * ?LegendGroupTitle: Title * ?Opacity: float * ?Mode: StyleParam.Mode * ?Ids: #System.IConvertible seq * ?IdsEncoded: EncodedTypedArray * ?X: &#39;b seq * ?MultiX: &#39;b seq seq * ?X0: #System.IConvertible * ?DX: #System.IConvertible * ?Y: &#39;e seq * ?MultiY: &#39;e seq seq * ?Y0: #System.IConvertible * ?DY: #System.IConvertible * ?Text: &#39;h * ?MultiText: &#39;h seq * ?MultiTextEncoded: EncodedTypedArray * ?TextPosition: StyleParam.TextPosition * ?MultiTextPosition: StyleParam.TextPosition seq * ?TextTemplate: string * ?MultiTextTemplate: string seq * ?HoverText: string * ?MultiHoverText: string seq * ?HoverInfo: StyleParam.HoverInfo * ?HoverTemplate: string * ?MultiHoverTemplate: string seq * ?XHoverFormat: string * ?YHoverFormat: string * ?Meta: string * ?CustomData: #System.IConvertible seq * ?CustomDataEncoded: EncodedTypedArray * ?XAxis: StyleParam.LinearAxisId * ?YAxis: StyleParam.LinearAxisId * ?Orientation: StyleParam.Orientation * ?GroupNorm: StyleParam.GroupNorm * ?AlignmentGroup: string * ?OffsetGroup: string * ?StackGroup: string * ?XPeriod: #System.IConvertible * ?XPeriodAlignment: StyleParam.PeriodAlignment * ?XPeriod0: #System.IConvertible * ?YPeriod: #System.IConvertible * ?YPeriodAlignment: StyleParam.PeriodAlignment * ?YPeriod0: #System.IConvertible * ?Marker: Marker * ?Line: Line * ?TextFont: Font * ?XError: Error * ?YError: Error * ?SelectedPoints: #System.IConvertible seq * ?SelectedPointsEncoded: EncodedTypedArray * ?Selected: TraceSelection * ?Unselected: TraceSelection * ?ClipOnAxis: bool * ?ConnectGaps: bool * ?Fill: StyleParam.Fill * ?FillColor: Color * ?FillPattern: Pattern * ?HoverLabel: LayoutObjects.Hoverlabel * ?HoverOn: StyleParam.HoverOn * ?StackGaps: StyleParam.StackGaps * ?XCalendar: StyleParam.Calendar * ?YCalendar: StyleParam.Calendar * ?UIRevision: string * ?XEncoded: EncodedTypedArray * ?YEncoded: EncodedTypedArray -&gt; (&#39;T -&gt; &#39;T) (requires &#39;b :&gt; System.IConvertible and &#39;e :&gt; System.IConvertible and &#39;h :&gt; System.IConvertible and &#39;T :&gt; Trace)</div>
+<div popover class="fsdocs-tip" id="fs45">union case StyleParam.Mode.Lines_Markers: StyleParam.Mode</div>
+<div popover class="fsdocs-tip" id="fs46">Multiple items<br />type Error =
+  inherit DynamicObj
+  new: unit -&gt; Error
+  static member init: ?Visible: bool * ?Type: ErrorType * ?Symmetric: bool * ?Array: #IConvertible seq * ?Arrayminus: #IConvertible seq * ?ArrayEncoded: EncodedTypedArray * ?ArrayminusEncoded: EncodedTypedArray * ?Value: float * ?Valueminus: float * ?Traceref: int * ?Tracerefminus: int * ?Copy_ystyle: bool * ?Color: Color * ?Thickness: float * ?Width: float -&gt; Error
+  static member style: ?Visible: bool * ?Type: ErrorType * ?Symmetric: bool * ?Array: #IConvertible seq * ?Arrayminus: #IConvertible seq * ?ArrayEncoded: EncodedTypedArray * ?ArrayminusEncoded: EncodedTypedArray * ?Value: float * ?Valueminus: float * ?Traceref: int * ?Tracerefminus: int * ?Copy_ystyle: bool * ?Color: Color * ?Thickness: float * ?Width: float -&gt; (Error -&gt; Error)<br /><em>&lt;summary&gt;
+ Error type inherits from dynamic object
+&lt;/summary&gt;</em><br /><br />--------------------<br />new: unit -&gt; Error</div>
+<div popover class="fsdocs-tip" id="fs47">static member Error.init: ?Visible: bool * ?Type: StyleParam.ErrorType * ?Symmetric: bool * ?Array: #System.IConvertible seq * ?Arrayminus: #System.IConvertible seq * ?ArrayEncoded: EncodedTypedArray * ?ArrayminusEncoded: EncodedTypedArray * ?Value: float * ?Valueminus: float * ?Traceref: int * ?Tracerefminus: int * ?Copy_ystyle: bool * ?Color: Color * ?Thickness: float * ?Width: float -&gt; Error</div>
+<div popover class="fsdocs-tip" id="fs48">type ErrorType =
+  | Percent
+  | Constant
+  | Sqrt
+  | Data
+  member Convert: unit -&gt; objnull
+  override ToString: unit -&gt; string
+  static member convert: (ErrorType -&gt; objnull)
+  static member toString: (ErrorType -&gt; string)</div>
+<div popover class="fsdocs-tip" id="fs49">union case StyleParam.ErrorType.Data: StyleParam.ErrorType</div>
+<div popover class="fsdocs-tip" id="fs50">static member GenericChart.ofTraceObject: useDefaults: bool -&gt; trace: Trace -&gt; GenericChart</div>
+<div popover class="fsdocs-tip" id="fs51">static member Chart.withDisplayOptions: displayOpts: DisplayOptions -&gt; (GenericChart -&gt; GenericChart)</div>
+<div popover class="fsdocs-tip" id="fs52">Multiple items<br />type DisplayOptions =
+  inherit DynamicObj
+  new: unit -&gt; DisplayOptions
+  static member addAdditionalHeadTags: additionalHeadTags: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member addChartDescription: description: XmlNode list -&gt; (DisplayOptions -&gt; DisplayOptions)
+  static member combine: first: DisplayOptions -&gt; second: DisplayOptions -&gt; DisplayOptions
+  static member getAdditionalHeadTags: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getChartDescription: displayOpts: DisplayOptions -&gt; XmlNode list
+  static member getDocumentCharset: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentDescription: displayOpts: DisplayOptions -&gt; string
+  static member getDocumentFavicon: displayOpts: DisplayOptions -&gt; XmlNode
+  ...<br /><br />--------------------<br />new: unit -&gt; DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs53">static member DisplayOptions.init: ?DocumentTitle: string * ?DocumentCharset: string * ?DocumentDescription: string * ?DocumentFavicon: Giraffe.ViewEngine.HtmlElements.XmlNode * ?AdditionalHeadTags: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?ChartDescription: Giraffe.ViewEngine.HtmlElements.XmlNode list * ?PlotlyJSReference: PlotlyJSReference -&gt; DisplayOptions</div>
+<div popover class="fsdocs-tip" id="fs54">union case PlotlyJSReference.NoReference: PlotlyJSReference</div>
+<div popover class="fsdocs-tip" id="fs55">val displayOptions: obj</div>
+<div popover class="fsdocs-tip" id="fs56">val standaloneHtml: obj</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Encoded-typed-arrays">
+      Encoded typed arrays
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Table-of-contents">
+      Table of contents
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#What-are-encoded-typed-arrays">
+      What are encoded typed arrays?
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Creating-EncodedTypedArray-values">
+      Creating EncodedTypedArray values
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-with-Scatter">
+      Using encoded arrays with Scatter
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-with-Bar-and-Column-charts">
+      Using encoded arrays with Bar and Column charts
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-with-Heatmap">
+      Using encoded arrays with Heatmap
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-with-3D-charts">
+      Using encoded arrays with 3D charts
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-with-statistical-charts">
+      Using encoded arrays with statistical charts
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-for-error-bars-and-trace-level-styling">
+      Using encoded arrays for error bars and trace-level styling
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-encoded-arrays-from-C">
+      Using encoded arrays from C#
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Nested-data-and-precedence">
+      Nested data and precedence
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Supported-scope-and-limitations">
+      Supported scope and limitations
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Loading-Virtual-WebGL">
+      Loading Virtual-WebGL
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://plotly.net/content/fsdocs-tips.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-details-toggle.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-theme.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-search.js"></script>
+<script type="module" src="https://plotly.net/content/fsdocs-copy-button.js"></script>
+
+</body>
+</html>
