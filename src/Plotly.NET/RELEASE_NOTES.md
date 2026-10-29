@@ -8,6 +8,8 @@ This version [removes C# interop from the core F# Plotly.NET library](https://gi
 
 As a consequence, the html dsl dependency switches back from `Giraffe.ViewEngine.StrongName 2.0.0-alpha1` to upstream `Giraffe.ViewEngine 1.4.0`. The namespace is unchanged, so user code is not affected.
 
+- [#504](https://github.com/plotly/Plotly.NET/issues/504): Upgrade DynamicObj to `[8.0.0, 9.0.0)`, raising its transitive FSharp.Core minimum to 10.1.300. No Plotly.NET source adaptations were required. The upgrade includes revised hashing and equality for custom properties containing F# option values; ordinary optional chart arguments are unwrapped before storage.
+
 - Bump bundled plotly.js to **2.28.0**
 
 - [#441](https://github.com/plotly/Plotly.NET/issues/441): **Encoded typed array support** — plotly.js 2.28 introduced a base64 representation for numeric arrays. Plotly.NET supports it for selected trace fields and chart constructors:
