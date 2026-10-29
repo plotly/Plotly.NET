@@ -25,6 +25,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://plotly.net</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>visualization charting plotly fsharp csharp</PackageTags>
     <RepositoryUrl>https://github.com/plotly/Plotly.NET/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -43,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RELEASE_NOTES.md" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
     <EmbeddedResource Include="plotly-2.28.0.min.js" />
     <EmbeddedResource Include="plotly-2.28.0.min.js.LICENSE.txt" />

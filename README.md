@@ -57,10 +57,10 @@ You can get all Plotly.NET packages via nuget:
 
 | Package Name| Nuget |
 |---|---|
-| Plotly.NET | [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/) |
-| Plotly.NET.Interactive | [![](https://img.shields.io/nuget/vpre/Plotly.NET.Interactive)](https://www.nuget.org/packages/Plotly.NET.Interactive/) |
-| Plotly.NET.ImageExport | [![](https://img.shields.io/nuget/vpre/Plotly.NET.ImageExport)](https://www.nuget.org/packages/Plotly.NET.ImageExport/) |
-| Plotly.NET.CSharp | [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/) |
+| [Plotly.NET](src/Plotly.NET/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/) |
+| [Plotly.NET.Interactive](src/Plotly.NET.Interactive/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.Interactive)](https://www.nuget.org/packages/Plotly.NET.Interactive/) |
+| [Plotly.NET.ImageExport](src/Plotly.NET.ImageExport/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.ImageExport)](https://www.nuget.org/packages/Plotly.NET.ImageExport/) |
+| [Plotly.NET.CSharp](src/Plotly.NET.CSharp/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/) |
 
 # Documentation
 
