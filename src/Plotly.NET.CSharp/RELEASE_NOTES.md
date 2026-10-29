@@ -1,4 +1,4 @@
-### 0.14.0 - TBD
+### 0.14.0 - October 29 2026
 
 - Add direct encoded-array overloads for `Scatter`, `Bar`, `StackedBar`, `Column`, `StackedColumn`, `Heatmap`, `Histogram2D`, and `Scatter3D`, reusing `Plotly.NET.EncodedTypedArray`.
 - Add `ParallelCoord` / `ParallelCategories` conveniences accepting label/encoded-value pairs. Existing SPLOM and Sankey wrappers also accept shared dimension/node/link objects containing encoded values.

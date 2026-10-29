@@ -1,4 +1,4 @@
-### 6.0.0 - TBD
+### 6.0.0 - October 29 2026
 
 This version [removes C# interop from the core F# Plotly.NET library](https://github.com/plotly/Plotly.NET/issues/457), offloading those implementations directly to the native C# lib Plotly.NET.CSharp:
 

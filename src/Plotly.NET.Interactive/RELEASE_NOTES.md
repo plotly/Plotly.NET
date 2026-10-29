@@ -1,4 +1,4 @@
-## 6.0.0 - TBD
+## 6.0.0 - October 29 2026
 
 - Update .NET Interactive references to `1.0.0-beta.26120.1`
 - **Breaking:** Plotly.NET.Interactive assemblies are no longer strong-named. See the Plotly.NET 6.0.0 release notes for context and migration options.
