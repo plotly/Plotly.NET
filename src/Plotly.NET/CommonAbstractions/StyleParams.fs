@@ -3056,7 +3056,7 @@ module StyleParam =
         member this.Convert() =
             this |> MarkerSymbol.toInteger |> string |> box
 
-    /// Determines the line shape. With "spline" the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
+    /// Determines the line shape. "spline" uses spline interpolation; "hspline" draws horizontal spline paths in parallel categories plots. "hv", "vh", "hvh", and "vhv" are step-wise shapes. Supported values depend on the trace type.
     [<RequireQualifiedAccess>]
     type Shape =
         | Linear
@@ -3065,6 +3065,7 @@ module StyleParam =
         | Vh
         | Hvh
         | Vhv
+        | HSpline
 
         static member toString =
             function
@@ -3074,6 +3075,7 @@ module StyleParam =
             | Vh -> "vh"
             | Hvh -> "hvh"
             | Vhv -> "vhv"
+            | HSpline -> "hspline"
 
         static member convert = Shape.toString >> box
         override this.ToString() = this |> Shape.toString

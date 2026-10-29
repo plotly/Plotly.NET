@@ -125,6 +125,10 @@ module ParallelCoord =
                 testCase "Parallel coordinates styled layout" ( fun () ->
                     emptyLayout ParallelCoord.``Styled parallel coordinates chart``
                 );
+                testCase "Parallel coordinates tick font" ( fun () ->
+                    """var data = [{"type":"parcoords","dimensions":[{"label":"A","values":[1,2],"axis":{}},{"label":"B","values":[3,4],"axis":{}}],"line":{},"tickfont":{"family":"Arial","size":14.0,"color":"purple"}}];"""
+                    |> chartGeneratedContains ParallelCoord.``Parallel coordinates with tick font``
+                );
             ]
         ]
 
@@ -146,6 +150,10 @@ module ParallelCategories =
                 );
                 testCase "Parallel categories styled layout" ( fun () ->
                     emptyLayout ParallelCategories.``Styled parallel categories chart``
+                );
+                testCase "Parallel categories horizontal splines and tick font" ( fun () ->
+                    """var data = [{"type":"parcats","dimensions":[{"label":"A","values":["a","b"],"axis":{}},{"label":"B","values":["c","d"],"axis":{}}],"line":{"shape":"hspline"},"tickfont":{"family":"Arial","size":14.0,"color":"purple"}}];"""
+                    |> chartGeneratedContains ParallelCategories.``Parallel categories with horizontal splines and tick font``
                 );
             ]
         ]

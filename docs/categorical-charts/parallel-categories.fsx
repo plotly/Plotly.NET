@@ -63,6 +63,7 @@ parcats |> GenericChart.toChartHTML
 ## More styled example
 
 This example shows the usage of some of the styling options using `Chart.ParallelCategories`.
+`LineShape = StyleParam.Shape.HSpline` draws horizontal spline paths between categories, while `TickFont` controls the category tick labels.
 For even more styling control, use the respective TraceStyle function `TraceDomainStyle.ParallelCategories`
 *)
 
@@ -76,6 +77,8 @@ let parcatsStyled =
         dimensions = dims,
         LineColor = Color.fromColorScaleValues [ 0; 1; 2; 2; 1; 1; 0; 0 ], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
         LineColorScale = StyleParam.Colorscale.Viridis,
+        LineShape = StyleParam.Shape.HSpline,
+        TickFont = Font.init(Family = StyleParam.FontFamily.Arial, Size = 14.),
         BundleColors = false
     )
 

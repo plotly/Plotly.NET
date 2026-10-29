@@ -674,7 +674,7 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalProperty   "labelfont"        LabelFont          
             |> DynObj.withOptionalProperty   "labelside"        LabelSide          
             |> DynObj.withOptionalProperty   "rangefont"        RangeFont          
-            |> DynObj.withOptionalProperty   "tickfont "        TickFont           
+            |> DynObj.withOptionalProperty   "tickfont"         TickFont
             |> DynObj.withOptionalProperty   "uirevision"       UIRevision         
 
     /// <summary>
@@ -745,7 +745,7 @@ type TraceDomainStyle() =
             |> DynObj.withOptionalPropertyBy             "sortpaths"       SortPaths                           StyleParam.SortAlgorithm.convert
             |> DynObj.withOptionalPropertyBy             "hoveron"         Hoveron                             StyleParam.HoverOn.convert
             |> DynObj.withOptionalProperty               "labelfont"       LabelFont                           
-            |> DynObj.withOptionalProperty               "tickfont "       TickFont                            
+            |> DynObj.withOptionalProperty               "tickfont"        TickFont
             |> DynObj.withOptionalProperty               "uirevision"      UIRevision                          
 
     /// <summary>

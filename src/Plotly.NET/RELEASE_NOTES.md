@@ -12,6 +12,8 @@ As a consequence, the html dsl dependency switches back from `Giraffe.ViewEngine
 
 - Bump bundled plotly.js to **2.28.0**
 
+- [#477](https://github.com/plotly/Plotly.NET/issues/477): Fix tick-font serialization for parallel categories and parallel coordinates charts, and add `StyleParam.Shape.HSpline` for horizontal spline paths in parallel categories plots.
+
 - [#441](https://github.com/plotly/Plotly.NET/issues/441): **Encoded typed array support** — plotly.js 2.28 introduced a base64 representation for numeric arrays. Plotly.NET supports it for selected trace fields and chart constructors:
 
   - New `EncodedTypedArray` type (in `Plotly.NET`) carrying a base64 payload (`bdata`), a dtype tag (`dtype`), and an optional shape for multi-dimensional data. Supported dtypes: `Float64`, `Float32`, `Int32`, `UInt32`, `Int16`, `UInt16`, `Int8`, `UInt8`, `UInt8Clamped`.

@@ -187,6 +187,13 @@ module ParallelCoord =
             UseDefaults = false
         )
 
+    let ``Parallel coordinates with tick font`` =
+        Chart.ParallelCoord(
+            keyValues = [ "A", [ 1; 2 ]; "B", [ 3; 4 ] ],
+            TickFont = Font.init(Family = StyleParam.FontFamily.Arial, Size = 14., Color = Color.fromString "purple"),
+            UseDefaults = false
+        )
+
 module ParallelCategories = 
 
     let ``Simple parallel categories chart`` =
@@ -216,6 +223,14 @@ module ParallelCategories =
             LineColor = Color.fromColorScaleValues [0; 1; 2; 2; 1; 1; 0; 0], // These values map to the last category axis, meaning [AAA => 0; AAB = 1; AAC => 2]
             LineColorScale = StyleParam.Colorscale.Viridis,
             BundleColors = false,
+            UseDefaults = false
+        )
+
+    let ``Parallel categories with horizontal splines and tick font`` =
+        Chart.ParallelCategories(
+            keyValues = [ "A", [ "a"; "b" ]; "B", [ "c"; "d" ] ],
+            LineShape = StyleParam.Shape.HSpline,
+            TickFont = Font.init(Family = StyleParam.FontFamily.Arial, Size = 14., Color = Color.fromString "purple"),
             UseDefaults = false
         )
 
