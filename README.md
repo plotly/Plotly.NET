@@ -5,7 +5,7 @@
 [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
 [![](https://img.shields.io/nuget/dt/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/)
 [![Discord](https://img.shields.io/discord/836161044501889064?color=purple&label=Join%20our%20Discord%21&logo=discord&logoColor=white)](https://discord.gg/k3kUtFY8DB)
-![](https://img.shields.io/badge/supported%20plotly.js%20version-2.27.1-blue)
+![](https://img.shields.io/badge/supported%20plotly.js%20version-2.28.0-blue)
 [![DOI](https://img.shields.io/badge/DOI-10.12688%2Ff1000research.123971.1-brightgreen)](https://doi.org/10.12688/f1000research.123971.1)
 
 <div align="center">
