@@ -11,10 +11,14 @@ open Helpers
 open BasicTasks
 open TestTasks
 open PackageTasks
+open VersoTasks
 open DocumentationTasks
 open ReleaseTasks
 
 initializeContext ()
+
+// Reference the independent integration module so its targets are registered.
+let private _versoIntegration = runVersoIntegrationTests
 
 open BasicTasks
 

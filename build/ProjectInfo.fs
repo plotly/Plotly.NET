@@ -83,6 +83,10 @@ let ImageExportTestProject = ProjectInfo.create("ImageExportTests", "tests/Exten
 let CSharpTestProject = ProjectInfo.create("CSharpTests", "tests/ExtensionLibsTests/CSharpTests/CSharpTests.csproj")
 let VersoTestProject = ProjectInfo.create("VersoTests", "tests/ExtensionLibsTests/VersoTests/VersoTests.fsproj")
 let VersoBrowserTestProject = ProjectInfo.create("VersoBrowserTests", "tests/ExtensionLibsTests/VersoBrowserTests/VersoBrowserTests.fsproj")
+let VersoIntegrationTestProject = ProjectInfo.create("VersoIntegrationTests", "tests/VersoTests/Integration/VersoIntegrationTests.fsproj")
+
+// Real-host tests have their own target because they install and launch the pinned Verso CLI.
+let testProjectsVersoIntegration = [ VersoIntegrationTestProject ]
 
 ///
 let testProjectsExtensionsLibs = [

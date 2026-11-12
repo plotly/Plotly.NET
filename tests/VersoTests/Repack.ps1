@@ -1,11 +1,13 @@
-# Clean up the previously-cached NuGet packages.
-# Lower-case is intentional (that's how nuget stores those packages).
-Remove-Item -Recurse ~\.nuget\packages\plotly.net.verso* -Force
-Remove-Item -Recurse ~\.nuget\packages\plotly.net -Force -ErrorAction SilentlyContinue
-
-# build and pack Plotly.NET + Plotly.NET.Verso
-cd ../../
-./build.cmd
-dotnet pack src/Plotly.NET/Plotly.NET.fsproj -tl -c Release -p:PackageVersion=6.0.0 -o "./tests/VersoTests/pkg"
-dotnet pack src/Plotly.NET.Verso/Plotly.NET.Verso.fsproj -tl -c Release -p:PackageVersion=0.0.1-dev -o "./tests/VersoTests/pkg"
-cd tests/VersoTests
+# Prepare the local feed and a portable smoke notebook through the repository build.
+# No package caches are deleted. Run RunVersoIntegrationTests for isolated host testing.
+$ErrorActionPreference = 'Stop'
+$repository = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
+Push-Location -LiteralPath $repository
+try {
+    dotnet run --project ./build/build.fsproj -- PackVersoIntegrationPackages
+    if ($LASTEXITCODE -ne 0) { throw "Package preparation failed with exit code $LASTEXITCODE." }
+    Write-Host "Local smoke notebook: $(Join-Path $PSScriptRoot 'artifacts/test.verso')"
+}
+finally {
+    Pop-Location
+}
