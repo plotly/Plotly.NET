@@ -1,4 +1,4 @@
-## 1.0.0 - TBD
+## 1.0.0 - November 12 2026
 
 - Initial release of Plotly.NET.Verso
 - Renders GenericChart objects as interactive Plotly charts in Verso notebooks
