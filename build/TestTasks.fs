@@ -29,6 +29,9 @@ let buildTestsCore = createTestBuildTask "BuildTestsCore" [clean; build] (testBa
 
 let buildTestsExtensionsLibs = createTestBuildTask "BuildTestsExtensionsLibs" [clean; build] (testBaseProjects @ testProjectsExtensionsLibs)
 
+let private testArguments (project: ProjectInfo) =
+    let results = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(project.ProjFile), "TestResults")
+    $"-tl --logger \"trx;LogFileName={project.Name}.trx\" --results-directory \"{results}\""
 
 let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: ProjectInfo list) =
     BuildTask.create name deps {
@@ -42,7 +45,7 @@ let createRunTestTask (name: string) (deps: BuildTask.TaskInfo list) (projects: 
                         NoBuild = true
                         MSBuildParams = { testParams.MSBuildParams with DisableInternalBinLog = true }
                     }
-                    |> DotNet.Options.withCustomParams (Some "-tl")
+                    |> DotNet.Options.withCustomParams (Some (testArguments testProjectInfo))
                 )
                 testProjectInfo.ProjFile
         )
@@ -61,7 +64,7 @@ let createRunTestFastTask (name: string) (projects: ProjectInfo list) =
                         Configuration = DotNet.BuildConfiguration.fromString configuration
                         MSBuildParams = { testParams.MSBuildParams with DisableInternalBinLog = true }
                     }
-                    |> DotNet.Options.withCustomParams (Some "-tl")
+                    |> DotNet.Options.withCustomParams (Some (testArguments testProjectInfo))
                 )
                 testProjectInfo.ProjFile
         )
@@ -93,3 +96,28 @@ let runImageExportTestsFast = createRunSingleTestProjectFastTask ImageExportTest
 
 /// runs the CSharpTests project via incremental `dotnet test`, without cleaning first.
 let runCSharpTestsFast = createRunSingleTestProjectFastTask CSharpTestProject
+
+/// Focused Verso formatter/assembly-isolation tests without cleaning.
+let runVersoTestsFast = createRunSingleTestProjectFastTask VersoTestProject
+
+/// Focused deterministic Chromium rendering tests without cleaning.
+let runVersoBrowserTestsFast = createRunSingleTestProjectFastTask VersoBrowserTestProject
+
+let buildVersoTests = createTestBuildTask "BuildVersoTests" [clean; build] (testBaseProjects @ [VersoTestProject])
+let buildVersoBrowserTests = createTestBuildTask "BuildVersoBrowserTests" [clean; build] [VersoBrowserTestProject]
+let runVersoTests = createRunTestTask "RunVersoTests" [buildVersoTests] [VersoTestProject]
+let runVersoBrowserTests = createRunTestTask "RunVersoBrowserTests" [buildVersoBrowserTests] [VersoBrowserTestProject]
+
+/// Provision Chromium explicitly in CI; the same pinned browser is used by local tests.
+let prepareVersoBrowser =
+    BuildTask.create "PrepareVersoBrowser" [] {
+        DotNet.build
+            (fun p ->
+                { p with
+                    Configuration = DotNet.BuildConfiguration.fromString configuration
+                    MSBuildParams = { p.MSBuildParams with DisableInternalBinLog = true } })
+            VersoBrowserTestProject.ProjFile
+        let assembly = $"tests/ExtensionLibsTests/VersoBrowserTests/bin/{configuration}/net10.0/VersoBrowserTests.dll"
+        let result = DotNet.exec id assembly "--install-browser"
+        if result.ExitCode <> 0 then failwith "Chromium provisioning failed."
+    }

@@ -11,10 +11,14 @@ open Helpers
 open BasicTasks
 open TestTasks
 open PackageTasks
+open VersoTasks
 open DocumentationTasks
 open ReleaseTasks
 
 initializeContext ()
+
+// Reference the independent integration module so its targets are registered.
+let private _versoIntegration = runVersoIntegrationTests
 
 open BasicTasks
 
@@ -33,6 +37,7 @@ let sourceFiles =
     !! "src/Plotly.NET/**/*.fs"
     ++ "src/Plotly.NET.ImageExport/**/*.fs"
     ++ "src/Plotly.NET.Interactive/**/*.fs"
+    ++ "src/Plotly.NET.Verso/**/*.fs"
     ++ "build/*.fs"
     -- "**/obj/**/*.*"
     -- "**/bin/**/*.*"

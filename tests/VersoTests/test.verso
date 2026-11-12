@@ -1,0 +1,44 @@
+{
+  "verso": "1.0",
+  "metadata": {
+    "title": "Plotly.NET.Verso smoke test",
+    "defaultKernel": "fsharp",
+    "activeLayout": "notebook"
+  },
+  "cells": [
+    {
+      "id": "a43be562-b252-4bd2-a8d3-217b8cfc9080",
+      "type": "markdown",
+      "source": "# Plotly.NET.Verso smoke test\nRun `PackVersoIntegrationPackages` and open the generated `artifacts/test.verso` to test local packages before publication. This portable notebook targets package 1.0.0. Run all cells, rerun a chart, save, close, and reopen. The final chart embeds plotly.js and works offline after the host has initialized.",
+      "outputs": []
+    },
+    {
+      "id": "f4c2c0b5-336c-475c-8c35-8325e2a351fa",
+      "type": "code",
+      "language": "fsharp",
+      "source": "#!extension Plotly.NET.Verso 1.0.0\nopen Plotly.NET",
+      "outputs": []
+    },
+    {
+      "id": "cae43c1b-3c82-42ac-b27f-9ea30e196952",
+      "type": "code",
+      "language": "fsharp",
+      "source": "Chart.Line([1;2;3], [4;6;5], UseDefaults = false)",
+      "outputs": []
+    },
+    {
+      "id": "0d39abb6-7857-446c-9d02-b561a28ea12d",
+      "type": "code",
+      "language": "fsharp",
+      "source": "Chart.combine [ Chart.Line([1;2;3], [1;2;3], UseDefaults = false); Chart.Point([1;2;3], [3;1;2], UseDefaults = false) ]",
+      "outputs": []
+    },
+    {
+      "id": "ce58441a-667c-4ba8-a786-480fd4cf5854",
+      "type": "code",
+      "language": "fsharp",
+      "source": "Chart.Line([1;2;3], [4;6;5], UseDefaults = false)\n|> Chart.withDisplayOptions (DisplayOptions.init(PlotlyJSReference = Full))",
+      "outputs": []
+    }
+  ]
+}
