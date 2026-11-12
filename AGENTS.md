@@ -90,7 +90,11 @@ For faster local iteration, prefer the FAKE `*Fast` test targets. These skip the
 ./build.cmd RunTestsExtensionLibsFast
 ./build.cmd RunImageExportTestsFast
 ./build.cmd RunCSharpTestsFast
+./build.cmd RunVersoTestsFast
+./build.cmd RunVersoBrowserTestsFast
 ```
+
+Verso's packaged CLI/web-host smoke uses `RunVersoIntegrationTests` separately from the regular unit/browser aggregate. `PrepareVersoBrowser` provisions the pinned Chromium revision. See `tests/README.md` for cache isolation and the VS Code release smoke.
 
 Use the fast targets during implementation, but **always run a full `./build.cmd runTestsAll` before committing changes** so the clean end-to-end pipeline is exercised at least once.
 

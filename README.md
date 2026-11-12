@@ -48,17 +48,20 @@ In short, Plotly.NET consists of multiple API layers and packages:
 
 - `Plotly.NET.Interactive` - This package provides interactive formatting extensions for .NET interactive notebooks.
 
+- `Plotly.NET.Verso` - Inline chart formatting for Verso notebooks, including embedded offline charts. See the [Verso guide](src/Plotly.NET.Verso/README.md) for registration and migration from Polyglot.
+
 - `Plotly.NET.ImageExport` - This package provides extensions for Plotly.NET to render charts as static images programmatically.
 
 - `Plotly.NET.CSharp` - This package provides an idiomatic C# API. Note that you can use the core API in C#, this package just removes some friction at some places.
 # Installation
 
-You can get all Plotly.NET packages via nuget:
+Published Plotly.NET packages are available via NuGet:
 
 | Package Name| Nuget |
 |---|---|
 | [Plotly.NET](src/Plotly.NET/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET)](https://www.nuget.org/packages/Plotly.NET/) |
 | [Plotly.NET.Interactive](src/Plotly.NET.Interactive/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.Interactive)](https://www.nuget.org/packages/Plotly.NET.Interactive/) |
+| [Plotly.NET.Verso](src/Plotly.NET.Verso/README.md) | Initial release; [local testing before publication](tests/README.md#verso-tests) |
 | [Plotly.NET.ImageExport](src/Plotly.NET.ImageExport/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.ImageExport)](https://www.nuget.org/packages/Plotly.NET.ImageExport/) |
 | [Plotly.NET.CSharp](src/Plotly.NET.CSharp/README.md) | [![](https://img.shields.io/nuget/vpre/Plotly.NET.CSharp)](https://www.nuget.org/packages/Plotly.NET.CSharp/) |
 
@@ -69,6 +72,8 @@ You can get all Plotly.NET packages via nuget:
 ### F#
 
 In F# projects, just add the `Plotly.NET` package to your project and you are ready to go!
+
+For **Verso notebooks**, use [Plotly.NET.Verso](src/Plotly.NET.Verso/README.md) and its explicit extension-registration step. `Plotly.NET.Interactive` below is the adapter for .NET Interactive / Polyglot Notebooks.
 
 <details>
 <summary> 📖 Polyglot Notebook 📖 Quick start</summary>

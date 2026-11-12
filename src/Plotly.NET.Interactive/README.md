@@ -2,6 +2,8 @@
 
 Display [Plotly.NET](https://plotly.net/) charts directly in .NET Interactive notebooks, including Polyglot Notebooks. This package registers an HTML formatter for chart values, so charts appear inline with zooming, panning, and hover information.
 
+**Moving to Verso?** Use [Plotly.NET.Verso](https://github.com/plotly/Plotly.NET/blob/dev/src/Plotly.NET.Verso/README.md), the separate adapter for Verso 1.2.3+. Keep your chart code, replace the notebook package reference, and register the Verso formatter with `#!extension Plotly.NET.Verso <version>`. The Verso guide covers offline charts and local packages for its initial release. This package continues to serve .NET Interactive / Polyglot Notebooks.
+
 ## Installation and quick start
 
 Run this in an F# notebook cell:
