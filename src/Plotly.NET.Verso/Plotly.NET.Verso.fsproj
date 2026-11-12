@@ -33,17 +33,19 @@
 
   <ItemGroup>
     <None Include="RELEASE_NOTES.md" />
+    <Compile Include="ChartBridge.fs" />
     <Compile Include="Formatters.fs" />
     <Compile Include="Extension.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\docs\img\logo.png" Pack="true" PackagePath="\" />
+    <EmbeddedResource Include="Renderer.js" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Plotly.NET\Plotly.NET.fsproj" PackageVersion="[6.0.0, 7.0.0)" />
-    <PackageReference Include="Verso.Abstractions" Version="1.0.11" />
+    <PackageReference Include="Verso.Abstractions" Version="1.2.3" />
   </ItemGroup>
 
   <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
