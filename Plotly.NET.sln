@@ -239,6 +239,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtensionLibsTests", "Exten
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "VersoTests", "tests\ExtensionLibsTests\VersoTests\VersoTests.fsproj", "{30EDCE67-AAEC-4138-A24C-D752012F03F3}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "VersoBrowserTests", "tests\ExtensionLibsTests\VersoBrowserTests\VersoBrowserTests.fsproj", "{BA1748AB-FF1A-441D-BE91-E81394AA7036}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -336,6 +338,12 @@ Global
 		{30EDCE67-AAEC-4138-A24C-D752012F03F3}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
 		{30EDCE67-AAEC-4138-A24C-D752012F03F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30EDCE67-AAEC-4138-A24C-D752012F03F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036}.Dotnet|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036}.Dotnet|Any CPU.Build.0 = Debug|Any CPU
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -380,6 +388,7 @@ Global
 		{4E9DAEE7-0162-4E01-A690-CBA668F26B19} = {0E87E47E-9EDC-4525-AF72-F0E139D54236}
 		{B97B26B6-548F-4656-B980-20BD04D168C7} = {EAE25A1F-86FC-426B-803F-1006D1AD06A8}
 		{30EDCE67-AAEC-4138-A24C-D752012F03F3} = {B97B26B6-548F-4656-B980-20BD04D168C7}
+		{BA1748AB-FF1A-441D-BE91-E81394AA7036} = {B97B26B6-548F-4656-B980-20BD04D168C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7177F1E1-341C-48AB-9864-6B525FFF7633}

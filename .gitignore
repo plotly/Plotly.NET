@@ -170,6 +170,7 @@ packages/
 
 # Test results produced by build
 TestResults.xml
+**/TestResults/
 
 # Nuget outputs
 nuget/*.nupkg
@@ -198,3 +199,5 @@ temp/gh-pages
 /plotly-gource.ppm
 /tests/InteractiveTests/pkg
 /tests/VersoTests/pkg
+/tests/VersoTests/artifacts/
+/.cache/verso-browser/

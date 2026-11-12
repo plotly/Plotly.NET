@@ -82,6 +82,7 @@ let testProjectsCore = [
 let ImageExportTestProject = ProjectInfo.create("ImageExportTests", "tests/ExtensionLibsTests/ImageExportTests/ImageExportTests.fsproj")
 let CSharpTestProject = ProjectInfo.create("CSharpTests", "tests/ExtensionLibsTests/CSharpTests/CSharpTests.csproj")
 let VersoTestProject = ProjectInfo.create("VersoTests", "tests/ExtensionLibsTests/VersoTests/VersoTests.fsproj")
+let VersoBrowserTestProject = ProjectInfo.create("VersoBrowserTests", "tests/ExtensionLibsTests/VersoBrowserTests/VersoBrowserTests.fsproj")
 
 ///
 let testProjectsExtensionsLibs = [
