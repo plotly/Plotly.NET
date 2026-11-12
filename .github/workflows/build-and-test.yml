@@ -6,11 +6,15 @@ on:
   pull_request:
     branches: [ dev ]
 
+env:
+  PUPPETEER_CACHE_DIR: ${{ github.workspace }}/.cache/verso-browser
+  PLOTLY_VERSO_TEST_ARTIFACTS: ${{ github.workspace }}/tests/VersoTests/artifacts/browser
 
 jobs:
   build-and-test-linux:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@v4
@@ -21,13 +25,32 @@ jobs:
           10.x.x
     - name: make script executable
       run: chmod u+x build.sh
+    - name: Install Chromium libraries
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends fonts-liberation libasound2t64 libatk-bridge2.0-0t64 libgbm1 libgtk-3-0t64 libnss3 libxss1
+    - uses: actions/cache@v4
+      with:
+        path: .cache/verso-browser
+        key: verso-chromium-${{ runner.os }}-puppeteersharp-25.15.0
+    - name: Provision pinned Chromium
+      run: ./build.sh PrepareVersoBrowser
     - name: Build and test
       working-directory: ./
       run: ./build.sh runtestsall
+    - name: Upload test diagnostics
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: tests-linux
+        path: |
+          **/TestResults/**
+          tests/VersoTests/artifacts/browser/**
 
   build-and-test-windows:
 
     runs-on: windows-latest
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@v4
@@ -36,6 +59,53 @@ jobs:
       with:
         dotnet-version: |
           10.x.x
+    - uses: actions/cache@v4
+      with:
+        path: .cache/verso-browser
+        key: verso-chromium-${{ runner.os }}-puppeteersharp-25.15.0
+    - name: Provision pinned Chromium
+      run: ./build.cmd PrepareVersoBrowser
     - name: Build and test
       working-directory: ./
       run: ./build.cmd runtestsall
+    - name: Upload test diagnostics
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: tests-windows
+        path: |
+          **/TestResults/**
+          tests/VersoTests/artifacts/browser/**
+
+  verso-package-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.x.x
+    - name: Install Chromium libraries
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends fonts-liberation libasound2t64 libatk-bridge2.0-0t64 libgbm1 libgtk-3-0t64 libnss3 libxss1
+    - uses: actions/cache@v4
+      with:
+        path: .cache/verso-browser
+        key: verso-chromium-${{ runner.os }}-puppeteersharp-25.15.0
+    - name: Test local packages in Verso 1.2.3
+      run: |
+        chmod u+x build.sh
+        ./build.sh RunVersoIntegrationTests
+    - name: Upload host diagnostics
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: verso-host-integration
+        path: |
+          tests/VersoTests/artifacts/packages.json
+          tests/VersoTests/artifacts/runs/*/*.log
+          tests/VersoTests/artifacts/runs/*/*.json
+          tests/VersoTests/artifacts/runs/*/*.html
+          tests/VersoTests/artifacts/runs/*/*.png
+          tests/VersoTests/artifacts/runs/*/*.verso

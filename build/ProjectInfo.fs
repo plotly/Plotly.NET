@@ -93,6 +93,7 @@ let testProjectsExtensionsLibs = [
     ImageExportTestProject
     CSharpTestProject
     VersoTestProject
+    VersoBrowserTestProject
 ]
 
 let CoreProject = ProjectInfo.create("Plotly.NET", "src/Plotly.NET/Plotly.NET.fsproj", "src/Plotly.NET/RELEASE_NOTES.md")
